@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Print stork</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
-	<meta name="description" content="Printing template">
-	<meta name="author" content="Netbase">
-	<!--Add css lib--> 
-	<link rel="stylesheet" type="text/css" href="css/style-main.css">  
-  	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
-  	<link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'>
-  	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'>
-</head>
-<body>
+
 	<?php include('header.php') ?>
 
-	<!--Main index : Begin-->
 	<main class="main index">
 		<!--Home slider : Begin-->
 		<section class="home-slidershow">
@@ -67,7 +52,7 @@
 			</div>
 		</section>
 		<!--Home Category : Begin-->
-		<section class="home-category">
+		<section class="home-category" style="display:none;">
 			<div class="container">
 				<div class="row"> 
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 block block-left">
@@ -132,50 +117,50 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-6 block-trust trust-col-quantity">
-						<div class="tr-icon"><i class="fa fa-thumbs-up"></i></div>
+						<a href="printbooking.php"><div class="tr-icon"><i class="fa fa-thumbs-up"></i></div></a>
 						<div class="tr-text">
-							<h3>Quality Printing</h3>
+							<h3>Printing</h3>
 							<span class="tr-line"></span>
-							<p>Bright inks. Thick Paper. Precise cuts. We believe that quality printing matters.  That quality printing matters.</p>
-							<a href="printbooking.php" class="btn-readmore" title="Quality Printing">Read more</a>
+							<p style="display:none;">Bright inks. Thick Paper. Precise cuts. We believe that quality printing matters.  That quality printing matters.</p>
+							<a style="display:none;" href="#" class="btn-readmore" title="Quality Printing">Read more</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 block-trust trust-col-time-delivery">
 						<div class="tr-icon"><i class="fa fa-paper-plane"></i></div>
 						<div class="tr-text">
-							<h3>Timely Delivery</h3>
+							<h3>Binding</h3>
 							<span class="tr-line"></span>
-							<p>No printer is faster. Order today by 8:00pm EST and you can even get it tomorrow.</p>
-							<a href="#" class="btn-readmore" title="Timely Delivery">Read more</a>
+							<p style="display:none;">No printer is faster. Order today by 8:00pm EST and you can even get it tomorrow.</p>
+							<a style="display:none;" href="#" class="btn-readmore" title="Timely Delivery">Read more</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 block-trust trust-col-eco-minded">
 						<div class="tr-icon"><i class="fa fa-leaf"></i></div>
 						<div class="tr-text">
-							<h3>Eco-Minded</h3>
+							<h3>Cabin Booking</h3>
 							<span class="tr-line"></span>
-							<p>
+							<p style="display:none;">
 								Overnight Prints is the greenest online printer in the world. See our Waterless technology. 
 							</p>
-							<a href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
+							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 block-trust trust-col-eco-money">
 						<div class="tr-icon"><i class="fa fa-money"></i></div>
 						<div class="tr-text">
-							<h3>Money Back Guaranteed</h3>
+							<h3>Brochure</h3>
 							<span class="tr-line"></span>
-							<p>
+							<p style="display:none;">
 								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.
 							</p>
-							<a href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
+							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section><!--Home Trust : End-->
 		<!--Home Promotions Products : Begin -->
-		<section class="home-promotion-product home-product parten-bg">
+		<section class="home-promotion-product home-product parten-bg" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
@@ -516,7 +501,7 @@
 			</div>
 		</section><!--Home Promotions Products : End -->
 		<!--Home New print Template : Begin -->
-		<section class="home-new-product home-product parten-bg">
+		<section class="home-new-product home-product parten-bg" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<!--New Products Title: Begin-->
@@ -2145,7 +2130,7 @@
 			</div>
 		</section><!--Home New Products : End -->
 		<!--Home blog : Begin -->
-		<section class="home-blog">
+		<section class="home-blog" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
@@ -2387,7 +2372,7 @@
 			</div>
 		</section>
 		<!--Home make print : Begin -->
-		<section class="home-make-print">
+		<section class="home-make-print" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
@@ -2456,7 +2441,7 @@
 			</div>
 		</section>
 		<!--Home capabilitie : Begin -->
-		<section class="home-capabititie">
+		<section class="home-capabititie" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
@@ -2501,7 +2486,7 @@
 			</div>
 		</section>
 		<!--Home ours service : Begin -->
-		<section class="or-service">
+		<section class="or-service" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
@@ -2586,7 +2571,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="block-title-w">
-						<h2 class="block-title">OUR RECENT WORKS</h2> 
+						<h2 class="block-title">Popular Products</h2> 
 						<span class="icon-title">
 							<span></span>
 							<i class="fa fa-star"></i>
@@ -3489,7 +3474,7 @@
 			</div>
 		</section>
 		<!--Home Testimonials : Begin -->
-		<section class="home-testimonial">
+		<section class="home-testimonial" style="display:none;">
 			<div class="container">
 				<div class="row">
 					<div class="tes-block" id="testimonial"> 

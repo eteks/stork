@@ -1,5 +1,4 @@
-<!--Footer : Begin-->
-	<footer>
+<footer>
 		<div class="footer-main">
 			<div class="container">
 				<div class="row">
@@ -7,7 +6,7 @@
 						<h2>About Us</h2>
 						<div class="footer-content">
 							<a href="index.html" title="Cmsmart logo footer" class="logo-footer">
-								<img src="images/footer-logo.png">
+								<img src="images/footer-logo.png" alt="logo footer">
 							</a>
 							<ul class="info">
 								<li>
@@ -47,22 +46,22 @@
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a href="#" title="About us">About</a>
+									<a href="about-us.html" title="About us">About</a>
 								</li>
 								<li>
-									<a href="#" title="Green">Green</a>
+									<a href="cart.html" title="Green">Green</a>
 								</li>
 								<li>
-									<a href="#" title="Afiliates">Afiliates</a>
+									<a href="checkout.html" title="Afiliates">Afiliates</a>
 								</li>
 								<li>
-									<a href="#" title="Non-profits and Government">Non-profits and Government</a>
+									<a href="contact.html" title="Non-profits and Government">Non-profits and Government</a>
 								</li>
 								<li>
-									<a href="#" title="Terms of Service">Terms of Service</a>
+									<a href="detail.html" title="Terms of Service">Terms of Service</a>
 								</li>
 								<li>
-									<a href="#" title="Privacy Policy">Privacy Policy</a>
+									<a href="faq.html" title="Privacy Policy">Privacy Policy</a>
 								</li>
 							</ul>
 						</div>
@@ -72,19 +71,19 @@
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a href="#" title="My Account">My Account</a>
+									<a href="myaccount-information.html" title="My Account">My Account</a>
 								</li>
 								<li>
 									<a href="#" title="Design Guide">Design Guide</a>
 								</li>
 								<li>
-									<a href="#" title="FAQ">FAQ</a>
+									<a href="faq.html" title="FAQ">FAQ</a>
 								</li>
 								<li>
 									<a href="#" title="Design Service">Design Services</a>
 								</li>
 								<li>
-									<a href="#" title="Contact Us">Contact Us</a>
+									<a href="contact.html" title="Contact Us">Contact Us</a>
 								</li>
 							</ul>
 						</div>
@@ -105,7 +104,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copy-right">Central - Copyright © 2015 <a title="Cmsmart - Magento theme" href="#">netbaseteam.com</a>. All Rights Reserved</p>
+						<p class="copy-right">Central - Copyright © 2015 <a href="#" title="Cmsmart - Magento theme">netbaseteam.com</a>. All Rights Reserved</p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top
@@ -123,7 +122,7 @@
 				<i class="fa fa-times-circle"></i>
 			</span>
 		</div>
-		<ul class="cate_list">
+		<ul  class="cate_list">
 			<li class="level0 parent col1 all-product">
 				<a href="#">
 					<span>All Product</span>
@@ -186,7 +185,7 @@
 				</ul>
 			</li>
 			<li class="level0">
-				<a href="#" title="Marketing">Marketing</a>
+				<a href="category_grid.html" title="Marketing">Marketing</a>
 			</li>
 			<li class="level0">
 				<a href="#" title="Postcards">Postcards</a>
@@ -198,17 +197,23 @@
 				<a href="#">Promotional</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> 
 	<!--Add js lib-->
-	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script> 
+	<script type="text/javascript" src="js/bootstrap.min.js"></script> 
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script> 
-    <script type="text/javascript" src="js/detail.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script> 
+    <script type="text/javascript" src="js/doughnutit.js"></script> 
+	<script type="text/javascript" src="js/slideshow/jquery.themepunch.revolution.js"></script>   
+	<script type="text/javascript" src="js/slideshow/jquery.themepunch.plugins.min.js"></script>  
+    <script type="text/javascript" src="js/theme-home.js"></script>  
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   	<![endif]-->
+  	<script type="text/javascript">
+	    jQuery(document).ready(function ($) {
+	        $('#tabs').tab();
+	    });
+	</script>    
 </body>
 </html>
