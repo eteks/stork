@@ -29,25 +29,42 @@ function totalSourcesCount()
 	<div class="side-cont">
 		<ul class="nav">
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="dashboard.php")
+			if(basename($_SERVER['PHP_SELF'])=="add_user.php" || 
+			basename($_SERVER['PHP_SELF'])=="users.php")
 			{ 
-				?>
-				<li class="current"><a href="dashboard.php">
-				<i class="fa fa-bar-chart-o"></i> Website Stats</a></li>
+				?> 
+				<li class="has_submenu open">
 				<?php 
 			} 
 			else 
 			{ 
 				?>
-				<li ><a href="dashboard.php">
-				<i class="fa fa-bar-chart-o"></i> Website Stats</a></li>
+				<li class="has_submenu">
 				<?php 
-			} 
+			}  
 			?>
+			<a href="#">
+				<i class="fa fa-th"></i> User
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
+					<a href=""><i class="fa fa-plus-circle"></i> Add User</a>
+				</li>
+				<!-- <li>
+					<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
+				</li> -->
+				<li>
+					<a href=""> <i class="fa fa-th"></i><span id="allProducts"> All Users (<?php echo(countTotalProducts()) ?>)</span></a>
+				</li> 
+			</ul>
+			</li>
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="add_product.php" || 
-			basename($_SERVER['PHP_SELF'])=="products.php" || basename($_SERVER['PHP_SELF'])=="update_product.php")
+			if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 
+			basename($_SERVER['PHP_SELF'])=="states.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -80,7 +97,7 @@ function totalSourcesCount()
 			</li>
 
 
-			<?php if(basename($_SERVER['PHP_SELF'])=="categories.php" || basename($_SERVER['PHP_SELF'])=="addCategory.php")
+			<?php if(basename($_SERVER['PHP_SELF'])=="areas.php" || basename($_SERVER['PHP_SELF'])=="add_area.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -94,24 +111,24 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-folder-open"></i> Categories
+				<i class="fa fa-folder-open"></i> Area
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="addCategory.php"><i class="fa fa-plus-circle"></i> Add Category </a>
+					<a href="addCategory.php"><i class="fa fa-plus-circle"></i> Add Area </a>
 				</li>
 				<li>
-					<a href="categories.php"><i class="fa fa-folder-open"></i> All Categories (<?php echo(countCategory()) ?>)</a>
+					<a href="categories.php"><i class="fa fa-folder-open"></i> All Areas (<?php echo(countCategory()) ?>)</a>
 				</li>				
 			</ul>
 			</li>
 
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="add_page.php" || 
-			basename($_SERVER['PHP_SELF'])=="pages.php")
+			if(basename($_SERVER['PHP_SELF'])=="add_college.php" || 
+			basename($_SERVER['PHP_SELF'])=="colleges.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -125,22 +142,22 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> Pages
+				<i class="fa fa-file"></i> College
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add Page</a>
+					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add college</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Pages (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="pages.php"><i class="fa fa-file"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="sources.php" || basename($_SERVER['PHP_SELF'])=="addSource.php")
+			if(basename($_SERVER['PHP_SELF'])=="papersize.php" || basename($_SERVER['PHP_SELF'])=="add_papersize.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -154,23 +171,24 @@ function totalSourcesCount()
 			}  
 			?>
 				<a href="#">
-				<i class="fa fa-leaf"></i> Envato Sources
+				<i class="fa fa-leaf"></i> Papersize
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="addSource.php"><i class="fa fa-leaf"></i> Add Source </a>  
+					<a href="addSource.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
 				</li>
 				<li>
-					<a href="sources.php"><i class="fa fa-leaf"></i> All Sources (<?php echo(totalSourcesCount()) ?>)</a>
+					<a href="sources.php"><i class="fa fa-leaf"></i> All Papersize (<?php echo(totalSourcesCount()) ?>)</a>
 				</li>
 			</ul>
 			</li>
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="settings.php" || basename($_SERVER['PHP_SELF'])=="user.php" || basename($_SERVER['PHP_SELF'])=="social.php" || basename($_SERVER['PHP_SELF'])=="currency.php"|| basename($_SERVER['PHP_SELF'])=="manageCaptcha.php"|| basename($_SERVER['PHP_SELF'])=="ads.php"|| basename($_SERVER['PHP_SELF'])=="media.php"|| basename($_SERVER['PHP_SELF'])=="manageComments.php" || basename($_SERVER['PHP_SELF'])=="sitemaps.php" || basename($_SERVER['PHP_SELF'])=="rss-setting.php" || basename($_SERVER['PHP_SELF'])=="cache.php") 
-			{
+			if(basename($_SERVER['PHP_SELF'])=="add_papertype.php" || 
+			basename($_SERVER['PHP_SELF'])=="papertype.php")
+			{ 
 				?> 
 				<li class="has_submenu open">
 				<?php 
@@ -183,44 +201,130 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-cogs"></i> Website Settings
+				<i class="fa fa-file"></i> PaperType
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="settings.php"><i class="fa fa-cog"></i> General Settings</a>
+					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
+				</li>
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> All PaperType (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
-				<li>	
-					<a href="user.php"><i class="fa fa-user"></i> Login Details</a>
+			</ul>
+			</li>
+			<?php 
+			if(basename($_SERVER['PHP_SELF'])=="add_cost.php" || 
+			basename($_SERVER['PHP_SELF'])=="cost.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+			<a href="#">
+				<i class="fa fa-file"></i> Cost Estimation
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> Add Cost Estimation (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> All Cost Estimation (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+			</ul>
+			</li>
+			<?php 
+			if(basename($_SERVER['PHP_SELF'])=="view_order.php" || 
+			basename($_SERVER['PHP_SELF'])=="order.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+			<a href="#">
+				<i class="fa fa-file"></i> Order
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+			</ul>
+			</li>
+				<?php 
+			if(basename($_SERVER['PHP_SELF'])=="add_trackorder.php" || 
+			basename($_SERVER['PHP_SELF'])=="trackorder.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+			<a href="#">
+				<i class="fa fa-file"></i> Track Order
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> Set Track Order (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+				<li>
+					<a href="pages.php"><i class="fa fa-file"></i> All Track Order (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+			</ul>
+			</li>
+			<?php 
+			if(basename($_SERVER['PHP_SELF'])=="add_offerzone.php" || 
+			basename($_SERVER['PHP_SELF'])=="offerzone.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+			<a href="#">
+				<i class="fa fa-file"></i> Offer Zone
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add OfferZone</a>
 				</li>
 				<li>
-					<a href="social.php"><i class="fa fa-group"></i> Social Profiles</a>
-				</li>
-				<li>
-					<a href="currency.php"><i class="fa fa-dollar"></i> Currency Settings</a>
-				</li>
-				<li>
-					<a href="manageCaptcha.php"><i class="fa fa-eye-slash"></i> Captcha Settings</a>
-				</li>
-				<li>
-					<a href="cache.php"><i class="fa fa-barcode"></i>  Cache Settings</a>
-				</li>
-				<li>
-					<a href="manageComments.php"><i class="fa fa-comments"></i> Comments Settings</a>
-				</li>
-				<li>
-					<a href="ads.php"><i class="fa fa-code"></i> Ad Management</a>
-				</li>
-				<li>
-					<a href="media.php"><i class=" fa fa-caret-square-o-right"></i> Media Settings</a>
-				</li>
-				<li>
-					<a href="sitemaps.php"><i class="fa fa-sitemap"></i> Sitemaps</a>
-				</li>
-				<li>
-					<a href="rss-setting.php"><i class="fa fa-rss"></i> RSS-Settings</a>
-				</li>
+					<a href="pages.php"><i class="fa fa-file"></i> All OfferZone (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
 			</ul>
 			</li>
 			<li>
