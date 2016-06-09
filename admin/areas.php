@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Areas</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -336,7 +336,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>State Name</b></td>
+											<td width="40%;" ><b>Area Name</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>

@@ -67,11 +67,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					</script>
 					<form class="form-horizontal" id="myform" role="form" action="add_state.php" method="post">
 						<div class="form-group">
-							<label class="col-lg-2 control-label">State Name</label>
+							<label class="col-lg-2 control-label">State</label>
+							<div class="col-lg-10">
+								<select class="form-control" id= "category" name="state_status">
+								<option value="">Select the state</option>
+								<?php
+			                        $query = mysql_query("select * from stork_state");
+			                        echo $query;
+			                        while ($row = mysql_fetch_array($query)) {
+			                            ?>
+			                        <option value="<?php echo $row['state_id']; ?>"><?php echo $row['state_name']; ?></option>
+			                    <?php } ?>
+								</select>
+							 </div>
+							
+						</div> 
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Area Name</label>
 							<div class="col-lg-10">
 								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="state_name">
 							</div>
-						</div> 
+						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">Status</label>
 							<div class="col-lg-10">

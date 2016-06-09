@@ -1,15 +1,15 @@
 <?php
-function countTotalProducts()
+function countState()
 {
 	$query = mysqlQuery("SELECT count(state_id) as total FROM stork_state");
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
-function countCategory()
+function countArea()
 {
-	$query = mysqlQuery("SELECT count(id) as totalCategory FROM `categories` WHERE `parentId`='0'");
-	$fecth = mysql_fetch_array($query);
-	return $fecth['totalCategory'];
+	$query = mysqlQuery("SELECT count(area_id) as total FROM stork_area");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
 }
 function totalPagesCount()
 {
@@ -57,7 +57,7 @@ function totalSourcesCount()
 					<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
 				</li> -->
 				<li>
-					<a href=""> <i class="fa fa-th"></i><span id="allProducts"> All Users (<?php echo(countTotalProducts()) ?>)</span></a>
+					<a href=""> <i class="fa fa-th"></i><span id="allProducts"> All Users </span></a>
 				</li> 
 			</ul>
 			</li>
@@ -91,7 +91,7 @@ function totalSourcesCount()
 					<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
 				</li> -->
 				<li>
-					<a href="states.php"> <i class="fa fa-th"></i><span id="allProducts"> All States (<?php echo(countTotalProducts()) ?>)</span></a>
+					<a href="states.php"> <i class="fa fa-th"></i><span id="allProducts"> All States (<?php echo(countState()) ?>)</span></a>
 				</li> 
 			</ul>
 			</li>
@@ -117,10 +117,10 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="addCategory.php"><i class="fa fa-plus-circle"></i> Add Area </a>
+					<a href="add_area.php"><i class="fa fa-plus-circle"></i> Add Area </a>
 				</li>
 				<li>
-					<a href="categories.php"><i class="fa fa-folder-open"></i> All Areas (<?php echo(countCategory()) ?>)</a>
+					<a href="areas.php"><i class="fa fa-folder-open"></i> All Areas (<?php echo(countArea()) ?>)</a>
 				</li>				
 			</ul>
 			</li>
