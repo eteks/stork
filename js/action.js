@@ -31,7 +31,12 @@ $(document).ready(function(){
 		
 	});
 	
-	// for confirmation tab menu
+	//add more color pages
+	$('.add_more_color_page').on('click	',function(){
+		$("<tr class='only_for_color_with_bw'><td>Enter color print page no</td><td><input type='text' name='color_page' value='' class='color_print_page_no'/></td><td><input type='file' name='color_page_files[]' /></td></tr>").insertAfter('.only_for_color_with_bw:last');
+	});
+	
+	// for confirmation tab menu when click tab 4 click
 	$('#print_booking_confirmation').click(function(){
 		
 		//print type
@@ -61,11 +66,28 @@ $(document).ready(function(){
 		
 		//Color print page no
 		if($('#product-detail .pbptbwc').is(':checked')){
-			$('#product-detail .print_book_confirm_color_pages').html($('#product-detail  .color_print_page_no').val());
-			var value = $('#product-detail  .color_print_page_no').val();
-			var words = value.split(",");
-			$('#product-detail .print_book_confirm_total_color_pages').html(words.length);
+			
+			var total_color_pages = 0;
+			var color_page_numbers = '';
+			$('.only_for_color_with_bw').each(function(){
+				var value = $(this).find('.color_print_page_no').val();
+				var words = value.split(",");
+				color_page_numbers +=value+',';
+				total_color_pages += words.length;
+			});
+			$('#product-detail .print_book_confirm_color_pages').html(color_page_numbers);
+			$('#product-detail .print_book_confirm_total_color_pages').html(total_color_pages);
 		}
+		
+		//total no of pages
+		$('#product-detail .print_book_confirm_total_number_pages').html($('#product-detail .total_number_of_page').val());
+		
+		//total cost
+		$('#product-detail .print_book_confirm_total_cost').html($('#product-detail .print_book_total_cost').val());
+		
+		//shipping details
+		$('#product-detail .print_book_confirm_total_ship_lane1').html($('#product-detail .registered_user_line1').val());
+		$('#product-detail .print_book_confirm_total_ship_lane2').html($('#product-detail .registered_user_line2').val());
 	});
 	
 });// END DOCUMENT READY FUNCTION

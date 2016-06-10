@@ -9,7 +9,7 @@
 			        <li><a href="#orange" data-toggle="tab">Step 3</a></li>
 			        <li><a id="print_booking_confirmation" href="#yellow" data-toggle="tab">Step 4</a></li>
 			    </ul>
-			    <form action="add_to_cart.php" enctype="multipart/form-data">
+			    <form action="add_to_cart.php" enctype="multipart/form-data" method="post">
 	    			<div id="my-tab-content" class="tab-content">
 	    				<div class="tab-pane active container" id="green">
 				        	<div class="row text-center">
@@ -68,6 +68,8 @@
 				        			<tr class="only_for_color_with_bw dn">
 				        				<td>Enter color print page no</td>
 				        				<td><input type="text" name="color_page" value="" class="color_print_page_no"/></td>
+				        				<td><input type="file" name="color_page_files[]" /></td>
+				        				<td><input type="button" name="add_more_color_page" value="+" class="add_more_color_page"/></td>
 				        			</tr>
 				        			<tr>
 				        				<td>Total no of page</td>
@@ -75,11 +77,15 @@
 				        			</tr>
 				        			<tr>
 				        				<td>Total Cost</td>
-				        				<td><input type="text" name="total_cost" value="" class="print_book_total cost"/></td>
+				        				<td><input type="text" name="total_cost" value="" class="print_book_total_cost"/></td>
 				        			</tr>
 				        			<tr>
 				        				<td>Upload your file</td>
-				        				<td><input type="file" name="upload file" value=""/></td>
+				        				<td><input type="file" name="upload file" value="" class="print_book_upload_file"/></td>
+				        			</tr>
+				        			<tr>
+				        				<td>Comments</td>
+				        				<td><textarea></textarea></td>
 				        			</tr>
 				        		</table>
 				        	</div>
@@ -94,11 +100,11 @@
 				           				</tr>
 				           				<tr>
 				           					<td>Line 1</td>
-				           					<td><input type="text" name="line1" /> </td>
+				           					<td><input type="text" name="line1" value="" class="registered_user_line1" /> </td>
 				           				</tr>
 				           				<tr>
 				           					<td>Line 2</td>
-				           					<td><input type="text" name="line2" /> </td>
+				           					<td><input type="text" name="line2" value="" class="registered_user_line2"/> </td>
 				           				</tr>
 				           				<tr>
 				           					<td>Area</td>
@@ -120,12 +126,20 @@
 				           						</select>
 				           					</td>
 				           				</tr>
+				           				<tr>
+				           					<td>Mobile no</td>
+				           					<td><input type="text" name="registered_user_mobile" /></td>
+				           				</tr>
+				           				<tr>
+				           					<td>Email</td>
+				           					<td><input type="text" name="registered_user_email" /></td>
+				           				</tr>
 				           			</table>
 				           		</div>
 				           		<div class="col-md-6">
 				           			<table class="print_book_college_stu">
 				           				<tr>
-				           					<td colspan="2"> <input type="checkbox" name="registed_addres"/>Send Order to my college </td>
+				           					<td colspan="2">Send Order to my college </td>
 				           				</tr>
 				           				<tr>
 				           					<td>Student name</td>
@@ -146,7 +160,7 @@
 				           				<tr>
 				           					<td>College</td>
 				           					<td>
-				           						<select name="area">
+				           						<select name="shipping_clg">
 				           							<option value="pondy">Manakula vinayagar</option>
 				           							<option value="tamil">Mailam Engineering</option>
 				           							<option value="andra">Pondicherry university</option>
@@ -156,12 +170,16 @@
 				           				<tr>
 				           					<td>Area</td>
 				           					<td>
-				           						<select name="area">
+				           						<select name="shipping_area">
 				           							<option value="lawspet">Lawspet</option>
 				           							<option value="rajiv">Rajiv nagar</option>
 				           							<option value="muthial">Muthialpet</option>
 				           						</select>
 				           					</td>
+				           				</tr>
+				           				<tr>
+				           					<td>Mobile no</td>
+				           					<td><input type="text" name="shippint_user_mobile" /></td>
 				           				</tr>
 				           				
 				           			</table>
