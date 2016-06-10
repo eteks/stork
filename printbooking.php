@@ -35,209 +35,251 @@
 				            
 				        </div> <!---#green---->
 				        <div class="tab-pane" id="red">
-				        	<div class="row step2">
-				        		<input type="radio" class="print_book_print_type pbptbw" id="color-type" name="print_type" value="bw" checked/>
-				        		   <label>Black &amp; White</label>
+				        	
+				        	<div class="input_holder">
+			        			<label>Colors to Print:</label>
+			        			<input type="radio" class="print_book_print_type pbptbw" id="color-type" name="print_type" value="bw" checked/>
+			        			<label>Black &amp; White</label>
 				            	<input type="radio" class="print_book_print_type pbptc" id="color-type" name="print_type" value="c"/>
-				            	    <label>Color</label>
+				            	<label>Color</label>
 				            	<input type="radio" class="print_book_print_type pbptbwc" id="color-type" name="print_type" value="bwc"/>
-				            	    <label>Black &amp; White and Color</label>
-				        	</div>
-				        	<div class="row print-sides">
-				        		<input type="radio" class="print_book_print_side pbpsss" name="print_side" value="ss" checked/>
-				        		    <label>Single Side</label>
+				            	<label>Black &amp; White and Color</label>
+			        		</div><!-- input_holder -->
+			        		
+			        		
+			        		<div class="input_holder">
+			        			<label>Sides to Print:</label>
+			        			<input type="radio" class="print_book_print_side pbpsss" name="print_side" value="ss" checked/>
+				        		<label>Single Side</label>
 				            	<input type="radio" class="print_book_print_side pbpsds" name="print_side" value="ds"/>
-				            	    <label>Double Side</label>
-				        	</div>
-				        	<div class="row">
-				        		<table>
-				        			<tr id="paper-row">
-				        				<td>Paper size</td>
-				        				<td>
-				        					<select name="paper_row" class="print_book_paper_size">
-				        						<option value="a5">A5</option>
-				        						<option value="a4">A4</option>
-				        						<option value="a3">A3</option>
-				        						<option value="a2">A2</option>
-				        						<option value="a1">A1</option>
-				        					</select>
-				        				</td>
-				        			</tr>
-				        			<tr id="paper-row">
-				        				<td>Paper type</td>
-				        				<td>
-				        					<select name="papertype" class="print_book_paper_type">
-				        						<option value="bsheet">Bond Sheet</option>
-				        						<option value="nsheet">Normal Sheet</option>
-				        					</select>
-				        				</td>
-				        			</tr>
-				        			<tr class="only_for_color_with_bw dn paper-row">
-				        				<td>Enter color print page no</td>
-				        				<td><input type="text" name="color_page" value="" class="color_print_page_no"/></td>
-				        			</tr>
-				        			<tr class="paper-row">
-				        				<td>Total no of page</td>
-				        				<td><input type="text" name="total_page" value="" class="total_number_of_page"/></td>
-				        			</tr>
-				        			<tr class="paper-row">
-				        				<td>Total Cost</td>
-				        				<td><input type="text" name="total_cost" value="" class="print_book_total cost"/></td>
-				        			</tr>
-				        			<tr class="paper-row">
-				        				<td>Upload your file</td>
-				        				<td><input type="file" name="upload file" value=""/></td>
-				        			</tr>
-				        		</table>
-				        	</div>
+				            	<label>Double Side</label>
+			        		</div><!-- input_holder -->
+				        	
+			        		<div class="input_holder">
+			        			<label>Paper size</label>
+			        			<select name="paper_row" class="print_book_paper_size">
+	        						<option value="a5">A5</option>
+	        						<option value="a4">A4</option>
+	        						<option value="a3">A3</option>
+	        						<option value="a2">A2</option>
+	        						<option value="a1">A1</option>
+	        					</select>
+			        		</div><!-- input_holder -->
+				        		
+			        		<div class="input_holder">
+			        			<label>Paper type</label>
+			        			<select name="papertype" class="print_book_paper_type">
+	        						<option value="bsheet">Bond Sheet</option>
+	        						<option value="nsheet">Normal Sheet</option>
+	        					</select>
+			        		</div><!-- input_holder -->
+				        		
+			        		<div class="input_holder only_for_color_with_bw dn paper-row">
+			        			<label>Enter color print page no</label>
+			        			<input type="text" name="color_page" value="" class="color_print_page_no"/>
+			        			<div>
+			        			  <input type="file" name="upload file" value=""/> </br>
+			        			  <input class="add_more_color_page" type="button" value="+" name="add_more_color_page">
+			        			 </div>
+			        		</div><!-- input_holder -->
+			        		
+			        	    </br>
+			        		
+			        		<div class="input_holder only_for_color_with_bw dn paper-row">
+			        			<label>Total no of page</label>
+			        			<input type="text" name="total_page" value="" class="total_number_of_page"/>
+			        		</div><!-- input_holder -->
+			        		
+			        		<div class="input_holder only_for_color_with_bw dn paper-row">
+			        			<label>Total Cost</label>
+			        			<input type="text" name="total_cost" value="" class="print_book_total cost"/>
+			        		</div><!-- input_holder -->
+			        		
+			        		<div class="input_holder only_for_color_with_bw dn paper-row">
+			        			<label>Upload your file</label>
+			        		    </br></br>
+			        			<input type="file" name="upload file" value=""/>
+			        		</div><!-- input_holder -->
 				            
 				        </div> <!---#red---->
-				        <div class="tab-pane" id="orange">
-				           <div class="row">
-				           		<div class="col-md-6">
-				           			<table>
-				           				<tr>
-				           					<td colspan="2"> <input type="checkbox" name="registed_addres"/> Send Order to registred address </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Line 1</td>
-				           					<td><input type="text" name="line1" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Line 2</td>
-				           					<td><input type="text" name="line2" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Area</td>
-				           					<td>
-				           						<select name="area">
-				           							<option value="lawspet">Lawspet</option>
-				           							<option value="rajiv">Rajiv nagar</option>
-				           							<option value="muthial">Muthialpet</option>
-				           						</select>
-				           					</td>
-				           				</tr>
-				           				<tr>
-				           					<td>State</td>
-				           					<td>
-				           						<select name="area">
-				           							<option value="pondy">Pondicherry</option>
-				           							<option value="tamil">Tamilnau</option>
-				           							<option value="andra">Andrapradesh</option>
-				           						</select>
-				           					</td>
-				           				</tr>
-				           			</table>
-				           		</div>
-				           		<div class="col-md-6">
-				           			<table class="print_book_college_stu">
-				           				<tr>
-				           					<td colspan="2"> <input type="checkbox" name="registed_addres"/>Send Order to my college </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Student name</td>
-				           					<td><input type="text" name="stu_name" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Student ID</td>
-				           					<td><input type="text" name="stu_id" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Year of Studing</td>
-				           					<td><input type="text" name="stu_year" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>Department</td>
-				           					<td><input type="text" name="stu_dept" /> </td>
-				           				</tr>
-				           				<tr>
-				           					<td>College</td>
-				           					<td>
-				           						<select name="area">
-				           							<option value="pondy">Manakula vinayagar</option>
-				           							<option value="tamil">Mailam Engineering</option>
-				           							<option value="andra">Pondicherry university</option>
-				           						</select>
-				           					</td>
-				           				</tr>
-				           				<tr>
-				           					<td>Area</td>
-				           					<td>
-				           						<select name="area">
-				           							<option value="lawspet">Lawspet</option>
-				           							<option value="rajiv">Rajiv nagar</option>
-				           							<option value="muthial">Muthialpet</option>
-				           						</select>
-				           					</td>
-				           				</tr>
-				           				
-				           			</table>
-				           		</div>
-				           </div>
-				        </div>
-				        <div class="tab-pane" id="yellow">
-				            <div class="row">
-				            	<table>
-				            		<tr>
-				            			<th colspan="2">
-				            				order details
-				            			</th>		
-				            		</tr>
-				            		<tr>
-				            			<td>Print type:</td>
-				            			<td class="print_book_confirm_print_type"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Print side:</td>
-				            			<td class="print_book_confirm_print_side"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Print size:</td>
-				            			<td class="print_book_confirm_paper_size"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Paper Type:</td>
-				            			<td class="print_book_confirm_paper_type"></td>
-				            		</tr>
-				            		<tr class="print_book_confirm_color dn">
-				            			<td>Color print page no:</td>
-				            			<td class="print_book_confirm_color_pages"></td>
-				            		</tr>
-				            		<tr class="print_book_confirm_color dn">
-				            			<td>Total no of color pages:</td>
-				            			<td class="print_book_confirm_total_color_pages"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Total no of pages:</td>
-				            			<td class="print_book_confirm_total_number_pages"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Total cost:</td>
-				            			<td class="print_book_confirm_total_cost"></td>
-				            		</tr>
-				            	</table>
-				            	<table>
-				            		<tr>
-				            			<th colspan="2">Shipping details</th>
-				            		</tr>
-				            		<tr>
-				            			<td>Line 1:</td>
-				            			<td class="print_book_confirm_total_ship_lane1"></td>
-				            		</tr>
-				            		<tr>
-				            			<td>Line 2:</td>
-				            			<td class="print_book_confirm_total_ship_lane2"></td>
-				            		</tr>
-				            	</table>
-				            	<div class="row">
-				            		<input type="button" name="add to cart" value="Add to cart"/>
-				            		<input type="submit" name="pay" value="Paynow"/>
-				            		<input type="button" name="cancel" value="Cancel"/>
-				            	</div>
-				            </div>
-				        </div>
-					</div>
-				</form>
+				  
+				        
+				 <div class="tab-pane" id="orange">
+				 	<div>
+				        	
+				        	<div class="input_holder_heading">
+				        		<input type="checkbox" name="registed_addres"/>
+				        		<label> Send Order to registred address</label>				        		
+				        	</div>
+				            </br>
+				            </br>
+				        	
+				        	<div class="input_holder">
+				        		<label> Line 1</label>
+				        		<input type="text" name="line1" size="60" class="addr"/>				        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label> Line 2</label>
+				        		<input type="text" name="line2" size="60" class="addr" />				        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Area </label>
+				        		<select name="area">
+				           			<option value="lawspet">Lawspet</option>
+				           			<option value="rajiv">Rajiv nagar</option>
+				           			<option value="muthial">Muthialpet</option>
+				           		</select>				        		
+				        	</div>
+
+							<div class="input_holder">
+				        		<label>State</label>
+				        		<select name="area">
+	       							<option value="pondy">Pondicherry</option>
+	       							<option value="tamil">Tamilnau</option>
+	       							<option value="andra">Andrapradesh</option>
+	       						</select>			        		
+				        	</div>
+				       </div> 	
+				       
+				       </br> </br>				       
+				        
+				        <div class="print_book_college_stu">
+				        	
+				        	<div class="input_holder_heading">
+				        		<input type="checkbox" name="registed_addres" class="oder-college"/>	
+				        		<label>Send Order to my college </label>
+				        	</div>
+				             </br>
+				            </br>
+				        	
+				        	<div class="input_holder">
+				        		<label>Student name </label>
+				        		<input type="text" name="stu_name" size="60" class="order-college"/> 		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Student name </label>
+				        		<input type="text" name="stu_name" size="60" class="order-college" /> 		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Student ID</label>
+				        		<input type="text" name="stu_id" size="60" class="order-college" />		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Year of Studing</label>
+				        		<input type="text" name="stu_year" size="60" class="order-college" />		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Department</label>
+				        		<input type="text" name="stu_dept" size="60"  class="order-college"/>		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>College</label>
+				        		<select name="area">
+           							<option value="pondy">Manakula vinayagar</option>
+           							<option value="tamil">Mailam Engineering</option>
+           							<option value="andra">Pondicherry university</option>
+           						</select>		        		
+				        	</div>
+				        	
+				        	<div class="input_holder">
+				        		<label>Area</label>
+				        		<select name="area">
+           							<option value="lawspet">Lawspet</option>
+           							<option value="rajiv">Rajiv nagar</option>
+           							<option value="muthial">Muthialpet</option>
+           						</select>		        		
+				        	</div>
+			           </div>	
+			         			
+				</div> <!--Orange--->
+				        
+			  <div class="tab-pane" id="yellow">
+				         <div>	
+				        	<div class="input_holder_heading">
+				        		<h3>Order Details </h3>
+				        	</div>
+				        	</br>
+				        	
+				        	<div class="input_holder print_book_confirm_color dn">
+				        		<label>Print type: </label>
+				        		<div class="print_book_confirm_print_type">  </div>
+				        	</div>
+				        	
+				        	<div class="input_holder print_book_confirm_color dn">
+				        		<label>Print side:</label>
+				        		<div class="print_book_confirm_print_side">  </div>
+				        	</div>
+				        	
+				        	<div class="input_holder print_book_confirm_color dn">
+				        		<label>Print size:</label>
+				        		<div class="print_book_confirm_paper_size">  </div>
+				        	</div>
+				        	
+				        	<div class="input_holder print_book_confirm_color dn">
+				        		<label>Paper Type:</label>
+				        		<div class="print_book_confirm_paper_type">  </div>
+				        	</div>
+				        	
+				        	<div class="input_holder print_book_confirm_color dn">
+				        		<label>Color print page no:</label>
+				        		<div class="print_book_confirm_color_pages">  </div>
+				        	</div>
+				            
+				            <div class="input_holder print_book_confirm_color dn">
+				        		<label>Total no of color pages:</label>
+				        		<div class="print_book_confirm_total_color_pages">  </div>
+				        	</div>
+				            		
+				            <div class="input_holder print_book_confirm_color dn">
+				        		<label>Total no of pages:</label>
+				        		<div class="print_book_confirm_total_number_pages">  </div>
+				        	</div>	
+				        	
+				        	<div class="input_holder">
+				        		<label>Total cost:</label>
+				        		<div class="print_book_confirm_total_cost">  </div>
+				        	</div>		
+				        </div> <!---order details--->
+				        </br>
+				        </br>  
+
+						<div>
+							
+							<div class="input_holder_heading">
+				        		<h3>Shipping Details</h3>
+				        	</div>
+ 				            </br>
+				        	
+				        	<div class="input_holder">
+				        		<label>Line 1:</label>
+				        		<div class="print_book_confirm_total_ship_lane1">  </div>
+				        	</div>
+				        	<div class="input_holder">
+				        		<label>Line 2:</label>
+				        		<div class="print_book_confirm_total_ship_lane2">  </div>
+				        	</div>
+
+						</div> <!---Shipping details--->
+						</br>
+				        </br>
+						
+				        <div class="payment-button">
+				            		<input type="button" name="add to cart" value="Add to cart" class="pay-btn"/>
+				            		<input type="submit" name="pay" value="Paynow" class="pay-btn"/>
+				            		<input type="button" name="cancel" value="Cancel" class="pay-btn"/>
+				        </div>    
+				            		
+		   </div> <!---#yellow---->
+				       
+			     </div>
+		     </form>
 			</div> <!--id content---->
 			
 		</div> <!-- container -->
