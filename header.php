@@ -70,7 +70,7 @@
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
 						<div class="cart-w SC-w hd-pd ">
 							<span class="mcart-icon dropdowSCIcon">
-								<a href="login.html">
+								<a href="login.php">
 									<i class="fa fa-user"></i>
 								</a>
 							</span>	
@@ -79,6 +79,15 @@
 							<span class="mcart-icon dropdowSCIcon">
 								<a href="login.html">
 									<i class="fa fa-home"></i>
+								</a>
+							</span>
+						</div>
+						<!-- Added by siva -->
+						<div class="cart-w SC-w hd-pd ">
+							<span class="mcart-icon dropdowSCIcon">
+								<a href="register.php">
+									<i class="fa fa-pencil"></i>
+									<!-- Sign Up -->
 								</a>
 							</span>
 						</div>

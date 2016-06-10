@@ -11,6 +11,11 @@ function countArea()
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countCostEstimation(){
+	$query = mysqlQuery("SELECT count(cost_estimation_id) as total FROM stork_cost_estimation");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 function totalPagesCount()
 {
 	$query = mysqlQuery("SELECT count(id) as totalPages FROM `pages`");
@@ -215,8 +220,8 @@ function totalSourcesCount()
 			</ul>
 			</li>
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="add_cost.php" || 
-			basename($_SERVER['PHP_SELF'])=="cost.php")
+			if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
+			basename($_SERVER['PHP_SELF'])=="cost_estimation.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -236,10 +241,10 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> Add Cost Estimation (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="add_cost_estimation.php"><i class="fa fa-file"></i> Add Cost Estimation</a>
 				</li> 
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Cost Estimation (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="cost_estimation.php"><i class="fa fa-file"></i> All Cost Estimation (<?php echo(countCostEstimation()) ?>)</a>
 				</li> 
 			</ul>
 			</li>

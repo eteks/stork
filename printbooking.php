@@ -13,10 +13,12 @@
 	    			<div id="my-tab-content" class="tab-content">
 	    				<div class="tab-pane active container" id="green">
 				        	<div class="row text-center">
-				        		<input type="radio" class="print_book_user_type" name="user_type" value="student" checked/>Student
-				            	<input type="radio" class="print_book_user_type" name="user_type" value="professional"/>Professional
+				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="student" checked/>
+				        		   <label for="student">Student</label>
+				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="professional"/>
+				            	    <label for="professional">Professional</label>
 				        	</div>
-				        	<div class="row text-center">
+				        	<div class="row text-center location">
 	        					<select name="college" id="print_book_college" class="">
 	        						<option value="mana">Manakula vinayakar</option>
 	        						<option value="christ">Christ college</option>
@@ -31,23 +33,28 @@
 	        					</select>
 				        	</div>
 				            
-				        </div>
+				        </div> <!---#green---->
 				        <div class="tab-pane" id="red">
-				        	<div class="row">
-				        		<input type="radio" class="print_book_print_type pbptbw" name="print_type" value="bw" checked/>Black &amp; White
-				            	<input type="radio" class="print_book_print_type pbptc" name="print_type" value="c"/>Color
-				            	<input type="radio" class="print_book_print_type pbptbwc" name="print_type" value="bwc"/>Black &amp; White and Color
+				        	<div class="row step2">
+				        		<input type="radio" class="print_book_print_type pbptbw" id="color-type" name="print_type" value="bw" checked/>
+				        		   <label>Black &amp; White</label>
+				            	<input type="radio" class="print_book_print_type pbptc" id="color-type" name="print_type" value="c"/>
+				            	    <label>Color</label>
+				            	<input type="radio" class="print_book_print_type pbptbwc" id="color-type" name="print_type" value="bwc"/>
+				            	    <label>Black &amp; White and Color</label>
 				        	</div>
-				        	<div class="row">
-				        		<input type="radio" class="print_book_print_side pbpsss" name="print_side" value="ss" checked/>Single Side
-				            	<input type="radio" class="print_book_print_side pbpsds" name="print_side" value="ds"/>Double Side
+				        	<div class="row print-sides">
+				        		<input type="radio" class="print_book_print_side pbpsss" name="print_side" value="ss" checked/>
+				        		    <label>Single Side</label>
+				            	<input type="radio" class="print_book_print_side pbpsds" name="print_side" value="ds"/>
+				            	    <label>Double Side</label>
 				        	</div>
 				        	<div class="row">
 				        		<table>
-				        			<tr>
+				        			<tr id="paper-row">
 				        				<td>Paper size</td>
 				        				<td>
-				        					<select name="paper_size" class="print_book_paper_size">
+				        					<select name="paper_row" class="print_book_paper_size">
 				        						<option value="a5">A5</option>
 				        						<option value="a4">A4</option>
 				        						<option value="a3">A3</option>
@@ -56,7 +63,7 @@
 				        					</select>
 				        				</td>
 				        			</tr>
-				        			<tr>
+				        			<tr id="paper-row">
 				        				<td>Paper type</td>
 				        				<td>
 				        					<select name="papertype" class="print_book_paper_type">
@@ -65,21 +72,21 @@
 				        					</select>
 				        				</td>
 				        			</tr>
-				        			<tr class="only_for_color_with_bw dn">
+				        			<tr class="only_for_color_with_bw dn paper-row">
 				        				<td>Enter color print page no</td>
 				        				<td><input type="text" name="color_page" value="" class="color_print_page_no"/></td>
 				        				<td><input type="file" name="color_page_files[]" /></td>
 				        				<td><input type="button" name="add_more_color_page" value="+" class="add_more_color_page"/></td>
 				        			</tr>
-				        			<tr>
+				        			<tr class="paper-row">
 				        				<td>Total no of page</td>
 				        				<td><input type="text" name="total_page" value="" class="total_number_of_page"/></td>
 				        			</tr>
-				        			<tr>
+				        			<tr class="paper-row">
 				        				<td>Total Cost</td>
 				        				<td><input type="text" name="total_cost" value="" class="print_book_total_cost"/></td>
 				        			</tr>
-				        			<tr>
+				        			<tr class="paper-row">
 				        				<td>Upload your file</td>
 				        				<td><input type="file" name="upload file" value="" class="print_book_upload_file"/></td>
 				        			</tr>
@@ -90,7 +97,7 @@
 				        		</table>
 				        	</div>
 				            
-				        </div>
+				        </div> <!---#red---->
 				        <div class="tab-pane" id="orange">
 				           <div class="row">
 				           		<div class="col-md-6">
@@ -249,7 +256,7 @@
 				        </div>
 					</div>
 				</form>
-			</div>
+			</div> <!--id content---->
 			
 		</div> <!-- container -->
 	</main><!-- Main Product Detail: End -->

@@ -12,12 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$area_name = $_POST["area_name"];
 	$area_status = $_POST["area_status"];
 	if($state_id=="" || $area_name=="" || $area_status=="") {
-		header('Location: add_area.php');
-		exit();
+		// header('Location: add_area.php');
+		// exit();
+		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
 	}	
 	else{
-		mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Inserted Successfully.</b></div>";
+		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_state_id='$state_id'");
+		$row = mysql_num_rows($qr);
+		if($row > 0){
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already Exists.</b></div>";
+		} else {
+			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Inserted Successfully.</b></div>";
+		}		
 	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -72,18 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-group">
 							<label class="col-lg-2 control-label">State</label>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id">
+								<select class="form-control" id= "category" name="state_id" required="">
 								<option value="">Select the state</option>
 								<?php
 			                        $query = mysql_query("select * from stork_state");
-			                        echo $query;
 			                        while ($row = mysql_fetch_array($query)) {
 			                            ?>
 			                        <option value="<?php echo $row['state_id']; ?>"><?php echo $row['state_name']; ?></option>
 			                    <?php } ?>
 								</select>
-							 </div>
-							
+							 </div>	
 						</div> 
 						<div class="form-group">
 							<label class="col-lg-2 control-label">Area Name</label>
