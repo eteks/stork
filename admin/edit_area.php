@@ -16,8 +16,7 @@ if (isset($_GET['update']))
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id;
-				' WHERE `area_id`=".$val);
+			mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id' WHERE `area_id`=".$val);
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Updated Successfully.</b></div>";	
 		}
 				
