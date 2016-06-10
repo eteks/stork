@@ -151,7 +151,7 @@ if(isset($_GET['areUpdated']) && $_GET['areUpdated']==1)
 }
 ?>	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Cost Estimation</title>
 </head>
 <body>
   <script type="text/javascript">
@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Cost Estimation</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -343,29 +343,11 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%;" ><b>Amount</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Actions</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
-											<b>Sort: </b>
-											<label>
-											<?php
-											if ($_SESSION['SortOrder'] == "ASC")
-											{
-												?>											
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs);?>" style="margin-top: -4px;" class="btn btn-info btn-xs active"  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs " type="button"><i class="fa fa-arrow-down"></i></a>	
-												<?php
-											}
-											else if ($_SESSION['SortOrder'] == "DESC")
-											{
-												?>		
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs "  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs active" type="button"><i class="fa fa-arrow-down"></i></a>
-												<?php
-											}
-											?>
-											</label>
-											</td>
+											
 										</tr> 
 										<?php              
 										$i = 0;
@@ -399,7 +381,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 													echo "InActive";
 												echo ('</td>
 												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
-												<td style="text-align:center; min-width:142px; padding-left: 50px;">
+												<td style="text-align:center;">
 												<a href="edit_cost_estimation.php?id=' . $fetch['cost_estimation_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['cost_estimation_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
@@ -570,7 +552,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 								} 
 							?>
 							<div class="clearfix"></div>
-							<div class="col-lg-6 allBtns showbuttons pull-right" style="display:none">
+							<div class="col-lg-6 showbuttons pull-right" style="display:none">
 								<a href="#myModal3" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> <span class="hidden-xs">Update Selected</span></a>
 								<a class="btn btn-danger deleteall" href="#myModal2" data-toggle="modal"> <i class="fa fa-trash-o"></i> <span class="hidden-xs">Delete Selected</span></a>
 							</div>
