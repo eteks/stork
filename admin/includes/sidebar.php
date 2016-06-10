@@ -48,21 +48,14 @@ function totalSourcesCount()
 				<?php 
 			}  
 			?>
-			<a href="#">
-				<i class="fa fa-th"></i> User
+			<a href="users.php">
+				<!--<i class="fa fa-user"></i> --> User
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-					<a href=""><i class="fa fa-plus-circle"></i> Add User</a>
-				</li>
-				<!-- <li>
-					<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
-				</li> -->
-				<li>
-					<a href=""> <i class="fa fa-th"></i><span id="allProducts"> All Users </span></a>
+					<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users </span></a>
 				</li> 
 			</ul>
 			</li>
@@ -83,7 +76,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-th"></i> State
+				<!--<i class="fa fa-map-marker"></i> --> State
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
@@ -96,7 +89,7 @@ function totalSourcesCount()
 					<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
 				</li> -->
 				<li>
-					<a href="states.php"> <i class="fa fa-th"></i><span id="allProducts"> All States (<?php echo(countState()) ?>)</span></a>
+					<a href="states.php"> <i class="fa fa-list"></i><span id="allProducts"> All States (<?php echo(countState()) ?>)</span></a>
 				</li> 
 			</ul>
 			</li>
@@ -116,7 +109,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-folder-open"></i> Area
+				<!-- <i class="fa fa-home"></i> -->Area
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
@@ -125,7 +118,7 @@ function totalSourcesCount()
 					<a href="add_area.php"><i class="fa fa-plus-circle"></i> Add Area </a>
 				</li>
 				<li>
-					<a href="areas.php"><i class="fa fa-folder-open"></i> All Areas (<?php echo(countArea()) ?>)</a>
+					<a href="areas.php"><i class="fa fa-list"></i> All Areas (<?php echo(countArea()) ?>)</a>
 				</li>				
 			</ul>
 			</li>
@@ -147,7 +140,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> College
+				<!-- <i class="fa fa-location-arrow"></i> --> College
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
@@ -156,7 +149,7 @@ function totalSourcesCount()
 					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add college</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="pages.php"><i class="fa fa-list"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -176,16 +169,16 @@ function totalSourcesCount()
 			}  
 			?>
 				<a href="#">
-				<i class="fa fa-leaf"></i> Papersize
+				<!-- <i class="fa fa-leaf"></i> -->Papersize
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="addSource.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
+					<a href="addSource.php"><i class="fa fa-plus-circle"></i> Add Papersize </a>  
 				</li>
 				<li>
-					<a href="sources.php"><i class="fa fa-leaf"></i> All Papersize (<?php echo(totalSourcesCount()) ?>)</a>
+					<a href="sources.php"><i class="fa fa-list"></i> All Papersize (<?php echo(totalSourcesCount()) ?>)</a>
 				</li>
 			</ul>
 			</li>
@@ -206,7 +199,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> PaperType
+				<!-- <i class="fa fa-file"></i> --> PaperType
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
@@ -215,7 +208,7 @@ function totalSourcesCount()
 					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All PaperType (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="pages.php"><i class="fa fa-list"></i> All PaperType (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -235,16 +228,16 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> Cost Estimation
+				<!-- <i class="fa fa-file"></i> --> Cost Estimation
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="add_cost_estimation.php"><i class="fa fa-file"></i> Add Cost Estimation</a>
+					<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i> Add Cost Estimation</a>
 				</li> 
 				<li>
-					<a href="cost_estimation.php"><i class="fa fa-file"></i> All Cost Estimation (<?php echo(countCostEstimation()) ?>)</a>
+					<a href="cost_estimation.php"><i class="fa fa-list"></i> All Cost Estimation (<?php echo(countCostEstimation()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -264,13 +257,13 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> Order
+				<!-- <i class="fa fa-file"></i> --> Order
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="pages.php"><i class="fa fa-list"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -290,7 +283,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> Track Order
+				<!-- <i class="fa fa-file"></i> --> Track Order
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
@@ -299,7 +292,7 @@ function totalSourcesCount()
 					<a href="pages.php"><i class="fa fa-file"></i> Set Track Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Track Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="pages.php"><i class="fa fa-list"></i> All Track Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -319,7 +312,7 @@ function totalSourcesCount()
 			}  
 			?>
 			<a href="#">
-				<i class="fa fa-file"></i> Offer Zone
+				<!-- <i class="fa fa-file"></i> --> Offer Zone
 				<span class="caret pull-right"></span>
 			</a>
 			<!-- Sub menu -->
