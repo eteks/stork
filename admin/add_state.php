@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	}	
 	else{
 		mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
-		echo "inserted";
+		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Inserted Successfully.</b></div>";
 	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<script>
 						$(document).ready(function () 
 						{
+							$('.alert-success').delay(2000).fadeOut();
 							$('.wobblebar').hide();
 							$( document ).ajaxStop(function() 
 							{
@@ -66,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						});
 					</script>
 					<form class="form-horizontal" id="myform" role="form" action="add_state.php" method="post">
+						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">State Name</label>
 							<div class="col-lg-10">

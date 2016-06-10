@@ -8,15 +8,16 @@ $error = "";
 <body>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$state_name = $_POST["state_name"];
-	$state_status = $_POST["state_status"];
-	if($state_name=="" || $state_status=="") {
-		header('Location: add_state.php');
+	$state_id = $_POST["state_id"];
+	$area_name = $_POST["area_name"];
+	$area_status = $_POST["area_status"];
+	if($state_id=="" || $area_name=="" || $area_status=="") {
+		header('Location: add_area.php');
 		exit();
 	}	
 	else{
-		mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
-		echo "inserted";
+		mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
+		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Inserted Successfully.</b></div>";
 	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -34,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<script>
 						$(document).ready(function () 
 						{
+							$('.alert-success').delay(2000).fadeOut();
 							$('.wobblebar').hide();
 							$( document ).ajaxStop(function() 
 							{
@@ -65,11 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_state.php" method="post">
+					<form class="form-horizontal" id="myform" role="form" action="add_area.php" method="post">
+						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">State</label>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_status">
+								<select class="form-control" id= "category" name="state_id">
 								<option value="">Select the state</option>
 								<?php
 			                        $query = mysql_query("select * from stork_state");
@@ -85,13 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-group">
 							<label class="col-lg-2 control-label">Area Name</label>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="state_name">
+								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="area_name">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">Status</label>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_status">
+								<select class="form-control" id= "category" name="area_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>
