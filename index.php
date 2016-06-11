@@ -117,7 +117,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-6 block-trust trust-col-quantity">
-						<a href="printbooking.php"><div class="tr-icon"><i class="fa fa-thumbs-up"></i></div></a>
+						<a href="profession.php"><div class="tr-icon"><i class="fa fa-thumbs-up"></i></div></a>
 						<div class="tr-text">
 							<h3>Printing</h3>
 							<span class="tr-line"></span>
