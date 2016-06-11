@@ -93,7 +93,7 @@ $_SESSION[$csrfVariable] = $key;
 								<select class="form-control" id= "category" name="state_id">
 								<option value="">Select the state</option>
 								<?php
-			                    $query = mysql_query("select * from stork_state");
+			                    $query = mysql_query("select * from stork_state where state_status='1'");
 		                        while ($staterow = mysql_fetch_array($query)) {
 		                        if($row['area_state_id'] == $staterow['state_id'])   
 		                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
