@@ -339,6 +339,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%"><b>Paper Size</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
@@ -389,7 +390,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												echo ('</a></td>
 												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="text-align:center; min-width:142px; padding-left: 50px;">
-												<a href="edit_state.php?id=' . $fetch['	paper_size_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a href="edit_paper_size.php?id=' . $fetch['paper_size_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['	paper_size_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											}
@@ -569,7 +570,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 					}
 					else
 					{
-						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No States Found</h3></div>');
+						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Papersize Found</h3></div>');
 					}
 					if(isset($_GET['delete']) || isset($_GET['update']) || isset($_POST['delete']) && $error=="")
 					{

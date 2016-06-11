@@ -375,7 +375,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												else
 													echo "InActive";
 												echo ('</td>
-												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
+												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="text-align:center;">
 												<a href="edit_users.php?id=' . $fetch['user_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['user_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
