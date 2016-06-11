@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_cost_estimation`";
+							$sql = "SELECT * FROM `stork_paper_type`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -336,11 +336,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>Paper Print Type</b></td>
-											<td width="40%;" ><b>Paper Side</b></td>
-											<td width="40%;" ><b>Paper Size</b></td>
-											<td width="40%;" ><b>Paper Type</b></td>
-											<td width="40%;" ><b>Amount</b></td>
+											<td width="40%"><b>Paper Type</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
@@ -371,39 +367,32 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
 										{	
-											$qryPaperPrintType = mysqlQuery("SELECT * FROM `stork_paper_print_type` WHERE `paper_print_type_id`=".$fetch['cost_estimation_paper_print_type_id']);
-											$rowPaperPrintType = mysql_fetch_array($qryPaperPrintType);
-
-											$qryPaperSide = mysqlQuery("SELECT * FROM `stork_paper_side` WHERE `paper_side_id`=".$fetch['cost_estimation_paper_side_id']);
-											$rowPaperSide = mysql_fetch_array($qryPaperSide);
-
-											$qryPaperSize = mysqlQuery("SELECT * FROM `stork_paper_size` WHERE `paper_size_id`=".$fetch['cost_estimation_paper_size_id']);
-											$rowPaperSize = mysql_fetch_array($qryPaperSize);
-											$qryPaperType = mysqlQuery("SELECT * FROM `stork_paper_type` WHERE `paper_type_id`=".$fetch['cost_estimation_paper_type_id']);
-											$rowPaperType = mysql_fetch_array($qryPaperType);
-											$title = $fetch['state_name'];
+											$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
+											$rowCategory = mysql_fetch_array($qryCategory);
+											$title = $fetch['paper_type'];
 											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
-											// if ($title != "")
-											// {
+											if ($title != "")
+											{
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td style="text-align:center;">' . $rowPaperPrintType['paper_print_type'] . '</td>
-												<td style="text-align:center;">' . $rowPaperSide['paper_side'] . '</td>
-												<td style="text-align:center;">' . $rowPaperSize['paper_size'] . '</td>
-												<td style="text-align:center;">' . $rowPaperType['paper_type'] . '</td>
-												<td style="text-align:center;">' . $fetch['cost_estimation_amount'] . '</td>
-												<td style="text-align:center;">'); 
-												if($fetch['cost_estimation_status']==1)
+												<td><a title="' . $fetch['paper_type'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
+												if(strlen($fetch['paper_type'])>30)
+													echo substr($fetch['paper_type'],0,30)."...";
+												else
+													echo $fetch['paper_type'];
+												echo ('</a></td>
+												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">');
+												if($fetch['paper_type_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
-												echo ('</td>
+												echo ('</a></td>
 												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="text-align:center; min-width:142px; padding-left: 50px;">
-												<a href="edit_cost_estimation.php?id=' . $fetch['cost_estimation_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['cost_estimation_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a href="edit_state.php?id=' . $fetch['paper_type_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['paper_type_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
-											// }
+											}
 											$i+= 1;
 											?>
 											<script type="text/javascript" >
@@ -411,7 +400,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "cost_estimation.php?delete="+myId+qs);
+											$("#del_link").prop("href", "states.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >

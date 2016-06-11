@@ -153,16 +153,16 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add college</a>
+					<a href="add_college.php"><i class="fa fa-plus-circle"></i> Add college</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="colleges.php"><i class="fa fa-file"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="papersize.php" || basename($_SERVER['PHP_SELF'])=="add_papersize.php")
+			if(basename($_SERVER['PHP_SELF'])=="paper_size.php" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -182,17 +182,49 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="addSource.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
+					<a href="add_paper_size.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
 				</li>
 				<li>
-					<a href="sources.php"><i class="fa fa-leaf"></i> All Papersize (<?php echo(totalSourcesCount()) ?>)</a>
+					<a href="paper_size.php"><i class="fa fa-leaf"></i> All Papersizes (<?php echo(totalSourcesCount()) ?>)</a>
+				</li>
+			</ul>
+			</li>
+
+			<!-- Paper_side -->
+
+
+			<?php 
+			if(basename($_SERVER['PHP_SELF'])=="papersides.php" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+				<a href="#">
+				<i class="fa fa-leaf"></i> Paperside
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="add_paper_side.php"><i class="fa fa-leaf"></i> Add Paperside </a>  
+				</li>
+				<li>
+					<a href="papersides.php"><i class="fa fa-leaf"></i> All Papersides (<?php echo(totalSourcesCount()) ?>)</a>
 				</li>
 			</ul>
 			</li>
 
 			<?php 
-			if(basename($_SERVER['PHP_SELF'])=="add_papertype.php" || 
-			basename($_SERVER['PHP_SELF'])=="papertype.php")
+			if(basename($_SERVER['PHP_SELF'])=="add_paper_type.php" || 
+			basename($_SERVER['PHP_SELF'])=="papertypes.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -212,13 +244,44 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
+					<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All PaperType (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="papertypes.php"><i class="fa fa-file"></i> All PaperTypes (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
+
+			<?php 
+			if(basename($_SERVER['PHP_SELF'])=="paperprinttypes.php" || 
+			basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php")
+			{ 
+				?> 
+				<li class="has_submenu open">
+				<?php 
+			} 
+			else 
+			{ 
+				?>
+				<li class="has_submenu">
+				<?php 
+			}  
+			?>
+			<a href="#">
+				<i class="fa fa-file"></i> PaperPrintType
+				<span class="caret pull-right"></span>
+			</a>
+			<!-- Sub menu -->
+			<ul>
+				<li>
+					<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i> Add PaperPrintType</a>
+				</li>
+				<li>
+					<a href="paperprinttypes.php"><i class="fa fa-file"></i> All PaperPrintTypes (<?php echo(totalPagesCount()) ?>)</a>
+				</li> 
+			</ul>
+			</li>
+
 			<?php 
 			if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
 			basename($_SERVER['PHP_SELF'])=="cost_estimation.php")
