@@ -49,7 +49,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 $_SESSION['captcha'] = simple_php_captcha();
 if (isset($_SESSION['admin_eap_secure']) && !$error)
 {
-	header('Location: ./dashboard.php');
+	header('Location: ./users.php');
 }
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 				<div class="awidget login-reg">
 					<div class="awidget-body">
 						<div class="page-title text-center">
-							<img src="../style/images/n2.png" height="100">
+							<img src="../style/images/print.jpeg" height="100">
 							<hr />
 						</div>
 						<br />
@@ -109,7 +109,7 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 							?>
 							<hr>
 							<div class="form-group">
-								<div class="col-lg-offset-6 col-lg-6">
+								<div class="col-lg-offset-6 col-lg-8">
 									<button type="submit" name="submit" class="btn btn-success"><li class="fa fa-sign-in"></li> Sign in</button>
 									<a href="reset.php" class="btn btn-info"><li class="fa fa-edit"></li> Reset</a>
 								</div>

@@ -1,3 +1,106 @@
 .dn {
 	display:none;
 }
+
+
+/* CSS as on 10th June- Akila */
+
+#tabs a {
+	font-size: 16px;
+	font-weight: bold !important;
+	
+}
+
+#tabs > li.active >a {
+	font-weight: normal;
+	color:  #25bce9;
+}
+
+#student:before, input[type=radio]:checked +label{
+	padding: 10px 10px;
+	margin: 20px 20px 20px 0px;
+	font-size: 14px;
+}
+
+#professional:before, input[type=radio] +label{
+	padding: 10px 10px;
+	margin: 20px 20px 20px 0px;
+	font-size: 14px;
+}
+
+.location, select {
+	width: 50%;
+	margin: 0 205px 20px;
+	padding:10px;
+}
+
+#print_book_college, select:focus {
+	border: 1px solid #25bce9;
+	border-radius: 2px;
+}
+
+#product-detail .tab-content{
+	margin: 20px 0px;
+	padding: 20px 0px;
+	
+	
+}
+
+#color-type, input[type=radio]:checked {
+	padding: 10px 20px;
+	margin: 10px;
+}
+
+.step2{
+	margin: 20px;
+}
+
+.print-sides{ margin: 0px 10px;}
+
+table,td{ 
+	margin: 0px 33px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 14px;
+ }
+
+#paper-row, select{
+	width: 50%;
+	font-weight: normal;
+}
+.input_holder select {
+	height: 45px;
+    margin: 0 0 20px 0px;
+    padding: 0;
+    width:500px;
+}
+.input_holder input[type=text] {
+    height:	45px;
+    padding:0px 5px 0px 5px;
+    color:#000;
+    font-size:14px;
+    margin:0px 0px 20px 0px;
+    width:500px;
+}
+.input_holder label {
+	padding:0px;
+	margin:0px;
+	width:155px;
+}
+.input_holder_heading label{
+	margin:0px 0px 0px 10px;
+}
+
+.payment-button{
+	padding: 20px;
+	float:right;
+}
+
+.pay-btn{
+	margin: 10px;
+	padding: 5px;
+}
+h3,.h3{ 
+	text-transform: uppercase;
+	font-weight: bold;
+}

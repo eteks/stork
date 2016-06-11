@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy">
 		<div class="page-title">
-			<h2><i class="fa fa-plus-circle color"></i> Add New State </h2> 
+			<h2><i class="fa fa-plus-circle color"></i> Add New Area </h2> 
 			<hr />
 		</div>
 		<div class="row">
