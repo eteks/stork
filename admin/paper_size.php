@@ -57,8 +57,10 @@ if (isset($_GET['p']) && $_GET['p'] != '' && ($_GET['p'] >= 1 && $_GET['p'] <= $
 }
 $deleteProduct = false;
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
-{
-	deleteProduct($_GET['delete']);
+{ 	
+	// deleteProduct($_GET['delete']);
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -149,7 +151,7 @@ if(isset($_GET['areUpdated']) && $_GET['areUpdated']==1)
 }
 ?>	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Products : <?php echo (getTitle());  ?></title>
+<title>All States</title>
 </head>
 <body>
   <script type="text/javascript">
@@ -276,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Products</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -319,8 +321,11 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 							$sql = "SELECT * FROM `products` WHERE `title` like '%" . $_GET['search'] . "%' order by " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else if($cid) 
 							$sql = "SELECT * FROM `products` WHERE `cid`=".$cid . " ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
-						else 
-							$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
+						// else 
+						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
+						else {
+							$sql = "SELECT * FROM `stork_paper_size`";
+						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
 						if ($count_rows > 0)
@@ -331,38 +336,15 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>Title</b></td>
-											<td width="40%;" ><b>Source</b></td>
-											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
+											<td width="40%"><b>Paper Size</b></td>
+											<td width="40%;" ><b>Status</b></td>
+											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Action</b></td>
+											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
-											<td style="text-align:center;" width="20%" class="hidden-xs">
+											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
 											<b>Sort: </b>
 											<label>
-											<select onchange="self.location='<?php echo (rootpath());?>/admin/products.php?SortBy='+this.options[this.selectedIndex].value+'<?php echo ($qs); ?>'">
-												<?php
-												if ($_SESSION['SortBy'] == "id")
-												{
-													?>
-													<option value="id" selected>Recent</option>
-													<option value="clicks">Clicks</option>
-													<?php
-												}
-												else if ($_SESSION['SortBy'] == "clicks")
-												{
-													?>
-													<option value="id" >Recent</option>
-													<option value="clicks" selected>Clicks</option>
-													<?php
-												}
-												else
-												{
-													?>
-													<option value="id" selected>Recent</option>
-													<option value="clicks">Clicks</option>
-													<?php
-												}
-												?>
-											</select>
 											<?php
 											if ($_SESSION['SortOrder'] == "ASC")
 											{
@@ -385,28 +367,31 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										<?php              
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
-										{
+										{	
 											$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
 											$rowCategory = mysql_fetch_array($qryCategory);
-											$title = $fetch['title'];
+											$title = $fetch['paper_size'];
 											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
 											if ($title != "")
 											{
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td><a title="' . $fetch['title'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
-												if(strlen($fetch['title'])>30)
-													echo substr($fetch['title'],0,30)."...";
+												<td><a title="' . $fetch['paper_size'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
+												if(strlen($fetch['paper_size'])>30)
+													echo substr($fetch['paper_size'],0,30)."...";
 												else
-													echo $fetch['title'];
+													echo $fetch['paper_size'];
 												echo ('</a></td>
-												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">'.getdomain($fetch['url']).'</a></td>
-												<td style="text-align:center;">' . $cat . '</td>
-												<td style="text-align:center;" class="hidden-xs">' . $fetch['clicks'] . '</td>
+												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">');
+												if($fetch['paper_size_status']==1)
+													echo "Active";
+												else
+													echo "InActive";
+												echo ('</a></td>
+												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="text-align:center; min-width:142px; padding-left: 50px;">
-												<a href="' . rootpath() . '/admin/edit_product.php?id=' . $fetch['id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="update_single" data-toggle="modal" href="#myModal0" data-id="' . $fetch['id'] . '" title="Update" class="btn btn-xs btn-success update_single" title="Update ' . $row['title'] . '"><i class="fa fa-external-link"></i></a>
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a href="edit_paper_size.php?id=' . $fetch['paper_size_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['	paper_size_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											}
 											$i+= 1;
@@ -416,7 +401,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "products.php?delete="+myId+qs);
+											$("#del_link").prop("href", "states.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >
@@ -585,7 +570,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 					}
 					else
 					{
-						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Products Found</h3></div>');
+						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Papersize Found</h3></div>');
 					}
 					if(isset($_GET['delete']) || isset($_GET['update']) || isset($_POST['delete']) && $error=="")
 					{

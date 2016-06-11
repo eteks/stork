@@ -339,7 +339,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%;" ><b>State Name</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
-											<td width="40%;" ><b>Action</b></td>
+											<td width="40%;" ><b>Actions</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->

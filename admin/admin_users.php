@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_users` WHERE `user_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -151,7 +151,7 @@ if(isset($_GET['areUpdated']) && $_GET['areUpdated']==1)
 }
 ?>	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Users</title>
 </head>
 <body>
   <script type="text/javascript">
@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Users</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_state`";
+							$sql = "SELECT * FROM `stork_admin_users`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -336,14 +336,16 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>State Name</b></td>
+											<td width="40%;" ><b>Username</b></td>
+											<td width="40%;" ><b>User Type</b></td>
+											<td width="40%;" ><b>Email</b></td>
+											<td width="40%;" ><b>Mobile</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
-											<td width="40%;" ><b>Action</b></td>
+											<td width="40%;" ><b>Actions</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
-											
 										</tr> 
 										<?php              
 										$i = 0;
@@ -353,28 +355,28 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											$rowCategory = mysql_fetch_array($qryCategory);
 											$title = $fetch['state_name'];
 											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
-											if ($title != "")
-											{
+											
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
+												<td style="text-align:center;">' . $fetch['adminuser_username'] . '</td>
+												<td style="text-align:center;">'); 
+												if($fetch['adminuser_type']==1)
+													echo "Admin";
+												echo ('</td>	
+												<td style="text-align:center;">' . $fetch['adminuser_email'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_mobile'] . '</td>
 												<td>');
-												if(strlen($fetch['state_name'])>30)
-													echo substr($fetch['state_name'],0,30)."...";
-												else
-													echo $fetch['state_name'];
-												echo ('</td>
-												<td>');
-												if($fetch['state_status']==1)
+												if($fetch['adminuser_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
 												echo ('</td>
-												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_create_date'] . '</td>
 												<td style="text-align:center;">
-												<a href="edit_state.php?id=' . $fetch['state_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['state_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a href="edit_admin_users.php?id=' . $fetch['adminuser_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												</td>');
 												echo '</tr>';
-											}
+											
 											$i+= 1;
 											?>
 											<script type="text/javascript" >
@@ -382,7 +384,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "states.php?delete="+myId+qs);
+											$("#del_link").prop("href", "users.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >
@@ -551,7 +553,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 					}
 					else
 					{
-						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No States Found</h3></div>');
+						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Users Found</h3></div>');
 					}
 					if(isset($_GET['delete']) || isset($_GET['update']) || isset($_POST['delete']) && $error=="")
 					{

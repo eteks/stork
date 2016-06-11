@@ -3,7 +3,7 @@ include "includes/header.php";
 $error = "";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add New State</title>
+<title>Add New Cost Estimation</title>
 </head>
 <body>
 <?php 

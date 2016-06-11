@@ -15,7 +15,7 @@ if (isset($_GET['update']))
 		$paper_type = $_POST["paper_type"];
 		$amount = $_POST["amount"];
 		$cost_estimation_status = $_POST["cost_estimation_status"];
-		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation` WHERE cost_estimation_paper_print_type_id='$paper_print_type' AND cost_estimation_paper_side_id='$paper_side' AND cost_estimation_paper_size_id='$paper_size' AND cost_estimation_paper_type_id='$paper_type' NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation` WHERE cost_estimation_paper_print_type_id='$paper_print_type' AND cost_estimation_paper_side_id='$paper_side' AND cost_estimation_paper_size_id='$paper_size' AND cost_estimation_paper_type_id='$paper_type' AND cost_estimation_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Already Cost Assigned</b></div>";	

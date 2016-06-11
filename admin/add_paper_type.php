@@ -8,23 +8,23 @@ $error = "";
 <body>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$state_id = $_POST["state_id"];
-	$area_name = $_POST["area_name"];
-	$area_status = $_POST["area_status"];
-	if($state_id=="" || $area_name=="" || $area_status=="") {
-		// header('Location: add_area.php');
+	$paper_type = $_POST["paper_type"];
+	$papertype_status = $_POST["papertype_status"];
+	if($paper_type=="" || $papertype_status=="") {
+		// header('Location: add_state.php');
 		// exit();
 		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
 	}	
 	else{
-		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_state_id='$state_id'");
+		$qr = mysql_query("SELECT * FROM stork_paper_type WHERE paper_type = '$paper_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already Exists.</b></div>";
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Already Exists.</b></div>";
 		} else {
-			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Inserted Successfully.</b></div>";
-		}		
+			mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status) VALUES ('$paper_type','$papertype_status')");
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Inserted Successfully.</b></div>";
+		}
+		
 	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy">
 		<div class="page-title">
-			<h2><i class="fa fa-plus-circle color"></i> Add New Area </h2> 
+			<h2><i class="fa fa-plus-circle color"></i> Add New Papertype </h2> 
 			<hr />
 		</div>
 		<div class="row">
@@ -74,32 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_area.php" method="post">
+					<form class="form-horizontal" id="myform" role="form" action="add_paper_type.php" method="post">
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">State</label>
+							<label class="col-lg-2 control-label">Paper Type</label>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id" required="">
-								<option value="">Select the state</option>
-								<?php
-			                        $query = mysql_query("select * from stork_state  where state_status='1'");
-			                        while ($row = mysql_fetch_array($query)) {
-			                            ?>
-			                        <option value="<?php echo $row['state_id']; ?>"><?php echo $row['state_name']; ?></option>
-			                    <?php } ?>
-								</select>
-							 </div>	
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Area Name</label>
-							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="area_name">
+								<input id="cat" class="form-control" type="text" value="" placeholder="Paper type" name="paper_type">
 							</div>
-						</div>
+						</div> 
 						<div class="form-group">
 							<label class="col-lg-2 control-label">Status</label>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="area_status">
+								<select class="form-control" id="category" name="papertype_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

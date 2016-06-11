@@ -340,29 +340,11 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%;" ><b>State</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
-											<b>Sort: </b>
-											<label>
-											<?php
-											if ($_SESSION['SortOrder'] == "ASC")
-											{
-												?>											
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs);?>" style="margin-top: -4px;" class="btn btn-info btn-xs active"  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs " type="button"><i class="fa fa-arrow-down"></i></a>	
-												<?php
-											}
-											else if ($_SESSION['SortOrder'] == "DESC")
-											{
-												?>		
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs "  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs active" type="button"><i class="fa fa-arrow-down"></i></a>
-												<?php
-											}
-											?>
-											</label>
-											</td>
+											
 										</tr> 
 										<?php              
 										$i = 0;
@@ -376,21 +358,21 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											{
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td><a title="' . $fetch['area_name'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
+												<td>');
 												if(strlen($fetch['area_name'])>30)
 													echo substr($fetch['area_name'],0,30)."...";
 												else
 													echo $fetch['area_name'];
-												echo ('</a></td>
+												echo ('</td>
 												<td>'.$rowstate['state_name'].'</td>
-												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">');
+												<td>');
 												if($fetch['area_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
-												echo ('</a></td>
+												echo ('</td>
 												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
-												<td style="text-align:center; min-width:142px; padding-left: 50px;">
+												<td style="min-width:142px;">
 												<a href="edit_area.php?id=' . $fetch['area_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['area_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
@@ -561,7 +543,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 								} 
 							?>
 							<div class="clearfix"></div>
-							<div class="col-lg-6 allBtns showbuttons pull-right" style="display:none">
+							<div class="col-lg-6 showbuttons pull-right" style="display:none">
 								<a href="#myModal3" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> <span class="hidden-xs">Update Selected</span></a>
 								<a class="btn btn-danger deleteall" href="#myModal2" data-toggle="modal"> <i class="fa fa-trash-o"></i> <span class="hidden-xs">Delete Selected</span></a>
 							</div>
