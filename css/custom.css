@@ -5,6 +5,10 @@
 
 /* CSS as on 10th June- Akila */
 
+input[type=checkbox] {
+	padding: 5px;
+}	
+
 #tabs a {
 	font-size: 16px;
 	font-weight: bold !important;
@@ -36,7 +40,7 @@
 
 #print_book_college, select:focus {
 	border: 1px solid #25bce9;
-	border-radius: 2px;
+	border-radius: 4px;
 }
 
 #product-detail .tab-content{
@@ -89,6 +93,15 @@ table,td{
 }
 .input_holder_heading label{
 	margin:0px 0px 0px 10px;
+	
+}
+
+.input_holder_heading{
+	background-color: #25bce9;
+	padding: 10px;
+	border: 2px groove  #25bce9;
+	border-radius: 3px;
+	margin-right: 885px;
 }
 
 .payment-button{
@@ -100,7 +113,30 @@ table,td{
 	margin: 10px;
 	padding: 5px;
 }
-h3,.h3{ 
+h3, .h3{ 
 	text-transform: uppercase;
 	font-weight: bold;
 }
+
+.yellow_heading{ 
+	font-size: 18px;
+	}
+
+/* CSS as on 11th June -Akila  */
+.button_holder{ margin-left : 480px;}
+
+.button_holder a{
+	padding: 10px 20px;
+	background-color:  #25bce9;
+	border: 1px groove  #25bce9;
+	color: white;
+	border-radius: 3px;
+	
+	}
+.btn_prf { float:left;
+           margin: 60px 10px;
+           
+        }	
+	
+	
+	

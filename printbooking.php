@@ -4,36 +4,14 @@
 		<div class="container">
 			<div id="content">
 			    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-			    	<li class="active"><a href="#green" data-toggle="tab">Step 1</a></li>
-			        <li><a href="#red" data-toggle="tab">Step 2</a></li>
-			        <li><a href="#orange" data-toggle="tab">Step 3</a></li>
-			        <li><a id="print_booking_confirmation" href="#yellow" data-toggle="tab">Step 4</a></li>
+			    	<li class="active"><a href="#red" data-toggle="tab">Step 1</a></li>
+			        <li><a href="#orange" data-toggle="tab">Step 2</a></li>
+			        <li><a href="#yellow" data-toggle="tab">Step 3</a></li>
+			        <li><a id="print_booking_confirmation" href="" data-toggle="tab">Step 4</a></li>
 			    </ul>
 			    <form action="add_to_cart.php" enctype="multipart/form-data">
 	    			<div id="my-tab-content" class="tab-content">
-	    				<div class="tab-pane active container" id="green">
-				        	<div class="row text-center">
-				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="student" checked/>
-				        		   <label for="student">Student</label>
-				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="professional"/>
-				            	    <label for="professional">Professional</label>
-				        	</div>
-				        	<div class="row text-center location">
-	        					<select name="college" id="print_book_college" class="">
-	        						<option value="mana">Manakula vinayakar</option>
-	        						<option value="christ">Christ college</option>
-	        					</select>
-	        					<select id="print_book_state" name="state" class=" dn">
-	        						<option value="pondy">Pondicherry</option>
-	        						<option value="tamil">Tamilnadu</option>
-	        					</select>
-	        					<select name="area">
-	        						<option value="laws">lawspet</option>
-	        						<option value="muthial">Muthial pet</option>
-	        					</select>
-				        	</div>
-				            
-				        </div> <!---#green---->
+	    				
 				        <div class="tab-pane" id="red">
 				        	
 				        	<div class="input_holder">
@@ -155,15 +133,10 @@
 				            </br>
 				        	
 				        	<div class="input_holder">
-				        		<label>Student name </label>
+				        		<label>Student Name </label>
 				        		<input type="text" name="stu_name" size="60" class="order-college"/> 		        		
 				        	</div>
-				        	
-				        	<div class="input_holder">
-				        		<label>Student name </label>
-				        		<input type="text" name="stu_name" size="60" class="order-college" /> 		        		
-				        	</div>
-				        	
+			        	        	
 				        	<div class="input_holder">
 				        		<label>Student ID</label>
 				        		<input type="text" name="stu_id" size="60" class="order-college" />		        		
@@ -201,7 +174,9 @@
 				</div> <!--Orange--->
 				        
 			  <div class="tab-pane" id="yellow">
-				         <div>	
+			  	<h3 class="yellow_heading"> CONFIRMATION </h3>
+			  	</br></br>
+	     		  	  <div>	
 				        	<div class="input_holder_heading">
 				        		<h3>Order Details </h3>
 				        	</div>
