@@ -36,7 +36,7 @@ input[type=checkbox] {
 	width: 50%;
 	margin: 0 205px 20px;
 	padding:10px;
-}
+} 
 
 #print_book_college, select:focus {
 	border: 1px solid #25bce9;
@@ -46,8 +46,6 @@ input[type=checkbox] {
 #product-detail .tab-content{
 	margin: 20px 0px;
 	padding: 20px 0px;
-	
-	
 }
 
 #color-type, input[type=radio]:checked {
@@ -99,14 +97,15 @@ table,td{
 .input_holder_heading{
 	background-color: #25bce9;
 	padding: 10px;
-	border: 2px groove  #25bce9;
+	border: 2px solid #25bce9;
 	border-radius: 3px;
 	margin-right: 885px;
+	color: #ffffff;
 }
 
 .payment-button{
 	padding: 20px;
-	float:right;
+	float:left;
 }
 
 .pay-btn{
@@ -114,7 +113,6 @@ table,td{
 	padding: 5px;
 }
 h3, .h3{ 
-	text-transform: uppercase;
 	font-weight: bold;
 }
 
@@ -123,20 +121,82 @@ h3, .h3{
 	}
 
 /* CSS as on 11th June -Akila  */
-.button_holder{ margin-left : 480px;}
+.button_holder{ margin-left : 450px;}
 
 .button_holder a{
-	padding: 10px 20px;
-	background-color:  #25bce9;
-	border: 1px groove  #25bce9;
-	color: white;
-	border-radius: 3px;
-	
+	 -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: right;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
 	}
+
+.button_holder a:hover { 
+	background-color: #25bce9;
+	color: #ffffff; 
+}
+	
 .btn_prf { float:left;
-           margin: 60px 10px;
+           margin: 30px 15px;
            
-        }	
+  }
+  
+ .btn_browse {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: left;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}	
+
+.button1:hover {
+	background-color: #25bce9;
+	color: #ffffff; 
+}
+
+.con_details>h3{
+	color: #ffffff;
+	background-color:#25bce9;
+	padding:10px;
+	border: 2px solid #25bce9;
+	border-radius: 3px;
+	margin-right: 885px;
 	
-	
-	
+
+}
+
+.add-cart-btn .add-cart {
+    background: #fbc443 none repeat scroll 0 0;
+    border-bottom: 2px solid #022c39;
+    color: #333333;
+    font-size: 21px;
+    font-weight: bold;
+    height: 54px;
+    line-height: 54px;
+    padding: 0;
+    text-align: center;
+    transition: border 0.3s ease 0s;
+    width: 20%;
+}
+
+#order, #shipping{
+	padding:10px;
+}
