@@ -1,3 +1,4 @@
+<?php require_once('dbconnect.php'); ?>
 <?php include('header.php') ?>
 
 	<main class="main" id="product-detail">

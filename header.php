@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-2 col-sm-4 col-xs-5 w-logo">
 						<div class="logo hd-pd ">
-							<a href="index.html">
+							<a href="index.php">
 								<img src="images/logo.png" alt="printshop logo">
 							</a>
 						</div>	
@@ -77,7 +77,7 @@
 						</div>
 						<div class="cart-w SC-w hd-pd ">
 							<span class="mcart-icon dropdowSCIcon">
-								<a href="login.html">
+								<a href="login.php">
 									<i class="fa fa-home"></i>
 								</a>
 							</span>

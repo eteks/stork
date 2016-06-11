@@ -1,6 +1,8 @@
 (function($){
     "use strict"; // Start of use strict  
 	jQuery(document).ready(function($){ 
+	 	var pagePathName= window.location.pathname; 
+	   	var current_page =  pagePathName.substring(pagePathName.lastIndexOf("/") + 1);
 		var checkRun = true;
 		var checkWidths = jQuery(window).width();
 		/*-----------------slider-home-main----------------*/
@@ -71,10 +73,12 @@
 			});
 			/*-------------Begin ADD Trust Effect-------------*/
 		function trustView(elem){
-			var bottom_of_object = jQuery(elem).offset().top;
-			var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
-			if(bottom_of_window > bottom_of_object){
-				return true;
+			if(current_page == 'index.php'){
+				var bottom_of_object = jQuery(elem).offset().top;
+				var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
+				if(bottom_of_window > bottom_of_object){
+					return true;
+				}
 			}
 		};
 		function addClassView(addClass, elem){
@@ -87,10 +91,13 @@
 		/*-------------End Trust Effect-------------*/
 		/*-------------chart-capabilities-------------*/
 		function inViews(){
-			var bottom_of_object = jQuery('.block-capabititie-w').offset().top;
-			var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
-			if((bottom_of_window > bottom_of_object) && (checkWidths > 767)){
-				return true;
+
+		   if(current_page == 'index.php'){
+				var bottom_of_object = jQuery('.block-capabititie-w').offset().top;
+				var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
+				if((bottom_of_window > bottom_of_object) && (checkWidths > 767)){
+					return true;
+				}
 			}
 		};
 		if(checkWidths < 768){
@@ -263,8 +270,8 @@
 				b = false;  
 		 	}
 		};   
-		jQuery(window).on('scroll', function() {  
-		   inView(); 
+		jQuery(window).on('scroll', function() {
+	   	 	inView(); 
 		   addClassView('.trust-w','.trust-w');
 		   addClassView('.home-out-recent .tab-content','.home-out-recent .tab-content');
 		   parallax();
@@ -274,7 +281,8 @@
 		function parallax(){
 			var scrollPos = $(window).scrollTop();
 			// Section 1
-			if(checkWidths > 1024){
+			if(checkWidths > 1024 && current_page == 'index.php'){
+			
 				$('.home-blog').css('backgroundPosition', "50% " + Math.round(($('.home-blog').offset().top - scrollPos) * 0.5) + "px");
 				$('.home-testimonial').css('backgroundPosition', "50% " + Math.round(($('.home-testimonial').offset().top - scrollPos) * 0.5) + "px");
 			} 
