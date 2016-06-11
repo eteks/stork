@@ -314,7 +314,7 @@ function totalSourcesCount()
 			</li>
 			<?php 
 			if(basename($_SERVER['PHP_SELF'])=="view_order.php" || 
-			basename($_SERVER['PHP_SELF'])=="order.php")
+			basename($_SERVER['PHP_SELF'])=="orders.php")
 			{ 
 				?> 
 				<li class="has_submenu open">
@@ -334,7 +334,7 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="pages.php"><i class="fa fa-list"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="orders.php"><i class="fa fa-list"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
