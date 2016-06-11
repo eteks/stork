@@ -8,16 +8,21 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$area_state_id = $_POST["state_id"];
-		$area_name = $_POST["area_name"];
-		$area_status = $_POST["area_status"];
-		$qr = mysqlQuery("SELECT * FROM area_state WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
+		$adminuser_username = $_POST["adminuser_username"];
+		$adminuser_password = $_POST["adminuser_password"];
+		$adminuser_email = $_POST["adminuser_email"];
+		$adminuser_mobile = $_POST["adminuser_mobile"];
+		$adminuser_type = $_POST["adminuser_type"];
+		$adminuser_status = $_POST["adminuser_status"];
+		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already exists</b></div>";	
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Admin Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id' WHERE `area_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Updated Successfully.</b></div>";	
+			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
+				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type',
+				adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Admin Updated Successfully.</b></div>";	
 		}
 				
 	}
@@ -60,7 +65,7 @@ $_SESSION[$csrfVariable] = $key;
  ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit Area</title>
+<title>Edit Admin</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -70,16 +75,16 @@ $_SESSION[$csrfVariable] = $key;
 		<div class="mainy">
 			<!-- Page title -->
 			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit Area </h2> 
+				<h2><i class="fa fa-pencil-square color"></i> Edit Admin </h2> 
 				<hr />
 			</div>
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_area.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" role="form" action="edit_admin_users.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_area` WHERE `area_id`='$id'";
+					$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
 					$qry = mysqlQuery($match);
 					$numRows = mysql_num_rows($qry); 
 					if ($numRows > 0)
@@ -88,35 +93,44 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State</label>
+								<label class="col-lg-2 control-label">Username</label>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id">
-								<option value="">Select the state</option>
-								<?php
-			                    $query = mysql_query("select * from stork_state");
-		                        while ($staterow = mysql_fetch_array($query)) {
-		                        if($row['area_state_id'] == $staterow['state_id'])   
-		                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
-		                        else
-		                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
-		                        }
-			                        ?>
+									<input type="text" class="form-control" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Password</label>
+								<div class="col-lg-10">
+									<input type="password" class="form-control" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Email</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Mobile</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>" required/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">UserType</label>
+								<div class="col-lg-10">
+								<select class="form-control" id= "category" name="adminuser_type" required>
+								<option value="">Select the UserType</option>
+								<option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
 								</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area Name</label>
+								<label class="col-lg-2 control-label">status</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="area_name" value="<?php echo($row['area_name']); ?>"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Area status</label>
-								<div class="col-lg-10">
-									<select class="form-control" name="area_status">
-										<option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['area_status'] == 0) echo "selected"; ?>>InActive</option>
-										
+									<select class="form-control" name="adminuser_status" required>
+										<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>InActive</option>	
 									</select>
 								</div>
 							</div>

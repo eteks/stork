@@ -8,17 +8,30 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$state_name = $_POST["state_name"];
-		$state_status = $_POST["state_status"];
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		$first_name = $_POST["first_name"];
+		$last_name = $_POST["last_name"];
+		$user_type = $_POST["user_type"];
+		$user_email = $_POST["user_email"];
+		$user_dob = $_POST["user_dob"];
+		$line1 = $_POST["line1"];
+		$line2 = $_POST["line2"];
+		$user_area_id = $_POST["user_area_id"];
+		$user_state_id = $_POST["user_state_id"];
+		$user_mobile = $_POST["user_mobile"];
+		$user_status = $_POST["user_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_name`='$state_name' AND `state_status`='$state_status' NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM `stork_users` WHERE `username`='$username' AND `user_email`='$user_email' AND 'user_id' NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already exists</b></div>";	
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> User Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_state` SET `state_name`='$state_name',`state_status`='$state_status' WHERE `state_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Updated Successfully.</b></div>";	
+			mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
+				,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
+				user_area_id='$user_area_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> User Updated Successfully.</b></div>";	
 		}
 				
 	}
@@ -77,10 +90,10 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_state.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" role="form" action="edit_users.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
+					$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 					$qry = mysqlQuery($match);
 					$numRows = mysql_num_rows($qry); 
 					if ($numRows > 0)
@@ -89,18 +102,108 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State Name</label>
+								<label class="col-lg-2 control-label">Username</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="state_name" value="<?php echo($row['state_name']); ?>"/>
+									<input type="text" class="form-control" name="username" value="<?php echo($row['username']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State status</label>
+								<label class="col-lg-2 control-label">Password</label>
 								<div class="col-lg-10">
-									<select class="form-control" name="state_status">
-										<option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>InActive</option>
-										
+									<input type="password" class="form-control" name="password" value="<?php echo($row['password']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Firstname</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="first_name" value="<?php echo($row['first_name']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Lastname</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="last_name" value="<?php echo($row['last_name']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">UserType</label>
+								<div class="col-lg-10">
+									<select class="form-control" name="user_type" required>
+										<option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
+										<option value="2" <?php if ($row['user_type'] == 2) echo "selected"; ?>>Profession</option>	
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Email</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="user_email" value="<?php echo($row['user_email']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Date Of Birth</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="user_dob" value="<?php echo($row['user_dob']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Address Line1</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="line1" value="<?php echo($row['line1']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Address Line2</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="line2" value="<?php echo($row['line2']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">State</label>
+								<div class="col-lg-10">
+								<select class="form-control" id= "category" name="user_state_id">
+								<option value="">Select the state</option>
+								<?php
+			                    $query = mysql_query("select * from stork_state");
+		                        while ($staterow = mysql_fetch_array($query)) {
+		                        if($row['user_state_id'] == $staterow['state_id'])   
+		                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+		                        else
+		                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+		                        }
+			                        ?>
+								</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Area</label>
+								<div class="col-lg-10">
+								<select class="form-control" id= "category" name="user_area_id">
+								<option value="">Select the Area</option>
+								<?php
+			                    $query = mysql_query("select * from stork_area");
+		                        while ($arearow = mysql_fetch_array($query)) {
+		                        if($row['user_area_id'] == $arearow['area_id'])   
+		                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+		                        else
+		                        	echo "<option value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+		                        }
+			                        ?>
+								</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Mobile</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" name="user_mobile" value="<?php echo($row['user_mobile']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">User Status</label>
+								<div class="col-lg-10">
+									<select class="form-control" name="user_status">
+										<option value="1" <?php if ($row['user_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['user_status'] == 0) echo "selected"; ?>>InActive</option>
 									</select>
 								</div>
 							</div>

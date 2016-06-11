@@ -16,6 +16,11 @@ function countCostEstimation(){
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countUsers(){
+	$query = mysqlQuery("SELECT count(user_id) as total FROM stork_users");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 function totalPagesCount()
 {
 	$query = mysqlQuery("SELECT count(id) as totalPages FROM `pages`");
@@ -55,7 +60,10 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users </span></a>
+					<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin User </span></a>
+				</li> 
+				<li>
+					<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo(countUsers()) ?>)</span></a>
 				</li> 
 			</ul>
 			</li>

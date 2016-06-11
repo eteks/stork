@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 		$state_status = $_POST["state_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_name`='$state_name' AND `state_status`='$state_status' NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_state WHERE state_name='$state_name' AND state_status='$state_status' AND state_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already exists</b></div>";	

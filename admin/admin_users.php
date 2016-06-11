@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_users`";
+							$sql = "SELECT * FROM `stork_admin_users`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -339,7 +339,6 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%;" ><b>Username</b></td>
 											<td width="40%;" ><b>User Type</b></td>
 											<td width="40%;" ><b>Email</b></td>
-											<td width="40%;" ><b>Date of Birth</b></td>
 											<td width="40%;" ><b>Mobile</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
@@ -359,26 +358,23 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td style="text-align:center;">' . $fetch['username'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_username'] . '</td>
 												<td style="text-align:center;">'); 
-												if($fetch['user_type']==1)
-													echo "Student";
-												else if($fetch['user_type']==2)
-													echo "Profession";
+												if($fetch['adminuser_type']==1)
+													echo "Admin";
 												echo ('</td>	
-												<td style="text-align:center;">' . $fetch['user_email'] . '</td>
-												<td style="text-align:center;">' . $fetch['user_dob'] . '</td>
-												<td style="text-align:center;">' . $fetch['user_mobile'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_email'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_mobile'] . '</td>
 												<td>');
-												if($fetch['state_status']==1)
+												if($fetch['adminuser_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
 												echo ('</td>
-												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
+												<td style="text-align:center;">' . $fetch['adminuser_create_date'] . '</td>
 												<td style="text-align:center;">
-												<a href="edit_users.php?id=' . $fetch['user_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['user_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a href="edit_admin_users.php?id=' . $fetch['adminuser_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												</td>');
 												echo '</tr>';
 											
 											$i+= 1;
