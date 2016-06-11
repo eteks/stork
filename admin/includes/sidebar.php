@@ -326,10 +326,10 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="add_page.php"><i class="fa fa-plus-circle"></i> Add OfferZone</a>
+					<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i> Add OfferZone</a>
 				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> All OfferZone (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="offer_zones.php"><i class="fa fa-file"></i> All OfferZone (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>

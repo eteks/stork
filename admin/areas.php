@@ -358,19 +358,19 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											{
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td><a title="' . $fetch['area_name'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
+												<td>');
 												if(strlen($fetch['area_name'])>30)
 													echo substr($fetch['area_name'],0,30)."...";
 												else
 													echo $fetch['area_name'];
-												echo ('</a></td>
+												echo ('</td>
 												<td>'.$rowstate['state_name'].'</td>
-												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">');
+												<td>');
 												if($fetch['area_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
-												echo ('</a></td>
+												echo ('</td>
 												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
 												<td style="min-width:142px;">
 												<a href="edit_area.php?id=' . $fetch['area_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
