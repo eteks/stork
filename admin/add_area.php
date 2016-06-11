@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<select class="form-control" id= "category" name="state_id" required="">
 								<option value="">Select the state</option>
 								<?php
-			                        $query = mysql_query("select * from stork_state");
+			                        $query = mysql_query("select * from stork_state  where state_status='1'");
 			                        while ($row = mysql_fetch_array($query)) {
 			                            ?>
 			                        <option value="<?php echo $row['state_id']; ?>"><?php echo $row['state_name']; ?></option>

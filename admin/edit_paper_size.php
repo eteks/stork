@@ -8,17 +8,17 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$state_name = $_POST["state_name"];
-		$state_status = $_POST["state_status"];
+		$paper_size = $_POST["paper_size"];
+		$paper_size_status = $_POST["paper_size_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_state WHERE state_name='$state_name' AND state_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_size WHERE 	paper_size='$paper_size' AND paper_size_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already exists</b></div>";	
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papersize Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_state` SET `state_name`='$state_name',`state_status`='$state_status' WHERE `state_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Updated Successfully.</b></div>";	
+			mysqlQuery("UPDATE `stork_paper_size` SET `paper_size`='$paper_size',`paper_size_status`='$paper_size_status' WHERE `paper_size_id`=".$val);
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papersize Updated Successfully.</b></div>";	
 		}
 				
 	}
@@ -61,7 +61,7 @@ $_SESSION[$csrfVariable] = $key;
  ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit State: <?php echo(getTitle()) ?></title>
+<title>Edit Papersize: <?php echo(getTitle()) ?></title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -71,16 +71,16 @@ $_SESSION[$csrfVariable] = $key;
 		<div class="mainy">
 			<!-- Page title -->
 			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit State </h2> 
+				<h2><i class="fa fa-pencil-square color"></i> Edit Papersize </h2> 
 				<hr />
 			</div>
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_state.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" role="form" action="edit_paper_size.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
+					$match = "SELECT * FROM `stork_paper_size` WHERE `paper_size_id`='$id'";
 					$qry = mysqlQuery($match);
 					$numRows = mysql_num_rows($qry); 
 					if ($numRows > 0)
@@ -89,17 +89,17 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State Name</label>
+								<label class="col-lg-2 control-label">Paper Size</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="state_name" value="<?php echo($row['state_name']); ?>"/>
+									<input type="text" class="form-control" name="paper_size" value="<?php echo($row['paper_size']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State status</label>
+								<label class="col-lg-2 control-label">Papersize status</label>
 								<div class="col-lg-10">
-									<select class="form-control" name="state_status">
-										<option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>InActive</option>
+									<select class="form-control" name="paper_size_status">
+										<option value="1" <?php if ($row['paper_size_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['paper_size_status'] == 0) echo "selected"; ?>>InActive</option>
 										
 									</select>
 								</div>
