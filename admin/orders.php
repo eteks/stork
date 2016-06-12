@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_area` WHERE `area_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Areas</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_state`";
+							$sql = "SELECT * FROM `stork_order`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -336,9 +336,16 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>State Name</b></td>
+											<td width="40%;" ><b>Order Id</b></td>
+											<td width="40%;" ><b>UserType</b></td>
+											<td width="40%;" ><b>User</b></td>
+											<td width="40%;" ><b>Customer Name</b></td>
+											<td width="40%;" ><b>Email</b></td>
+											<td width="40%;" ><b>Mobile</b></td>
+											<td width="40%;" ><b>Address</b></td>
 											<td width="40%;" ><b>Status</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											
 											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
@@ -349,30 +356,31 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
 										{	
-											$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
-											$rowCategory = mysql_fetch_array($qryCategory);
-											$title = $fetch['state_name'];
+											$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['area_state_id']);
+											$rowstate = mysql_fetch_array($qrystate);
+											$title = $fetch['area_name'];
 											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
 											if ($title != "")
 											{
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
 												<td>');
-												if(strlen($fetch['state_name'])>30)
-													echo substr($fetch['state_name'],0,30)."...";
+												if(strlen($fetch['area_name'])>30)
+													echo substr($fetch['area_name'],0,30)."...";
 												else
-													echo $fetch['state_name'];
+													echo $fetch['area_name'];
 												echo ('</td>
+												<td>'.$rowstate['state_name'].'</td>
 												<td>');
-												if($fetch['state_status']==1)
+												if($fetch['area_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
 												echo ('</td>
-												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
-												<td style="text-align:center;">
-												<a href="edit_state.php?id=' . $fetch['state_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['state_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
+												<td style="min-width:142px;">
+												<a href="edit_area.php?id=' . $fetch['area_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['area_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											}
 											$i+= 1;
@@ -382,7 +390,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "states.php?delete="+myId+qs);
+											$("#del_link").prop("href", "areas.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >
