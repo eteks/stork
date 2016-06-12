@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_paper_side` WHERE `paper_side_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -401,7 +401,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "states.php?delete="+myId+qs);
+											$("#del_link").prop("href", "papersides.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >
