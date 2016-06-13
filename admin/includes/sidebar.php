@@ -334,36 +334,13 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="orders.php"><i class="fa fa-list"></i> All Order (<?php echo(totalPagesCount()) ?>)</a>
-				</li> 
-			</ul>
-			</li>
-				<?php 
-			if(basename($_SERVER['PHP_SELF'])=="add_trackorder.php" || 
-			basename($_SERVER['PHP_SELF'])=="trackorder.php")
-			{ 
-				?> 
-				<li class="has_submenu open">
-				<?php 
-			} 
-			else 
-			{ 
-				?>
-				<li class="has_submenu">
-				<?php 
-			}  
-			?>
-			<a href="#">
-				<!-- <i class="fa fa-file"></i> --> Track Order
-				<span class="caret pull-right"></span>
-			</a>
-			<!-- Sub menu -->
-			<ul>
+					<a href="orders.php"><i class="fa fa-list"></i> All Orders (<?php echo(totalPagesCount()) ?>)</a>
+				</li>
 				<li>
-					<a href="pages.php"><i class="fa fa-file"></i> Set Track Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="orders.php"><i class="fa fa-list"></i> Order Details (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 				<li>
-					<a href="pages.php"><i class="fa fa-list"></i> All Track Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="orders.php"><i class="fa fa-list"></i> Track Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>

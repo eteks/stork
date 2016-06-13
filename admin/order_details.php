@@ -151,7 +151,7 @@ if(isset($_GET['areUpdated']) && $_GET['areUpdated']==1)
 }
 ?>	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All Orders</title>
+<title>All States</title>
 </head>
 <body>
   <script type="text/javascript">
@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Orders</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Areas</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -340,15 +340,11 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											<td width="40%;" ><b>UserType</b></td>
 											<td width="40%;" ><b>User</b></td>
 											<td width="40%;" ><b>Customer Name</b></td>
-											<td width="40%;" ><b>Total Items</b></td>
 											<td width="40%;" ><b>Email</b></td>
 											<td width="40%;" ><b>Mobile</b></td>
 											<td width="40%;" ><b>Address</b></td>
-											<td width="40%;" ><b>State</b></td>
-											<td width="40%;" ><b>Area</b></td>
-											<td width="40%;" ><b>Created Date</b></td>
 											<td width="40%;" ><b>Status</b></td>
-											
+											<td width="40%;" ><b>Created Date</b></td>
 											
 											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
@@ -360,48 +356,33 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
 										{	
-											$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['order_shipping_state_id']);
+											$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['area_state_id']);
 											$rowstate = mysql_fetch_array($qrystate);
-
-											$qryarea = mysqlQuery("SELECT * FROM `stork_area` WHERE `area_id`=".$fetch['order_shipping_area_id']);
-											$rowarea = mysql_fetch_array($qryarea);
-											
+											$title = $fetch['area_name'];
 											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
-											
+											if ($title != "")
+											{
 												echo ('<tr>');
-												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['order_id'] . '"/></td>
-												<td>'.$fetch['order_id'].'</td>
+												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
 												<td>');
-												if ($fetch['order_user_type'] == 1)
-													echo "Student";
+												if(strlen($fetch['area_name'])>30)
+													echo substr($fetch['area_name'],0,30)."...";
 												else
-													echo "Profession";
-												echo('</td>
-												<td>');
-												if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == '')
-													echo "Guest User";
-												else
-													echo "Registered User";
-												echo('</td>
-												<td>'.$fetch['order_customer_name'].'</td>
-												<td>'.$fetch['order_total_items'].'</td>
-												<td>'.$fetch['order_shipping_email'].'</td>
-												<td>'.$fetch['order_shipping_mobile'].'</td>
-												<td>'.$fetch['order_shipping_line1']." ".$fetch['order_shipping_line2'].'</td>
+													echo $fetch['area_name'];
+												echo ('</td>
 												<td>'.$rowstate['state_name'].'</td>
-												<td>'.$rowarea['area_name'].'</td>
-												<td>'.$fetch['created_date'].'</td><td>');
-												if($fetch['order_status']==1)
+												<td>');
+												if($fetch['area_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
 												echo ('</td>
 												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
 												<td style="min-width:142px;">
-												<a href="edit_orders.php?id=' . $fetch['order_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a href="edit_area.php?id=' . $fetch['area_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['area_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
-											
+											}
 											$i+= 1;
 											?>
 											<script type="text/javascript" >
@@ -578,7 +559,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 					}
 					else
 					{
-						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Orders Found</h3></div>');
+						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No States Found</h3></div>');
 					}
 					if(isset($_GET['delete']) || isset($_GET['update']) || isset($_POST['delete']) && $error=="")
 					{
