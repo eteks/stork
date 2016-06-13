@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_area` WHERE `area_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_order` WHERE `order_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -398,8 +398,8 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												echo ('</td>
 												<td style="text-align:center;">' . $fetch['create_date'] . '</td>
 												<td style="min-width:142px;">
-												<a href="edit_orders.php?id=' . $fetch['order_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['area_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a href="edit_orders.php?id=' .$fetch['order_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['order_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											
 											$i+= 1;
@@ -409,7 +409,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "areas.php?delete="+myId+qs);
+											$("#del_link").prop("href", "orders.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >

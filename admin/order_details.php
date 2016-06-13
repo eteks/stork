@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_order`";
+							$sql = "SELECT * FROM `stork_order_details`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -337,14 +337,16 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
 											<td width="40%;" ><b>Order Id</b></td>
-											<td width="40%;" ><b>UserType</b></td>
-											<td width="40%;" ><b>User</b></td>
-											<td width="40%;" ><b>Customer Name</b></td>
-											<td width="40%;" ><b>Email</b></td>
-											<td width="40%;" ><b>Mobile</b></td>
-											<td width="40%;" ><b>Address</b></td>
-											<td width="40%;" ><b>Status</b></td>
+											<td width="40%;" ><b>Paper Print Type</b></td>
+											<td width="40%;" ><b>Paper Size</b></td>
+											<td width="40%;" ><b>Paper Side</b></td>
+											<td width="40%;" ><b>Paper Type</b></td>
+											<td width="40%;" ><b>Total No. Of pages</b></td>
+											<td width="40%;" ><b>Color Print Pages</b></td>	
+											<td width="40%;" ><b>Comments</b></td>
+											<td width="40%;" ><b>Amount</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Order Detail Status</b></td>
 											
 											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
@@ -356,22 +358,18 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
 										{	
-											$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['area_state_id']);
-											$rowstate = mysql_fetch_array($qrystate);
-											$title = $fetch['area_name'];
-											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
-											if ($title != "")
-											{
+											$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
+											$roworder_details = mysql_fetch_array($qryorder_details);
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td>');
-												if(strlen($fetch['area_name'])>30)
-													echo substr($fetch['area_name'],0,30)."...";
-												else
-													echo $fetch['area_name'];
-												echo ('</td>
-												<td>'.$rowstate['state_name'].'</td>
-												<td>');
+												<td>'.$fetch['order_id'].'</td>
+												<td>'.$roworder_details['paper_print_type'].'</td>
+												<td>'.$roworder_details['paper_size'].'</td>
+												<td>'.$roworder_details['paper_side'].'</td>
+												<td>'.$roworder_details['paper_type'].'</td>
+												<td>'.$roworder_details['order_details_total_no_of_pages'].'</td>
+												<td>'.$roworder_details['order_details_color_print_pages'].'</td>
+												<td>'.$roworder_details['order_details_comments'].'</td>');
 												if($fetch['area_status']==1)
 													echo "Active";
 												else
@@ -382,7 +380,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												<a href="edit_area.php?id=' . $fetch['area_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['area_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
-											}
+											
 											$i+= 1;
 											?>
 											<script type="text/javascript" >

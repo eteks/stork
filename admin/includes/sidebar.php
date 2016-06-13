@@ -367,10 +367,10 @@ function totalSourcesCount()
 					<a href="orders.php"><i class="fa fa-list"></i> All Orders (<?php echo(totalPagesCount()) ?>)</a>
 				</li>
 				<li>
-					<a href="orders.php"><i class="fa fa-list"></i> Order Details (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="order_details.php"><i class="fa fa-list"></i> Order Details (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 				<li>
-					<a href="orders.php"><i class="fa fa-list"></i> Track Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="track_order.php"><i class="fa fa-list"></i> Track Order (<?php echo(totalPagesCount()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
