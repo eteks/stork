@@ -27,6 +27,36 @@ function totalPagesCount()
 	$fecth = mysql_fetch_array($query);
 	return $fecth['totalPages'];
 }
+function countCollege()
+{
+	$query = mysqlQuery("SELECT count(college_id) as total FROM `stork_college`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPapersize()
+{
+	$query = mysqlQuery("SELECT count(paper_size_id) as total FROM `stork_paper_size`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPaperside()
+{
+	$query = mysqlQuery("SELECT count(paper_side_id) as total FROM `stork_paper_side`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPapertype()
+{
+	$query = mysqlQuery("SELECT count(paper_type_id) as total FROM `stork_paper_type`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPaperprinttype()
+{
+	$query = mysqlQuery("SELECT count(paper_print_type_id) as total FROM `stork_paper_print_type`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
 function totalSourcesCount()
 {
 	$query = mysqlQuery("SELECT count(id) as totalFeeds FROM envatoSources");
@@ -157,7 +187,7 @@ function totalSourcesCount()
 					<a href="add_college.php"><i class="fa fa-plus-circle"></i> Add college</a>
 				</li>
 				<li>
-					<a href="colleges.php"><i class="fa fa-file"></i> All Colleges (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="colleges.php"><i class="fa fa-file"></i> All Colleges (<?php echo(countCollege()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -186,7 +216,7 @@ function totalSourcesCount()
 					<a href="add_paper_size.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
 				</li>
 				<li>
-					<a href="paper_size.php"><i class="fa fa-leaf"></i> All Papersizes (<?php echo(totalSourcesCount()) ?>)</a>
+					<a href="paper_size.php"><i class="fa fa-leaf"></i> All Papersizes (<?php echo(countPapersize()) ?>)</a>
 				</li>
 			</ul>
 			</li>
@@ -218,7 +248,7 @@ function totalSourcesCount()
 					<a href="add_paper_side.php"><i class="fa fa-leaf"></i> Add Paperside </a>  
 				</li>
 				<li>
-					<a href="papersides.php"><i class="fa fa-leaf"></i> All Papersides (<?php echo(totalSourcesCount()) ?>)</a>
+					<a href="papersides.php"><i class="fa fa-leaf"></i> All Papersides (<?php echo(countPaperside()) ?>)</a>
 				</li>
 			</ul>
 			</li>
@@ -248,7 +278,7 @@ function totalSourcesCount()
 					<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
 				</li>
 				<li>
-					<a href="papertypes.php"><i class="fa fa-file"></i> All PaperTypes (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="papertypes.php"><i class="fa fa-file"></i> All PaperTypes (<?php echo(countPapertype()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -278,7 +308,7 @@ function totalSourcesCount()
 					<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i> Add PaperPrintType</a>
 				</li>
 				<li>
-					<a href="paperprinttypes.php"><i class="fa fa-file"></i> All PaperPrintTypes (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="paperprinttypes.php"><i class="fa fa-file"></i> All PaperPrintTypes (<?php echo(countPaperprinttype()) ?>)</a>
 				</li> 
 			</ul>
 			</li>

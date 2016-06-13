@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_area` WHERE `area_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_college` WHERE `college_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -373,7 +373,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												echo ('</a></td>
 												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="min-width:142px;">
-												<a href="edit_area.php?id=' . $fetch['college_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a href="edit_college.php?id=' . $fetch['college_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
 												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['college_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											}
@@ -384,7 +384,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "areas.php?delete="+myId+qs);
+											$("#del_link").prop("href", "colleges.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >

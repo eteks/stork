@@ -116,6 +116,38 @@ h3, .h3{
 	font-weight: bold;
 }
 
+/*Added by siva*/
+/*Css for Validation*/ 
+.login_error {
+	display: none;
+	color: red;
+	text-align: center;
+	font-size: 14px;
+}
+.error_input_field {
+	background: #ffebeb !important;
+    border: 1px solid red !important;	
+}
+.forget_email_valid {
+	display: none;
+	color: red;
+	text-align: center;
+	font-size: 14px;
+}
+.forget_error {
+	display: none;
+	color: red;
+	text-align: center;
+	font-size: 14px;
+}
+.reg_error {
+	display: none;
+	color: red;
+	text-align: center;
+	font-size: 14px;
+}
+
+/*ended by siva*/
 .yellow_heading{ 
 	font-size: 18px;
 	}
