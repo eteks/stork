@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 		$paper_type_status = $_POST["paper_type_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_status='$paper_type_status' AND paper_type_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Already exists</b></div>";	

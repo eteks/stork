@@ -38,5 +38,5 @@ return $results;
 
 }
 if(!$link)
-echo "<br><strong>Hello! Affiliate Portal 2.0 Is Not Installed Please Run Installer First For More Information Read Documentation.</strong><br><br>";
+echo "<br><strong>Db Not Connected</strong><br><br>";
 ?>

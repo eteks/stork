@@ -8,16 +8,16 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$area_state_id = $_POST["state_id"];
-		$area_name = $_POST["area_name"];
-		$area_status = $_POST["area_status"];
-		$qr = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
+		$college_area_id = $_POST["area_id"];
+		$college_name = $_POST["college_name"];
+		$college_status = $_POST["college_status"];
+		$qr = mysqlQuery("SELECT * FROM stork_college WHERE college_area_id='$college_area_id' AND college_name='$college_name' AND college_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already exists</b></div>";	
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> College Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id' WHERE `area_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Updated Successfully.</b></div>";	
+			mysqlQuery("UPDATE `stork_college` SET `college_name`='$college_name',`college_status`='$college_status',`college_area_id`='$college_area_id' WHERE `college_id`=".$val);
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> College Updated Successfully.</b></div>";	
 		}
 				
 	}
@@ -60,7 +60,7 @@ $_SESSION[$csrfVariable] = $key;
  ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit Area</title>
+<title>Edit College</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -70,16 +70,16 @@ $_SESSION[$csrfVariable] = $key;
 		<div class="mainy">
 			<!-- Page title -->
 			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit Area </h2> 
+				<h2><i class="fa fa-pencil-square color"></i> Edit College </h2> 
 				<hr />
 			</div>
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_area.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" role="form" action="edit_college.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_area` WHERE `area_id`='$id'";
+					$match = "SELECT * FROM `stork_college` WHERE `college_id`='$id'";
 					$qry = mysqlQuery($match);
 					$numRows = mysql_num_rows($qry); 
 					if ($numRows > 0)
@@ -88,33 +88,33 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State</label>
+								<label class="col-lg-2 control-label">Area</label>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id">
+								<select class="form-control" id= "category" name="area_id">
 								<?php
-			                    $query = mysql_query("select * from stork_state where state_status='1'");
-		                        while ($staterow = mysql_fetch_array($query)) {
-		                        if($row['area_state_id'] == $staterow['state_id'])   
-		                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+			                    $query = mysql_query("select * from stork_area where area_status='1'");
+		                        while ($arearow = mysql_fetch_array($query)) {
+		                        if($row['college_area_id'] == $arearow['area_id'])   
+		                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
 		                        else
-		                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+		                        	echo "<option value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
 		                        }
 			                        ?>
 								</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area Name</label>
+								<label class="col-lg-2 control-label">College Name</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="area_name" value="<?php echo($row['area_name']); ?>"/>
+									<input type="text" class="form-control" name="college_name" value="<?php echo($row['college_name']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area status</label>
+								<label class="col-lg-2 control-label">College status</label>
 								<div class="col-lg-10">
-									<select class="form-control" name="area_status">
-										<option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['area_status'] == 0) echo "selected"; ?>>InActive</option>
+									<select class="form-control" name="college_status">
+										<option value="1" <?php if ($row['college_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['college_status'] == 0) echo "selected"; ?>>InActive</option>
 										
 									</select>
 								</div>
