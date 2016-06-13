@@ -200,3 +200,10 @@ h3, .h3{
 #order, #shipping{
 	padding:10px;
 }
+
+/* Admin Module -- Sidebar css */
+
+.sidey{
+	background-color: #9E9E9E;
+	color: #ffffff;
+}
