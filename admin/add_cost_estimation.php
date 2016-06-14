@@ -79,12 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_cost_estimation.php" method="post">
+					<form class="form-horizontal add_cost_estimation
+					"  role="form" action="add_cost_estimation.php" method="post">
+					<span class="error_add_cost_estimation"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Print Type</label>
+							<label class="col-lg-2 control-label">Paper Print Type</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_print_type" required="">
+								<select class="form-control" id= "category" name="paper_print_type">
 								<option value="">Select the Paper Print Type</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_print_type");
@@ -96,9 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Side</label>
+							<label class="col-lg-2 control-label">Paper Side</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_side" required="">
+								<select class="form-control" id= "category1" name="paper_side">
 								<option value="">Select the Paper Side</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_side");
@@ -110,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Size</label>
+							<label class="col-lg-2 control-label">Paper Size</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_size" required="">
+								<select class="form-control" id= "category2" name="paper_size">
 								<option value="">Select the Paper Size</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_size");
@@ -124,9 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Type</label>
+							<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_type" required="">
+								<select class="form-control" id= "category3" name="paper_type">
 								<option value="">Select the Paper Type</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_type");
@@ -138,15 +140,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Amount</label>
+							<label class="col-lg-2 control-label">Amount</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="amount">
+								<input  class="form-control" maxlength="10" type="text"  value="" placeholder="State Name" name="amount">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="cost_estimation_status" required="">
+								<select class="form-control" id= "category4" name="cost_estimation_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

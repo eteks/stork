@@ -77,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<form class="form-horizontal" id="myform" role="form" action="add_paper_type.php" method="post">
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Type</label>
+							<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
 							<div class="col-lg-10">
 								<input id="cat" class="form-control" type="text" value="" placeholder="Paper type" name="paper_type">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
 								<select class="form-control" id="category" name="papertype_status">
 									<option value="">Status</option>

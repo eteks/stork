@@ -74,16 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_paper_side.php" method="post">
+					<form class="form-horizontal" id="add_paper_side" role="form" action="add_paper_side.php" method="post">
+					<span class="error_add_paper_side"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Side</label>
+							<label class="col-lg-2 control-label">Paper Side</label><span>*</span>
 							<div class="col-lg-10">
 								<input id="cat" class="form-control" type="text" value="" placeholder="Paper side" name="paper_side">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
 								<select class="form-control" id= "category" name="paper_status">
 									<option value="">Status</option>

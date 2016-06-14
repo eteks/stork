@@ -81,7 +81,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_admin_users.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_admin_users" role="form" action="edit_admin_users.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_admin_users"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
@@ -93,42 +94,42 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Username</label>
+								<label class="col-lg-2 control-label">Username</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>" required/>
+									<input type="text" id="category1" class="form-control" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Password</label>
+								<label class="col-lg-2 control-label">Password</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="password" class="form-control" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>" required/>
+									<input type="password"  id="category2" class="form-control" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Email</label>
+								<label class="col-lg-2 control-label">Email</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>" required/>
+									<input type="text"  id="category3" class="form-control" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Mobile</label>
+								<label class="col-lg-2 control-label">Mobile</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>" required/>
+									<input id="phone" class="form-control" id="category4" maxlength="10" type="text" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">UserType</label>
+								<label class="col-lg-2 control-label">UserType</label><span>*</span>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="adminuser_type" required>
+								<select class="form-control" id= "category5" name="adminuser_type" >
 								<option value="">Select the UserType</option>
-								<option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
+								<option value="1"   <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
 								</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">status</label>
+								<label class="col-lg-2 control-label">status</label><span>*</span>
 								<div class="col-lg-10">
-									<select class="form-control" name="adminuser_status" required>
+									<select class="form-control"   name="adminuser_status">
 										<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>InActive</option>	
 									</select>

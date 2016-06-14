@@ -74,12 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_area.php" method="post">
+					<form class="form-horizontal myform" role="form" action="add_area.php" method="post">
+					<span class="error_add_area"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
-						<div class="form-group">
-							<label class="col-lg-2 control-label">State</label>
+						<div class="form-group" >
+							<label class="col-lg-2 control-label">State</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id" required="">
+								<select class="form-control" id= "category" name="state_id">
 								<option value="">Select the state</option>
 								<?php
 			                        $query = mysql_query("select * from stork_state  where state_status='1'");
@@ -91,15 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Area Name</label>
+							<label class="col-lg-2 control-label">Area Name</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="area_name">
+								<input id="cat" class="form-control" type="text" value="" placeholder="State Name" name="area_name">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="area_status">
+								<select class="form-control" id= "category1" name="area_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

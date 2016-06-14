@@ -82,7 +82,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_cost_estimation.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_cost_estimation" role="form" action="edit_cost_estimation.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_cost_estimation"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$id'";
@@ -94,9 +95,9 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Print Type</label>
+							<label class="col-lg-2 control-label">Paper Print Type</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_print_type" required="">
+								<select class="form-control" id= "category" name="paper_print_type">
 								<option value="">Select the Paper Print Type</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_print_type");
@@ -110,9 +111,9 @@ $_SESSION[$csrfVariable] = $key;
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Side</label>
+							<label class="col-lg-2 control-label">Paper Side</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_side" required="">
+								<select class="form-control" id= "category1" name="paper_side">
 								<option value="">Select the Paper Side</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_side");
@@ -126,9 +127,9 @@ $_SESSION[$csrfVariable] = $key;
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Size</label>
+							<label class="col-lg-2 control-label">Paper Size</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_size" required="">
+								<select class="form-control" id= "category2" name="paper_size">
 								<option value="">Select the Paper Size</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_size");
@@ -142,9 +143,9 @@ $_SESSION[$csrfVariable] = $key;
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Type</label>
+							<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_type" required="">
+								<select class="form-control" id= "category3" name="paper_type">
 								<option value="">Select the Paper Type</option>
 								<?php
 			                        $query = mysql_query("select * from stork_paper_type");
@@ -158,15 +159,15 @@ $_SESSION[$csrfVariable] = $key;
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Amount</label>
+							<label class="col-lg-2 control-label">Amount</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="<?php echo($row['cost_estimation_amount']); ?>" placeholder="State Name" name="amount">
+								<input id="amount" class="form-control" type="text" value="<?php echo($row['cost_estimation_amount']); ?>" placeholder="State Name" name="amount">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="cost_estimation_status" required="">
+								<select class="form-control" id= "category4" name="cost_estimation_status">
 									<option value="1" <?php if ($row['cost_estimation_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['cost_estimation_status'] == 0) echo "selected"; ?>>InActive</option>
 								</select>
