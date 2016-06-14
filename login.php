@@ -608,10 +608,11 @@
 						<h4>Returning Customers</h4>
 						<p>If you have an account with us, please log in.</p>
 						<form id="login-form" class="form-validate form-horizontal" method="post">
+							<span class="login_error">  Login failed </span>
 							<p> Email or Username <span class="star">*</span></p>
-							<input class="email" name="login_name" type="text" value="">
+							<input class="email" name="login_name" type="text" id="username_email" placeholder="Email or Username" value="">
 							<p>Password <span class="star">*</span></p>
-							<input class="pasword" name="login_pass" type="password" value="">
+							<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="">
 							<button type="submit" name="login_user" class="login">Login</button>
 						</form>
 						<div class="socail">
@@ -626,9 +627,10 @@
 					<h4>Forgotten Password</h4>
 						<p>Fill our your email address bellow and we’ll email it to you right away!</p>
 						<form id="forgotpass-form" class="form-validate form-horizontal" method="post">
+							<span class="forget_error"> Email doesn't exists </span>
 							<p>Email Address <span class="star">*</span></p>
-							<input class="email" name="forget_email" type="text" value="">
-							
+							<input class="email" name="forget_email" type="text" placeholder="Email" id="forget_email" value="">
+							<span class="forget_email_valid"> Please enter correct email </span>
 							<button type="submit" name="forget_password" class="ressetpass">Retrieve Password</button>
 						</form>
 					</div>
@@ -849,6 +851,8 @@
 	<script type="text/javascript" src="js/modernizr.js"></script> 
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>  
     <script type="text/javascript" src="js/theme.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   	<![endif]-->
@@ -859,9 +863,11 @@
   		$login_query=mysql_query("select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
   		$login_count=mysql_num_rows($login_query);
   		if($login_count == 1) {
+  			echo "<script> $('.login_error').css('display','none'); </script>";
   			echo "login successful";		
   		}
   		else {
+  			echo "<script> $('.login_error').css('display','block'); </script>";
   			echo "login failed";
   		}
  	}
@@ -883,9 +889,11 @@
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to,$subject,$body,$headers);
+  			echo "<script> $('.forget_error').css('display','none'); </script>";
   			echo "mail sent";
   		}
   		else {
+  			echo "<script> $('.forget_error').css('display','block'); </script>";
   			echo "not found";
   		}
   	}

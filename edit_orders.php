@@ -8,17 +8,16 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$paper_type = $_POST["paper_type"];
-		$paper_type_status = $_POST["paper_type_status"];
-		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
-		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_id NOT IN('$val')");
+		$area_state_id = $_POST["state_id"];
+		$area_name = $_POST["area_name"];
+		$area_status = $_POST["area_status"];
+		$qr = mysqlQuery("SELECT * FROM area_state WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Already exists</b></div>";	
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already exists</b></div>";	
 		} else {
-			mysqlQuery("UPDATE `stork_paper_type` SET `paper_type`='$paper_type',`paper_type_status`='$paper_type_status' WHERE `paper_type_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Updated Successfully.</b></div>";	
+			mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id' WHERE `area_id`=".$val);
+			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Updated Successfully.</b></div>";	
 		}
 				
 	}
@@ -61,7 +60,7 @@ $_SESSION[$csrfVariable] = $key;
  ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit Papertype: <?php echo(getTitle()) ?></title>
+<title>Edit Area</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -71,16 +70,16 @@ $_SESSION[$csrfVariable] = $key;
 		<div class="mainy">
 			<!-- Page title -->
 			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit Papertype </h2> 
+				<h2><i class="fa fa-pencil-square color"></i> Edit Area </h2> 
 				<hr />
 			</div>
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal edit_paper" role="form" action="edit_paper_type.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" role="form" action="edit_area.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_paper_type` WHERE `paper_type_id`='$id'";
+					$match = "SELECT * FROM `stork_area` WHERE `area_id`='$id'";
 					$qry = mysqlQuery($match);
 					$numRows = mysql_num_rows($qry); 
 					if ($numRows > 0)
@@ -89,17 +88,34 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
+								<label class="col-lg-2 control-label">State</label>
 								<div class="col-lg-10">
-									<input type="text" id="edit_papertype_form" class="form-control" name="paper_type" value="<?php echo($row['paper_type']); ?>"/>
+								<select class="form-control" id= "category" name="state_id">
+								<option value="">Select the state</option>
+								<?php
+			                    $query = mysql_query("select * from stork_state where state_status='1'");
+		                        while ($staterow = mysql_fetch_array($query)) {
+		                        if($row['area_state_id'] == $staterow['state_id'])   
+		                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+		                        else
+		                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+		                        }
+			                        ?>
+								</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Papertype status</label><span>*</span>
+								<label class="col-lg-2 control-label">Area Name</label>
 								<div class="col-lg-10">
-									<select class="form-control" name="paper_type_status">
-										<option value="1" <?php if ($row['paper_type_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['paper_type_status'] == 0) echo "selected"; ?>>InActive</option>
+									<input type="text" class="form-control" name="area_name" value="<?php echo($row['area_name']); ?>"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 control-label">Area status</label>
+								<div class="col-lg-10">
+									<select class="form-control" name="area_status">
+										<option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['area_status'] == 0) echo "selected"; ?>>InActive</option>
 										
 									</select>
 								</div>

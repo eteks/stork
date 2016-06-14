@@ -60,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 { 	
 	// deleteProduct($_GET['delete']);
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_order_details` WHERE `order_details_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -278,7 +278,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 	<div class="mainy">  
 	<input type="hidden" id="qs" value="<?php echo $qs ?>" />
 		<div class="page-title">
-			<h2><a href="products.php"><i class="fa fa-th color"></i></a> States</h2>
+			<h2><a href="products.php"><i class="fa fa-th color"></i></a> Order Details</h2>
 			<form action="products.php" method="GET" id="products_form">
 				<div class="input-group search_input_group">
 					<?php
@@ -324,7 +324,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						// else 
 						// 	$sql = "SELECT * FROM `products` ORDER BY " . $SortBy . " " . $_SESSION['SortOrder'] . " limit " . $start_result . "," . $limit;
 						else {
-							$sql = "SELECT * FROM `stork_paper_type`";
+							$sql = "SELECT * FROM `stork_order_details`";
 						}
 						$query = mysqlQuery($sql);
 						$count_rows = mysql_num_rows($query);
@@ -336,64 +336,62 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 									<tbody>
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%"><b>Paper Type</b></td>
-											<td width="40%;" ><b>Status</b></td>
+											<td width="40%;" ><b>Order Id</b></td>
+											<td width="40%;" ><b>Paper Print Type</b></td>
+											<td width="40%;" ><b>Paper Size</b></td>
+											<td width="40%;" ><b>Paper Side</b></td>
+											<td width="40%;" ><b>Paper Type</b></td>
+											<td width="40%;" ><b>Total No. Of pages</b></td>
+											<td width="40%;" ><b>Color Print Pages</b></td>	
+											<td width="40%;" ><b>Comments</b></td>
+											<td width="40%;" ><b>Total Amount</b></td>
+											<td width="40%;" ><b>Uploaded Files</b></td>
 											<td width="40%;" ><b>Created Date</b></td>
+											<td width="40%;" ><b>Order Detail Status</b></td>
 											<td width="40%;" ><b>Action</b></td>
 											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
 											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
 											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
-											<b>Sort: </b>
-											<label>
-											<?php
-											if ($_SESSION['SortOrder'] == "ASC")
-											{
-												?>											
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs);?>" style="margin-top: -4px;" class="btn btn-info btn-xs active"  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs " type="button"><i class="fa fa-arrow-down"></i></a>	
-												<?php
-											}
-											else if ($_SESSION['SortOrder'] == "DESC")
-											{
-												?>		
-												<a title="Ascending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=ASC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs "  type="button"><i class="fa fa-arrow-up"></i></a>
-												<a title="Descending" href="<?php echo (rootpath()); ?>/admin/products.php?SortOrder=DESC<?php echo ($qs); ?>" style="margin-top: -4px;" class="btn btn-info btn-xs active" type="button"><i class="fa fa-arrow-down"></i></a>
-												<?php
-											}
-											?>
-											</label>
-											</td>
+											
 										</tr> 
 										<?php              
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
 										{	
-											$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
-											$rowCategory = mysql_fetch_array($qryCategory);
-											$title = $fetch['paper_type'];
-											$cat = '<a href="'.rootpath().'/category/'.$rowCategory['permalink'].'" target="_blank" >'. $rowCategory['name'] .'</a>';
-											if ($title != "")
-											{
+											$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
+											$roworder_details = mysql_fetch_array($qryorder_details);
+											$qryupload = mysqlQuery("SELECT * from stork_upload_files where upload_files_order_details_id=".$fetch[order_details_id]);	
+											//echo "SELECT * from stork_upload_files where upload_files_order_details_id=".$fetch[order_details_id];
+											// $rowupload = mysql_fetch_array($qryupload);
+											
+											
 												echo ('<tr>');
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['id'] . '"/></td>
-												<td><a title="' . $fetch['paper_type'] . '" href="' . rootpath() . "/product/" . $fetch['permalink']. '.html">');
-												if(strlen($fetch['paper_type'])>30)
-													echo substr($fetch['paper_type'],0,30)."...";
-												else
-													echo $fetch['paper_type'];
-												echo ('</a></td>
-												<td><a target="_blank" href="http://'.getdomain($fetch['url']).'">');
-												if($fetch['paper_type_status']==1)
+												<td>'.$fetch['order_id'].'</td>
+												<td>'.$roworder_details['paper_print_type'].'</td>
+												<td>'.$roworder_details['paper_size'].'</td>
+												<td>'.$roworder_details['paper_side'].'</td>
+												<td>'.$roworder_details['paper_type'].'</td>
+												<td>'.$roworder_details['order_details_total_no_of_pages'].'</td>
+												<td>'.$roworder_details['order_details_color_print_pages'].'</td>
+												<td>'.$roworder_details['order_details_comments'].'</td>
+												<td>'.$roworder_details['order_details_total_amount'].'</td><td>');
+												while ($rowupload = mysql_fetch_array($qryupload)) {
+													echo "<a href='../".$rowupload['upload_files']."' target='_blank'>Download File</a><br>";
+												}
+												echo('</td><td>'.$roworder_details['created_date'].'</td><td>');
+
+												if($roworder_details['order_details_status']==1)
 													echo "Active";
 												else
 													echo "InActive";
-												echo ('</a></td>
-												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
-												<td style="text-align:center; min-width:142px; padding-left: 50px;">
-												<a href="edit_paper_type.php?id=' . $fetch['paper_type_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['paper_type_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												echo ('</td>
+												
+												<td style="min-width:142px;">
+												<a href="edit_order_details.php?id=' . $fetch['order_details_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
+												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['order_details_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
-											}
+											
 											$i+= 1;
 											?>
 											<script type="text/javascript" >
@@ -401,7 +399,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 											var myId = $(this).data('id');
 											var qs=$('#qs').val();
 											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "papertypes.php?delete="+myId+qs);
+											$("#del_link").prop("href", "order_details.php?delete="+myId+qs);
 											});
 											</script>
 											<script type="text/javascript" >
@@ -560,7 +558,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 								} 
 							?>
 							<div class="clearfix"></div>
-							<div class="col-lg-6 allBtns showbuttons pull-right" style="display:none">
+							<div class="col-lg-6 showbuttons pull-right" style="display:none">
 								<a href="#myModal3" class="btn btn-success" data-toggle="modal"><i class="fa fa-pencil-square-o"></i> <span class="hidden-xs">Update Selected</span></a>
 								<a class="btn btn-danger deleteall" href="#myModal2" data-toggle="modal"> <i class="fa fa-trash-o"></i> <span class="hidden-xs">Delete Selected</span></a>
 							</div>
@@ -570,7 +568,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 					}
 					else
 					{
-						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Papertype Found</h3></div>');
+						echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Order Details Found</h3></div>');
 					}
 					if(isset($_GET['delete']) || isset($_GET['update']) || isset($_POST['delete']) && $error=="")
 					{
