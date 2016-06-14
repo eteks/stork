@@ -31,7 +31,7 @@
 								</a>
 								<ul class="dropdown-menu animated fadeInUp">
 									<li>
-										<a href="edit_admin_users.php?id=2"><i class="fa fa-user"></i>&nbsp;Profile</a>
+										<a href="edit_admin_users.php?id=1"><i class="fa fa-user"></i>&nbsp;Profile</a>
 									</li>
 									<li>
 										<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>

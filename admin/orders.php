@@ -337,6 +337,7 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 										<tr>
 											<td><input type="checkbox" id="selectall" ></input></td>
 											<td width="40%;" ><b>Order Id</b></td>
+											<td width="40%;" ><b>User Id</b></td>
 											<td width="40%;" ><b>UserType</b></td>
 											<td width="40%;" ><b>User</b></td>
 											<td width="40%;" ><b>Customer Name</b></td>
@@ -372,13 +373,19 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												echo ('<td><input class="selectedId" type="checkbox" id="multicheck" name="checkboxvar[]" value="' . $fetch['order_id'] . '"/></td>
 												<td>'.$fetch['order_id'].'</td>
 												<td>');
+												if ($fetch['order_user_id'] === NULL)
+													echo "None";
+												else
+													echo $fetch['order_user_id'];
+												echo('</td>
+												<td>');
 												if ($fetch['order_user_type'] == 1)
 													echo "Student";
 												else
 													echo "Profession";
 												echo('</td>
 												<td>');
-												if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == '')
+												if($fetch['order_user_id'] === NULL)
 													echo "Guest User";
 												else
 													echo "Registered User";
