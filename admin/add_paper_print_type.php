@@ -74,18 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_paper_print_type.php" method="post">
+					<form class="form-horizontal add_paperprinttype" role="form" action="add_paper_print_type.php" method="post">
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paperprint Type</label>
+							<label class="col-lg-2 control-label">Paperprint Type</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="Paper Print Type" name="paper_print_type">
+								<input id="cat" class="form-control" type="text" value="" placeholder="Paper Print Type" name="paper_print_type">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paperprinttype_status" required="">
+								<select class="form-control" id= "category" name="paperprinttype_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

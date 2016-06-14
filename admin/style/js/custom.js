@@ -51,6 +51,13 @@ $(document).ready(function(){
         $(".sidey").slideUp(350);
       }
   });
+  $("#phone").keypress(function (e) {
+
+     if (e.which != 8 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+
+               return false;
+    }
+   });
 
 });
-/* Admin sidebar navigation ends */
+  

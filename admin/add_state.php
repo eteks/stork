@@ -75,17 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						});
 					</script>
 					<form class="form-horizontal" id="myform" role="form" action="add_state.php" method="post">
+					<span class="error_add_state"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">State Name</label>
+							<label class="col-lg-2 control-label">State Name</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="State Name" name="state_name">
+								<input id="cat" class="form-control" type="text" value="" placeholder="State Name" name="state_name">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_status" required="">
+								<select class="form-control" id= "category" name="state_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

@@ -42,4 +42,8 @@
 	<script src="style/js/ajaxq.js"></script>
 	<script src="style/js/upload.js"></script>
 	<script src="style/js/custom.js"></script>
+	<script src="style/js/jquery.validate.min.js"></script>
+	<script src="style/js/action.js"></script>
+
+
 	  
