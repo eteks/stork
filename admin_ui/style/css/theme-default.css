@@ -6270,3 +6270,12 @@ section.home-slidershow{
 .account-main  {
   width: 100%;
 }
+.page-content .container, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
+  padding: 0px;
+}
+.mainy {
+  padding-right: 0px;
+}
+.th-hotline {
+  margin: 0px;
+}
