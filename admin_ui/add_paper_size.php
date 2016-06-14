@@ -8,6 +8,9 @@ include "includes/header.php";
 <body>
   
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container error_message_mandatory">
+	<span> Please fill out all mandatory fields </span>
+</div>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
