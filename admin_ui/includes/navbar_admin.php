@@ -96,7 +96,7 @@
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3 hidden-xs">
+			<div class="col-sm-3 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			<!-- 	<ul class="">
 					<li class="dropdown">

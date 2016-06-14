@@ -6270,3 +6270,25 @@ section.home-slidershow{
 .account-main  {
   width: 100%;
 }
+.page-content .container, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
+  padding: 0px;
+}
+.mainy , .account-main{
+  padding-right: 0px;
+}
+.th-hotline {
+  margin: 0px;
+}
+.animated {
+  right : 0;
+  top: 81%;
+  left : auto;
+}
+.error_message_mandatory {
+  text-align: center ;
+  padding: 0px;
+}
+.error_message_mandatory span {
+  color: red;
+  display: block;
+}

@@ -193,9 +193,9 @@
 						</li> 
 					</ul>
 				</li>
-				<li>
+				<!-- <li>
 					<a href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>
