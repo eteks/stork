@@ -259,6 +259,14 @@ if(isset($_GET['areUpdated']) && $_GET['areUpdated']==1)
 		});
     });
   </script>
+  <script type="text/javascript" >
+	$(document).on("click", ".delete", function () {
+	var myId = $(this).data('id');
+	var qs=$('#qs').val();
+	$(".modal-body #vId").val( myId );
+	$("#del_link").prop("href", "states.php?delete="+myId+qs);
+	});
+	</script>
 <script>
 $(document).ready(function() {
 $('input.typeahead').bind("typeahead:selected", function () {
@@ -332,19 +340,14 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 						{
 							?>			
 							<div class="table-responsive">
-								<table class="table">
-									<tbody>
-										<tr>
-											<td><input type="checkbox" id="selectall" ></input></td>
-											<td width="40%;" ><b>State Name</b></td>
-											<td width="40%;" ><b>Status</b></td>
-											<td width="40%;" ><b>Created Date</b></td>
-											<td width="40%;" ><b>Action</b></td>
-											<!--<td width="20%;" style="text-align:center" class="hidden-xs"><b>Category</b></td>
-											<td width="20%;" style="text-align:center" class="hidden-xs"><b>Clicks</b></td>
-											<td style="text-align:center;" width="20%" class="hidden-xs"> -->
-											
-										</tr> 
+								<table class="table state_table">
+									<tr>
+										<th><input type="checkbox" id="selectall"></th>
+										<th width="40%;" ><b>State Name</b></th>
+										<th width="40%;" ><b>Status</b></th>
+										<th width="40%;" ><b>Created Date</b></th>
+										<th width="40%;" ><b>Action</b></th>
+									</tr> 
 										<?php              
 										$i = 0;
 										while ($fetch = mysql_fetch_array($query))
@@ -372,27 +375,11 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												<td style="text-align:center;">' . $fetch['created_date'] . '</td>
 												<td style="text-align:center;">
 												<a href="edit_state.php?id=' . $fetch['state_id'] . '" class="btn  btn-primary btn-xs" title="Edit ' . $row['title'] . '"><i class="fa fa-pencil-square-o "></i> </a>  
-												<a  id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['state_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
+												<a id="delete" data-toggle="modal" href="#myModal1" data-id="' . $fetch['state_id'] . '" title="Delete" class="btn btn-xs btn-danger delete" title="Delete ' . $row['title'] . '"><i class="fa fa-trash-o"></i> </a></td>');
 												echo '</tr>';
 											}
 											$i+= 1;
 											?>
-											<script type="text/javascript" >
-											$(document).on("click", ".delete", function () {
-											var myId = $(this).data('id');
-											var qs=$('#qs').val();
-											$(".modal-body #vId").val( myId );
-											$("#del_link").prop("href", "states.php?delete="+myId+qs);
-											});
-											</script>
-											<script type="text/javascript" >
-											$(document).on("click", ".update_single", function () {
-											var myId = $(this).data('id');
-											var qs=$('#qs').val();
-											$(".modal-body1 #vId1").val( myId );
-											$("#up_link").prop("href", "products.php?update="+myId+qs)
-											});
-											</script>
 											<?php
 										}
 										?>
@@ -477,7 +464,6 @@ remote: '<?php echo rootpath() ?>/admin/products_search.php?query=%QUERY',
 												</div><!-- /.modal-content -->
 											</div><!-- /.modal-dialog -->
 										</div>
-									</tbody>
 								</table>
 							</div>
 							<?php 
