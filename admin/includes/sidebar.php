@@ -63,6 +63,24 @@ function totalSourcesCount()
 	$fecth = mysql_fetch_array($query);
 	return $fecth['totalFeeds'];
 }
+function countOrder()
+{
+	$query = mysqlQuery("SELECT count(order_id) as total FROM stork_order");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countOrderDetails()
+{
+	$query = mysqlQuery("SELECT count(order_details_id) as total FROM stork_order_details");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countOfferZone()
+{
+	$query = mysqlQuery("SELECT count(offer_zone_id) as total FROM stork_offer_zone");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
 ?> 
 <div class="sidebar-dropdown"><a href="#">MENU</a></div>
 <div class="sidey">
@@ -365,13 +383,13 @@ function totalSourcesCount()
 			<!-- Sub menu -->
 			<ul>
 				<li>
-					<a href="orders.php"><i class="fa fa-list"></i> All Orders (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="orders.php"><i class="fa fa-list"></i> All Orders (<?php echo(countOrder()) ?>)</a>
 				</li>
 				<li>
-					<a href="order_details.php"><i class="fa fa-list"></i> Order Details (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="order_details.php"><i class="fa fa-list"></i> Order Details (<?php echo(countOrderDetails()) ?>)</a>
 				</li> 
 				<li>
-					<a href="track_order.php"><i class="fa fa-list"></i> Track Order (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="track_order.php"><i class="fa fa-list"></i> Track Order (<?php echo(countOrder()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
@@ -400,7 +418,7 @@ function totalSourcesCount()
 					<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i> Add OfferZone</a>
 				</li>
 				<li>
-					<a href="offer_zones.php"><i class="fa fa-file"></i> All OfferZone (<?php echo(totalPagesCount()) ?>)</a>
+					<a href="offer_zones.php"><i class="fa fa-file"></i> All OfferZone (<?php echo(countOfferZone()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
