@@ -6,6 +6,26 @@ include "includes/header.php";
 </head>
 <body>  
 <?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">College</a>
+					</li>
+					<li>
+						<span>All College</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
