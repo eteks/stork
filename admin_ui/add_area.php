@@ -28,6 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	}
 } ?>  
 <?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">State</a>
+					</li>
+					<li>
+						<span>Add Area</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   

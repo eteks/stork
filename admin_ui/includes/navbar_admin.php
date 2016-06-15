@@ -93,26 +93,11 @@
 
 <!-- Submenu Html Start -->
 
-<section class="header-page">
+<!-- <section class="header-page">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
-			<!-- 	<ul class="">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<h1 class="mh-title"><i class="fa fa-user"></i> My Account <b class="caret"></b> </h1>
-						</a>
-						<ul class="dropdown-menu animated fadeInUp">
-							<li>
-								<a href="edit_admin_users.php?id=2"><i class="fa fa-user"></i>&nbsp;Profile</a>
-							</li>
-							<li>
-								<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
-							</li>
-						</ul>
-					</li>
-				</ul> -->
 			</div>
 			<div class="breadcrumb-w col-sm-9">
 				<span class="">You are here:</span>
@@ -127,7 +112,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 
 
