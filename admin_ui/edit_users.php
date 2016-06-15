@@ -27,15 +27,11 @@ include "includes/header.php";
 									<input type="password" class="form-control" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Email<span class="required">*</span></label>
+								    <label for="last-name">First Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
-								</div>
-								<div class="form-group">
-								    <label for="last-name">Mobile<span class="required">*</span></label>
+								    <label for="last-name">Last Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="form-group">
@@ -52,8 +48,57 @@ include "includes/header.php";
 										</option>
 								    </select>
 								</div>
+								<div class="form-group">
+								    <label for="last-name">Email<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Date of Birth<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Address Line1<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Address Line2<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								</div>
+								<div class="form-group">
+								    <label for="first-name">State<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel1">
+								        <option>
+											<span>Select State</span>
+										</option>
+								        <option value="0">
+											<span>Tamilnadu</span>
+										</option>
+										<option value="1">
+											<span>Pondicherry</span>
+										</option>
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Area<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel1">
+								        <option>
+											<span>Select Area</span>
+										</option>
+								        <option value="0">
+											<span>Madurai</span>
+										</option>
+										<option value="1">
+											<span>Virudhunagar</span>
+										</option>
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Mobile<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								</div>
+								
 								<div class="cate-filter-content">	
-								    <label for="first-name">Admin Status<span class="required">*</span></label>
+								    <label for="first-name">Users Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel1">
 								        <option>
 											<span>Select status</span>

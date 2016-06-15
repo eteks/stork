@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-2 col-sm-8 col-xs-8 w-logo">
 					<div class="logo hd-pd ">
-						<a href="index.html">
+						<a href="users.php">
 							<img src="style/img/logo.png" alt="printshop logo">
 						</a>
 					</div>	
@@ -54,18 +54,18 @@
 						<span class="search-icon dropdowSCIcon">
 							<i class="fa fa-search"></i>
 						</span>
-						<div class="search-safari">
-							<!-- <div class="search-form dropdowSCContent">
+						<div class="search-safari" style="display:none;">
+							<div class="search-form dropdowSCContent">
 								<form method="POST" action="#">
 									<input type="text" name="search" placeholder="Search" />
 									<input type="submit" name="search" value="Search">
 									<i class="fa fa-search"></i>
 								</form>
-							</div> -->
+							</div>
 						</div>
 					</div>
-					<div class="search-w SC-w hd-pd ">
-						<span class="search-icon dropdowSCIcon">
+					<div class="user_logout">
+						<span class="dropdowSCIcon">
 							<ul class="">
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">

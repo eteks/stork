@@ -52,7 +52,7 @@ include "includes/header.php";
 						                <span class="nobr">
 						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_college.php?id=<?php echo $fetch['college_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['college_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+							               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 							            </span>
 							        </td>
 							   	</tr>
@@ -65,6 +65,23 @@ include "includes/header.php";
 							} ?>					
 	</div>
 	<div class="clearfix"></div>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body delete_message_style">
+					<input type="hidden" name="delete" id="vId" value=""/>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<center>
+							<h5>Are you sure you want to delete this Product? </h5>
+						</center>
+				</div>
+				<div class="modal-footer footer_model_button">
+					<a name="action" id="del_link" class="btn btn-danger" href=""  value="Delete">Yes</a>						
+					<button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 </div>
 </div>
 <?php include 'includes/footer.php'; ?>
