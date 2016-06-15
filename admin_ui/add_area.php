@@ -20,17 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_state_id='$state_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already Exists.</b></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
 		} else {
 			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
-			// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Inserted Successfully.</b></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
 		}		
 	}
 } ?>  
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="container error_message_mandatory">
-	<span> Please fill out all mandatory fields </span>
-</div>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -41,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="add_area.php" method="POST" name="edit-acc-info">
-							<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel1" name="state_id">

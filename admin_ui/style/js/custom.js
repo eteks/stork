@@ -13,6 +13,8 @@ $(document).ready(function(){
  
 $(document).ready(function(){
 
+  $('.error_message_mandatory').delay(2000).fadeOut();
+
   $(".has_submenu > a").click(function(e){
     e.preventDefault();
     var menu_li = $(this).parent("li");

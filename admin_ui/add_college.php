@@ -12,25 +12,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$college_name = $_POST["college_name"];
 	$college_status = $_POST["college_status"];
 	if($area_id=="" || $college_name=="" || $college_status=="") {
-		// header('Location: add_area.php');
-		// exit();
-		// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
-	}	
+		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";	}	
 	else{
 		$qr = mysql_query("SELECT * FROM stork_college WHERE college_name = '$college_name' AND college_area_id='$area_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> College Already Exists.</b></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> College Already Exists </span></div>";
 		} else {
 			mysqlQuery("INSERT INTO `stork_college` (college_name,college_area_id,college_status) VALUES ('$college_name','$area_id','$college_status')");
-			// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> College Inserted Successfully.</b></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> College Inserted Sucessfully! </span></div>";
 		}		
 	}
 } ?> 
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="container error_message_mandatory">
-	<span> Please fill out all mandatory fields </span>
-</div>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -65,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="0">
+								        <option value="1">
 											<span>Active</span>
 										</option>
-										<option value="1">
+										<option value="0">
 											<span>Inactive</span>
 										</option>
 								    </select>

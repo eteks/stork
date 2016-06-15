@@ -28,7 +28,7 @@
 					<ul>
 						<li>
 							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-							<a href="add_state.php"><i class="fa fa-plus-circle"></i> Add States</a>
+							<a href="add_state.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add States</span></a>
 						</li>
 						<!-- <li>
 							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
@@ -47,10 +47,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_area.php"><i class="fa fa-plus-circle"></i> Add Area </a>
+							<a href="add_area.php"><i class="fa fa-plus-circle"></i><span> Add Area </span></a>
 						</li>
 						<li>
-							<a href="areas.php"><i class="fa fa-list"></i> All Areas (2)</a>
+							<a href="areas.php"><i class="fa fa-list"></i><span> All Areas (2)</span></a>
 						</li>				
 					</ul>
 				</li>
@@ -63,10 +63,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_college.php"><i class="fa fa-plus-circle"></i> Add college</a>
+							<a href="add_college.php"><i class="fa fa-plus-circle"></i><span> Add college </span></a>
 						</li>
 						<li>
-							<a href="colleges.php"><i class="fa fa-file"></i> All Colleges (2)</a>
+							<a href="colleges.php"><i class="fa fa-file"></i><span> All Colleges (2) </span></a>
 						</li> 
 					</ul>
 				</li>
