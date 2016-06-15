@@ -1,5 +1,6 @@
-<?php require_once('dbconnect.php'); ?>
-<?php
+<?php require_once('dbconnect.php'); 
+		include('header.php');
+
   	if(isset($_POST['login_user'])) {
   		$username_email=$_POST['login_name'];
   		$password=$_POST['login_pass'];
@@ -36,30 +37,11 @@
   			echo "not found";
   		}
   	}
-  	?>
-	<?php include('header.php') ?>
-	<!--Main index : End-->
-	<main class="main">
-		<section class="header-page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-3 hidden-xs">
-						<h1 class="mh-title">Login</h1>
-					</div>
-					<div class="breadcrumb-w col-sm-9">
-						<span class="hidden-xs">You are here:</span>
-						<ul class="breadcrumb">
-							<li>
-								<a href="/">Home</a>
-							</li>
-							<li>
-								<span>Login</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
+  ?>
+	
+
+
+	
 		<section class="pr-main" id="pr-login">	
 			<div class="container">	
 				<div class="col-md-9 col-sm-9 col-xs-12">
@@ -78,12 +60,19 @@
 							<h4>Connect with Facebook</h4>
 							<p><span>Facebook Users</span></p>
 							<p>Use your Facebook account to login or register within our store.You're just one click away.</p>
-							<button type="submit" class="connectfa">Connect with facebook</button>
+							<?php	
+								require_once('fbsettings.php'); 
+								if (isset($accessToken)) {
+								} else {
+								$loginUrl = $helper->getLoginUrl('http://localhost/stork/fbuserfunction.php', $permissions);
+									echo '<a href="' . $loginUrl . '"><button type="submit" class="connectfa">Connect with facebook</button></a>';
+								}
+							?>
 						</div>
 					</div>
 					
 					<div class="col-md-6 col-sm-6 col-xs-12 right">
-					<h4>Forgotten Password</h4>
+						<h4>Forgotten Password</h4>
 						<p>Fill our your email address bellow and we’ll email it to you right away!</p>
 						<form id="forgotpass-form" class="form-validate form-horizontal" method="post">
 							<p>Email Address <span class="star">*</span></p>
@@ -91,6 +80,20 @@
 							
 							<button type="submit" name="forget_password" class="ressetpass">Retrieve Password</button>
 						</form>
+						<div class="socail">
+							<h4>Connect with Google Plus</h4>
+							<p><span>Google Users</span></p>
+							<p>Use your Google account to login or register within our store.You're just one click away.</p>
+							<?php
+							require_once('googlesettings.php'); 
+							if(isset($authUrl)) {
+						
+							echo '<a href="'.$authUrl.'"><button type="submit" class="connectfa">Connect with facebook</button></a>';
+							
+							}
+							?>
+							
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-12">
