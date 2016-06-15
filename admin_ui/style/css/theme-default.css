@@ -21,7 +21,7 @@ html {
 
 body {
   background: #fcfcfc;
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   font-weight: 400;
   color: #444444;
 }
@@ -719,9 +719,13 @@ a.product-name:hover{
 .main-header .hd-pd{
   padding: 15px 0px;
 }
-.main-header .logo.hd-pd{
-  padding:22px 0px;
+.logo a img {
+  height: auto;
+  width: 25%;
 }
+/*.main-header .logo.hd-pd{
+  padding:22px 0px;
+}*/
 /*Main menu ----------------------------------*/
 .main-menu > ul > li{
   float: left;
@@ -1034,7 +1038,7 @@ ul.cate_list li.parent a i{
 .cart-w, .search-w{
   position: relative;
   display: block;
-  width: 50%;
+  width: 40%;
   vertical-align: middle;
 }
 .search-w i{
@@ -6257,9 +6261,6 @@ section.home-slidershow{
 .header-page {
   font-family: "Roboto",sans-serif !important;
 }
-.page-content {
-  font-family: "Roboto",sans-serif !important;
-}
 .acc-title, .mh-title, .has_submenu a, .has_submenu ul li a{
   font-family: "Roboto",sans-serif !important;
 }
@@ -6291,4 +6292,36 @@ section.home-slidershow{
 .error_message_mandatory span {
   color: red;
   display: block;
+}
+.style_popup_header {
+  background-color: #25bce9 ;
+  font-size: 22px;
+}
+.style_popup_header h3 {
+  color : #fff;
+  font-family: "Roboto",sans-serif !important;
+}
+.delete_message_style {
+  font-size: 19px;
+  font-family: "Roboto",sans-serif !important;
+}
+select::-ms-expand {
+    display: none !important ;
+}
+.footer_model_button {
+  text-align: center;
+}
+.user_logout {
+  display: block;
+  float: right;
+  padding: 15px 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 40%;
+}
+.user_logout span {
+  line-height: 54px;
+}
+.dropdown .dropdown-toggle {
+  color: #25bce9;
 }

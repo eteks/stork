@@ -16,5 +16,15 @@
 			</div>
 		</div>
 </footer>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.state_table,.area_table,.college_table').paging({
+    limit: 8,
+    rowDisplayStyle: 'block',
+    activePage: 0,
+    rows: []
+  });
+});
+</script>
 </body>
 <!-- Footer ends -->
