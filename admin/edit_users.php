@@ -90,7 +90,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_users.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_users" role="form" action="edit_users.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_users"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM stork_users WHERE user_id='$id'";
@@ -102,31 +103,31 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Username</label>
+								<label class="col-lg-2 control-label">Username</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="username" value="<?php echo($row['username']); ?>"/>
+									<input type="text"  class="form-control" id="cat1" name="username" value="<?php echo($row['username']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Password</label>
+								<label class="col-lg-2 control-label">Password</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="password" class="form-control" name="password" value="<?php echo($row['password']); ?>"/>
+									<input type="password"  class="form-control" id="cat2" name="password" value="<?php echo($row['password']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Firstname</label>
+								<label class="col-lg-2 control-label">Firstname</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="first_name" value="<?php echo($row['first_name']); ?>"/>
+									<input type="text"  class="form-control" id="cat3" name="first_name" value="<?php echo($row['first_name']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Lastname</label>
+								<label class="col-lg-2 control-label">Lastname</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="last_name" value="<?php echo($row['last_name']); ?>"/>
+									<input type="text" class="form-control" id="cat4" name="last_name" value="<?php echo($row['last_name']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">UserType</label>
+								<label class="col-lg-2 control-label">UserType</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="user_type" required>
 										<option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
@@ -135,33 +136,33 @@ $_SESSION[$csrfVariable] = $key;
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Email</label>
+								<label class="col-lg-2 control-label">Email</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="user_email" value="<?php echo($row['user_email']); ?>"/>
+									<input type="text" class="form-control" id="cat5" name="user_email" value="<?php echo($row['user_email']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Date Of Birth</label>
+								<label class="col-lg-2 control-label">Date Of Birth</label><span>*</span>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" name="user_dob" value="<?php echo($row['user_dob']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Address Line1</label>
+								<label class="col-lg-2 control-label">Address Line1</label><span>*</span>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" name="line1" value="<?php echo($row['line1']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Address Line2</label>
+								<label class="col-lg-2 control-label">Address Line2</label><span>*</span>
 								<div class="col-lg-10">
 									<input type="text" class="form-control" name="line2" value="<?php echo($row['line2']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State</label>
+								<label class="col-lg-2 control-label">State</label><span>*</span>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="user_state_id">
+								<select class="form-control" id= "category10" name="user_state_id">
 								<option value="">Select the state</option>
 								<?php
 			                    $query = mysql_query("select * from stork_state");
@@ -176,9 +177,9 @@ $_SESSION[$csrfVariable] = $key;
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area</label>
+								<label class="col-lg-2 control-label">Area</label><span>*</span>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="user_area_id">
+								<select class="form-control" id= "category11" name="user_area_id">
 								<option value="">Select the Area</option>
 								<?php
 			                    $query = mysql_query("select * from stork_area");
@@ -193,13 +194,13 @@ $_SESSION[$csrfVariable] = $key;
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Mobile</label>
+								<label class="col-lg-2 control-label">Mobile</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="user_mobile" value="<?php echo($row['user_mobile']); ?>"/>
+									<input id="phone" type="text" class="form-control" maxlength="10" name="user_mobile" value="<?php echo($row['user_mobile']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">User Status</label>
+								<label class="col-lg-2 control-label">User Status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="user_status">
 										<option value="1" <?php if ($row['user_status'] == 1) echo "selected"; ?>>Active</option>

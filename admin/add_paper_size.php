@@ -74,16 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_paper_size.php" method="post">
+					<form class="form-horizontal" id="add_paper_size" role="form" action="add_paper_size.php" method="post">
+					<span class="error_add_paper_size"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">paper size</label>
+							<label class="col-lg-2 control-label">paper size</label><span>*</span>
 							<div class="col-lg-10">
 								<input id="cat" class="form-control" type="text" value="" placeholder="Paper Size" name="paper_size">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
 								<select class="form-control" id= "category" name="papersize_status">
 									<option value="">Status</option>

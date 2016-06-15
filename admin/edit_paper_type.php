@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 		$paper_type_status = $_POST["paper_type_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_status='$paper_type_status' AND paper_type_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Papertype Already exists</b></div>";	
@@ -77,7 +77,7 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_paper_type.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_paper" role="form" action="edit_paper_type.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_paper_type` WHERE `paper_type_id`='$id'";
@@ -89,13 +89,13 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paper Type</label>
+								<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="paper_type" value="<?php echo($row['paper_type']); ?>"/>
+									<input type="text" id="edit_papertype_form" class="form-control" name="paper_type" value="<?php echo($row['paper_type']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Papertype status</label>
+								<label class="col-lg-2 control-label">Papertype status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="paper_type_status">
 										<option value="1" <?php if ($row['paper_type_status'] == 1) echo "selected"; ?>>Active</option>

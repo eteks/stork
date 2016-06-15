@@ -77,7 +77,7 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_paper_print_type.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_paperprinttype" role="form" action="edit_paper_print_type.php?update=<?php echo $id; ?>" method="post">
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_paper_print_type` WHERE `paper_print_type_id`='$id'";
@@ -89,13 +89,13 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paper printtype</label>
+								<label class="col-lg-2 control-label">Paper printtype</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>"/>
+									<input type="text" id="edit_paperprintform" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paperprinttype status</label>
+								<label class="col-lg-2 control-label">Paperprinttype status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="paper_print_type_status">
 										<option value="1" <?php if ($row['paper_print_type_status'] == 1) echo "selected"; ?>>Active</option>

@@ -101,24 +101,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							// });
 						});
 					</script>
-					<form class="form-horizontal" id="myform" role="form" action="add_offer_zone.php" method="post" enctype="multipart/form-data">
+					<form class="form-horizontal" id="add_offer_zone" role="form" action="add_offer_zone.php" method="post" enctype="multipart/form-data">
+					<span class="error_add_offer_zone"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Offer Zone Title</label>
+							<label class="col-lg-2 control-label">Offer Zone Title</label><span>*</span>
 							<div class="col-lg-10">
-								<input id="cat" class="form-control" type="text" required="" value="" placeholder="Offer Zone Title" name="offer_zone_title">
+								<input id="cat11" class="form-control" type="text" value="" placeholder="Offer Zone Title" name="offer_zone_title">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Offer Zone Image</label>
+							<label class="col-lg-2 control-label">Offer Zone Image</label><span>*</span>
 							<div class="col-lg-10">
 								<input type="file" name="offer_zone_image" id="offer_zone_image">
 							</div>
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="offer_zone_status" required="">
+								<select class="form-control" id= "category" name="offer_zone_status">
 									<option value="">Status</option>
 									<option value="1">Active</option>
 									<option value="0">InActive</option>

@@ -77,7 +77,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_paper_size.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_paper_size" role="form" action="edit_paper_size.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_paper_size"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_paper_size` WHERE `paper_size_id`='$id'";
@@ -89,13 +90,13 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paper Size</label>
+								<label class="col-lg-2 control-label">Paper Size</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="paper_size" value="<?php echo($row['paper_size']); ?>"/>
+									<input type="text" id="edit_paper_size_form" class="form-control" name="paper_size" value="<?php echo($row['paper_size']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Papersize status</label>
+								<label class="col-lg-2 control-label">Papersize status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="paper_size_status">
 										<option value="1" <?php if ($row['paper_size_status'] == 1) echo "selected"; ?>>Active</option>

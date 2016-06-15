@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 		$paper_side_status = $_POST["paper_side_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_status='$paper_side_status' AND paper_side_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Paperside Already exists</b></div>";	
@@ -77,7 +77,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_paper_side.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_paper_side" role="form" action="edit_paper_side.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_paper_side"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_paper_side` WHERE `paper_side_id`='$id'";
@@ -89,13 +90,13 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paper Side</label>
+								<label class="col-lg-2 control-label">Paper Side</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="paper_side" value="<?php echo($row['paper_side']); ?>"/>
+									<input type="text" id="edit_paperside_form" class="form-control" name="paper_side" value="<?php echo($row['paper_side']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Paperside status</label>
+								<label class="col-lg-2 control-label">Paperside status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="paper_side_status">
 										<option value="1" <?php if ($row['paper_side_status'] == 1) echo "selected"; ?>>Active</option>

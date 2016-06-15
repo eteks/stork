@@ -11,7 +11,7 @@ if (isset($_GET['update']))
 		$area_state_id = $_POST["state_id"];
 		$area_name = $_POST["area_name"];
 		$area_status = $_POST["area_status"];
-		$qr = mysqlQuery("SELECT * FROM area_state WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Area Already exists</b></div>";	
@@ -76,7 +76,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_area.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal edit_area_form"  role="form" action="edit_area.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_area"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_area` WHERE `area_id`='$id'";
@@ -88,9 +89,10 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State</label>
+
+								<label class="col-lg-2 control-label">State</label><span>*</span>
 								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="state_id">
+								<select class="form-control" id="category2" name="state_id">
 								<option value="">Select the state</option>
 								<?php
 			                    $query = mysql_query("select * from stork_state where state_status='1'");
@@ -105,13 +107,14 @@ $_SESSION[$csrfVariable] = $key;
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area Name</label>
+
+								<label class="col-lg-2 control-label">Area Name</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="area_name" value="<?php echo($row['area_name']); ?>"/>
+									<input type="text" class="form-control" id="edit_state" name="area_name" value="<?php echo($row['area_name']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">Area status</label>
+								<label class="col-lg-2 control-label">Area status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="area_status">
 										<option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>

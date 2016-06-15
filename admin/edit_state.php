@@ -77,7 +77,8 @@ $_SESSION[$csrfVariable] = $key;
 			<!-- Page title -->
 			<div class="row">
 				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_state.php?update=<?php echo $id; ?>" method="post">
+					<form class="form-horizontal" id="edit_state" role="form" action="edit_state.php?update=<?php echo $id; ?>" method="post">
+					<span class="error_edit_state"> Please fill out required fields </span>
 					<?php 
 					if($successMessage) echo $successMessage; 
 					$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
@@ -89,18 +90,17 @@ $_SESSION[$csrfVariable] = $key;
 						{
 						?>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State Name</label>
+								<label class="col-lg-2 control-label">State Name</label><span>*</span>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" name="state_name" value="<?php echo($row['state_name']); ?>"/>
+									<input type="text" id="state_name" class="form-control" name="state_name" value="<?php echo($row['state_name']); ?>"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 control-label">State status</label>
+								<label class="col-lg-2 control-label">State status</label><span>*</span>
 								<div class="col-lg-10">
 									<select class="form-control" name="state_status">
 										<option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>InActive</option>
-										
 									</select>
 								</div>
 							</div>

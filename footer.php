@@ -200,14 +200,19 @@
 	</nav> 
 	<!--Add js lib-->
 	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script> 
+	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+	<script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script> 
     <script type="text/javascript" src="js/doughnutit.js"></script> 
 	<script type="text/javascript" src="js/slideshow/jquery.themepunch.revolution.js"></script>   
 	<script type="text/javascript" src="js/slideshow/jquery.themepunch.plugins.min.js"></script>  
     <script type="text/javascript" src="js/theme-home.js"></script>
+ 	<script type="text/javascript" src="js/theme.js"></script>
+ 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/action.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     

@@ -75,11 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						});
 					</script>
 					<form class="form-horizontal" id="myform" role="form" action="add_college.php" method="post">
+					<span class="error_add_college"> Please fill out required fields </span>
 						<?php if($successMessage) echo $successMessage; ?>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">College</label>
+							<label class="col-lg-2 control-label">College</label><span>*</span>
 							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="area_id">
+								<select class="form-control" id= "category2" name="area_id">
 									<option value="">Select the Area</option>
 									<?php
 			                        $query = mysql_query("select * from stork_area where area_status='1'");
@@ -91,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							 </div>	
 						</div> 
 						<div class="form-group">
-							<label class="col-lg-2 control-label">College Name</label>
+							<label class="col-lg-2 control-label">College Name</label><span>*</span>
 							<div class="col-lg-10">
 								<input id="cat" class="form-control" type="text" value="" placeholder="College Name" name="college_name">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label>
+							<label class="col-lg-2 control-label">Status</label><span>*</span>
 							<div class="col-lg-10">
 								<select class="form-control" id= "category" name="college_status">
 									<option value="">Status</option>
