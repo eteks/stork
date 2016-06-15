@@ -32,12 +32,6 @@ input[type=checkbox] {
 	font-size: 14px;
 }
 
-.location, select {
-	width: 50%;
-	margin: 0 205px 20px;
-	padding:10px;
-} 
-
 #print_book_college, select:focus {
 	border: 1px solid #25bce9;
 	border-radius: 4px;
@@ -63,11 +57,13 @@ input[type=checkbox] {
 	width: 50%;
 	font-weight: normal;
 }
+
 .input_holder select {
-	height: 45px;
-    margin: 0 0 20px 0px;
+    height: 45px;
+    margin: 0 0 20px;
+    max-width: 425px;
     padding: 0;
-    width:500px;
+    width: 100%;
 }
 .input_holder input[type=text] {
     height:	45px;
@@ -146,7 +142,7 @@ h3, .h3{
 	}
 
 /* CSS as on 11th June -Akila  */
-.button_holder{ margin-left : 450px;}
+.button_holder{ margin-left : 170px;}
 
 .button_holder a{
 	 -moz-border-bottom-colors: none;
@@ -166,7 +162,7 @@ h3, .h3{
 	}
 
 .button_holder a:hover { 
-	background-color: #25bce9;
+	background-color: #fbc443;
 	color: #ffffff; 
 }
 	
@@ -193,9 +189,11 @@ h3, .h3{
 }	
 
 .button1:hover {
-	background-color: #25bce9;
+	background-color: #fbc443;
 	color: #ffffff; 
 }
+
+..button1{ width: 10% !important;}
 
 .con_details>h3{
 	color: #ffffff;
@@ -226,9 +224,89 @@ h3, .h3{
 	padding:10px;
 }
 
-/* Admin Module -- Sidebar css */
+/* Css for PrintStorkHTML as on 13th June */
 
-.sidey{
-	background-color: #9E9E9E;
-	color: #ffffff;
+/* placeholder for select in home page */
+select:required:invalid {
+color: #999;
+}
+option[value=""][disabled] {
+display: none;
+}
+option {
+color: #000;
+}
+
+/* placeholder for select in home page */
+
+input[type=textarea]{
+	height:150px;
+	padding: 5px;
+}
+
+.fl{ float:left;}
+
+.cb { clear:both;}
+
+.button_holder_printbooking { 
+	margin-left:0px;
+	background: none !important;
+}
+
+/*css as on 14th June -Akila */
+/* home.html */
+
+.cart-w, .search-w{
+  position: relative;
+  display: block;
+  width: 20% !important;
+  vertical-align: middle;
+}
+
+.location{ padding: 0px; }
+
+.location, select {
+	/* margin-bottom: 25px; */
+	padding: 10px 10px 10px 0px;
+	width: 50%;
+}
+
+#print_book_college, select {
+	margin-bottom: 25px;
+}
+
+#print_book_state, select { margin-bottom: 25px !important;}
+
+.pr-main{
+	padding:30px 0 0px !important;
+}
+
+.socail_fb { padding-top: 19px;}
+
+.socail_google { padding-top: 115px;}
+
+#pr-login .container .col-md-6.col-sm-6.col-xs-12.right p {
+    margin-bottom: 10px !important;
+}
+
+/* Resposive */
+
+@media(max-width:798px){
+	
+.headerCS {
+    float: left;
+    width: 60%;
+}
+
+.location, select {
+    padding: 10px 10px 10px 0;
+    width: 100%;
+}
+
+#top-header {
+    float: none;
+    height: auto;
+}
+
+	
 }

@@ -144,19 +144,6 @@
 		jQuery("#close-mb-menu").on("click", function(){   
 			menuHide();
 		});
-		$(".search-safari").hide();
-		$(".search-w").on("click", function(){
-			$('.search-safari').slideToggle();
-		})
-		$(".search-w").on("click", function(e){
-			e.stopPropagation();
-		});
-		$(".search-safari").on("click", function(e){ 
-			e.stopPropagation();
-		});
-		$("body").on("click", function(e){ 
-			$('.search-safari').hide(); 
-		});
 	});
 	//Service and skill slide on mobile 
 	//function show and hide mobile menu

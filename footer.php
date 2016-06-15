@@ -6,7 +6,7 @@
 						<h2>About Us</h2>
 						<div class="footer-content">
 							<a href="index.html" title="Cmsmart logo footer" class="logo-footer">
-								<img src="images/footer-logo.png" alt="logo footer">
+								<img src="images/printstork_logo.png" width="90%"  height="auto" alt="logo footer">
 							</a>
 							<ul class="info">
 								<li>
@@ -202,7 +202,6 @@
 	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script> 
 	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script> 
-	<script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script> 
     <script type="text/javascript" src="js/doughnutit.js"></script> 
@@ -211,10 +210,9 @@
     <script type="text/javascript" src="js/theme-home.js"></script>
  	<script type="text/javascript" src="js/theme.js"></script>
  	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="js/action.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+    
     
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

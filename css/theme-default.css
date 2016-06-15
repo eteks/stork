@@ -714,7 +714,6 @@ a.product-name:hover{
 	-o-transition: all 0.4s ease-out 0s;
 	background:#fff;
 	top:-100px;
-	border-bottom:1px solid #E1E1E1;
 }
 .main-header .hd-pd{
   padding: 0px 0px;
@@ -1034,7 +1033,7 @@ ul.cate_list li.parent a i{
 .cart-w, .search-w{
   position: relative;
   display: block;
-  width: 20%;
+  width: 22%;
   vertical-align: middle;
 }
 .search-w i{

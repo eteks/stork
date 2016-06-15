@@ -1,11 +1,11 @@
 jQuery(document).ready(function() {
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","username","reg_email","password","repassword"];
+	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
 	// If using an ID other than #email or #error then replace it here
 	// email = jQuery("#email");
 	// state = jQuery("#state");
-	reg_email=jQuery("#reg_email");
+	reg_email=jQuery("#email");
 	forget_email=jQuery("#forget_email");
 	errornotice = jQuery("#error");
 	
@@ -77,22 +77,24 @@ jQuery("#login-form").submit(function(){
 				input.removeClass("error_input_field");
 			}
 		}
+		
+		if($('#password').val() != ''){
+			if($('#password').val() != $('#repassword').val()) {
+				$('#repassword').addClass("error_input_field");
+	        }
+	        else {
+				$('#repassword').removeClass("error_input_field");
+	        }
+       }
 
-		if($('#password').val() != $('#repassword').val()) {
-			$('#repassword').addClass("error_input_field");
-        }
-        else {
-			$('#repassword').removeClass("error_input_field");
-        }
-
-	// Validate the e-mail.
+		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(reg_email.val())) {
 			reg_email.addClass("error_input_field");
 		}
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") ) {
+		//if any inputs on the page have the class 'error_input_field' the form will not submit
+		if (jQuery(":input").hasClass("error_input_field") ) {
 			return false;
-		} else {
+		}else {
 			errornotice.hide();
 			alert("success");
 			return true;

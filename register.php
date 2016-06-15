@@ -25,23 +25,29 @@
 <?php
   		}
 	} 
-	if(isset($_POST['login_user'])) {
-  		$username_email=$_POST['login_name'];
-  		$password=$_POST['login_pass'];
-  		$login_query=mysql_query("select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
-  		$login_count=mysql_num_rows($login_query);
-  		if($login_count == 1) {
-  			echo "<script> $('.login_error').css('display','none'); </script>";
-  			echo "login successful";		
-  		}
-  		else {
-  			echo "<script> $('.login_error').css('display','block'); </script>";
-  			echo "login failed";
-  		}
- 	}
 ?>
-	<!--Main index : End-->
-	<main class="main">
+
+	<div class="main" id="product-detail">	
+   	    <section class="header-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3 hidden-xs">
+						<h1 class="mh-title">Register</h1>
+					</div>
+					<div class="breadcrumb-w col-sm-9">
+						<span class="hidden-xs">You are here:</span>
+						<ul class="breadcrumb">
+							<li>
+								<a href="home.html">Home</a>
+							</li>
+							<li>
+								<span>Register</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section> <!---breadcrumb------>
 		<section class="pr-main" id="pr-register">	
 			<div class="container">	
 				<div class="col-md-9 col-sm-9 col-xs-12">		
@@ -56,39 +62,27 @@
 							<input class="lastname" placeholder="Lastname" id="lastname" name="lastname" type="text" value="">
 							<p>Create a username<span class="star">*</span></p>
 							<input class="user" placeholder="Username" id="username" name="username" type="text" value=""> 
-							<p>Email Address <span class="star">*</span></p>
-							<input class="email" placeholder="Email" id="reg_email" type="text" name="email" value="">
 							<p>Create a password  <span class="star">*</span></p>
 							<input class="pasword" placeholder="password" id="password" type="password" name="password" value="">
-							<p>confirm a password  <span class="star">*</span></p>
+							<p>Confirm a password  <span class="star">*</span></p>
 							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" value=""> 
+							<p>Email Address <span class="star">*</span></p>
+							<input class="email" placeholder="Email ID" id="email" name="email" type="text" value="">
+							<p>Phone Number<span class="star">*</span></p>
+							<input class="email mobileno" placeholder="Mobile number" id="mobile" name="mobile" type="text" value="">
+							<p>Date Of Birth <span class="star">*</span></p>
+							<input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value="">
+							<p>Please enter the captcha shown<span class="star">*</span></p>
+							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
 							<div>
-							<!-- <input type="checkbox" value="yes" class="inputbox" name="remember" id="remember"><span class="re">Sign Up for Newsletter</span> -->
-							<br/>
-							<button type="submit" name="save_new_user" class="register">Register</button>
+								<br/>
+								<button type="submit" name="save_new_user" class="register">Register</button>
 							</div>
-						</form>
+						 </form>
 					</div>
-					
-					<div class="col-md-6 col-sm-6 col-xs-12 right">
-						<h1>Login</h1>
-						<h4>Returning Customers</h4>
-						<p>If you have an account with us, please log in.</p>
-						<form id="login-form" class="login-form form-validate form-horizontal" method="post">
-							<span class="login_error">  Login failed </span>
-							<p> Email or Username <span class="star">*</span></p>
-							<input class="email" name="login_name" type="text" id="username_email" placeholder="Email or Username" value="">
-							<p>Password <span class="star">*</span></p>
-							<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="">
-							<button type="submit" name="login_user" class="login">Login</button>
-						</form>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-3 col-xs-12">
-					<img src="images/banner-wishlist.jpg" />
-				</div>
-				
-			</div>
+				 </div>
+			  </div>
 		</section>
-	</main><!--Main index : End-->
+	</div><!--Main index : End-->
+	<br/><br/>
 <?php include('footer.php') ?>

@@ -8,7 +8,8 @@
 	<meta name="author" content="Netbase">
 	<meta name="google-signin-client_id" content="917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com ">
 	<!--Add css lib--> 
-	<link rel="stylesheet" type="text/css" href="css/style-main.css">  
+	<link rel="stylesheet" type="text/css" href="css/style-main.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">   
   	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'>
@@ -57,7 +58,7 @@
 					<div class="col-lg-4 col-md-2 col-sm-4 col-xs-5 w-logo">
 						<div class="logo hd-pd ">
 							<a href="index.php">
-								<img src="images/logo.png" alt="printshop logo">
+								<img src="images/printstork_logo.png" width="35%"  height="auto" alt="printshop logo">
 							</a>
 						</div>	
 					</div>
