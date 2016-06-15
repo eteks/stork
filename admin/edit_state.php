@@ -101,7 +101,6 @@ $_SESSION[$csrfVariable] = $key;
 									<select class="form-control" name="state_status">
 										<option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>InActive</option>
-										
 									</select>
 								</div>
 							</div>

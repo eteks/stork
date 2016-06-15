@@ -11,26 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$state_name = $_POST["state_name"];
 	$state_status = $_POST["state_status"];
 	if($state_name=="" || $state_status=="") {
-		// header('Location: add_state.php');
-		// exit();
-		// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
 		$qr = mysql_query("SELECT * FROM stork_state WHERE state_name = '$state_name'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already Exists.</b></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> State Already Exists </span></div>";
 		} else {
 			mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
-			// $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Inserted Successfully.</b></div>";
-		}
-		
+			$successMessage = "<div class='container error_message_mandatory'><span> State Inserted Successfully! </span></div>";
+		}		
 	}
 } ?>  
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="container error_message_mandatory">
+<!-- <div class="container error_message_mandatory">
 	<span> Please fill out all mandatory fields </span>
-</div>
+</div> -->
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -51,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="0">
+								        <option value="1">
 											<span>Active</span>
 										</option>
-										<option value="1">
+										<option value="0">
 											<span>Inactive</span>
 										</option>
 								    </select>
