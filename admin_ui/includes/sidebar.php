@@ -1,9 +1,107 @@
+<?php
+function countState()
+{
+	$query = mysqlQuery("SELECT count(state_id) as total FROM stork_state");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countArea()
+{
+	$query = mysqlQuery("SELECT count(area_id) as total FROM stork_area");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countCostEstimation(){
+	$query = mysqlQuery("SELECT count(cost_estimation_id) as total FROM stork_cost_estimation");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countUsers(){
+	$query = mysqlQuery("SELECT count(user_id) as total FROM stork_users");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function totalPagesCount()
+{
+	$query = mysqlQuery("SELECT count(id) as totalPages FROM `pages`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['totalPages'];
+}
+function countCollege()
+{
+	$query = mysqlQuery("SELECT count(college_id) as total FROM `stork_college`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPapersize()
+{
+	$query = mysqlQuery("SELECT count(paper_size_id) as total FROM `stork_paper_size`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPaperside()
+{
+	$query = mysqlQuery("SELECT count(paper_side_id) as total FROM `stork_paper_side`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPapertype()
+{
+	$query = mysqlQuery("SELECT count(paper_type_id) as total FROM `stork_paper_type`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countPaperprinttype()
+{
+	$query = mysqlQuery("SELECT count(paper_print_type_id) as total FROM `stork_paper_print_type`");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function totalSourcesCount()
+{
+	$query = mysqlQuery("SELECT count(id) as totalFeeds FROM envatoSources");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['totalFeeds'];
+}
+function countOrder()
+{
+	$query = mysqlQuery("SELECT count(order_id) as total FROM stork_order");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countOrderDetails()
+{
+	$query = mysqlQuery("SELECT count(order_details_id) as total FROM stork_order_details");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+function countOfferZone()
+{
+	$query = mysqlQuery("SELECT count(offer_zone_id) as total FROM stork_offer_zone");
+	$fecth = mysql_fetch_array($query);
+	return $fecth['total'];
+}
+?> 
 <aside class="col-md-3 col-sm-4 col-xs-12 account-sidebar sidebar">
 	<h3 class="acc-title lg">Dashboard</h3>
 	<div class="sidey" style="">
 		<div class="side-cont">
 			<ul class="nav">
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="admin_users.php" || 
+					basename($_SERVER['PHP_SELF'])=="users.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				?>
 					<a href="users.php">
 						<!--<i class="fa fa-user"></i> --> User
 						<span class="caret pull-right"></span>
@@ -14,7 +112,7 @@
 							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin User </span></a>
 						</li> 
 						<li>
-							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (6)</span></a>
+							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo countUsers() ?>)</span></a>
 						</li> 
 					</ul>
 				</li>
@@ -48,7 +146,7 @@
 							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
 						</li> -->
 						<li>
-							<a href="states.php"> <i class="fa fa-list"></i><span id="allProducts"> All States (2)</span></a>
+							<a href="states.php"> <i class="fa fa-list"></i><span id="allProducts"> All States (<?php echo countState() ?>)</span></a>
 						</li> 
 					</ul>
 				</li>
@@ -78,7 +176,7 @@
 							<a href="add_area.php"><i class="fa fa-plus-circle"></i><span> Add Area </span></a>
 						</li>
 						<li>
-							<a href="areas.php"><i class="fa fa-list"></i><span> All Areas (2)</span></a>
+							<a href="areas.php"><i class="fa fa-list"></i><span> All Areas (<?php echo countArea() ?>)</span></a>
 						</li>				
 					</ul>
 				</li>
@@ -108,7 +206,7 @@
 							<a href="add_college.php"><i class="fa fa-plus-circle"></i><span> Add college </span></a>
 						</li>
 						<li>
-							<a href="colleges.php"><i class="fa fa-list"></i><span> All Colleges (2) </span></a>
+							<a href="colleges.php"><i class="fa fa-list"></i><span> All Colleges (<?php echo countCollege() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
@@ -138,13 +236,27 @@
 							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Papersize <span></a>  
 						</li>
 						<li>
-							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (2) <span></a>
+							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (<?php echo countPapersize() ?>) <span></a>
 						</li>
 					</ul>
 				</li>
 
 				<!-- Paper_side -->
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_side.php" || 
+					basename($_SERVER['PHP_SELF'])=="papersides.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_side.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-leaf"></i> --> Paperside
 						<span class="caret pull-right"></span>
@@ -155,12 +267,26 @@
 							<a href="add_paper_side.php"><i class="fa fa-plus-circle"></i><span> Add Paperside <span></a>  
 						</li>
 						<li>
-							<a href="papersides.php"><i class="fa fa-list"></i><span> All Papersides (2) <span></a>
+							<a href="papersides.php"><i class="fa fa-list"></i><span> All Papersides (<?php echo countPaperside() ?>) <span></a>
 						</li>
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_type.php" || 
+					basename($_SERVER['PHP_SELF'])=="papertypes.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_type.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-file"></i> --> PaperType
 						<span class="caret pull-right"></span>
@@ -171,12 +297,26 @@
 							<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperType <span></a>
 						</li>
 						<li>
-							<a href="papertypes.php"><i class="fa fa-list"></i><span> All PaperTypes (2) <span></a>
+							<a href="papertypes.php"><i class="fa fa-list"></i><span> All PaperTypes (<?php echo countPapertype() ?>) <span></a>
 						</li> 
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php" || 
+					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_print_type.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-file"></i> --> PaperPrintType
 						<span class="caret pull-right"></span>
@@ -187,12 +327,26 @@
 							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperPrintType <span></a>
 						</li>
 						<li>
-							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (2) </span></a>
+							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (<?php echo countPaperprinttype() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
+					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-file"></i> --> Cost Estimation
 						<span class="caret pull-right"></span>
@@ -203,11 +357,26 @@
 							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Cost Estimation </span></a>
 						</li> 
 						<li>
-							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> All Cost Estimation (1) </span></a>
+							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> All Cost Estimation (<?php echo countCostEstimation() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
-				<li class="has_submenu">
+				
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="orders.php" || 
+					basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-file"></i> --> Order
 						<span class="caret pull-right"></span>
@@ -215,17 +384,31 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="orders.php"><i class="fa fa-list"></i><span> All Order ()</span></a>
+							<a href="orders.php"><i class="fa fa-list"></i><span> All Order (<?php echo countOrder() ?>)</span></a>
 						</li> 
 						<li>
-							<a href="order_details.php"><i class="fa fa-list"></i><span> Order Details () </span></a>
+							<a href="order_details.php"><i class="fa fa-list"></i><span> Order Details (<?php echo countOrderDetails() ?>) </span></a>
 						</li>
 						<li>
-							<a href="track_order.php"><i class="fa fa-list"></i><span> Track Order () </span></a>
+							<a href="track_order.php"><i class="fa fa-list"></i><span> Track Order (<?php echo countOrder() ?>) </span></a>
 						</li>
 					</ul>
 				</li>
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_offer_zone.php" || 
+					basename($_SERVER['PHP_SELF'])=="offer_zones.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-file"></i> --> Offer Zone
 						<span class="caret pull-right"></span>
@@ -233,10 +416,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i> Add OfferZone</a>
+							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i><span> Add OfferZone </span></a>
 						</li>
 						<li>
-							<a href="offer_zones.php"><i class="fa fa-file"></i> All OfferZone ()</a>
+							<a href="offer_zones.php"><i class="fa fa-file"></i><span> All OfferZone (<?php echo countOfferZone() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
