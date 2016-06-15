@@ -19,7 +19,21 @@
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 
+					basename($_SERVER['PHP_SELF'])=="states.php" || basename($_SERVER['PHP_SELF'])=="edit_state.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				?>
 					<a href="#">
 						<!--<i class="fa fa-map-marker"></i> --> State
 						<span class="caret pull-right"></span>
@@ -39,7 +53,21 @@
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_area.php" || 
+					basename($_SERVER['PHP_SELF'])=="areas.php" || basename($_SERVER['PHP_SELF'])=="edit_area.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-home"></i> -->Area
 						<span class="caret pull-right"></span>
@@ -55,7 +83,21 @@
 					</ul>
 				</li>
 		 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_college.php" || 
+					basename($_SERVER['PHP_SELF'])=="colleges.php" || basename($_SERVER['PHP_SELF'])=="edit_college.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-location-arrow"></i> --> College
 						<span class="caret pull-right"></span>
@@ -66,12 +108,26 @@
 							<a href="add_college.php"><i class="fa fa-plus-circle"></i><span> Add college </span></a>
 						</li>
 						<li>
-							<a href="colleges.php"><i class="fa fa-file"></i><span> All Colleges (2) </span></a>
+							<a href="colleges.php"><i class="fa fa-list"></i><span> All Colleges (2) </span></a>
 						</li> 
 					</ul>
 				</li>
 
-				<li class="has_submenu">
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_size.php" || 
+					basename($_SERVER['PHP_SELF'])=="paper_size.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_size.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
 					<a href="#">
 						<!-- <i class="fa fa-leaf"></i> -->Papersize
 						<span class="caret pull-right"></span>
@@ -79,10 +135,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_size.php"><i class="fa fa-leaf"></i> Add Papersize </a>  
+							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Papersize <span></a>  
 						</li>
 						<li>
-							<a href="paper_size.php"><i class="fa fa-leaf"></i> All Papersizes (2)</a>
+							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (2) <span></a>
 						</li>
 					</ul>
 				</li>
@@ -96,10 +152,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_side.php"><i class="fa fa-leaf"></i> Add Paperside </a>  
+							<a href="add_paper_side.php"><i class="fa fa-plus-circle"></i><span> Add Paperside <span></a>  
 						</li>
 						<li>
-							<a href="papersides.php"><i class="fa fa-leaf"></i> All Papersides (2)</a>
+							<a href="papersides.php"><i class="fa fa-list"></i><span> All Papersides (2) <span></a>
 						</li>
 					</ul>
 				</li>
@@ -112,10 +168,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
+							<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperType <span></a>
 						</li>
 						<li>
-							<a href="papertypes.php"><i class="fa fa-file"></i> All PaperTypes (2)</a>
+							<a href="papertypes.php"><i class="fa fa-list"></i><span> All PaperTypes (2) <span></a>
 						</li> 
 					</ul>
 				</li>
@@ -128,10 +184,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i> Add PaperPrintType</a>
+							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperPrintType <span></a>
 						</li>
 						<li>
-							<a href="paperprinttypes.php"><!-- <i class="fa fa-file"></i>  -->All PaperPrintTypes (2)</a>
+							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (2) </span></a>
 						</li> 
 					</ul>
 				</li>
@@ -144,10 +200,10 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i> Add Cost Estimation</a>
+							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Cost Estimation </span></a>
 						</li> 
 						<li>
-							<a href="cost_estimation.php"><i class="fa fa-list"></i> All Cost Estimation (1)</a>
+							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> All Cost Estimation (1) </span></a>
 						</li> 
 					</ul>
 				</li>
@@ -159,23 +215,14 @@
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="orders.php"><i class="fa fa-list"></i> All Order ()</a>
-						</li> 
-					</ul>
-				</li>
-				<li class="has_submenu">
-					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Track Order
-						<span class="caret pull-right"></span>
-					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="pages.php"><i class="fa fa-file"></i> Set Track Order ()</a>
+							<a href="orders.php"><i class="fa fa-list"></i><span> All Order ()</span></a>
 						</li> 
 						<li>
-							<a href="pages.php"><i class="fa fa-list"></i> All Track Order ()</a>
-						</li> 
+							<a href="order_details.php"><i class="fa fa-list"></i><span> Order Details () </span></a>
+						</li>
+						<li>
+							<a href="track_order.php"><i class="fa fa-list"></i><span> Track Order () </span></a>
+						</li>
 					</ul>
 				</li>
 				<li class="has_submenu">

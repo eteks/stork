@@ -19,14 +19,16 @@ include "includes/header.php";
 								if ($count_rows > 0)
 								{
 							?>
-							<table class="data-table" id="my-orders-table">
-						        <tr class="">
-						            <th>Area Name</th>
-						            <th>State</th>
-						            <th class="th_hidden"><span class="nobr">Status</span></th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
+							<table class="data-table area_table" id="my-orders-table">
+								<thead>
+							        <tr class="">
+							            <th>Area Name</th>
+							            <th>State</th>
+							            <th class="th_hidden"><span class="nobr">Status</span></th>
+							            <th>Created Date</th>
+							            <th>Action</th>
+							        </tr>
+						        </thead>
 						        <?php              
 									$i = 0;
 									while ($fetch = mysql_fetch_array($query))

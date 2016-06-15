@@ -33,7 +33,8 @@
     <!-- Javascript files -->
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>
-	<script src="style/js/jquery-ui-1.10.2.custom.min.js"></script>
+	<script src="style/js/jquery-ui.min.js"></script>
+	<!-- <script src="style/js/jquery-ui-1.10.2.custom.min.js"></script> -->
 	<script src="style/js/jquery.bootstrap-growl.min.js"></script>
 	<script src="style/js/bootstrap-switch.min.js"></script>
 	<script src="style/js/respond.min.js"></script>
@@ -43,5 +44,6 @@
 	<script src="style/js/theme.js"></script>
 	<script src="style/js/ajaxq.js"></script>
 	<script src="style/js/upload.js"></script>
+	<script src="style/js/paging.js"></script>
 	<script src="style/js/custom.js"></script>
 	  

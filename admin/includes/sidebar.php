@@ -296,7 +296,7 @@ function countOfferZone()
 					<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i> Add PaperType</a>
 				</li>
 				<li>
-					<a href="papertypes.php"><i class="fa fa-file"></i> All PaperTypes (<?php echo(countPapertype()) ?>)</a>
+					<a href="papertypes.php"><i class="fa fa-list"></i> All PaperTypes (<?php echo(countPapertype()) ?>)</a>
 				</li> 
 			</ul>
 			</li>
