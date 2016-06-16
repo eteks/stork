@@ -304,6 +304,45 @@ input[type=textarea]{
 	padding: 2px;
 }
 
+/* as on 16th june-Akila */
+
+.my_order{
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.pane {
+	padding: 20px;
+}
+
+#right-pane-top, #checkfull {
+    padding: 0;
+    width: 100% !important;
+}
+
+.registers{
+	padding: 10px 10px 15px 10px;
+}
+
+.ship-box{
+	margin:10px;
+	border: 1px solid #888888;
+}
+
+.cart-summary.no-border tr th {
+    background: #e8e8e8 none repeat scroll 0 0;
+    color: #5a5a5a;
+    font-size: 12px;
+    padding: 10px !important;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.btn_pay{ 
+	padding-left: 245px;
+	}
+
+
 /* Resposive */
 
 @media(max-width:798px){
