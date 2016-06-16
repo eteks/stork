@@ -1,5 +1,5 @@
 .dn {
-	display:none;
+	display:none !important;
 }
 
 
@@ -140,7 +140,7 @@ h3, .h3{
 .button_holder{ margin-left : 170px;}
 
 .button_holder a{
-	 -moz-border-bottom-colors: none;
+	-moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -157,7 +157,7 @@ h3, .h3{
 	}
 
 .button_holder a:hover { 
-	background-color: #fbc443;
+	background-color: #25bce9;
 	color: #ffffff; 
 }
 	
@@ -324,4 +324,80 @@ input[type=textarea]{
 }
 
 	
+}
+
+/* By muthu */
+.uploadbutton {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: right;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    width : 115px;
+}
+
+.uploadbutton:hover {
+   background-color: #25bce9;
+   color: #fff;
+   cursor: pointer;
+}
+.no_pad{
+	padding-left: 0px!important;
+	padding-right: 0px!important;
+}
+.pad_15{
+	padding-left: 15px!important;
+	padding-right: 15px!important;
+}
+.pos_rel{
+	position: relative;
+}
+.add_btn,.del_btn{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: left;
+    font-size: 26px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+    margin-left:10px;
+}
+.add_btn:hover,.del_btn:hover  {
+   background-color: #25bce9;
+   color: #fff;
+   cursor: pointer;
+}
+.add_btn{
+	position:absolute;
+	right: -93px;
+    top: -65px;
+}
+.del_btn{
+	position:absolute;
+	right: -183px;
+    top: -65px;
+}
+h4.order_or_button{
+    color: #444444;
+    float: left;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    margin: 30px 15px;
 }
