@@ -59,6 +59,9 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -69,7 +72,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Admin Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
-							<form action="edit_admin_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_admin_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_admin_users">
 							<?php 
 								$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -85,19 +88,19 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
+									<input type="password" class="form-control" id="first-name1" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Email" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>">
+									<input type="text" class="form-control" id="test" placeholder="Email" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="adminuser_type">
+									<select class="product-type-filter form-control" id="s5" name="adminuser_type">
 								        <option>
 											<span>Select Type</span>
 										</option>
@@ -106,7 +109,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="adminuser_status">
+									<select class="product-type-filter form-control" id="s6" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>

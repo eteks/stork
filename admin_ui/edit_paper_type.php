@@ -55,6 +55,9 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -65,7 +68,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit PaperType Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">PaperType Information</h4>
-							<form action="edit_paper_type.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_paper_type.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_type">
 							<?php 
 								$match = "SELECT * FROM `stork_paper_type` WHERE `paper_type_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -81,7 +84,7 @@ if(isset($_GET["id"]))
 							</div>
 							<div class="cate-filter-content">	
 							    <label for="first-name">PaperType Status<span class="required">*</span></label>
-								<select class="product-type-filter form-control" id="sel1" name="paper_type_status">
+								<select class="product-type-filter form-control" id="s5" name="paper_type_status">
 							        <option>
 										<span>Select status</span>
 									</option>

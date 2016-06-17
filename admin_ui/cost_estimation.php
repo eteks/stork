@@ -16,6 +16,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 }
 ?> 
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">

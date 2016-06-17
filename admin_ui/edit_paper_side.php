@@ -33,6 +33,9 @@ if(isset($_GET["id"]))
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
@@ -53,7 +56,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -63,7 +65,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Paperside Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paperside Information</h4>
-							<form action="edit_paper_side.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">	
+							<form action="edit_paper_side.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_side">	
 							<?php 
 								$match = "SELECT * FROM `stork_paper_side` WHERE `paper_side_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -79,7 +81,7 @@ if(isset($_GET["id"]))
 							</div>
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paperside Status<span class="required">*</span></label>
-								<select class="product-type-filter form-control" id="sel1" name="paper_side_status">
+								<select class="product-type-filter form-control" id="s5" name="paper_side_status">
 							        <option>
 										<span>Select status</span>
 									</option>

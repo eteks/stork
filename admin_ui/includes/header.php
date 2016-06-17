@@ -45,6 +45,7 @@
 	<script src="style/js/upload.js"></script>
 	<script src="style/js/paging.js"></script>
 	<script src="style/js/custom.js"></script>
+	<script src="style/js/action.js"></script>
 	<script src="style/js/owl.carousel.min.js"></script>  
     <script src="style/js/theme.js"></script>
 	  

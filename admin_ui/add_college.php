@@ -46,6 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -56,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<h3 class="acc-title lg">Add College Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
-							<form action="add_college.php" method="POST" name="edit-acc-info">
+							<form action="add_college.php" id="add_college" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="area_id">
+									<select class="product-type-filter form-control" id="s5" name="area_id">
 								        <option value="">
 											<span>Select Area</span>
 										</option>
@@ -77,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="college_status">
+									<select class="product-type-filter form-control" id="s6" name="college_status">
 								        <option value="">
 											<span>Select status</span>
 										</option>

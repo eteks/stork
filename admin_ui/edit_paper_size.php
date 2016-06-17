@@ -31,6 +31,10 @@ if(isset($_GET["id"]))
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
+<?php if($successMessage) echo $successMessage; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
@@ -51,7 +55,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -61,19 +64,18 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Papersize Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Papersize Information</h4>
-							
 							<?php
 							$papersize_query = mysqlQuery ("SELECT * FROM stork_paper_size WHERE paper_size_id='$id'");
 							$papersize_array=mysql_fetch_array($papersize_query);
 							?>
-							<form action="edit_paper_size.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_paper_size.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_size">
 								<div class="form-group">
 								    <label for="last-name">Paper Size<span class="required">*</span></label>
 									<input type="text" class="form-control" name="paper_size" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="paper_size_status">
+									<select class="product-type-filter form-control" id="s5" name="paper_size_status">
 								        <option value="1" <?php if($papersize_array['paper_size_status'] == 1)  echo "selected" ?> >
 											<span>Active</span>
 										</option>
