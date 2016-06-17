@@ -8,6 +8,10 @@ include "includes/header.php";
 <body>
   
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -17,10 +21,10 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Edit CostEstimation Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">CostEstimation Information</h4>
-							<form action="#" method="POST" name="edit-acc-info">
+							<form action="edit_cost_estimation.php" id="edit_cost_estimation" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Paper Print Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s5">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -34,7 +38,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Side<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s6">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -48,7 +52,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Size<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s7">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -62,7 +66,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s8">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -76,11 +80,11 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="first-name" placeholder="Amount">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s9">
 								        <option>
 											<span>Select status</span>
 										</option>

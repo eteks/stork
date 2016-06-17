@@ -28,7 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	}
 } ?>  
 <?php include 'includes/navbar_admin.php'; ?>
-<?php if($successMessage) echo $successMessage; ?>
+
+
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -38,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<h3 class="acc-title lg">Add Area Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
-							<form action="add_area.php" method="POST" name="edit-acc-info">
+							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="state_id">
+									<select class="product-type-filter form-control" id="s5" name="state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -59,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="area_status">
+									<select class="product-type-filter form-control" id="s6" name="area_status">
 								        <option>
 											<span>Select status</span>
 										</option>

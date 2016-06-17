@@ -34,16 +34,20 @@ if(isset($_GET["id"]))
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <?php if($successMessage) echo $successMessage; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add State Information</h3>
+						<h3 class="acc-title lg">Edit State Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>
-							<form action="edit_state.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_state.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
 								<?php
 									$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
 									$qry = mysqlQuery($match);
@@ -59,7 +63,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">State Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="state_status">
+									<select class="product-type-filter form-control" id="s5" name="state_status">
 								        <option>
 											<span>Select status</span>
 										</option>

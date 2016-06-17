@@ -8,35 +8,39 @@ include "includes/header.php";
 <body>
   
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Admin Information</h3>
+						<h3 class="acc-title lg">Edit Admin Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
-							<form action="#" method="POST" name="edit-acc-info">
+							<form action="edit_admin_users.php" id="edit_admin_users" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="last-name">User Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="first-name" placeholder="User Name">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="password" class="form-control" id="first-name1" placeholder="Password">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="test" placeholder="Email Id">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="phone" maxlength=10 placeholder="Mobile Number">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s5">
 								        <option>
 											<span>Select Type</span>
 										</option>
@@ -50,7 +54,7 @@ include "includes/header.php";
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s6">
 								        <option>
 											<span>Select status</span>
 										</option>

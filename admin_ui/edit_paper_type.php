@@ -8,6 +8,10 @@ include "includes/header.php";
 <body>
   
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -17,7 +21,7 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Edit PaperType Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">PaperType Information</h4>
-							<form action="#" method="POST" name="edit-acc-info">
+							<form action="edit_paper_type.php" id="edit_paper_type" method="POST" name="edit-acc-info">
 							
 								<div class="form-group">
 								    <label for="last-name">Paper Type<span class="required">*</span></label>
@@ -25,7 +29,7 @@ include "includes/header.php";
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">PaperType Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="s5">
 								        <option>
 											<span>Select status</span>
 										</option>

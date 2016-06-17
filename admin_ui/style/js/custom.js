@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     if(menu_li.hasClass("open")){
       menu_ul.slideUp(350);
-      menu_li.removeClass("open")
+      menu_li.removeClass("open");
     }
     else{
       $(".nav > li > ul").slideUp(350);
@@ -54,5 +54,36 @@ $(document).ready(function(){
       }
   });
 
+});
+$(document).ready(function () {
+  //called when key is pressed in textbox
+  $("#phone").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+});
+$(document).ready(function () {
+    
+    $('#date').datepicker({
+        dateFormat: 'dd-mm-yy',
+        altField: '#thealtdate',
+        altFormat: 'yy-mm-dd'
+    });
+    
+});
+$(document).ready(function () {
+  //called when key is pressed in textbox
+  $("#amount").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
 });
 /* Admin sidebar navigation ends */

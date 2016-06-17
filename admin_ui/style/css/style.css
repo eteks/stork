@@ -1438,3 +1438,21 @@ text-align: center;
    background-color: #fff !important;
    color: #25bce9;
 }
+.error_input_field {
+   border:1px solid red !important;
+}
+    .form-group (:required)::after{
+        content: '*';
+        color: red;
+        padding-left: 5px;
+    }
+
+
+
+
+.error_test  {
+	color :red ;
+	font-size : 12px;
+	text-align :center;
+	display : none;
+}

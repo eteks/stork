@@ -25,10 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	}
 } ?>  
 <?php include 'includes/navbar_admin.php'; ?>
-<!-- <div class="container error_message_mandatory">
-	<span> Please fill out all mandatory fields </span>
-</div> -->
+
 <?php if($successMessage) echo $successMessage; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -38,14 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<h3 class="acc-title lg">Add State Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>
-							<form action="add_state.php" method="POST" name="edit-acc-info">
+							<form action="add_state.php" id="add_state" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="last-name">State Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="first-name" placeholder="State Name" name="state_name">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">State Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="state_status">
+									<select class="product-type-filter form-control" id="s5" name="state_status">
 								        <option>
 											<span>Select status</span>
 										</option>

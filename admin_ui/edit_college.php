@@ -35,16 +35,20 @@ if(isset($_GET["id"]))
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <?php if($successMessage) echo $successMessage; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add College Information</h3>
+						<h3 class="acc-title lg">Edit College Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
-							<form action="edit_college.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_college.php?update=<?php echo $id; ?>" id="edit_college" method="POST" name="edit-acc-info">
 								<?php 
 								$match = "SELECT * FROM `stork_college` WHERE `college_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -56,7 +60,7 @@ if(isset($_GET["id"]))
 									?>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="area_id">
+									<select class="product-type-filter form-control" id="s5" name="area_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -73,11 +77,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">College Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="college_name" value="<?php echo($row['college_name']); ?>">
+									<input type="text" class="form-control" id="first-name" placeholder="College Name" name="college_name" value="<?php echo($row['college_name']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="college_status">
+									<select class="product-type-filter form-control" id="s6" name="college_status">
 								        <option>
 											<span>Select status</span>
 										</option>

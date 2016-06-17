@@ -8,10 +8,10 @@ include "includes/header.php";
 <body>
   
 <?php include 'includes/navbar_admin.php'; ?>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
+
 
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -19,17 +19,21 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Papersize Information</h3>
+						<h3 class="acc-title lg">Edit TrackOrder Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Papersize Information</h4>
-							<form action="edit_paper_size.php" id="edit_paper_size" method="POST" name="edit-acc-info">
-								
+							<h4 class="acc-sub-title">TrackOrder Information</h4>
+							<form action="edit_track_order.php" id="edit_track_order" method="POST" name="edit-acc-info">
+							
 								<div class="form-group">
-								    <label for="last-name">Paper Size<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Paper Size">
+								    <label for="last-name">Order User ID<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name" placeholder="">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Order ID<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name1" placeholder="">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Papersize Status<span class="required">*</span></label>
+								    <label for="first-name">Order Delivery Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s5">
 								        <option>
 											<span>Select status</span>
@@ -41,6 +45,10 @@ include "includes/header.php";
 											<span>Inactive</span>
 										</option>
 								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Date Of Delivered<span class="required">*</span></label>
+									<input type="text" class="form-control" id="first-name3" placeholder="">
 								</div>
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
