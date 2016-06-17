@@ -61,7 +61,7 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add College Information</h3>
+						<h3 class="acc-title lg">Edit College Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
 							<form action="edit_college.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
@@ -93,7 +93,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">College Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="college_name" value="<?php echo($row['college_name']); ?>">
+									<input type="text" class="form-control" id="first-name" placeholder="College Name" name="college_name" value="<?php echo($row['college_name']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>

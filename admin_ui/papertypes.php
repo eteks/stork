@@ -5,7 +5,6 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -62,7 +61,7 @@ include "includes/header.php";
 			            <td><span class="price"> <?php echo $papertypes_array['created_date'] ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_type.php?id=<?php echo $papertypes_array['paper_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
