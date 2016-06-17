@@ -6,6 +6,8 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
+
+
 <?php if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
@@ -46,7 +48,7 @@ include "includes/header.php";
 							$papersize_query = mysqlQuery ("SELECT * FROM stork_paper_size WHERE paper_size_id='$id'");
 							$papersize_array=mysql_fetch_array($papersize_query);
 							?>
-							<form action="edit_paper_size.php" method="POST" name="edit-acc-info">
+							<form action="edit_paper_size.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="last-name">Paper Size<span class="required">*</span></label>
 									<input type="text" class="form-control" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">

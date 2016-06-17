@@ -63,6 +63,9 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Add State Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>
+							
+
+
 							<form action="edit_state.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
 								<?php
 									$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
@@ -99,6 +102,11 @@ if(isset($_GET["id"]))
 							}
 							?>
 							</form>
+
+
+
+
+							
 						</div>
 					</section><!-- Cart main content : End -->
 </div><!-- container -->

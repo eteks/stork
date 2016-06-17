@@ -5,7 +5,16 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
+<!-- Php query for delete -->
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -64,7 +73,7 @@ include "includes/header.php";
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papertypes_array['paper_type_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
 				        </td>
 				   	</tr>
@@ -75,6 +84,14 @@ include "includes/header.php";
 				} ?>
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "papertypes.php?delete="+myId);
+		});
+	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

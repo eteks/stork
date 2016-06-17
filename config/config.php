@@ -11,7 +11,7 @@ if (substr($root, -1) == "/")    $root = 'http://' . $_SERVER['SERVER_NAME'];
 define("database", "stork");
 define("databaseServer", "localhost");
 define("databaseUser", "root");
-define("databasePass", "");
+define("databasePass", "root");
 define("displayMySqlErrors",false);
 
 error_reporting(E_ERROR);

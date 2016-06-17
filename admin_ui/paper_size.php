@@ -5,7 +5,15 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_paper_size` WHERE `paper_size_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?>  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -17,8 +25,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Paper size</a>
-					</li>
+						<span> Paper size </span>
 					<li>
 						<span>All Paper size</span>
 					</li>
@@ -65,7 +72,7 @@ include "includes/header.php";
 		                <span class="nobr">
 		                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_size.php?id=<?php echo $papersize_array['paper_size_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <span class="separator"></span> 
-			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papersize_array['paper_size_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 			            </span>
 			        </td>
 			   	</tr>
@@ -76,6 +83,14 @@ include "includes/header.php";
 			} ?>		
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "paper_size.php?delete="+myId);
+		});
+	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
