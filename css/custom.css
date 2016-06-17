@@ -1,5 +1,5 @@
 .dn {
-	display:none;
+	display:none !important;
 }
 
 
@@ -32,12 +32,6 @@ input[type=checkbox] {
 	font-size: 14px;
 }
 
-.location, select {
-	width: 50%;
-	margin: 0 205px 20px;
-	padding:10px;
-} 
-
 #print_book_college, select:focus {
 	border: 1px solid #25bce9;
 	border-radius: 4px;
@@ -48,33 +42,23 @@ input[type=checkbox] {
 	padding: 20px 0px;
 }
 
-#color-type, input[type=radio]:checked {
-	padding: 10px 20px;
-	margin: 10px;
-}
-
 .step2{
 	margin: 20px;
 }
 
 .print-sides{ margin: 0px 10px;}
 
-table,td{ 
-	margin: 0px 33px;
-	padding: 10px;
-	font-weight: bold;
-	font-size: 14px;
- }
-
 #paper-row, select{
 	width: 50%;
 	font-weight: normal;
 }
+
 .input_holder select {
-	height: 45px;
-    margin: 0 0 20px 0px;
+    height: 45px;
+    margin: 0 0 20px;
+    max-width: 425px;
     padding: 0;
-    width:500px;
+    width: 100%;
 }
 .input_holder input[type=text] {
     height:	45px;
@@ -153,10 +137,10 @@ h3, .h3{
 	}
 
 /* CSS as on 11th June -Akila  */
-.button_holder{ margin-left : 450px;}
+.button_holder{ margin-left : 170px;}
 
 .button_holder a{
-	 -moz-border-bottom-colors: none;
+	-moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -200,9 +184,11 @@ h3, .h3{
 }	
 
 .button1:hover {
-	background-color: #25bce9;
+	background-color: #fbc443;
 	color: #ffffff; 
 }
+
+..button1{ width: 10% !important;}
 
 .con_details>h3{
 	color: #ffffff;
@@ -233,9 +219,224 @@ h3, .h3{
 	padding:10px;
 }
 
-/* Admin Module -- Sidebar css */
+/* Css for PrintStorkHTML as on 13th June */
 
-.sidey{
-	background-color: #9E9E9E;
-	color: #ffffff;
+/* placeholder for select in home page */
+select:required:invalid {
+color: #999;
+}
+option[value=""][disabled] {
+display: none;
+}
+option {
+color: #000;
+}
+
+/* placeholder for select in home page */
+
+input[type=textarea]{
+	height:150px;
+	padding: 5px;
+}
+
+.fl{ float:left;}
+
+.cb { clear:both;}
+
+.button_holder_printbooking { 
+	margin-left:0px;
+	background: none !important;
+}
+
+/*css as on 14th June -Akila */
+/* home.html */
+
+.cart-w, .search-w{
+  position: relative;
+  display: block;
+  width: 20% !important;
+  vertical-align: middle;
+}
+
+.location{ padding: 0px; }
+
+.location, select {
+	/* margin-bottom: 25px; */
+	padding: 10px 10px 10px 0px;
+	width: 50%;
+}
+
+#print_book_college, select {
+	margin-bottom: 25px;
+}
+
+#print_book_state, select { margin-bottom: 25px !important;}
+
+.pr-main{
+	padding:30px 0 0px !important;
+}
+
+.socail_fb { padding-top: 19px;}
+
+.socail_google { padding-top: 115px;}
+
+#pr-login .container .col-md-6.col-sm-6.col-xs-12.right p {
+    margin-bottom: 10px !important;
+}
+
+/* Css as on 15th */
+
+.img_captcha { 
+	padding: 0px;
+	border: 1px solid #d7d7d7;
+}
+
+.img_refersh {
+	padding: 10px;
+	margin-top: 20px;
+}
+
+.user input[type=text]{
+	width: 500px;
+}
+
+.addbutton { 
+	padding: 2px;
+}
+
+/* as on 16th june-Akila */
+
+.my_order{
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.pane {
+	padding: 20px;
+}
+
+#right-pane-top, #checkfull {
+    padding: 0;
+    width: 100% !important;
+}
+
+.registers{
+	padding: 10px 10px 15px 10px;
+}
+
+.ship-box{
+	margin:10px;
+	border: 1px solid #888888;
+}
+
+.cart-summary.no-border tr th {
+    background: #e8e8e8 none repeat scroll 0 0;
+    color: #5a5a5a;
+    font-size: 12px;
+    padding: 10px !important;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.btn_pay{ 
+	padding-left: 245px;
+	}
+
+
+/* Resposive */
+
+@media(max-width:798px){
+	
+.headerCS {
+    float: left;
+    width: 60%;
+}
+
+.location, select {
+    padding: 10px 10px 10px 0;
+    width: 100%;
+}
+
+#top-header {
+    float: none;
+    height: auto;
+}
+
+	
+}
+
+/* By muthu */
+.uploadbutton {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: right;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    width : 115px;
+}
+
+.uploadbutton:hover {
+   background-color: #25bce9;
+   color: #fff;
+   cursor: pointer;
+}
+.no_pad{
+	padding-left: 0px!important;
+	padding-right: 0px!important;
+}
+.pad_15{
+	padding-left: 15px!important;
+	padding-right: 15px!important;
+}
+.pos_rel{
+	position: relative;
+}
+.add_btn,.del_btn{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: left;
+    font-size: 26px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+    margin-left:10px;
+}
+.add_btn:hover,.del_btn:hover  {
+   background-color: #25bce9;
+   color: #fff;
+   cursor: pointer;
+}
+.add_btn{
+	position:absolute;
+	right: -93px;
+    top: -65px;
+}
+.del_btn{
+	position:absolute;
+	right: -183px;
+    top: -65px;
+}
+h4.order_or_button{
+    color: #444444;
+    float: left;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    margin: 30px 15px;
 }
