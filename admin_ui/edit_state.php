@@ -60,7 +60,7 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add State Information</h3>
+						<h3 class="acc-title lg">Edit State Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>
 							
@@ -95,7 +95,7 @@ if(isset($_GET["id"]))
 								    </select>
 								</div>
 								<div class="account-bottom-action">
-									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
+									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
 								</div>
 							<?php 
 							} 

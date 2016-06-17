@@ -61,7 +61,7 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Area Information</h3>
+						<h3 class="acc-title lg">Edit Area Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="edit_area.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">

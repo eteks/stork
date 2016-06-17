@@ -16,6 +16,11 @@ function countCostEstimation(){
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countAdminUsers(){
+	$query = mysqlQuery("SELECT count(adminuser_id) as total FROM stork_admin_users");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 function countUsers(){
 	$query = mysqlQuery("SELECT count(user_id) as total FROM stork_users");
 	$fetch = mysql_fetch_array($query);
@@ -89,7 +94,7 @@ function countOfferZone()
 			<ul class="nav">
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="admin_users.php" || 
-					basename($_SERVER['PHP_SELF'])=="users.php")
+					basename($_SERVER['PHP_SELF'])=="users.php" || basename($_SERVER['PHP_SELF'])=="edit_admin_users.php" || basename($_SERVER['PHP_SELF'])=="edit_users.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -109,7 +114,7 @@ function countOfferZone()
 				<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin User </span></a>
+							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin User (<?php echo countAdminUsers() ?>)</span></a>
 						</li> 
 						<li>
 							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo countUsers() ?>)</span></a>

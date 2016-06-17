@@ -72,7 +72,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <td><span> <?php echo $papersides_array['created_date'] ?> </td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php?id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papersides_array['paper_side_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
