@@ -368,8 +368,7 @@ function countOfferZone()
 				</li>
 				
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="orders.php" || 
-					basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php")
+					if(basename($_SERVER['PHP_SELF'])=="orders.php" || basename($_SERVER['PHP_SELF'])=="edit_orders.php" || basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="edit_order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php" || basename($_SERVER['PHP_SELF'])=="edit_track_order.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
