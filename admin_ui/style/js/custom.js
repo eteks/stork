@@ -8,8 +8,8 @@ $(document).ready(function(){
       $(".sidey").slideDown(350);
     }                
   });
-  $('.paging-nav a').each("prop","data-page","0" {
-    alert("test");
+  $('.paging-nav a').each(function() {
+    
   });
 });
  
