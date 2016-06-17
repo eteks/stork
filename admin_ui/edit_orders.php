@@ -78,7 +78,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Order Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Order Information</h4>
-							<form action="edit_orders.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_orders.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_orders">
 							<?php 
 								$match = "SELECT * FROM `stork_order` WHERE `order_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -92,7 +92,7 @@ if(isset($_GET["id"]))
 							if($row['order_shipping_college_id'] === NULL) {?>
 								<div class="form-group">
 								    <label for="last-name">Customer Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Customer Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
+									<input type="text" class="form-control" id="first-name1" placeholder="Customer Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
 								</div>
 							<?php } else {?>	
 								<input type="hidden" name="student_details"> 
@@ -131,15 +131,15 @@ if(isset($_GET["id"]))
 								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">Shipping Address Line1<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Shipping Address Line1" name="order_shipping_line1" value="<?php echo($row['order_shipping_line1']); ?>">
+									<input type="text" class="form-control" id="first-name2" placeholder="Shipping Address Line1" name="order_shipping_line1" value="<?php echo($row['order_shipping_line1']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Address Line2<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Shipping Address Line2" name="order_shipping_line2" value="<?php echo($row['order_shipping_line2']); ?>">
+									<input type="text" class="form-control" id="first-name3" placeholder="Shipping Address Line2" name="order_shipping_line2" value="<?php echo($row['order_shipping_line2']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Shipping State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="order_shipping_state">
+									<select class="product-type-filter form-control" id="s5" name="order_shipping_state">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -155,11 +155,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping City<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Shipping City" name="order_shipping_city" value="<?php echo($row['order_shipping_city']); ?>">
+									<input type="text" class="form-control" id="first-name4" placeholder="Shipping City" name="order_shipping_city" value="<?php echo($row['order_shipping_city']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="order_shipping_area">
+									<select class="product-type-filter form-control" id="s6" name="order_shipping_area">
 								        <option>
 											<span>Select Area</span>
 										</option>
@@ -177,11 +177,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Shipping Email" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>">
+									<input type="text" class="form-control" id="first-name5" placeholder="Shipping Email" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
+									<input type="text" class="form-control" id="first-name6" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Items<span class="required">*</span></label>
@@ -189,7 +189,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Order status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="order_status">
+									<select class="product-type-filter form-control" id="s7" name="order_status">
 								        <option>
 											<span>Select status</span>
 										</option>

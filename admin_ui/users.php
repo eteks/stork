@@ -4,7 +4,17 @@ include "includes/header.php";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All States</title>
 </head>
-<body>  
+<body> 
+<!-- Php query for delete -->
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_users` WHERE `user_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -99,6 +109,14 @@ include "includes/header.php";
 			} ?>					
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "users.php?delete="+myId);
+		});
+	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

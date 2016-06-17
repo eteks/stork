@@ -6353,9 +6353,15 @@ select::-ms-expand {
 .browse_style {
   color: #25bce9;
   padding: 0px !important;
+  border: medium none !important;
 }
 .no_result {
   font-size: 20px;
   padding: 50px 0;
   text-align: center;
+}
+.show_offer_image {
+  height: 32px;
+  margin: 0 0 0 7px;
+  width: 10%;
 }

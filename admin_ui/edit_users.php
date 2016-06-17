@@ -66,6 +66,9 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -76,7 +79,7 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Edit Users Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">User Information</h4>
-							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_users">
 							<?php 
 								$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 								$qry = mysqlQuery($match);
@@ -92,19 +95,19 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
+									<input type="password" class="form-control" id="first-name1" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Firstname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
+									<input type="text" class="form-control" id="first-name2" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Lastname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="last-name" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
+									<input type="text" class="form-control" id="first-name3" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="user_type">
+									<select class="product-type-filter form-control" id="s5" name="user_type">
 								        <option>
 											<span>Select User Type</span>
 										</option>
@@ -114,23 +117,23 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="user_email" value="<?php echo($row['user_email']); ?>">
+									<input type="text" class="form-control" id="first-name4" placeholder="Area Name" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="user_dob" value="<?php echo($row['user_dob']); ?>">
+									<input type="text" class="form-control" id="date" placeholder="Area Name" name="user_dob" value="<?php echo($row['user_dob']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line1<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="line1" value="<?php echo($row['line1']); ?>">
+									<input type="text" class="form-control" id="first-name6" placeholder="Area Name" name="line1" value="<?php echo($row['line1']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line2<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="line2" value="<?php echo($row['line2']); ?>">
+									<input type="text" class="form-control" id="first-name7" placeholder="Area Name" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="user_state_id">
+									<select class="product-type-filter form-control" id="s6" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -169,7 +172,7 @@ include "includes/header.php";
 								
 								<div class="cate-filter-content">	
 								    <label for="first-name">Users Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="user_status">
+									<select class="product-type-filter form-control" id="s7" name="user_status">
 								        <option>
 											<span>Select status</span>
 										</option>

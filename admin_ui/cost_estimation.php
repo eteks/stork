@@ -5,8 +5,20 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
+<!-- Php query for delete -->
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?> 
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
@@ -76,7 +88,7 @@ include "includes/header.php";
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_cost_estimation.php?id=<?php echo $cost_array['cost_estimation_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $cost_array['cost_estimation_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
 				        </td>
 				   	</tr>
@@ -87,6 +99,14 @@ include "includes/header.php";
 					} ?>				
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "cost_estimation.php?delete="+myId);
+		});
+	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

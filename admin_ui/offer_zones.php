@@ -5,8 +5,37 @@ include "includes/header.php";
 <title>All Offerzone</title>
 </head>
 <body>
-  
+<!-- Php query for delete -->
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_offer_zone` WHERE `offer_zone_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Offerzone </span>
+					</li>
+					<li>
+						<span> All Offerzone</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -32,12 +61,12 @@ include "includes/header.php";
 				    <tr class="">
 			            <td><span class="nobr"><?php echo $offer_array['offer_zone_title'] ?></span></td>
 			            <td><span class="nobr"><?php echo $offer_array['offer_zone_image'] ?></span>
-			           <!--  
-			            <?php 
-			            	// $img_source=$offer_array['offer_zone_image'];	
-			            	// echo "<img src='$img_source' />"; 
-			            ?> -->
-			            		</td>
+			      
+				            <?php 
+				 				$img_source=$offer_array['offer_zone_image'];	
+				            	echo "<a href='$img_source'> <img class='show_offer_image' src='$img_source' /> </a>"; 
+				            ?> 
+			            </td>
 			            <td> <span class="price">
 			            	<?php if($offer_array['offer_zone_status']==1)
 									echo "Active";
@@ -50,7 +79,7 @@ include "includes/header.php";
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
-				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $offer_array['offer_zone_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
 				        </td>
 				   	</tr>
@@ -61,6 +90,14 @@ include "includes/header.php";
 				} ?>					
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "offer_zones.php?delete="+myId);
+		});
+	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
