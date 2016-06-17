@@ -8,7 +8,6 @@ $(document).ready(function(){
       $(".sidey").slideDown(350);
     }                
   });
-
 });
  
 $(document).ready(function(){
@@ -16,6 +15,8 @@ $(document).ready(function(){
   $('.error_message_mandatory').delay(2000).fadeOut();
 
   $(".has_submenu > a").click(function(e){
+    // alert($.trim($(this).text()));
+    $('.breadcrumb').html('<li><a>'+$.trim($(this).text())+'</a></li>');
     e.preventDefault();
     var menu_li = $(this).parent("li");
     var menu_ul = $(this).next("ul");

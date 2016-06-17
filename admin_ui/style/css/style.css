@@ -1071,9 +1071,12 @@ div.ppt {
 footer a{
    color:#eee;
    text-decoration:none;
-   border-bottom:1px dotted #888;
+   /*border-bottom:1px dotted #888;*/
 }
-
+footer a:focus {
+   text-decoration: none !important;
+   outline: none !important;
+}
 footer a:hover{
    color:#aaa;
    text-decoration:none;

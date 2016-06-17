@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$college_name = $_POST["college_name"];
 	$college_status = $_POST["college_status"];
 	if($area_id=="" || $college_name=="" || $college_status=="") {
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";	}	
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+	}
 	else{
 		$qr = mysql_query("SELECT * FROM stork_college WHERE college_name = '$college_name' AND college_area_id='$area_id'");
 		$row = mysql_num_rows($qr);
@@ -25,11 +26,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	}
 } ?> 
 <?php include 'includes/navbar_admin.php'; ?>
-
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> College </span>
+					</li>
+					<li>
+						<span>Add College</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -43,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s5" name="area_id">
-								        <option>
+								        <option value="">
 											<span>Select Area</span>
 										</option>
 										<?php
@@ -61,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s6" name="college_status">
-								        <option>
+								        <option value="">
 											<span>Select status</span>
 										</option>
 								        <option value="1">

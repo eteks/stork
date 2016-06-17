@@ -34,18 +34,37 @@ include "includes/header.php";
 	}
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
-
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">Area</a>
+					</li>
+					<li>
+						<span>Edit Area</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Area Information</h3>
+						<h3 class="acc-title lg">Edit Area Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="edit_area.php?update=<?php echo $id; ?>" id="edit_area" method="POST" name="edit-acc-info">
@@ -83,7 +102,7 @@ include "includes/header.php";
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s6" name="area_status">
-								        <option>
+										<option>
 											<span>Select status</span>
 										</option>
 								        <option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>

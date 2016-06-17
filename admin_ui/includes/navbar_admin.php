@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-2 col-sm-8 col-xs-8 w-logo">
 					<div class="logo hd-pd ">
-						<a href="index.html">
+						<a href="users.php">
 							<img src="style/img/logo.png" alt="printshop logo">
 						</a>
 					</div>	
@@ -54,18 +54,18 @@
 						<span class="search-icon dropdowSCIcon">
 							<i class="fa fa-search"></i>
 						</span>
-						<div class="search-safari">
-							<!-- <div class="search-form dropdowSCContent">
+						<div class="search-safari" style="display:none;">
+							<div class="search-form dropdowSCContent">
 								<form method="POST" action="#">
 									<input type="text" name="search" placeholder="Search" />
 									<input type="submit" name="search" value="Search">
 									<i class="fa fa-search"></i>
 								</form>
-							</div> -->
+							</div>
 						</div>
 					</div>
-					<div class="search-w SC-w hd-pd ">
-						<span class="search-icon dropdowSCIcon">
+					<div class="user_logout">
+						<span class="dropdowSCIcon">
 							<ul class="">
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -93,26 +93,11 @@
 
 <!-- Submenu Html Start -->
 
-<section class="header-page">
+<!-- <section class="header-page">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
-			<!-- 	<ul class="">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<h1 class="mh-title"><i class="fa fa-user"></i> My Account <b class="caret"></b> </h1>
-						</a>
-						<ul class="dropdown-menu animated fadeInUp">
-							<li>
-								<a href="edit_admin_users.php?id=2"><i class="fa fa-user"></i>&nbsp;Profile</a>
-							</li>
-							<li>
-								<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
-							</li>
-						</ul>
-					</li>
-				</ul> -->
 			</div>
 			<div class="breadcrumb-w col-sm-9">
 				<span class="">You are here:</span>
@@ -127,7 +112,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 
 

@@ -1,236 +1,105 @@
+<?php require_once('dbconnect.php'); ?>
 <?php include('header.php') ?>
-
-	<main class="main" id="product-detail">
-		<div class="container">
-			<div id="content">
-			    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-			    	<li class="active"><a href="#red" data-toggle="tab">Step 1</a></li>
-			        <li><a href="#orange" data-toggle="tab">Step 2</a></li>
-			        <li><a href="#yellow" data-toggle="tab">Step 3</a></li>
-			        <li><a id="print_booking_confirmation" href="" data-toggle="tab">Step 4</a></li>
-			    </ul>
-			    <form action="add_to_cart.php" enctype="multipart/form-data">
-	    			<div id="my-tab-content" class="tab-content">
-				        <div class="tab-pane active" id="red">
-				        	<div class="input_holder">
-			        			<label>Colors to Print:</label>
-			        			<input type="radio" class="print_book_print_type pbptbw" id="color-type" name="print_type" value="bw" checked/>
-			        			<label>Black &amp; White</label>
-				            	<input type="radio" class="print_book_print_type pbptc" id="color-type" name="print_type" value="c"/>
-				            	<label>Color</label>
-				            	<input type="radio" class="print_book_print_type pbptbwc" id="color-type" name="print_type" value="bwc"/>
-				            	<label>Black &amp; White and Color</label>
-			        		</div><!-- input_holder -->
-			        		<div class="input_holder">
-			        			<label>Sides to Print:</label>
-			        			<input type="radio" class="print_book_print_side pbpsss" name="print_side" value="ss" checked/>
-				        		<label>Single Side</label>
-				            	<input type="radio" class="print_book_print_side pbpsds" name="print_side" value="ds"/>
-				            	<label>Double Side</label>
-			        		</div><!-- input_holder -->
-			        		<div class="input_holder">
-			        			<label>Paper size</label>
+<div class="main" id="product-detail">	
+   	    <section class="header-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3 hidden-xs">
+						<h1 class="mh-title">Order</h1>
+					</div>
+					<div class="breadcrumb-w col-sm-9">
+						<span class="hidden-xs">You are here:</span>
+						<ul class="breadcrumb">
+							<li>
+								<a href="home.html">Home</a>
+							</li>
+							<li>
+								<span>Order</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section> <!---breadcrumb------>
+	    <section class="pr-main" id="pr-login">	
+			<div class="container">	
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<h1 class="ct-header">Print Booking</h1>			
+					<div class="col-md-6 col-sm-6 col-xs-12 no_pad">
+						<h4>Please make your order here</h4>
+					</div>
+				</div>
+			</div> <!---container--->
+	     </section>	
+	     
+	     <section class="pr-main" id="pr-register">	
+			<div class="container">	
+				<div class="col-md-12 col-sm-12 col-xs-12 ">		
+					<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
+						<form id="register-form" class="form-validate form-horizontal" method="post" action="#">
+						    <div class="input_holder row pad_15">
+			        			<p>Print Type<span class="star">*</span></p>
 			        			<select name="paper_row" class="print_book_paper_size">
-	        						<option value="a5">A5</option>
-	        						<option value="a4">A4</option>
-	        						<option value="a3">A3</option>
-	        						<option value="a2">A2</option>
-	        						<option value="a1">A1</option>
-	        					</select>
-			        		</div><!-- input_holder -->
-			        		<div class="input_holder">
-			        			<label>Paper type</label>
-			        			<select name="papertype" class="print_book_paper_type">
-	        						<option value="bsheet">Bond Sheet</option>
-	        						<option value="nsheet">Normal Sheet</option>
-	        					</select>
-			        		</div><!-- input_holder -->
-			        		<div class="input_holder only_for_color_with_bw dn paper-row">
-			        			<label>Enter color print page no</label>
-			        			<input type="text" name="color_page" value="" class="color_print_page_no"/>
-			        			<div>
-			        			  <input type="file" name="upload file" value=""/> </br>
-			        			  <input class="add_more_color_page btn_browse button1" type="button" value="+" name="add_more_color_page">
-			        			 </div>
-			        		</div><!-- input_holder -->
-		        			</br></br></br>
-			        		<div class="input_holder only_for_color_with_bw dn paper-row">
-			        			<label>Total no of page</label>
-			        			<input type="text" name="total_page" value="" class="total_number_of_page"/>
-			        		</div><!-- input_holder -->
-			        		
-			        		<div class="input_holder only_for_color_with_bw dn paper-row">
-			        			<label>Total Cost</label>
-			        			<input type="text" name="total_cost" value="" class="print_book_total cost"/>
-			        		</div><!-- input_holder -->
-			        		</br></br>
-			        		<div class="input_holder only_for_color_with_bw dn paper-row">
-			        			<label>Upload your file</label>
-			        		    </br></br>
-			        			<input type="file" name="upload file" value=""/>
-			        		</div><!-- input_holder -->
-			        		<div class="button_holder">
-				         		<h4 class="btn_prf"><a href="#orange">Next</a></h4>
-				         		<h4 class="btn_prf"><a href="printbooking.php">Clear</a></h4>
-				         	</div>
-				        </div> <!---#red---->
-				  
-				        
-				 		<div class="tab-pane" id="orange">
-				 		  <div>				        	
-				        	<div class="input_holder_heading">
-				        		<input type="checkbox" name="registed_addres"/>
-				        		<label> Send Order to registred address</label>				        		
-				        	</div><!-- input_holder -->
-				            </br></br>
-				        	<div class="input_holder">
-				        		<label> Line 1</label>
-				        		<input type="text" name="line1" size="60" class="addr"/>				        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label> Line 2</label>
-				        		<input type="text" name="line2" size="60" class="addr" />				        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>Area </label>
-				        		<select name="area">
-				           			<option value="lawspet">Lawspet</option>
-				           			<option value="rajiv">Rajiv nagar</option>
-				           			<option value="muthial">Muthialpet</option>
-				           		</select>				        		
-				        	</div><!-- input_holder -->
- 							<div class="input_holder">
-				        		<label>State</label>
-				        		<select name="area">
-	       							<option value="pondy">Pondicherry</option>
-	       							<option value="tamil">Tamilnau</option>
-	       							<option value="andra">Andrapradesh</option>
-	       						</select>			        		
-				        	</div><!-- input_holder -->
-				           </div> 	
-				           </br> </br>	
-				           <div class="print_book_college_stu">
-				        	<div class="input_holder_heading">
-				        		<input type="checkbox" name="registed_addres" class="oder-college"/>	
-				        		<label>Send Order to my college </label>
-				        	</div> <!-- input_holder -->
-				            </br></br>
-				            <div class="input_holder">
-				        		<label>Student Name </label>
-				        		<input type="text" name="stu_name" size="60" class="order-college"/> 		        		
-				        	</div><!-- input_holder -->
-			        	    <div class="input_holder">
-				        		<label>Student ID</label>
-				        		<input type="text" name="stu_id" size="60" class="order-college" />		        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>Year of Studing</label>
-				        		<input type="text" name="stu_year" size="60" class="order-college" />		        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>Department</label>
-				        		<input type="text" name="stu_dept" size="60"  class="order-college"/>		        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>College</label>
-				        		<select name="area">
-           							<option value="pondy">Manakula vinayagar</option>
-           							<option value="tamil">Mailam Engineering</option>
-           							<option value="andra">Pondicherry university</option>
-           						</select>		        		
-				        	</div><!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>Area</label>
-				        		<select name="area">
-           							<option value="lawspet">Lawspet</option>
-           							<option value="rajiv">Rajiv nagar</option>
-           							<option value="muthial">Muthialpet</option>
-           						</select>		        		
-				        	</div><!-- input_holder -->
-			              </div>	
-			              <div class="button_holder">
-				         	<h4 class="btn_prf"><a href="#yellow">Next</a></h4>
-				         	<h4 class="btn_prf"><a href="printbooking.php">Reset</a></h4>
-				          </div> 
-			            </div> <!--Orange--->
-				        
-			           <div class="tab-pane" id="yellow">
-			  	         <h4 class="yellow_heading"> Confirmation </h4>
-			  	           </br>
-	     		  	       <div>	
-				        	 <div class="con_details">
-				        		<h3>Order Details </h3>
-				        	 </div><!-- input_holder -->
-				        	 </br>
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Print type: </label>
-				        		<div class="print_book_confirm_print_type">  </div>
-				        	 </div><!-- input_holder --> 
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Print side:</label>
-				        		<div class="print_book_confirm_print_side">  </div>
-				        	 </div><!-- input_holder -->
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Print size:</label>
-				        		<div class="print_book_confirm_paper_size">  </div>
-				        	 </div> <!-- input_holder -->
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Paper Type:</label>
-				        		<div class="print_book_confirm_paper_type">  </div>
-				        	 </div> <!-- input_holder -->
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Color print page no:</label>
-				        		<div class="print_book_confirm_color_pages">  </div>
-				        	 </div> <!-- input_holder -->
-				        	 <div class="input_holder print_book_confirm_color dn">
-				        		<label>Total no of color pages:</label>
-				        		<div class="print_book_confirm_total_color_pages">  </div>
-				        	 </div> <!-- input_holder -->
-				        	<div class="input_holder print_book_confirm_color dn">
-				        		<label>Total no of pages:</label>
-				        		<div class="print_book_confirm_total_number_pages">  </div>
-				        	</div>	<!-- input_holder -->
-				        	<div class="input_holder">
-				        		<label>Total cost:</label>
-				        		<div class="print_book_confirm_total_cost">  </div>
-				        	</div>	<!-- input_holder -->	
-				        	</div> <!---order details--->
-				           </br></br>  
-        				   <div>
-							<div class="con_details">
-				        		<h3>Shipping Details</h3>
-				        	</div>
- 				            </br>
-				        	<div class="input_holder">
-				        		<label>Line 1:</label>
-				        		<div class="print_book_confirm_total_ship_lane1">  </div>
-				        	</div>
-				        	<div class="input_holder">
-				        		<label>Line 2:</label>
-				        		<div class="print_book_confirm_total_ship_lane2">  </div>
-				        	</div>
-						   </div> <!---Shipping details--->
-						   </br></br>
-						   <!--- <div class="payment-button">
-				            <input type="button" name="add to cart" value="Add to cart" class="pay-btn"/>
-				           </div> --->
-				           <div class="add-cart-btn col-xs-12">
-				          	<a href="#" target="_blank">
-						      <button class="add-cart" type="button">
-						    	 <i class="fa fa-shopping-cart"> </i>
-							       Add To Cart
-							  </button>   
-							</a>
-						   </div> <!---add to cart--->
-				           <div class="button_holder">
-				         	<h4 class="btn_prf"><a href="#">Paynow</a></h4>
-				         	<h4 class="btn_prf"><a href="printbooking.php">Cancel</a></h4>
-				           </div>       
-				       </div> <!---#yellow---->
-				    </div>
-		     </form>
-			</div> <!--id content---->
-		</div> <!-- container -->
-	</main><!-- Main Product Detail: End -->
-	
+	        						<option value="b&w">Black &amp; White</option>
+	        						<option value="color">Color</option>
+	        						<option value="both color">Black &amp; White and Color</option>
+	        				    </select>
+			        		 </div><!-- input_holder -->
+						   	 <div class="input_holder row pad_15">
+			        			<p>Print Side<span class="star">*</span></p>
+			        			<select name="paper_row" class="print_book_paper_size">
+	        						<option value="1">Single Side</option>
+	        						<option value="2">Double Side</option>
+	        				    </select>
+			        		 </div> <!-- input_holder -->
+			        		 <div class="input_holder row pad_15 upload_file_holder">
+								 <p> Upload files<span class="star">*</span></p>	
+								 <div>
+								 	<input type="text" name="filepageno[]" class="col-md-8"/>
+	       							<input type="file" class="user dn col-md-8" name="option[]" id="uploadFile"/>
+	       							<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
+	   							 </div>
+   							 </div>
+   							 <div class=" pos_rel" >
+   							 	<div class="add_btn"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
+   							 	<div class="del_btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
+   							 </div>
+							 <div class="cb">  </div>
+							 <div class="input_holder row pad_15">
+							 	<p>Total No of Pages<span class="star">*</span></p>
+							 	<input class="user" type="text" value=""> 
+							 </div>
+							 <div class="input_holder row pad_15">
+							 	<p>Total Cost </p>
+							 	<input class="email" type="text" value="">
+							 </div>
+							 <div class="input_holder row pad_15">
+							 	<p>Comments</p>
+							 	<input class="textarea" type="textarea" value="">
+							 </div>
+	  				    </form>
+					</div>
+				</div>
+				<div class="cb">  </div>
+			</div>	
+		 </section>
+		 
+		 <section>
+		   <div class="container">	
+			  <div class="col-md-9 col-sm-9 col-xs-12">		
+		 	     <div class="button_holder button_holder_printbooking">
+		 	       <h4 class="btn_prf"><a href="#">Add to Cart</a></h4>
+		 	     </div>
+	 	       <div class="button_holder button_holder_printbooking">
+		 	       <h4 class="order_or_button">OR</h4>
+	 	      </div>
+		 	   <div class="button_holder button_holder_printbooking">
+	        	   <h4 class="btn_prf"><a href="printbooking.html" target="_blank">Clear</a></h4>
+	        	   <h4 class="btn_prf"><a href="#">Check Out</a></h4>
+	             </div>
+	             
+               </div>
+           </div>     
+		 </section>
+   </div><!-- Main Product Detail: End -->	
 <?php include('footer.php') ?>

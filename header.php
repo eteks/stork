@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
 	<meta name="description" content="Printing template">
 	<meta name="author" content="Netbase">
+	<meta name="google-signin-client_id" content="917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com ">
 	<!--Add css lib--> 
-	<link rel="stylesheet" type="text/css" href="css/style-main.css">  
+	<link rel="stylesheet" type="text/css" href="css/style-main.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">   
   	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'>
@@ -55,8 +57,8 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-2 col-sm-4 col-xs-5 w-logo">
 						<div class="logo hd-pd ">
-							<a href="index.html">
-								<img src="images/logo.png" alt="printshop logo">
+							<a href="index.php">
+								<img src="images/printstork_logo.png" width="35%"  height="auto" alt="printshop logo">
 							</a>
 						</div>	
 					</div>
@@ -67,20 +69,30 @@
 							<i class="fa fa-bars"></i>
 						</span>
 					</div>
+					
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
+						<?php 
+						session_start();
+						if(isset($_SESSION['facebook_access_token'])){
+							
+						?>
+						<div class="cart-w SC-w hd-pd ">
+							<span class="mcart-icon dropdowSCIcon">
+								<a href="logout.php">
+									<i class="fa fa-sign-out"></i>
+									<!-- Sign Up -->
+								</a>
+							</span>
+						</div>
+						<?php
+						}else{
+						?>
 						<div class="cart-w SC-w hd-pd ">
 							<span class="mcart-icon dropdowSCIcon">
 								<a href="login.php">
 									<i class="fa fa-user"></i>
 								</a>
 							</span>	
-						</div>
-						<div class="cart-w SC-w hd-pd ">
-							<span class="mcart-icon dropdowSCIcon">
-								<a href="login.html">
-									<i class="fa fa-home"></i>
-								</a>
-							</span>
 						</div>
 						<!-- Added by siva -->
 						<div class="cart-w SC-w hd-pd ">
@@ -91,8 +103,10 @@
 								</a>
 							</span>
 						</div>
+						<?php
+						}
+						?>
 						<div class="cart-w SC-w hd-pd ">
-							
 							<span class="mcart-icon dropdowSCIcon">
 								<i class="fa fa-shopping-cart"></i>
 								<span class="mcart-dd-qty">2</span>
