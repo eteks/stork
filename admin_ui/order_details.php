@@ -59,59 +59,41 @@ include "includes/header.php";
 			      </thead>
 			       <?php              
 					$i = 0;
-					while ($fetch = mysql_fetch_array($query))
-					{		
-						$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['order_shipping_state_id']);
-						$rowstate = mysql_fetch_array($qrystate);
-
-						$qryarea = mysqlQuery("SELECT * FROM `stork_area` WHERE `area_id`=".$fetch['order_shipping_area_id']);
-						$rowarea = mysql_fetch_array($qryarea);
+						while ($fetch = mysql_fetch_array($query))
+						{		
+						$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
+						$roworder_details = mysql_fetch_array($qryorder_details);
+						$qryupload = mysqlQuery("SELECT * from stork_upload_files where upload_files_order_details_id=".$fetch[order_details_id]);
 				   ?>
 				    <tr class="">
-			            <td><?php echo $fetch['order_id'] ?></td>
+			            <td><?php echo $roworder_details['order_id'] ?></td>
+			            <td><?php echo $roworder_details['paper_print_type'] ?></td>
+			            <td><?php echo $roworder_details['paper_size'] ?></td>
+			            <td><?php echo $roworder_details['paper_side'] ?></td>
+			            <td><?php echo $roworder_details['paper_type'] ?></td>
+			            <td><?php echo $roworder_details['order_details_total_no_of_pages'] ?></td>
+			            <td><?php echo $roworder_details['order_details_color_print_pages'] ?></td>
+			            <td><?php echo $roworder_details['order_details_comments'] ?></td>
+			            <td><?php echo $roworder_details['order_details_total_amount'] ?></td>
 			            <td>
-			            <?php if ($fetch['order_user_id'] === NULL)
-							echo "None";
-						else
-							echo $fetch['order_user_id'];
+		            	<?php 
+			            	while ($rowupload = mysql_fetch_array($qryupload)) {
+							echo "<a href='../".$rowupload['upload_files']."' target='_blank'>Download File</a><br>";
+							}
 						?>
-						</td>
+			            </td>
+			            <td><?php echo $roworder_details['created_date']; ?></td>
 			            <td>
 				            <?php 
-				            if($fetch['order_user_type']==1)
-								echo "Student";
-							else if($fetch['user_type']==2)
-								echo "Profession";
-							?>
-						</td>
-						<td>
-						<?php
-							if($fetch['order_user_id'] === NULL)
-								echo "Guest User";
-							else
-								echo "Registered User";
-						?>
-						</td>
-						<td><?php echo $fetch['order_customer_name'] ?></td>
-						<td><?php echo $fetch['order_total_items'] ?></td>
-						<td><?php echo $fetch['order_shipping_email'] ?></td>
-						<td><?php echo $fetch['order_shipping_mobile'] ?></td>
-						<td><?php echo $fetch['order_shipping_line1'].$fetch['order_shipping_line2'] ?></td>
-			            <td><?php echo $rowstate['state_name'] ?></td>
-			            <td><?php echo $rowarea['area_name'] ?></td>
-			            <td><?php echo $fetch['created_date'] ?></td>
-			            <td>
-				            <?php 
-				            if($fetch['order_status']==1)
+				            if($roworder_details['order_details_status']==1)
 								echo "Active";
 							else
 								echo "InActive";
 							?>
 						</td>
-			            <td><?php echo $fetch['create_date'] ?></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_orders.php?id=<?php echo $fetch['order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_order_details.php?id=<?php echo $fetch['order_details_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
