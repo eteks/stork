@@ -44,7 +44,7 @@ if(isset($_GET["id"]))
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Order</a>
+					<span> Order </span>
 					</li>
 					<li>
 						<span>Edit Orders</span>
@@ -153,7 +153,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Comments<span class="required">*</span></label>
-								    <textarea placeholder="Comments" id="first-name3"name="order_details_comments" class="form-control"><?php echo($row['order_details_comments']); ?></textarea>	
+								    <textarea placeholder="Comments" id="first-name3"name="order_details_comments" class="form-control width_text_area"><?php echo($row['order_details_comments']); ?></textarea>	
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Amount<span class="required">*</span></label>

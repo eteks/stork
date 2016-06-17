@@ -31,7 +31,7 @@ include "includes/header.php";
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> ORDER DETAILS</h3>
-			<div class="form-edit-info">
+			<div class="form-edit-info width_order_details">
 				<?php
 					$sql = "SELECT * FROM `stork_order_details`";
 					$query = mysqlQuery($sql);
@@ -39,7 +39,7 @@ include "includes/header.php";
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table" id="my-orders-table">
+				<table class="data-table user_table width_order_details_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
 			        	<th>Order Id</th>

@@ -20,7 +20,7 @@ include "includes/header.php";
 					if ($count_rows > 0)
 					{
 						?>	
-					<table class="data-table" id="my-orders-table">
+					<table class="data-table track_table" id="my-orders-table">
 						<thead>
 					        <tr class="">		            
 					            <th>Order Id</th>

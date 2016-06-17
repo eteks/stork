@@ -31,7 +31,7 @@ include "includes/header.php";
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> ORDERS</h3>
-			<div class="form-edit-info">
+			<div class="form-edit-info width_order_details">
 				<?php
 					$sql = "SELECT * FROM `stork_order`";
 					$query = mysqlQuery($sql);
@@ -39,7 +39,7 @@ include "includes/header.php";
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table" id="my-orders-table">
+				<table class="data-table user_table width_order_details_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
 			        	<th>Order Id</th>
@@ -109,7 +109,7 @@ include "includes/header.php";
 								echo "InActive";
 							?>
 						</td>
-			            <td><?php echo $fetch['create_date'] ?></td>
+			            <!-- <td><?php echo $fetch['create_date'] ?></td> -->
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_orders.php?id=<?php echo $fetch['order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
