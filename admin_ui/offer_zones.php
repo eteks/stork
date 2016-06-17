@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Offerzone</title>
 </head>
 <body>
   
@@ -11,43 +11,54 @@ include "includes/header.php";
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
-		<h3 class="acc-title lg"> Offer</h3>
+		<h3 class="acc-title lg"> Offerzone</h3>
 			<div class="form-edit-info">
-							<table class="data-table" id="my-orders-table">
-						        <tr class="">
-						            <th>Area Name</th>
-						            <th>State</th>
-						            <th class="th_hidden"><span class="nobr">Status</span></th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
-							    <tr class="">
-						            <td>Madurai</td>
-						            <td><span class="nobr">Tamilnadu</span></td>
-						            <td> Active</td>
-						            <td><span class="price"> 24/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							   <tr class="">
-						            <td>Virudhunagar</td>
-						            <td><span class="nobr">Tamilnadu</span></td>
-						            <td> Inactive</td>
-						            <td><span class="price"> 28/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							</table>					
+				<?php 
+				$offer_query = mysqlQuery ("SELECT * FROM `stork_offer_zone`"); 
+				$offer_rows = mysql_num_rows($offer_query);	
+				if ($offer_rows > 0)  {
+				?>
+				<table class="data-table offerzone_table" id="my-orders-table">
+			        <tr class="">
+			            <th> Offerzone Title </th>
+			            <th> Offerzone Image</th>
+			            <th>Status</th>
+			            <th>Created Date</th>
+			            <th>Action</th>
+			        </tr>
+			        <?php
+			        	while ($offer_array = mysql_fetch_array($offer_query))	{
+			        ?>
+				    <tr class="">
+			            <td><span class="nobr"><?php echo $offer_array['offer_zone_title'] ?></span></td>
+			            <td><span class="nobr"><?php echo $offer_array['offer_zone_image'] ?></span>
+			           <!--  
+			            <?php 
+			            	// $img_source=$offer_array['offer_zone_image'];	
+			            	// echo "<img src='$img_source' />"; 
+			            ?> -->
+			            		</td>
+			            <td> <span class="price">
+			            	<?php if($offer_array['offer_zone_status']==1)
+									echo "Active";
+								  else
+									echo "InActive";
+							?>  </span>
+						</td>
+			            <td><span class="nobr"><?php echo $offer_array['create_date'] ?></span></td>
+			            <td class="th_hidden a-center last">
+			                <span class="nobr">
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php"><i class="fa fa-pencil-square-o "></i> </a>
+				                <span class="separator"></span> 
+				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				            </span>
+				        </td>
+				   	</tr>
+				   	<?php } ?>
+				</table>
+				<?php } else {
+					echo "<div class='no_result'> <span> No records found </span> </div>";
+				} ?>					
 	</div>
 	<div class="clearfix"></div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -32,42 +32,48 @@ include "includes/header.php";
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> Papersize</h3>
-			<div class="form-edit-info">
-							<table class="data-table" id="my-orders-table">
-						        <tr class="">
-						            <th>Paper Size</th>
-						            
-						            <th class="th_hidden"><span class="nobr">Status</span></th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
-							    <tr class="">
-						            <td>A4</td>
-						           
-						            <td> Active</td>
-						            <td><span class="price"> 24/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_size.php"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							   <tr class="">
-						            <td>A3</td>
-						            
-						            <td> Inactive</td>
-						            <td><span class="price"> 28/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							</table>					
+		<div class="form-edit-info">
+		<?php 
+		$papersize_query = mysqlQuery("SELECT * FROM `stork_paper_size`");
+		$papersize_rows = mysql_num_rows($papersize_query);
+		if ($papersize_rows > 0 ) {
+		?>
+		
+			<table class="data-table papersize_table" id="my-orders-table">
+		        <thead>
+			        <tr class="">
+			            <th>Paper Size</th>
+			            <th>Status</th>
+			            <th>Created Date</th>
+			            <th>Action</th>
+			        </tr>
+			      </thead>
+		        <?php while($papersize_array=mysql_fetch_array($papersize_query)) {
+		        ?>
+			    <tr class="">
+		            <td> <span> <?php echo $papersize_array['paper_size']; ?></td>
+		           	<td> <span> <?php 
+		           		if($papersize_array['paper_size_status'] == 1 ) {
+		           			echo "Active";
+		           		}
+		           		else {
+		           			echo "InActive";
+		           			
+		           		} ?> </td>
+		            <td><span class="price"> ]<?php echo $papersize_array['created_date']; ?> </span></td>
+		            <td class="th_hidden a-center last">
+		                <span class="nobr">
+		                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_size.php?id=<?php echo $papersize_array['paper_size_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+			                <span class="separator"></span> 
+			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+			            </span>
+			        </td>
+			   	</tr>
+			   	<?php } ?>
+			</table>
+			<?php } else {
+				echo "<div class='no_result'> <span> No records found </span> </div>";
+			} ?>		
 	</div>
 	<div class="clearfix"></div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

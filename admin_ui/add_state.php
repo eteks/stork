@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">State</a>
+						<span> State </span>
 					</li>
 					<li>
 						<span>Add States</span>
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="cate-filter-content">	
 								    <label for="first-name">State Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel1" name="state_status">
-								        <option>
+								        <option value="">
 											<span>Select status</span>
 										</option>
 								        <option value="1">

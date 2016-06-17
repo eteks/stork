@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Areas</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -16,7 +16,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Area</a>
+						<span> Area </span>
 					</li>
 					<li>
 						<span>All Areas</span>
@@ -44,7 +44,7 @@ include "includes/header.php";
 							        <tr class="">
 							            <th>Area Name</th>
 							            <th>State</th>
-							            <th class="th_hidden"><span class="nobr">Status</span></th>
+							            <th>Status</th>
 							            <th>Created Date</th>
 							            <th>Action</th>
 							        </tr>
@@ -60,7 +60,7 @@ include "includes/header.php";
 						            <td><?php echo $fetch['area_name'] ?></td>
 						            <td><span class="nobr"><?php echo $rowstate['state_name'] ?></span></td>
 						            <td>
-						            <?php if($fetch['area_status']==1)
+						            <?php if($fetch['area_status'] == 1)
 												echo "Active";
 											  else
 												echo "InActive";
@@ -78,7 +78,7 @@ include "includes/header.php";
 							<?php } ?>
 							</table>
 							<?php } else {
-								echo "<div>No Areas found</div>";
+								echo "<div class='no_result'> <span> No records found </span> </div>";
 							} ?>					
 	</div>
 	<div class="clearfix"></div>

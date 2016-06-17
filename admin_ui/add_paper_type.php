@@ -6,7 +6,27 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
+ <?php 
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$paper_type = $_POST['paper_type'];
+		$paper_type_status=$_POST['paper_type_status'];
+		if($paper_type=="" || $paper_type_status=="") {
+			$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}
+		else {
+			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");
+			$row=mysql_fetch_array($qr);
+			if($row > 0) {
+				$successMessage = "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
+			}
+			else {
+				mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status) VALUES ('$paper_type','$paper_type_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
+			}
+		}
+	}
+
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -18,7 +38,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Paper type</a>
+						<span> Paper type </span>
 					</li>
 					<li>
 						<span>Add Paper type</span>
@@ -28,9 +48,7 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container error_message_mandatory">
-	<span> Please fill out all mandatory fields </span>
-</div>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -40,21 +58,21 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Papertype Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Papertype Information</h4>
-							<form action="#" method="POST" name="edit-acc-info">
+							<form action="add_paper_type.php" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="last-name">Papertype<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Papertype">
+									<input type="text" class="form-control" name="paper_type" id="first-name" placeholder="Papertype">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papertype Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
-								        <option>
+									<select class="product-type-filter form-control" name="paper_type_status" id="sel1">
+								        <option value="">
 											<span>Select status</span>
 										</option>
-								        <option value="0">
+								        <option value="1">
 											<span>Active</span>
 										</option>
-										<option value="1">
+										<option value="0">
 											<span>Inactive</span>
 										</option>
 								    </select>

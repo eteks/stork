@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if($state_id=="" || $area_name=="" || $area_status=="") {
 		// header('Location: add_area.php');
 		// exit();
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
 		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_state_id='$state_id'");
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">State</a>
+						<span> State </span>
 					</li>
 					<li>
 						<span>Add Area</span>
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel1" name="state_id">
-								        <option>
+								        <option value="">
 											<span>Select State</span>
 										</option>
 										<?php
@@ -80,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel1" name="area_status">
-								        <option>
+								        <option value="">
 											<span>Select status</span>
 										</option>
-								        <option value="0">
+								        <option value="1">
 											<span>Active</span>
 										</option>
-										<option value="1">
+										<option value="0">
 											<span>Inactive</span>
 										</option>
 								    </select>

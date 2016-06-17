@@ -16,7 +16,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Paper side</a>
+						<span> Paper side </span>
 					</li>
 					<li>
 						<span>All Paper side</span>
@@ -32,41 +32,47 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> Areas</h3>
 			<div class="form-edit-info">
-							<table class="data-table" id="my-orders-table">
-						        <tr class="">
-						            <th>Paper Side</th>
-						            
-						            <th class="th_hidden"><span class="nobr">Status</span></th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
-							    <tr class="">
-						            <td>Madurai</td>
-						            
-						            <td> Active</td>
-						            <td><span class="price"> 24/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							   <tr class="">
-						            <td>Virudhunagar</td>
-						         
-						            <td> Inactive</td>
-						            <td><span class="price"> 28/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							</table>					
+				<?php 
+					$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`");
+					$papersides_rows = mysql_num_rows($papersides);
+					if ($papersides_rows > 0 ) {
+					?>
+				<table class="data-table paperside_table" id="my-orders-table">
+			        <thead>
+				        <tr class="">
+				            <th>Paper Side</th>
+				            <th>Status</th>
+				            <th>Created Date</th>
+				            <th>Action</th>
+				        </tr>
+				    </thead>
+				    <?php while ($papersides_array = mysql_fetch_array($papersides)) {
+				    ?>
+				    <tr class="">
+			            <td> <span> <?php echo $papersides_array['paper_side'] ?> </span></td>
+			            
+			            <td> <span> <?php 
+			            if ($papersides_array['paper_side_status'] == 1) {
+			             	echo "Active" ;
+			            }
+			            else {
+			            	echo "InActive";
+			            	}?> </span> 
+			            </td>
+			            <td><span> <?php echo $papersides_array['created_date'] ?> </td>
+			            <td class="th_hidden a-center last">
+			                <span class="nobr">
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php"><i class="fa fa-pencil-square-o "></i> </a>
+				                <span class="separator"></span> 
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				            </span>
+				        </td>
+				   	</tr>
+				   	<?php } ?>
+				</table>
+				<?php } else {
+					echo "<div class='no_result'> <span> No records found </span> </div>";
+				} ?>
 	</div>
 	<div class="clearfix"></div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

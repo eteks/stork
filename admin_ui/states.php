@@ -16,7 +16,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">State</a>
+						<span> State </span>
 					</li>
 					<li>
 						<span>All States</span>
@@ -77,11 +77,12 @@ include "includes/header.php";
 							   <?php } ?>
 							</table>
 							<?php } else {
-								echo "<div>No states found</div>";
+								echo "<div class='no_result'> <span> No records found </span> </div>";
 							} ?>
 										
 	</div>
 	<div class="clearfix"></div>
+	<!-- Delete popup Start -->
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -99,6 +100,7 @@ include "includes/header.php";
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div>
+	<!-- Delete popup End -->
 </div>
 </div>
 <?php include 'includes/footer.php'; ?>

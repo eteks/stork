@@ -17,7 +17,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Paper type</a>
+						<span> Paper type </span>
 					</li>
 					<li>
 						<span>All Paper type</span>
@@ -33,41 +33,46 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> PaperType</h3>
 			<div class="form-edit-info">
-							<table class="data-table" id="my-orders-table">
-						        <tr class="">
-						            <th>Paper Type</th>
-						            
-						            <th class="th_hidden"><span class="nobr">Status</span></th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
-							    <tr class="">
-						            <td>Madurai</td>
-						            						            
-						            						            <td> Active</td>
-						            <td><span class="price"> 24/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_type.php"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="5" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							   <tr class="">
-						            <td>Virudhunagar</td>
-						           
-						            <td> Inactive</td>
-						            <td><span class="price"> 28/07/16 </span></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							</table>					
+				<?php 
+					$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
+					$papertypes_rows = mysql_num_rows($papertypes);
+					if ($papertypes_rows > 0 ) {
+				?>
+				<table class="data-table papertypes_table" id="my-orders-table">
+			        <thead>
+				        <tr class="">
+				            <th>Paper Type</th>
+				            <th>Status</th>
+				            <th>Created Date</th>
+				            <th>Action</th>
+				        </tr>
+				    </thead>
+				    <?php while ($papertypes_array = mysql_fetch_array($papertypes)) {
+				    ?>
+				    <tr class="">
+			            <td><span> <?php echo $papertypes_array['paper_type'] ?> </span></td>
+			            <td> <span> <?php 
+				            if ($papertypes_array['paper_type_status'] == 1) {
+				             	echo "Active" ;
+				            }
+				            else {
+				            	echo "InActive";
+				            }?> </span> 
+			            </td>
+			            <td><span class="price"> <?php echo $papertypes_array['created_date'] ?> </span></td>
+			            <td class="th_hidden a-center last">
+			                <span class="nobr">
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=4"><i class="fa fa-pencil-square-o "></i> </a>
+				                <span class="separator"></span> 
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch[''] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				            </span>
+				        </td>
+				   	</tr>
+				   	<?php } ?>
+				</table>
+				<?php } else {
+					echo "<div class='no_result'> <span> No records found </span> </div>";
+				} ?>
 	</div>
 	<div class="clearfix"></div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

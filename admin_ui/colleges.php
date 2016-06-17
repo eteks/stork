@@ -81,7 +81,7 @@ include "includes/header.php";
 								?>
 							</table>
 							<?php } else {
-								echo "<div>No College found</div>";
+								echo "<div class='no_result'> <span> No records found </span> </div>";
 							} ?>					
 	</div>
 	<div class="clearfix"></div>

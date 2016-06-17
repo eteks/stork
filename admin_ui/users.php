@@ -16,7 +16,7 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">User</a>
+						<span> User </span>
 					</li>
 					<li>
 						<span>All Users</span>
@@ -32,71 +32,71 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<h3 class="acc-title lg"> Users</h3>
 			<div class="form-edit-info">
-						<?php
-							$sql = "SELECT * FROM `stork_users`";
-							$query = mysqlQuery($sql);
-							$count_rows = mysql_num_rows($query);
-							if ($count_rows > 0)
-							{
-						?>	
-							<table class="data-table" id="my-orders-table">
-							  <thead>
-						        <tr class="">
-						            <th>User Name</th>
-						            <th>User Type</th>
-						            <th>Email</th>
-						            <th>Date of Birth</th>
-						            <th>Mobile</th>
-						            <th>Status</th>
-						            <th>Created Date</th>
-						            <th>Action</th>
-						        </tr>
-						      </thead>
-						       <?php              
-								$i = 0;
-								while ($fetch = mysql_fetch_array($query))
-								{		
-							   ?>
-							    <tr class="">
-						            <td><?php echo $fetch['username'] ?></td>
-						            <td>
-							            <?php 
-							            if($fetch['user_type']==1)
-											echo "Student";
-										else if($fetch['user_type']==2)
-											echo "Profession";
-										?>
-									</td>
-						            <td><?php echo $fetch['user_email'] ?></td>
-						            <td><?php echo $fetch['user_dob'] ?></td>
-						            <td><?php echo $fetch['user_mobile'] ?></td>
-						            <td>
-						            <?php 
-						            if($fetch['state_status']==1)
-										echo "Active";
-									else
-										echo "InActive";
-									?>
-									</td>
-						            <td><?php echo $fetch['create_date'] ?></td>
-						            <td class="th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_users.php?id=<?php echo $fetch['user_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
-							        </td>
-							   	</tr>
-							   <?php
-								}
-								?>
-							</table>
-						<?php
-						}
+				<?php
+					$sql = "SELECT * FROM `stork_users`";
+					$query = mysqlQuery($sql);
+					$count_rows = mysql_num_rows($query);
+					if ($count_rows > 0)
+					{
+				?>	
+				<table class="data-table user_table" id="my-orders-table">
+				  <thead>
+			        <tr class="">
+			            <th>User Name</th>
+			            <th>User Type</th>
+			            <th>Email</th>
+			            <th>Date of Birth</th>
+			            <th>Mobile</th>
+			            <th>Status</th>
+			            <th>Created Date</th>
+			            <th>Action</th>
+			        </tr>
+			      </thead>
+			       <?php              
+					$i = 0;
+					while ($fetch = mysql_fetch_array($query))
+					{		
+				   ?>
+				    <tr class="">
+			            <td><?php echo $fetch['username'] ?></td>
+			            <td>
+				            <?php 
+				            if($fetch['user_type']==1)
+								echo "Student";
+							else if($fetch['user_type']==2)
+								echo "Profession";
+							?>
+						</td>
+			            <td><?php echo $fetch['user_email'] ?></td>
+			            <td><?php echo $fetch['user_dob'] ?></td>
+			            <td><?php echo $fetch['user_mobile'] ?></td>
+			            <td>
+			            <?php 
+			            if($fetch['user_status']==1)
+							echo "Active";
 						else
-						{
-							echo ('<div style="padding-top:25px;padding-bottom:30px;text-align:center"><h3>No Users Found</h3></div>');
-						} ?>					
+							echo "InActive";
+						?>
+						</td>
+			            <td><?php echo $fetch['create_date'] ?></td>
+			            <td class="th_hidden a-center last">
+			                <span class="nobr">
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_users.php?id=<?php echo $fetch['user_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+				                <span class="separator"></span> 
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				            </span>
+				        </td>
+				   	</tr>
+				   <?php
+					}
+					?>
+				</table>
+			<?php
+			}
+			else
+			{
+				echo "<div class='no_result'> <span> No records found </span> </div>";
+			} ?>					
 	</div>
 	<div class="clearfix"></div>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

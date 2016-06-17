@@ -43,7 +43,7 @@ if(isset($_GET["id"]))
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">State</a>
+						<span> State </span>
 					</li>
 					<li>
 						<span>Edit States</span>
