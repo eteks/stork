@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		  		$target_dir = "style/img/zone/";
 				$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
 				// echo $target_file;
+				$info = pathinfo($_FILES['offerzone_image']['name']);
 				$uploadOk = 1;	
 				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		
@@ -42,11 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				} 
 				else {
 				unlink($old_path_name);
+				$i = 0;
+				do {
+				    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+				    $i++;
+				    $target_file = "style/img/zone/" . $image_name;
+				} while(file_exists($target_file));
 				move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
 				mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_image`='$target_file',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
 		 		$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
+		 		// header("Location: users.php");
 		 	}
-		  }		
+		  }
 		
 	
 } }?>
@@ -104,9 +112,11 @@ if(isset($_GET["id"]))
 					    <label for="last-name">Offerzone Image<span class="required">*</span></label>
 						<input type="file" class="form-control browse_style" value="<?php echo $offer_array['offer_zone_image']; ?>" id="OfferzoneImage" name="offerzone_image">
 						<?php
-			 				$img_source= $offer_array['offer_zone_image'];
-			            	echo "<a class='dispaly_hide_offer' href='$img_source'> <img class='edit_offer_image' src='$img_source'/> </a>";
-			             ?> 
+			 				$img_source= $offer_array['offer_zone_image']; ?>
+			 				<a class='dispaly_hide_offer' href='<?php echo $img_source; ?>' target='_blank'> 
+			 					<img class='edit_offer_image' src='<?php echo $img_source; ?>'/> 
+			 				</a>
+			          
 			            	<a class='dispaly_show_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>
 				       	<input type="hidden" value="<?php echo $img_source; ?>" name="old_path_name" />
 					</div>
