@@ -81,7 +81,7 @@ include "includes/header.php";
 			            <td>
 		            	<?php 
 			            	while ($rowupload = mysql_fetch_array($qryupload)) {
-							echo "<a href='../".$rowupload['upload_files']."' target='_blank'>Download File</a><br>";
+							echo "<a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a><br>";
 							}
 						?>
 						</td>
