@@ -77,11 +77,11 @@ if(isset($_GET["id"]))
 							?>
 							<div class="form-group">
 							    <label for="last-name">Paper Side<span class="required">*</span></label>
-								<input type="text" class="form-control" id="first-name" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
+								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
 							</div>
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paperside Status<span class="required">*</span></label>
-								<select class="product-type-filter form-control" id="s5" name="paper_side_status">
+								<select class="product-type-filter form-control" id="sel_a" name="paper_side_status">
 							        <option>
 										<span>Select status</span>
 									</option>

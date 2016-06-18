@@ -80,11 +80,11 @@ if(isset($_GET["id"]))
 							?>
 							<div class="form-group">
 							    <label for="last-name">Paper Type<span class="required">*</span></label>
-								<input type="text" class="form-control" id="first-name" placeholder="PaperType" name="paper_type" value="<?php echo($row['paper_type']); ?>">
+								<input type="text" class="form-control" id="papertype" placeholder="PaperType" name="paper_type" value="<?php echo($row['paper_type']); ?>">
 							</div>
 							<div class="cate-filter-content">	
 							    <label for="first-name">PaperType Status<span class="required">*</span></label>
-								<select class="product-type-filter form-control" id="s5" name="paper_type_status">
+								<select class="product-type-filter form-control" id="sel_a" name="paper_type_status">
 							        <option>
 										<span>Select status</span>
 									</option>

@@ -4,9 +4,31 @@ include "includes/header.php";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All States</title>
 </head>
-<body>
-  
+<body> 
 <?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="col-md-3 search-w SC-w hd-pd ">
+				<span class="search-icon dropdowSCIcon">
+					<i class="fa fa-search"></i>
+				</span>
+				<div class="search-safari" style="display:none;">
+					<div class="search-form dropdowSCContent">
+						<form method="POST" action="#">
+							<input type="text" name="search" placeholder="Search" />
+							<input type="submit" name="search" value="Search">
+							<i class="fa fa-search"></i>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>

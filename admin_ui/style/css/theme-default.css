@@ -225,7 +225,7 @@ table {
   padding:0 26px;
 }
 .gbtn:hover{
-  background: #fbc443;
+  background: #25bce9;
   color: #ffffff;
 }
 .gbtn:hover span{
@@ -1036,9 +1036,9 @@ ul.cate_list li.parent a i{
   float:right;
 }
 .cart-w, .search-w{
-  position: relative;
   display: block;
-  width: 40%;
+  padding: 0;
+  text-align: right;
   vertical-align: middle;
 }
 .search-w i{
@@ -1182,7 +1182,7 @@ a.mcart-name{
 /*Tfix*/
 .search-w  .search-safari{
   overflow: hidden;
-  top: 60px;
+  top: 47px;
   width: 265px;
   height: 60px;
   position: absolute;
@@ -6364,7 +6364,6 @@ select::-ms-expand {
 }
 .show_offer_image {
   height: 32px;
-  margin: 0 0 0 7px;
   width: 10%;
 }
 .dropdown-menu a:hover {
@@ -6378,18 +6377,26 @@ select::-ms-expand {
   position: relative;
 }
 .dispaly_hide_offer {
-  height: 100px;
-  left: 216px;
+  height: 58px;
+  left: 232px;
   position: absolute;
-  top: 7px;
-  width: 100px;
+  top: 12px;
+  width: 75px;
+}
+.dispaly_show_add_offer {
+  height: 58px;
+  left: 232px;
+  position: absolute;
+  top: 12px;
+  width: 75px;
+  display: none;
 }
 .dispaly_show_offer {
-  height: 100px;
-  left: 216px;
+  height: 58px;
+  left: 232px;
   position: absolute;
-  top: 7px;
-  width: 100px;
+  top: 12px;
+  width: 75px;
   display: none;
 }
 .display_none {
@@ -6411,4 +6418,17 @@ select::-ms-expand {
 }
 .width_text_area {
   max-width: 378px;
+}
+.offer_image_align {
+  display: block;
+  float: left;
+  text-align: center;
+  /*text-indent: 3px;*/
+  width: 286px;
+}
+.search-form input[type="text"] {
+  height: 40px !important;
+  position: relative;
+  top: -16px;
+  width: 195px;
 }

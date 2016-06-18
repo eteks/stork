@@ -10,28 +10,36 @@ include "includes/header.php";
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
+	$delete_offer_image = mysqlQuery ("SELECT * FROM `stork_offer_zone` WHERE offer_zone_id='$val'");
+	$delete_offer_array=mysql_fetch_array($delete_offer_image);
+	$filename=$delete_offer_array['offer_zone_image'];
+	unlink($filename);
 	mysqlQuery("DELETE FROM `stork_offer_zone` WHERE `offer_zone_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
+
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3 hidden-xs dashboard_header">
+			<div class="col-sm-9 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<div class="breadcrumb-w col-sm-9">
-				<span class="">You are here:</span>
-				<ul class="breadcrumb">
-					<li>
-						<span> Offerzone </span>
-					</li>
-					<li>
-						<span> All Offerzone</span>
-					</li>
-				</ul>
+			<div class="col-md-3 search-w SC-w hd-pd ">
+				<span class="search-icon dropdowSCIcon">
+					<i class="fa fa-search"></i>
+				</span>
+				<div class="search-safari" style="display:none;">
+					<div class="search-form dropdowSCContent">
+						<form method="POST" action="#">
+							<input type="text" name="search" placeholder="Search" />
+							<input type="submit" name="search" value="Search">
+							<i class="fa fa-search"></i>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,11 +68,11 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        ?>
 				    <tr class="">
 			            <td><span class="nobr"><?php echo $offer_array['offer_zone_title'] ?></span></td>
-			            <td><span class="nobr"><?php echo $offer_array['offer_zone_image'] ?></span>
+			            <td><span class="nobr offer_image_align"><?php echo $offer_array['offer_zone_image'] ?></span>
 			      
 				            <?php 
 				 				$img_source=$offer_array['offer_zone_image'];	
-				            	echo "<a href='$img_source'> <img class='show_offer_image' src='$img_source' /> </a>"; 
+				            	echo "<a href='$img_source' target='_blank'> <img class='show_offer_image' src='$img_source' /> </a>"; 
 				            ?> 
 			            </td>
 			            <td> <span class="price">
@@ -74,7 +82,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 									echo "InActive";
 							?>  </span>
 						</td>
-			            <td><span class="nobr"><?php echo $offer_array['create_date'] ?></span></td>
+			             <?php  $createddate=strtotime($offer_array['create_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php?id=<?php echo $offer_array['offer_zone_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

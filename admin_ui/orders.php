@@ -9,19 +9,22 @@ include "includes/header.php";
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3 hidden-xs dashboard_header">
+			<div class="col-sm-9 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<div class="breadcrumb-w col-sm-9">
-				<span class="">You are here:</span>
-				<ul class="breadcrumb">
-					<li>
-						<span> Order </span>
-					</li>
-					<li>
-						<span>All Orders</span>
-					</li>
-				</ul>
+			<div class="col-md-3 search-w SC-w hd-pd ">
+				<span class="search-icon dropdowSCIcon">
+					<i class="fa fa-search"></i>
+				</span>
+				<div class="search-safari" style="display:none;">
+					<div class="search-form dropdowSCContent">
+						<form method="POST" action="#">
+							<input type="text" name="search" placeholder="Search" />
+							<input type="submit" name="search" value="Search">
+							<i class="fa fa-search"></i>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -100,7 +103,12 @@ include "includes/header.php";
 						<td><?php echo $fetch['order_shipping_line1'].$fetch['order_shipping_line2'] ?></td>
 			            <td><?php echo $rowstate['state_name'] ?></td>
 			            <td><?php echo $rowarea['area_name'] ?></td>
-			            <td><?php echo $fetch['created_date'] ?></td>
+			             <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+		            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td>
 				            <?php 
 				            if($fetch['order_status']==1)
