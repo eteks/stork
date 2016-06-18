@@ -15,28 +15,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$old_path_name = $_POST["old_path_name"];
 
 	$offer_query1 = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title' AND offer_zone_id NOT IN ('$val')");
-		 	$row = mysql_num_rows($offer_query1);
-			if($row > 0){
-		 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
-		  	}
-		  	else {
-			// move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
-
-		  		$target_dir = "style/img/zone/";
-				$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
-				// echo $target_file;
-				$info = pathinfo($_FILES['offerzone_image']['name']);
-				$uploadOk = 1;	
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	$row = mysql_num_rows($offer_query1);
+	if($row > 0){
+		$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
+	}
+	if (isset($_FILES['offerzone_image']) {
+		$target_dir = "style/img/zone/";
+		$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
+		// echo $target_file;
+		$info = pathinfo($_FILES['offerzone_image']['name']);
+		$uploadOk = 1;	
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		
-	    		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-		    	$message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-		    	$uploadOk = 0;
-				}
-				if ($_FILES["fileToUpload"]["size"] > 500000) {
-				    $message = "Sorry, your file is too large.";
-				    $uploadOk = 0;
-				}
+	    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+		    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+			$message = "Sorry, your file is too large.";
+			$uploadOk = 0;
+		}
 				if ($uploadOk == 0) {
 				    $successMessage = "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
 				// if everything is ok, try to upload file
@@ -54,6 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		 		$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
 		 		// header("Location: users.php");
 		 	}
+		  }
+		  else {
+		  	mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
+		 		$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
 		  }
 		
 	
