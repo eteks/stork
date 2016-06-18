@@ -35,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		// if everything is ok, try to upload file
 		} 
 		else {
-			move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
 			$offer_query = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title'");
 		 	$row = mysql_num_rows($offer_query);
 			if($row > 0){
 		 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
 		  	} else {
+			move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
 			mysqlQuery("INSERT INTO `stork_offer_zone` (offer_zone_title,offer_zone_image,offer_zone_status) VALUES ('$offerzone_title','$target_file','$offerzone_status')");
 		 	$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Inserted Successfully </span></div>";
 		  	}		
@@ -86,9 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								    <label for="first-name">Offerzone Title<span class="required">*</span></label>
 									<input type="text" class="form-control" id="OfferzoneTitle" autocomplete="off" placeholder="Offerzone Title" name="offerzone_title">
 								</div>
-								<div class="form-group">
+								<div class="form-group offer_zone_position">
 								    <label for="last-name">Offerzone Image<span class="required">*</span></label>
 									<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
+									<a class='dispaly_show_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Offerzone Status<span class="required">*</span></label>
@@ -111,6 +112,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						</div>
 					</section><!-- Cart main content : End -->
 </div><!-- container -->
+<script>
+	$(function () {
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+
+function imageIsLoaded(e) {
+	$('.dispaly_show_offer').addClass('display_block');
+    $('#edit_offer_upload').attr('src', e.target.result);
+};
+</script>
 </div>
 </div>
 <?php include 'includes/footer.php'; ?> 

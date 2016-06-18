@@ -102,11 +102,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Student Id<span class="required">*</span></label>
-									<input type="text" class="form-control" id="studentid" placeholder="Student Id" name="order_student" value="<?php echo($row['order_student_id']); ?>">
+									<input type="text" class="form-control" id="studentid" placeholder="Student Id" name="order_student" value="<?php if($row['order_student_id'] !=0) echo($row['order_student_id']); else echo ""; ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Student Year<span class="required">*</span></label>
-									<input type="text" class="form-control" id="studentyear" placeholder="Student Year" name="order_student_year" value="<?php echo($row['order_student_year']); ?>"/>
+									<input type="text" class="form-control" id="studentyear" placeholder="Student Year" name="order_student_year" value="<?php if($row['order_student_year']) echo($row['order_student_year']); else echo ""; ?>"/>
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Shipping Department<span class="required">*</span></label>

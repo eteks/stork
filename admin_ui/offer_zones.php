@@ -82,7 +82,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php?id=<?php echo $offer_array['offer_zone_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $offer_array['offer_zone_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>

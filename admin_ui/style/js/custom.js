@@ -8,6 +8,9 @@ $(document).ready(function(){
       $(".sidey").slideDown(350);
     }                
   });
+  $('.paging-nav a').each(function() {
+    
+  });
 });
  
 $(document).ready(function(){
