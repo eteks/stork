@@ -148,7 +148,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Amount" name="amount" value="<?php echo($row['cost_estimation_amount']); ?>">
+									<input type="text" class="form-control" id="first-name" autocomplete="off" placeholder="Amount" name="amount" value="<?php echo($row['cost_estimation_amount']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>

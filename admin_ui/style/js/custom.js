@@ -69,8 +69,8 @@ $(document).ready(function () {
 });
 $(document).ready(function () {
     
-    $('#date').datepicker({
-        dateFormat: 'dd-mm-yy',
+    $('#dob').datepicker({
+        dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });

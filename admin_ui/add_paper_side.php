@@ -64,11 +64,11 @@ include "includes/header.php";
 							<form action="add_paper_side.php" method="POST" name="edit-acc-info" id="add_paper_side">
 								<div class="form-group">
 								    <label for="last-name">Paperside<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" name="paper_side" placeholder="Paperside">
+									<input type="text" class="form-control" id="paperside" autocomplete="off" name="paper_side" placeholder="Paperside">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paperside Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="paper_side_status">
+									<select class="product-type-filter form-control" id="sel_a" name="paper_side_status">
 								        <option value="">
 											<span>Select status</span>
 										</option>

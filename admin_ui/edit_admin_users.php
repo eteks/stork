@@ -84,23 +84,23 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">User Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="User Name" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>">
+									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name1" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
+									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="test" placeholder="Email" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>">
+									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="phone" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="adminuser_type">
+									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
 								        <option>
 											<span>Select Type</span>
 										</option>
@@ -109,7 +109,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s6" name="adminuser_status">
+									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>

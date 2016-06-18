@@ -68,7 +68,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				            	echo "InActive";
 				            }?> </span> 
 			            </td>
-			            <td><span class="price"> <?php echo $papertypes_array['created_date'] ?> </span></td>
+			 <?php  $createddate=strtotime($papertypes_array['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+		            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_type.php?id=<?php echo $papertypes_array['paper_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

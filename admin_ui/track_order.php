@@ -42,7 +42,8 @@ include "includes/header.php";
 							        </td>
 							   	</tr>
 					
-							</table>					
+							</table>	
+											
 	</div>
 	<div class="clearfix"></div>
 </div>

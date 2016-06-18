@@ -79,7 +79,7 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="state_id">
+									<select class="product-type-filter form-control" id="sel_a" name="state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -97,11 +97,11 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Area Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="area_name" value="<?php echo($row['area_name']); ?>">
+									<input type="text" class="form-control" id="areaname" autocomplete="off" placeholder="Area Name" name="area_name" value="<?php echo($row['area_name']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s6" name="area_status">
+									<select class="product-type-filter form-control" id="sel_b" name="area_status">
 										<option>
 											<span>Select status</span>
 										</option>

@@ -77,7 +77,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 												echo "InActive";
 										?>
 						            </td>
-						            <td><span class="price"> <?php echo $fetch['create_date'] ?> </span></td>
+						           <?php  $createddate=strtotime($fetch['create_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="price"> <?php echo $date; ?> </span></td>
 						            <td class="th_hidden a-center last">
 						                <span class="nobr">
 						                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_college.php?id=<?php echo $fetch['college_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
@@ -107,7 +112,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body delete_message_style">
-					<input type="hidden" name="delete" id="vId" value=""/>
+					<input type="hidden" name="delete" id="vId" autocomplete="off" value=""/>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<center>
 							<h5>Are you sure you want to delete this Product? </h5>

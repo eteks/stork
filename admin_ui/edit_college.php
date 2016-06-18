@@ -97,7 +97,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">College Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="College Name" name="college_name" value="<?php echo($row['college_name']); ?>">
+									<input type="text" class="form-control" id="collegename" autocomplete="off" placeholder="College Name" name="college_name" value="<?php echo($row['college_name']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>

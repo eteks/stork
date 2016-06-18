@@ -69,7 +69,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            	echo "InActive";
 			            	}?> </span> 
 			            </td>
-			            <td><span> <?php echo $papersides_array['created_date'] ?> </td>
+			            <?php  $createddate=strtotime($papersides_array['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php?id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

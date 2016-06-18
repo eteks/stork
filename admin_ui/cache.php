@@ -78,13 +78,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (recentCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="recentCacheEnable" checked>
+								<input type="checkbox" name="recentCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="recentCacheEnable" >
+								<input type="checkbox" name="recentCacheEnable"  autocomplete="off">
 								<?php
 							}
 							?>
@@ -93,7 +93,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Recent Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="recentCacheExpireTime" value="<?php echo recentCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="recentCacheExpireTime" value="<?php echo recentCacheExpireTime();?>">
 							</div>
 						</div>	
 						<div class="form-group">
@@ -103,13 +103,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (categoryCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="categoryCacheEnable" checked>
+								<input type="checkbox" name="categoryCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="categoryCacheEnable" >
+								<input type="checkbox" name="categoryCacheEnable" autocomplete="off" >
 								<?php
 							}
 							?>
@@ -118,7 +118,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Category Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="categoryCacheExpireTime" value="<?php echo categoryCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="categoryCacheExpireTime" value="<?php echo categoryCacheExpireTime();?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -128,13 +128,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (tagCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="tagCacheEnable" checked>
+								<input type="checkbox" name="tagCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="tagCacheEnable" >
+								<input type="checkbox" name="tagCacheEnable" autocomplete="off">
 								<?php
 							}
 							?>
@@ -143,7 +143,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Tags Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="tagCacheExpireTime" value="<?php echo tagCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="tagCacheExpireTime" value="<?php echo tagCacheExpireTime();?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -153,13 +153,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (topCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="topCacheEnable" checked>
+								<input type="checkbox" name="topCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="topCacheEnable" >
+								<input type="checkbox" name="topCacheEnable" autocomplete="off">
 								<?php
 							}
 							?>
@@ -168,7 +168,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Top Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="topCacheExpireTime" value="<?php echo topCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="topCacheExpireTime" value="<?php echo topCacheExpireTime();?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -178,13 +178,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (productCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="productCacheEnable" checked>
+								<input type="checkbox" name="productCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="productCacheEnable" >
+								<input type="checkbox" name="productCacheEnable" autocomplete="off">
 								<?php
 							}
 							?>
@@ -193,7 +193,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">product Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="productCacheExpireTime" value="<?php echo productCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="productCacheExpireTime" value="<?php echo productCacheExpireTime();?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -203,13 +203,13 @@ $_SESSION[$csrfVariable] = $key;
 							if (sidebarCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="sidebarCacheEnable" checked>
+								<input type="checkbox" name="sidebarCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
 							{
 								?>
-								<input type="checkbox" name="sidebarCacheEnable" >
+								<input type="checkbox" name="sidebarCacheEnable" autocomplete="off" >
 								<?php
 							}
 							?>
@@ -218,7 +218,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Sidebar Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="sidebarCacheExpireTime" value="<?php echo sidebarCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="sidebarCacheExpireTime" value="<?php echo sidebarCacheExpireTime();?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -228,7 +228,7 @@ $_SESSION[$csrfVariable] = $key;
 							if (relatedCacheEnable())
 							{
 								?>
-								<input type="checkbox" name="relatedCacheEnable" checked>
+								<input type="checkbox" name="relatedCacheEnable" autocomplete="off" checked>
 								<?php
 							}
 							else
@@ -243,7 +243,7 @@ $_SESSION[$csrfVariable] = $key;
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Related Cache Expire Time</label>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" placeholder="Enter Time in Seconds..." name="relatedCacheExpireTime" value="<?php echo relatedCacheExpireTime();?>">
+								<input type="text" class="form-control" autocomplete="off" placeholder="Enter Time in Seconds..." name="relatedCacheExpireTime" value="<?php echo relatedCacheExpireTime();?>">
 							</div>
 						</div>
 						<hr />
