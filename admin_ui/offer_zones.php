@@ -10,9 +10,14 @@ include "includes/header.php";
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
+	$delete_offer_image = mysqlQuery ("SELECT * FROM `stork_offer_zone` WHERE offer_zone_id='$val'");
+	$delete_offer_array=mysql_fetch_array($delete_offer_image);
+	$filename=$delete_offer_array['offer_zone_image'];
+	unlink($filename);
 	mysqlQuery("DELETE FROM `stork_offer_zone` WHERE `offer_zone_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
+
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -60,11 +65,11 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        ?>
 				    <tr class="">
 			            <td><span class="nobr"><?php echo $offer_array['offer_zone_title'] ?></span></td>
-			            <td><span class="nobr"><?php echo $offer_array['offer_zone_image'] ?></span>
+			            <td><span class="nobr offer_image_align"><?php echo $offer_array['offer_zone_image'] ?></span>
 			      
 				            <?php 
 				 				$img_source=$offer_array['offer_zone_image'];	
-				            	echo "<a href='$img_source'> <img class='show_offer_image' src='$img_source' /> </a>"; 
+				            	echo "<a href='$img_source' target='_blank'> <img class='show_offer_image' src='$img_source' /> </a>"; 
 				            ?> 
 			            </td>
 			            <td> <span class="price">

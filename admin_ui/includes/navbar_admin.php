@@ -50,20 +50,7 @@
 				<div class="col-lg-7 col-md-8 col-sm-2 col-xs-2">
 				</div>
 				<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 headerCS">
-					<div class="search-w SC-w hd-pd ">
-						<span class="search-icon dropdowSCIcon">
-							<i class="fa fa-search"></i>
-						</span>
-						<div class="search-safari" style="display:none;">
-							<div class="search-form dropdowSCContent">
-								<form method="POST" action="#">
-									<input type="text" name="search" placeholder="Search" />
-									<input type="submit" name="search" value="Search">
-									<i class="fa fa-search"></i>
-								</form>
-							</div>
-						</div>
-					</div>
+					
 					<div class="user_logout">
 						<span class="dropdowSCIcon">
 							<ul class="">
