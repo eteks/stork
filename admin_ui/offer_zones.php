@@ -82,7 +82,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 									echo "InActive";
 							?>  </span>
 						</td>
-			            <td><span class="nobr"><?php echo $offer_array['create_date'] ?></span></td>
+			             <?php  $createddate=strtotime($offer_array['create_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php?id=<?php echo $offer_array['offer_zone_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

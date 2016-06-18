@@ -122,7 +122,7 @@ $cost_status=$_POST['cost_status'];
 					</div>
 					<div class="form-group">
 					    <label for="last-name">Amount<span class="required">*</span></label>
-						<input type="text" class="form-control" id="amunt" name="cost_amount" placeholder="Amount">
+						<input type="text" class="form-control" id="amunt" autocomplete="off" name="cost_amount" placeholder="Amount">
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Cost estimation Status<span class="required">*</span></label>

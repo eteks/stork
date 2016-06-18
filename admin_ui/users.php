@@ -91,7 +91,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							echo "InActive";
 						?>
 						</td>
-			            <td><?php echo $fetch['create_date'] ?></td>
+						   <?php  $createddate=strtotime($fetch['create_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+			            <td><?php echo $date; ?></td>
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_users.php?id=<?php echo $fetch['user_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

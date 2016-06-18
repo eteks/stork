@@ -84,8 +84,15 @@ include "includes/header.php";
 							echo "<a href='../".$rowupload['upload_files']."' target='_blank'>Download File</a><br>";
 							}
 						?>
-			            </td>
-			            <td><?php echo $roworder_details['created_date']; ?></td>
+						</td>
+						<td>
+		            		<span class="price"> 
+			            		<?php  $createddate=strtotime($fetch['created_date']);
+									   $date = date('d/m/Y', $createddate);
+							            echo $date; 
+							    ?>
+						    </span>
+						</td>
 			            <td>
 				            <?php 
 				            if($roworder_details['order_details_status']==1)

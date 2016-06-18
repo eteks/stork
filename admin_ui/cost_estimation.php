@@ -86,7 +86,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 									echo "InActive";
 							?> </span>
 						</td>
-			            <td><span class="nobr"><?php echo $cost_array['created_date'] ?></span></td>			           
+			            <?php  $createddate=strtotime($cost_array['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+		            <td><span class="price"> <?php echo $date; ?> </span></td>			           
 			            <td class="th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_cost_estimation.php?id=<?php echo $cost_array['cost_estimation_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

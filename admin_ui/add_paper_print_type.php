@@ -64,11 +64,11 @@ include "includes/header.php";
 							<form action="add_paper_print_type.php" method="POST" name="edit-acc-info" id="add_paper_print_type">
 								<div class="form-group">
 								    <label for="last-name">Paperprinttype<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" name="paper_print_type" placeholder="Paperprinttype">
+									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paperprinttype">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paperprinttype Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="paper_print_type_status" id="s5">
+									<select class="product-type-filter form-control" name="paper_print_type_status" id="sel_a">
 								        <option value="">
 											<span>Select status</span>
 										</option>

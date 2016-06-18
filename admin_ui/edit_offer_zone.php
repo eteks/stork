@@ -88,6 +88,9 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -98,18 +101,18 @@ if(isset($_GET["id"]))
 			<h3 class="acc-title lg">Edit Offerzone Information</h3>
 			<div class="form-edit-info">
 				<h4 class="acc-sub-title">Offerzone Information</h4>
-				<form action="edit_offer_zone.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" enctype="multipart/form-data">
+				<form action="edit_offer_zone.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="add_offer_zone" enctype="multipart/form-data">
 					<?php  
 						$offer_query = mysqlQuery("SELECT * FROM `stork_offer_zone` WHERE `offer_zone_id`='$id'");
 						$offer_array = mysql_fetch_array($offer_query);
 					?>
 					<div class="form-group">
 					    <label for="first-name">Offerzone Title<span class="required">*</span></label>
-						<input type="text" class="form-control" id="first-name" value="<?php echo $offer_array['offer_zone_title']; ?>" placeholder="Offerzone Title" name="offerzone_title">
+						<input type="text" class="form-control" id="OfferzoneTitle" value="<?php echo $offer_array['offer_zone_title']; ?>" placeholder="Offerzone Title" name="offerzone_title">
 					</div>
 					<div class="form-group offer_zone_position">
 					    <label for="last-name">Offerzone Image<span class="required">*</span></label>
-						<input type="file" class="form-control browse_style" value="<?php echo $offer_array['offer_zone_image']; ?>" id="first-name" name="offerzone_image">
+						<input type="file" class="form-control browse_style" value="<?php echo $offer_array['offer_zone_image']; ?>" id="OfferzoneImage" name="offerzone_image">
 						<?php
 			 				$img_source= $offer_array['offer_zone_image']; ?>
 			 				<a class='dispaly_hide_offer' href='<?php echo $img_source; ?>' target='_blank'> 
@@ -121,7 +124,7 @@ if(isset($_GET["id"]))
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Offerzone Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" id="sel1" name="offerzone_status">
+						<select class="product-type-filter form-control" id="Offerzone Status" name="offerzone_status">
 					        <option value="1" <?php if ($offer_array['offer_zone_status'] == 1) echo "selected";?>>
 								<span>Active</span>
 							</option>

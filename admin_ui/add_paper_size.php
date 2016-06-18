@@ -65,11 +65,11 @@ include "includes/header.php";
 							<form action="add_paper_size.php" method="POST" name="edit-acc-info" id="add_paper_size">
 								<div class="form-group">
 								    <label for="last-name">Papersize<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" name="paper_size" placeholder="Papersize">
+									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="Papersize">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="paper_size_status" id="s5">
+									<select class="product-type-filter form-control" name="paper_size_status" id="sel_a">
 								        <option value="">
 											<span>Select status</span>
 										</option>

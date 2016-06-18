@@ -103,7 +103,12 @@ include "includes/header.php";
 						<td><?php echo $fetch['order_shipping_line1'].$fetch['order_shipping_line2'] ?></td>
 			            <td><?php echo $rowstate['state_name'] ?></td>
 			            <td><?php echo $rowarea['area_name'] ?></td>
-			            <td><?php echo $fetch['created_date'] ?></td>
+			             <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+		            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td>
 				            <?php 
 				            if($fetch['order_status']==1)

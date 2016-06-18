@@ -91,23 +91,23 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="last-name">User Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
+									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name1" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
+									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Firstname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name2" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
+									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Lastname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name3" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
+									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="user_type">
+									<select class="product-type-filter form-control" id="sel_a" name="user_type">
 								        <option>
 											<span>Select User Type</span>
 										</option>
@@ -117,23 +117,23 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name4" placeholder="Area Name" name="user_email" value="<?php echo($row['user_email']); ?>">
+									<input type="text" class="form-control" id="email" autocomplete="off" placeholder="email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="date" placeholder="Area Name" name="user_dob" value="<?php echo($row['user_dob']); ?>">
+									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Dob" name="user_dob" value="<?php echo($row['user_dob']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line1<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name6" placeholder="Area Name" name="line1" value="<?php echo($row['line1']); ?>">
+									<input type="text" class="form-control" id="address" autocomplete="off" placeholder="Address" name="line1" value="<?php echo($row['line1']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Address Line2<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name7" placeholder="Area Name" name="line2" value="<?php echo($row['line2']); ?>">
+								    <label for="last-name">Address Line2<span class="required"></span></label>
+									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s6" name="user_state_id">
+									<select class="product-type-filter form-control" id="sel_b" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -150,7 +150,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1" name="user_area_id">
+									<select class="product-type-filter form-control" id="sel_c" name="user_area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
@@ -167,12 +167,12 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
+									<input type="text" class="form-control" id="mobile" placeholder="Area Name" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
 								</div>
 								
 								<div class="cate-filter-content">	
 								    <label for="first-name">Users Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s7" name="user_status">
+									<select class="product-type-filter form-control" id="sel_d" name="user_status">
 								        <option>
 											<span>Select status</span>
 										</option>

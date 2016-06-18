@@ -68,7 +68,12 @@ include "includes/header.php";
 										?>
 						            	</span>
 						            </td>
-						            <td><span class="nobr"><?php echo $fetch['created_date'] ?></span></td>
+						             <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="nobr"><?php echo $date; ?></span></td>
 						            <td class="th_hidden a-center last">
 						                <span class="nobr">
 						                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>

@@ -71,16 +71,19 @@ if(isset($_GET["id"]))
 							<form action="edit_paper_size.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_size">
 								<div class="form-group">
 								    <label for="last-name">Paper Size<span class="required">*</span></label>
-									<input type="text" class="form-control" name="paper_size" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="papersize" name="Papersize" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="paper_size_status">
+									<select class="product-type-filter form-control" id="sel_a" name="paper_size_status">
+								 <option value="">
+											<span>Select status</span>
+										</option>
 								        <option value="1" <?php if($papersize_array['paper_size_status'] == 1)  echo "selected" ?> >
 											<span>Active</span>
 										</option>
 										<option value="0" <?php if($papersize_array['paper_size_status'] == 0)  echo "selected" ?> >
-											<span>Inactive</span>
+										<span>Inactive</span>
 										</option>
 										
 								    </select>
