@@ -8,56 +8,71 @@ include "includes/header.php";
 <?php 
 if (isset($_GET['update'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
- $val = $_GET['update'];
- $message ='';
- $offerzone_title = $_POST["offerzone_title"];
- $offerzone_status = $_POST["offerzone_status"];
- $old_path_name = $_POST["old_path_name"];
- $offerzone_image = pathinfo($_FILES['offerzone_image']['name']);
 
- $offer_query1 = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title' AND offer_zone_id NOT IN ('$val')");
- $row = mysql_num_rows($offer_query1);
- if($row > 0){
-  $successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
- } 
- else {
-  $target_dir = "style/img/zone/";
-  $target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
-  // echo $target_file;
-  $info = pathinfo($_FILES['offerzone_image']['name']);
-  $uploadOk = 1; 
-  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-      $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-  }
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
-   $message = "Sorry, your file is too large.";
-   $uploadOk = 0;
-  }
-  if ($uploadOk == 0) {
-   $successMessage = "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
-   // if everything is ok, try to upload file
-  } 
-  else {
-   unlink($old_path_name);
-   $i = 0;
-   do {
-    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
-    $i++;
-    $target_file = "style/img/zone/" . $image_name;
-   } while(file_exists($target_file));
-   move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
-   mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_image`='$target_file',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
-    $successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
-    // header("Location: users.php");
-  }
- }
- // else {
- //  echo "test";
- //  // mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
- //  // $successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
- // }  
+	$val = $_GET['update'];
+	$message ='';
+	$offerzone_title = $_POST["offerzone_title"];
+	$offerzone_status = $_POST["offerzone_status"];
+	$old_path_name = $_POST["old_path_name"];
+	
+	if($_FILES['offerzone_image']['name']){
+		$image_status = true;
+		$offerzone_image = pathinfo($_FILES['offerzone_image']['name']);	
+	}
+	else{
+		$image_status = false;
+		$offerzone_image = $_POST["hidden_offer_image"];
+	}
+
+	$offer_query1 = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title' AND offer_zone_id NOT IN ('$val')");
+	$row = mysql_num_rows($offer_query1);
+	if($row > 0){
+		$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
+	} 
+	else {
+		if($image_status){
+			$target_dir = "style/img/zone/";
+			$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
+			// echo $target_file;
+			$info = pathinfo($_FILES['offerzone_image']['name']);
+			$uploadOk = 1;	
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+			    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			    $uploadOk = 0;
+			}
+			if ($_FILES["fileToUpload"]["size"] > 500000) {
+				$message = "Sorry, your file is too large.";
+				$uploadOk = 0;
+			}
+			if ($uploadOk == 0) {
+				$successMessage = "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
+				// if everything is ok, try to upload file
+			} 
+			else {
+				unlink($old_path_name);
+				$i = 0;
+				do {
+					$image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+					$i++;
+					$target_file = "style/img/zone/" . $image_name;
+				} while(file_exists($target_file));
+				move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
+				mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_image`='$target_file',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
+			 	$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
+			 	// header("Location: users.php");
+			}
+		}
+		else{
+			mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_image`='$offerzone_image',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
+			$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
+		}
+	}
+	// else {
+	// 	echo "test";
+	// 	// mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
+	// 	// $successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
+	// }		
 }
 }
 ?>
@@ -140,6 +155,7 @@ if(isset($_GET["id"]))
     </form>
    </div>
   </section><!-- Cart main content : End -->
+
 </div><!-- container -->
 <script>
  $(function () {

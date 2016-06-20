@@ -74,28 +74,29 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 				<div class="awidget login-reg">
 					<div class="awidget-body">
 						<div class="page-title text-center">
-							<img src="../style/images/print.jpeg" height="100">
-							<hr />
+							<!-- <img src="../style/images/print.jpeg" height="100"> -->
+							<!-- <hr /> -->
+							<h1 class="admin_login_header">Login</h1>
 						</div>
-						<br />
 						<?php
 						if ($error) 
 						{
 							?>
 							<div class="alert alert-danger">
-								<a class="close" data-dismiss="alert" href="#">×</a><i class="icon-remove-sign"></i> <?php echo $error; ?>
+								<a class="close" data-dismiss="alert" href="#"><i class="fa fa-times" aria-hidden="true"></i>
+</a><?php echo $error; ?>
 							</div>
 							<?php
 						}
 						?>
 						<form class="form-horizontal" role="form" method="POST" action="index.php" accept-charset="UTF-8">
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1"><li class="fa fa-user"></li></span>
-								<input type="text" id="username" class="form-control" name="username" placeholder="Username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
+							<div class="form-group admin_label_style">
+							    <label for="first-name">Username<span class="required">*</span></label>
+								<input type="text" class="form-control" id="username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
 							</div>
-							<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1"><li class="fa fa-lock"></li></span>
-								  <input type="password" id="password" class="form-control" name="password" placeholder="Password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
+							<div class="form-group admin_label_style">
+							    <label for="first-name">Password<span class="required">*</span></label>
+								<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
 							</div>
 							<?php 
 							if(onOffAdminCaptcha()==1) 
@@ -115,8 +116,10 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 							<hr>
 							<div class="form-group">
 								<div class="col-lg-offset-6 col-lg-8">
-									<button type="submit" name="submit" class="btn btn-success"><li class="fa fa-sign-in"></li> Sign in</button>
-									<a href="reset.php" class="btn btn-info"><li class="fa fa-edit"></li> Reset</a>
+								<div class="admin_button_section">
+									<button type="submit" name="submit" class="gbtn btn-edit-acc-info">Save</button>
+									<a href="reset.php" class="btn btn-info admin_reset_style">Reset</a>
+								</div>
 								</div>
 							</div>
 						</form>

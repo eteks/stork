@@ -301,24 +301,24 @@ a.product-name:hover{
   -o-transition: all 0.2s; 
 }
 ::-webkit-input-placeholder {
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 :-ms-input-placeholder {  
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
@@ -6422,7 +6422,7 @@ select::-ms-expand {
 .offer_image_align {
   display: block;
   float: left;
-  text-align: center;
+  text-align: left;
   /*text-indent: 3px;*/
   width: 286px;
 }
@@ -6431,4 +6431,87 @@ select::-ms-expand {
   position: relative;
   top: -16px;
   width: 195px;
+}
+#username {
+  border-radius: 0;
+  padding: 8px !important;
+}
+#password {
+  border-radius: 0;
+  padding: 8px !important;
+}
+.admin_label_style label{
+  color: #444444 !important;
+  font-weight: 200 !important;
+}
+/*.admin_reset_style {
+  background-color: #d0d0d0;
+  border-color: #d0d0d0;
+  border-radius: 0;
+  color: #444444;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  margin-left: 20px;
+}*/
+.admin_button_style { 
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: #d6d6d6 none repeat scroll 0 0;
+  border-color: transparent transparent #646464;
+  border-image: none;
+  border-radius: 0;
+  border-style: solid;
+  /*border-width: 1px;*/
+  color: #444444;
+  float: right;
+  font-size: 12px;
+  padding: 10px 35px;
+  text-transform: uppercase;
+  margin: 0 0 0 20px;
+  line-height: 34px;
+  }
+.admin_reset_style:hover {
+  background: #25bce9 none repeat scroll 0 0;
+  color: #ffffff;
+  border :1px solid #25bce9;
+}
+.admin_button_section {
+  margin: 0 49px 0 0;
+  padding-top: 26px;
+  text-align: right;
+}
+.admin_button_section button {
+  padding: 0px 18px !important;
+}
+.admin_login_header {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.admin_form_section {
+  padding: 0px;
+}
+.admin_login_field {
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid #d7d7d7;
+  font-size: 14px;
+  max-width: 425px;
+  padding: 10px;
+  width: 100%;
+  margin: 10px 0;
+}
+#login-form {
+  padding-top: 20px;
+}
+#login-form h2 {
+  text-align: center;
+}
+#login-form p {
+  margin-top: 20px;
+}
+table th, td {
+  text-align: left !important;
 }
