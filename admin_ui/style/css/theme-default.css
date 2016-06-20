@@ -1056,7 +1056,7 @@ ul.cate_list li.parent a i{
   line-height: 60px;
 }
 .SC-w{
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 /*dropdown Cart------------------------------------------------*/
 .cart-w{
@@ -4614,15 +4614,15 @@ span.star{
 #pr-login .container .col-md-6.col-sm-6.col-xs-12.right #forgotpass-form .email{
     margin-bottom:40px;
 }
-.container .col-md-6  input{
+/*.container .col-md-6  input{
   border: 1px solid #d7d7d7;
   font-size:14px;
   padding:10px;
   width:100%;
   max-width:425px;
   /*margin:0 0 24px;*/
-    background: #ffffff;
-}
+    /*background: #ffffff;*/
+/*}*/
 .pr-main .container .col-md-6  button {
   float:right;
   background:#d6d6d6;
@@ -6271,7 +6271,7 @@ section.home-slidershow{
 .account-main  {
   width: 100%;
 }
-.page-content .container, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
+.page-content .container, .padding_style, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
   padding: 0px;
 }
 .mainy , .account-main{
@@ -6498,10 +6498,10 @@ select::-ms-expand {
   background: #ffffff none repeat scroll 0 0;
   border: 1px solid #d7d7d7;
   font-size: 14px;
+  margin: 0 0 24px;
   max-width: 425px;
   padding: 10px;
   width: 100%;
-  margin: 10px 0;
 }
 #login-form {
   padding-top: 20px;
@@ -6510,8 +6510,66 @@ select::-ms-expand {
   text-align: center;
 }
 #login-form p {
-  margin-top: 20px;
+  margin: 0 0 10px;
 }
 table th, td {
   text-align: left !important;
+}
+button:hover {
+  background-color: #25bce9 !important;
+}
+.admin_login_error {
+  font-size: 14px;
+  color: #b94a48;
+}
+.dataTables_paginate {
+  font-size: 14px;
+  margin-top: 30px;
+  text-align: center;
+}
+.dataTables_paginate a{ 
+  border: 1px solid #25bce9;
+  margin: 0 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+#my-orders-table_info {
+  display: none;
+}
+.paging-nav {
+  display: none;
+}
+.current {
+  background-color: #25bce9;
+  color: #fff;
+}
+.heading_section h3 {
+  float: left;
+}
+#my-orders-table_length {
+  float: right;
+}
+.clear_both {
+  clear :both;
+}
+.heading_section {
+  color: #fff;
+  background-color: #25bce9;
+}
+#my-orders-table_length {
+  padding: 8px 0 0;
+}
+#my-orders-table_filter input {
+  border: medium none;
+  height: 37px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.search-icon {
+  cursor :pointer;
+}
+.current:hover {
+  color: #fff;
 }

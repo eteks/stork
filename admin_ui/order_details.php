@@ -17,13 +17,13 @@ include "includes/header.php";
 					<i class="fa fa-search"></i>
 				</span>
 				<div class="search-safari" style="display:none;">
-					<div class="search-form dropdowSCContent">
+				<!-- 	<div class="search-form dropdowSCContent">
 						<form method="POST" action="#">
 							<input type="text" name="search" placeholder="Search" />
 							<input type="submit" name="search" value="Search">
 							<i class="fa fa-search"></i>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,10 @@ include "includes/header.php";
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
-		<h3 class="acc-title lg"> ORDER DETAILS</h3>
+		<div class="heading_section col-md-12">
+		<h3 class="acc-title lg clone_heading"> Order details</h3>
+		<div class="clear_both"> </div>
+	</div>
 			<div class="form-edit-info width_order_details">
 				<?php
 					$sql = "SELECT * FROM `stork_order_details`";

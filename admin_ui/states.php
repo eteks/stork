@@ -17,13 +17,13 @@ include "includes/header.php";
 					<i class="fa fa-search"></i>
 				</span>
 				<div class="search-safari" style="display:none;">
-					<div class="search-form dropdowSCContent">
+					<!-- <div class="search-form dropdowSCContent">
 						<form method="POST" action="#">
 							<input type="text" name="search" placeholder="Search" class="search"/>
 							<input type="submit" value="Search">
 							<i class="fa fa-search"></i>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -32,8 +32,11 @@ include "includes/header.php";
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
-	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
-		<h3 class="acc-title lg"> States</h3>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12">
+	<div class="heading_section col-md-12">
+		<h3 class="acc-title lg clone_heading"> States</h3>
+		<div class="clear_both"> </div>
+	</div>
 			<div class="form-edit-info">
 							<?php $sql = "SELECT * FROM `stork_state`"; 
 								$query = mysqlQuery($sql);

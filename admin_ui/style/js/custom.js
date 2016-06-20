@@ -103,4 +103,9 @@ $(document).ready(function () {
     }
    });
 });
+$(document).ready(function () {
+  $('#my-orders-table_filter').appendTo('.search-safari');
+  $('#my-orders-table_length').insertAfter(".clone_heading");
+  $('#my-orders-table_filter').addClass('search-form');
+});
 /* Admin sidebar navigation ends */

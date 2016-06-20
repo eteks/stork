@@ -145,10 +145,10 @@
 			menuHide();
 		});
 		$(".search-safari").hide();
-		$(".search-w").on("click", function(){
+		$(".search-icon").on("click", function(){
 			$('.search-safari').slideToggle();
 		})
-		$(".search-w").on("click", function(e){
+		$(".search-icon").on("click", function(e){
 			e.stopPropagation();
 		});
 		$(".search-safari").on("click", function(e){ 

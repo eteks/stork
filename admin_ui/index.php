@@ -63,72 +63,62 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 	<title>Print Stork Admin</title>
 </head>
 <body>
-
 	<?php require_once('navbar.php') ?>
 	<?php require_once('headermenu.php') ?>
-
-<div class="page-content blocky">
+<section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-offset-3 col-md-offset-3">
-				<div class="awidget login-reg">
-					<div class="awidget-body">
-						<div class="page-title text-center">
-							<!-- <img src="../style/images/print.jpeg" height="100"> -->
-							<!-- <hr /> -->
-							<h1 class="admin_login_header">Login</h1>
-						</div>
-						<?php
-						if ($error) 
-						{
-							?>
-							<div class="alert alert-danger">
-								<a class="close" data-dismiss="alert" href="#"><i class="fa fa-times" aria-hidden="true"></i>
-</a><?php echo $error; ?>
-							</div>
-							<?php
-						}
-						?>
-						<form class="form-horizontal" role="form" method="POST" action="index.php" accept-charset="UTF-8">
-							<div class="form-group admin_label_style">
-							    <label for="first-name">Username<span class="required">*</span></label>
-								<input type="text" class="form-control" id="username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
-							</div>
-							<div class="form-group admin_label_style">
-							    <label for="first-name">Password<span class="required">*</span></label>
-								<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
-							</div>
-							<?php 
-							if(onOffAdminCaptcha()==1) 
-							{ 
-								?>
-								<div class="form-group">
-									<div class="col-lg-5 col-xs-5 col-md-5 col-sm-5">
-										<img style="width:150px" src="<?php echo($_SESSION['captcha']['image_src']) ?>" class="captchaImg" />
-									</div>								
-									<div class="col-lg-7 col-xs-7 col-md-7 col-sm-7" style="margin-top: 14px;">
-										<input type="text" class="form-control"  name="captcha_code" placeholder="Enter Code" value="" required />
-									</div>
-								</div>
-								<?php
-							} 
-							?>
-							<hr>
-							<div class="form-group">
-								<div class="col-lg-offset-6 col-lg-8">
-								<div class="admin_button_section">
-									<button type="submit" name="submit" class="gbtn btn-edit-acc-info">Save</button>
-									<a href="reset.php" class="btn btn-info admin_reset_style">Reset</a>
-								</div>
-								</div>
-							</div>
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Home </span>
+					</li>
+					<li>
+						<span> Login</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+	
+   	   <section class="pr-main" id="pr-login">	
+			<div class="container padding_style">	
+				<div class="col-md-9 col-sm-9 col-xs-12 padding_style">
+					<h1 class="ct-header">Login</h1>	
+					<?php
+						// if ($error) 
+						// {
+					?>
+					<!-- <div class="admin_login_error"> -->
+						<?php 
+						// echo $error; ?>
+					<!-- </div> -->
+					<?php
+						// }
+					?>		
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h4>Returning Customers</h4>
+						<p>If you have an account with us, please log in.</p>
+						<form id="login-form" class="form-validate form-horizontal" method="post" action="index.php" accept-charset="UTF-8">
+							<p>User Name <span class="star">*</span></p>
+							<input class="email admin_login_field" type="text" id="username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
+							<p>Password <span class="star">*</span></p>
+							<input class="pasword admin_login_field" id="" type="password" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
+							<button type="submit" class="login">Login</button>
 						</form>
-					</div><!-- awidget-body -->
-				</div><!-- awidget login-reg -->
-			</div><!-- col-md-12 -->
-		</div><!-- row -->
-	</div><!-- container -->
-</div>
+					    </br></br></br>
+					</div>
+					
+				</div>
+			</div>
+			</br></br>
+		  </section>
+
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>
 </body>
