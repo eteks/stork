@@ -13,13 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$offerzone_title = $_POST["offerzone_title"];
 	$offerzone_status = $_POST["offerzone_status"];
 	$old_path_name = $_POST["old_path_name"];
+	$offerzone_image = pathinfo($_FILES['offerzone_image']['name']);
 
 	$offer_query1 = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title' AND offer_zone_id NOT IN ('$val')");
 	$row = mysql_num_rows($offer_query1);
 	if($row > 0){
 		$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
-	}
-	if (isset($_FILES['offerzone_image']) {
+	} 
+	else {
 		$target_dir = "style/img/zone/";
 		$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
 		// echo $target_file;
@@ -52,12 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		 	// header("Location: users.php");
 		}
 	}
-	else {
-		echo "test";
-		// mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
-		// $successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
-	}
-		
+	// else {
+	// 	echo "test";
+	// 	// mysqlQuery("UPDATE `stork_offer_zone` SET `offer_zone_title`='$offerzone_title',`offer_zone_status`='$offerzone_status' WHERE offer_zone_id='$val'");
+	// 	// $successMessage ="<div class='container error_message_mandatory'><span> Offerzone Updated Successfully </span></div>";
+	// }		
 }
 }
 ?>
