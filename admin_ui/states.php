@@ -19,8 +19,8 @@ include "includes/header.php";
 				<div class="search-safari" style="display:none;">
 					<div class="search-form dropdowSCContent">
 						<form method="POST" action="#">
-							<input type="text" name="search" placeholder="Search" />
-							<input type="submit" name="search" value="Search">
+							<input type="text" name="search" placeholder="Search" class="search"/>
+							<input type="submit" value="Search">
 							<i class="fa fa-search"></i>
 						</form>
 					</div>
