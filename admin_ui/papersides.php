@@ -27,13 +27,13 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					<i class="fa fa-search"></i>
 				</span>
 				<div class="search-safari" style="display:none;">
-					<div class="search-form dropdowSCContent">
+					<!-- <div class="search-form dropdowSCContent">
 						<form method="POST" action="#">
 							<input type="text" name="search" placeholder="Search" />
 							<input type="submit" name="search" value="Search">
 							<i class="fa fa-search"></i>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -43,7 +43,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
-		<h3 class="acc-title lg"> Areas</h3>
+		<div class="heading_section col-md-12">
+		<h3 class="acc-title lg clone_heading"> Papersides</h3>
+		<div class="clear_both"> </div>
+	</div>
 			<div class="form-edit-info">
 				<?php 
 					$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`");
