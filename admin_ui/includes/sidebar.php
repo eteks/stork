@@ -400,7 +400,7 @@ function countOfferZone()
 				</li>
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_offer_zone.php" || 
-					basename($_SERVER['PHP_SELF'])=="offer_zones.php")
+					basename($_SERVER['PHP_SELF'])=="offer_zones.php" ||basename($_SERVER['PHP_SELF'])=="edit_offer_zone.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
