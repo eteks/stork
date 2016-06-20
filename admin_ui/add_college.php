@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							<form action="add_college.php" id="add_college" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="area_id">
+									<select class="product-type-filter form-control" id="sel_a" name="area_id">
 								        <option value="">
 											<span>Select Area</span>
 										</option>
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">College Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s6" name="college_status">
+									<select class="product-type-filter form-control" id="sel_b" name="college_status">
 								        <option value="">
 											<span>Select status</span>
 										</option>

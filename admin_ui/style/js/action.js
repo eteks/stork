@@ -2,8 +2,9 @@ jQuery(document).ready(function() {
 // 	Add_Area
 	
 	var required_edit_admin_users =["username","password","phone","test"];
-	var required_offer_zone =["OfferzoneTitle","OfferzoneImage"];
-	var required_edit_users =["username","password","firstname","lastname","email","dob","address","mobile"];
+	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
+	var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
+	var required_edit_users =["username","password","firstname","lastname","test","dob","address","mobile"];
 	var required_myform =["areaname"];
 	var required_state =["statename"];
 	var required_college =["collegename"];
@@ -18,111 +19,167 @@ jQuery(document).ready(function() {
 	sel_d = jQuery("#sel_d");
 	sel_e = jQuery("#sel_e");
 	forget_email=jQuery("#test");
-	 
- test=jQuery("#test");
+	email=jQuery("#email");
+ 	test=jQuery("#test");
 	errornotice = jQuery("#error");
+	
+	
 	jQuery("#edit_admin_users").submit(function(){ 
 		
+		// for empty field validation
 		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
 			var input = jQuery('#'+required_edit_admin_users[i]);
 			
 			if ((input.val() == "")) {
 				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
-			}
-			else{
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
-				
-			}
-		}
-		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-  			 	forget_email.addClass("error_input_field");
-  			 	$('.error_test').css('display','block');
+				// $('.error_test').css('display','block');		
 			 }
-		
-		 	if (document.getElementById('sel_a').selectedIndex < 1)
-		{
+			 else{
+				 input.removeClass("error_input_field");
+			 // $('.error_test').css('display','none');
+				
+			 }
+		}
+		//end of empty field validation
+	
+			 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field");
+
+ 				}
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
 			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
+			// $('.error_test').css('display','block');
+			// $('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			// $('.error_test').css('display','none');
+		}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1){
+			$('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
 		}
 		else { 
-			$('#sel_a').removeClass('error_input_field');
-			$('.error_test').css('display','none'); 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
 		}
+	
 		
-		if (document.getElementById('sel_b').selectedIndex < 1)
-		{
-			$('#sel_b').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_b').removeClass('error_input_field'); 
-		$('.error_test').css('display','none');}
-		
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
 			return false;
-		} else {
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email")) {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','block');
+				return false;
+			}
+			
+			else {
 			errornotice.hide();
-		
+			$('.error_email').css('display','none');
 			return true;
+			}
 		}
 	});
+	
+	
+	
+	
 	
 jQuery("#edit_users").submit(function(){ 
-		
+			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
 			var input = jQuery('#'+required_edit_users[i]);
+			
 			if ((input.val() == "")) {
 				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
-			}
-			else{
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
-			}
+				// $('.error_test').css('display','block');
+			 
+						
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			 // $('.error_test').css('display','none');
+				
+			 }
 		}
+		//end of empty field validation
 	
-		 	if (document.getElementById('sel_a').selectedIndex < 1)
-		{
+			
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
 			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
+			// $('.error_test').css('display','block');
+			// $('.error_test').css('display','none');
 		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none'); }
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			// $('.error_test').css('display','none');
+		}
 		
-		if (document.getElementById('sel_b').selectedIndex < 1)
-		{
+		if (document.getElementById('sel_b').selectedIndex < 1){
 			$('#sel_b').addClass('error_input_field');
-			$('.error_test').css('display','block');
+			// $('.error_test').css('display','block');
 		}
-		else { $('#sel_b').removeClass('error_input_field'); 
-		$('.edit_users').css('display','none');}
-			if (document.getElementById('sel_c').selectedIndex < 1)
-		{
+		else { 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_c').selectedIndex < 1){
 			$('#sel_c').addClass('error_input_field');
-			$('.error_test').css('display','block');
+			// $('.error_test').css('display','block');
 		}
-		else { $('#sel_c').removeClass('error_input_field'); 
-		$('.error_test').css('display','none');}
-			if (document.getElementById('sel_d').selectedIndex < 1)
-		{
+		else { 
+			$('#sel_c').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_d').selectedIndex < 1){
 			$('#sel_d').addClass('error_input_field');
-			$('.error_test').css('display','block');
+			// $('.error_test').css('display','block');
 		}
-		else { $('#sel_d').removeClass('error_input_field'); 
-		$('.error_test').css('display','none');}
+		else { 
+			$('#sel_d').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+
+
 		
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  	
+	  	
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
 			return false;
-		} else {
+		}
+	else if(jQuery(":input").hasClass("error_input_field_email")) {
+		$('.error_test').css('display','none');
+		$('.error_email').css('display','block');
+		return false;
+	}
+		else {
 			errornotice.hide();
-		
+			$('.error_test').css('display','none');
 			return true;
 		}
 	});
-	
 		
 jQuery("#add_state").submit(function(){ 
 
@@ -148,7 +205,7 @@ jQuery("#add_state").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -215,7 +272,7 @@ jQuery("#add_area").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -255,7 +312,7 @@ jQuery("#edit_area").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -277,24 +334,24 @@ jQuery("#add_college").submit(function(){
 			}
 	//  select field
 
-	if (document.getElementById('s5').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#s5').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s5').removeClass('error_input_field'); 
+		else { $('#sel_a').removeClass('error_input_field'); 
 		$('.error_test').css('display','none');}
 		
-		if (document.getElementById('s6').selectedIndex < 1)
+		if (document.getElementById('sel_b').selectedIndex < 1)
 		{
-			$('#s6').addClass('error_input_field');
+			$('#sel_b').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s6').removeClass('error_input_field');
+		else { $('#sel_b').removeClass('error_input_field');
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -332,7 +389,7 @@ jQuery("#edit_college").submit(function(){
 		
 
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -364,7 +421,7 @@ jQuery("#add_paper_size").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -396,7 +453,7 @@ jQuery("#add_paper_size").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -427,7 +484,7 @@ jQuery("#add_paper_size").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -458,7 +515,7 @@ jQuery("#edit_paper_side").submit(function(){
 		 }
 
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -489,7 +546,7 @@ jQuery("#edit_paper_side").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -519,7 +576,7 @@ jQuery("#edit_paper_type").submit(function(){
 		 }
 
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -550,7 +607,7 @@ jQuery("#add_paper_print_type").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -580,7 +637,7 @@ jQuery("#add_paper_print_type").submit(function(){
 		$('.error_test').css('display','none');  }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -638,7 +695,7 @@ jQuery("#add_paper_print_type").submit(function(){
 		else { $('#s9').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -696,7 +753,7 @@ jQuery("#edit_cost_estimation").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -742,7 +799,7 @@ jQuery("#edit_orders").submit(function(){
 		$('.error_test').css('display','none');  }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -795,7 +852,7 @@ jQuery("#edit_order_details").submit(function(){
 		$('.error_test').css('display','none');  }
 			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -805,8 +862,8 @@ jQuery("#edit_order_details").submit(function(){
 	});
 
 jQuery("#add_offer_zone").submit(function(){ 
-		for(var i = 0 ; i<required_offer_zone.length;i++ ){
-			var input = jQuery('#'+required_offer_zone[i]);
+		for(var i = 0 ; i<required_add_offer_zone.length;i++ ){
+			var input = jQuery('#'+required_add_offer_zone[i]);
 		
 		if ((input.val() == "")) 
 			{
@@ -819,17 +876,17 @@ jQuery("#add_offer_zone").submit(function(){
 			
 	//  select field
 
-	if (document.getElementById('OfferzoneStatus').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#OfferzoneStatus').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#OfferzoneStatus').removeClass('error_input_field');
+		else { $('#sel_a').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 			
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -838,8 +895,9 @@ jQuery("#add_offer_zone").submit(function(){
 		}
 	});
 	jQuery("#edit_offer_zone").submit(function(){ 
-		for(var i = 0 ; i<required_offer_zone.length;i++ ){
-			var input = jQuery('#'+required_offer_zone[i]);
+		
+			for(var i = 0 ; i<required_edit_offer_zone.length;i++ ){
+			var input = jQuery('#'+required_add_offer_zone[i]);
 		
 		if ((input.val() == "")) 
 			{
@@ -852,17 +910,10 @@ jQuery("#add_offer_zone").submit(function(){
 			
 	//  select field
 
-	if (document.getElementById('OfferzoneStatus').selectedIndex < 1)
-		{
-			$('#OfferzoneStatus').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#OfferzoneStatus').removeClass('error_input_field');
-		$('.error_test').css('display','none');  }
-			
+
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();

@@ -94,16 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							<form action="add_offer_zone.php" method="POST" id="add_offer_zone" name="edit-acc-info" enctype="multipart/form-data">
 								<div class="form-group">
 								    <label for="first-name">Offerzone Title<span class="required">*</span></label>
-									<input type="text" class="form-control" id="OfferzoneTitle" autocomplete="off" placeholder="Offerzone Title" name="offerzone_title">
+									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offerzone Title" name="offerzone_title">
 								</div>
 								<div class="form-group offer_zone_position">
 								    <label for="last-name">Offerzone Image<span class="required">*</span></label>
-									<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
+									<input type="file" class="form-control browse_style"  id="offerzoneimage" name="offerzone_image">
 									<a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Offerzone Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="OfferzoneStatus" name="offerzone_status">
+									<select class="product-type-filter form-control" id="sel_a" name="offerzone_status">
 								        <option value="">
 											<span>Select status</span>
 										</option>

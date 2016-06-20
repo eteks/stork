@@ -69,6 +69,9 @@ include "includes/header.php";
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
+<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -117,7 +120,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="email" autocomplete="off" placeholder="email id" name="user_email" value="<?php echo($row['user_email']); ?>">
+									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>

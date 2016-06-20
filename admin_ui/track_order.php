@@ -67,7 +67,7 @@ include "includes/header.php";
 										echo $fetch['order_user_id'];
 							   ?>
 						   </td>				           
-				              <?php  $createddate=strtotime($fetch['created_date']);
+				              <?php  $createddate=strtotime($fetch['order_delivery_date']);
 								   
 						            $date = date('d/m/Y', $createddate);
 						            // echo $date; 

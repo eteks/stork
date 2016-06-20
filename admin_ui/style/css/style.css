@@ -1444,6 +1444,9 @@ text-align: center;
 .error_input_field {
    border:1px solid red !important;
 }
+.error_input_field_email {
+   border:1px solid red !important;
+}
     .form-group (:required)::after{
         content: '*';
         color: red;
@@ -1456,6 +1459,13 @@ text-align: center;
 	text-align :center;
 	display : none;
 }
+.error_email  {
+	color :red ;
+	font-size : 12px;
+	text-align :center;
+	display : none;
+}
+
 .ui-datepicker-header {
 	background : #25bce9;
 }
