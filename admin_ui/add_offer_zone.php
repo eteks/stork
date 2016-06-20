@@ -98,13 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="form-group offer_zone_position">
 								    <label for="last-name">Offerzone Image<span class="required">*</span></label>
-<<<<<<< HEAD
-									<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
-									<a class='dispaly_show_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>
-=======
 									<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
 									<a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>
->>>>>>> 8ae9eaf38a481622cc3caf674b4a80820ff66c6e
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Offerzone Status<span class="required">*</span></label>

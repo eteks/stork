@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
 	var required_paperside =["paperside"];
 	var required_papertype =["papertype"];
 	var required_paperprinttype =["paperprinttype"];
-	var required_edit_orders =["customername","",""];
+	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","shippingemail","shippingmobile","totalitems"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
 	sel_c = jQuery("#sel_c");
@@ -705,8 +705,8 @@ jQuery("#edit_cost_estimation").submit(function(){
 		}
 	});
 jQuery("#edit_orders").submit(function(){ 
-		for(var i = 0 ; i<required_myform.length;i++ ){
-			var input = jQuery('#'+required_myform[i]);
+		for(var i = 0 ; i<required_edit_orders.length;i++ ){
+			var input = jQuery('#'+required_edit_orders[i]);
 		
 		if ((input.val() == "")) 
 			{
@@ -719,26 +719,26 @@ jQuery("#edit_orders").submit(function(){
 			
 	//  select field
 
-	if (document.getElementById('s5').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#s5').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s5').removeClass('error_input_field');
+		else { $('#sel_a').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-			if (document.getElementById('s6').selectedIndex < 1)
+			if (document.getElementById('sel_b').selectedIndex < 1)
 		{
-			$('#s6').addClass('error_input_field');
+			$('#sel_b').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s6').removeClass('error_input_field');
+		else { $('#sel_b').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-			if (document.getElementById('s7').selectedIndex < 1)
+			if (document.getElementById('sel_c').selectedIndex < 1)
 		{
-			$('#s7').addClass('error_input_field');
+			$('#sel_c').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s7').removeClass('error_input_field');
+		else { $('#sel_c').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
@@ -751,8 +751,8 @@ jQuery("#edit_orders").submit(function(){
 		}
 	});
 jQuery("#edit_order_details").submit(function(){ 
-		for(var i = 0 ; i<required_myform.length;i++ ){
-			var input = jQuery('#'+required_myform[i]);
+		for(var i = 0 ; i<required_edit_orders.length;i++ ){
+			var input = jQuery('#'+required_edit_orders[i]);
 		
 		if ((input.val() == "")) 
 			{
@@ -765,42 +765,35 @@ jQuery("#edit_order_details").submit(function(){
 			
 	//  select field
 
-	if (document.getElementById('s5').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#s5').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s5').removeClass('error_input_field');
+		else { $('#sel_a').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-			if (document.getElementById('s6').selectedIndex < 1)
+			if (document.getElementById('sel_b').selectedIndex < 1)
 		{
-			$('#s6').addClass('error_input_field');
+			$('#sel_b').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s6').removeClass('error_input_field');
+		else { $('#sel_b').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-			if (document.getElementById('s7').selectedIndex < 1)
+			if (document.getElementById('sel_c').selectedIndex < 1)
 		{
-			$('#s7').addClass('error_input_field');
+			$('#sel_c').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s7').removeClass('error_input_field');
+		else { $('#sel_c').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-				if (document.getElementById('s8').selectedIndex < 1)
+				if (document.getElementById('sel_d').selectedIndex < 1)
 		{
-			$('#s8').addClass('error_input_field');
+			$('#sel_d').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
-		else { $('#s8').removeClass('error_input_field');
+		else { $('#sd').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-				if (document.getElementById('s9').selectedIndex < 1)
-		{
-			$('#s9').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#s9').removeClass('error_input_field');
-		$('.error_test').css('display','none');  }
-		
+			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
 			return false;
