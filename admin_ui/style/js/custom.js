@@ -15,6 +15,17 @@ $(document).ready(function(){
  
 $(document).ready(function(){
 
+  // var $rows = $('.state_table tbody tr');
+  // $(document).on('keyup','.search',function() {
+  //     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();      
+  //     $rows.show().filter(function() {
+  //         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+  //         return !~text.indexOf(val);
+  //     }).hide();   
+  // });
+
+  $('.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table').DataTable();
+
   $('.error_message_mandatory').delay(2000).fadeOut();
 
   $(".has_submenu > a").click(function(e){
