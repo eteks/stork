@@ -1,9 +1,10 @@
 <?php
 		require_once __DIR__ . '/Facebook/autoload.php';
+		require_once 'settings.php';
 		$fb = new Facebook\Facebook([
-		  	'app_id' => '800444590056438',
-		  	'app_secret' => 'd422bcf132c700ed89d03865cdff884a',
-		  	'default_graph_version' => 'v2.5',
+		  	'app_id' => FACEBOOKAPPID,
+		  	'app_secret' => FACEBOOKAPPSECRET,
+		  	'default_graph_version' => FACEBOOKGRAPHVERSION,
 	  	]);
 		$helper = $fb->getRedirectLoginHelper();
 		$permissions = ['email'];

@@ -1,5 +1,20 @@
 
-<?php include('header.php') ?>
+<?php 
+	include('header.php'); 
+	if($_POST){
+		$usertype = $_POST['user_type'];
+		if(trim($usertype) == 'student'){
+			$_SESSION['usertype'] = 'student';
+			$_SESSION['college_id'] =trim($_POST['stu_college']);
+			$_SESSION['area_id'] =trim($_POST['stu_area']);
+		}
+		if(trim($usertype) == 'professional'){
+			$_SESSION['usertype'] = 'pro';
+			$_SESSION['state_id'] =trim($_POST['pro_state']);
+			$_SESSION['area_id'] =trim($_POST['pro_area']);
+		}
+	}
+?>
 
 	<main class="main index">
 		<!--Home slider : Begin-->
@@ -2629,7 +2644,7 @@
 								<div class="w-block-recent">
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/7.png" alt="service-07"/>
+											<img src="images/our_service/6.png" alt="service-07"/>
 										</a>
 									</div>
 									<div class="info-recent">
@@ -2665,7 +2680,7 @@
 								<div class="w-block-recent">
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/9.png" alt="service-09"/>
+											<img src="images/our_service/6.png" alt="service-09"/>
 										</a>
 									</div>
 									<div class="info-recent">

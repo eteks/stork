@@ -73,7 +73,7 @@
 			});
 			/*-------------Begin ADD Trust Effect-------------*/
 		function trustView(elem){
-			if(current_page == 'home.php' || current_page == ''){
+			if(current_page == 'home.php'){
 				var bottom_of_object = jQuery(elem).offset().top;
 				var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
 				if(bottom_of_window > bottom_of_object){
@@ -92,7 +92,7 @@
 		/*-------------chart-capabilities-------------*/
 		function inViews(){
 
-		   if(current_page == 'home.php' || current_page == ''){
+		   if(current_page == 'home.php'){
 				var bottom_of_object = jQuery('.block-capabititie-w').offset().top;
 				var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
 				if((bottom_of_window > bottom_of_object) && (checkWidths > 767)){
@@ -281,7 +281,7 @@
 		function parallax(){
 			var scrollPos = $(window).scrollTop();
 			// Section 1
-			if(checkWidths > 1024 && current_page == 'home.php' || current_page =='' ){
+			if(checkWidths > 1024 && current_page == 'home.php'){
 			
 				$('.home-blog').css('backgroundPosition', "50% " + Math.round(($('.home-blog').offset().top - scrollPos) * 0.5) + "px");
 				$('.home-testimonial').css('backgroundPosition', "50% " + Math.round(($('.home-testimonial').offset().top - scrollPos) * 0.5) + "px");
