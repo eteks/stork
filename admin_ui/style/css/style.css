@@ -1462,6 +1462,11 @@ text-align: center;
 	text-align :center;
 	display : none;
 }
+.error_admin_login  {
+   color :#b94a48 ;
+   font-size : 14px;
+   display : none;
+}
 .error_email  {
 	color :red ;
 	font-size : 12px;

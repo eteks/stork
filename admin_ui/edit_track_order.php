@@ -84,7 +84,7 @@ if(isset($_GET["id"]))
 								        <option>
 											<span>Select Order Status</span>
 										</option>
-								        <option value="processed" <?php if ($row['order_delivery_status'] == "processed") echo "selected"; ?>>Processed</option>
+								        <option value="processed" <?php if ($row['order_delivery_status'] == "confirmed") echo "selected"; ?>>Confirmed</option>
 										<option value="completed" <?php if ($row['order_delivery_status'] == "completed") echo "selected"; ?>>Completed</option>
 										<option value="shipped" <?php if ($row['order_delivery_status'] == "shipped") echo "selected"; ?>>Shipped</option>
 										<option value="delivered" <?php if ($row['order_delivery_status'] == "delivered") echo "selected"; ?>>Delivered</option>

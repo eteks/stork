@@ -63,7 +63,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <th>State</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
-			            <th>Action</th>
+			            <th class="table_action">Action</th>
 			        </tr>
 		        </thead>
 		        <?php              
@@ -90,7 +90,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						            ?>
 			           
 		            <td><span class="price"><?php echo $date; ?></span></td>
-		            <td class="th_hidden a-center last">
+		            <td class="table_action th_hidden a-center last">
 		                <span class="nobr">
 		                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_area.php?id=<?php echo $fetch['area_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <span class="separator"></span> 

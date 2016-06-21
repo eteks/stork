@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
 	var required_edit_offer_zone =["offerzonetitle"];
 	var required_edit_users =["username","password","firstname","lastname","test","dob","address","phone"];
 	var required_myform =["areaname"];
+	var admin_login=["admin_username","admin_password"];
 	var required_state =["statename"];
 	var required_college =["collegename"];
 	var required_papersize =["papersize"];
@@ -1054,4 +1055,38 @@ jQuery("#add_offer_zone").submit(function(){
 		}
 	});
 	
-	});
+	
+
+
+
+
+//  =======   Admin Login form Validation   =========
+
+jQuery("#login-form").submit(function(){ 
+	for(i=0;i<admin_login.length;i++) {
+		var input = jQuery('#'+admin_login[i]);
+		if ((input.val() == "")) 
+		{
+			input.addClass("error_input_field");
+		} 
+		else {
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none');
+		}
+	}
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") ) {
+		$('.error_admin_login').css('display','block');
+		$('.admin_login_error').css('display','none');
+		return false;
+	}
+	else 
+	{
+		$('.error_admin_login').css('display','none');
+		errornotice.hide();
+		return true;
+	}
+});
+
+});

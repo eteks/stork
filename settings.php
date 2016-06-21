@@ -2,7 +2,7 @@
 //Database settings
 define("HOSTNAME", "localhost");
 define("DBUSER", "root");
-define("DBPASSWORD", "");
+define("DBPASSWORD", "root");
 define("DATABASE", "stork");
 
 
