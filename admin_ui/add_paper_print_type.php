@@ -58,19 +58,19 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Paperprinttype Information</h3>
+						<h3 class="acc-title lg">Add Paper Print Type Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Paperprinttype Information</h4>
+							<h4 class="acc-sub-title">Paper Print Type Information</h4>
 							<form action="add_paper_print_type.php" method="POST" name="edit-acc-info" id="add_paper_print_type">
 								<div class="form-group">
-								    <label for="last-name">Paperprinttype<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paperprinttype">
+								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
+									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paper Print Type">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Paperprinttype Status<span class="required">*</span></label>
+								    <label for="first-name">Paper Print Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_print_type_status" id="sel_a">
 								        <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

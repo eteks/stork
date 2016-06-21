@@ -58,19 +58,19 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Papertype Information</h3>
+						<h3 class="acc-title lg">Add Paper Type Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Papertype Information</h4>
+							<h4 class="acc-sub-title">Paper Type Information</h4>
 							<form action="add_paper_type.php" method="POST" name="edit-acc-info" id="add_paper_type">
 								<div class="form-group">
-								    <label for="last-name">Papertype<span class="required">*</span></label>
-									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Papertype">
+								    <label for="last-name">Paper Type<span class="required">*</span></label>
+									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papertype Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">
 								        <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

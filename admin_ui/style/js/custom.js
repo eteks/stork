@@ -81,15 +81,14 @@ $(document).ready(function () {
     }
    });
 });
-$(document).ready(function () {
-    // var a=$('#phone').val().length;
-    $('#dob').datepicker({
-        dateFormat: 'dd/mm/yy',
-        altField: '#thealtdate',
-        altFormat: 'yy-mm-dd'
-    });
-    
-});
+// $(document).ready(function () {
+    // $('#dob').datepicker({
+        // dateFormat: 'dd/mm/yy',
+        // altField: '#thealtdate',
+        // altFormat: 'yy-mm-dd'
+    // });
+//     
+// });
 
 
 $(document).ready(function () {
