@@ -4,15 +4,15 @@ jQuery(document).ready(function() {
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
-	var required_edit_users =["username","password","firstname","lastname","test","dob","address","mobile"];
+	var required_edit_users =["username","password","firstname","lastname","test","dob","address","phone"];
 	var required_myform =["areaname"];
 	var required_state =["statename"];
 	var required_college =["collegename"];
 	var required_papersize =["papersize"];
 	var required_paperside =["paperside"];
 	var required_papertype =["papertype"];
-	var required_paperprinttype =["paperprinttype"];
-	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","shippingemail","shippingmobile","totalitems"];
+	var required_paperprinttype =["paperprinttype","amount"];
+	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","shippingemail","shippingmobile","totalitems","test","phone"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
 	sel_c = jQuery("#sel_c");
@@ -44,8 +44,10 @@ jQuery(document).ready(function() {
 	
 			 var mobile=$('#phone').val().length;
      			if(mobile<=9){
-    			$('#phone').addClass("error_input_field");
-
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
  				}
          
 	 	if (document.getElementById('sel_a').selectedIndex < 1){
@@ -78,23 +80,35 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
 			return false;
 		}
 		else {
-			if(jQuery(":input").hasClass("error_input_field_email")) {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
 				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
 				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
 				return false;
 			}
 			
 			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
 			errornotice.hide();
-			$('.error_email').css('display','none');
+			$('.error_phone').css('display','none');
 			return true;
+			}
 			}
 		}
 	});
-	
 	
 	
 	
@@ -118,7 +132,11 @@ jQuery("#edit_users").submit(function(){
 		}
 		//end of empty field validation
 	
-			
+				 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+
+ 				}
          
 	 	if (document.getElementById('sel_a').selectedIndex < 1){
 			$('#sel_a').addClass('error_input_field');
@@ -153,34 +171,49 @@ jQuery("#edit_users").submit(function(){
 		else { 
 			$('#sel_d').removeClass('error_input_field'); 
 			// $('.error_test').css('display','none');
-		}
-
-
+		}	
 		
-		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
 	  		forget_email.removeClass("error_input_field_email");
 	  	}
-	  	
-	  	
+	  
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
 			return false;
 		}
-	else if(jQuery(":input").hasClass("error_input_field_email")) {
-		$('.error_test').css('display','none');
-		$('.error_email').css('display','block');
-		return false;
-	}
 		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
 			errornotice.hide();
-			$('.error_test').css('display','none');
+			$('.error_phone').css('display','none');
 			return true;
+			}
+			}
 		}
 	});
-		
+	
+	
 jQuery("#add_state").submit(function(){ 
 
 		var input = jQuery('#'+required_state);
@@ -775,7 +808,13 @@ jQuery("#edit_orders").submit(function(){
 			}
 			
 	//  select field
-
+	 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
 	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
@@ -798,15 +837,45 @@ jQuery("#edit_orders").submit(function(){
 		else { $('#sel_c').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 		
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
 			return false;
-		} else {
-			errornotice.hide();
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
 			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_phone').css('display','none');
 			return true;
+			}
+			}
 		}
 	});
+	
 jQuery("#edit_order_details").submit(function(){ 
 		for(var i = 0 ; i<required_edit_orders.length;i++ ){
 			var input = jQuery('#'+required_edit_orders[i]);

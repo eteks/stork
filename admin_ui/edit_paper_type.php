@@ -65,9 +65,9 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit PaperType Information</h3>
+						<h3 class="acc-title lg">Edit Paper Type Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">PaperType Information</h4>
+							<h4 class="acc-sub-title">Paper Type Information</h4>
 							<form action="edit_paper_type.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_type">
 							<?php 
 								$match = "SELECT * FROM `stork_paper_type` WHERE `paper_type_id`='$id'";
@@ -80,13 +80,13 @@ if(isset($_GET["id"]))
 							?>
 							<div class="form-group">
 							    <label for="last-name">Paper Type<span class="required">*</span></label>
-								<input type="text" class="form-control" id="papertype" placeholder="PaperType" name="paper_type" value="<?php echo($row['paper_type']); ?>">
+								<input type="text" class="form-control" id="papertype" placeholder="Paper Type" name="paper_type" value="<?php echo($row['paper_type']); ?>">
 							</div>
 							<div class="cate-filter-content">	
-							    <label for="first-name">PaperType Status<span class="required">*</span></label>
+							    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 								<select class="product-type-filter form-control" id="sel_a" name="paper_type_status">
 							        <option>
-										<span>Select status</span>
+										<span>Select Status</span>
 									</option>
 							        <option value="1" <?php if ($row['paper_type_status'] == 1) echo "selected"; ?>>Active</option>
 									<option value="0" <?php if ($row['paper_type_status'] == 0) echo "selected"; ?>>InActive</option>
