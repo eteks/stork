@@ -59,6 +59,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				if ($offer_rows > 0)  {
 				?>
 				<table class="data-table offerzone_table" id="my-orders-table">
+			        <thead>
 			        <tr class="">
 			            <th> Offerzone Title </th>
 			            <th> Offerzone Image</th>
@@ -66,6 +67,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <th>Created Date</th>
 			            <th>Action</th>
 			        </tr>
+			        </thead>
 			        <?php
 			        	while ($offer_array = mysql_fetch_array($offer_query))	{
 			        ?>

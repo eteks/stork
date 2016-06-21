@@ -6566,6 +6566,7 @@ button:hover {
   right: 0;
   top: 0;
   width: 100%;
+  padding: 10px 15px;
 }
 .search-icon {
   cursor :pointer;

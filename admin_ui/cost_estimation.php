@@ -60,6 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					{
 				?>
 				<table class="data-table cost_table" id="my-orders-table">
+			        <thead>
 			        <tr class="">
 			            <th>Paper Print Type </th>
 			            <th>Paper Side</th>
@@ -70,6 +71,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <th>Created Date</th>
 			            <th>Actions</th>
 			        </tr>
+			        </thead>
 			        <?php 
 			        while ($cost_array = mysql_fetch_array($cost_query)) {
 					?>
