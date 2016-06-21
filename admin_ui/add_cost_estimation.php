@@ -49,8 +49,8 @@ $cost_status=$_POST['cost_status'];
 		</div>
 	</div>
 </section>
-<div class="container error_add_cost_estimation">
-	<span> Please fill out all mandatory fields </span>
+<div class="container">
+	<span class="error_test"> Please fill out all mandatory fields </span>
 </div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
@@ -65,7 +65,7 @@ $cost_status=$_POST['cost_status'];
 				<form action="add_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
 					<div class="form-group">
 					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_print_type" id="s5">
+						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">
 					        <option value="">
 								<span>Select Paper Print Type</span>
 							</option>
@@ -80,7 +80,7 @@ $cost_status=$_POST['cost_status'];
 					</div>
 						<div class="form-group">
 					    <label for="first-name">Paper Side<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_side" id="s6">
+						<select class="product-type-filter form-control" name="cost_paper_side" id="sel_b">
 					        <option value="">
 								<span>Select Paper Side</span>
 							</option>
@@ -94,7 +94,7 @@ $cost_status=$_POST['cost_status'];
 					</div>
 						<div class="form-group">
 					    <label for="first-name">Paper Size<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_size" id="s7">
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
 					        <option value="">
 								<span>Select Paper Size</span>
 							</option>
@@ -108,7 +108,7 @@ $cost_status=$_POST['cost_status'];
 					</div>
 						<div class="form-group">
 					    <label for="first-name">Paper Type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_type" id="s8">
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
 					        <option value="">
 								<span>Select Paper Type</span>
 							</option>
@@ -122,11 +122,11 @@ $cost_status=$_POST['cost_status'];
 					</div>
 					<div class="form-group">
 					    <label for="last-name">Amount<span class="required">*</span></label>
-						<input type="text" class="form-control" id="amount" autocomplete="off" name="cost_amount" placeholder="Amount">
+						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Cost Estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="s9">
+						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
 					        <option value="">
 								<span>Select Status</span>
 							</option>
