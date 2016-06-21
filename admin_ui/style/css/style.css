@@ -1453,7 +1453,7 @@ text-align: center;
         padding-left: 5px;
     }
 
-.error_test  {
+.error_test,.error_image,.error_extension  {
 	color :red ;
 	font-size : 12px;
 	text-align :center;
