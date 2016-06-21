@@ -61,17 +61,17 @@ include "includes/header.php";
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
 						<h3 class="acc-title lg">Add Papersize Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Papersize Information</h4>
+							<h4 class="acc-sub-title">Paper size Information</h4>
 							<form action="add_paper_size.php" method="POST" name="edit-acc-info" id="add_paper_size">
 								<div class="form-group">
 								    <label for="last-name">Papersize<span class="required">*</span></label>
-									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="Papersize">
+									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="PaperSize">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_size_status" id="sel_a">
 								        <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

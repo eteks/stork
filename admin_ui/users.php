@@ -84,7 +84,13 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							?>
 						</td>
 			            <td><?php echo $fetch['user_email'] ?></td>
-			            <td><?php echo $fetch['user_dob'] ?></td>
+			            
+			            	<?php  $dobdate=strtotime($fetch['user_dob']);
+								   
+						            $dob = date('d/m/Y', $dobdate);
+						            // echo $date; 
+						            ?>
+						          <td> <?php echo $dob; ?> </td>
 			            <td><?php echo $fetch['user_mobile'] ?></td>
 			            <td>
 			            <?php 
@@ -98,7 +104,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								   
 						            $date = date('d/m/Y', $createddate);
 						            // echo $date; 
-						            ?>
+						            ?>						          
 			            <td><?php echo $date; ?></td>
 			            <td class="table_action th_hidden a-center last">
 			                <span class="nobr">

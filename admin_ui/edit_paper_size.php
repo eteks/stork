@@ -61,9 +61,9 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Papersize Information</h3>
+						<h3 class="acc-title lg">Edit Paper Size Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Papersize Information</h4>
+							<h4 class="acc-sub-title">Paper Size Information</h4>
 							<?php
 							$papersize_query = mysqlQuery ("SELECT * FROM stork_paper_size WHERE paper_size_id='$id'");
 							$papersize_array=mysql_fetch_array($papersize_query);
@@ -77,7 +77,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="paper_size_status">
 								 <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if($papersize_array['paper_size_status'] == 1)  echo "selected" ?> >
 											<span>Active</span>
