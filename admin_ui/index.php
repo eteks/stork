@@ -95,8 +95,8 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 						// {
 					?>
 					<!-- <div class="admin_login_error"> -->
-						<?php 
-						// echo $error; ?>
+						<span class="admin_login_error"> <?php 
+						echo $error; ?> </span>
 					<!-- </div> -->
 					<?php
 						// }
