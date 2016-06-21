@@ -6,8 +6,36 @@ include "includes/header.php";
 <title>All States</title>
 </head>
 <body>
-  
+<?php
+if (isset($_GET['update']))
+{
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+		$val = $_GET['update'];
+		$val = mres($val);
+		$paper_side = $_POST["paper_side"];
+		$paper_side_status = $_POST["paper_side_status"];
+		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_id NOT IN('$val')");
+		$row = mysql_num_rows($qr);
+		if($row > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span>  Paperside Already exists! </span></div>";
+		} else {
+			mysqlQuery("UPDATE `stork_paper_side` SET `paper_side`='$paper_side',`paper_side_status`='$paper_side_status' WHERE `paper_side_id`=".$val);
+			$successMessage = "<div class='container error_message_mandatory'><span>  Paperside Updated Successfully! </span></div>";	
+		}
+				
+	}
+	
+}
+$id=$val;
+if(isset($_GET["id"]))
+{
+	$id = $_GET["id"];
+}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
@@ -34,32 +62,40 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Paperside Information</h3>
+						<h3 class="acc-title lg">Edit Paperside Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paperside Information</h4>
-							<form action="#" method="POST" name="edit-acc-info">
-								
-								<div class="form-group">
-								    <label for="last-name">Paper Side<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
-								</div>
-								<div class="cate-filter-content">	
-								    <label for="first-name">Paperside Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
-								        <option>
-											<span>Select status</span>
-										</option>
-								        <option value="0">
-											<span>Active</span>
-										</option>
-										<option value="1">
-											<span>Inactive</span>
-										</option>
-								    </select>
-								</div>
-								<div class="account-bottom-action">
-									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
-								</div>
+							<form action="edit_paper_side.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_side">	
+							<?php 
+								$match = "SELECT * FROM `stork_paper_side` WHERE `paper_side_id`='$id'";
+								$qry = mysqlQuery($match);
+								$numRows = mysql_num_rows($qry); 
+								if ($numRows > 0)
+								{
+									while($row = mysql_fetch_array($qry)) 
+									{
+							?>
+							<div class="form-group">
+							    <label for="last-name">Paper Side<span class="required">*</span></label>
+								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
+							</div>
+							<div class="cate-filter-content">	
+							    <label for="first-name">Paperside Status<span class="required">*</span></label>
+								<select class="product-type-filter form-control" id="sel_a" name="paper_side_status">
+							        <option>
+										<span>Select status</span>
+									</option>
+							        <option value="1" <?php if ($row['paper_side_status'] == 1) echo "selected"; ?>>Active</option>
+									<option value="0" <?php if ($row['paper_side_status'] == 0) echo "selected"; ?>>InActive</option>
+							    </select>
+							</div>
+							<div class="account-bottom-action">
+								<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
+							</div>
+							<?php 
+								} 
+								}
+							?>
 							</form>
 						</div>
 					</section><!-- Cart main content : End -->

@@ -25,7 +25,7 @@ include "includes/header.php";
 			$user_state_id = $_POST["user_state_id"];
 			$user_mobile = $_POST["user_mobile"];
 			$user_status = $_POST["user_status"];
-			$qr = mysqlQuery("SELECT * FROM `stork_users` WHERE `username`='$username' AND `user_email`='$user_email' AND 'user_id' NOT IN('$val')");
+			$qr = mysqlQuery("SELECT * FROM `stork_users` WHERE `username`='$username' AND `user_email`='$user_email' AND user_id NOT IN('$val')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> User Already exists! </span></div>";	
@@ -66,6 +66,12 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -73,12 +79,11 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Users Information</h3>
+						<h3 class="acc-title lg">Edit Users Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">User Information</h4>
-							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info">
+							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_users">
 							<?php 
-								if($successMessage) echo $successMessage; 
 								$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 								$qry = mysqlQuery($match);
 								$numRows = mysql_num_rows($qry); 
@@ -89,107 +94,97 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="last-name">User Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
+									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="first-name" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
+									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Firstname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Firstname" name="password" value="<?php echo($row['password']); ?>">
+									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Lastname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="last-name" placeholder="Firstname" name="password" value="<?php echo($row['password']); ?>">
-								</div>
-								<div class="form-group">
-								    <label for="last-name">First Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
-								</div>
-								<div class="form-group">
-								    <label for="last-name">Last Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="sel_a" name="user_type">
 								        <option>
-											<span>Select Type</span>
+											<span>Select User Type</span>
 										</option>
-								        <option value="0">
-											<span>Admin</span>
-										</option>
-										<option value="1">
-											<span>Staff</span>
-										</option>
+								        <option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
+										<option value="2" <?php if ($row['user_type'] == 2) echo "selected"; ?>>Profession</option>	
 								    </select>
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Dob" name="user_dob" value="<?php echo($row['user_dob']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line1<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="address" autocomplete="off" placeholder="Address" name="line1" value="<?php echo($row['line1']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Address Line2<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+								    <label for="last-name">Address Line2<span class="required"></span></label>
+									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="sel_b" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
-								        <option value="0">
-											<span>Tamilnadu</span>
-										</option>
-										<option value="1">
-											<span>Pondicherry</span>
-										</option>
+								        <?php
+						                    $query = mysql_query("select * from stork_state");
+					                        while ($staterow = mysql_fetch_array($query)) {
+						                        if($row['user_state_id'] == $staterow['state_id'])   
+						                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+						                        else
+						                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        }
+					                    ?>
 								    </select>
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="sel_c" name="user_area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
-								        <option value="0">
-											<span>Madurai</span>
-										</option>
-										<option value="1">
-											<span>Virudhunagar</span>
-										</option>
+								        <?php
+						                    $query = mysql_query("select * from stork_area");
+					                        while ($arearow = mysql_fetch_array($query)) {
+					                        if($row['user_area_id'] == $arearow['area_id'])   
+					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        else
+					                        	echo "<option value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        }
+					                    ?>
 								    </select>
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Area Name">
+									<input type="text" class="form-control" id="mobile" placeholder="Area Name" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
 								</div>
 								
 								<div class="cate-filter-content">	
 								    <label for="first-name">Users Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel1">
+									<select class="product-type-filter form-control" id="sel_d" name="user_status">
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="0">
-											<span>Active</span>
-										</option>
-										<option value="1">
-											<span>Inactive</span>
-										</option>
+								        <option value="1" <?php if ($row['user_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['user_status'] == 0) echo "selected"; ?>>InActive</option>
 								    </select>
 								</div>
 								<div class="account-bottom-action">
-									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
+									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
 								</div>
 							<?php 
 							} 

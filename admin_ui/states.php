@@ -9,19 +9,22 @@ include "includes/header.php";
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3 hidden-xs dashboard_header">
+			<div class="col-md-9 dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<div class="breadcrumb-w col-sm-9">
-				<span class="">You are here:</span>
-				<ul class="breadcrumb">
-					<li>
-						<span> State </span>
-					</li>
-					<li>
-						<span>All States</span>
-					</li>
-				</ul>
+			<div class="col-md-3 search-w SC-w hd-pd ">
+				<span class="search-icon dropdowSCIcon">
+					<i class="fa fa-search"></i>
+				</span>
+				<div class="search-safari" style="display:none;">
+					<!-- <div class="search-form dropdowSCContent">
+						<form method="POST" action="#">
+							<input type="text" name="search" placeholder="Search" class="search"/>
+							<input type="submit" value="Search">
+							<i class="fa fa-search"></i>
+						</form>
+					</div> -->
+				</div>
 			</div>
 		</div>
 	</div>
@@ -29,8 +32,11 @@ include "includes/header.php";
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
-	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
-		<h3 class="acc-title lg"> States</h3>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12">
+	<div class="heading_section col-md-12">
+		<h3 class="acc-title lg clone_heading"> States</h3>
+		<div class="clear_both"> </div>
+	</div>
 			<div class="form-edit-info">
 							<?php $sql = "SELECT * FROM `stork_state`"; 
 								$query = mysqlQuery($sql);
@@ -65,10 +71,15 @@ include "includes/header.php";
 										?>
 						            	</span>
 						            </td>
-						            <td><span class="nobr"><?php echo $fetch['created_date'] ?></span></td>
+						             <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+						            <td><span class="nobr"><?php echo $date; ?></span></td>
 						            <td class="th_hidden a-center last">
 						                <span class="nobr">
-						                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+						                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 							                <span class="separator"></span> 
 							             <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 							            </span>

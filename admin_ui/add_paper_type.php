@@ -48,6 +48,9 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -58,14 +61,14 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Papertype Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Papertype Information</h4>
-							<form action="add_paper_type.php" method="POST" name="edit-acc-info">
+							<form action="add_paper_type.php" method="POST" name="edit-acc-info" id="add_paper_type">
 								<div class="form-group">
 								    <label for="last-name">Papertype<span class="required">*</span></label>
-									<input type="text" class="form-control" name="paper_type" id="first-name" placeholder="Papertype">
+									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Papertype">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papertype Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="paper_type_status" id="sel1">
+									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">
 								        <option value="">
 											<span>Select status</span>
 										</option>

@@ -225,7 +225,7 @@ table {
   padding:0 26px;
 }
 .gbtn:hover{
-  background: #fbc443;
+  background: #25bce9;
   color: #ffffff;
 }
 .gbtn:hover span{
@@ -301,24 +301,24 @@ a.product-name:hover{
   -o-transition: all 0.2s; 
 }
 ::-webkit-input-placeholder {
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 :-ms-input-placeholder {  
-  font-family: 'Roboto', sans-serif !important;
+  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
@@ -1036,9 +1036,9 @@ ul.cate_list li.parent a i{
   float:right;
 }
 .cart-w, .search-w{
-  position: relative;
   display: block;
-  width: 40%;
+  padding: 0;
+  text-align: right;
   vertical-align: middle;
 }
 .search-w i{
@@ -1056,7 +1056,7 @@ ul.cate_list li.parent a i{
   line-height: 60px;
 }
 .SC-w{
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 /*dropdown Cart------------------------------------------------*/
 .cart-w{
@@ -1182,7 +1182,7 @@ a.mcart-name{
 /*Tfix*/
 .search-w  .search-safari{
   overflow: hidden;
-  top: 60px;
+  top: 47px;
   width: 265px;
   height: 60px;
   position: absolute;
@@ -4614,15 +4614,15 @@ span.star{
 #pr-login .container .col-md-6.col-sm-6.col-xs-12.right #forgotpass-form .email{
     margin-bottom:40px;
 }
-.container .col-md-6  input{
+/*.container .col-md-6  input{
   border: 1px solid #d7d7d7;
   font-size:14px;
   padding:10px;
   width:100%;
   max-width:425px;
   /*margin:0 0 24px;*/
-    background: #ffffff;
-}
+    /*background: #ffffff;*/
+/*}*/
 .pr-main .container .col-md-6  button {
   float:right;
   background:#d6d6d6;
@@ -6271,7 +6271,7 @@ section.home-slidershow{
 .account-main  {
   width: 100%;
 }
-.page-content .container, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
+.page-content .container, .padding_style, .account-sidebar , .top-header-right, .headerCS, .breadcrumb-w, .top-links, .w-logo, .dashboard_header {
   padding: 0px;
 }
 .mainy , .account-main{
@@ -6351,11 +6351,225 @@ select::-ms-expand {
   color: #fff !important;
 }*/
 .browse_style {
+  border: medium none !important;
   color: #25bce9;
-  padding: 0px !important;
+  cursor: pointer;
+  max-width: 218px !important;
+  padding: 0 !important;
 }
 .no_result {
   font-size: 20px;
   padding: 50px 0;
   text-align: center;
+}
+.show_offer_image {
+  height: 32px;
+  width: 10%;
+}
+.dropdown-menu a:hover {
+    background-color: #25bce9 !important;
+    color: #fff !important;
+}
+.dropdown-menu a i {
+  margin: 0 10px 0 0;
+}
+.offer_zone_position {
+  position: relative;
+}
+.dispaly_hide_offer {
+  height: 58px;
+  left: 232px;
+  position: absolute;
+  top: 12px;
+  width: 75px;
+}
+.dispaly_show_add_offer {
+  height: 58px;
+  left: 232px;
+  position: absolute;
+  top: 12px;
+  width: 75px;
+  display: none;
+}
+.dispaly_show_offer {
+  height: 58px;
+  left: 232px;
+  position: absolute;
+  top: 12px;
+  width: 75px;
+  display: none;
+}
+.display_none {
+  display: none;
+}
+.display_block {
+  display: block;
+}
+.edit_offer_image {
+  height: 100%;
+  width: 100%;
+}
+.width_order_details {
+  overflow: auto;
+}
+.width_order_details_table {
+  max-width: none;
+  width: 1450px !important;
+}
+.width_text_area {
+  max-width: 378px;
+}
+.offer_image_align {
+  display: block;
+  float: left;
+  text-align: left;
+  /*text-indent: 3px;*/
+  width: 286px;
+}
+.search-form input[type="text"] {
+  height: 40px !important;
+  position: relative;
+  top: -16px;
+  width: 195px;
+}
+#username {
+  border-radius: 0;
+  padding: 8px !important;
+}
+#password {
+  border-radius: 0;
+  padding: 8px !important;
+}
+.admin_label_style label{
+  color: #444444 !important;
+  font-weight: 200 !important;
+}
+/*.admin_reset_style {
+  background-color: #d0d0d0;
+  border-color: #d0d0d0;
+  border-radius: 0;
+  color: #444444;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  margin-left: 20px;
+}*/
+.admin_button_style { 
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: #d6d6d6 none repeat scroll 0 0;
+  border-color: transparent transparent #646464;
+  border-image: none;
+  border-radius: 0;
+  border-style: solid;
+  /*border-width: 1px;*/
+  color: #444444;
+  float: right;
+  font-size: 12px;
+  padding: 10px 35px;
+  text-transform: uppercase;
+  margin: 0 0 0 20px;
+  line-height: 34px;
+  }
+.admin_reset_style:hover {
+  background: #25bce9 none repeat scroll 0 0;
+  color: #ffffff;
+  border :1px solid #25bce9;
+}
+.admin_button_section {
+  margin: 0 49px 0 0;
+  padding-top: 26px;
+  text-align: right;
+}
+.admin_button_section button {
+  padding: 0px 18px !important;
+}
+.admin_login_header {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.admin_form_section {
+  padding: 0px;
+}
+.admin_login_field {
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid #d7d7d7;
+  font-size: 14px;
+  margin: 0 0 24px;
+  max-width: 425px;
+  padding: 10px;
+  width: 100%;
+}
+#login-form {
+  padding-top: 20px;
+}
+#login-form h2 {
+  text-align: center;
+}
+#login-form p {
+  margin: 0 0 10px;
+}
+table th, td {
+  text-align: left !important;
+}
+button:hover {
+  background-color: #25bce9 !important;
+}
+.admin_login_error {
+  font-size: 14px;
+  color: #b94a48;
+}
+.dataTables_paginate {
+  font-size: 14px;
+  margin-top: 30px;
+  text-align: center;
+}
+.dataTables_paginate a{ 
+  border: 1px solid #25bce9;
+  margin: 0 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+#my-orders-table_info {
+  display: none;
+}
+.paging-nav {
+  display: none;
+}
+.current {
+  background-color: #25bce9;
+  color: #fff;
+}
+.heading_section h3 {
+  float: left;
+}
+#my-orders-table_length {
+  float: right;
+}
+.clear_both {
+  clear :both;
+}
+.heading_section {
+  color: #fff;
+  background-color: #25bce9;
+}
+#my-orders-table_length {
+  padding: 8px 0 0;
+}
+#my-orders-table_filter input {
+  border: medium none;
+  height: 37px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.search-icon {
+  cursor :pointer;
+}
+.current:hover {
+  color: #fff;
 }
