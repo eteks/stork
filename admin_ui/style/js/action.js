@@ -3,7 +3,8 @@ jQuery(document).ready(function() {
 	
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
-	var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
+	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
+	var required_edit_offer_zone =["offerzonetitle"];
 	var required_edit_users =["username","password","firstname","lastname","test","dob","address","phone"];
 	var required_myform =["areaname"];
 	var required_state =["statename"];
@@ -931,20 +932,39 @@ jQuery("#edit_order_details").submit(function(){
 	});
 
 jQuery("#add_offer_zone").submit(function(){ 
-		for(var i = 0 ; i<required_add_offer_zone.length;i++ ){
-			var input = jQuery('#'+required_add_offer_zone[i]);
-		
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
+	for(var i = 0 ; i<required_add_offer_zone.length;i++ ){
+		var input = jQuery('#'+required_add_offer_zone[i]);
+		var input_selector ='#'+required_add_offer_zone[i];
+		var ext = $("#OfferzoneImage").val().split('.').pop().toLowerCase();
+		if ((input.val() == "" || input.val() == undefined)) 
+			{	
+				if(input_selector == "#offerzoneimage" && $('#offerzonetitle').val()!='' &&  $('#sel_a').val()!=''){
+					if($("#OfferzoneImage")[0].files[0]){
+						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+						    $("#OfferzoneImage").addClass("error_input_field");
+							$('.error_extension').css('display','block');
+						}
+						else{
+							$("#OfferzoneImage").removeClass("error_input_field");
+							$('.error_image,.error_extension').css('display','none');
+						}	
+					}	
+					else{
+						$("#OfferzoneImage").addClass("error_input_field");
+						$('.error_image').css('display','block');
+					}
+				}
+				else{
+					input.addClass("error_input_field");
+					$('.error_test').css('display','block');
+				}			
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_test').css('display','none'); }
+				$('.error_test').css('display','none'); 
 			}
+	}
 			
 	//  select field
-
 	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
@@ -952,9 +972,8 @@ jQuery("#add_offer_zone").submit(function(){
 		}
 		else { $('#sel_a').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-			
 		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
