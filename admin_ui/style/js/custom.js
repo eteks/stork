@@ -1,4 +1,4 @@
-/* Admin sidebar starts */
+ /*Admin sidebar starts */
 
 $(document).ready(function(){
 
@@ -82,7 +82,7 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () {
-    var a=$('#phone').val().length;
+    // var a=$('#phone').val().length;
     $('#dob').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
