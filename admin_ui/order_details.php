@@ -60,7 +60,7 @@ include "includes/header.php";
 						<th>Uploaded Files</th>
 						<th>Created Date</th>
 						<th>Order Detail Status</th>
-						<th>Action</th>
+						<th class='table_action'>Action</th>
 			        </tr>
 			      </thead>
 			       <?php              
@@ -104,7 +104,7 @@ include "includes/header.php";
 								echo "InActive";
 							?>
 						</td>
-			            <td class="th_hidden a-center last">
+			            <td class="table_action th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_order_details.php?id=<?php echo $fetch['order_details_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 

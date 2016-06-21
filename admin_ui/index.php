@@ -9,44 +9,44 @@ if(isset($_POST['username']) && isset($_POST['password']))
 {
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
-	if(onOffAdminCaptcha()==1) 
-	{ 
-		if(isset($_POST["captcha_code"]) && trim($_POST["captcha_code"])!="") 
-		{ 
-			if (trim($_POST["captcha_code"])!=$_SESSION['captcha']['code']) 
-			{
-				$error = 'Invalid Captcha';
-			}
-			else
-			{
-				if (authenticate(trim($user) , trim($pass))) 
-				{
-					$_SESSION['admin_eap_secure'] = 1;
-				}
-				else
-				{
-					$error .= "Invalid username and password combination.";
-				}
-			}	
-		}
-		else
-		{
-			$error="Captcha field must not be empty.";
-		}
-	}	
-	else 
-	{
+	// if(onOffAdminCaptcha()==1) 
+	// { 
+	// 	if(isset($_POST["captcha_code"]) && trim($_POST["captcha_code"])!="") 
+	// 	{ 
+	// 		if (trim($_POST["captcha_code"])!=$_SESSION['captcha']['code']) 
+	// 		{
+	// 			$error = 'Invalid Captcha';
+	// 		}
+	// 		else
+	// 		{
+	// 			if (authenticate(trim($user) , trim($pass))) 
+	// 			{
+	// 				$_SESSION['admin_eap_secure'] = 1;
+	// 			}
+	// 			else
+	// 			{
+	// 				$error .= "Invalid username and password combination.";
+	// 			}
+	// 		}	
+	// 	}
+	// 	else
+	// 	{
+	// 		$error="Captcha field must not be empty.";
+	// 	}
+	// }	
+	// else 
+	// {
 		if (authenticate(trim($user) , trim($pass))) 
 		{  
 			$_SESSION['admin_eap_secure'] = 1;
 		}
 		else
 		{
-			$error .= "Invalid username and password combination";
+			$error = "Invalid username and password combination";
 		}
-	}
+	// }
 }
-$_SESSION['captcha'] = simple_php_captcha();
+// $_SESSION['captcha'] = simple_php_captcha();
 if (isset($_SESSION['admin_eap_secure']) && !$error)
 {
 	header('Location: ./users.php');
@@ -69,7 +69,7 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3 hidden-xs dashboard_header">
-				<h1 class="mh-title"> My Dashboard </h1>
+				<h1 class="mh-title"> Login </h1>
 			</div>
 			<div class="breadcrumb-w col-sm-9">
 				<span class="">You are here:</span>
@@ -89,37 +89,37 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
    	   <section class="pr-main" id="pr-login">	
 			<div class="container padding_style">	
 				<div class="col-md-9 col-sm-9 col-xs-12 padding_style">
-					<h1 class="ct-header">Login</h1>	
+					<h1 class="ct-header">Login</h1>
 					<?php
 						// if ($error) 
 						// {
 					?>
 					<!-- <div class="admin_login_error"> -->
+					<div class="container admin_login_error_section">
 						<span class="admin_login_error"> <?php 
 						echo $error; ?> </span>
-					<!-- </div> -->
-					<?php
-						// }
-					?>		
+						<!-- </div> -->
+						<?php
+							// }
+						?>	
+						<span class="error_admin_login"> Please fill out all mandatory fields </span>
+					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<h4>Returning Customers</h4>
 						<p>If you have an account with us, please log in.</p>
 						<form id="login-form" class="form-validate form-horizontal" method="post" action="index.php" accept-charset="UTF-8">
 							<p>User Name <span class="star">*</span></p>
-							<input class="email admin_login_field" type="text" id="username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
+							<input class="email admin_login_field" type="text" id="admin_username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" aria-describedby="basic-addon1">
 							<p>Password <span class="star">*</span></p>
-							<input class="pasword admin_login_field" id="" type="password" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
+							<input class="pasword admin_login_field" type="password" id="admin_password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" aria-describedby="basic-addon1">
 							<button type="submit" class="login">Login</button>
 						</form>
-					    </br></br></br>
 					</div>
-					
 				</div>
-			</div>
-			</br></br>
 		  </section>
 
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>
+	<script src="style/js/action.js"></script>
 </body>
 </html>
