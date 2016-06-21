@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								    <label for="first-name">Area Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="area_status">
 								        <option value="">
+								        	<span>Select status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

@@ -92,7 +92,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date Of Delivered<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name3" placeholder="Date Of Delivered" name="order_delivery_date" value="<?php echo($row['order_delivery_date']); ?>">
+									<input type="text" class="form-control" id="Dateofdelivered" placeholder="Date Of Delivered" name="order_delivery_date" value="<?php echo($row['order_delivery_date']); ?>">
 								</div>
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>

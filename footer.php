@@ -19,7 +19,7 @@
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
-									<span><a href="mailto:support@netbaseteam.net" title="send mail to Cmsmart">support@netbaseteam.net</a></span>
+									<span><a href="mailto:support@printstork.com" title="send mail to Cmsmart">support@printstork.com</a></span>
 								</li>
 							</ul>
 							<ul class="footer-social">
@@ -104,7 +104,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copy-right">Central - Copyright © 2015 <a href="#" title="Cmsmart - Magento theme">netbaseteam.com</a>. All Rights Reserved</p>
+						<p class="copy-right">Central - Copyright © 2016 <a href="http://www.atomicka.com/" title="Cmsmart - Magento theme">Infom Atomicka Tech Pvt Ltd</a>. All Rights Reserved</p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top
@@ -198,6 +198,14 @@
 			</li>
 		</ul>
 	</nav> 
+	<!---   Pop up error msg--->
+	<div class="popup_fade cancel_btn"></div> 
+ 	<div class="error_popup_msg">
+	 	<div class="success-alert">
+	 		<span></span>
+	 	</div><!--- --->
+	 	<input type="submit" class="btn btn-primary alert_btn" value="OK">
+ 	</div><!--success_msg-->
 	<!--Add js lib-->
 	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script> 
 	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.min.js"></script>
@@ -217,10 +225,5 @@
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   	<![endif]-->
-  	<script type="text/javascript">
-	    jQuery(document).ready(function ($) {
-	        $('#tabs').tab();
-	    });
-	</script>    
 </body>
 </html>

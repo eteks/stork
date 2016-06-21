@@ -60,7 +60,10 @@ if(isset($_GET["id"]))
 	</div>
 </section>
 <div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
+<span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
 </div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
@@ -96,7 +99,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="phone" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" maxlength="10" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>

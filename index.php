@@ -1,4 +1,7 @@
-	<?php include('header.php') ?>
+<?php 
+	include('header.php');
+	include('function.php'); 
+?>
 	<main class="main" id="product-detail">
    		<section class="header-page">
 			<div class="container">
@@ -30,12 +33,10 @@
 				</div>
 			</div> <!---container--->
 		</section>	
-	     
-	     
-	     <section>	  			
+	    <section>	  			
 		  <div class="container">
 			<div id="content">
-			   <form action="add_to_cart.php" enctype="multipart/form-data">
+			   <form action="home.php" enctype="multipart/form-data" method="post" id="index_page_form">
 	    			<div id="my-tab-content" class="tab-content">
 	    				<div class="tab-pane active container" id="green">
 				        	<div class="row">
@@ -44,27 +45,41 @@
 				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="professional"/>
 				            	    <label for="professional">Professional</label>
 				        	</div>
+				        	
 				        	<div class="row location">
-	        					<select name="college" id="print_book_college" required>
-	        						<option value="" disabled selected>Select your College/University</option>
-	        						<option value="mana">Manakula vinayakar</option>
-	        						<option value="christ">Christ college</option>
-	        					</select>
-	        					<select id="print_book_state" name="state" class=" dn" required>
-	        						<option value="" disabled selected>Select your State</option>
-	        						<option value="pondy">Pondicherry</option>
-	        						<option value="tamil">Tamilnadu</option>
-	        					</select>
-	        					<select id="print_book_state" name="area" placeholder="Select your area" required>
-	        						<option value="" disabled selected>Select your area</option>
-	        						<option value="laws">lawspet</option>
-	        						<option value="muthial">Muthial pet</option>
-	        					</select>
+				        		<div class="stu_area_college_holder dn">
+		        					<select id="print_book_state" name="pro_state" required>
+		        						<option value="" >Select your State</option>
+		        						<?php
+		        							$state = selectfunction('*',STATE,'');
+											while($row = mysql_fetch_array($state)){
+												echo "<option value ='".$row['state_id']."'>".$row['state_name']."</option>";
+											}
+		        						?>
+		        					</select>
+		        					<select id="print_book_area_professional" name="pro_area" required>
+		        						<option value="" >Select your Area</option>
+		        					</select>
+	        					</div>
+	        					<div class="profession_state_area_holder">
+		        					<select id="print_book_area_student" name="stu_area" required>
+		        						<option value=""  >Select your Area</option>
+		        						<?php
+		        							$area = selectfunction('*',AREA,'');
+											while($row = mysql_fetch_array($area)){
+												echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
+											}
+		        						?>
+		        					</select>
+		        					<select name="stu_college" id="print_book_college" required>
+		        						<option value="" >Select your College/University</option>
+		        					</select>
+	        					</div>
 				        	</div>
 				        </div> <!---#green---->
 				         				         
 				        <div class="button_holder">
-				        	<h4 class="btn_prf"><a href="home.php">Go</a></h4>
+				        	<h4 class="btn_prf"><a class="index_go_btn">Go</a></h4>
 				         	<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
 				        </div>
 				  </div>
@@ -73,4 +88,4 @@
 	       </div> <!-- container -->
 	     </section>  
     </main><!-- Main Product Detail: End -->
-    <?php include('footer.php') ?>
+<?php include('footer.php') ?>

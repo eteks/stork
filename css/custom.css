@@ -32,10 +32,10 @@ input[type=checkbox] {
 	font-size: 14px;
 }
 
-#print_book_college, select:focus {
+/*#print_book_college, select:focus {
 	border: 1px solid #25bce9;
 	border-radius: 4px;
-}
+}*/
 
 #product-detail .tab-content{
 	margin: 20px 0px;
@@ -154,6 +154,7 @@ h3, .h3{
     font-size: 12px;
     padding: 10px 35px;
     text-transform: uppercase;
+    cursor:pointer;
 	}
 
 .button_holder a:hover { 
@@ -233,11 +234,6 @@ color: #000;
 }
 
 /* placeholder for select in home page */
-
-input[type=textarea]{
-	height:150px;
-	padding: 5px;
-}
 
 .fl{ float:left;}
 
@@ -439,4 +435,60 @@ h4.order_or_button{
     padding: 10px 35px;
     text-transform: uppercase;
     margin: 30px 15px;
+}
+.profession_state_area_holder > span {
+    color: red;
+}
+.popup_fade{
+	background: #000000 none repeat scroll 0 0;
+    display: none;
+    height: 1000%;
+    opacity: 0.63;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+   
+}
+.error_popup_msg {
+    background: #fff none repeat scroll 0 0;
+    display: none;
+    height: 140px;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    width: 230px;
+    z-index: 9999;
+}
+.success-alert {
+  	padding: 25px 0 30px;
+    text-align: center;
+}
+.success-alert span{
+	color: red;
+}
+.alert_btn{
+	left: 87px;
+    position: relative;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: left;
+    font-size: 14px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+}
+.error_border{
+	border : 1px solid #CB1D1D;
+}
+.textarea_print{
+	resize: none;
 }

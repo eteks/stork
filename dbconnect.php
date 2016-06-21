@@ -1,9 +1,10 @@
 <?php
+require_once("settings.php");
 class dbConnect {
-    public $DB_HOST='localhost';
-    public $DB_USER='root';
-    public $DB_PASSWORD='root';
-    public $DB_DATABASE='stork';
+    public $DB_HOST= HOSTNAME;
+    public $DB_USER= DBUSER;
+    public $DB_PASSWORD=DBPASSWORD;
+    public $DB_DATABASE=DATABASE;
 	function __construct() {
         $conn = mysql_connect($this->DB_HOST, $this->DB_USER, $this->DB_PASSWORD);
         mysql_select_db($this->DB_DATABASE, $conn);

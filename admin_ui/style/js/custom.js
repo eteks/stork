@@ -76,13 +76,13 @@ $(document).ready(function () {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
-        $("#error_test").html("Digits Only").show().fadeOut("slow");
-               return false;
+        // $("#error_test").html("Digits Only").show().fadeOut("slow");
+        return false;
     }
    });
 });
 $(document).ready(function () {
-    
+    var a=$('#phone').val().length;
     $('#dob').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
@@ -90,6 +90,8 @@ $(document).ready(function () {
     });
     
 });
+
+
 $(document).ready(function () {
   //called when key is pressed in textbox
   $("#amount").keypress(function (e) {
