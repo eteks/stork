@@ -18,7 +18,8 @@ include "includes/header.php";
 			$last_name = $_POST["last_name"];
 			$user_type = $_POST["user_type"];
 			$user_email = $_POST["user_email"];
-			$user_dob = $_POST["user_dob"];
+			$user_dob = explode('/',$_POST["user_dob"]);
+			$user_dob = $user_dob[2].'-'.$user_dob[1].'-'.$user_dob[0];
 			$line1 = $_POST["line1"];
 			$line2 = $_POST["line2"];
 			$user_area_id = $_POST["user_area_id"];
@@ -127,7 +128,8 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Date Of Birth" name="user_dob" value="<?php echo($row['user_dob']); ?>">
+								   
+									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Date Of Birth" name="user_dob" value="<?php $dobdate=strtotime($row['user_dob']); $dob = date('d/m/Y', $dobdate); echo $dob; ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line1<span class="required">*</span></label>
