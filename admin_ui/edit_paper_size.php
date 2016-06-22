@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$paper_size = $_POST["paper_size"];
+		$paper_size = $_POST["Papersize"];
 		$paper_size_status = $_POST["paper_size_status"];
 		$qr = mysqlQuery("SELECT * FROM stork_paper_size WHERE 	paper_size='$paper_size' AND paper_size_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
@@ -31,7 +31,7 @@ if(isset($_GET["id"]))
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
-<?php if($successMessage) echo $successMessage; ?>
+
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
@@ -55,6 +55,7 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>

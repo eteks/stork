@@ -244,7 +244,7 @@ jQuery("#add_state").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
@@ -311,7 +311,7 @@ jQuery("#add_area").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
@@ -351,7 +351,7 @@ jQuery("#edit_area").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
@@ -523,7 +523,7 @@ jQuery("#add_paper_size").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
@@ -585,7 +585,7 @@ jQuery("#edit_paper_side").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
@@ -646,7 +646,7 @@ jQuery("#add_paper_print_type").submit(function(){
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
