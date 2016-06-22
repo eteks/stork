@@ -54,6 +54,9 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -63,7 +66,7 @@ if(isset($_GET["id"]))
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
 						<h3 class="acc-title lg">Edit order Details Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Order details Information</h4>
+							<h4 class="acc-sub-title">Order Details Information</h4>
 							<form action="edit_order_details.php?update=<?php echo $id; ?>" id="edit_order_details" method="POST" name="edit-acc-info">
 							<?php 
 								$match = "SELECT * FROM `stork_order_details` WHERE `order_details_id`='$id'";
@@ -76,13 +79,13 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">Order ID<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>" disabled>
+									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>">
 								</div>
 								<div class="cate-filter-content">
-								    <label for="last-name">Order Paper PrintType<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="order_details_paper_print_type">
+								    <label for="last-name">Order Paper Print Type<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="order_details_paper_print_type">
 								        <option>
-											<span>Select Paper PrintType</span>
+											<span>Select Paper Print Type</span>
 										</option>
 								        <?php
 					                        $query = mysql_query("select * from stork_paper_print_type");
@@ -96,7 +99,7 @@ if(isset($_GET["id"]))
 								    </div>
 								<div class="cate-filter-content">
 								    <label for="last-name">Order Paper Side<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s6" name="order_details_paper_side">
+									<select class="product-type-filter form-control" id="sel_b" name="order_details_paper_side">
 								        <option>
 											<span>Select Paper Side</span>
 										</option>
@@ -112,7 +115,7 @@ if(isset($_GET["id"]))
 								    </div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Order Paper Size<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s7" name="order_details_paper_size">
+									<select class="product-type-filter form-control" id="sel_c" name="order_details_paper_size">
 								        <option>
 											<span>Select Paper Size</span>
 										</option>
@@ -128,7 +131,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">
 								    <label for="last-name">Order Paper Type<span class="required">*</span></label>
-										<select class="product-type-filter form-control" id="s8" name="order_details_paper_type">
+										<select class="product-type-filter form-control" id="sel_d" name="order_details_paper_type">
 								        <option>
 											<span>Select the Paper Type</span>
 										</option>
@@ -145,15 +148,15 @@ if(isset($_GET["id"]))
 										
 								<div class="form-group">
 								    <label for="last-name">Total No.Of Pages<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name1" placeholder="Total No.Of Pages" name="order_details_total_no_of_pages" value="<?php echo($row['order_details_total_no_of_pages']); ?>">
+									<input type="text" class="form-control" id="pages" placeholder="Total No.Of Pages" name="order_details_total_no_of_pages" value="<?php echo($row['order_details_total_no_of_pages']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Color Print Pages<span class="required">*</span></label>
-									<input type="text" class="form-control" id="first-name2" placeholder="Color Print Pages" name="order_details_color_print_pages" value="<?php echo($row['order_details_color_print_pages']); ?>">
+									<input type="text" class="form-control" id="colorprintpage" placeholder="Color Print Pages" name="order_details_color_print_pages" value="<?php echo($row['order_details_color_print_pages']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Comments<span class="required">*</span></label>
-								    <textarea placeholder="Comments" id="first-name3"name="order_details_comments" class="form-control width_text_area"><?php echo($row['order_details_comments']); ?></textarea>	
+								    <textarea placeholder="Comments" id="comments"name="order_details_comments" class="form-control width_text_area"><?php echo($row['order_details_comments']); ?></textarea>	
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Amount<span class="required">*</span></label>
@@ -162,9 +165,9 @@ if(isset($_GET["id"]))
 
 											<div class="cate-filter-content">	
 								    <label for="first-name">Order Detail Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s9" name="order_details_status">
+									<select class="product-type-filter form-control" id="sel_e" name="order_details_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['order_details_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['order_details_status'] == 0) echo "selected"; ?>>InActive</option>

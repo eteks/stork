@@ -186,11 +186,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="shippingemail" placeholder="Shipping Email" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>">
+									<input type="text" class="form-control" id="test" placeholder="Shipping Email" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="shippingmobile" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Items<span class="required">*</span></label>
@@ -200,7 +200,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">Order status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_d" name="order_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['order_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['order_status'] == 0) echo "selected"; ?>>InActive</option>

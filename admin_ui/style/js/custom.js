@@ -81,15 +81,23 @@ $(document).ready(function () {
     }
    });
 });
-// $(document).ready(function () {
-    // $('#dob').datepicker({
-        // dateFormat: 'dd/mm/yy',
-        // altField: '#thealtdate',
-        // altFormat: 'yy-mm-dd'
-    // });
-//     
-// });
+$(document).ready(function () {
+    $('#dob').datepicker({
+        dateFormat: 'dd/mm/yy',
+        altField: '#thealtdate',
+        altFormat: 'yy-mm-dd'
+    });
+    
+});
 
+$(document).ready(function () {
+    $('#dateofdelivered').datepicker({
+        dateFormat: 'dd/mm/yy',
+        altField: '#thealtdate',
+        altFormat: 'yy-mm-dd'
+    });
+    
+});
 
 $(document).ready(function () {
   //called when key is pressed in textbox
