@@ -362,7 +362,10 @@ function countOfferZone()
 							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Cost Estimation </span></a>
 						</li> 
 						<li>
-							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> All Cost Estimation (<?php echo countCostEstimation() ?>) </span></a>
+							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
+						</li> 
+						<li>
+							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Cost Estimation </span></a>
 						</li> 
 					</ul>
 				</li>

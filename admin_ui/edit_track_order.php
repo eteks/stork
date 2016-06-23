@@ -13,7 +13,8 @@ if (isset($_GET['update']))
 		$val = mres($val);
 
 		$order_delivery_status = $_POST["order_delivery_status"];
-		$order_delivery_date = $_POST["order_delivery_date"];
+		$order_delivery_date = explode('/',$_POST["order_delivery_date"]);
+		$order_delivery_date = $order_delivery_date[2].'-'.$order_delivery_date[1].'-'.$order_delivery_date[0];
 
 		mysqlQuery("UPDATE stork_order SET order_delivery_status='$order_delivery_status',order_delivery_date='$order_delivery_date' WHERE order_id=".$val);
 		$successMessage = "<div class='container error_message_mandatory'><span> Order Status Updated Successfully! </span></div>";	
@@ -84,7 +85,7 @@ if(isset($_GET["id"]))
 								        <option>
 											<span>Select Order Status</span>
 										</option>
-								        <option value="processed" <?php if ($row['order_delivery_status'] == "confirmed") echo "selected"; ?>>Confirmed</option>
+								        <option value="processing" <?php if ($row['order_delivery_status'] == "processing") echo "selected"; ?>>Processing</option>
 										<option value="completed" <?php if ($row['order_delivery_status'] == "completed") echo "selected"; ?>>Completed</option>
 										<option value="shipped" <?php if ($row['order_delivery_status'] == "shipped") echo "selected"; ?>>Shipped</option>
 										<option value="delivered" <?php if ($row['order_delivery_status'] == "delivered") echo "selected"; ?>>Delivered</option>
@@ -92,7 +93,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date Of Delivered<span class="required">*</span></label>
-									<input type="text" class="form-control" id="dateofdelivered" placeholder="Date Of Delivered" autocomplete="off" name="order_delivery_date" value="<?php echo($row['order_delivery_date']); ?>">
+									<input type="text" class="form-control" id="dateofdelivered" placeholder="Date Of Delivered" autocomplete="off" name="order_delivery_date" value="<?php $deliverydate=strtotime($row['order_delivery_date']); $delivery = date('d/m/Y', $deliverydate); echo $delivery; ?>">
 								</div>
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
