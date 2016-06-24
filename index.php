@@ -1,6 +1,11 @@
 <?php 
 	include('header.php');
-	include('function.php'); 
+	if(isset($_SESSION['login_status'])){
+		if($_SESSION['login_status'] != 1){
+		 $_SESSION['login_status'] = 0;
+		}
+	}
+	print_r($_SESSION);
 ?>
 	<main class="main" id="product-detail">
    		<section class="header-page">
@@ -13,7 +18,7 @@
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="home.html">Home</a>
+								<a>Home</a>
 							</li>
 							<li>
 								<span>Print Stork</span>
@@ -40,19 +45,18 @@
 	    			<div id="my-tab-content" class="tab-content">
 	    				<div class="tab-pane active container" id="green">
 				        	<div class="row">
-				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="student" checked/>
+				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="stu" checked/>
 				        		   <label for="student">Student</label>
-				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="professional"/>
+				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="pro"/>
 				            	    <label for="professional">Professional</label>
 				        	</div>
-				        	
 				        	<div class="row location">
 				        		<div class="stu_area_college_holder dn">
 		        					<select id="print_book_state" name="pro_state" required>
 		        						<option value="" >Select your State</option>
 		        						<?php
-		        							$state = selectfunction('*',STATE,'');
-											while($row = mysql_fetch_array($state)){
+		        							$state = selectfunction('*',STATE,'',$connection);
+											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['state_id']."'>".$row['state_name']."</option>";
 											}
 		        						?>
@@ -65,8 +69,8 @@
 		        					<select id="print_book_area_student" name="stu_area" required>
 		        						<option value=""  >Select your Area</option>
 		        						<?php
-		        							$area = selectfunction('*',AREA,'');
-											while($row = mysql_fetch_array($area)){
+		        							$area = selectfunction('*',AREA,'',$connection);
+											while($row = mysqli_fetch_array($area)){
 												echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
 											}
 		        						?>

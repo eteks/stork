@@ -1,9 +1,9 @@
 <?php
 //Database settings
-define("HOSTNAME", "localhost");
-define("DBUSER", "root");
-define("DBPASSWORD", "");
-define("DATABASE", "stork");
+define("HOSTNAME", "localhost");//mysql1110.ixwebhosting.com
+define("DBUSER", "root");//BBBmcmf_stork
+define("DBPASSWORD", "");//Stork_123
+define("DATABASE", "stork");//BBBmcmf_stork
 
 
 // this is for google settings
@@ -39,5 +39,8 @@ define("USERS",'stork_users');
 
 //php allows only ajax call
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+// uploaded file extensions
+$ALLOWEDFILE = array('doc','docx','pdf');
 
 ?>

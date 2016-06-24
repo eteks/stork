@@ -36,16 +36,18 @@ if (isset($accessToken)) {
 				echo 'Facebook SDK returned an error: ' . $e->getMessage();
 				exit;
 			}
-			
-			$check1 = mysql_query("select * from stork_users where facebook_uid='".$profile['id']."' and user_status = '1'");
-			$check = mysql_num_rows($check1);
+			$check1 = mysqli_query($connection,"select * from stork_users where social_id='".$profile['id']."' and user_status = '1'");
+			$check = mysqli_num_rows($check1);
 			if ($check == 0) { // if new user . Insert a new record		
 			
-				$query = "INSERT INTO stork_users (facebook_uid,username,password,first_name,last_name,user_type,user_email,user_dob,line1,line2,user_area_id,user_state_id,user_mobile,user_access_type,user_status) VALUES ('".$profile['id']."','".$profile['email']."','".$profile['first_name']."','".$profile['first_name']."','".$profile['last_name']."','fb','".$profile['email']."','fb','fb','fb','1','1','fb','2','1')";
-				mysql_query($query);	
+				$query = "INSERT INTO stork_users (social_id,username,password,first_name,last_name,user_type,user_email,user_dob,line1,line2,user_mobile,user_access_type,user_status) VALUES ('".$profile['id']."','".$profile['email']."','".$profile['first_name']."','".$profile['first_name']."','".$profile['last_name']."','fb','".$profile['email']."','fb','fb','fb','fb','2','1')";
+				
+				mysqli_query($connection,$query);
+				$_SESSION['login_status'] = 1;
 			} else {   // If Returned user . update the user record		
 				$query = "UPDATE stork_users SET first_name='$ffname', user_email='$femail' where Fuid='$fuid'";
-				mysql_query($query);
+				mysqli_query($connection,$query);
+				$_SESSION['login_status'] = 1;
 			}
 			// printing $profile array on the screen which holds the basic info about user
 			header("Location: index.php");

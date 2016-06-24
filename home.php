@@ -1,19 +1,42 @@
 
 <?php 
 	include('header.php'); 
-	if($_POST){
-		$usertype = $_POST['user_type'];
-		if(trim($usertype) == 'student'){
-			$_SESSION['usertype'] = 'student';
-			$_SESSION['college_id'] =trim($_POST['stu_college']);
-			$_SESSION['area_id'] =trim($_POST['stu_area']);
-		}
-		if(trim($usertype) == 'professional'){
-			$_SESSION['usertype'] = 'pro';
-			$_SESSION['state_id'] =trim($_POST['pro_state']);
-			$_SESSION['area_id'] =trim($_POST['pro_area']);
+	if(!isset($_SESSION['usertype'])){
+		
+		if($_POST){
+			
+			$usertype = $_POST['user_type'];
+			if(trim($usertype) == 'stu'){
+				$_SESSION['usertype'] = 'stu';
+				$_SESSION['college_id'] =trim($_POST['stu_college']);
+				$_SESSION['area_id'] =trim($_POST['stu_area']);
+				
+			}
+			
+			if(trim($usertype) == 'pro'){
+				$_SESSION['usertype'] = 'pro';
+				$_SESSION['state_id'] =trim($_POST['pro_state']);
+				$_SESSION['area_id'] =trim($_POST['pro_area']);
+			}
 		}
 	}
+	else if(isset($_SESSION['usertype'])){
+		if($_POST){
+			if($_SESSION['usertype'] != $_POST['user_type']){
+				if(trim($_POST['user_type']) == 'stu'){
+					$_SESSION['usertype'] = 'stu';
+					$_SESSION['college_id'] =trim($_POST['stu_college']);
+					$_SESSION['area_id'] =trim($_POST['stu_area']);
+				}
+				if(trim($_POST['user_type']) == 'pro'){
+					$_SESSION['usertype'] = 'pro';
+					$_SESSION['state_id'] =trim($_POST['pro_state']);
+					$_SESSION['area_id'] =trim($_POST['pro_area']);
+				}
+			}
+		}
+	}
+	//print_r($_SESSION);
 ?>
 
 	<main class="main index">
@@ -24,8 +47,7 @@
 					<ul>
 						<li class="slide1" data-transition="random" ><img src="images/slider/home/bg_slider_1.jpg" alt="" />
 							<div class="tp-caption lfr" data-x="right"  data-hoffset="-56" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor">Flyers</span> & Leaflets</span></div> 
-							<div class="tp-caption lfb" data-x="right"  data-hoffset="-15" data-y="225" data-start="800" data-speed="2000" data-endspeed="300"
-							>
+							<div class="tp-caption lfb" data-x="right"  data-hoffset="-15" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
 									This is because they're perfect for potential prospects<br>  

@@ -1,9 +1,22 @@
 <?php 
 	include('header.php');
-	include('function.php');
-?>
-<?php 
 	$_SESSION['service'] = 'print';
+	$random = uniqid();
+	if(!isset($_SESSION['session_id'])){
+		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
+			$_SESSION['session_id'] = 'reg_stu_'.$random; 
+		}
+		else if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'pro'){
+			$_SESSION['session_id'] = 'reg_pro_'.$random;
+		}
+		else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'stu'){
+			$_SESSION['session_id'] = 'gue_stu_'.$random;
+		}
+		else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'pro'){
+			$_SESSION['session_id'] = 'gue_pro_'.$random;
+		}
+	}
+	//print_r($_SESSION);
 ?>
 	<div class="main" id="product-detail">	
    	    <section class="header-page">
@@ -16,7 +29,7 @@
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="home.html">Home</a>
+								<a href="home.php">Home</a>
 							</li>
 							<li>
 								<span>Order</span>
@@ -46,8 +59,8 @@
 			        			<select name="print_type" class="print_book_print_type">
 			        				<option value="" >Select Print Type</option>
 	        						<?php
-		        							$state = selectfunction('*',PRINTTYPE,'');
-											while($row = mysql_fetch_array($state)){
+		        							$state = selectfunction('*',PRINTTYPE,'',$connection);
+											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
 											}
 	        						?>
@@ -58,8 +71,8 @@
 			        			<select name="print_side" class="print_book_print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIDE,'');
-											while($row = mysql_fetch_array($state)){
+		        							$state = selectfunction('*',PAPERSIDE,'',$connection);
+											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
 											}
 	        						?>
@@ -70,8 +83,8 @@
 			        			<select name="papar_type" class="print_book_paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERTYPE,'');
-											while($row = mysql_fetch_array($state)){
+		        							$state = selectfunction('*',PAPERTYPE,'',$connection);
+											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
 											}
 	        						?>
@@ -82,8 +95,8 @@
 			        			<select name="papar_size" class="print_book_paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIZE,'');
-											while($row = mysql_fetch_array($state)){
+		        							$state = selectfunction('*',PAPERSIZE,'',$connection);
+											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
 											}
 	        						?>
@@ -91,9 +104,9 @@
 			        		 </div> <!-- input_holder -->
 			        		 <div class="input_holder row pad_15 upload_file_holder">
 								 <p> Upload files<span class="star">*</span></p>	
-								 <div class="upload_file_holder">
-								 	<input type="text" name="filepageno[]" class="col-md-8" placeholder="Page no.1-13,15,18-23"/>
-	       							<input type="file" class="user dn col-md-8 uploadFile" name="printfiles[]"/>
+								 <div class="print_upload_file_holder">
+								 	<input type="text" name="filepageno[]" class="col-md-8 print_book_color_page_no" placeholder="Page no.1-13,15,18-23"/>
+	       							<input type="file" class="user dn col-md-8 uploadFile" name="printfiles[]" accept="application/pdf,.doc,.docx" />
 	       							<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 	   							 </div>
    							 </div>

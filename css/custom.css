@@ -130,7 +130,16 @@ h3, .h3{
 	text-align: center;
 	font-size: 14px;
 }
-
+.reg_error_message_s{
+	color: #00A8FF;
+	text-align: center;
+	font-size: 14px;
+}
+.reg_error_message_e{
+	color: red;
+	text-align: center;
+	font-size: 14px;
+}
 /*ended by siva*/
 .yellow_heading{ 
 	font-size: 18px;
@@ -487,7 +496,7 @@ h4.order_or_button{
     text-transform: uppercase;
 }
 .error_border{
-	border : 1px solid #CB1D1D;
+	border : 1px solid #CB1D1D !important;
 }
 .textarea_print{
 	resize: none;

@@ -1,27 +1,30 @@
 <?php 
-
-	require_once('dbconnect.php'); 
 	include('header.php');
+	
+	
   	if(isset($_POST['login_user'])) {
   		$username_email=$_POST['login_name'];
   		$password=$_POST['login_pass'];
-  		$login_query=mysql_query("select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
-  		$login_count=mysql_num_rows($login_query);
+  		$login_query=mysqli_query($connection,"select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
+  		$login_count=mysqli_num_rows($login_query);
   		if($login_count == 1) {
-  			echo "<script> $('.login_error').css('display','none'); </script>";
-  			echo "login successful";		
+  			//echo "<script> $('.login_error').css('display','none'); </script>";
+			$_SESSION['login_status']=1;
+  			//echo "login successful";		
   		}
   		else {
   			echo "<script> $('.login_error').css('display','block'); </script>";
-  			echo "login failed";
+  			//echo "login failed";
   		}
  	}
-	
+	if($_SESSION['login_status'] == 1){
+		header('location:index.php');
+	}
   	if(isset($_POST['forget_password'])) {
   		$forget_email=$_POST['forget_email'];
-  		$forget_query=mysql_query("select * from stork_users where user_email='$forget_email'") or die(mysql_error());
-  		$forget_array=mysql_fetch_array($forget_query);
-  		$forget_email_count=mysql_num_rows($forget_query);
+  		$forget_query=mysqli_query($connection,"select * from stork_users where user_email='$forget_email'") or die(mysql_error());
+  		$forget_array=mysqli_fetch_array($forget_query);
+  		$forget_email_count=mysqli_num_rows($forget_query);
   		$fotget_password=$forget_array['password'];
   		if($forget_email_count == 1) {
             $message = "Your old password is";
@@ -36,14 +39,13 @@
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to,$subject,$body,$headers);
   			echo "<script> $('.forget_error').css('display','none'); </script>";
-  			echo "mail sent";
+  			//echo "mail sent";
   		}
   		else {
   			echo "<script> $('.forget_error').css('display','block'); </script>";
-  			echo "not found";
+  			//echo "not found";
   		}
   	}
-  	
   ?>
 <main class="main" id="product-detail">	
    	    <section class="header-page">
@@ -80,7 +82,7 @@
 							<p>Password <span class="star">*</span></p>
 							<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="">
 							<span class="forget_email_valid"> Please enter correct email </span>
-							<button type="submit" class="login">Login</button>
+							<button type="submit" class="login" name="login_user">Login</button>
 						</form>
 					    </br></br></br>
 					   <div class="socail socail_fb">
