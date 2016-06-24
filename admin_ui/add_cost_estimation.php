@@ -49,8 +49,8 @@ $cost_status=$_POST['cost_status'];
 		</div>
 	</div>
 </section>
-<div class="container error_add_cost_estimation">
-	<span> Please fill out all mandatory fields </span>
+<div class="container">
+	<span class="error_test"> Please fill out all mandatory fields </span>
 </div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
@@ -64,10 +64,10 @@ $cost_status=$_POST['cost_status'];
 				<h4 class="acc-sub-title">Cost Estimation Information</h4>
 				<form action="add_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
 					<div class="form-group">
-					    <label for="first-name">Paper print type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_print_type" id="s5">
+					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">
 					        <option value="">
-								<span>Select Paperprinttype</span>
+								<span>Select Paper Print Type</span>
 							</option>
 					        <?php 
 					        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
@@ -79,10 +79,10 @@ $cost_status=$_POST['cost_status'];
 					    </select>
 					</div>
 						<div class="form-group">
-					    <label for="first-name">Paperside<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_side" id="s6">
+					    <label for="first-name">Paper Side<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_side" id="sel_b">
 					        <option value="">
-								<span>Select Paperside</span>
+								<span>Select Paper Side</span>
 							</option>
 					 		<?php 
 					        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1'");
@@ -93,10 +93,10 @@ $cost_status=$_POST['cost_status'];
 					    </select>
 					</div>
 						<div class="form-group">
-					    <label for="first-name">Papersize<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_size" id="s7">
+					    <label for="first-name">Paper Size<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
 					        <option value="">
-								<span>Select Papersize</span>
+								<span>Select Paper Size</span>
 							</option>
 					        <?php 
 					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1'");
@@ -107,10 +107,10 @@ $cost_status=$_POST['cost_status'];
 					    </select>
 					</div>
 						<div class="form-group">
-					    <label for="first-name">Papertype<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_type" id="s8">
+					    <label for="first-name">Paper Type<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
 					        <option value="">
-								<span>Select Papertype</span>
+								<span>Select Paper Type</span>
 							</option>
 					         <?php 
 					        $query3=mysql_query("SELECT * FROM stork_paper_type WHERE paper_type_status='1'");
@@ -122,13 +122,13 @@ $cost_status=$_POST['cost_status'];
 					</div>
 					<div class="form-group">
 					    <label for="last-name">Amount<span class="required">*</span></label>
-						<input type="text" class="form-control" id="amunt" autocomplete="off" name="cost_amount" placeholder="Amount">
+						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
 					</div>
 					<div class="cate-filter-content">	
-					    <label for="first-name">Cost estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="s9">
+					    <label for="first-name">Cost Estimation Status<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
 					        <option value="">
-								<span>Select status</span>
+								<span>Select Status</span>
 							</option>
 					        <option value="1">
 								<span>Active</span>

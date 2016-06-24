@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	
 	if($_FILES['offerzone_image']['name']){
 		$image_status = true;
-		$offerzone_image = pathinfo($_FILES['offerzone_image']['name']);	
+		$offerzone_image = strtolower(pathinfo($_FILES['offerzone_image']['name']));	
 	}
 	else{
 		$image_status = false;
@@ -132,7 +132,10 @@ if(isset($_GET["id"]))
       <?php
         $img_source= $offer_array['offer_zone_image']; ?>
         <a class='dispaly_hide_offer' href='<?php echo $img_source; ?>' target='_blank'> 
+        <?php if($img_source != '') {?>
          <img class='edit_offer_image' src='<?php echo $img_source; ?>'/> 
+        <?php } ?>
+        <input type="hidden" name="hidden_offer_image" value="<?php echo $img_source; ?>">
         </a>
              
                 <a class='dispaly_show_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a>

@@ -56,6 +56,7 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>

@@ -382,7 +382,7 @@ color: #000;
     border-style: solid;
     border-width: 2px;
     color: #444444;
-    float: right;
+    float: left;
     font-size: 12px;
     padding: 10px 35px;
     text-transform: uppercase;
@@ -500,4 +500,27 @@ h4.order_or_button{
 }
 .textarea_print{
 	resize: none;
+}
+.page_range_error {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+.error_print_booking_field {
+    border : 1px solid #cb1d1d !important;
+}
+.error_print_booking {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+    display: none;
+}
+#print_page_range, .pos_rel {
+    display: none;
+}
+#print_page_range {
+    margin-right: 20px;
+}
+.uploadbutton {
+    margin-bottom: 20px;
 }

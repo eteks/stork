@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		// echo $target_file;
 		$info = pathinfo($_FILES['offerzone_image']['name']);
 		$uploadOk = 1;	
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		
 	    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
 		    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
@@ -80,6 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 </section>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<div class="container">
+ <span class="error_image"> Please Upload Image </span>
+</div>
+<div class="container">
+ <span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
 </div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">

@@ -59,13 +59,15 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				if ($offer_rows > 0)  {
 				?>
 				<table class="data-table offerzone_table" id="my-orders-table">
+			        <thead>
 			        <tr class="">
 			            <th> Offerzone Title </th>
 			            <th> Offerzone Image</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
-			            <th>Action</th>
+			            <th class="table_action">Action</th>
 			        </tr>
+			        </thead>
 			        <?php
 			        	while ($offer_array = mysql_fetch_array($offer_query))	{
 			        ?>
@@ -91,7 +93,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						            // echo $date; 
 						            ?>
 						            <td><span class="price"> <?php echo $date; ?> </span></td>
-			            <td class="th_hidden a-center last">
+			            <td class="table_action th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_offer_zone.php?id=<?php echo $offer_array['offer_zone_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 

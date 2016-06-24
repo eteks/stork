@@ -12,7 +12,7 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$paper_size = $_POST["paper_size"];
+		$paper_size = $_POST["Papersize"];
 		$paper_size_status = $_POST["paper_size_status"];
 		$qr = mysqlQuery("SELECT * FROM stork_paper_size WHERE 	paper_size='$paper_size' AND paper_size_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
@@ -31,7 +31,7 @@ if(isset($_GET["id"]))
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
-<?php if($successMessage) echo $successMessage; ?>
+
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
@@ -55,15 +55,16 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Papersize Information</h3>
+						<h3 class="acc-title lg">Edit Paper Size Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Papersize Information</h4>
+							<h4 class="acc-sub-title">Paper Size Information</h4>
 							<?php
 							$papersize_query = mysqlQuery ("SELECT * FROM stork_paper_size WHERE paper_size_id='$id'");
 							$papersize_array=mysql_fetch_array($papersize_query);
@@ -77,7 +78,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="paper_size_status">
 								 <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if($papersize_array['paper_size_status'] == 1)  echo "selected" ?> >
 											<span>Active</span>

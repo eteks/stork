@@ -4054,14 +4054,14 @@ aside.account-sidebar.sidebar ul{
   border: 1px solid #cecece;
 }
 #my-orders-table th{
-  padding: 5px  0px;
-  text-align: center;
+  /*padding: 5px  0px;
+  text-align: center;*/
   border-bottom: 1px solid #cecece;
   font-weight: bold;
 }
 #my-orders-table td{
-  padding: 5px;
-  text-align: center;
+  /*padding: 5px;*/
+  /*text-align: center;*/
   border-bottom: 1px solid #cecece;
 }
 
@@ -4406,7 +4406,7 @@ img{
     
 }
 .pr-main{
-  padding:30px 0 55px;
+  padding:30px 0 30px;
 }
 /* Contact */
 #pr-contact h1.ct-header{
@@ -6363,8 +6363,8 @@ select::-ms-expand {
   text-align: center;
 }
 .show_offer_image {
-  height: 32px;
-  width: 10%;
+  height: 26px;
+  width: 7%;
 }
 .dropdown-menu a:hover {
     background-color: #25bce9 !important;
@@ -6432,11 +6432,11 @@ select::-ms-expand {
   top: -16px;
   width: 195px;
 }
-#username {
+#admin_username {
   border-radius: 0;
   padding: 8px !important;
 }
-#password {
+#admin_password {
   border-radius: 0;
   padding: 8px !important;
 }
@@ -6566,10 +6566,29 @@ button:hover {
   right: 0;
   top: 0;
   width: 100%;
+  padding: 10px 15px;
 }
 .search-icon {
   cursor :pointer;
 }
 .current:hover {
   color: #fff;
+}
+.admin_login_error_section {
+  text-align: center;
+}
+#my-orders-table td , #my-orders-table th{
+  padding: 10px 16px;
+}
+.table_action {
+  text-align: right !important;
+}
+.user_table td, .user_table th {
+  padding: 10px 10px !important;
+}
+.cost_table td, .cost_table th{
+  padding: 10px 10px !important;
+}
+.offerzone_table th, .offerzone_table td {
+  padding: 10px 12px !important;
 }

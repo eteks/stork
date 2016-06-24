@@ -18,7 +18,8 @@ include "includes/header.php";
 			$last_name = $_POST["last_name"];
 			$user_type = $_POST["user_type"];
 			$user_email = $_POST["user_email"];
-			$user_dob = $_POST["user_dob"];
+			$user_dob = explode('/',$_POST["user_dob"]);
+			$user_dob = $user_dob[2].'-'.$user_dob[1].'-'.$user_dob[0];
 			$line1 = $_POST["line1"];
 			$line2 = $_POST["line2"];
 			$user_area_id = $_POST["user_area_id"];
@@ -72,6 +73,9 @@ include "includes/header.php";
 <div class="container">
  <span class="error_email"> Please Enter Valid email address </span>
 </div>
+<div class="container">
+ <span class="error_phone"> Please Enter Valid mobile number </span>
+</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -102,11 +106,11 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Firstname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" name="first_name" value="<?php echo($row['first_name']); ?>">
+									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="First Name" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Lastname<span class="required">*</span></label>
-									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Firstname" name="last_name" value="<?php echo($row['last_name']); ?>">
+									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
@@ -120,11 +124,12 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="email id" name="user_email" value="<?php echo($row['user_email']); ?>">
+									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Date of Birth<span class="required">*</span></label>
-									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Dob" name="user_dob" value="<?php echo($row['user_dob']); ?>">
+								   
+									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Date Of Birth" name="user_dob" value="<?php $dobdate=strtotime($row['user_dob']); $dob = date('d/m/Y', $dobdate); echo $dob; ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Address Line1<span class="required">*</span></label>
@@ -170,7 +175,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="mobile" placeholder="Area Name" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" maxlength="10"  autocomplete="off" placeholder="Mobile Number" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
 								</div>
 								
 								<div class="cate-filter-content">	
@@ -196,4 +201,12 @@ include "includes/header.php";
 </div><!-- container -->
 </div>
 </div>
+<script type="text/javascript">
+   $(document).ready(function(){
+     var d = new Date();
+     var curr_year = d.getFullYear();
+     $("#dob").datepicker(
+       { yearRange: '1900:'+ curr_year, changeMonth:true, changeYear:true, maxDate: '-1d'});
+    });
+ </script>
 <?php include 'includes/footer.php'; ?> 

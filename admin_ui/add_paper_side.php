@@ -58,19 +58,19 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Paperside Information</h3>
+						<h3 class="acc-title lg">Add Paper Side Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Paperside Information</h4>
+							<h4 class="acc-sub-title">Paper Side Information</h4>
 							<form action="add_paper_side.php" method="POST" name="edit-acc-info" id="add_paper_side">
 								<div class="form-group">
 								    <label for="last-name">Paperside<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperside" autocomplete="off" name="paper_side" placeholder="Paperside">
+									<input type="text" class="form-control" id="paperside" autocomplete="off" name="paper_side" placeholder="PaperSide">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paperside Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="paper_side_status">
 								        <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

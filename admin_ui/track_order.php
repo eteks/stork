@@ -53,7 +53,7 @@ include "includes/header.php";
 					            <th>Date Of Ordered</th>
 					            <th>Order Delivery status</th>
 					            <th>Date Of delivered</th>  
-					            <th>Action</th>
+					            <th class="table_action">Action</th>
 					        </tr>
 					    </thead>
 					    <?php 
@@ -70,15 +70,27 @@ include "includes/header.php";
 										echo $fetch['order_user_id'];
 							   ?>
 						   </td>				           
-				              <?php  $createddate=strtotime($fetch['order_delivery_date']);
+				              <?php  $createddate=strtotime($fetch['created_date']);
 								   
 						            $date = date('d/m/Y', $createddate);
 						            // echo $date; 
 						            ?>
 						            <td><span class="nobr"><?php echo $date; ?></span></td>
 				           <td><?php echo $fetch['order_delivery_status'] ?></td>
-				           <td><?php echo $fetch['order_delivery_date'] ?></td>
-				           <td class="th_hidden a-center last">
+				           
+				           <td>
+				           	<?php  $orderdate=strtotime($fetch['order_delivery_date']);
+								   
+						            $order_date = date('d/m/Y', $orderdate);
+						            // echo $date; 
+						            ?>
+				           	
+				           	<?php echo $order_date; ?>
+				           	
+				           	
+				           	
+				           	</td>
+				           <td class="table_action th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_track_order.php?id=<?php echo $fetch['order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 

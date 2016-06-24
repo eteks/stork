@@ -5,7 +5,6 @@ define("DBUSER", "root");//BBBmcmf_stork
 define("DBPASSWORD", "");//Stork_123
 define("DATABASE", "stork");//BBBmcmf_stork
 
-
 // this is for google settings
 define("GOOGLECLIENTID", "917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com"); // Client ID
 define("GOOGLECLIENTSECRET", "tKRvzUInxty26p19oMli58V9"); // Client Secret id

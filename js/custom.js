@@ -5,12 +5,159 @@ function error_popup(message){
 	document.body.style.overflow = 'hidden';
 }
 
+//  == Added by siva ==
+
+//  ==  Clone and Remove Start ==
+
+	var cloneIndex = $(".paper_range").length;
+	function clone(){
+		// alert("test");
+    	var path_section_clone = $(this).parents('.upload_range_button').children('.upload_file_holder');
+    	 path_section_clone.find('#print_page_range').clone()
+      	 .val("")
+      	 .appendTo('.upload_range_section')
+      	 .attr("id", "print_page_range" +  cloneIndex);
+      	 cloneIndex++;
+		}
+		function remove(){
+		 	var path_section_remove1=$('.paper_range:last').attr('id');
+      		var path_section_remove=jQuery('#'+path_section_remove1);
+		 	path_section_remove.remove();
+		}
+		$('.clone').on("click", clone);
+		$('.remove').on("click", remove);
+
+//  ==   Clone and Remove End ==
+
+
+$(document).ready(function () { 
+// 	== Add input box when selected white & black and color Start ==
+	$('#print_type').change(function() {
+		var selected_type = $('#print_type option:selected').text();
+		// alert("test");
+		if( selected_type == "white & black and color" ) {
+			$('#print_page_range').css('display','block');
+			$('.pos_rel').css('display','block');
+		}
+		else {
+			$('#print_page_range').css('display','none');
+			$('.pos_rel').css('display','none');
+		}
+	});
+// 	== Add input box when selected white & black and color End ==
+
+
+//  == Print Booking Validation Start ==
+
+	$('#print_booking_form').submit(function(){
+		for(i=0;i<required_print_booking.length;i++) {
+			var input = jQuery('#'+required_print_booking[i]);
+			if ((input.val() == "")) 
+			{
+				input.addClass("error_print_booking_field");
+			} else {
+				input.removeClass("error_print_booking_field");
+			}
+		}
+		if($('#print_page_range').css('display') == 'block') {
+			var input1 = jQuery('#'+"print_page_range");
+			if ((input1.val() == "")) 
+			{
+				input1.addClass("error_print_booking_field");
+			} else {
+				input1.removeClass("error_print_booking_field");
+			}
+		}
+	 	if (document.getElementById('print_type').selectedIndex < 1){
+			$('#print_type').addClass('error_print_booking_field');
+		}
+		else{ 
+			$('#print_type').removeClass('error_print_booking_field');
+		}
+		if (document.getElementById('print_side').selectedIndex < 1){
+			$('#print_side').addClass('error_print_booking_field');
+		}
+		else{ 
+			$('#print_side').removeClass('error_print_booking_field');
+		}
+		if (document.getElementById('paper_type').selectedIndex < 1){
+			$('#paper_type').addClass('error_print_booking_field');
+		}
+		else{ 
+			$('#paper_type').removeClass('error_print_booking_field');
+		}
+		if (document.getElementById('paper_size').selectedIndex < 1){
+			$('#paper_size').addClass('error_print_booking_field');
+		}
+		else{ 
+			$('#paper_size').removeClass('error_print_booking_field');
+		}
+		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery("select").hasClass("error_print_booking_field")) {
+			$('.error_print_booking').css('display','block');
+			return false;
+		}else {
+			$('.error_print_booking').css('display','none');
+			errornotice.hide();
+			return true;
+		}
+	});
+	
+//  == Print Booking Validation End ==
+
+//  == Add and Remove Button Start ==
+
+	$('.remove').css('display','none');
+	$('.clone, .remove').on('click',function() {
+		var input_length=$('.paper_range').length;
+		if(input_length <= 1) {
+		$('.remove').css('display','none');
+		}
+		else {
+			$('.remove').css('display','block');
+		}
+	});
+
+//  == Add and Remove Button End ==
+
+//  == Validation for Page range Keycode Start ==
+
+   $("#print_page_range").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+    }
+   });
+
+//  == Validation for Page range Keycode End ==
+
+//  == Validation for Page range Format Start ==
+
+	$('#print_page_range').keyup(function() {
+		var inputVal=$('#print_page_range').val();
+	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
+	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
+	  		$('.page_range_error').css('display','block');
+	  	}
+	 	else {
+	  		$('.page_range_error').css('display','none');
+	  	}
+	});
+
+//  == Validation for Page range Format End ==
+
+//  == Ended by siva ==
+});
 jQuery(document).ready(function() {
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
 	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
+	required_print_booking=["total_pages"];
 	reg_email=jQuery("#email");
 	forget_email=jQuery("#forget_email");
+	print_type=jQuery("#print_type");
+	print_side=jQuery("#print_side");
+	paper_type=jQuery("#paper_type");
+	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
@@ -223,6 +370,8 @@ jQuery(document).ready(function() {
 				}
 			}
 		});
+		
+	
 	
 	//find out cost per page for printing order using print type on multiple combination
 	$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').on('change',function(){
@@ -269,18 +418,18 @@ jQuery(document).ready(function() {
 	});
 	
 	//total cost amoutn display based on total no of pages and per page amount
-	$('.print_total_no_of_pages').on('blur',function(){
+	// $('.print_total_no_of_pages').on('blur',function(){
+
+	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+	// 	var total_amount = $(this).val();
+	// 	if(perpageamount){
+	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+	// 	}else{
+	// 		error_popup('Please select print type,print side,paper size,paper type!');
+	// 		$(this).val('');
+	// 	}
 		
-		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-		var total_amount = $(this).val();
-		if(perpageamount){
-			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-		}else if($('#print_booking_form .print_total_no_of_pages').val() != ''){
-			error_popup('Please select print type,print side,paper size,paper type!');
-			$(this).val('');
-		}
-		
-	});
+	// });
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){

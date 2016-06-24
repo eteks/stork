@@ -1,4 +1,4 @@
-/* Admin sidebar starts */
+ /*Admin sidebar starts */
 
 $(document).ready(function(){
 
@@ -70,11 +70,11 @@ $(document).ready(function(){
   });
 
 });
-$(document).ready(function () {
+$(document).ready(function () { 
   //called when key is pressed in textbox
   $("#phone").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+     if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
         // $("#error_test").html("Digits Only").show().fadeOut("slow");
         return false;
@@ -82,7 +82,6 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () {
-    var a=$('#phone').val().length;
     $('#dob').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
@@ -91,6 +90,14 @@ $(document).ready(function () {
     
 });
 
+$(document).ready(function () {
+    $('#dateofdelivered').datepicker({
+        dateFormat: 'dd/mm/yy',
+        altField: '#thealtdate',
+        altFormat: 'yy-mm-dd'
+    });
+    
+});
 
 $(document).ready(function () {
   //called when key is pressed in textbox
