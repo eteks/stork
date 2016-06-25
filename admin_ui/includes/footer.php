@@ -16,7 +16,7 @@
 			</div>
 		</div>
 </footer>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
   $('.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table').paging({
     limit: 8,
@@ -25,6 +25,6 @@ $(document).ready(function() {
     rows: []
   });
 });
-</script>
+</script> -->
 </body>
 <!-- Footer ends -->

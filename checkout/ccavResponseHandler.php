@@ -1,5 +1,6 @@
 <?php include('Crypto.php')?>
 <?php
+
 	error_reporting(0);
 	
 	$workingKey='1DD4304715928B37B1170BED9EDB13A6';		//Working Key should be provided here.
@@ -8,7 +9,7 @@
 	$order_status="";
 	$decryptValues=explode('&', $rcvdString);
 	$dataSize=sizeof($decryptValues);
-	
+
 	$Merchant_Id='';
 	$Order_Id='';
 	$Amount='';
@@ -40,19 +41,19 @@
 	}
 
 	if($order_status==="Success")
-	{
-		store_transaction();	
+	{	
+		store_transaction();
 		echo "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
 		
 	}
 	else if($order_status==="Aborted")
-	{
+	{	
 		store_transaction();
 		echo "<br>Thank you for shopping with us.We will keep you posted regarding the status of your order through e-mail";
 	
 	}
 	else if($order_status==="Failure")
-	{
+	{	
 		store_transaction();
 		echo "<br>Thank you for shopping with us.However,the transaction has been declined.";
 	}
@@ -68,7 +69,7 @@
 	for($i = 0; $i < $dataSize; $i++) 
 	{
 		$information=explode('=',$decryptValues[$i]);
-	    	echo '<tr><td>'.$information[0].'</td><td>'.urldecode($information[1]).'</td></tr>';
+	    	echo '<tr><td>'.$information[0].'</td><td>'.$information[1].'</td></tr>';
 	}
 
 	echo "</table><br>";

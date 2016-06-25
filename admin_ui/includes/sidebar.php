@@ -339,7 +339,7 @@ function countOfferZone()
 
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
-					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php")
+					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="cost_estimation_combination.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
