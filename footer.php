@@ -219,6 +219,7 @@
  	<script type="text/javascript" src="js/theme.js"></script>
  	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
     

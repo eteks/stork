@@ -98,7 +98,7 @@
 								 <div class="upload_file_holder upload_range_section" id="input1">
 								 	<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range" placeholder="Page no.1-13,15,18-23"/>
 								 	<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
-	       							<input type="file" class="user dn col-md-8 uploadFile" name="printfiles[]"/>
+	       							<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 	       							<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 	   							 </div>
    							 </div>

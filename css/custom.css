@@ -509,9 +509,66 @@ h4.order_or_button{
 #print_page_range, .pos_rel {
     display: none;
 }
-#print_page_range {
-    margin-right: 20px;
+.paper_range {
+    margin-right: 20px !important;
 }
 .uploadbutton {
     margin-bottom: 20px;
+}
+.track_order_details {
+    height: auto;
+}
+.track_order_status_process h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.track_order_status_completed h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.track_order_status_shipping h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.track_order_status_delivery h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.cont p {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+.process_list {
+    letter-spacing: 1px;
+    line-height: 34px;
+    width: 100%;
+}
+.process_status_datails {
+    width : 100%;
+}
+/*.track_order_status_delivery, .track_order_status_shipping, .track_order_status_completed, .track_order_status_process {
+    display: none;
+}*/
+.active_status {
+    display: block;
+}
+.border-change i{
+    color: #fff;
+    font-size: 24px;
+    padding: 10px;
+}
+.orderid_not_match {
+    margin: 80px 0;
+    text-align: center;
+}
+.orderid_not_match h1 {
+    /*background: #25bce9;*/
+    color: #000;
+    font-size: 33px;
+    padding: 20px
 }

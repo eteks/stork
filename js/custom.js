@@ -11,18 +11,44 @@ function error_popup(message){
 
 	var cloneIndex = $(".paper_range").length;
 	function clone(){
+	// 	for (i=1;i<cloneIndex;i++) {
+	// 		var input2 = jQuery('#'+uploadTrigger[i]);
+	// 		$(this).click(function(){
+	// 	$(this).parents('.upload_file_holder').find('.uploadFile').click();
+	
+	// 		if ((input2.val() == "")) 
+	// 			{
+	// 				alert("empty");	
+	// 			} else {
+	// 				alert("non-empty");	
+	// 			}
+	// 		});
+	// 	}
 		// alert("test");
     	var path_section_clone = $(this).parents('.upload_range_button').children('.upload_file_holder');
     	 path_section_clone.find('#print_page_range').clone()
       	 .val("")
       	 .appendTo('.upload_range_section')
       	 .attr("id", "print_page_range" +  cloneIndex);
+      	 path_section_clone.find('#file_upload').clone()
+      	 .val("")
+      	 .appendTo('.upload_range_section')
+      	 .attr("id", "file_upload" +  cloneIndex);
       	 cloneIndex++;
+      	 path_section_clone.find('#uploadTrigger').clone()
+      	 .val("")
+      	 .appendTo('.upload_range_section')
+      	 .attr("id", "uploadTrigger" +  cloneIndex);
 		}
 		function remove(){
 		 	var path_section_remove1=$('.paper_range:last').attr('id');
+		 	var path_section_remove2=$('.uploadbutton:last').attr('id');
       		var path_section_remove=jQuery('#'+path_section_remove1);
+      		var path_section_remove_browse=jQuery('#'+path_section_remove2);
+      		alert(path_section_remove_browse);
 		 	path_section_remove.remove();
+		 	path_section_remove_browse.remove();
+
 		}
 		$('.clone').on("click", clone);
 		$('.remove').on("click", remove);
@@ -49,7 +75,7 @@ $(document).ready(function () {
 
 //  == Print Booking Validation Start ==
 
-	$('#print_booking_form').submit(function(){
+	jQuery('#print_booking_form').submit(function(){
 		for(i=0;i<required_print_booking.length;i++) {
 			var input = jQuery('#'+required_print_booking[i]);
 			if ((input.val() == "")) 
@@ -59,14 +85,19 @@ $(document).ready(function () {
 				input.removeClass("error_print_booking_field");
 			}
 		}
-		if($('#print_page_range').css('display') == 'block') {
-			var input1 = jQuery('#'+"print_page_range");
-			if ((input1.val() == "")) 
-			{
-				input1.addClass("error_print_booking_field");
-			} else {
-				input1.removeClass("error_print_booking_field");
-			}
+		if($('.paper_range').css('display') == 'block') {
+			var test = $('.paper_range');
+			var input1 = jQuery('test.required');
+				for(i=0;i<input1.length;i++) {
+				if($(input1[i]).val() == "")
+				{
+					input1.addClass("error_print_booking_field");
+				} else {
+					
+					input1.removeClass("error_print_booking_field");
+				}
+				}
+
 		}
 	 	if (document.getElementById('print_type').selectedIndex < 1){
 			$('#print_type').addClass('error_print_booking_field');
@@ -131,15 +162,19 @@ $(document).ready(function () {
 //  == Validation for Page range Keycode End ==
 
 //  == Validation for Page range Format Start ==
-
+  	$('.clone').css('pointer-events', 'none');
 	$('#print_page_range').keyup(function() {
 		var inputVal=$('#print_page_range').val();
 	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
 	  		$('.page_range_error').css('display','block');
-	  	}
+  			$('#uploadTrigger').css('pointer-events', 'none');
+  			$('.clone').css('pointer-events', 'none');
+		}
 	 	else {
 	  		$('.page_range_error').css('display','none');
+  			$('#uploadTrigger').css('pointer-events', 'auto');
+			$('.clone').css('pointer-events', 'auto');
 	  	}
 	});
 
@@ -245,9 +280,21 @@ jQuery(document).ready(function() {
 	
 	
 	// customized browse button in order page
-	$("#uploadTrigger").click(function(){
-		$(this).parents('.upload_file_holder').find('.uploadFile').click();
+	$(".uploadbutton").on('click',function(){
+		alert("click");
+		var path_file=$(this).attr('id');
+		// path_file.click();
+		// var path_id = path_file.attr('id');
+		var file_path = jQuery('#'+path_file);
+		file_path.prev().click();
+		// file_path.click();
+		// var filename[]=file_path.val();
 	});
+		 	
+      		// var path_section_remove=jQuery('#'+path_section_remove1);
+
+	
+	
 	
 	// upload file holder add button
 	$('#register-form .add_btn').on('click',function(){
