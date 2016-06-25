@@ -4,60 +4,54 @@ function error_popup(message){
 	$('.error_popup_msg').show();
 	document.body.style.overflow = 'hidden';
 }
-
 //  == Added by siva ==
 
 //  ==  Clone and Remove Start ==
 
-	var cloneIndex = $(".paper_range").length;
-	function clone(){
-	// 	for (i=1;i<cloneIndex;i++) {
-	// 		var input2 = jQuery('#'+uploadTrigger[i]);
-	// 		$(this).click(function(){
-	// 	$(this).parents('.upload_file_holder').find('.uploadFile').click();
-	
-	// 		if ((input2.val() == "")) 
-	// 			{
-	// 				alert("empty");	
-	// 			} else {
-	// 				alert("non-empty");	
-	// 			}
-	// 		});
-	// 	}
-		// alert("test");
-    	var path_section_clone = $(this).parents('.upload_range_button').children('.upload_file_holder');
-    	 path_section_clone.find('#print_page_range').clone()
-      	 .val("")
-      	 .appendTo('.upload_range_section')
-      	 .attr("id", "print_page_range" +  cloneIndex);
-      	 path_section_clone.find('#file_upload').clone()
-      	 .val("")
-      	 .appendTo('.upload_range_section')
-      	 .attr("id", "file_upload" +  cloneIndex);
-      	 cloneIndex++;
-      	 path_section_clone.find('#uploadTrigger').clone()
-      	 .val("")
-      	 .appendTo('.upload_range_section')
-      	 .attr("id", "uploadTrigger" +  cloneIndex);
-		}
-		function remove(){
-		 	var path_section_remove1=$('.paper_range:last').attr('id');
-		 	var path_section_remove2=$('.uploadbutton:last').attr('id');
-      		var path_section_remove=jQuery('#'+path_section_remove1);
-      		var path_section_remove_browse=jQuery('#'+path_section_remove2);
-      		alert(path_section_remove_browse);
-		 	path_section_remove.remove();
-		 	path_section_remove_browse.remove();
+var cloneIndex = $(".paper_range").length;
+function clone(){
+   	var path_section_clone = $(this).parents('.upload_range_button').children('.upload_file_holder');
+	path_section_clone.find('#print_page_range').clone()
+  	.val("")
+  	.appendTo('.upload_range_section')
+  	.attr("id", "print_page_range" +  cloneIndex);
+  	path_section_clone.find('#file_upload').clone()
+  	.val("")
+  	.appendTo('.upload_range_section')
+  	.attr("id", "file_upload" +  cloneIndex);
+  	cloneIndex++;
+  	path_section_clone.find('#uploadTrigger').clone()
+  	.val("")
+  	.appendTo('.upload_range_section')
+  	.attr("id", "uploadTrigger" +  cloneIndex);
+}
+function remove(){
+ 	var path_section_remove1=$('.paper_range:last').attr('id');
+ 	var path_section_remove2=$('.uploadbutton:last').attr('id');
+	var path_section_remove=jQuery('#'+path_section_remove1);
+	var path_section_remove_browse=jQuery('#'+path_section_remove2);
+ 	path_section_remove.remove();
+ 	path_section_remove_browse.remove();
 
-		}
-		$('.clone').on("click", clone);
-		$('.remove').on("click", remove);
+}
+$('.clone').on("click", clone);
+$('.remove').on("click", remove);
 
 //  ==   Clone and Remove End ==
 
-
 $(document).ready(function () { 
-// 	== Add input box when selected white & black and color Start ==
+	required_login = ["username_email", "login_password"];
+	required_forget = ["forget_email"];
+	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
+	required_print_booking=["total_pages"];
+	reg_email=jQuery("#email");
+	forget_email=jQuery("#forget_email");
+	print_type=jQuery("#print_type");
+	print_side=jQuery("#print_side");
+	paper_type=jQuery("#paper_type");
+	paper_size=jQuery("#paper_size");
+	errornotice = jQuery("#error");
+	// 	== Add input box when selected white & black and color Start ==
 	$('#print_type').change(function() {
 		var selected_type = $('#print_type option:selected').text();
 		// alert("test");
@@ -70,11 +64,8 @@ $(document).ready(function () {
 			$('.pos_rel').css('display','none');
 		}
 	});
-// 	== Add input box when selected white & black and color End ==
-
-
-//  == Print Booking Validation Start ==
-
+	// 	== Add input box when selected white & black and color End ==
+	//  == Print Booking Validation Start ==
 	jQuery('#print_booking_form').submit(function(){
 		for(i=0;i<required_print_booking.length;i++) {
 			var input = jQuery('#'+required_print_booking[i]);
@@ -88,7 +79,7 @@ $(document).ready(function () {
 		if($('.paper_range').css('display') == 'block') {
 			var test = $('.paper_range');
 			var input1 = jQuery('test.required');
-				for(i=0;i<input1.length;i++) {
+			for(i=0;i<input1.length;i++) {
 				if($(input1[i]).val() == "")
 				{
 					input1.addClass("error_print_booking_field");
@@ -96,7 +87,7 @@ $(document).ready(function () {
 					
 					input1.removeClass("error_print_booking_field");
 				}
-				}
+			}
 
 		}
 	 	if (document.getElementById('print_type').selectedIndex < 1){
@@ -133,67 +124,61 @@ $(document).ready(function () {
 		}
 	});
 	
-//  == Print Booking Validation End ==
+	//  == Print Booking Validation End ==
 
-//  == Add and Remove Button Start ==
+	//  == Add and Remove Button Start ==
 
 	$('.remove').css('display','none');
 	$('.clone, .remove').on('click',function() {
 		var input_length=$('.paper_range').length;
 		if(input_length <= 1) {
 		$('.remove').css('display','none');
+		 $('.uploadbutton').css('pointer-events', 'auto');
+		$('.clone').css('pointer-events', 'auto');
 		}
 		else {
 			$('.remove').css('display','block');
 		}
 	});
 
-//  == Add and Remove Button End ==
+	//  == Add and Remove Button End ==
 
-//  == Validation for Page range Keycode Start ==
+	//  == Validation for Page range Keycode Start ==
 
-   $("#print_page_range").keypress(function (e) {
+   $(document).on('keypress','.paper_range',function (e) {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         return false;
     }
    });
 
-//  == Validation for Page range Keycode End ==
+	//  == Validation for Page range Keycode End ==
 
-//  == Validation for Page range Format Start ==
+	//  == Validation for Page range Format Start ==
   	$('.clone').css('pointer-events', 'none');
-	$('#print_page_range').keyup(function() {
-		var inputVal=$('#print_page_range').val();
+	$(document).on('keyup','.paper_range',function() {
+		var path_range=$(this).attr('id');
+		var range_path = jQuery('#'+path_range);
+		var inputVal=range_path.val();
 	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-	  		$('.page_range_error').css('display','block');
-  			$('#uploadTrigger').css('pointer-events', 'none');
+	  		// $('.page_range_error').css('display','block');
+	  		alert("page_range_error");
+  			$('.uploadbutton').css('pointer-events', 'none');
   			$('.clone').css('pointer-events', 'none');
 		}
 	 	else {
 	  		$('.page_range_error').css('display','none');
-  			$('#uploadTrigger').css('pointer-events', 'auto');
+  			$('.uploadbutton').css('pointer-events', 'auto');
 			$('.clone').css('pointer-events', 'auto');
 	  	}
 	});
 
-//  == Validation for Page range Format End ==
+	//  == Validation for Page range Format End ==
 
-//  == Ended by siva ==
-});
+}); //  == Ended by siva ==
+
 jQuery(document).ready(function() {
-	required_login = ["username_email", "login_password"];
-	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
-	required_print_booking=["total_pages"];
-	reg_email=jQuery("#email");
-	forget_email=jQuery("#forget_email");
-	print_type=jQuery("#print_type");
-	print_side=jQuery("#print_side");
-	paper_type=jQuery("#paper_type");
-	paper_size=jQuery("#paper_size");
-	errornotice = jQuery("#error");
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
 			var input = jQuery('#'+required_login[i]);
@@ -210,7 +195,6 @@ jQuery(document).ready(function() {
 				return false;
 			} else {
 				errornotice.hide();
-				alert("success");
 				return true;
 			}
 		});
@@ -218,11 +202,11 @@ jQuery(document).ready(function() {
 	jQuery("#forgotpass-form").submit(function(){
 		var input = jQuery('#'+required_forget);
 		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-			} else {
-				input.removeClass("error_input_field");
-			}
+		{
+			input.addClass("error_input_field");
+		} else {
+			input.removeClass("error_input_field");
+		}
 		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 			forget_email.addClass("error_input_field");
@@ -268,10 +252,11 @@ jQuery(document).ready(function() {
 			return false;
 		}else {
 			errornotice.hide();
-			alert("success");
+			
 			return true;
 		}
 	});
+	
 	
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
@@ -280,8 +265,7 @@ jQuery(document).ready(function() {
 	
 	
 	// customized browse button in order page
-	$(".uploadbutton").on('click',function(){
-		alert("click");
+	$(document).on('click','.uploadbutton',function(){
 		var path_file=$(this).attr('id');
 		// path_file.click();
 		// var path_id = path_file.attr('id');
@@ -290,11 +274,7 @@ jQuery(document).ready(function() {
 		// file_path.click();
 		// var filename[]=file_path.val();
 	});
-		 	
-      		// var path_section_remove=jQuery('#'+path_section_remove1);
-
-	
-	
+		
 	
 	// upload file holder add button
 	$('#register-form .add_btn').on('click',function(){
@@ -308,16 +288,34 @@ jQuery(document).ready(function() {
 		}
 		
 	});
+	// upload file holder add button
+	// $(document).on('click','#print_booking_form .add_btn',function(){
+	// 	if($('#print_booking_form .upload_file_holder:last .print_book_color_page_no').val() && $('#print_booking_form .upload_file_holder:last .uploadFile').val() != ''){
+	// 		var clone_content = $('#print_booking_form .upload_file_holder:last').clone();
+	// 		clone_content.find('.print_book_color_page_no').val('');
+	// 		clone_content.insertAfter($('#print_booking_form .upload_file_holder:last'));
+			
+	// 	}
+		
+	// });
+	// upload file holder del button
+	// $('#print_booking_form .del_btn').on('click',function(){
+	// 	alert($('.upload_file_holder').length);
+	// 	if($('.upload_file_holder').length!=1){
+	// 		$('#print_booking_form .upload_file_holder:last').remove();	
+	// 	}
+		
+	// });
 	
 	//homepage option selection 
 	$('#product-detail .print_book_user_type').click(function(){
 		
-		if($(this).val().trim() == 'student'){
+		if($(this).val().trim() == 'stu'){
 			$('.stu_area_college_holder').addClass('dn');
 			$('.profession_state_area_holder').removeClass('dn');
 		}
 		
-		else if($(this).val().trim() == 'professional'){
+		else if($(this).val().trim() == 'pro'){
 			$('.profession_state_area_holder').addClass('dn');
 			$('.stu_area_college_holder').removeClass('dn');
 		}
@@ -374,10 +372,12 @@ jQuery(document).ready(function() {
        });
 	});
 	
+	
 	// form submit when user is go button in index page
 	$('.index_go_btn').on('click',function(){
 		$('#index_page_form').submit();
 	});
+	
 	
 	//index page form validation
 	$('#index_page_form').submit(function(){
@@ -413,6 +413,7 @@ jQuery(document).ready(function() {
 			}
 		});
 		
+		
 	
 	
 	//find out cost per page for printing order using print type on multiple combination
@@ -434,8 +435,8 @@ jQuery(document).ready(function() {
            				$('#print_booking_form .per_page_costing').val(per_page_amount);
            			}
            			else{
-           				error_popup('Paper or Ink not available!');
-           				//location.reload();
+           				error_popup('Printing option not available!');
+           				$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
            			}
            			
           		}
@@ -443,18 +444,26 @@ jQuery(document).ready(function() {
 	 	}//end of if condition
 	});// end of event
 	
+	
 	//file upload validation in print booking page
 	$('#print_booking_form .uploadFile').change(function(){
     	var file = this.files[0];
     	name = file.name;
     	size = file.size;
     	type = file.type;
-    	alert(name);
+    	var ext = type.split('/');
+    	if($.inArray(ext[1], ['pdf','doc','docx']) == -1){
+    		error_popup('Allowed pdf, doc, docx files only!');
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
 	});
 	
-	//total cost amoutn display based on total no of pages and per page amount
+	// 	total cost amoutn display based on total no of pages and per page amount
 	// $('.print_total_no_of_pages').on('blur',function(){
-		
+
 	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
 	// 	var total_amount = $(this).val();
 	// 	if(perpageamount){

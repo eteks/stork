@@ -1,10 +1,9 @@
 <?php
 //Database settings
-define("HOSTNAME", "localhost");
-define("DBUSER", "root");
-define("DBPASSWORD", "root");
-define("DATABASE", "stork");
-
+define("HOSTNAME", "localhost");//mysql1110.ixwebhosting.com
+define("DBUSER", "root");//BBBmcmf_stork
+define("DBPASSWORD", "root");//Stork_123
+define("DATABASE", "stork");//BBBmcmf_stork
 
 // this is for google settings
 define("GOOGLECLIENTID", "917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com"); // Client ID
@@ -39,5 +38,8 @@ define("USERS",'stork_users');
 
 //php allows only ajax call
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+// uploaded file extensions
+$ALLOWEDFILE = array('doc','docx','pdf');
 
 ?>

@@ -1,3 +1,7 @@
+<?php
+include('dbconnect.php');
+include('function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,7 +135,18 @@ progress::-moz-progress-bar {
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
 						<?php 
 						session_start();
-						if(isset($_SESSION['facebook_access_token'])){
+						
+						if(isset($_SESSION['login_status'])){
+							if($_SESSION['login_status'] != 1){
+								$_SESSION['login_status'] = 0;
+							}
+						}
+						else{
+							$_SESSION['login_status'] = 0;
+						}
+						
+						// print_r($_SESSION);
+						if(isset($_SESSION['facebook_access_token'])||$_SESSION['login_status'] == 1){
 							
 						?>
 						<div class="cart-w SC-w hd-pd ">
@@ -164,21 +179,40 @@ progress::-moz-progress-bar {
 						<?php
 						}
 						?>
-						<div class="cart-w SC-w hd-pd ">
+						
+						<?php
+						if(isset($_SESSION['session_id'])){
+							$add_to_cart_quantity = selectfunction('*',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'" and order_id IS NULL',$connection);
+							$add_to_cart_count = mysqli_num_rows($add_to_cart_quantity);
+							if(mysqli_num_rows($add_to_cart_quantity)>0){
+						?>
+						<div class="cart-w SC-w hd-pd">
 							<span class="mcart-icon dropdowSCIcon">
 								<i class="fa fa-shopping-cart"></i>
-								<span class="mcart-dd-qty">2</span>
+								<span class="mcart-dd-qty"><?php echo $add_to_cart_count; ?></span>
 							</span>
-							
 							<div class="mcart-dd-content dropdowSCContent clearfix">
-								<div class="mcart-item-w clearfix1">
+							<?php
+								$total_amount = 0; 
+								$cart_details = mysqli_query($connection,"SELECT * FROM stork_order_details
+									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
+									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
+									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
+									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
+									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
+								while($cart_data = mysqli_fetch_array($cart_details, MYSQLI_ASSOC)){
+										$total_amount += $cart_data['order_details_total_amount'];
+							?>
+							
+								<div class="mcart-item-w clearfix">
 									<ul>
 										<li class="mcart-item">
-											<img src="images/product/mcart-postcard.jpg" alt="postcard cards">
 											<div class="mcart-info">
-												<a href="detail.html" class="mcart-name">Postcards Cards</a>
-												<span class="mcart-qty">1 x </span>
-												<span class="mcart-price">$ 10.09</span>
+												<a class="mcart-name"><b>Print type</b> : <?php echo $cart_data['paper_print_type']; ?> </a>
+												<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
+												<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
+												<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
+												<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
 												<span class="mcart-remove-item">
 													<i class="fa fa-times-circle"></i>
 												</span>
@@ -186,48 +220,39 @@ progress::-moz-progress-bar {
 										</li>
 									</ul>
 								</div>
-                                                            
-                                <div class="mcart-item-w clearfix">
-									<ul>
-										<li class="mcart-item iteam2">
-											<img src="images/product/mcart-postcard.jpg" alt="postcard cards">
-											<div class="mcart-info">
-												<a href="detail.html" class="mcart-name">Postcards Cards</a>
-												<span class="mcart-qty">1 x </span>
-												<span class="mcart-price">$ 10.09</span>
-												<span class="mcart-remove-item">
-													<i class="fa fa-times-circle"></i>
-												</span>
-											</div>
-										</li>
-									</ul>
-								</div>
+								<?php
+								}//while contidioin
+								?>
 								<div class="mcart-total clearfix">
 									<table>
 										<tr>
 											<td>Sub-Total</td>
-											<td>$ 10.09</td>
+											<td><b>&#8377;</b><?php echo $total_amount ; ?></td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>Eco Tax (-2.00)</td>
 											<td>$ 2.00</td>
 										</tr>
 										<tr>
 											<td>VAT (20%)</td>
 											<td>$ 2.018</td>
-										</tr>
+										</tr> -->
 										<tr class="total">
 											<td>Total</td>
-											<td>$ 10.108</td>
+											<td><b>&#8377;</b><?php echo $total_amount; ?></td>
 										</tr>
 									</table>
 								</div>
 								<div class="mcart-links buttons-set clearfix">
-									<a href="cart.html" class="gbtn mcart-link-cart">View Cart</a>
-									<a href="checkout.html" class="gbtn mcart-link-checkout">Checkout</a>
+									<a href="checkout.php" class="gbtn mcart-link-checkout">Checkout</a>
 								</div>
 							</div>
 						</div>
+						<?php
+						}
+						}
+						?>
+						
 						<div class="search-w SC-w hd-pd ">
 							<span class="search-icon dropdowSCIcon">
 								<i class="fa fa-search"></i>
