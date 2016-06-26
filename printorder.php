@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$filename = str_replace('\\', '', $filename);
 				$extesion_find = explode(".", $filename);
 				$extension = end($extesion_find);
-				if( in_array($extension, $ALLOWEDFILE)){
+				if(in_array($extension, $ALLOWEDFILE)){
 			        if(move_uploaded_file($tmp_name_array[$i], $upload_path.$additional_path.$name_array[$i])){
 			        	insertfunction('order_details_paper_print_type_id,order_details_paper_size_id,order_details_paper_side_id,order_details_paper_type_id,order_details_total_no_of_pages,order_details_total_amount,order_details_comments,order_details_session_id,order_details_status',$insert_data_order_details,ORDERDETAILS,'',$connection);
 						$order_detail_id = mysqli_insert_id();
@@ -48,17 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						
 			        } else {
 			            echo "file uploading file";
-						header('Location:printbooking.php?error=true');
+						//header('Location:printbooking.php?error1=true');
 			        }
 				}
 				else{
 					echo 'invalid file format';
-					header('Location:printbooking.php?error=true');
+					//header('Location:printbooking.php?error2=true');
 				}
 		    }
 		}
 		else {
-			header('Location:printbooking.php?error=true');
+			//header('Location:printbooking.php?error3=true');
 		}
 	}// end of add to cart
 	

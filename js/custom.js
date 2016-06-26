@@ -162,8 +162,8 @@ $(document).ready(function () {
 		var inputVal=range_path.val();
 	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-	  		// $('.page_range_error').css('display','block');
-	  		alert("page_range_error");
+	  		$('.page_range_error').css('display','block');
+	  		//alert("page_range_error");
   			$('.uploadbutton').css('pointer-events', 'none');
   			$('.clone').css('pointer-events', 'none');
 		}

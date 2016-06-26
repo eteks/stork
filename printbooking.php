@@ -1,7 +1,9 @@
 <?php 
 	include('header.php');
 	if(!isset($_SESSION['usertype'])){
-		header('Location:index.php');
+		//header('Location:index.php');
+		die('<script type="text/javascript">window.location.href="index.php";</script>');
+		exit();
 	}
 	$_SESSION['service'] = 'print';
 	$random = uniqid();
@@ -114,7 +116,7 @@
 
 								 <div class="upload_file_holder upload_range_section" id="input1">
 								 	<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range" placeholder="Page no.1-13,15,18-23"/>
-								 	<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
+								 	
 	       							<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 
 								<!--  <div class="print_upload_file_holder upload_range_section" id="input1">
@@ -128,16 +130,20 @@
    							 <div class="pos_rel" >
    							 	<div class="add_btn clone"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
    							 	<div class="del_btn remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
+   							 	
    							 </div>
    						</div>
 							 <div class="cb">  </div>
+							 <div class="input_holder row pad_15">
+							 	<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
+							 </div>
 							 <div class="input_holder row pad_15">
 							 	<p>Total No of Pages<span class="star">*</span></p>
 							 	<input class="user print_total_no_of_pages" id="total_pages" type="text" value="" name="print_totalpage"> 
 							 </div>
 							 <div class="input_holder row pad_15">
 							 	<p>Total Cost </p>
-							 	<input class="email print_total_amount" type="text" value="" name="print_totalcost">
+							 	<input class="email print_total_amount" type="text" value="" name="print_totalcost" readonly>
 							 </div>
 							 <div class="input_holder row pad_15">
 							 	<p>Comments</p>
