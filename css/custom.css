@@ -515,9 +515,9 @@ h4.order_or_button{
     text-align: center;
     display: none;
 }
-#print_page_range, .pos_rel {
+/*#print_page_range, .pos_rel {
     display: none;
-}
+}*/
 .paper_range {
     margin-right: 20px !important;
 }
