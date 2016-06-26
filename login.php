@@ -93,7 +93,7 @@
 								require_once('fbsettings.php'); 
 								if (isset($accessToken)) {
 								} else {
-									$loginUrl = $helper->getLoginUrl('http://localhost/stork/fbuserfunction.php', $permissions);
+									$loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
 									echo '<a href="' . $loginUrl . '"><button type="submit" class="connectfa">Connect with facebook</button></a>';
 								}
 							?>

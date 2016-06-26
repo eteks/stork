@@ -1,4 +1,17 @@
-<?php include('header.php') ?>
+<?php 
+include('header.php');
+if(!isset($_SESSION['session_id'])){
+	header('Location:printbooking.php');
+}
+$review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
+									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
+									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
+									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
+									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
+									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
+if(mysqli_num_rows($review_details)>0){
+?>
+
 <main class="main">
 	<section class="header-page">
 		<div class="container">
@@ -35,12 +48,6 @@
   				<br>	
 	  			<div class="order-box">
 	  				<?php
-	  				$review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
-									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
-									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
-									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
-									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
-									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
 	  				$review_count = 1;
 	  				$checkout_total_amount = 0;
 	  				while($review_data = mysqli_fetch_array($review_details, MYSQLI_ASSOC)){
@@ -252,7 +259,15 @@
 					 </li>
 				  </ul>
 				  <br>
+				  <?php
+				  $user_access_type = explode('_', $_SESSION['session_id']);
+				   if($user_access_type[0]=='reg'){
+				   	?>
 				  <input type="checkbox" id="register"><label class="registers">Make this as my default shipping address</label>
+				 
+				 <?php
+				 }
+				 ?>
 				</div>
 	 		</div>
 		   </div>  <!-- billto -->
@@ -416,11 +431,24 @@
 	   if($user_access_type[0]=='gue'){
 	   	?>
 	   <div class="button_holder">
-			<h4 class="btn_prf"><a href="home.php">Sign up</a></h4>
+			<h4 class="btn_prf"><a href="register.php">Sign up</a></h4>
 			<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
-			<h4 class="btn_prf"><a href="home.php">Sign in</a></h4>
-			<h4 class="btn_prf"><a href="home.php">Login with Facebooko</a></h4>
-			<h4 class="btn_prf"><a href="home.php">Login with Google+</a></h4><br>
+			<h4 class="btn_prf"><a href="login.php">Sign in</a></h4>
+			<?php	
+				require_once('fbsettings.php'); 
+				if (isset($accessToken)) {
+				} else {
+					$loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
+					echo '<h4 class="btn_prf"><a href="' . $loginUrl . '">Login with Facebooko</a></h4>';
+				}
+			?>
+			<?php
+				require_once('googlesettings.php'); 
+				if(isset($authUrl)) {
+					echo '<h4 class="btn_prf"><a href="'.$authUrl.'">Login with Google+</a></h4><br>';
+				}
+			?>
+			
 			
 	   </div>
 	   <?php
@@ -428,9 +456,19 @@
 	   ?>
 	   <div class="clearfix">  </div>
 	   <div class="button_holder btn_pay">
-	   		<h4 class="btn_prf"><a href="home.php">Pay Now</a></h4>
-			<h4 class="btn_prf"><a href="home.php">Clear</a></h4>
-	    </div>		
+	   		<form method="post" name="customerData" action="ccavRequestHandler.php" id="print_checkout_form">
+		   		<input type="hidden" name="tid" id="txnid" readonly />
+		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
+		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
+		   		<input type="hidden" name="amount" value="<?php echo $checkout_total_amount; ?>"/>
+		   		<input type="hidden" name="currency" value="INR"/>
+		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
+		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
+		   		<input type="hidden" name="language" value="EN"/>
+		   		<h4 class="btn_prf check_out_payment"><a>Pay Now</a></h4>
+				<h4 class="btn_prf"><a>Clear</a></h4>
+			</form>
+	   </div>		
   </div> <!--onepage--->
   </div> <!--container---->
  </section>
@@ -438,4 +476,16 @@
 
 </main><!--Main index : End-->
 
-<?php include('footer.php') ?>
+<?php
+}
+else{
+	header('location:printbooking.php');
+} 
+include('footer.php'); 
+?>
+<script>
+	$(window).load(function(){
+		var d = new Date().getTime();
+		$('#txnid').val(d);
+	});
+</script>

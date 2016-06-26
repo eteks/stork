@@ -1,5 +1,8 @@
 <?php 
 	include('header.php');
+	if(!isset($_SESSION['usertype'])){
+		header('Location:index.php');
+	}
 	$_SESSION['service'] = 'print';
 	$random = uniqid();
 	if(!isset($_SESSION['session_id'])){
@@ -150,7 +153,7 @@
 		 	      		</div>
 			 	   		<div class="button_holder button_holder_printbooking">
 		        	   		<h4 class="btn_prf"><a href="printbooking.html" target="_blank">Clear</a></h4>
-		        	   		<h4 class="btn_prf print_check_out_btn"><a href="#">Check Out</a></h4>
+		        	   		<h4 class="btn_prf print_check_out_btn"><a>Check Out</a></h4>
 		             	</div>
 	               	</div>
 				</div>     

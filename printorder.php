@@ -4,7 +4,7 @@ require_once("function.php");
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//print_r($_POST);
-	if($_POST['submit_type'] == 'add_to_cart'){
+	if($_POST['submit_type'] == 'add_to_cart' || $_POST['submit_type'] == 'add_to_checkout'){
 		$print_type = $_POST['print_type'];
 		$print_side = $_POST['print_side'];
 		$paper_type = $_POST['papar_type'];
@@ -39,7 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						$order_detail_id = mysqli_insert_id();
 			        	$insert_data_upload_files = $order_detail_id.',"'.$upload_path.$additional_path.$name_array[$i].'",1';
 			            insertfunction('upload_files_order_details_id,upload_files,upload_files_status',$insert_data_upload_files,UPLOADFILES,'',$connection);
-						header('Location:printbooking.php');
+						if($_POST['submit_type'] == 'add_to_cart'){
+							header('Location:printbooking.php');
+						}
+						else if($_POST['submit_type'] == 'add_to_checkout'){
+							header('Location:checkout.php');
+						}
+						
 			        } else {
 			            echo "file uploading file";
 						header('Location:printbooking.php?error=true');

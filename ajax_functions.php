@@ -31,5 +31,15 @@
 		}
 		
 		
+		// remove item from cart detail
+		if(isset($_POST['remove_order'])){
+			$remove_cart_data = deletefunction('stork_order_details','order_details_session_id="'.$_POST['session_id'].'" and order_details_id ="'.$_POST['order_details_id'].'"',$connection);
+			if($remove_cart_data){
+				echo "remove_success";
+			}
+			else{
+				echo "remove_error";
+			}
+		}
 	}// end of is ajax if condition
 ?>

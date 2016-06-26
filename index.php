@@ -5,7 +5,7 @@
 		 $_SESSION['login_status'] = 0;
 		}
 	}
-	print_r($_SESSION);
+	//print_r($_SESSION);
 ?>
 	<main class="main" id="product-detail">
    		<section class="header-page">

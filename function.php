@@ -26,7 +26,7 @@ function updatefunction($update_data,$tablename,$wherecon,$con)
 function deletefunction($tablename,$wherecon,$con)
 {
 	if($wherecon != ''){
-		$query = "delete from".$tablename." where ".$wherecon;
+		$query = "delete from ".$tablename." where ".$wherecon;
 	}else{
 		$query = "delete from ".$tablename;
 	}

@@ -17,6 +17,7 @@ define("GOOGLEAPPNAME", "Login to Local host");
 define("FACEBOOKAPPID", "800444590056438"); //facebook app id
 define("FACEBOOKAPPSECRET", "d422bcf132c700ed89d03865cdff884a"); //facebook secret id
 define("FACEBOOKGRAPHVERSION", "v2.5");//facebook graph version
+define("FACEBOOKLOGINURL", "http://localhost/stork/fbuserfunction.php");//facebook login url
 
 
 //database table names
@@ -41,5 +42,10 @@ define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&strtolower($_SERVER
 
 // uploaded file extensions
 $ALLOWEDFILE = array('doc','docx','pdf');
+
+// cc avenue details
+define("MERCHANTID",'101665'); // merchant id
+define('CCAVENUEREDIRECTURL','http://printstork.com/stork/checkout/ccavResponseHandler.php'); //redirect url
+define('CCAVENUECANCELURL','http://printstork.com/stork/checkout/ccavResponseHandler.php'); //cancel url
 
 ?>

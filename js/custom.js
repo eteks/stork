@@ -146,8 +146,7 @@ $(document).ready(function () {
 //  == Validation for Page range Format End ==
 
 //  == Ended by siva ==
-});
-jQuery(document).ready(function() {
+
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
 	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
@@ -418,22 +417,28 @@ jQuery(document).ready(function() {
 	});
 	
 	//total cost amoutn display based on total no of pages and per page amount
-	// $('.print_total_no_of_pages').on('blur',function(){
+	$('.print_total_no_of_pages').on('blur',function(){
 
-	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-	// 	var total_amount = $(this).val();
-	// 	if(perpageamount){
-	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-	// 	}else{
-	// 		error_popup('Please select print type,print side,paper size,paper type!');
-	// 		$(this).val('');
-	// 	}
+		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+		var total_amount = $(this).val();
+		if(perpageamount){
+			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+		}else{
+			error_popup('Please select print type,print side,paper size,paper type!');
+			$(this).val('');
+		}
 		
-	// });
+	});
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
 		$('#print_booking_form .submit_type').val('add_to_cart');
+		$('#print_booking_form').submit();
+	});
+	
+	// post form when click check button in print booking page and submit type
+	$('.print_check_out_btn').on('click',function(){
+		$('#print_booking_form .submit_type').val('add_to_checkout');
 		$('#print_booking_form').submit();
 	});
 	
@@ -456,6 +461,29 @@ jQuery(document).ready(function() {
 		// }
 	// });
 	
+	// remove item from cart 
+	$(document).on('click','.ordered_item .cart_remove_item',function(){
+		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
+		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
+		if(session_id != '' && order_details_id != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data == 'remove_success'){
+           				location.reload();
+           			}
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// form post when click paynow button
+	$('.check_out_payment').click(function(){
+		$('#print_checkout_form').submit();
+	});
 	
 });
 
