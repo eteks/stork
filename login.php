@@ -1,19 +1,21 @@
 <?php 
 	include('header.php');
-	
-	
+	$login_error = 0;
+	$forgot_error = 0;
+	$forgot_success = 0;
   	if(isset($_POST['login_user'])) {
   		$username_email=$_POST['login_name'];
   		$password=$_POST['login_pass'];
   		$login_query=mysqli_query($connection,"select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
   		$login_count=mysqli_num_rows($login_query);
+		
   		if($login_count == 1) {
   			//echo "<script> $('.login_error').css('display','none'); </script>";
 			$_SESSION['login_status']=1;
   			//echo "login successful";		
   		}
   		else {
-  			echo "<script> $('.login_error').css('display','block'); </script>";
+  			$login_error = 1;
   			//echo "login failed";
   		}
  	}
@@ -26,24 +28,24 @@
   		$forget_array=mysqli_fetch_array($forget_query);
   		$forget_email_count=mysqli_num_rows($forget_query);
   		$fotget_password=$forget_array['password'];
+		
+		
   		if($forget_email_count == 1) {
             $message = "Your old password is";
             // $message = "Your password reset link send to your e-mail address.";
             $to=$forget_email;
             $subject="Forget Password";
-            $from = 'sweetkannan05@gmail.com';
-            $body='Hi, <br/> <br/>Your password is '.$fotget_password. '<br><br>Click here to reset your password http://demo.phpgang.com/login-signup-in-php/reset.php?encrypt='.$encrypt.'&action=reset   <br/> <br/>--<br>PHPGang.com<br>Solve your problems.';
+            $from = FORGOTPASSWORDEMAILID;//from settings php file
+            $body='Hi, <br/> <br/>Your password is '.$fotget_password. '<br>';
             $headers = "From: " . strip_tags($from) . "\r\n";
             $headers .= "Reply-To: ". strip_tags($from) . "\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             mail($to,$subject,$body,$headers);
-  			echo "<script> $('.forget_error').css('display','none'); </script>";
-  			//echo "mail sent";
+			$forgot_success = 1;
   		}
   		else {
-  			echo "<script> $('.forget_error').css('display','block'); </script>";
-  			//echo "not found";
+  			$forgot_error = 1;
   		}
   	}
   ?>
@@ -81,7 +83,7 @@
 							<input class="email" name="login_name" type="text" id="username_email" placeholder="Email or Username" value="">
 							<p>Password <span class="star">*</span></p>
 							<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="">
-							<span class="forget_email_valid"> Please enter correct email </span>
+							<span class="forget_email_valid" style="<?php if($login_error == 1) echo "display:block"; ?>"> Please enter valid login details </span>
 							<button type="submit" class="login" name="login_user">Login</button>
 						</form>
 					    </br></br></br>
@@ -105,9 +107,10 @@
 					  <h4>Forgotten Password</h4>
 						<p>Fill our your registered email address below and we’ll email it to you right away!</p>
 						<form id="forgotpass-form" class="form-validate form-horizontal" method="post">
-							<span class="forget_error"> Email doesn't exists </span>
 							<p>Email Address <span class="star">*</span></p>
 							<input class="email" name="forget_email" type="text" placeholder="Email" id="forget_email" value="">
+							<span class="forget_error" style="<?php if($forgot_error == 1) echo "display:block"; ?>"> Email doesn't exists </span>
+							<?php if($forgot_success == 1){ ?><span style="color:red"> Password sent to your registred mail id! </span><?php } ?>
 							<button type="submit" class="ressetpass">Retrieve Password</button>
 					    </form>
 					  </div>

@@ -1,4 +1,4 @@
-<?php
+         <?php
 include "includes/header.php";
 function generate_combinations(array $data, array &$all = array(), array $group = array(), $value = null, $i = 0)
 {
@@ -89,6 +89,7 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
                             <i class="fa fa-search"></i>
                         </form>
                     </div> -->
+
                 </div>
             </div>
         </div>
@@ -100,6 +101,13 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
         <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
+<div class="amout_fixed_status">
+        <span> Amount fixed status </span><select id="select-category" name="categories">
+    <option value=""> </option>
+    <option value="Fixed">Fixed</option>
+    <option value="Not Fixed">Not Fixed</option>
+</select>
+</div>
         <div class="clear_both"> </div>
         </div>
             <div class="form-edit-info">
@@ -120,12 +128,13 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
                         $type = implode(" ",$value[2]);
                         $print_type = implode(" ",$value[3]);
                     ?>
+
                     <tr class="">
                         <td><?php echo $print_type ?></td>
                         <td><?php echo $side ?></td>
                         <td><?php echo $size ?></td>
                         <td><?php echo $type ?></td> 
-                        <td>
+                        <td class="fixed_notfixed">
                         <?php 
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
@@ -146,7 +155,8 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
                             }    
                         ?>
                         </td>    
-                    </tr>    
+                    </tr> 
+               
                     <?php } ?>     
                 </table>                                  
     </div>
@@ -178,4 +188,12 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
     </div>
 </div>
 </div>
+<script type="text/javascript">
+    var dataTable = $('table').dataTable();
+    $('#select-category').on('change',function(){
+            var selectedValue = $(this).val();
+            dataTable.fnFilter("^"+selectedValue+"$", 4, true); //Exact value, column, reg
+    });
+</script>
+
 <?php include 'includes/footer.php'; ?>

@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copy-right">Central - Copyright © 2015 <a title="Cmsmart - Magento theme" href="#">netbaseteam.com</a>. All Rights Reserved</p>
+						<p class="copy-right">Central - Copyright &copy; 2016 <a title="Cmsmart - Magento theme" href="http://www.atomicka.com/">Infom Atomicka Tech Pvt Ltd</a>. All Rights Reserved</p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top

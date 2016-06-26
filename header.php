@@ -17,6 +17,64 @@ include('function.php');
   	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'>
   	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'>
+<style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+.cont{
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  width: 576px;
+}
+#progress-bar{
+  color: #000;
+  height: 6px;
+  margin: 34px auto;
+  width: 576px;
+  background-color: transparent;
+}
+.cont span {
+  background: #25bce9 none repeat scroll 0 0;
+  border: 3px solid #25bce9;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  transition: all 0.4s ease-in-out 0s;
+  width: 50px;
+}
+
+.second{
+  left: 192px !important;
+}
+.third{
+  left: 384px !important;
+}
+.fourth{
+  left: 576px !important;
+}
+/*#progress-bar::-webkit-progress-value{  Changes line color 
+  background: #25bce9 ;
+  transition: all 0.4s ease-in-out;
+}*/
+/*#progress-bar::-webkit-progress-bar{  Changes background color 
+  background: red ;
+}*/
+.border-change{
+  border-color:#fff;
+  transition: all 0.4s ease-in-out;
+}
+#progress-bar::-webkit-progress-value{ /* Changes line color */
+  background: #25bce9;
+  transition: all 0.4s ease-in-out;
+}
+progress::-moz-progress-bar { 
+  background: #25bce9;
+  transition: all 0.4s ease-in-out;
+}
+
+</style>
 </head>
 <body>
 <header>
@@ -203,8 +261,8 @@ include('function.php');
 							</span>
 							<div class="search-safari">
 								<div class="search-form dropdowSCContent">
-									<form method="POST" action="#">
-										<input type="text" name="search" placeholder="Search" />
+									<form method="POST" action="trackorderstatus.php">
+										<input type="text" name="track_order_search" placeholder="Track Order Id" />
 										<input type="submit" name="search" value="Search">
 										<i class="fa fa-search"></i>
 									</form>

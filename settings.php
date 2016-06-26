@@ -48,4 +48,7 @@ define("MERCHANTID",'101665'); // merchant id
 define('CCAVENUEREDIRECTURL','http://printstork.com/stork/checkout/ccavResponseHandler.php'); //redirect url
 define('CCAVENUECANCELURL','http://printstork.com/stork/checkout/ccavResponseHandler.php'); //cancel url
 
+// forgot password from email address
+define("FORGOTPASSWORDEMAILID",'info@etekchnoservices.com'); 
+
 ?>
