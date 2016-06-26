@@ -52,18 +52,18 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 	// 	== Add input box when selected white & black and color Start ==
-	$('#print_type').change(function() {
-		var selected_type = $('#print_type option:selected').text();
-		// alert("test");
-		if( selected_type == "white & black and color" ) {
-			$('#print_page_range').css('display','block');
-			$('.pos_rel').css('display','block');
-		}
-		else {
-			$('#print_page_range').css('display','none');
-			$('.pos_rel').css('display','none');
-		}
-	});
+	// $('#print_type').change(function() {
+	// 	var selected_type = $('#print_type option:selected').text();
+	// 	// alert("test");
+	// 	if( selected_type == "white & black and color" ) {
+	// 		$('#print_page_range').css('display','block');
+	// 		$('.pos_rel').css('display','block');
+	// 	}
+	// 	else {
+	// 		$('#print_page_range').css('display','none');
+	// 		$('.pos_rel').css('display','none');
+	// 	}
+	// });
 	// 	== Add input box when selected white & black and color End ==
 	//  == Print Booking Validation Start ==
 	jQuery('#print_booking_form').submit(function(){
