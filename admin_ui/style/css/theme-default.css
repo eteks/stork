@@ -6583,6 +6583,10 @@ button:hover {
 .table_action {
   text-align: right !important;
 }
+.data-table .table_action {
+  padding: 10px 5px 10px 0px !important;
+  width : 51px !important;
+}
 .user_table td, .user_table th {
   padding: 10px 10px !important;
 }

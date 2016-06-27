@@ -103,7 +103,7 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
         <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
 <div class="amout_fixed_status">
         <span> Amount fixed status </span><select id="select-category" name="categories">
-    <option value=""> </option>
+    <option value="">All</option>
     <option value="Fixed">Fixed</option>
     <option value="Not Fixed">Not Fixed</option>
 </select>
@@ -191,8 +191,15 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
 <script type="text/javascript">
     var dataTable = $('table').dataTable();
     $('#select-category').on('change',function(){
+        if($("#select-category").val()!=""){
             var selectedValue = $(this).val();
-            dataTable.fnFilter("^"+selectedValue+"$", 4, true); //Exact value, column, reg
+            dataTable.fnFilter("^"+selectedValue+"$", 4, true); //Exact value, column, reg 
+        }
+        else {
+            dataTable.fnFilter( $('#select-category').val(),4);
+            // alert("test");
+        }
+            
     });
 </script>
 

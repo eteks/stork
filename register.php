@@ -98,6 +98,10 @@ if($_SESSION['login_status'] == 1){
 							<input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value="">
 							<p>Please enter the captcha shown<span class="star">*</span></p>
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
+							<div id="imgdiv">
+								<img id="img" src="captcha.php" /></div>
+								<img id="reload" src="images/reload.png" />
+							<div>
 							<div>
 								<br/>
 								<button type="submit" name="save_new_user" class="register">Register</button>

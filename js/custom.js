@@ -179,6 +179,13 @@ $(document).ready(function () {
 }); //  == Ended by siva ==
 
 jQuery(document).ready(function() {
+
+
+	$('.register').click(function() {
+		alert("test");
+		alert("<?php echo $_SESSION['digit']; ?>");
+	});
+
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
 			var input = jQuery('#'+required_login[i]);
@@ -233,7 +240,27 @@ jQuery(document).ready(function() {
 				input.removeClass("error_input_field");
 			}
 		}
-		
+
+		// $.ajax({
+  //   		type:'POST',
+  //   		data:{action:'function_name', id:'Id'},
+  //   		url: 'captcha.php',
+  //   		success: function(res) {
+  //       		if(res == 'yes'){
+  //           		alert("yes");
+  //           		return false ;
+  //      			}
+  //      			else {
+  //      				alert("false");
+  //      				alert(res);
+  //      				return false ;
+  //      			}
+  //  			}
+		// });
+
+
+
+
 		if($('#password').val() != ''){
 			if($('#password').val() != $('#repassword').val()) {
 				$('#repassword').addClass("error_input_field");
@@ -257,7 +284,14 @@ jQuery(document).ready(function() {
 		}
 	});
 	
-	
+	// Refresh captcha image
+	$("#reload").click(function() {
+	    $("img#img").remove();
+		var id = Math.random();
+        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
+		 id ='';
+    });
+
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
     var width=$('.error_popup_msg').width();
