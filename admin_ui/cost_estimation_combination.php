@@ -59,12 +59,12 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 
 // echo count($datas);
 
-$estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
-                                    INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
-                                    INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
-                                    INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
-                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
-                                    ");
+// $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
+//                                     INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
+//                                     INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
+//                                     INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
+//                                     INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
+//                                     ");
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All States</title>
@@ -127,8 +127,8 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type = implode(" ",$value[3]);
-                    ?>
 
+                    ?>
                     <tr class="">
                         <td><?php echo $print_type ?></td>
                         <td><?php echo $side ?></td>
@@ -136,27 +136,31 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
                         <td><?php echo $type ?></td> 
                         <td class="fixed_notfixed">
                         <?php 
+                            $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
+                                    INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
+                                    INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
+                                    INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
+                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
+                                    ");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
                                echo "Not Fixed"; 
                             }
                             else{
-                                if(mysql_fetch_array($estimated_cost)){
-                                    echo "Fixed";
-                                    // while ($cost_array = mysql_fetch_array($estimated_cost)) {   
-                                    //     if($cost_array['paper_print_type'] == $print_type && $cost_array['paper_size'] == $size && $cost_array['paper_side'] == $side && $cost_array['paper_type'] == $type){       
-                                    //         echo "Fixed";
-                                    //     } 
-                                    // }
+                                while ($cost_array = mysql_fetch_array($estimated_cost)) {   
+                                    if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){        
+                                        $status = "Fixed";
+                                        break;
+                                    } 
+                                    else{
+                                        $status = "Not Fixed";
+                                    }
                                 }
-                                else{
-                                    echo "Not Fixed";
-                                }    
+                                echo $status;
                             }    
                         ?>
                         </td>    
                     </tr> 
-               
                     <?php } ?>     
                 </table>                                  
     </div>
