@@ -103,7 +103,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
         <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
 <div class="amout_fixed_status">
         <span> Amount fixed status </span><select id="select-category" name="categories">
-    <option value="">All</option>
+    <option value=""> </option>
     <option value="Fixed">Fixed</option>
     <option value="Not Fixed">Not Fixed</option>
 </select>
@@ -141,7 +141,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
                                     INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
                                     INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
                                     INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
-                                    ");
+                                    where cost_estimation_status=1");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
                                echo "Not Fixed"; 
@@ -195,15 +195,8 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 <script type="text/javascript">
     var dataTable = $('table').dataTable();
     $('#select-category').on('change',function(){
-        if($("#select-category").val()!=""){
             var selectedValue = $(this).val();
-            dataTable.fnFilter("^"+selectedValue+"$", 4, true); //Exact value, column, reg 
-        }
-        else {
-            dataTable.fnFilter( $('#select-category').val(),4);
-            // alert("test");
-        }
-            
+            dataTable.fnFilter("^"+selectedValue+"$", 4, true); //Exact value, column, reg
     });
 </script>
 
