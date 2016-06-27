@@ -13,12 +13,12 @@ if($_SESSION['login_status'] == 1){
   		$username=$_POST['username'];
   		$email=$_POST['email'];
   		$password=$_POST['password'];
-		if($_SESSION['usertype']=='stu'){
-			$user_type = 1;
-		}
-		else if($_SESSION['usertype']=='pro'){
-			$user_type = 2;
-		}
+		// if($_SESSION['usertype']=='stu'){
+			// $user_type = 1;
+		// }
+		// else if($_SESSION['usertype']=='pro'){
+			// $user_type = 2;
+		// }
 		$mobilenumber=$_POST['mobile'];
 		$dateofbirth=$_POST['dob_birthDay'];		
   		$signup_query=mysqli_query($connection,"select * from stork_users where username = '$username' or user_email='$email'") or die(mysql_error());
@@ -28,7 +28,7 @@ if($_SESSION['login_status'] == 1){
   			$success_message = 1;
   		}
   		else { 
-  			mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_type,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$user_type','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
+  			mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
 			$success_message = 2;
   		}
 	} 
@@ -46,7 +46,7 @@ if($_SESSION['login_status'] == 1){
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="home.html">Home</a>
+								<a href="index.php">Home</a>
 							</li>
 							<li>
 								<span>Register</span>

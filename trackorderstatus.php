@@ -1,6 +1,5 @@
 <?php 
 	include('header.php');
-	include('function.php');
 ?>
 <?php 
 	$_SESSION['service'] = 'print';
@@ -8,14 +7,14 @@
 	<?php 
 	$track_order_search=$_POST['track_order_search'];
 	// echo $track_order_search;
-	$track_status = mysql_query("SELECT * FROM stork_order_details
+	$track_status = mysqli_query($connection,"SELECT * FROM stork_order_details
 								INNER JOIN stork_order ON stork_order.order_id=stork_order_details.order_id
 								INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
 								INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
 								INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
 								INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
 								where stork_order.order_id='$track_order_search' and stork_order.order_status='1'");
-	$track_status_array=mysql_fetch_array($track_status);
+	$track_status_array=mysqli_fetch_array($track_status);
 	$order_delivery_status = $track_status_array['order_delivery_status'];
 	?>
 	<div class="main" id="product-detail">	
@@ -29,7 +28,7 @@
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="home.html">Home</a>
+								<a href="index.php">Home</a>
 							</li>
 							<li>
 								<span>Order-Status</span>

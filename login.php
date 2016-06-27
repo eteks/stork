@@ -20,7 +20,7 @@
   		}
  	}
 	if($_SESSION['login_status'] == 1){
-		header('location:index.php');
+		die('<script type="text/javascript">window.location.href="index.php";</script>');
 	}
   	if(isset($_POST['forget_password'])) {
   		$forget_email=$_POST['forget_email'];
@@ -60,7 +60,7 @@
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="home.html">Home</a>
+								<a href="index.php">Home</a>
 							</li>
 							<li>
 								<span>Login</span>

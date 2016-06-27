@@ -1,23 +1,28 @@
 <?php
 //Database settings
-define("HOSTNAME", "localhost");//mysql1110.ixwebhosting.com
-define("DBUSER", "root");//BBBmcmf_stork
-define("DBPASSWORD", "");//Stork_123
-define("DATABASE", "stork");//BBBmcmf_stork
+// define("HOSTNAME", "mysql1110.ixwebhosting.com");//mysql1110.ixwebhosting.com
+// define("DBUSER", "BBBmcmf_stork");//BBBmcmf_stork
+// define("DBPASSWORD", "Stork_123");//Stork_123
+// define("DATABASE", "BBBmcmf_stork");//BBBmcmf_stork
+
+define("HOSTNAME", "localhost");//localhost
+define("DBUSER", "root");//root
+define("DBPASSWORD", "");
+define("DATABASE", "stork");//stork
 
 // this is for google settings
 define("GOOGLECLIENTID", "917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com"); // Client ID
 define("GOOGLECLIENTSECRET", "tKRvzUInxty26p19oMli58V9"); // Client Secret id
-define("GOOGLEREDIRECTURL", "http://localhost/stork/googleuserfunction.php"); // Redirect Url - Please check with google api account details
-define("GOOGLEHOMEURL", "http://localhost/stork/index.php"); //Google Home url - Please check with google api account details
-define("GOOGLEAPPNAME", "Login to Local host");
+define("GOOGLEREDIRECTURL", "http://www.etekchnoservices.com/stork/googleuserfunction.php"); // Redirect Url - Please check with google api account details
+define("GOOGLEHOMEURL", "http://www.etekchnoservices.com/stork/index.php"); //Google Home url - Please check with google api account details
+define("GOOGLEAPPNAME", "Login to Printstork");
 
 
 // this is for facebook settings
 define("FACEBOOKAPPID", "800444590056438"); //facebook app id
 define("FACEBOOKAPPSECRET", "d422bcf132c700ed89d03865cdff884a"); //facebook secret id
 define("FACEBOOKGRAPHVERSION", "v2.5");//facebook graph version
-define("FACEBOOKLOGINURL", "http://localhost/stork/fbuserfunction.php");//facebook login url
+define("FACEBOOKLOGINURL", "http://www.etekchnoservices.com/stork/fbuserfunction.php");//facebook login url
 
 
 //database table names

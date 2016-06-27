@@ -1,6 +1,9 @@
 <?php
 	require 'dbconnect.php';
 	session_start();
+	if(isset($_GET['error'])){
+		die('<script type="text/javascript">window.location.href="login.php";</script>');
+	}
 	require_once('googlesettings.php'); 
 	if ($gClient->getAccessToken()) {
 		$userProfile = $google_oauthV2->userinfo->get();

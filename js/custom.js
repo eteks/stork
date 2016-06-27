@@ -266,7 +266,8 @@ $(document).ready(function () {
 		}
 		
 		var mobile=$('#mobile').val().length;
-    	if(mobile<=9) {
+		
+    	if(mobile<10) {
         	$('#mobile').addClass("error_input_field_phone");
      	}
   		else {
@@ -281,7 +282,7 @@ $(document).ready(function () {
       	}
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
-		if (jQuery(":input").hasClass("error_input_field") && $('#dob').hasClass("error_input_field") ) {
+		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
 			return false;
 		}else {
 			errornotice.hide();

@@ -588,3 +588,7 @@ h4.order_or_button{
 #dob{
 	margin-bottom : 25px !important;
 }
+.error_input_field_phone{
+	background: #ffebeb none repeat scroll 0 0 !important;
+    border: 1px solid red !important;	
+}

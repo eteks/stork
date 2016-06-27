@@ -16,7 +16,8 @@ $(function(e) {
             d = e("<select class='birthYear " + i.sizeClass + "' name='" + l + "_birth[year]'></select>"),
             p = e("<select class='birthMonth " + i.sizeClass + "' name='" + l + "_birth[month]'></select>"),
             s = e("<select class='birthDate " + i.sizeClass + "' name='" + l + "_birth[day]'></select>");
-        $birthday = e("<input class='birthDay' name='" + l + "_birthDay' type='hidden' value=''/>"), i.placeholder && (e("<option value='0'>Year</option>").appendTo(d), e("<option value='0'>Month</option>").appendTo(p), e("<option value='0'>Day</option>").appendTo(s)), "bigEndian" == i.dateFormat ? o.append(d).append(p).append(s) : "littleEndian" == i.dateFormat ? o.append(s).append(p).append(d) : o.append(p).append(s).append(d);
+        //$birthday = e("<input class='birthDay' name='" + l + "_birthDay' type='hidden' value=''/>"), i.placeholder && (e("<option value='0'>Year</option>").appendTo(d), e("<option value='0'>Month</option>").appendTo(p), e("<option value='0'>Day</option>").appendTo(s)), "bigEndian" == i.dateFormat ? o.append(d).append(p).append(s) : "littleEndian" == i.dateFormat ? o.append(s).append(p).append(d) : o.append(p).append(s).append(d);
+        $birthday = e("<input class='birthDay' name='" + l + "_birthDay' type='hidden' value=''/>"), i.placeholder && "bigEndian" == i.dateFormat ? o.append(d).append(p).append(s) : "littleEndian" == i.dateFormat ? o.append(s).append(p).append(d) : o.append(p).append(s).append(d);
         var h = r - i.minAge,
             c = r - i.maxAge;
         i.maxYear != r && i.maxYear > r && (h = i.maxYear, c += i.maxYear - r);
