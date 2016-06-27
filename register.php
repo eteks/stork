@@ -98,7 +98,7 @@ if($_SESSION['login_status'] == 1){
 							<p>Date Of Birth <span class="star">*</span></p>
 							<div id="dob"></div>
 							<!-- <input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value=""> -->
-							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
+							<p> Enter the code as shown below <span class="star"> *</span></p>
 							<input id="captcha_original" type="hidden" value="">
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
 							<div id="imgdiv">

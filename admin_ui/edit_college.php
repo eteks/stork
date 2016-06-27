@@ -20,7 +20,7 @@ if (isset($_GET['update']))
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> College Already exists! </span></div>";
 		} else {
-			mysqlQuery("UPDATE `stork_college` SET `college_name`='$college_name',`college_status`='$college_status',`college_area_id`='$college_area_id' WHERE `college_id`=".$val);
+			mysqlQuery("UPDATE `stork_college` SET `college_name`='$college_name',`college_status`='$college_status' WHERE `college_id`=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> College Updated Successfully! </span></div>";	
 		}
 				
@@ -80,9 +80,9 @@ if(isset($_GET["id"]))
 									?>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="area_id">
+									<select class="product-type-filter form-control" id="s5" name="area_id" disabled="true">
 								        <option>
-											<span>Select State</span>
+											<span>Select Area</span>
 										</option>
 								        <?php
 						                    $query = mysql_query("select * from stork_area where area_status='1'");

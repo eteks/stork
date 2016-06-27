@@ -42,7 +42,7 @@ $('.remove').on("click", remove);
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","user","pasword","re-pasword","email","mobileno","birthDay","captcha"];
+	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
 	required_print_booking=["total_pages"];
 	reg_email=jQuery("#email");
 	forget_email=jQuery("#forget_email");
@@ -162,8 +162,8 @@ $(document).ready(function () {
 		var inputVal=range_path.val();
 	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-	  		$('.page_range_error').css('display','block');
-	  		//alert("page_range_error");
+	  		// $('.page_range_error').css('display','block');
+	  		alert("page_range_error");
   			$('.uploadbutton').css('pointer-events', 'none');
   			$('.clone').css('pointer-events', 'none');
 		}
@@ -175,20 +175,10 @@ $(document).ready(function () {
 	});
 
 	//  == Validation for Page range Format End ==
-	//  == Ended by siva ==
+
+}); //  == Ended by siva ==
 
 jQuery(document).ready(function() {
-	required_login = ["username_email", "login_password"];
-	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","user","pasword","re-pasword","email","mobileno","birthDay","captcha"];
-	required_print_booking=["total_pages"];
-	reg_email=jQuery("#email");
-	forget_email=jQuery("#forget_email");
-	print_type=jQuery("#print_type");
-	print_side=jQuery("#print_side");
-	paper_type=jQuery("#paper_type");
-	paper_size=jQuery("#paper_size");
-	errornotice = jQuery("#error");
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
 			var input = jQuery('#'+required_login[i]);
@@ -223,19 +213,19 @@ jQuery(document).ready(function() {
 		}
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") ) {
-			$('.forget_error').css('display','block');
+			$('.forget_email_valid').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			$('.forget_error').css('display','none');
+			$('.forget_email_valid').css('display','none');
+			alert("success");
 			return true;
 		}
 	});
 		
-	jQuery(document).on('submit',"#register-form",function(){
-		alert("test");
+	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
-		var input = jQuery('.'+required_signup[i],this);
+		var input = jQuery('#'+required_signup[i]);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
@@ -249,6 +239,7 @@ jQuery(document).ready(function() {
 		else{
 			$('#dob').removeClass("error_input_field");
 		}
+		
 		if($('#password').val() != ''){
 			if($('#password').val() != $('#repassword').val()) {
 				$('#repassword').addClass("error_input_field");
@@ -257,25 +248,13 @@ jQuery(document).ready(function() {
 				$('#repassword').removeClass("error_input_field");
 	        }
        }
-       
 
 		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(reg_email.val())) {
 			reg_email.addClass("error_input_field");
 		}
-		
-		var mobile=$('#mobile').val().length;
-    	if(mobile<=9) {
-        	$('#mobile').addClass("error_input_field_phone");
-     	}
-  		else {
-           	$('#mobile').removeClass("error_input_field_phone"); 
-      	}
-      	
-      	
-      	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
-		if (jQuery(":input").hasClass("error_input_field") && $('#dob').hasClass("error_input_field") ) {
+		if (jQuery(":input").hasClass("error_input_field") ) {
 			return false;
 		}else {
 			errornotice.hide();
@@ -315,7 +294,6 @@ jQuery(document).ready(function() {
 		var clone_content = $('#register-form .upload_file_holder:last').clone();
 		clone_content.insertAfter($('#register-form .upload_file_holder:last'));
 	});
-	
 	// upload file holder del button
 	$('#register-form .del_btn').on('click',function(){
 		if($('.upload_file_holder').length!=1){
@@ -323,7 +301,24 @@ jQuery(document).ready(function() {
 		}
 		
 	});
-	
+	// upload file holder add button
+	// $(document).on('click','#print_booking_form .add_btn',function(){
+	// 	if($('#print_booking_form .upload_file_holder:last .print_book_color_page_no').val() && $('#print_booking_form .upload_file_holder:last .uploadFile').val() != ''){
+	// 		var clone_content = $('#print_booking_form .upload_file_holder:last').clone();
+	// 		clone_content.find('.print_book_color_page_no').val('');
+	// 		clone_content.insertAfter($('#print_booking_form .upload_file_holder:last'));
+			
+	// 	}
+		
+	// });
+	// upload file holder del button
+	// $('#print_booking_form .del_btn').on('click',function(){
+	// 	alert($('.upload_file_holder').length);
+	// 	if($('.upload_file_holder').length!=1){
+	// 		$('#print_booking_form .upload_file_holder:last').remove();	
+	// 	}
+		
+	// });
 	
 	//homepage option selection 
 	$('#product-detail .print_book_user_type').click(function(){
@@ -358,19 +353,19 @@ jQuery(document).ready(function() {
            success: function(data) {
            	if(data){
            		$('#print_book_college').empty().append(data);
-           		if($('#index_page_form #print_book_area_student,#print_book_college').hasClass('error_input_field')){
-           			$('#index_page_form #print_book_area_student,#print_book_college').removeClass('error_input_field');
+           		if($('#index_page_form #print_book_area_student').hasClass('error_border')){
+           			$('#index_page_form #print_book_area_student').removeClass('error_border');
            		}
            	}else{
            		error_popup('No college found!');
-           		$('#print_book_college').empty().addClass('error_input_field');
+           		$('#print_book_college').empty();
            	}
                 
           }
        });
 	});
 	
-	// ajax function for area list
+	// ajax function for college list
 	$('.stu_area_college_holder #print_book_state').on('change',function(){
 	 	var state_id = $(this).val();
 		$.ajax({
@@ -381,12 +376,9 @@ jQuery(document).ready(function() {
            success: function(data) {
            	if(data){
            		$('#print_book_area_professional').empty().append(data);
-           		if($('#print_book_area_professional').hasClass('error_input_field')){
-           			$('#print_book_area_professional').removeClass('error_input_field');
-           		}
            	}else{
            		error_popup('No area found!');
-           		$('#print_book_area_professional').empty().addClass('error_input_field');
+           		$('#print_book_area_professional').empty();
            	}
                 
           }
@@ -404,36 +396,38 @@ jQuery(document).ready(function() {
 	$('#index_page_form').submit(function(){
 			if($('#student').is(':checked')){
 				if($('#print_book_area_student').val() == ''){
-					$('#index_page_form #print_book_area_student').addClass('error_input_field');
+					$('#index_page_form #print_book_area_student').addClass('error_border');
 					return false;
 				}
 				else if($('#print_book_college').val() == ''){
-					$('#index_page_form #print_book_college').addClass('error_input_field');
+					$('#index_page_form #print_book_college').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_area_student').removeClass('error_input_field');
-					$('#index_page_form #print_book_college').removeClass('error_input_field');
+					$('#index_page_form #print_book_area_student').removeClass('error_border');
+					$('#index_page_form #print_book_college').removeClass('error_border');
 					return true;
 				}
 			}
 			else if($('#professional').is(':checked')){
 				if($('#print_book_state').val() == ''){
-					$('#index_page_form #print_book_state').addClass('error_input_field');
+					$('#index_page_form #print_book_state').addClass('error_border');
 					return false;
 				}
 				else if($('#print_book_area_professional').val() == ''){
-					$('#index_page_form #print_book_area_professional').addClass('error_input_field');
+					$('#index_page_form #print_book_area_professional').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_state').removeClass('error_input_field');
-					$('#index_page_form #print_book_area_professional').removeClass('error_input_field');
+					$('#index_page_form #print_book_state').removeClass('error_border');
+					$('#index_page_form #print_book_area_professional').removeClass('error_border');
 					return true;
 				}
 			}
 		});
-				
+		
+		
+	
 	
 	//find out cost per page for printing order using print type on multiple combination
 	$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').on('change',function(){
@@ -457,6 +451,7 @@ jQuery(document).ready(function() {
            				error_popup('Printing option not available!');
            				$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
            			}
+           			
           		}
        		});// end of ajax
 	 	}//end of if condition
@@ -479,90 +474,25 @@ jQuery(document).ready(function() {
     	}
 	});
 	
-	//total cost amoutn display based on total no of pages and per page amount
-	$('.print_total_no_of_pages').on('blur',function(){
-		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-		var total_amount = $(this).val();
-		if(perpageamount){
-			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-		}else{
-			error_popup('Please select print type,print side,paper size,paper type!');
-			$(this).val('');
-		}
+	// 	total cost amoutn display based on total no of pages and per page amount
+	// $('.print_total_no_of_pages').on('blur',function(){
+
+	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+	// 	var total_amount = $(this).val();
+	// 	if(perpageamount){
+	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+	// 	}else{
+	// 		error_popup('Please select print type,print side,paper size,paper type!');
+	// 		$(this).val('');
+	// 	}
 		
-	});
+	// });
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
 		$('#print_booking_form .submit_type').val('add_to_cart');
 		$('#print_booking_form').submit();
 	});
-
-	// post form when click check button in print booking page and submit type
-	$('.print_check_out_btn').on('click',function(){
-		$('#print_booking_form .submit_type').val('add_to_checkout');
-		$('#print_booking_form').submit();
-	});
 	
-	// allowed only number , subtract and 
-	$(document).on('keypress','#print_booking_form .print_book_color_page_no',function(e){
-		 if (e.which != 8 &&  e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 44 && e.which !=45) {
-		 	  return false;
-		 }
-	});
-	
-	
-	// remove item from cart 
-	$(document).on('click','.ordered_item .cart_remove_item',function(){
-		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
-		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
-		if(session_id != '' && order_details_id != ''){
-			$.ajax({
-           		type: "POST",
-           		url: "ajax_functions.php",
-           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
-           		cache: false,
-           		success: function(data) {
-           			if(data == 'remove_success'){
-           				location.reload();
-           			}
-          		}
-       		});// end of ajax
-		}
-	});
-	
-	// form post when click paynow button
-	$('.check_out_payment').click(function(){
-		$('#print_checkout_form').submit();
-	});
-	
-
-	//allowed numbers only at registration form
-	$("#mobile").keypress(function (e) {
-		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-			return false;
-		}
-	});
-	
-	//allowed charaters only at registration form
-	$("#firstname,#lastname").keypress(function (e) {
-		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
-        	e.preventDefault();
-    	}
-	});
-	
-	//disable cut,copy,paste
-	$(document).bind('copy paste cut', function (e) {
-        e.preventDefault(); 
-        return false;
-    });
-    
-    // captcha genaration
- 	var n1 = Math.round(Math.random() * 100 + 1);
-    var n2 = Math.round(Math.random() * 100 + 1);
-    $("#captcha_original").val(n1 + " + " + n2);
-    $('#captcha_f_n').text(n1);
-    $('#captcha_s_n').text(n2);
-
 });
 

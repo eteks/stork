@@ -262,7 +262,7 @@ progress::-moz-progress-bar {
 							<div class="search-safari">
 								<div class="search-form dropdowSCContent">
 									<form method="POST" action="trackorderstatus.php">
-										<input type="text" name="track_order_search" placeholder="Track Order Id" />
+										<input type="text" name="track_order_search" placeholder="Track Your Order" />
 										<input type="submit" name="search" value="Search">
 										<i class="fa fa-search"></i>
 									</form>

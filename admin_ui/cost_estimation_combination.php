@@ -102,7 +102,7 @@ $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation
         <div class="heading_section col-md-12">
         <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
 <div class="amout_fixed_status">
-        <span> Amount fixed status </span><select id="select-category" name="categories">
+        <span>Amount fixed status </span><select id="select-category" name="categories">
     <option value="">All</option>
     <option value="Fixed">Fixed</option>
     <option value="Not Fixed">Not Fixed</option>
