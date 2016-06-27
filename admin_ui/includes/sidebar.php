@@ -232,16 +232,16 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> PaperPrintType
+						<!-- <i class="fa fa-file"></i> --> Paper Print Type
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperPrintType <span></a>
+							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add Paper Print Type <span></a>
 						</li>
 						<li>
-							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (<?php echo countPaperprinttype() ?>) </span></a>
+							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
@@ -263,16 +263,16 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-leaf"></i> --> Paperside
+						<!-- <i class="fa fa-leaf"></i> --> Paper Side
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_side.php"><i class="fa fa-plus-circle"></i><span> Add Paperside <span></a>  
+							<a href="add_paper_side.php"><i class="fa fa-plus-circle"></i><span> Add Paper Side <span></a>  
 						</li>
 						<li>
-							<a href="papersides.php"><i class="fa fa-list"></i><span> All Papersides (<?php echo countPaperside() ?>) <span></a>
+							<a href="papersides.php"><i class="fa fa-list"></i><span> All Paper Sides (<?php echo countPaperside() ?>) <span></a>
 						</li>
 					</ul>
 				</li>
@@ -293,16 +293,16 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> PaperType
+						<!-- <i class="fa fa-file"></i> --> Paper Type
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperType <span></a>
+							<a href="add_paper_type.php"><i class="fa fa-plus-circle"></i><span> Add Paper Type <span></a>
 						</li>
 						<li>
-							<a href="papertypes.php"><i class="fa fa-list"></i><span> All PaperTypes (<?php echo countPapertype() ?>) <span></a>
+							<a href="papertypes.php"><i class="fa fa-list"></i><span> All Paper Types (<?php echo countPapertype() ?>) <span></a>
 						</li> 
 					</ul>
 				</li>
@@ -323,16 +323,16 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-leaf"></i> -->Papersize
+						<!-- <i class="fa fa-leaf"></i> -->Paper Size
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Papersize <span></a>  
+							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Paper Size <span></a>  
 						</li>
 						<li>
-							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (<?php echo countPapersize() ?>) <span></a>
+							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Paper Sizes (<?php echo countPapersize() ?>) <span></a>
 						</li>
 					</ul>
 				</li>
