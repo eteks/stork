@@ -101,6 +101,10 @@ if($_SESSION['login_status'] == 1){
 							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
 							<input id="captcha_original" type="hidden" value="">
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
+							<div id="imgdiv">
+								<img id="img" src="captcha.php" /></div>
+								<img id="reload" src="images/reload.png" />
+							<div>
 							<div>
 								<br/>
 								<button type="submit" name="save_new_user" class="register">Register</button>

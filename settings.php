@@ -2,7 +2,7 @@
 //Database settings
 define("HOSTNAME", "localhost");//mysql1110.ixwebhosting.com
 define("DBUSER", "root");//BBBmcmf_stork
-define("DBPASSWORD", "");//Stork_123
+define("DBPASSWORD", "root");//Stork_123
 define("DATABASE", "stork");//BBBmcmf_stork
 
 // this is for google settings

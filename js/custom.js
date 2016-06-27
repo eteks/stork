@@ -175,11 +175,9 @@ $(document).ready(function () {
 	});
 
 	//  == Validation for Page range Format End ==
+	//  == Ended by siva ==
 
-
-
-//  == Ended by siva ==
-
+jQuery(document).ready(function() {
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
 	required_signup=["firstname","lastname","user","pasword","re-pasword","email","mobileno","birthDay","captcha"];
@@ -235,6 +233,7 @@ $(document).ready(function () {
 	});
 		
 	jQuery(document).on('submit',"#register-form",function(){
+		alert("test");
 		for(i=0;i<required_signup.length;i++) {
 		var input = jQuery('.'+required_signup[i],this);
 		if ((input.val() == "")) 
@@ -273,12 +272,7 @@ $(document).ready(function () {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
       	
-      	if(eval($("#captcha_original").val()) == $("#captcha").val()){
-      		$('#captcha').removeClass("error_input_field");
-      	}
-      	else{
-      		$('#captcha').addClass("error_input_field");
-      	}
+      	
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") && $('#dob').hasClass("error_input_field") ) {
@@ -290,7 +284,14 @@ $(document).ready(function () {
 		}
 	});
 	
-	
+	// Refresh captcha image
+	$("#reload").click(function() {
+	    $("img#img").remove();
+		var id = Math.random();
+        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
+		 id ='';
+    });
+
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
     var width=$('.error_popup_msg').width();
