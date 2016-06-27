@@ -207,13 +207,15 @@ progress::-moz-progress-bar {
 								<div class="mcart-item-w clearfix">
 									<ul>
 										<li class="mcart-item">
-											<div class="mcart-info">
+											<div class="mcart-info ordered_item">
+												<input type="hidden" value="<?php echo $cart_data['order_details_session_id']; ?>" class="ordered_item_session_id" />
+												<input type="hidden" value="<?php echo $cart_data['order_details_id']; ?>" class="ordered_item_oreder_detail_id" />
 												<a class="mcart-name"><b>Print type</b> : <?php echo $cart_data['paper_print_type']; ?> </a>
 												<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
 												<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
 												<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
 												<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
-												<span class="mcart-remove-item">
+												<span class="mcart-remove-item cart_remove_item">
 													<i class="fa fa-times-circle"></i>
 												</span>
 											</div>

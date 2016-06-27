@@ -218,10 +218,13 @@
     <script type="text/javascript" src="js/theme-home.js"></script>
  	<script type="text/javascript" src="js/theme.js"></script>
  	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
+    <script src="js/dateofbirth.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript">
+    	$("#dob").birthdayPicker();
+	</script>
     
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

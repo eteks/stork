@@ -19,6 +19,8 @@ if($_SESSION['login_status'] == 1){
 		else if($_SESSION['usertype']=='pro'){
 			$user_type = 2;
 		}
+		$mobilenumber=$_POST['mobile'];
+		$dateofbirth=$_POST['dob_birthDay'];		
   		$signup_query=mysqli_query($connection,"select * from stork_users where username = '$username' or user_email='$email'") or die(mysql_error());
   		$signup_count=mysqli_num_rows($signup_query);
 		$succes_message = 0;
@@ -26,7 +28,7 @@ if($_SESSION['login_status'] == 1){
   			$success_message = 1;
   		}
   		else { 
-  			mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_type,user_status) values ('$firstname','$lastname','$username','$email','$password','$user_type','1')") or die(mysql_error());
+  			mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_type,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$user_type','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
 			$success_message = 2;
   		}
 	} 
@@ -79,24 +81,25 @@ if($_SESSION['login_status'] == 1){
 						<h1>Create an Account</h1>
 						<h4>Personal Information</h4>
 						<form id="register-form" class="form-validate form-horizontal" method="post">
-							
 							<p>First Name <span class="star">*</span></p>
-							<input class="firstname" id="firstname" placeholder="Firstname" name="firstname" type="text" value="">
+							<input class="firstname" id="firstname" placeholder="Firstname" name="firstname" type="text" maxlength="50" value="">
 							<p>Last Name <span class="star">*</span></p>
-							<input class="lastname" placeholder="Lastname" id="lastname" name="lastname" type="text" value="">
+							<input class="lastname" placeholder="Lastname" id="lastname" name="lastname" type="text" maxlength="50" value="">
 							<p>Create a username<span class="star">*</span></p>
-							<input class="user" placeholder="Username" id="username" name="username" type="text" value=""> 
+							<input class="user" placeholder="Username" id="username" name="username" type="text" maxlength="20" value=""> 
 							<p>Create a password  <span class="star">*</span></p>
-							<input class="pasword" placeholder="password" id="password" type="password" name="password" value="">
+							<input class="pasword" placeholder="password" id="password" type="password" name="password" maxlength="15" value="">
 							<p>Confirm a password  <span class="star">*</span></p>
-							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" value=""> 
+							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" maxlength="15" value=""> 
 							<p>Email Address <span class="star">*</span></p>
 							<input class="email" placeholder="Email ID" id="email" name="email" type="text" value="">
-							<p>Phone Number<span class="star">*</span></p>
-							<input class="email mobileno" placeholder="Mobile number" id="mobile" name="mobile" type="text" value="">
+							<p>Mobile Number<span class="star">*</span></p>
+							<input class="email mobileno" placeholder="Mobile number" id="mobile" name="mobile" type="text" maxlength="10" value="">
 							<p>Date Of Birth <span class="star">*</span></p>
-							<input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value="">
-							<p>Please enter the captcha shown<span class="star">*</span></p>
+							<div id="dob"></div>
+							<!-- <input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value=""> -->
+							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
+							<input id="captcha_original" type="hidden" value="">
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
 							<div id="imgdiv">
 								<img id="img" src="captcha.php" /></div>
