@@ -217,8 +217,8 @@ function countOfferZone()
 				</li>
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_size.php" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_size.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php" || 
+					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_print_type.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -232,17 +232,17 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-leaf"></i> -->Papersize
+						<!-- <i class="fa fa-file"></i> --> PaperPrintType
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Papersize <span></a>  
+							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperPrintType <span></a>
 						</li>
 						<li>
-							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (<?php echo countPapersize() ?>) <span></a>
-						</li>
+							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (<?php echo countPaperprinttype() ?>) </span></a>
+						</li> 
 					</ul>
 				</li>
 
@@ -308,8 +308,8 @@ function countOfferZone()
 				</li>
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php" || 
-					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_print_type.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_paper_size.php" || 
+					basename($_SERVER['PHP_SELF'])=="paper_size.php" || basename($_SERVER['PHP_SELF'])=="edit_paper_size.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -323,17 +323,17 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> PaperPrintType
+						<!-- <i class="fa fa-leaf"></i> -->Papersize
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_paper_print_type.php"><i class="fa fa-plus-circle"></i><span> Add PaperPrintType <span></a>
+							<a href="add_paper_size.php"><i class="fa fa-plus-circle"></i><span> Add Papersize <span></a>  
 						</li>
 						<li>
-							<a href="paperprinttypes.php"><i class="fa fa-list"></i><span> All PaperPrintTypes (<?php echo countPaperprinttype() ?>) </span></a>
-						</li> 
+							<a href="paper_size.php"><i class="fa fa-list"></i><span> All Papersizes (<?php echo countPapersize() ?>) <span></a>
+						</li>
 					</ul>
 				</li>
 

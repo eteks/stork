@@ -116,8 +116,8 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
                     <tr class="">
                         <th>Paper Print Type </th>
                         <th>Paper Side</th>
-                        <th>Paper Size</th>
-                        <th>Paper Type</th>                      
+                        <th>Paper Type</th>
+                        <th>Paper Size</th>                      
                         <th>Amount fixed Status</th>            
                     </tr>
                     </thead>
@@ -132,8 +132,8 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
                     <tr class="">
                         <td><?php echo $print_type ?></td>
                         <td><?php echo $side ?></td>
-                        <td><?php echo $size ?></td>
                         <td><?php echo $type ?></td> 
+                        <td><?php echo $size ?></td>  
                         <td class="fixed_notfixed">
                         <?php 
                             $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
