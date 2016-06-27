@@ -64,8 +64,8 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        <tr class="">
 			            <th>Paper Print Type </th>
 			            <th>Paper Side</th>
-			            <th>Paper Size</th>
 			            <th>Paper Type</th>
+			            <th>Paper Size</th>
 			            <th>Amount</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
@@ -77,9 +77,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					?>
 				    <tr class="">
 			            <td><span class="nobr"><?php echo $cost_array['paper_print_type'] ?></span></td>
-			            <td><span class="nobr"><?php echo $cost_array['paper_side'] ?></span></td>
-			            <td><span class="nobr"><?php echo $cost_array['paper_size'] ?></span></td>
+			            <td><span class="nobr"><?php echo $cost_array['paper_side'] ?></span></td>			            
 			            <td><span class="price"><?php echo $cost_array['paper_type'] ?></span></td>
+			            <td><span class="nobr"><?php echo $cost_array['paper_size'] ?></span></td>
 			            <td><span class="price"><?php echo $cost_array['cost_estimation_amount'] ?></span></td>
 			            <td><span class="price">
 			            	<?php if($cost_array['cost_estimation_status']==1)

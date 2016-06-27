@@ -92,21 +92,7 @@ $cost_status=$_POST['cost_status'];
 					        <?php } ?>
 					    </select>
 					</div>
-						<div class="form-group">
-					    <label for="first-name">Paper Size<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
-					        <option value="">
-								<span>Select Paper Size</span>
-							</option>
-					        <?php 
-					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1'");
-					        while($row_cost2=mysql_fetch_array($query2)) {
-					        	?>
-					        <option value="<?php echo $row_cost2['paper_size_id']; ?>"> <?php echo $row_cost2['paper_size']; ?></option>
-					        <?php } ?>
-					    </select>
-					</div>
-						<div class="form-group">
+					<div class="form-group">
 					    <label for="first-name">Paper Type<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
 					        <option value="">
@@ -117,6 +103,20 @@ $cost_status=$_POST['cost_status'];
 					        while($row_cost3=mysql_fetch_array($query3)) {
 					        	?>
 					        <option value="<?php echo $row_cost3['paper_type_id']; ?>"> <?php echo $row_cost3['paper_type']; ?></option>
+					        <?php } ?>
+					    </select>
+					</div>
+					<div class="form-group">
+					    <label for="first-name">Paper Size<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
+					        <option value="">
+								<span>Select Paper Size</span>
+							</option>
+					        <?php 
+					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1'");
+					        while($row_cost2=mysql_fetch_array($query2)) {
+					        	?>
+					        <option value="<?php echo $row_cost2['paper_size_id']; ?>"> <?php echo $row_cost2['paper_size']; ?></option>
 					        <?php } ?>
 					    </select>
 					</div>

@@ -20,7 +20,7 @@ include "includes/header.php";
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Area Already exists! </span></div>";
 			} else {
-				mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status',`area_state_id`='$area_state_id' WHERE `area_id`=".$val);
+				mysqlQuery("UPDATE `stork_area` SET `area_name`='$area_name',`area_status`='$area_status' WHERE `area_id`=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> Area Updated Successfully! </span></div>";
 			}
 					
@@ -79,7 +79,7 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_id">
+									<select class="product-type-filter form-control" id="sel_a" name="state_id" disabled="true">
 								        <option>
 											<span>Select State</span>
 										</option>

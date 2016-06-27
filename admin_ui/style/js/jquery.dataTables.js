@@ -3271,7 +3271,7 @@
             sInfoPostFix: "",
             sDecimal: "",
             sThousands: ",",
-            sLengthMenu: "Show _MENU_ entries",
+            sLengthMenu: "Show _MENU_ ",
             sLoadingRecords: "Loading...",
             sProcessing: "Processing...",
             sSearch: "",

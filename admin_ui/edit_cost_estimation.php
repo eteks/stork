@@ -115,22 +115,6 @@ if(isset($_GET["id"]))
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Paper Size<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="paper_size">
-								        <option>
-											<span>Select State</span>
-										</option>
-								        <?php
-				                        $query = mysql_query("select * from stork_paper_size");
-				                        while ($rowPaperSize = mysql_fetch_array($query)) {
-					                        if($row['cost_estimation_paper_size_id'] == $rowPaperSize['paper_size_id'])   
-												echo "<option selected value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";
-											else
-												echo "<option value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";	
-				                        } ?>
-								    </select>
-								</div>
-								<div class="form-group">
 								    <label for="first-name">Paper Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_d" name="paper_type">
 								        <option>
@@ -144,6 +128,22 @@ if(isset($_GET["id"]))
 											else
 												echo "<option value='".$rowPaperType['paper_type_id']."'>".$rowPaperType['paper_type']."</option>";	
 				                    	} ?>
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Paper Size<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_c" name="paper_size">
+								        <option>
+											<span>Select State</span>
+										</option>
+								        <?php
+				                        $query = mysql_query("select * from stork_paper_size");
+				                        while ($rowPaperSize = mysql_fetch_array($query)) {
+					                        if($row['cost_estimation_paper_size_id'] == $rowPaperSize['paper_size_id'])   
+												echo "<option selected value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";
+											else
+												echo "<option value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";	
+				                        } ?>
 								    </select>
 								</div>
 								<div class="form-group">
