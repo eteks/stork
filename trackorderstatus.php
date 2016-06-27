@@ -7,6 +7,7 @@
 ?>
 	<?php 
 	$track_order_search=$_POST['track_order_search'];
+	echo $track_order_search;
 	// echo $track_order_search;
 	$track_status = mysql_query("SELECT * FROM stork_order_details
 								INNER JOIN stork_order ON stork_order.order_id=stork_order_details.order_id
@@ -32,7 +33,7 @@
 								<a href="home.html">Home</a>
 							</li>
 							<li>
-								<span>Order-Status</span>
+								<span>Order- Status</span>
 							</li>
 						</ul>
 					</div>
@@ -211,7 +212,7 @@
 	?>
 	<section class="container orderid_notfound">
 		<div class="orderid_not_match">
-			<h1> Entered orderid doesnot found. Please check your orderid </h1>
+			<h1> Please check your order ID  </h1>
 		</div>
 	</section>
 	<?php } 

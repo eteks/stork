@@ -80,7 +80,7 @@ if(isset($_GET["id"]))
 									?>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="s5" name="area_id" disabled="true">
+									<select class="product-type-filter form-control" id="s5" name="area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
