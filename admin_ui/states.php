@@ -77,13 +77,35 @@ include "includes/header.php";
 						            // echo $date; 
 						            ?>
 						            <td><span class="nobr"><?php echo $date; ?></span></td>
-						            <td class="table_action th_hidden a-center last">
-						                <span class="nobr">
-						                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
-							                <span class="separator"></span> 
-							             <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-							            </span>
+						            <td class="table_action th_hidden a-center last">     
+						                <?php 
+											$check_in_area = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='".$fetch['state_id']."'"); 
+											$check_in_order = mysqlQuery("SELECT * FROM stork_order WHERE order_shipping_state_id='".$fetch['state_id']."'");
+											$check_in_users = mysqlQuery("SELECT * FROM stork_users WHERE user_state_id='".$fetch['state_id']."'");  
+											if(mysql_num_rows($check_in_area)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
+						                ?>
+							                <span class="nobr">
+								                <span class="restrict">
+								                	<a title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o ">
+								                		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+								                	</i> </a>
+									            </span>
+									            <span class="separator"></span> 
+									            <span class="restrict">      
+									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>"><i class="fa fa-trash-o">
+									             		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+									             	</i> </a>
+									            </span>
+									        </span>
+									        <?php } else{ ?>
+									        <span class="nobr">
+							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+								                <span class="separator"></span> 
+								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+								            </span>
+							            <?php } ?>
 							        </td>
+								 
 							   	</tr>
 							   <?php } ?>
 							</table>
