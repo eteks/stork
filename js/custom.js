@@ -483,7 +483,7 @@ jQuery(document).ready(function() {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
     		return false;
     	}
@@ -493,18 +493,18 @@ jQuery(document).ready(function() {
 	});
 	
 	// 	total cost amoutn display based on total no of pages and per page amount
-	// $('.print_total_no_of_pages').on('blur',function(){
+	$('.print_total_no_of_pages').on('blur',function(){
 
-	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-	// 	var total_amount = $(this).val();
-	// 	if(perpageamount){
-	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-	// 	}else{
-	// 		error_popup('Please select print type,print side,paper size,paper type!');
-	// 		$(this).val('');
-	// 	}
+		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+		var total_amount = $(this).val();
+		if(perpageamount){
+			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+		}else{
+		error_popup('Please select print type,print side,paper size,paper type!');
+			$(this).val('');
+		}
 		
-	// });
+	});
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
@@ -512,5 +512,62 @@ jQuery(document).ready(function() {
 		$('#print_booking_form').submit();
 	});
 	
+	// clear print booking form when clear button
+	$('.print_add_to_cart_clear_btn').on('click',function(){
+		$('#print_booking_form').find("input[type=text], textarea").val("");
+		$('#print_booking_form').find("select").prop('selectedIndex', 0);
+	});
+	
+	// form post when paynow button in check out page
+	$(document).on('click','.check_out_payment',function(){
+		$('#print_checkout_form').submit();
+	});
+	
+	// remove item from cart 
+	$(document).on('click','.ordered_item .cart_remove_item',function(){
+		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
+		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
+		if(session_id != '' && order_details_id != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data == 'remove_success'){
+           				location.reload();
+           			}
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// address form clear when clear button in check out page
+	$(document).on('click','.check_out_clear_btn',function(){
+		$('.checkout_address').find("input[type=text], textarea").val("");
+	});
+	
+	
+	// update amount details based on quantity in check out page
+	$(document).on('keyup','.ordered_item_quantity',function(){
+		var amount = $(this).parents('.review_order_checkout').find('.oredered_item_amount').val();
+		var quantity = $(this).val();
+		var final_amount = 0;
+		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(amount*quantity);
+		$('.updated_oredered_item_amount').each(function(){
+			final_amount += parseInt($(this).val());
+		});
+		$('.final_payment_amount_checkout').val(final_amount);
+		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+	});
+	
+	// post form when click check button in print booking page and submit type
+	$('.print_check_out_btn').on('click',function(){
+		$('#print_booking_form .submit_type').val('add_to_checkout');
+		$('#print_booking_form').submit();
+	});
 });
 

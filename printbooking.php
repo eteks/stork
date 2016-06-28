@@ -165,7 +165,7 @@
 							<h4 class="order_or_button">OR</h4>
 		 	      		</div>
 			 	   		<div class="button_holder button_holder_printbooking">
-		        	   		<h4 class="btn_prf"><a href="printbooking.html" target="_blank">Clear</a></h4>
+		        	   		<h4 class="btn_prf print_add_to_cart_clear_btn"><a>Clear</a></h4>
 		        	   		<h4 class="btn_prf print_check_out_btn"><a>Check Out</a></h4>
 		             	</div>
 	               	</div>

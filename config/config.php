@@ -8,10 +8,10 @@ $root = 'http://' . $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']);
 if (substr($root, -1) == "/")    $root = 'http://' . $_SERVER['SERVER_NAME'];
 
 // define("database", "affiliate_store");
-define("database", "BBBmcmf_stork");
-define("databaseServer", "mysql1110.ixwebhosting.com");
-define("databaseUser", "BBBmcmf_stork");
-define("databasePass", "Stork_123");
+define("database", "stork");
+define("databaseServer", "localhost");
+define("databaseUser", "root");
+define("databasePass", "");
 define("displayMySqlErrors",false);
 
 error_reporting(E_ERROR);
