@@ -42,7 +42,7 @@ if(mysqli_num_rows($review_details)>0){
 							<h1>Review Your Order here..</h1>
 						 </div>
 						 <div class="col-md-6 col-sm-6 col-xs-12 right">
-						    <h1>Continue Shopping</h1>
+						    <h1><a href="printbooking.php">Continue Shopping</a></h1>
 						 </div>
        				</div>
   				<br>	
@@ -59,7 +59,7 @@ if(mysqli_num_rows($review_details)>0){
 	      					<!-- render layout -->
 	      					<fieldset class="round-box" id="cart-contents">
 	      						<h3 class="title"><span class="icon fa fa-check"></span>REVIEW ORDER <?php echo $review_count; ?></h3>
-	  							<table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
+	  							<table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border review_order_checkout">
 									<tbody>
 									    <tr clas="top-header">
 											<th width="10%" align="left" class="th-price">Print Type</th>
@@ -127,7 +127,7 @@ if(mysqli_num_rows($review_details)>0){
 			  	 								</span>
 			  								</td>
 			  								<td align="left" class="product-quanlity">
-			    								<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate" title="Update Quantity In Cart">
+			    								<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
 		  									</td>
 		  									<td>
 		  										<span class="priceColor2">
@@ -140,11 +140,13 @@ if(mysqli_num_rows($review_details)>0){
 			  								<td align="left" class="base-price">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
-													<span class="PricebasePrice"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+													<span class="PricebasePrice check_out_subtotal_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+													<input type="hidden" value="<?php echo $review_data['order_details_total_amount']; ?>"  class="updated_oredered_item_amount"/>
+													<input type="hidden" value="<?php echo $review_data['order_details_total_amount']; ?>"  class="oredered_item_amount"/>
 												</div>			
 			  								</td>
               								<td align="right" id="subtotal_with_tax_0" colspan="0" class="sub-total td-last">
-              									<span class="line-through"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+              									<span class="line-through check_out_total_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
               								</td>
 		    							</tr>
 		   							</tbody>
@@ -174,13 +176,13 @@ if(mysqli_num_rows($review_details)>0){
 		 </div>
 		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
              <p>Please fill in the fields below to complete your order.</p>
-         </div>
+        </div>
 	   </div>
 	   </hr>	
        <div class=""> <!---Shipping details----> 
        	 <!---shipping detail1 starts--->
   		 <div  class="col-md-4 col-sm-6 col-xs-12">
-		   <div id="div_billto">
+		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box">
 			   <input type="checkbox" id="register"><label class="registers">Send to Personnel Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
@@ -281,7 +283,7 @@ if(mysqli_num_rows($review_details)>0){
          
          <!---shipping detail2 starts--->
          <div  class="col-md-4 col-sm-6 col-xs-12 fl">
-		   <div id="div_billto">
+		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box">
 			  <input type="checkbox" id="register"><label class="registers">Send to College Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
@@ -396,7 +398,7 @@ if(mysqli_num_rows($review_details)>0){
 					 <tbody>
 						<tr class="first">
 							<td>SubTotal:</td>
-							<td class="pr-right"><div class="PricesalesPrice vm-display vm-price-value"><span class="vm-price-desc"></span><span class="PricesalesPrice"><b>&#8377;</b> <?php echo $total_amount ; ?></span></div></td>
+							<td class="pr-right"><div class="PricesalesPrice vm-display vm-price-value"><span class="vm-price-desc"></span><span class="PricesalesPrice final_visible_sub_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount ; ?></span></div></td>
 						</tr>
 						<tr style="display:none;">
 							<td>Discount:</td>
@@ -414,7 +416,7 @@ if(mysqli_num_rows($review_details)>0){
 						</tr>
 						<tr class="last">
 							<td>Total:</td>
-							<td class="pr-right"><strong id="bill_total"><b>&#8377;</b> <?php echo $total_amount ; ?></strong></td>
+							<td class="pr-right"><strong id="bill_total" class="final_visible_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount ; ?></strong></td>
 						</tr>
 					  </tbody>
 			        </table>
@@ -460,13 +462,13 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
-		   		<input type="hidden" name="amount" value="<?php echo $checkout_total_amount; ?>"/>
+		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php echo $checkout_total_amount; ?>"/>
 		   		<input type="hidden" name="currency" value="INR"/>
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 		   		<input type="hidden" name="language" value="EN"/>
 		   		<h4 class="btn_prf check_out_payment"><a>Pay Now</a></h4>
-				<h4 class="btn_prf"><a>Clear</a></h4>
+				<h4 class="btn_prf check_out_clear_btn"><a>Clear</a></h4>
 			</form>
 	   </div>		
   </div> <!--onepage--->

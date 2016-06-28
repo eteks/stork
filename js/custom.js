@@ -24,15 +24,21 @@ function clone(){
   	.val("")
   	.appendTo('.upload_range_section')
   	.attr("id", "uploadTrigger" +  cloneIndex);
+  	// path_section_clone.find('#file_name_extension').clone()
+  	// .text("")
+  	// .appendTo('.upload_range_section')
+  	// .attr("id", "file_name_extension" +  cloneIndex);
 }
 function remove(){
  	var path_section_remove1=$('.paper_range:last').attr('id');
  	var path_section_remove2=$('.uploadbutton:last').attr('id');
+ 	// var path_section_remove3=$('.file_name_extension:last').attr('id');
 	var path_section_remove=jQuery('#'+path_section_remove1);
 	var path_section_remove_browse=jQuery('#'+path_section_remove2);
+	// var path_section_remove_file_name=jQuery('#'+path_section_remove3);
  	path_section_remove.remove();
  	path_section_remove_browse.remove();
-
+ 	// path_section_remove_file_name.remove();
 }
 $('.clone').on("click", clone);
 $('.remove').on("click", remove);
@@ -42,7 +48,7 @@ $('.remove').on("click", remove);
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
+	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob"];
 	required_print_booking=["total_pages"];
 	reg_email=jQuery("#email");
 	forget_email=jQuery("#forget_email");
@@ -66,30 +72,39 @@ $(document).ready(function () {
 	// });
 	// 	== Add input box when selected white & black and color End ==
 	//  == Print Booking Validation Start ==
-	jQuery('#print_booking_form').submit(function(){
+	jQuery(document).on('submit','#print_booking_form',function(){
+
 		for(i=0;i<required_print_booking.length;i++) {
 			var input = jQuery('#'+required_print_booking[i]);
+			
 			if ((input.val() == "")) 
 			{
-				input.addClass("error_print_booking_field");
-			} else {
-				input.removeClass("error_print_booking_field");
-			}
-		}
-		if($('.paper_range').css('display') == 'block') {
-			var test = $('.paper_range');
-			var input1 = jQuery('test.required');
-			for(i=0;i<input1.length;i++) {
-				if($(input1[i]).val() == "")
-				{
-					input1.addClass("error_print_booking_field");
-				} else {
-					
-					input1.removeClass("error_print_booking_field");
-				}
-			}
 
+					input.addClass("error_print_booking_field");
+				
+				
+			} else {
+
+					input.removeClass("error_print_booking_field");
+			}
 		}
+
+		var page_range_array = [] ;
+		$('.paper_range').each(function() { 
+		  var id = $(this).attr('id');
+		    page_range_array.push(id);
+		});
+		// alert(page_range_array);
+		for(i=0;i<page_range_array.length;i++) {
+			var page_range_input = jQuery('#'+page_range_array[i]);
+			if ((page_range_input.val() == "")) 
+			{
+				page_range_input.addClass("error_print_booking_field");
+			} else {
+				page_range_input.removeClass("error_print_booking_field");
+			}
+		}
+
 	 	if (document.getElementById('print_type').selectedIndex < 1){
 			$('#print_type').addClass('error_print_booking_field');
 		}
@@ -114,6 +129,18 @@ $(document).ready(function () {
 		else{ 
 			$('#paper_size').removeClass('error_print_booking_field');
 		}
+
+		$('.uploadFile').each(function(){
+			
+			if($(this).val()==''){
+				$(this).next('.uploadbutton').addClass('error_print_booking_field');
+				// $('.clone').css('pointer-events', 'none');
+			}
+			else{
+				$(this).next('.uploadbutton').removeClass('error_print_booking_field');
+				// $('.clone').css('pointer-events', 'auto');
+			}
+		});
 		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery("select").hasClass("error_print_booking_field")) {
 			$('.error_print_booking').css('display','block');
 			return false;
@@ -129,12 +156,13 @@ $(document).ready(function () {
 	//  == Add and Remove Button Start ==
 
 	$('.remove').css('display','none');
-	$('.clone, .remove').on('click',function() {
+	$(document).on('click','.clone, .remove',function() {
 		var input_length=$('.paper_range').length;
 		if(input_length <= 1) {
-		$('.remove').css('display','none');
-		 $('.uploadbutton').css('pointer-events', 'auto');
-		$('.clone').css('pointer-events', 'auto');
+			$('.remove').css('display','none');
+			$('.uploadbutton').css('pointer-events', 'auto');
+			$('.clone').css('pointer-events', 'auto');
+	    	$('.page_range_error').css('display','none');
 		}
 		else {
 			$('.remove').css('display','block');
@@ -154,24 +182,55 @@ $(document).ready(function () {
 
 	//  == Validation for Page range Keycode End ==
 
+$(document).on('change','.uploadFile',function() {
+		var file_name= $(this).attr('id');
+		var file_path = jQuery('#'+file_name);
+	    var file_name_extension = file_path.val();
+	    // alert(file_name_extension);
+		 $(file_path).next().next().html( "<strong>"+file_name_extension+"</strong>" );
+	});
+
 	//  == Validation for Page range Format Start ==
-  	$('.clone').css('pointer-events', 'none');
+  	// $('.clone').css('pointer-events', 'none');
 	$(document).on('keyup','.paper_range',function() {
-		var path_range=$(this).attr('id');
-		var range_path = jQuery('#'+path_range);
-		var inputVal=range_path.val();
-	  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
-	  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-	  		// $('.page_range_error').css('display','block');
-	  		alert("page_range_error");
-  			$('.uploadbutton').css('pointer-events', 'none');
-  			$('.clone').css('pointer-events', 'none');
-		}
-	 	else {
-	  		$('.page_range_error').css('display','none');
-  			$('.uploadbutton').css('pointer-events', 'auto');
-			$('.clone').css('pointer-events', 'auto');
-	  	}
+		// var path_range=$(this).attr('id');
+
+
+		var page_range_code_array = [] ;
+			$('.paper_range').each(function() { 
+			   var code_id = $(this).attr('id');
+		       page_range_code_array.push(code_id);
+		    });
+		// // alert(page_range_array);
+		// for(i=0;i<page_range_array.length;i++) {
+
+		for(i=0;i<page_range_code_array.length;i++) {	
+			var range_path = jQuery('#'+page_range_code_array[i]);
+			var inputVal=range_path.val();
+		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
+		  	if(!num0to255Regex.test(inputVal)) {
+		  		// $('.page_range_error').css('display','block');
+		  		// alert("page_range_error");
+				$('.uploadbutton').css('pointer-events', 'none');
+				$('.clone').css('pointer-events', 'none');
+				$(range_path).addClass("error_print_booking_code");
+
+			}
+		 	else {
+				$('.uploadbutton').css('pointer-events', 'auto');
+				$('.clone').css('pointer-events', 'auto');
+				$(range_path).removeClass("error_print_booking_code");
+		  	} 	
+	    }
+	    if (jQuery(".paper_range").hasClass("error_print_booking_code")) {
+		  	$('.page_range_error').css('display','block');
+		  	return false;
+	    }
+	    else {
+	    	$('.page_range_error').css('display','none');
+		  	return true;
+	    }
+
 	});
 
 	//  == Validation for Page range Format End ==
@@ -263,12 +322,12 @@ jQuery(document).ready(function() {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
       	
-      	if(eval($("#captcha_original").val()) == $("#captcha").val()){
-      		$('#captcha').removeClass("error_input_field");
-      	}
-      	else{
-      		$('#captcha').addClass("error_input_field");
-      	}
+      	// if(eval($("#captcha_original").val()) == $("#captcha").val()){
+      	// 	$('#captcha').removeClass("error_input_field");
+      	// }
+      	// else{
+      	// 	$('#captcha').addClass("error_input_field");
+      	// }
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
@@ -282,12 +341,12 @@ jQuery(document).ready(function() {
 	});
 	
 	// Refresh captcha image
-	$("#reload").click(function() {
-	    $("img#img").remove();
-		var id = Math.random();
-        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
-		 id ='';
-    });
+	// $("#reload").click(function() {
+	//     $("img#img").remove();
+	// 	var id = Math.random();
+ //        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
+	// 	 id ='';
+ //    });
 
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
@@ -483,7 +542,7 @@ jQuery(document).ready(function() {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
     		return false;
     	}
@@ -493,18 +552,18 @@ jQuery(document).ready(function() {
 	});
 	
 	// 	total cost amoutn display based on total no of pages and per page amount
-	// $('.print_total_no_of_pages').on('blur',function(){
+	$('.print_total_no_of_pages').on('blur',function(){
 
-	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-	// 	var total_amount = $(this).val();
-	// 	if(perpageamount){
-	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-	// 	}else{
-	// 		error_popup('Please select print type,print side,paper size,paper type!');
-	// 		$(this).val('');
-	// 	}
+		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+		var total_amount = $(this).val();
+		if(perpageamount){
+			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+		}else{
+		error_popup('Please select print type,print side,paper size,paper type!');
+			$(this).val('');
+		}
 		
-	// });
+	});
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
@@ -512,5 +571,62 @@ jQuery(document).ready(function() {
 		$('#print_booking_form').submit();
 	});
 	
+	// clear print booking form when clear button
+	$('.print_add_to_cart_clear_btn').on('click',function(){
+		$('#print_booking_form').find("input[type=text], textarea").val("");
+		$('#print_booking_form').find("select").prop('selectedIndex', 0);
+	});
+	
+	// form post when paynow button in check out page
+	$(document).on('click','.check_out_payment',function(){
+		$('#print_checkout_form').submit();
+	});
+	
+	// remove item from cart 
+	$(document).on('click','.ordered_item .cart_remove_item',function(){
+		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
+		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
+		if(session_id != '' && order_details_id != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data == 'remove_success'){
+           				location.reload();
+           			}
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// address form clear when clear button in check out page
+	$(document).on('click','.check_out_clear_btn',function(){
+		$('.checkout_address').find("input[type=text], textarea").val("");
+	});
+	
+	
+	// update amount details based on quantity in check out page
+	$(document).on('keyup','.ordered_item_quantity',function(){
+		var amount = $(this).parents('.review_order_checkout').find('.oredered_item_amount').val();
+		var quantity = $(this).val();
+		var final_amount = 0;
+		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(amount*quantity);
+		$('.updated_oredered_item_amount').each(function(){
+			final_amount += parseInt($(this).val());
+		});
+		$('.final_payment_amount_checkout').val(final_amount);
+		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+	});
+	
+	// post form when click check button in print booking page and submit type
+	$('.print_check_out_btn').on('click',function(){
+		$('#print_booking_form .submit_type').val('add_to_checkout');
+		$('#print_booking_form').submit();
+	});
 });
 

@@ -6227,3 +6227,12 @@ section.home-slidershow{
 .upload-add-cart{
 	width:50%;
 }
+.file_name_extension {
+  position: relative;
+}
+.file_name_extension strong {
+  font-size: 12px;
+  left: -114px;
+  /*position: absolute;*/
+  top: 57px;
+}

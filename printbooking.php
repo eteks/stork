@@ -119,12 +119,8 @@
 								 	
 	       							<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 
-								<!--  <div class="print_upload_file_holder upload_range_section" id="input1">
-								 	<input type="text" name="filepageno[]" class="col-md-8 print_book_color_page_no paper_range" id="print_page_range"  placeholder="Page no.1-13,15,18-23"/>
-	       							<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
-	       							<input type="file" class="user dn col-md-8 uploadFile" name="printfiles[]" accept="application/pdf,.doc,.docx" multiple /> -->
-
 	       							<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
+	       							<!-- <div class="file_name_extension" id="file_name_extension"> </div> -->
 	   							 </div>
    							 </div>
    							 <div class="pos_rel" >
@@ -165,7 +161,7 @@
 							<h4 class="order_or_button">OR</h4>
 		 	      		</div>
 			 	   		<div class="button_holder button_holder_printbooking">
-		        	   		<h4 class="btn_prf"><a href="printbooking.html" target="_blank">Clear</a></h4>
+		        	   		<h4 class="btn_prf print_add_to_cart_clear_btn"><a>Clear</a></h4>
 		        	   		<h4 class="btn_prf print_check_out_btn"><a>Check Out</a></h4>
 		             	</div>
 	               	</div>

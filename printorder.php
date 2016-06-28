@@ -39,27 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						$order_detail_id = mysqli_insert_id($connection);
 			        	$insert_data_upload_files = $order_detail_id.',"'.$upload_path.$additional_path.$name_array[$i].'",1';
 			            insertfunction('upload_files_order_details_id,upload_files,upload_files_status',$insert_data_upload_files,UPLOADFILES,'',$connection);
-						echo $order_detail_id;
 						if($_POST['submit_type'] == 'add_to_cart'){
 							header('Location:printbooking.php');
 						}
 						else if($_POST['submit_type'] == 'add_to_checkout'){
-							header('Location:checkout.php');
+							//header('Location:checkout.php');
 						}
 						
 			        } else {
-			            echo "file uploading file";
-						header('Location:printbooking.php?error1=true');
+						//header('Location:printbooking.php?error1=true');
 			        }
 				}
 				else{
-					echo 'invalid file format';
-					header('Location:printbooking.php?error2=true');
+					//header('Location:printbooking.php?error2=true');
 				}
 		    }
 		}
 		else {
-			header('Location:printbooking.php?error3=true');
+			//header('Location:printbooking.php?error3=true');
 		}
 	}// end of add to cart
 	
