@@ -426,7 +426,7 @@ function countOfferZone()
 							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i><span> Add OfferZone </span></a>
 						</li>
 						<li>
-							<a href="offer_zones.php"><i class="fa fa-file"></i><span> All OfferZone (<?php echo countOfferZone() ?>) </span></a>
+							<a href="offer_zones.php"><i class="fa fa-list"></i><span> All OfferZone (<?php echo countOfferZone() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>
