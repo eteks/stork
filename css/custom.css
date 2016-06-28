@@ -509,6 +509,9 @@ h4.order_or_button{
 .error_print_booking_field {
     border : 1px solid #cb1d1d !important;
 }
+.error_print_booking_code {
+    border : 1px solid #cb1d1d !important;  
+}
 .error_print_booking {
     font-size: 12px;
     color: red;
