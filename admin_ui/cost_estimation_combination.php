@@ -1,4 +1,4 @@
-         <?php
+<?php
 include "includes/header.php";
 function generate_combinations(array $data, array &$all = array(), array $group = array(), $value = null, $i = 0)
 {
@@ -65,6 +65,14 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 //                                     INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
 //                                     INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
 //                                     ");
+
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+    $val = $_GET['delete'];
+    mysqlQuery("DELETE FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$val'");
+    $isDeleted = true;
+    $deleteProduct = true;
+}
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All States</title>
@@ -89,6 +97,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
                             <i class="fa fa-search"></i>
                         </form>
                     </div> -->
+
                 </div>
             </div>
         </div>
@@ -99,113 +108,78 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
     <?php include 'includes/sidebar.php'; ?>
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
-            <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
-            <div class="amout_fixed_status">
-                <span>Amount fixed status </span>
-                <select id="select-category" name="categories">
-                    <option value="">All</option>
-                    <option value="Fixed">Fixed</option>
-                    <option value="Not Fixed">Not Fixed</option>
-                </select>
-            </div>
+        <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
+<div class="amout_fixed_status">
+        <span>Amount fixed status </span><select id="select-category" name="categories">
+    <option value="">All</option>
+    <option value="Fixed">Fixed</option>
+    <option value="Not Fixed">Not Fixed</option>
+</select>
+</div>
         <div class="clear_both"> </div>
         </div>
             <div class="form-edit-info">
-                <?php 
-                    $cost_query = mysqlQuery("SELECT * FROM stork_cost_estimation 
-                                    INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
-                                    INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
-                                    INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
-                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
-                                    ");
-                    $cost_rows = mysql_num_rows($cost_query);
-                    if ($cost_rows > 0)
-                    {
-                ?>
                 <table class="data-table cost_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Paper Print Type </th>
                         <th>Paper Side</th>
-                        <th>Paper Size</th>
                         <th>Paper Type</th>
-                        <th>Amount</th>
-                        <th>Status</th>
+                        <th>Paper Size</th> 
+                        <th>Amount</th>                     
+                        <th>Amount fixed Status</th> 
+                        <th>Status</th> 
                         <th>Created Date</th>
-                         <th>Amount fixed Status</th>       
-                        <th class="table_action">Actions</th>
+                        <th>Action</th>               
                     </tr>
                     </thead>
                     <?php 
-                    while ($cost_array = mysql_fetch_array($cost_query)) {
-                    ?>
-                    <tr class="">
-                     <?php 
                     foreach ($datas as $value) {
                         $size = implode(" ",$value[0]);
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type = implode(" ",$value[3]);
+
                     ?>
-                        <td><span class="nobr"><?php echo $cost_array['paper_print_type'] ?></span></td>
-                        <td><span class="nobr"><?php echo $cost_array['paper_side'] ?></span></td>
-                        <td><span class="nobr"><?php echo $cost_array['paper_size'] ?></span></td>
-                        <td><span class="price"><?php echo $cost_array['paper_type'] ?></span></td>
-                        <td><span class="price"><?php echo $cost_array['cost_estimation_amount'] ?></span></td>
-                        <td><span class="price">
-                            <?php if($cost_array['cost_estimation_status']==1)
-                                    echo "Active";
-                                  else
-                                    echo "InActive";
-                            ?> </span>
-                        </td>
-                        <?php  $createddate=strtotime($cost_array['created_date']);
-                                   
-                                    $date = date('d/m/Y', $createddate);
-                                    // echo $date; 
-                                    ?>
-                    <td><span class="price"> <?php echo $date; ?> </span></td>   
-                      <td class="fixed_notfixed">
+                    <tr class="">
+                        <td><?php echo $print_type ?></td>
+                        <td><?php echo $side ?></td>
+                        <td><?php echo $type ?></td> 
+                        <td><?php echo $size ?></td>  
                         <?php 
                             $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
                                     INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
                                     INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
                                     INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
-                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id
-                                    where cost_estimation_status=1");
+                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
-                               echo "Not Fixed"; 
+                               echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
                             }
                             else{
                                 while ($cost_array = mysql_fetch_array($estimated_cost)) {   
+                                    $createddate=strtotime($cost_array['created_date']);
+                                    $date = date('d/m/Y', $createddate);
                                     if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){        
-                                        $status = "Fixed";
+                                        $status = "<td>".$cost_array['cost_estimation_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
+                                                    <span class='nobr'>
+                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_cost_estimation.php?id=".$cost_array['cost_estimation_id']."'><i class='fa fa-pencil-square-o'></i></a>
+                                                    <span class='separator'></span> 
+                                                    <a class='btn btn-xs btn-danger delete' title='Delete' data-id=".$cost_array['cost_estimation_id']." href='#myModal1' data-toggle='modal' id='delete'><i class='fa fa-trash-o'></i></a>
+                                                    </span>
+                                                    </td>";
                                         break;
                                     } 
                                     else{
-                                        $status = "Not Fixed";
+                                        $status = "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>";
                                     }
                                 }
                                 echo $status;
                             }    
-                        ?>
-                        </td>                    
-                        <td class="table_action th_hidden a-center last">
-                            <span class="nobr">
-                                <a title="Edit " class="btn  btn-primary btn-xs" href="edit_cost_estimation.php?id=<?php echo $cost_array['cost_estimation_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
-                                <span class="separator"></span> 
-                                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $cost_array['cost_estimation_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-                            </span>
-                        </td>
-                    </tr>
-                   <?php } ?>
+                        ?>   
+                    </tr> 
                     <?php } ?>     
-
-                </table>    
-                <?php } else {
-                            echo "<div class='no_result'> <span> No records found </span> </div>";
-                    } ?>                
+                </table>                                  
     </div>
     <div class="clearfix"></div>
     <!-- Jquery for delete -->
@@ -213,7 +187,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
         $(document).on("click", ".delete", function () {
         var myId = $(this).data('id');
         $(".modal-body #vId").val( myId );
-        $("#del_link").prop("href", "cost_estimation.php?delete="+myId);
+        $("#del_link").prop("href", "cost_estimation_combination.php?delete="+myId);
         });
     </script>
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -240,10 +214,10 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
     $('#select-category').on('change',function(){
         if($("#select-category").val()!=""){
             var selectedValue = $(this).val();
-            dataTable.fnFilter("^"+selectedValue+"$", 7, true); //Exact value, column, reg 
+            dataTable.fnFilter("^"+selectedValue+"$", 5, true); //Exact value, column, reg 
         }
         else {
-            dataTable.fnFilter( $('#select-category').val(),7);
+            dataTable.fnFilter( $('#select-category').val(),5);
             // alert("test");
         }
             
