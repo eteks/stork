@@ -82,11 +82,31 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						            ?>
 						            <td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td class="table_action th_hidden a-center last">
+			            <?php 
+							$check_in_cost_estimation = mysqlQuery("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_side_id ='".$papersides_array['paper_side_id']."'"); 
+							$check_in_order = mysqlQuery("SELECT * FROM stork_order_details WHERE order_details_paper_size_id='".$papersides_array['paper_side_id']."'"); 
+							if(mysql_num_rows($check_in_cost_estimation)>0 || mysql_num_rows($check_in_order)>0){
+		                ?>
 			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_paper_side.php?id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+				                <span class="restrict">
+				                	<a title="Edit" class="btn  btn-primary btn-xs"><i class="fa fa-pencil-square-o ">
+				                		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+				                	</i> </a>
+					            </span>   
+					            <span class="separator"></span> 
+					            <span class="restrict">
+					                <a class="btn btn-xs btn-danger delete" title="Delete"><i class="fa fa-trash-o">
+					                	<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+					                </i> </a>
+					            </span>
+				            </span>
+				        <?php } else{ ?>   
+				            <span class="nobr">
+			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_side.php?id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papersides_array['paper_side_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
+				        <?php } ?>
 				        </td>
 				   	</tr>
 				   	<?php } ?>
