@@ -16,6 +16,7 @@ jQuery(document).ready(function() {
 	var required_papertype =["papertype"];
 	var required_paperprinttype =["paperprinttype","amount"];
 	var required_cost_estimation =["amount"];
+	var required_binding_cost_estimation =["amount"];
 	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","totalitems","test","phone"];
 	var required_edit_order_details =["orderid","pages","colorprintpage","comments","amount"];
 	var required_edit_track_order =["dateofdelivered"];
@@ -860,6 +861,44 @@ jQuery("#edit_cost_estimation").submit(function(){
 		} else {
 			errornotice.hide();
 			
+			return true;
+		}
+	});
+	jQuery("#add_binding_cost_estimation").submit(function(){ 
+
+		var input = jQuery('#'+required_binding_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			 
 			return true;
 		}
 	});

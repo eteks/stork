@@ -410,8 +410,8 @@ function countOfferZone()
 				</li>
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
-					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="cost_estimation_combination.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_binding_cost_estimation.php" || 
+					basename($_SERVER['PHP_SELF'])=="binding_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="binding_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="cost_estimation_combination.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -431,13 +431,13 @@ function countOfferZone()
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Binding Cost Estimation </span></a>
+							<a href="add_binding_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Binding Cost Estimation </span></a>
 						</li> 
 						<!-- <li>
 							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
 						</li> --> 
 						<li>
-							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Binding Cost Estimation </span></a>
+							<a href="binding_cost_estimation.php"><i class="fa fa-list"></i><span> All Binding Cost Estimation </span></a>
 						</li> 
 					</ul>
 				</li>
