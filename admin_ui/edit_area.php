@@ -12,10 +12,10 @@ include "includes/header.php";
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			$val = $_GET['update'];
 			$val = mres($val);
-			$area_state_id = $_POST["state_id"];
+			$area_city_id = $_POST["city_id"];
 			$area_name = $_POST["area_name"];
 			$area_status = $_POST["area_status"];
-			$qr = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='$area_state_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
+			$qr = mysqlQuery("SELECT * FROM stork_area WHERE area_city_id='$area_city_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Area Already exists! </span></div>";
@@ -79,7 +79,7 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_id" disabled="true">
+									<select class="product-type-filter form-control" id="" name="state_id" disabled="true">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -94,6 +94,26 @@ include "includes/header.php";
 				                        }
 				                        ?>
 								    </select>
+								    <input type="hidden" name="city_id" value="<?php echo $row['area_city_id']?>">
+								</div>
+								<div class="form-group">
+								    <label for="first-name">City<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="" name="city_id" disabled="true">
+								        <option>
+											<span>Select City</span>
+										</option>
+										<?php
+					                    $query = mysql_query("select * from stork_city where city_status='1'");
+				                        while ($cityrow = mysql_fetch_array($query)) {
+								        
+								        if($row['area_city_id'] == $cityrow['city_id'])   
+				                        	echo "<option selected value='".$cityrow['city_id']."'>".$cityrow['city_name']."</option>";
+				                        else
+				                        	echo "<option value='".$cityrow['city_id']."'>".$cityrow['city_name']."</option>";
+				                        }
+				                        ?>
+								    </select>
+								    <input type="hidden" name="city_id" value="<?php echo $row['area_city_id']?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Area Name<span class="required">*</span></label>

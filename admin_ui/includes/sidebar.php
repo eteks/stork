@@ -1,7 +1,7 @@
 <?php
 function countCity()
 {
-	$query = mysqlQuery("SELECT count(City_id) as total FROM stork_City");
+	$query = mysqlQuery("SELECT count(city_id) as total FROM stork_city");
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
@@ -127,39 +127,6 @@ function countOfferZone()
 						</li> 
 					</ul>
 				</li>
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_city.php" || 
-					basename($_SERVER['PHP_SELF'])=="city.php" || basename($_SERVER['PHP_SELF'])=="edit_city.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				?>
-					<a href="#">
-						<!--<i class="fa fa-map-marker"></i> --> City
-						<span class="caret pull-right"></span>
-					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-							<a href="add_city.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add City</span></a>
-						</li>
-						<!-- <li>
-							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
-						</li> -->
-						<li>
-							<a href="city.php"> <i class="fa fa-list"></i><span id="allProducts"> All Cities (<?php echo countCity() ?>)</span></a>
-						</li> 
-					</ul>
-				</li>
 
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 
@@ -191,6 +158,40 @@ function countOfferZone()
 						</li> -->
 						<li>
 							<a href="states.php"> <i class="fa fa-list"></i><span id="allProducts"> All States (<?php echo countState() ?>)</span></a>
+						</li> 
+					</ul>
+				</li>
+
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_city.php" || 
+					basename($_SERVER['PHP_SELF'])=="city.php" || basename($_SERVER['PHP_SELF'])=="edit_city.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				?>
+					<a href="#">
+						<!--<i class="fa fa-map-marker"></i> --> City
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
+							<a href="add_city.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add City</span></a>
+						</li>
+						<!-- <li>
+							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
+						</li> -->
+						<li>
+							<a href="city.php"> <i class="fa fa-list"></i><span id="allProducts"> All Cities (<?php echo countCity() ?>)</span></a>
 						</li> 
 					</ul>
 				</li>

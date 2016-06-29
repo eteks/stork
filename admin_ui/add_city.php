@@ -7,18 +7,19 @@ include "includes/header.php";
 <body>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+	$state_id = $_POST["state_id"];
 	$city_name = $_POST["city_name"];
 	$city_status = $_POST["city_status"];
 	if($city_name=="" || $city_status=="") {
 		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
-		$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name'");
+		$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 		$successMessage = "<div class='container error_message_mandatory'><span> City Already Exists </span></div>";
 		} else {
-			mysqlQuery("INSERT INTO `stork_city` (city_name,city_status) VALUES ('$city_name','$city_status')");
+			mysqlQuery("INSERT INTO `stork_city` (city_name,city_state_id,city_status) VALUES ('$city_name','$state_id','$city_status')");
 			$successMessage = "<div class='container error_message_mandatory'><span> City Inserted Successfully! </span></div>";
 		}		
 	}
@@ -62,6 +63,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">City Information</h4>
 							<form action="add_city.php" id="add_city" method="POST" name="edit-acc-info">
+								<div class="form-group">
+								    <label for="first-name">Select State<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="" name="state_id">
+								        <option value="">
+											<span>Select State</span>
+										</option>
+										<?php
+					                        $query = mysql_query("select * from stork_state  where state_status='1'");
+					                        while ($row = mysql_fetch_array($query)) {
+					                            ?>
+					                        <option value="<?php echo $row['state_id']; ?>"><span><?php echo $row['state_name']; ?></span></option>
+					                    <?php } ?>   
+								    </select>
+								</div>
 								<div class="form-group">
 								    <label for="last-name">City Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="cityname" autocomplete="off" placeholder="City Name" name="city_name">

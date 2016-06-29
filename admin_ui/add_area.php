@@ -9,20 +9,21 @@ include "includes/header.php";
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$state_id = $_POST["state_id"];
+	$city_id = $_POST["city_id"];
 	$area_name = $_POST["area_name"];
 	$area_status = $_POST["area_status"];
-	if($state_id=="" || $area_name=="" || $area_status=="") {
+	if($city_id=="" || $area_name=="" || $area_status=="") {
 		// header('Location: add_area.php');
 		// exit();
 		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
-		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_state_id='$state_id'");
+		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
 		} else {
-			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_status) VALUES ('$area_name','$state_id','$area_status')");
+			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_status) VALUES ('$area_name','$state_id','$city_id','$area_status')");
 			$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
 		}		
 	}
@@ -63,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
 								<div class="form-group">
-								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_id">
+								    <label for="first-name">Select State<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="" name="state_id">
 								        <option value="">
 											<span>Select State</span>
 										</option>
@@ -73,6 +74,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					                        while ($row = mysql_fetch_array($query)) {
 					                            ?>
 					                        <option value="<?php echo $row['state_id']; ?>"><span><?php echo $row['state_name']; ?></span></option>
+					                    <?php } ?>   
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Select City<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="city_id">
+								        <option value="">
+											<span>Select City</span>
+										</option>
+										<?php
+					                        $query = mysql_query("select * from stork_city  where city_status='1'");
+					                        while ($row = mysql_fetch_array($query)) {
+					                            ?>
+					                        <option value="<?php echo $row['city_id']; ?>"><span><?php echo $row['city_name']; ?></span></option>
 					                    <?php } ?>   
 								    </select>
 								</div>

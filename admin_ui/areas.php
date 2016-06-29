@@ -60,6 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				<thead>
 			        <tr class="">
 			            <th>Area Name</th>
+			            <th>City</th>
 			            <th>State</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
@@ -70,11 +71,14 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					$i = 0;
 					while ($fetch = mysql_fetch_array($query))
 					{	
+						$qrycity = mysqlQuery("SELECT * FROM `stork_city` WHERE `city_id`=".$fetch['area_city_id']);
+						$rowcity = mysql_fetch_array($qrycity);
 						$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['area_state_id']);
 						$rowstate = mysql_fetch_array($qrystate);
 			    ?>
 			    <tr class="">
 		            <td><?php echo $fetch['area_name'] ?></td>
+		            <td><span class="nobr"><?php echo $rowcity['city_name'] ?></span></td>
 		            <td><span class="nobr"><?php echo $rowstate['state_name'] ?></span></td>
 		            <td>
 		            <?php if($fetch['area_status'] == 1)

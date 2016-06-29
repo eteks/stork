@@ -11,9 +11,10 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
+		$state_id = $_POST['state_id'];
 		$city_name = $_POST["city_name"];
 		$city_status = $_POST["city_status"];
-		$qr = mysqlQuery("SELECT * FROM stork_city WHERE city_name='$city_name' AND city_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_city WHERE city_name='$city_name' AND city_state_id='$state_id' AND city_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> City Already exists! </span></div>";
@@ -76,6 +77,25 @@ if(isset($_GET["id"]))
 										while($row = mysql_fetch_array($qry)) 
 										{
 								?>
+								<div class="form-group">
+								    <label for="first-name">Select State<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="" name="state_id" disabled="true">
+								        <option>
+											<span>Select State</span>
+										</option>
+										<?php
+					                    $query = mysql_query("select * from stork_state where state_status='1'");
+				                        while ($staterow = mysql_fetch_array($query)) {
+								        
+								        if($row['city_state_id'] == $staterow['state_id'])   
+				                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+				                        else
+				                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+				                        }
+				                        ?>
+								    </select>
+								    <input type="hidden" name="state_id" value="<?php echo $row['city_state_id'] ?>">
+								</div>
 								<div class="form-group">
 								    <label for="last-name">City Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="cityname" placeholder="City Name" name="city_name" value="<?php echo($row['city_name']); ?>">

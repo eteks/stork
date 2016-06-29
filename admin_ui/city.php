@@ -57,7 +57,8 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							<table class="data-table city_table" id="my-orders-table">
 								<thead>
 							        <tr class="">
-							            <th>City Name</th>						            
+							            <th>City Name</th>	
+							            <th>State</th>					            
 							            <th>Status</th>
 							            <th>Created Date</th>
 							            <th class="table_action">Action</th>
@@ -67,11 +68,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								$i = 0;
 								while ($fetch = mysql_fetch_array($query))
 								{
-								$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
-								$rowCategory = mysql_fetch_array($qryCategory);
+								$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['city_state_id']);
+								$rowstate = mysql_fetch_array($qrystate);
 								?>
 							    <tr class="">						            
 						            <td><span class="nobr"><?php echo $fetch['city_name'] ?></span></td>
+						            <td><span class="nobr"><?php echo $rowstate['state_name'] ?></span></td>
 						            <td>
 						            	<span class="price">
 						            	<?php if($fetch['city_status']==1)
