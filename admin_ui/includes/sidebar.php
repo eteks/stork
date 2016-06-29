@@ -392,19 +392,52 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Cost Estimation </span></a>
+							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Printing Cost Estimation </span></a>
 						</li> 
 						<!-- <li>
 							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
 						</li> --> 
 						<li>
-							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Cost Estimation </span></a>
+							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Printing Cost Estimation </span></a>
+						</li> 
+					</ul>
+				</li>
+
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
+					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="cost_estimation_combination.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-file"></i> --> Binding Cost Estimation
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Binding Cost Estimation </span></a>
+						</li> 
+						<!-- <li>
+							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
+						</li> --> 
+						<li>
+							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Binding Cost Estimation </span></a>
 						</li> 
 					</ul>
 				</li>
