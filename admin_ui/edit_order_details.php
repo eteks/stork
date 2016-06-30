@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$order_details_paper_size = $_POST["order_details_paper_size"];
 	$order_details_paper_type = $_POST["order_details_paper_type"];
 	$order_details_total_no_of_pages = $_POST["order_details_total_no_of_pages"];
-	$order_details_color_print_pages = $_POST["order_details_color_print_pages"];
+	// $order_details_color_print_pages = $_POST["order_details_color_print_pages"];
 	$order_details_comments = $_POST["order_details_comments"];
 	$order_details_total_amount = $_POST["order_details_total_amount"];
 	$order_details_status = $_POST["order_details_status"];
 	
-	mysqlQuery("UPDATE stork_order_details SET order_details_paper_print_type_id='$order_details_paper_print_type',order_details_paper_side_id='$order_details_paper_side',order_details_paper_size_id='$order_details_paper_size',order_details_paper_type_id='$order_details_paper_type',order_details_total_no_of_pages='$order_details_total_no_of_pages',order_details_color_print_pages='$order_details_color_print_pages',order_details_comments='$order_details_comments',order_details_total_amount='$order_details_total_amount',order_details_status='$order_details_status' WHERE order_details_id=".$val);	
+	mysqlQuery("UPDATE stork_order_details SET order_details_paper_print_type_id='$order_details_paper_print_type',order_details_paper_side_id='$order_details_paper_side',order_details_paper_size_id='$order_details_paper_size',order_details_paper_type_id='$order_details_paper_type',order_details_total_no_of_pages='$order_details_total_no_of_pages',order_details_comments='$order_details_comments',order_details_total_amount='$order_details_total_amount',order_details_status='$order_details_status' WHERE order_details_id=".$val);	
 	$successMessage = "<div class='container error_message_mandatory'><span> Order Details Updated Successfully! </span></div>";	
 }	
 }
@@ -149,10 +149,6 @@ if(isset($_GET["id"]))
 								<div class="form-group">
 								    <label for="last-name">Total No.Of Pages<span class="required">*</span></label>
 									<input type="text" class="form-control" id="pages" placeholder="Total No.Of Pages" name="order_details_total_no_of_pages" value="<?php echo($row['order_details_total_no_of_pages']); ?>">
-								</div>
-								<div class="form-group">
-								    <label for="last-name">Color Print Pages<span class="required">*</span></label>
-									<input type="text" class="form-control" id="colorprintpage" placeholder="Color Print Pages" name="order_details_color_print_pages" value="<?php echo($row['order_details_color_print_pages']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Comments<span class="required">*</span></label>
