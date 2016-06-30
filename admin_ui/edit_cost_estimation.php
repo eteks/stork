@@ -86,7 +86,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">Paper Print Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="paper_print_type">
 								        <option>
-											<span>Select State</span>
+											<span>Select Paper Print Type</span>
 										</option>
 								        <?php
 				                        $query = mysql_query("select * from stork_paper_print_type");
