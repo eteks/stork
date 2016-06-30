@@ -72,11 +72,11 @@ if(isset($_GET["id"]))
 									{
 							?>
 								<div class="form-group">
-								    <label for="last-name">Order User ID<span class="required">*</span></label>
+								    <label for="last-name">Order User ID<span class="required"></span></label>
 									<input type="text" class="form-control" id="orderuserid" placeholder="Order User ID" name="order_user_id" value="<?php if ($row['order_user_id'] === NULL) echo "None"; else echo($row['order_user_id']); ?>" disabled>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Order ID<span class="required">*</span></label>
+								    <label for="last-name">Order ID<span class="required"></span></label>
 									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>" disabled/>
 								</div>
 								<div class="cate-filter-content">	
@@ -92,7 +92,7 @@ if(isset($_GET["id"]))
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Date Of Delivered<span class="required">*</span></label>
+								    <label for="last-name">Date Of Delivered<span class="required"></span></label>
 									<input type="text" class="form-control" id="dateofdelivered" placeholder="Date Of Delivered" autocomplete="off" name="order_delivery_date" value="<?php $deliverydate=strtotime($row['order_delivery_date']); $delivery = date('d/m/Y', $deliverydate); echo $delivery; ?>">
 								</div>
 								<div class="account-bottom-action">
