@@ -2,21 +2,29 @@
 <div id="push"></div>
 </div>
 	<footer>
-	<div class="container">
-    <div class="cvcopy text-center">
-    <p><?php echo(getTitle()) ?> - Powered By <a href="http://www.nexthon.com">Nexthon.</a> - <a href="<?php echo(rootpath() . "/contact.php") ?>">Contact Us.</a><br /> <small>envato&reg; is registered trademark of <a href="http://www.envato.com/">Envato Corporation.</a></small> </p>
-    </div>
-    </div>
+	<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copy-right">Central - Copyright &copy; 2016 <a title="Cmsmart - Magento theme" href="http://www.atomicka.com/">Infom Atomicka Tech Pvt Ltd</a>. All Rights Reserved</p>
+						<a href="#" id="back-to-top">
+							<i class="fa fa-chevron-up"></i>
+							Top
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 </footer>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
-  $('.state_table').paging({
-    limit: 5,
+  $('.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table').paging({
+    limit: 8,
     rowDisplayStyle: 'block',
     activePage: 0,
     rows: []
   });
 });
-</script>
+</script> -->
 </body>
 <!-- Footer ends -->

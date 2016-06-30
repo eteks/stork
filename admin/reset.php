@@ -58,105 +58,28 @@ if((isset($_POST['email']) && $_POST['email']!="") || (isset($_POST['username'])
 	<link href="style/css/bootstrap.min.css" rel="stylesheet">	
 	<link href="style/css/font-awesome.min.css" rel="stylesheet">
 	<link href="style/css/style.css" rel="stylesheet">
+	<link href="style/css/theme-default.css" rel="stylesheet">
 	<title>Reset Password: <?php echo(getTitle()) ?></title>
 </head>
 <body> 
-	<!-- Logo & Navigation starts -->
-	<div class="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Logo -->
-					<div class="logo text-center">
-						<h1>
-							<a href="index.php">New Affiliate Portal</a>
-						</h1>
-					</div>
+	<?php require_once('navbar.php') ?>
+	<?php require_once('headermenu.php') ?>
+
+	<div class="container">
+		<h1 class="admin_login_header">Reset Password</h1>			
+		<div class="col-md-5 col-sm-5 col-xs-12 admin_form_section">
+			<form id="login-form" class="form-validate form-horizontal" method="post">
+				<p>User Name<span class="star">*</span></p>
+				<input class="email admin_login_field" name="login_name" type="text" id="username_email" placeholder="User Name" value="">
+				<h2> OR </h2>
+				<p>Email <span class="star">*</span></p>
+				<input class="pasword admin_login_field" id="login_password" placeholder="Email" name="login_pass" type="password" value="">
+				<div class="admin_button_section">
+					<button type="" name="submit" class="gbtn btn-edit-acc-info admin_button_style">Reset</button>
+					<!-- <a href="reset.php" class="btn btn-info admin_button_style">Reset</a> -->
 				</div>
-			</div>
+			</form>
 		</div>
-	</div>
-	<!-- Logo & Navigation ends -->
-	<!-- Page content -->
-	<div class="page-content blocky">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="awidget login-reg">
-						<div class="awidget-head"></div>
-						<div class="awidget-body">
-							<!-- Page title -->
-							<div class="page-title text-center">
-								<h2>Reset Password</h2>
-								<hr />
-							</div>
-							<!-- Page title -->
-							<form class="form-horizontal" role="form" method="POST" action="reset.php" accept-charset="UTF-8">
-								<?php
-								if($error!="") 
-								{ 
-									$error = "<b>Error:" . $error; ?>
-									<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><?php echo($error); ?></div>
-									<?php 
-								} 
-								else 
-								{			
-									if(isset($_GET['rid']) && $_GET['rid']!="")
-									{
-										$dec_email = sdecrypt($_GET['rid']);
-										if(emailExists($dec_email,0))
-										{
-											resetPass($dec_email);
-											?>
-											<div class="alert alert-success alert-dismissable">
-												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><i class="fa fa-check"></i> New Password Generated And Emailed To You!
-											</div>
-											<?php 
-										} 
-										else 
-										{ 
-											?>
-											<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Request Session Timed Out Or Invalid Request</div>
-											<?php 
-										} 
-									} 
-									else if($_POST['email'] || $_POST['username'])   
-									{ 
-										?>
-										<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><i class="fa fa-check"></i> Password Reset Link Sent To Your Email!</div>
-										<?php 
-									} 
-								} 
-								?>
-								<div class="form-group">
-									<label class="col-lg-2 control-label">Email</label>
-									<div class="col-lg-8">
-										<input type="text" id="username" class="form-control" name="email" placeholder="Email" required >
-									</div>
-								</div>
-								<div align="center"> 
-									<legend>OR</legend>
-								</div>
-								<div class="form-group">
-									<label class="col-lg-2 control-label">Username</label>
-									<div class="col-lg-8">
-										<input type="text" id="username" class="form-control" name="username" placeholder="Username" >
-									</div>
-								</div>
-								<hr />
-								<div class="form-group">
-									<div class="col-lg-offset-2 col-lg-10">
-										<button type="submit" name="submit" class="btn btn-info">Reset</button>
-										<a href="index.php" class="btn btn-success">Login</a>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix"></div> 
 	</div>
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>

@@ -1,8 +1,12 @@
+
 <?php
 include "includes/header.php";
-$error = "";
-$csrfError = false;
-$csrfVariable = 'csrf_' . basename($_SERVER['PHP_SELF']);
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>All States</title>
+</head>
+<body>
+<?php
 if (isset($_GET['update']))
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -17,12 +21,12 @@ if (isset($_GET['update']))
 		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Admin Already exists</b></div>";	
+			$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
 				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type',
 				adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Admin Updated Successfully.</b></div>";	
+			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
 		}
 				
 	}
@@ -32,137 +36,104 @@ $id=$val;
 if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
-}
-if(isset($_POST['title']))
-{
-	if($_SESSION[$csrfVariable] != $_POST['csrf'])
-		$csrfError = true;
-	$id = $_GET['id'];
-	$title = htmlspecialchars($_POST["title"]);
-	$description = mysql_real_escape_string($_POST["description"]);
-	$screens = $_POST["screens"];
-	$cat = $_POST["category"];
-	$image = $_POST["image"];
-	$url = $_POST["url"];
-	$demo = $_POST["demo"];
-	$price = $_POST["price"];
-	$tags = $_POST["tags"];
-	$rating = $_POST["rating"];
-	if(strlen($title)<5 || strlen($title)>50)
-		$error .="o. Title Must Be Between 5 to 50 Characters<br />";
-	if(!validUrl($url))
-		$error .="o. Invalid Purchase URL<br />";
-	if(!is_numeric($price))
-		$error .="o. Price Is Not In Valid Format<br />";
-	if($error=="" && !$csrfError)
-	{
-		updateProductDb($id,$cat,$title,$description,$screens,$image,$url,$demo,$price,$tags,$rating);
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b>  Product saved Successfully.</b></div>";
-	}
-}
-$key = sha1(microtime());
-$_SESSION[$csrfVariable] = $key;
- ?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit Admin</title>
-</head>
-<body>
+}  
+?>
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="page-content blocky">
-	<div class="container" style="margin-top:20px;">
-		<?php include 'includes/sidebar.php'; ?>
-		<div class="mainy">
-			<!-- Page title -->
-			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit Admin </h2> 
-				<hr />
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<!-- Page title -->
-			<div class="row">
-				<div class="awidget">
-					<form class="form-horizontal edit_admin_users" role="form" action="edit_admin_users.php?update=<?php echo $id; ?>" method="post">
-					<span class="error_edit_admin_users"> Please fill out required fields </span>
-					<?php 
-					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
-					$qry = mysqlQuery($match);
-					$numRows = mysql_num_rows($qry); 
-					if ($numRows > 0)
-					{
-						while($row = mysql_fetch_array($qry)) 
-						{
-						?>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Username</label><span>*</span>
-								<div class="col-lg-10">
-									<input type="text" id="category1" class="form-control" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>" >
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Password</label><span>*</span>
-								<div class="col-lg-10">
-									<input type="password"  id="category2" class="form-control" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>" >
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Email</label><span>*</span>
-								<div class="col-lg-10">
-									<input type="text"  id="category3" class="form-control" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>" >
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Mobile</label><span>*</span>
-								<div class="col-lg-10">
-									<input id="phone" class="form-control" id="category4" maxlength="10" type="text" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>" >
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">UserType</label><span>*</span>
-								<div class="col-lg-10">
-								<select class="form-control" id= "category5" name="adminuser_type" >
-								<option value="">Select the UserType</option>
-								<option value="1"   <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
-								</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">status</label><span>*</span>
-								<div class="col-lg-10">
-									<select class="form-control"   name="adminuser_status">
-										<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>InActive</option>	
-									</select>
-								</div>
-							</div>
-							<hr />
-							<input type="hidden" name="csrf" value="<?php echo $key; ?>" />
-							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10">
-									<button type="submit" name="submit" class="btn btn-success" value="Add"><i class="fa fa-floppy-o"></i> Update</button> 
-								
-								</div>
-							</div>
-							<?php 
-						} 
-						}
-						?>
-						</form>
-						<?php              
-					?>
-				</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> User </span>
+					</li>
+					<li>
+						<span>Edit Admin User</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div> 
+</section>
+<div class="container">
+<span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-<?php include 'includes/footer.php'; ?>
-<script>
-	$(document).ready(function () 
-	{
-		$('#teg').tagsInput({
-		// my parameters here
-		});
-		$('.alert-success').delay(2000).fadeOut();
-	});
-</script>
+<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
+</div>
+<div class="container">
+ <span class="error_phone"> Please Enter Valid mobile number </span>
+</div>
+<?php if($successMessage) echo $successMessage; ?>
+<div class="page-content blocky">
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<!--Account main content : Begin -->
+					<section class="account-main col-md-9 col-sm-8 col-xs-12">
+						<h3 class="acc-title lg">Edit Admin Information</h3>
+						<div class="form-edit-info">
+							<h4 class="acc-sub-title">Admin Information</h4>
+							<form action="edit_admin_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_admin_users">
+							<?php 
+								$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
+								$qry = mysqlQuery($match);
+								$numRows = mysql_num_rows($qry); 
+								if ($numRows > 0)
+								{
+									while($row = mysql_fetch_array($qry)) 
+									{
+							?>
+								<div class="form-group">
+								    <label for="last-name">User Name<span class="required">*</span></label>
+									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Password<span class="required">*</span></label>
+									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Email<span class="required">*</span></label>
+									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email" name="adminuser_email" value="<?php echo($row['adminuser_email']); ?>">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Mobile<span class="required">*</span></label>
+									<input type="text" class="form-control" id="phone" maxlength="10" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
+								</div>
+								<div class="form-group">
+								    <label for="first-name">User Type<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
+								        <option>
+											<span>Select Type</span>
+										</option>
+								        <option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
+								    </select>
+								</div>
+								<div class="cate-filter-content">	
+								    <label for="first-name">Admin Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
+								        <option>
+											<span>Select status</span>
+										</option>
+								        <option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>InActive</option>
+								    </select>
+								</div>
+								<div class="account-bottom-action">
+									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
+								</div>
+							<?php 
+							} 
+							}
+							?>
+							</form>
+						</div>
+					</section><!-- Cart main content : End -->
+</div><!-- container -->
+</div>
+</div>
+<?php include 'includes/footer.php'; ?> 

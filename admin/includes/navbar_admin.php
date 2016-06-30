@@ -1,48 +1,106 @@
-<!-- Logo & Navigation starts -->
-<div class="header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="logo">
-					<h1>
-						<!-- <a href="<?php echo(rootpath()) ?>/admin"><?php echo(getTitle()) ?></a> -->
-						<a href="<?php echo(rootpath()) ?>/admin">Print Stork</a>
-					</h1>
-				</div>
-			</div>
-			<div class="col-md-8">
-				<div class="navbar navbar-inverse" role="banner">
-					<div class="navbar-header">
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-							<span>Menu</span>
-						</button>
-					</div>
-					<nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-						<ul class="nav navbar-nav">
-							<li class="dropdown"></li>
-							<!-- <li class="dropdown">
-							<a target="_blank" href="<?php echo (rootpath())?>">
-								<i class="fa fa-external-link"></i> Visit Website
+<header>
+	<!-- Navbar Html Start-->
+	<section id="top-header" class="clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="top-links col-lg-7 col-md-6 col-sm-5 col-xs-6">
+					<ul>
+						<li class="hidden-xs">
+							<a href="#">
+								<i class="fa fa-facebook"></i>
 							</a>
-							</li> -->
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-user"></i> My Account <b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu animated fadeInUp">
-									<li>
-										<a href="edit_admin_users.php?id=1"><i class="fa fa-user"></i>&nbsp;Profile</a>
-									</li>
-									<li>
-										<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
+						</li>
+						<li class="hidden-xs">
+							<a href="#">
+								<i class="fa fa-twitter"></i> 
+							</a>
+						</li> 
+						<li class="hidden-xs">
+							<a href="#">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="top-header-right f-right col-lg-5 col-md-6 col-sm-7 col-xs-6">
+					<div class="w-header-right">
+						<div class="th-hotline">
+							<i class="fa fa-phone"></i>
+							<span>1.866.614.8002</span>
+						</div> 
+					</div>
 				</div>
 			</div>
 		</div>
+	</section>
+	<!-- Navbar Html end -->
+
+	<!--Menubar Html Start-->
+
+	<section class="main-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-2 col-sm-8 col-xs-8 w-logo">
+					<div class="logo hd-pd ">
+						<a href="users.php">
+							<img src="style/img/logo.png" alt="printshop logo">
+						</a>
+					</div>	
+				</div>
+				<div class="col-lg-7 col-md-8 col-sm-2 col-xs-2">
+				</div>
+				<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 headerCS">
+					
+					<div class="user_logout">
+						<span class="dropdowSCIcon">
+							<ul class="">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="fa fa-user"></i>
+									</a>
+									<ul class="dropdown-menu animated fadeInUp">
+										<li>
+											<a href="admin_users.php"><i class="fa fa-user"></i>&nbsp;Profile</a>
+										</li>
+										<li>
+											<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Menubar Html End -->
+</header>
+<!--Header: End-->
+
+<!-- Submenu Html Start -->
+
+<!-- <section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<span>My Dashboard</span>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-</div>
-<!-- Logo & Navigation ends -->
+</section> -->
+
+
+
+					
