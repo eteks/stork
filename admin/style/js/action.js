@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
-// 	Add_Area
-	
+
+	var required_area =["areaname"];
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
@@ -313,11 +313,12 @@ jQuery("#add_state").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			// alert("success"); 
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
@@ -342,11 +343,12 @@ jQuery("#add_state").submit(function(){
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
@@ -387,17 +389,76 @@ jQuery("#add_area").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			// alert("success"); 
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+	jQuery("#edit_area").submit(function(){ 
+		var input = jQuery('#'+required_area);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
 
-
-jQuery("#edit_area").submit(function(){ 
+	
+	jQuery(".state_act").on('change',function () {
+		// alert('success');
+        selected_state = $('option:selected',this).text();
+        selected_state_id = $('option:selected',this).val();
+        form_data = {'states_name':selected_state,'states_id':selected_state_id};
+        // alert(form_data);
+        // alert(JSON.stringify(form_data));
+         $.ajax({
+               type: "POST",
+               url: "load_city.php?loadcityfromdb=true",
+               data: form_data,
+               cache: false,
+               success: function(data) { 
+               	// alert(data);             
+                var obj = JSON.parse(data);
+                var options = '<option value="">Select City</option>';   
+                if(obj.length!=0){               
+                  $.each(obj, function(i){
+                    options += '<option value="'+obj[i].city_id+'">'+obj[i].city_name+'</option>';
+                  });  
+                }   
+                else{
+                    alert('No City added for '+selected_state);    
+                }  
+                $('.city_act').html(options);                  
+               }
+           });
+       });
+jQuery("#add_city").submit(function(){ 
 
 		var input = jQuery('#'+required_myform);
 		if ((input.val() == "")) 
@@ -418,15 +479,45 @@ jQuery("#edit_area").submit(function(){
 		else { $('#sel_a').removeClass('error_input_field'); 
 		$('.error_test').css('display','none');}		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			// alert("success"); 
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
+	jQuery("#edit_city").submit(function(){ 
 
+		var input = jQuery('#'+required_myform);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
 jQuery("#add_college").submit(function(){ 
 
 		var input = jQuery('#'+required_college);
@@ -495,14 +586,16 @@ jQuery("#edit_college").submit(function(){
 		
 
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-		
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
+
 	
 jQuery("#add_paper_size").submit(function(){ 
 

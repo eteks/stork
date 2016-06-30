@@ -1,12 +1,12 @@
 
 <?php
-include "includes/header.php";
+include "includes/header.php";;
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All States</title>
 </head>
 <body>
-<?php 
+<?php 	
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$state_id = $_POST["state_id"];
 	$city_id = $_POST["city_id"];
@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
 		}		
 	}
-} ?>  
+} 
+?>  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -65,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_id">
+									<select class="product-type-filter form-control state_act" id="sel_a" name="state_id">
 								        <option value="">
 											<span>Select State</span>
 										</option>
@@ -79,16 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Select City<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="city_id">
+									<select class="product-type-filter form-control city_act" id="sel_b" name="city_id">
 								        <option value="">
 											<span>Select City</span>
 										</option>
-										<?php
-					                        $query = mysql_query("select * from stork_city  where city_status='1'");
-					                        while ($row = mysql_fetch_array($query)) {
-					                            ?>
-					                        <option value="<?php echo $row['city_id']; ?>"><span><?php echo $row['city_name']; ?></span></option>
-					                    <?php } ?>   
 								    </select>
 								</div>
 								<div class="form-group">
