@@ -92,4 +92,26 @@
 	       </div> <!-- container -->
 	     </section>  
     </main><!-- Main Product Detail: End -->
+    <div class="boxes">
+	    <div class="popup_index" id="popup_index">
+		    <div class="popup_content">
+		    	<label>Select your city</label>
+				<select name="" class="" id="">
+					<option value="" >Select your city</option>
+					<option value="" >Tamilnadu</option>
+					<option value="" >Pudhucherry</option>
+					<!-- <?php
+						$state = selectfunction('*',PAPERSIZE,'',$connection);
+						while($row = mysqli_fetch_array($state)){
+							echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
+						}
+					?> -->
+				</select>
+		   		<div class="button_holder">
+				   	<h3><a class="" href="#">Go</a></h3>
+				</div>
+		    </div>
+		</div>
+	    <div class="background_shadow" id="background_shadow"> </div>
+	</div>
 <?php include('footer.php') ?>

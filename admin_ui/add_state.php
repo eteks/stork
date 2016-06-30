@@ -43,15 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			</div>
 		</div>
 	</div>
-</section>
-<!-- <div class="container error_message_mandatory">
-	<span> Please fill out all mandatory fields </span>
-</div> -->
-<?php if($successMessage) echo $successMessage; ?>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>

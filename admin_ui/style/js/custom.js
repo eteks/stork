@@ -96,7 +96,9 @@ $(document).ready(function () {
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
-    
+    $('#my-orders-table_filter input').addClass('placeholder_input_search');
+    $('.placeholder_input_search').prop('placeholder','Search');
+
 });
 
 $(document).ready(function () {

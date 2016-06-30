@@ -24,7 +24,7 @@
 
   // record digits in session variable
   $_SESSION['digit'] = $digit;
-
+  $number_captcha= $_SESSION['digit'];
 // function function_name() {
 //     $Id = $_SESSION['digit'];
 //     if($Id) {
@@ -40,3 +40,4 @@
   imagepng($image);
   imagedestroy($image);
 ?>
+<!-- <input type="hidden" name="value_captcha" value="<?php echo $number_captcha; ?>" /> -->

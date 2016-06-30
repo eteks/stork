@@ -2559,7 +2559,7 @@ ul.cate_list li.parent a.active i.fa-minus{
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   height: 55px;
-  line-height: 55px;
+  /*line-height: 55px;*/
   background: #fcfcfc;
 }
 .parten-bg{

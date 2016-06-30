@@ -39,9 +39,8 @@ include "includes/header.php";
 	</div>
 			<div class="form-edit-info width_order_details">
 				<?php
-					$sql = "SELECT * FROM `stork_order_details`";
-					$query = mysqlQuery($sql);
-					$count_rows = mysql_num_rows($query);
+					$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
+						$count_rows = mysql_num_rows($qryorder_details);
 					if ($count_rows > 0)
 					{
 				?>	
@@ -53,8 +52,10 @@ include "includes/header.php";
 						<th>Paper Size</th>
 						<th>Paper Side</th>
 						<th>Paper Type</th>
+						<th>Is Binding</th>
+						<th>Binding Type</th>
 						<th>Total No. Of pages</th>
-						<th>Color Print Pages</th>
+						<!--<th>Color Print Pages</th> -->
 						<th>Comments</th>
 						<th>Total Amount</th>
 						<th>Uploaded Files</th>
@@ -64,27 +65,39 @@ include "includes/header.php";
 			        </tr>
 			      </thead>
 			       <?php              
-					$i = 0;
-						while ($fetch = mysql_fetch_array($query))
-						{		
-						$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
-						$roworder_details = mysql_fetch_array($qryorder_details);
-						$qryupload = mysqlQuery("SELECT * from stork_upload_files where upload_files_order_details_id=".$fetch[order_details_id]);
+						while ($fetch = mysql_fetch_array($qryorder_details))
+						{	
+						$qryupload = mysqlQuery("SELECT * from stork_upload_files where upload_files_order_details_id=".$fetch[order_details_id]);		
 				   ?>
 				    <tr class="">
-			            <td><?php echo $roworder_details['order_id'] ?></td>
-			            <td><?php echo $roworder_details['paper_print_type'] ?></td>
-			            <td><?php echo $roworder_details['paper_size'] ?></td>
-			            <td><?php echo $roworder_details['paper_side'] ?></td>
-			            <td><?php echo $roworder_details['paper_type'] ?></td>
-			            <td><?php echo $roworder_details['order_details_total_no_of_pages'] ?></td>
-			            <td><?php echo $roworder_details['order_details_color_print_pages'] ?></td>
-			            <td><?php echo $roworder_details['order_details_comments'] ?></td>
-			            <td><?php echo $roworder_details['order_details_total_amount'] ?></td>
+			            <td><?php echo $fetch['order_id'] ?></td>
+			            <td><?php echo $fetch['paper_print_type'] ?></td>
+			            <td><?php echo $fetch['paper_size'] ?></td>
+			            <td><?php echo $fetch['paper_side'] ?></td>
+			            <td><?php echo $fetch['paper_type'] ?></td>
+			            <?php if($fetch['order_details_is_binding'] == 1){ ?>
+				            <td>Yes</td>
+				            <td><?php echo $fetch['order_details_binding_type'] ?></td>
+				        <?php } else{ ?>
+				        	<td>No</td>
+				        	<td>-</td>
+				        <?php } ?>
+			            <td><?php echo $fetch['order_details_total_no_of_pages'] ?></td>
+			            <!-- <td><?php echo $fetch['order_details_color_print_pages'] ?></td> -->
+			            <td><?php echo $fetch['order_details_comments'] ?></td>
+			            <td><?php echo $fetch['order_details_total_amount'] ?></td>
 			            <td>
 		            	<?php 
-			            	while ($rowupload = mysql_fetch_array($qryupload)) {
-							echo "<a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a><br>";
+		            		if (mysql_num_rows($qryupload) > 0) {
+			            		echo "<table><tr><th>File</th><th>File Type</th><th>Color Print Pages</th></tr>";
+				            	while ($rowupload = mysql_fetch_array($qryupload)) {
+				            	echo "<tr><td><a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a></td><td>".$rowupload['upload_files_type']."</td><td>".$rowupload['upload_files_color_print_pages']."</td></tr>";
+								// echo "<a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a><br>";
+								}
+								echo "</table>";
+							}
+							else{
+								echo "-";
 							}
 						?>
 						</td>
@@ -98,7 +111,7 @@ include "includes/header.php";
 						</td>
 			            <td>
 				            <?php 
-				            if($roworder_details['order_details_status']==1)
+				            if($fetch['order_details_status']==1)
 								echo "Active";
 							else
 								echo "InActive";

@@ -1,7 +1,8 @@
 <?php 
 include('header.php');
 if(!isset($_SESSION['session_id'])){
-	header('Location:printbooking.php');
+	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
+	exit();
 }
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
@@ -437,12 +438,12 @@ if(mysqli_num_rows($review_details)>0){
 			<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
 			<h4 class="btn_prf"><a href="login.php">Sign in</a></h4>
 			<?php	
-				require_once('fbsettings.php'); 
-				if (isset($accessToken)) {
-				} else {
-					$loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
-					echo '<h4 class="btn_prf"><a href="' . $loginUrl . '">Login with Facebooko</a></h4>';
-				}
+				// require_once('fbsettings.php'); 
+				// if (isset($accessToken)) {
+				// } else {
+					// $loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
+					// echo '<h4 class="btn_prf"><a href="' . $loginUrl . '">Login with Facebooko</a></h4>';
+				// }
 			?>
 			<?php
 				require_once('googlesettings.php'); 
@@ -481,7 +482,8 @@ if(mysqli_num_rows($review_details)>0){
 <?php
 }
 else{
-	header('location:printbooking.php');
+	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
+	exit();
 } 
 include('footer.php'); 
 ?>

@@ -225,7 +225,38 @@
     <script type="text/javascript">
     	$("#dob").birthdayPicker();
 	</script>
-    
+	<!-- <?php 
+		$digit = $_SESSION['digit'];
+	?>
+    <script>
+ 		$('#captcha').removeClass('error_input_field');
+        // captcha validaion
+		jQuery("#register-form").submit(function(){
+
+ 		// var captcha_number='<?php echo $digit; ?>';
+ 		// var captcha_textbox_value=$('#captcha').val();
+ 		// alert(captcha_number);
+ 		// alert(captcha_textbox_value);
+ 		// if(captcha_textbox_value != captcha_number) {
+ 		// 	alert("false");
+ 		// 	$('#captcha').addClass('error_input_field');
+ 		// }
+ 		// else {
+ 		// 	alert("true");
+ 		// 	$('#captcha').removeClass('error_input_field');
+ 		// }
+ 		var dataString = 'captcha=' + captcha;
+		$.ajax({
+		type: "POST",
+		url: "captcha.php",
+		data: dataString,
+		success: function(html) {
+			var captcha_number='<?php echo $_SESSION['digit']; ?>';
+			alert(captcha_number);
+		}
+		});
+ 	});
+ 	</script> -->
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   	<![endif]-->
