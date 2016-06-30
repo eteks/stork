@@ -134,6 +134,7 @@ progress::-moz-progress-bar {
 					
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
 						<?php 
+						@ob_start();
 						session_start();
 						
 						if(isset($_SESSION['login_status'])){

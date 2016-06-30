@@ -322,12 +322,12 @@ jQuery(document).ready(function() {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
       	
-      	// if(eval($("#captcha_original").val()) == $("#captcha").val()){
-      	// 	$('#captcha').removeClass("error_input_field");
-      	// }
-      	// else{
-      	// 	$('#captcha').addClass("error_input_field");
-      	// }
+      	if(eval($("#captcha_original").val()) == $("#captcha").val()){
+      		$('#captcha').removeClass("error_input_field");
+      	}
+      	else{
+      		$('#captcha').addClass("error_input_field");
+      	}
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
@@ -378,6 +378,7 @@ jQuery(document).ready(function() {
 		}
 		
 	});
+	
 	// upload file holder add button
 	// $(document).on('click','#print_booking_form .add_btn',function(){
 	// 	if($('#print_booking_form .upload_file_holder:last .print_book_color_page_no').val() && $('#print_booking_form .upload_file_holder:last .uploadFile').val() != ''){
@@ -520,7 +521,7 @@ jQuery(document).ready(function() {
            		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
            		cache: false,
            		success: function(data) {
-           			var per_page_amount = parseInt(data);
+           			var per_page_amount = parseFloat(data);
            			if(per_page_amount){
            				$('#print_booking_form .per_page_costing').val(per_page_amount);
            			}
@@ -541,8 +542,9 @@ jQuery(document).ready(function() {
     	name = file.name;
     	size = file.size;
     	type = file.type;
+    	// alert(type);
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','vnd.openxmlformats-officedocument.wordprocessingml.document','msword']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
     		return false;
     	}
@@ -557,7 +559,8 @@ jQuery(document).ready(function() {
 		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
 		var total_amount = $(this).val();
 		if(perpageamount){
-			$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
+			$('.print_total_amount').val(parseFloat(Math.ceil( (perpageamount*total_amount) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			
 		}else{
 		error_popup('Please select print type,print side,paper size,paper type!');
 			$(this).val('');
@@ -575,6 +578,10 @@ jQuery(document).ready(function() {
 	$('.print_add_to_cart_clear_btn').on('click',function(){
 		$('#print_booking_form').find("input[type=text], textarea").val("");
 		$('#print_booking_form').find("select").prop('selectedIndex', 0);
+		if($('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").hasClass('error_print_booking_field')){
+			$('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").removeClass('error_print_booking_field');
+		}
+		$('.error_print_booking').hide();
 	});
 	
 	// form post when paynow button in check out page
@@ -628,5 +635,32 @@ jQuery(document).ready(function() {
 		$('#print_booking_form .submit_type').val('add_to_checkout');
 		$('#print_booking_form').submit();
 	});
+	
+	// captcha genaration
+ 	var n1 = Math.round(Math.random() * 100 + 1);
+    var n2 = Math.round(Math.random() * 100 + 1);
+    $("#captcha_original").val(n1 + " + " + n2);
+    $('#captcha_f_n').text(n1);
+    $('#captcha_s_n').text(n2);
+    
+    //allowed numbers only at registration form
+	$("#mobile").keypress(function (e) {
+		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+			return false;
+		}
+	});
+	
+	//allowed charaters only at registration form
+	$("#firstname,#lastname").keypress(function (e) {
+		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
+        	e.preventDefault();
+    	}
+	});
+	
+	//disable cut,copy,paste
+	$(document).bind('copy paste cut', function (e) {
+        e.preventDefault(); 
+        return false;
+    });
 });
 

@@ -97,14 +97,9 @@ if($_SESSION['login_status'] == 1){
 							<input class="email mobileno" placeholder="Mobile number" id="mobile" name="mobile" type="text" maxlength="10" value="">
 							<p>Date Of Birth <span class="star">*</span></p>
 							<div id="dob"></div>
-							<!-- <input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value=""> -->
-							<!-- <p> Enter the code as shown below <span class="star"> *</span></p>
+							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
 							<input id="captcha_original" type="hidden" value="">
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
-							<div id="imgdiv">
-								<img id="img" src="captcha.php" /></div>
-								<img id="reload" src="images/reload.png" />
-							<div> -->
 							<div>
 								<br/>
 								<button type="submit" name="save_new_user" class="register">Register</button>
