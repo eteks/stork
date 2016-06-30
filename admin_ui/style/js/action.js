@@ -228,7 +228,7 @@ jQuery("#add_state").submit(function(){
 				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_test').css('display','block');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
@@ -238,7 +238,7 @@ jQuery("#add_state").submit(function(){
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','block');
+		$('.error_test').css('display','none');
 
 		 }
 		
@@ -259,7 +259,7 @@ jQuery("#add_state").submit(function(){
 				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_test').css('display','block');
+				$('.error_test').css('display','none');
 			}
 	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
@@ -267,7 +267,7 @@ jQuery("#add_state").submit(function(){
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','block');
+		$('.error_test').css('display','none');
 
 		 }
 		

@@ -69,7 +69,7 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit CostEstimation Information</h3>
+						<h3 class="acc-title lg">Edit Cost Estimation Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">CostEstimation Information</h4>
 							<form action="edit_cost_estimation.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
