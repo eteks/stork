@@ -142,12 +142,9 @@ $(document).ready(function () {
 		$('.clone').css('pointer-events', 'auto');
 	});
 
-	//  == Add and Remove Button End ==
-
-	//  == Validation for Page range Keycode Start ==
-
+	//if the letter is not digit then display error and don't type anything
    $(document).on('keypress','.paper_range',function (e) {
-     //if the letter is not digit then display error and don't type anything
+     
      if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         return false;
     }
@@ -155,16 +152,14 @@ $(document).ready(function () {
 
 	//  == Validation for Page range Keycode End ==
 
-$(document).on('change','.uploadFile',function() {
+	$(document).on('change','.uploadFile',function() {
 		var file_name= $(this).attr('id');
 		var file_path = jQuery('#'+file_name);
 	    var file_name_extension = file_path.val();
 	    // alert(file_name_extension);
 		 $(file_path).next().next().html( "<strong>"+file_name_extension+"</strong>" );
 	});
-}); //  == Ended by siva ==
 
-jQuery(document).ready(function() {
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
 			var input = jQuery('#'+required_login[i]);
@@ -267,13 +262,6 @@ jQuery(document).ready(function() {
 		}
 	});
 	
-	// Refresh captcha image
-	// $("#reload").click(function() {
-	//     $("img#img").remove();
-	// 	var id = Math.random();
- //        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
-	// 	 id ='';
- //    });
 
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
@@ -390,6 +378,44 @@ jQuery(document).ready(function() {
        });
 	});
 	
+	
+	// commented by muthu for future purpose
+	// // ajax function for show college and area list
+	// $('#index_page_form .popup_index .initial_city_name').on('change',function(){
+	 	// var city_id = $(this).val();
+		// $.ajax({
+           // type: "POST",
+           // url: "ajax_functions.php",
+           // data:{'city_id':city_id,'city_data_for_college':'true'},
+           // cache: false,
+           // success: function(data) {
+           	// if(data != ''){
+           		// $('#index_page_form .no_college_found_error').addClass('dn');
+           		// $('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           	// }else{
+           		// $('#index_page_form .no_college_found_error').removeClass('dn');
+           		// $('#print_book_college').attr('disabled','disabled');
+           	// }
+//                 
+          // }
+       // });
+       // $.ajax({
+           // type: "POST",
+           // url: "ajax_functions.php",
+           // data:{'city_id':city_id,'city_data_for_area':'true'},
+           // cache: false,
+           // success: function(data) {
+           	// if(data != ''){
+           		// $('#index_page_form .popup_index .no_college_found_error').addClass('dn');
+           		// $('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           	// }else{
+           		// $('#index_page_form .no_college_found_error').removeClass('dn');
+           		// $('#print_book_area_professional').attr('disabled','disabled');
+           	// }
+//                 
+          // }
+       // });
+	// });
 	
 	// form submit when user is go button in index page
 	$('.index_go_btn').on('click',function(){
@@ -589,51 +615,22 @@ jQuery(document).ready(function() {
         e.preventDefault(); 
         return false;
     });
-});
 
-//  == Added by siva ==
+	var id = '#popup_index';
+	var maskHeight = $(document).height();
+	$('#background_shadow').css({'height':maskHeight});
+	$('#background_shadow').fadeTo("slow",0.6);	
+	var winH = $(window).height();
+	var winW = $(window).width();
+	$(id).css('top',  winH/2-$(id).height()/2);
+	$(id).css('left', winW/2-$(id).width()/2);
+	$(id).fadeIn(500); 	
+	// $('#background_shadow').click(function () {
+		// $(this).hide();
+		// $('.popup_index').hide();
+		// document.body.style.overflow = "visible";
+	// });
 
-// Popup box
-
-$(document).ready(function() {	
-
-		var id = '#popup_index';
-	
-		//Get the screen height and width
-		var maskHeight = $(document).height();
-		// var maskWidth = $(window).width();
-	
-		//Set heigth and width to mask to fill up the whole screen
-		$('#background_shadow').css({'height':maskHeight});
-		
-		//transition effect		
-		
-		$('#background_shadow').fadeTo("slow",0.6);	
-	
-		//Get the window height and width
-		var winH = $(window).height();
-		var winW = $(window).width();
-              
-		//Set the popup window to center
-		$(id).css('top',  winH/2-$(id).height()/2);
-		$(id).css('left', winW/2-$(id).width()/2);
-	
-		//transition effect
-		$(id).fadeIn(500); 	
-		// document.body.style.overflow = "hidden";
-		//if mask is clicked
-	$('#background_shadow').click(function () {
-		$(this).hide();
-		$('.popup_index').hide();
-		document.body.style.overflow = "visible";
-	});
-});
-
-
-//  Printbooking form validation
-
-
-$(document).ready(function() {
 	//  To display Binding type dropdown
 	$('#radio_yes').click(function() {
 		$('.display_binding_type').slideDown();
@@ -839,6 +836,52 @@ $(document).ready(function() {
 	});
 	
 	//  == Print Booking Empty Validation End ==
+	
+	// close city popup in index page
+	$('.select_city_btn').on('click',function(){
+		if($('#popup_index .initial_city_name').val() != ''){
+			$('#background_shadow').hide();
+			$('.popup_index').hide();
+			document.body.style.overflow = "visible";
+		} 
+	});
+	
+	
+		// ajax function for show college and area list
+	
+	 	var city_id = $('#index_page_form .initial_city_name').val();
+		$.ajax({
+           type: "POST",
+           url: "ajax_functions.php",
+           data:{'city_id':city_id,'city_data_for_college':'true'},
+           cache: false,
+           success: function(data) {
+           	if(data != ''){
+           		$('#index_page_form .no_college_found_error').addClass('dn');
+           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           	}else{
+           		$('#index_page_form .no_college_found_error').removeClass('dn');
+           		$('#print_book_college').attr('disabled','disabled');
+           	}
+                
+          }
+       });
+       $.ajax({
+           type: "POST",
+           url: "ajax_functions.php",
+           data:{'city_id':city_id,'city_data_for_area':'true'},
+           cache: false,
+           success: function(data) {
+           	if(data != ''){
+           		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
+           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           	}else{
+           		$('#index_page_form .no_college_found_error').removeClass('dn');
+           		$('#print_book_area_professional').attr('disabled','disabled');
+           	}
+                
+          }
+       });
 
 
 });  
