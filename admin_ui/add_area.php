@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="state_id">
+									<select class="product-type-filter form-control" id="sel_a" name="state_id">
 								        <option value="">
 											<span>Select State</span>
 										</option>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Select City<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="city_id">
+									<select class="product-type-filter form-control" id="sel_b" name="city_id">
 								        <option value="">
 											<span>Select City</span>
 										</option>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="area_status">
+									<select class="product-type-filter form-control" id="sel_c" name="area_status">
 								        <option value="">
 								        	<span>Select status</span>
 										</option>
