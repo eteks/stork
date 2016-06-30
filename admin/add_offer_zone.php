@@ -1,141 +1,151 @@
 <?php
 include "includes/header.php";
-$error = "";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add New Offer Zone</title>
+<title>Add Offerzone</title>
 </head>
 <body>
 
+
+
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
- $message ='';
- $offer_zone_title = $_POST["offer_zone_title"];
- $offer_zone_status = $_POST["offer_zone_status"];
+	$message ='';
+	$offerzone_title = $_POST["offerzone_title"];
+	$offerzone_status = $_POST["offerzone_status"];
 
- echo $offer_zone_title;
- 
- echo $offer_zone_status;
- echo "image file",$_FILES["offer_zone_image"]["name"];
- if($offer_zone_title=="" || empty($_FILES['offer_zone_image']['name']) || $offer_zone_status=="") {
-  // header('Location: add_state.php');
-  // exit();
-  $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
- } 
- else{
-  $target_dir = "style/img/zone/";
-  $target_file = $target_dir . basename($_FILES["offer_zone_image"]["name"]);
-  $uploadOk = 1; 
-  $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-  
-     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
-      $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-  }
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
-      $message = "Sorry, your file is too large.";
-      $uploadOk = 0;
-  }
-  if ($uploadOk == 0) {
-      $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b>".$message."</b></div>";
-  // if everything is ok, try to upload file
-  } else {
-   move_uploaded_file($_FILES["offer_zone_image"]["tmp_name"], $target_file);
-   $successMessage ="success";
-  }
-  // $qr = mysql_query("SELECT * FROM stork_state WHERE state_name = '$state_name'");
-  // $row = mysql_num_rows($qr);
-  // if($row > 0){
-  //  $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already Exists.</b></div>";
-  // } else {
-  //  mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
-  //  $successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Inserted Successfully.</b></div>";
-  // }  
- }
+	// echo $_FILES["offerzone_image"]["name"];
+	if($offerzone_title =="" || empty($_FILES['offerzone_image']['name']) || $offerzone_status=="") {
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+	}	
+	else{
+		$target_dir = "style/img/zone/";
+		$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
+		// echo $target_file;
+		$info = pathinfo($_FILES['offerzone_image']['name']);
+		$uploadOk = 1;	
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		
+	    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+		    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		    $message = "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+		if ($uploadOk == 0) {
+		    $successMessage = "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
+		// if everything is ok, try to upload file
+		} 
+		else {
+			$offer_query = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title'");
+		 	$row = mysql_num_rows($offer_query);
+			if($row > 0){
+		 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
+		  	} else {
+		  	$i = 0;
+			do {
+			    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+			    $i++;
+			    $target_file = "style/img/zone/" . $image_name;
+			} while(file_exists($target_file));
+			move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
+			mysqlQuery("INSERT INTO `stork_offer_zone` (offer_zone_title,offer_zone_image,offer_zone_status) VALUES ('$offerzone_title','$target_file','$offerzone_status')");
+		 	$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Inserted Successfully </span></div>";
+		  	}		
+		}
+	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Offerzone </span>
+					</li>
+					<li>
+						<span>Add Offerzone</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<div class="container">
+ <span class="error_image"> Please Upload Image </span>
+</div>
+<div class="container">
+ <span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
+</div>
+<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
-<div class="container" style="margin-top:20px;">
- <?php include 'includes/sidebar.php'; ?>
- <div class="mainy">
-  <div class="page-title">
-   <h2><i class="fa fa-plus-circle color"></i> Add New Offer Zone </h2> 
-   <hr />
-  </div>
-  <div class="row">
-   <div class="col-md-12">
-    <div class="awidget">  
-     <script>
-      $(document).ready(function () 
-      {
-       $('.alert-success').delay(2000).fadeOut();
-       $('.wobblebar').hide();
-       $( document ).ajaxStop(function() 
-       {
-        $('.wobblebar').hide();
-       });
-       // $('#submit').click(function(e)
-       // {  
-       //  $('.wobblebar').show();
-       //  $(".result").html("");
-       //  e.preventDefault();
-       //  var cid = $('#category').val();
-       //  alert($('#urls').val());
-       //  var urls = $('#urls').val().split(/\n/);
-       //  $.each(urls, function(index,url)   
-       //  {
-       //   $.ajaxq("myQueue", 
-       //   {
-       //    type:"POST",
-       //    url:"productAdd.php",   
-       //    data:{URL:url,CID:cid},
-       //    success:function(result)
-       //    {   
-       //     var results = result.split("_");
-       //     $(".result").append(results[0]); 
-       //     $('#allProducts').text(" All Products ("+results[1]+")");
-       //    }
-       //   });
-       //  });
-       // });
-      });
-     </script>
-     <form class="form-horizontal" id="myform" role="form" action="add_offer_zone.php" method="post" enctype="multipart/form-data">
-      <?php if($successMessage) echo $successMessage; ?>
-      <div class="form-group">
-       <label class="col-lg-2 control-label">Offer Zone Title</label>
-       <div class="col-lg-10">
-        <input id="cat" class="form-control" type="text" required="" value="" placeholder="Offer Zone Title" name="offer_zone_title">
-       </div>
-      </div> 
-      <div class="form-group">
-       <label class="col-lg-2 control-label">Offer Zone Image</label>
-       <div class="col-lg-10">
-        <input type="file" name="offer_zone_image" id="offer_zone_image">
-       </div>
-      </div> 
-      <div class="form-group">
-       <label class="col-lg-2 control-label">Status</label>
-       <div class="col-lg-10">
-        <select class="form-control" id= "category" name="offer_zone_status" required="">
-         <option value="">Status</option>
-         <option value="1">Active</option>
-         <option value="0">InActive</option>
-        </select>
-        </div>
-      </div>
-      <hr />
-      <div class="form-group">
-       <div class="col-lg-offset-2 col-lg-10">
-        <button class="btn btn-success" id="submit"><i class="fa fa-floppy-o"></i> Save</button>
-       </div>
-      </div>
-      </form>
-    </div><!-- Awidget -->
-   </div><!-- col-md-12 -->
-  </div><!-- row -->
- </div><!-- mainy -->
- <div class="clearfix"></div> 
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<!--Account main content : Begin -->
+					<section class="account-main col-md-9 col-sm-8 col-xs-12">
+						<h3 class="acc-title lg">Add Offerzone Information</h3>
+						<div class="form-edit-info">
+							<h4 class="acc-sub-title">Offerzone Information</h4>
+							<form action="add_offer_zone.php" method="POST" id="add_offer_zone" name="edit-acc-info" enctype="multipart/form-data">
+								<div class="form-group">
+								    <label for="first-name">Offerzone Title<span class="required">*</span></label>
+									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offerzone Title" name="offerzone_title">
+								</div>
+								<div class="form-group offer_zone_position">
+								    <label for="last-name">Offerzone Image<span class="required">*</span></label>
+
+							<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
+									<!-- <a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a> -->
+
+								</div>
+								<div class="cate-filter-content">	
+								    <label for="first-name">Offerzone Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="offerzone_status">
+								        <option value="">
+											<span>Select status</span>
+										</option>
+								        <option value="1">
+											<span>Active</span>
+										</option>
+										<option value="0">
+											<span>Inactive</span>
+										</option>
+								    </select>
+								</div>
+								<div class="account-bottom-action">
+									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
+								</div>
+							</form>
+						</div>
+					</section><!-- Cart main content : End -->
 </div><!-- container -->
-<?php include 'includes/footer.php'; ?>
+<script>
+	$(function () {
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+
+function imageIsLoaded(e) {
+	$('.dispaly_show_add_offer').addClass('display_block');
+    $('#edit_offer_upload').attr('src', e.target.result);
+};
+</script>
+</div>
+</div>
+<?php include 'includes/footer.php'; ?> 

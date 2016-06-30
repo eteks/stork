@@ -9,44 +9,44 @@ if(isset($_POST['username']) && isset($_POST['password']))
 {
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
-	if(onOffAdminCaptcha()==1) 
-	{ 
-		if(isset($_POST["captcha_code"]) && trim($_POST["captcha_code"])!="") 
-		{ 
-			if (trim($_POST["captcha_code"])!=$_SESSION['captcha']['code']) 
-			{
-				$error = 'Invalid Captcha';
-			}
-			else
-			{
-				if (authenticate(trim($user) , trim($pass))) 
-				{
-					$_SESSION['admin_eap_secure'] = 1;
-				}
-				else
-				{
-					$error .= "Invalid username and password combination.";
-				}
-			}	
-		}
-		else
-		{
-			$error="Captcha field must not be empty.";
-		}
-	}	
-	else 
-	{
+	// if(onOffAdminCaptcha()==1) 
+	// { 
+	// 	if(isset($_POST["captcha_code"]) && trim($_POST["captcha_code"])!="") 
+	// 	{ 
+	// 		if (trim($_POST["captcha_code"])!=$_SESSION['captcha']['code']) 
+	// 		{
+	// 			$error = 'Invalid Captcha';
+	// 		}
+	// 		else
+	// 		{
+	// 			if (authenticate(trim($user) , trim($pass))) 
+	// 			{
+	// 				$_SESSION['admin_eap_secure'] = 1;
+	// 			}
+	// 			else
+	// 			{
+	// 				$error .= "Invalid username and password combination.";
+	// 			}
+	// 		}	
+	// 	}
+	// 	else
+	// 	{
+	// 		$error="Captcha field must not be empty.";
+	// 	}
+	// }	
+	// else 
+	// {
 		if (authenticate(trim($user) , trim($pass))) 
 		{  
 			$_SESSION['admin_eap_secure'] = 1;
 		}
 		else
 		{
-			$error .= "Invalid username and password combination";
+			$error = "Invalid username and password combination";
 		}
-	}
+	// }
 }
-$_SESSION['captcha'] = simple_php_captcha();
+// $_SESSION['captcha'] = simple_php_captcha();
 if (isset($_SESSION['admin_eap_secure']) && !$error)
 {
 	header('Location: ./users.php');
@@ -59,69 +59,67 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 	<link href="style/css/bootstrap.min.css" rel="stylesheet">	
 	<link href="style/css/font-awesome.min.css" rel="stylesheet">
 	<link href="style/css/style.css" rel="stylesheet">
+	<link href="style/css/theme-default.css" rel="stylesheet">
 	<title>Print Stork Admin</title>
 </head>
 <body>
-<div class="page-content blocky">
+	<?php require_once('navbar.php') ?>
+	<?php require_once('headermenu.php') ?>
+<section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-offset-3 col-md-offset-3">
-				<div class="awidget login-reg">
-					<div class="awidget-body">
-						<div class="page-title text-center">
-							<img src="../style/images/print.jpeg" height="100">
-							<hr />
-						</div>
-						<br />
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> Login </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Home </span>
+					</li>
+					<li>
+						<span> Login</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+	
+   	   <section class="pr-main" id="pr-login">	
+			<div class="container padding_style">	
+				<div class="col-md-9 col-sm-9 col-xs-12 padding_style">
+					<h1 class="ct-header">Login</h1>
+					<?php
+						// if ($error) 
+						// {
+					?>
+					<!-- <div class="admin_login_error"> -->
+					<div class="container admin_login_error_section">
+						<span class="admin_login_error"> <?php 
+						echo $error; ?> </span>
+						<!-- </div> -->
 						<?php
-						if ($error) 
-						{
-							?>
-							<div class="alert alert-danger">
-								<a class="close" data-dismiss="alert" href="#">×</a><i class="icon-remove-sign"></i> <?php echo $error; ?>
-							</div>
-							<?php
-						}
-						?>
-						<form class="form-horizontal" role="form" method="POST" action="index.php" accept-charset="UTF-8">
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1"><li class="fa fa-user"></li></span>
-								<input type="text" id="username" class="form-control" name="username" placeholder="Username" value="<?php echo $user?>" required aria-describedby="basic-addon1">
-							</div>
-							<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1"><li class="fa fa-lock"></li></span>
-								  <input type="password" id="password" class="form-control" name="password" placeholder="Password" value="<?php echo $pass?>" required aria-describedby="basic-addon1">
-							</div>
-							<?php 
-							if(onOffAdminCaptcha()==1) 
-							{ 
-								?>
-								<div class="form-group">
-									<div class="col-lg-5 col-xs-5 col-md-5 col-sm-5">
-										<img style="width:150px" src="<?php echo($_SESSION['captcha']['image_src']) ?>" class="captchaImg" />
-									</div>								
-									<div class="col-lg-7 col-xs-7 col-md-7 col-sm-7" style="margin-top: 14px;">
-										<input type="text" class="form-control"  name="captcha_code" placeholder="Enter Code" value="" required />
-									</div>
-								</div>
-								<?php
-							} 
-							?>
-							<hr>
-							<div class="form-group">
-								<div class="col-lg-offset-6 col-lg-8">
-									<button type="submit" name="submit" class="btn btn-success"><li class="fa fa-sign-in"></li> Sign in</button>
-									<a href="reset.php" class="btn btn-info"><li class="fa fa-edit"></li> Reset</a>
-								</div>
-							</div>
+							// }
+						?>	
+						<span class="error_admin_login"> Please fill out all mandatory fields </span>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h4>Returning Customers</h4>
+						<p>If you have an account with us, please log in.</p>
+						<form id="login-form" class="form-validate form-horizontal" method="post" action="index.php" accept-charset="UTF-8">
+							<p>User Name <span class="star">*</span></p>
+							<input class="email admin_login_field" type="text" id="admin_username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" aria-describedby="basic-addon1">
+							<p>Password <span class="star">*</span></p>
+							<input class="pasword admin_login_field" type="password" id="admin_password" autocomplete="off" placeholder="Password" name="password" value="<?php echo $pass?>" aria-describedby="basic-addon1">
+							<button type="submit" class="login">Login</button>
 						</form>
-					</div><!-- awidget-body -->
-				</div><!-- awidget login-reg -->
-			</div><!-- col-md-12 -->
-		</div><!-- row -->
-	</div><!-- container -->
-</div>
+					</div>
+				</div>
+		  </section>
+
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>
+	<script src="style/js/action.js"></script>
 </body>
 </html>

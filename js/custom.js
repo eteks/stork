@@ -78,11 +78,40 @@ $(document).ready(function () {
 
 	
 
-
 	//  == Validation for Page range Keycode Start ==
 
+	//  == Add and Remove Button Start ==
+
+	// $('.remove').css('display','none');
+	// $(document).on('click','.clone, .remove',function() {
+	// 	var input_length=$('.paper_range').length;
+	// 	if(input_length <= 1) {
+	// 		$('.remove').css('display','none');
+	// 		$('.uploadbutton').css('pointer-events', 'auto');
+	//     	$('.page_range_error').css('display','none');
+	// 		$('.clone').css('pointer-events', 'auto');
+	// 	}
+	// 	else {
+	// 		$('.remove').css('display','block');
+	// 	}
+	// });
+	// $(document).on('click','.clone',function() {
+	// 	$('.uploadFile').each(function() {
+	// 		if($(this).val() <= 1) {
+	// 		$('.clone').css('pointer-events', 'none');
+	//    		}
+	// 	   	else {
+	// 			$('.clone').css('pointer-events', 'auto');
+	// 		}
+	// 	});
+	// });
+	// $(document).on('click','.remove',function() {
+	// 	$('.clone').css('pointer-events', 'auto');
+	// });
+
+	//if the letter is not digit then display error and don't type anything
    $(document).on('keypress','.paper_range',function (e) {
-     //if the letter is not digit then display error and don't type anything
+     
      if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         return false;
     }
@@ -90,16 +119,14 @@ $(document).ready(function () {
 
 	//  == Validation for Page range Keycode End ==
 
-$(document).on('change','.uploadFile',function() {
+	$(document).on('change','.uploadFile',function() {
 		var file_name= $(this).attr('id');
 		var file_path = jQuery('#'+file_name);
 	    var file_name_extension = file_path.val();
 	    // alert(file_name_extension);
 		 $(file_path).next().next().html( "<strong>"+file_name_extension+"</strong>" );
 	});
-}); //  == Ended by siva ==
 
-jQuery(document).ready(function() {
 	jQuery("#login-form").submit(function(){ 
 		for (i=0;i<required_login.length;i++) {
 			var input = jQuery('#'+required_login[i]);
@@ -202,13 +229,6 @@ jQuery(document).ready(function() {
 		}
 	});
 	
-	// Refresh captcha image
-	// $("#reload").click(function() {
-	//     $("img#img").remove();
-	// 	var id = Math.random();
- //        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
-	// 	 id ='';
- //    });
 
 	// error popup message center alignment
 	var height=$('.error_popup_msg').height();
@@ -314,6 +334,44 @@ jQuery(document).ready(function() {
        });
 	});
 	
+	
+	// commented by muthu for future purpose
+	// // ajax function for show college and area list
+	// $('#index_page_form .popup_index .initial_city_name').on('change',function(){
+	 	// var city_id = $(this).val();
+		// $.ajax({
+           // type: "POST",
+           // url: "ajax_functions.php",
+           // data:{'city_id':city_id,'city_data_for_college':'true'},
+           // cache: false,
+           // success: function(data) {
+           	// if(data != ''){
+           		// $('#index_page_form .no_college_found_error').addClass('dn');
+           		// $('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           	// }else{
+           		// $('#index_page_form .no_college_found_error').removeClass('dn');
+           		// $('#print_book_college').attr('disabled','disabled');
+           	// }
+//                 
+          // }
+       // });
+       // $.ajax({
+           // type: "POST",
+           // url: "ajax_functions.php",
+           // data:{'city_id':city_id,'city_data_for_area':'true'},
+           // cache: false,
+           // success: function(data) {
+           	// if(data != ''){
+           		// $('#index_page_form .popup_index .no_college_found_error').addClass('dn');
+           		// $('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           	// }else{
+           		// $('#index_page_form .no_college_found_error').removeClass('dn');
+           		// $('#print_book_area_professional').attr('disabled','disabled');
+           	// }
+//                 
+          // }
+       // });
+	// });
 	
 	// form submit when user is go button in index page
 	$('.index_go_btn').on('click',function(){
@@ -423,51 +481,118 @@ jQuery(document).ready(function() {
 		$('#print_booking_form').submit();
 	});
 	
-});
-
 //  == Added by siva ==
 
 // Popup box
 
-$(document).ready(function() {	
-
-		var id = '#popup_index';
-	
-		//Get the screen height and width
-		var maskHeight = $(document).height();
-		// var maskWidth = $(window).width();
-	
-		//Set heigth and width to mask to fill up the whole screen
-		$('#background_shadow').css({'height':maskHeight});
-		
-		//transition effect		
-		
-		$('#background_shadow').fadeTo("slow",0.6);	
-	
-		//Get the window height and width
-		var winH = $(window).height();
-		var winW = $(window).width();
-              
-		//Set the popup window to center
-		$(id).css('top',  winH/2-$(id).height()/2);
-		$(id).css('left', winW/2-$(id).width()/2);
-	
-		//transition effect
-		$(id).fadeIn(500); 	
-		// document.body.style.overflow = "hidden";
-		//if mask is clicked
-	$('#background_shadow').click(function () {
-		$(this).hide();
-		$('.popup_index').hide();
-		document.body.style.overflow = "visible";
-	});
-});
 
 
 //  Printbooking form validation
 
+	// clear print booking form when clear button
+	$('.print_add_to_cart_clear_btn').on('click',function(){
+		$('#print_booking_form').find("input[type=text], textarea").val("");
+		$('#print_booking_form').find("select").prop('selectedIndex', 0);
+		if($('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").hasClass('error_print_booking_field')){
+			$('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").removeClass('error_print_booking_field');
+		}
+		$('.error_print_booking').hide();
+	});
+	
+	// form post when paynow button in check out page
+	$(document).on('click','.check_out_payment',function(){
+		$('#print_checkout_form').submit();
+	});
+	
+	// remove item from cart 
+	$(document).on('click','.ordered_item .cart_remove_item',function(){
+		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
+		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
+		if(session_id != '' && order_details_id != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data == 'remove_success'){
+           				location.reload();
+           			}
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// address form clear when clear button in check out page
+	$(document).on('click','.check_out_clear_btn',function(){
+		$('.checkout_address').find("input[type=text], textarea").val("");
+	});
+	
+	
+	// update amount details based on quantity in check out page
+	$(document).on('keyup','.ordered_item_quantity',function(){
+		var amount = $(this).parents('.review_order_checkout').find('.oredered_item_amount').val();
+		var quantity = $(this).val();
+		var final_amount = 0;
+		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(amount*quantity);
+		$('.updated_oredered_item_amount').each(function(){
+			final_amount += parseInt($(this).val());
+		});
+		$('.final_payment_amount_checkout').val(final_amount);
+		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+	});
+	
+	// post form when click check button in print booking page and submit type
+	$('.print_check_out_btn').on('click',function(){
+		$('#print_booking_form .submit_type').val('add_to_checkout');
+		$('#print_booking_form').submit();
+	});
+	
+	// captcha genaration
+ 	var n1 = Math.round(Math.random() * 100 + 1);
+    var n2 = Math.round(Math.random() * 100 + 1);
+    $("#captcha_original").val(n1 + " + " + n2);
+    $('#captcha_f_n').text(n1);
+    $('#captcha_s_n').text(n2);
+    
+    //allowed numbers only at registration form
+	$("#mobile").keypress(function (e) {
+		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+			return false;
+		}
+	});
+	
+	//allowed charaters only at registration form
+	$("#firstname,#lastname").keypress(function (e) {
+		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
+        	e.preventDefault();
+    	}
+	});
+	
+	//disable cut,copy,paste
+	$(document).bind('copy paste cut', function (e) {
+        e.preventDefault(); 
+        return false;
+    });
 
-$(document).ready(function() {
+	var id = '#popup_index';
+	var maskHeight = $(document).height();
+	$('#background_shadow').css({'height':maskHeight});
+	$('#background_shadow').fadeTo("slow",0.6);	
+	var winH = $(window).height();
+	var winW = $(window).width();
+	$(id).css('top',  winH/2-$(id).height()/2);
+	$(id).css('left', winW/2-$(id).width()/2);
+	$(id).fadeIn(500); 	
+	// $('#background_shadow').click(function () {
+		// $(this).hide();
+		// $('.popup_index').hide();
+		// document.body.style.overflow = "visible";
+	// });
+
 	//  To display Binding type dropdown
 	$('#radio_yes').click(function() {
 		$('.display_binding_type').slideDown();
@@ -903,6 +1028,52 @@ $(document).ready(function() {
 	});
 	
 	//  == Print Booking Empty Validation End ==
+	
+	// close city popup in index page
+	$('.select_city_btn').on('click',function(){
+		if($('#popup_index .initial_city_name').val() != ''){
+			$('#background_shadow').hide();
+			$('.popup_index').hide();
+			document.body.style.overflow = "visible";
+		} 
+	});
+	
+	
+		// ajax function for show college and area list
+	
+	 	var city_id = $('#index_page_form .initial_city_name').val();
+		$.ajax({
+           type: "POST",
+           url: "ajax_functions.php",
+           data:{'city_id':city_id,'city_data_for_college':'true'},
+           cache: false,
+           success: function(data) {
+           	if(data != ''){
+           		$('#index_page_form .no_college_found_error').addClass('dn');
+           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           	}else{
+           		$('#index_page_form .no_college_found_error').removeClass('dn');
+           		$('#print_book_college').attr('disabled','disabled');
+           	}
+                
+          }
+       });
+       $.ajax({
+           type: "POST",
+           url: "ajax_functions.php",
+           data:{'city_id':city_id,'city_data_for_area':'true'},
+           cache: false,
+           success: function(data) {
+           	if(data != ''){
+           		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
+           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           	}else{
+           		$('#index_page_form .no_college_found_error').removeClass('dn');
+           		$('#print_book_area_professional').attr('disabled','disabled');
+           	}
+                
+          }
+       });
 
 
 });  

@@ -1,54 +1,281 @@
 jQuery(document).ready(function() {
-	required_myform = ["cat"];
-	required_adminusers=["category1","category2","category3","category4"];
-	required_editusers=["cat1","cat2","cat3","cat4","cat5"];
-	category = jQuery("#category");
+
+	var required_area =["areaname"];
+	var required_edit_admin_users =["username","password","phone","test"];
+	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
+	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
+	var required_edit_offer_zone =["offerzonetitle"];
+	var required_edit_users =["username","password","firstname","lastname","test","dob","address","phone"];
+	var required_myform =["areaname"];
+	var admin_login=["admin_username","admin_password"];
+	var required_state =["statename"];
+	var required_city =["cityname"];
+	var required_college =["collegename"];
+	var required_papersize =["papersize"];
+	var required_paperside =["paperside"];
+	var required_papertype =["papertype"];
+	var required_paperprinttype =["paperprinttype","amount"];
+	var required_cost_estimation =["amount"];
+	var required_binding_cost_estimation =["amount"];
+	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","totalitems","test","phone"];
+	var required_edit_order_details =["orderid","pages","colorprintpage","comments","amount"];
+	var required_edit_track_order =["dateofdelivered"];
+	sel_a = jQuery("#sel_a");
+	sel_b = jQuery("#sel_b");
+	sel_c = jQuery("#sel_c");
+	sel_d = jQuery("#sel_d");
+	sel_e = jQuery("#sel_e");
+	forget_email=jQuery("#test");
+	email=jQuery("#email");
+ 	test=jQuery("#test");
 	errornotice = jQuery("#error");
 	
-jQuery("#myform").submit(function(){ 
+	
+	jQuery("#edit_admin_users").submit(function(){ 
+		
+		// for empty field validation
+		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
+			var input = jQuery('#'+required_edit_admin_users[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input_field");
+				// $('.error_test').css('display','block');		
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			 // $('.error_test').css('display','none');
+				
+			 }
+		}
+		//end of empty field validation
+	
+			 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
+			$('#sel_a').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+			// $('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			// $('.error_test').css('display','none');
+		}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1){
+			$('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+	
+		
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_phone').css('display','none');
+			return true;
+			}
+			}
+		}
+	});		
+jQuery("#edit_users").submit(function(){ 
+			// for empty field validation
+		for(var i = 0 ; i<required_edit_users.length;i++ ){
+			var input = jQuery('#'+required_edit_users[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input_field");
+				// $('.error_test').css('display','block');
+			 
+						
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			 // $('.error_test').css('display','none');
+				
+			 }
+		}
+		//end of empty field validation
+	
+				 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
 
-		var input = jQuery('#'+required_myform);
+ 				}
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
+			$('#sel_a').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+			// $('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			// $('.error_test').css('display','none');
+		}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1){
+			$('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_c').selectedIndex < 1){
+			$('#sel_c').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_c').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_d').selectedIndex < 1){
+			$('#sel_d').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_d').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}	
+		
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_phone').css('display','none');
+			return true;
+			}
+			}
+		}
+	});		
+jQuery("#add_city").submit(function(){ 
+
+		var input = jQuery('#'+required_city);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_add_state').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_state').css('display','block');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
-			$('.error_add_state').css('display','block');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_add_state').css('display','block');
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+ 	if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');
 
 		 }
 		
+		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
-	
-jQuery("#edit_state").submit(function(){ 
-		var input = jQuery('#'+"state_name");
+	jQuery("#edit_city").submit(function(){ 
+		var input = jQuery('#'+required_city);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_edit_state').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_edit_state').css('display','block');
+				$('.error_test').css('display','none');
 			}
-	
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") ) {
@@ -60,89 +287,268 @@ jQuery("#edit_state").submit(function(){
 		}
 	});
 
-jQuery(".myform").submit(function(){ 
+	
+	
+jQuery("#add_state").submit(function(){ 
+
+		var input = jQuery('#'+required_state);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+	jQuery("#edit_state").submit(function(){ 
+		var input = jQuery('#'+required_state);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+jQuery("#add_area").submit(function(){ 
 
 		var input = jQuery('#'+required_myform);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_add_area').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_area').css('display','none');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field'); }
-		if (document.getElementById('category1').selectedIndex < 1)
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1)
 		{
-			$('#category1').addClass('error_input_field');
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category1').removeClass('error_input_field'); }
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+	jQuery("#edit_area").submit(function(){ 
+		var input = jQuery('#'+required_area);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
 
+	
+	jQuery(".state_act").on('change',function () {
+		// alert('success');
+        selected_state = $('option:selected',this).text();
+        selected_state_id = $('option:selected',this).val();
+        form_data = {'states_name':selected_state,'states_id':selected_state_id};
+        // alert(form_data);
+        // alert(JSON.stringify(form_data));
+         $.ajax({
+               type: "POST",
+               url: "load_city.php?loadcityfromdb=true",
+               data: form_data,
+               cache: false,
+               success: function(data) { 
+               	// alert(data);             
+                var obj = JSON.parse(data);
+                var options = '<option value="">Select City</option>';   
+                if(obj.length!=0){               
+                  $.each(obj, function(i){
+                    options += '<option value="'+obj[i].city_id+'">'+obj[i].city_name+'</option>';
+                  });  
+                }   
+                else{
+                    alert('No City added for '+selected_state);    
+                }  
+                $('.city_act').html(options);                  
+               }
+           });
+       });
+jQuery("#add_city").submit(function(){ 
 
-
-
-jQuery(".edit_area_form").submit(function(){ 
-
-		var input = jQuery('#'+"edit_state");
+		var input = jQuery('#'+required_myform);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_area').css('display','block');
-			} else {
-				
-				input.removeClass("error_input_field");
-				$('.error_area').css('display','none');
-			}
-
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			alert("success"); 
-			return true;
-		}
-	});
-
-
-
-jQuery("#myform").submit(function(){ 
-
-		var input = jQuery('#'+"area_id");
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_add_college').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_college').css('display','none');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category2').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category2').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category2').removeClass('error_input_field'); }
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+	jQuery("#edit_city").submit(function(){ 
+
+		var input = jQuery('#'+required_myform);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+jQuery("#add_college").submit(function(){ 
+
+		var input = jQuery('#'+required_college);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -150,315 +556,287 @@ jQuery("#myform").submit(function(){
 			return true;
 		}
 	});
+		
+jQuery("#edit_college").submit(function(){ 
+
+		var input = jQuery('#'+required_college);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+			if (document.getElementById('s5').selectedIndex < 1)
+		{
+			$('#s5').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#s5').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+		if (document.getElementById('s6').selectedIndex < 1)
+		{
+			$('#s6').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#s6').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+	
 jQuery("#add_paper_size").submit(function(){ 
 
-		var input = jQuery('#'+required_myform);
+		var input = jQuery('#'+required_papersize);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_add_paper_size').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_paper_size').css('display','none');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
-			$('.error_add_paper_size').css('display','block');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_add_paper_size').css('display','none');
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+		
 			return true;
 		}
 	});
-jQuery(".edit_paper_size").submit(function(){ 
 
-		var input = jQuery('#'+"edit_paper_size_form");
+	jQuery("#edit_paper_size").submit(function(){ 
+
+		var input = jQuery('#'+required_papersize);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_edit_paper_size').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_edit_paper_size').css('display','none');
-			}
-
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			alert("success"); 
-			return true;
-		}
-	});
-jQuery("#add_paper_side").submit(function(){ 
-
-		var input = jQuery('#'+required_myform);
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_add_paper_side').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_add_paper_side').css('display','none');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
-			$('.error_add_paper_side').css('display','block');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_add_paper_side').css('display','none');
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
 		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+		
 			return true;
 		}
 	});
+	jQuery("#add_paper_side").submit(function(){ 
 
-jQuery(".edit_paper_side").submit(function(){ 
-
-		var input = jQuery('#'+"edit_paperside_form");
+		var input = jQuery('#'+required_paperside);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_edit_paper_side').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_edit_paper_side').css('display','none');
-			}
-
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			
-			return true;
-		}
-	});
-jQuery(".edit_paper").submit(function(){ 
-
-		var input = jQuery('#'+"edit_papertype_form");
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-			} else {
-				input.removeClass("error_input_field");
-			}
-
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			
-			return true;
-		}
-	});
-jQuery(".add_paperprinttype").submit(function(){ 
-
-		var input = jQuery('#'+required_myform);
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-			} else {
-				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field'); }
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
-			alert("success"); 
+			// alert("success"); 
 			return true;
 		}
 	});
-jQuery(".edit_paperprinttype").submit(function(){ 
+	
+jQuery("#edit_paper_side").submit(function(){ 
 
-		var input = jQuery('#'+"edit_paperprintform");
+		var input = jQuery('#'+required_paperside);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+			
+			if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+		 }
+
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			
+			return true;
+		}
+	});
+	jQuery("#add_paper_type").submit(function(){ 
+
+		var input = jQuery('#'+required_papertype);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field'); }
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+		 }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
-			
+			// alert("success"); 
 			return true;
 		}
 	});
-jQuery(".add_cost_estimation").submit(function(){ 
+jQuery("#edit_paper_type").submit(function(){ 
 
-		var input = jQuery('#'+required_myform);
+		var input = jQuery('#'+required_papertype);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_add_cost_estimation').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_cost_estimation').css('display','none');
+				$('.error_test').css('display','none');
 			}
-	//  select field
+			
+			if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+		 }
 
-	if (document.getElementById('category').selectedIndex < 1)
-		{
-			$('#category').addClass('error_input_field');
-			$('.error_add_cost_estimation').css('display','block');
-		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_add_cost_estimation').css('display','none'); }
-
-	if (document.getElementById('category1').selectedIndex < 1)
-		{
-			$('#category1').addClass('error_input_field');
-			$('.error_add_cost_estimation').css('display','block');
-		}
-		else { $('#category1').removeClass('error_input_field'); 
-	$('.error_add_cost_estimation').css('display','none');}
-	if (document.getElementById('category2').selectedIndex < 1)
-		{
-			$('#category2').addClass('error_input_field');
-			$('.error_add_cost_estimation').css('display','block');
-		}
-		else { $('#category2').removeClass('error_input_field');
-		$('.error_add_cost_estimation').css('display','none'); }
-	if (document.getElementById('category3').selectedIndex < 1)
-		{
-			$('#category3').addClass('error_input_field');
-			$('.error_add_cost_estimation').css('display','block');
-		}
-		else { $('#category3').removeClass('error_input_field'); 
-	$('.error_add_cost_estimation').css('display','none');}
-	if (document.getElementById('category4').selectedIndex < 1)
-		{
-			$('#category4').addClass('error_input_field');
-			$('.error_add_cost_estimation').css('display','block');
-		}
-		else { $('#category4').removeClass('error_input_field'); 
-	$('.error_add_cost_estimation').css('display','none');}		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
 			
 			return true;
 		}
-		    $('#cat').keypress(function (event) {
-            return isNumber(event, this)
-        });
-		      $("#amount").keypress(function (e) {
-
-     if (e.which != 8 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
-
-               return false;
-    }
-   });
-    });
-    // THE SCRIPT THAT CHECKS IF THE KEY PRESSED IS A NUMERIC OR DECIMAL VALUE.
-    function isNumber(evt, element) {
-
-        var charCode = (evt.which) ? evt.which : event.keyCode
-
-        if (
-            (charCode != 45 || $(element).val().indexOf('-') != -1) &&      // “-” CHECK MINUS, AND ONLY ONE.
-            (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
-            (charCode < 48 || charCode > 57))
-            return false;
-
-        return true;
-    }   
 	});
-jQuery(".edit_cost_estimation").submit(function(){ 
+		
+jQuery("#add_paper_print_type").submit(function(){ 
 
-		var input = jQuery('#'+required_myform);
+		var input = jQuery('#'+required_paperprinttype);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
-				$('.error_edit_cost_estimation').css('display','block');
+				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_edit_cost_estimation').css('display','none');
+				$('.error_test').css('display','none');
 			}
 	//  select field
 
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
-			$('.error_edit_cost_estimation').css('display','block');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_edit_cost_estimation').css('display','none'); }
-		if (document.getElementById('category1').selectedIndex < 1)
-		{
-			$('#category1').addClass('error_input_field');
-			$('.error_edit_cost_estimation').css('display','block');
-		}
-		else { $('#category1').removeClass('error_input_field'); 
-		$('.error_edit_cost_estimation').css('display','none');}
-		if (document.getElementById('category2').selectedIndex < 1)
-		{
-			$('#category2').addClass('error_input_field');
-			$('.error_edit_cost_estimation').css('display','block');
-		}
-		else { $('#categor2y').removeClass('error_input_field');
-		$('.error_edit_cost_estimation').css('display','none'); }
-		if (document.getElementById('category3').selectedIndex < 1)
-		{
-			$('#category3').addClass('error_input_field');
-			$('.error_edit_cost_estimation').css('display','block');
-		}
-		else { $('#category3').removeClass('error_input_field');
-		$('.error_edit_cost_estimation').css('display','none'); }
-		if (document.getElementById('category4').selectedIndex < 1)
-		{
-			$('#category4').addClass('error_input_field');
-			$('.error_edit_cost_estimation').css('display','block');
-		}
-		else { $('#category4').removeClass('error_input_field');
-		$('.error_edit_cost_estimation').css('display','none'); }
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			// alert("success"); 
+			return true;
+		}
+	});
+	jQuery("#edit_paper_print_type").submit(function(){ 
+
+		var input = jQuery('#'+required_paperprinttype);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -466,51 +844,429 @@ jQuery(".edit_cost_estimation").submit(function(){
 			return true;
 		}
 	});
+
+	jQuery("#add_cost_estimation").submit(function(){ 
+
+		var input = jQuery('#'+required_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_d').selectedIndex < 1)
+		{
+			$('#sel_d').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_d').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_e').selectedIndex < 1)
+		{
+			$('#sel_e').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_e').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+jQuery("#edit_cost_estimation").submit(function(){ 
+
+		var input = jQuery('#'+required_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('sel_d').selectedIndex < 1)
+		{
+			$('#sel_d').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_d').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('sel_e').selectedIndex < 1)
+		{
+			$('#sel_e').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_e').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+	jQuery("#add_binding_cost_estimation").submit(function(){ 
+
+		var input = jQuery('#'+required_binding_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+	jQuery("#edit_cost_estimation_binding").submit(function(){ 
+
+		var input = jQuery('#'+required_binding_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				// $('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				// $('.error_test').css('display','none');
+			}
+	//  select field
+
+		if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_a').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+jQuery("#edit_orders").submit(function(){ 
+		for(var i = 0 ; i<required_edit_orders.length;i++ ){
+			var input = jQuery('#'+required_edit_orders[i]);
+		
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			}
+			
+	//  select field
+	 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_d').selectedIndex < 1)
+		{
+			$('#sel_d').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_d').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_phone').css('display','none');
+			return true;
+			}
+			}
+		}
+	});
+	
+jQuery("#edit_order_details").submit(function(){ 
+		for(var i = 0 ; i<required_edit_order_details.length;i++ ){
+			var input = jQuery('#'+required_edit_order_details[i]);
+		
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			}
+			
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+				if (document.getElementById('sel_d').selectedIndex < 1)
+		{
+			$('#sel_d').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sd').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_e').selectedIndex < 1)
+		{
+			$('#sel_e').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_e').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			 
+			return true;
+		}
+	});
+		jQuery("#edit_track_order").submit(function(){ 
+
+		var input = jQuery('#'+required_edit_track_order);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			 
+			return true;
+		}
+	});
+	
 jQuery("#add_offer_zone").submit(function(){ 
-alert('test');
-		var input = jQuery('#'+"cat11");
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_add_offer_zone').css('display','block');
+	for(var i = 0 ; i<required_add_offer_zone.length;i++ ){
+		var input = jQuery('#'+required_add_offer_zone[i]);
+		var input_selector ='#'+required_add_offer_zone[i];
+		var ext = $("#OfferzoneImage").val().split('.').pop().toLowerCase();
+		if ((input.val() == "" || input.val() == undefined)) 
+			{	
+				if(input_selector == "#offerzoneimage" && $('#offerzonetitle').val()!='' &&  $('#sel_a').val()!=''){
+					if($("#OfferzoneImage")[0].files[0]){
+						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+						    $("#OfferzoneImage").addClass("error_input_field");
+							$('.error_extension').css('display','block');
+						}
+						else{
+							$("#OfferzoneImage").removeClass("error_input_field");
+							$('.error_image,.error_extension').css('display','none');
+						}	
+					}	
+					else{
+						$("#OfferzoneImage").addClass("error_input_field");
+						$('.error_image').css('display','block');
+					}
+				}
+				else{
+					input.addClass("error_input_field");
+					$('.error_test').css('display','block');
+				}			
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_add_offer_zone').css('display','none');
+				$('.error_test').css('display','none'); 
 			}
+	}
+			
 	//  select field
-
-	if (document.getElementById('category').selectedIndex < 1)
+	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#category').addClass('error_input_field');
-			$('.error_add_offer_zone').css('display','block');
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
 		}
-		else { $('#category').removeClass('error_input_field');
-		$('.error_add_offer_zone').css('display','none');
-		 }
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
 		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			alert("success"); 
-			return true;
-		}
-	});
-jQuery(".edit_offer_zone").submit(function(){ 
-
-		var input = jQuery('#'+"edit_papertype_form");
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_edit_offer_zone').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_edit_offer_zone').css('display','none');
-			}
-
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("select_error") ) {
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			return false;
 		} else {
 			errornotice.hide();
@@ -518,3 +1274,66 @@ jQuery(".edit_offer_zone").submit(function(){
 			return true;
 		}
 	});
+	jQuery("#edit_offer_zone").submit(function(){ 
+		
+			for(var i = 0 ; i<required_edit_offer_zone.length;i++ ){
+			var input = jQuery('#'+required_add_offer_zone[i]);
+		
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			}
+			
+	//  select field
+
+
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			
+			return true;
+		}
+	});
+	
+	
+
+
+
+
+//  =======   Admin Login form Validation   =========
+
+jQuery("#login-form").submit(function(){ 
+	for(i=0;i<admin_login.length;i++) {
+		var input = jQuery('#'+admin_login[i]);
+		if ((input.val() == "")) 
+		{
+			input.addClass("error_input_field");
+		} 
+		else {
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none');
+		}
+	}
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") ) {
+		$('.error_admin_login').css('display','block');
+		$('.admin_login_error').css('display','none');
+		return false;
+	}
+	else 
+	{
+		$('.error_admin_login').css('display','none');
+		errornotice.hide();
+		return true;
+	}
+});
+
+});

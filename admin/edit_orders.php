@@ -1,8 +1,12 @@
+
 <?php
 include "includes/header.php";
-$error = "";
-$csrfError = false;
-$csrfVariable = 'csrf_' . basename($_SERVER['PHP_SELF']);
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>All States</title>
+</head>
+<body>
+<?php
 if (isset($_GET['update']))
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -32,9 +36,8 @@ if (isset($_GET['update']))
 			$order_shipping_department = '';
 			$order_shipping_college = NULL;
 		}
-		
-		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state_id='$order_shipping_state',order_shipping_city='$order_shipping_city',order_shipping_area_id='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Order Updated Successfully.</b></div>";			
+		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_student_id='$order_student',order_student_year='$order_student_year',	order_shipping_department='$order_shipping_department',order_shipping_college_id='$order_shipping_college',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state_id='$order_shipping_state',order_shipping_city='$order_shipping_city',order_shipping_area_id='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);	
+		$successMessage = "<div class='container error_message_mandatory'><span> Order Updated Successfully! </span></div>";	
 	}
 	
 }
@@ -43,221 +46,177 @@ if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
 }
-if(isset($_POST['title']))
-{
-	if($_SESSION[$csrfVariable] != $_POST['csrf'])
-		$csrfError = true;
-	$id = $_GET['id'];
-	$title = htmlspecialchars($_POST["title"]);
-	$description = mysql_real_escape_string($_POST["description"]);
-	$screens = $_POST["screens"];
-	$cat = $_POST["category"];
-	$image = $_POST["image"];
-	$url = $_POST["url"];
-	$demo = $_POST["demo"];
-	$price = $_POST["price"];
-	$tags = $_POST["tags"];
-	$rating = $_POST["rating"];
-	if(strlen($title)<5 || strlen($title)>50)
-		$error .="o. Title Must Be Between 5 to 50 Characters<br />";
-	if(!validUrl($url))
-		$error .="o. Invalid Purchase URL<br />";
-	if(!is_numeric($price))
-		$error .="o. Price Is Not In Valid Format<br />";
-	if($error=="" && !$csrfError)
-	{
-		updateProductDb($id,$cat,$title,$description,$screens,$image,$url,$demo,$price,$tags,$rating);
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b>  Product saved Successfully.</b></div>";
-	}
-}
-$key = sha1(microtime());
-$_SESSION[$csrfVariable] = $key;
- ?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit Orders</title>
-</head>
-<body>
+?> 
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="page-content blocky">
-	<div class="container" style="margin-top:20px;">
-		<?php include 'includes/sidebar.php'; ?>
-		<div class="mainy">
-			<!-- Page title -->
-			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit Orders </h2> 
-				<hr />
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<!-- Page title -->
-			<div class="row">
-				<div class="awidget">
-					<form class="form-horizontal" role="form" action="edit_orders.php?update=<?php echo $id; ?>" method="post">
-					<?php 
-					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_order` WHERE `order_id`='$id'";
-					$qry = mysqlQuery($match);
-					$numRows = mysql_num_rows($qry); 
-					if ($numRows > 0)
-					{
-						while($row = mysql_fetch_array($qry)) 
-						{
-						?>
-							
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">Order</a>
+					</li>
+					<li>
+						<span>Edit Orders</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
+</div>
+<div class="container">
+ <span class="error_phone"> Please Enter Valid mobile number </span>
+</div>
+<?php if($successMessage) echo $successMessage; ?>
+<div class="page-content blocky">
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<!--Account main content : Begin -->
+					<section class="account-main col-md-9 col-sm-8 col-xs-12">
+						<h3 class="acc-title lg">Edit Order Information</h3>
+						<div class="form-edit-info">
+							<h4 class="acc-sub-title">Order Information</h4>
+							<form action="edit_orders.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_orders">
+							<?php 
+								$match = "SELECT * FROM `stork_order` WHERE `order_id`='$id'";
+								$qry = mysqlQuery($match);
+								$numRows = mysql_num_rows($qry); 
+								if ($numRows > 0)
+								{
+									while($row = mysql_fetch_array($qry)) 
+									{
+							?>
 							<?php 
 							if($row['order_shipping_college_id'] === NULL) {?>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Customer Name</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>"/>
-									</div>
+								    <label for="last-name">Customer Name<span class="required">*</span></label>
+									<input type="text" class="form-control" id="customername" placeholder="Customer Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
 								</div>
 							<?php } else {?>	
 								<input type="hidden" name="student_details"> 
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Student Name</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>"/>
-									</div>
+								    <label for="last-name">Student Name<span class="required">*</span></label>
+									<input type="text" class="form-control" id="studentname" placeholder="Student Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
 								</div>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Student Id</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="order_student" value="<?php echo($row['order_student_id']); ?>"/>
-									</div>
+								    <label for="last-name">Student Id<span class="required">*</span></label>
+									<input type="text" class="form-control" id="studentid" placeholder="Student Id" name="order_student" value="<?php if($row['order_student_id'] !=0) echo($row['order_student_id']); else echo ""; ?>">
 								</div>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Student Year</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="order_student_year" value="<?php echo($row['order_student_year']); ?>"/>
-									</div>
+								    <label for="last-name">Student Year<span class="required">*</span></label>
+									<input type="text" class="form-control" id="studentyear" placeholder="Student Year" name="order_student_year" value="<?php if($row['order_student_year']) echo($row['order_student_year']); else echo ""; ?>"/>
 								</div>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Shipping Department</label>
-									<div class="col-lg-10">
-										<input type="text" class="form-control" name="order_shipping_department" value="<?php echo($row['order_shipping_department']); ?>"/>
-									</div>
+								    <label for="first-name">Shipping Department<span class="required">*</span></label>
+									<input type="text" class="form-control" id="shippingdepartment" placeholder="Firstname" name="order_shipping_department" value="<?php echo($row['order_shipping_department']); ?>">
 								</div>
 								<div class="form-group">
-									<label class="col-lg-2 control-label">Shipping College</label>
-									<div class="col-lg-10">
-									<select class="form-control" id= "category" name="order_shipping_college">
-									<?php
-				                    $query = mysql_query("select * from stork_college where college_status='1'");
-			                        while ($staterow = mysql_fetch_array($query)) {
-			                        if($row['order_shipping_college_id'] == $staterow['college_id'])echo "<option selected value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
-			                        else
-			                        	echo "<option value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
-			                        }
+								    <label for="first-name">Shipping College<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="order_shipping_college">
+								        <option>
+											<span>Select College</span>
+										</option>
+								        <?php
+						                    $query = mysql_query("select * from stork_college where college_status='1'");
+					                        while ($staterow = mysql_fetch_array($query)) {
+					                        if($row['order_shipping_college_id'] == $staterow['college_id'])echo "<option selected value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
+					                        else
+					                        	echo "<option value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
+					                        }
 				                        ?>
-									</select>
+								    </select>
 								</div>
-							</div>
-							<?php }?>	
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping Address Line1</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_shipping_line1" value="<?php echo($row['order_shipping_line1']); ?>"/>
+								<?php } ?>
+								<div class="form-group">
+								    <label for="last-name">Shipping Address Line1<span class="required">*</span></label>
+									<input type="text" class="form-control" id="shippingaddressline1" placeholder="Shipping Address Line1" name="order_shipping_line1" value="<?php echo($row['order_shipping_line1']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping Address Line2</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_shipping_line2" value="<?php echo($row['order_shipping_line2']); ?>"/>
+								<div class="form-group">
+								    <label for="last-name">Shipping Address Line2<span class="required">*</span></label>
+									<input type="text" class="form-control" id="" placeholder="Shipping Address Line2" name="order_shipping_line2" value="<?php echo($row['order_shipping_line2']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping State</label>
-								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="order_shipping_state">
-								<?php
-			                    $query = mysql_query("select * from stork_state where state_status='1'");
-		                        while ($staterow = mysql_fetch_array($query)) {
-		                        if($row['order_shipping_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
-		                        else
-		                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
-		                        }
+								<div class="form-group">
+								    <label for="first-name">Shipping State<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="order_shipping_state">
+								        <option>
+											<span>Select State</span>
+										</option>
+								        <?php
+						                    $query = mysql_query("select * from stork_state where state_status='1'");
+					                        while ($staterow = mysql_fetch_array($query)) {
+					                        if($row['order_shipping_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        else
+					                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        }
 			                        ?>
-								</select>
+								    </select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping City</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_shipping_city" value="<?php echo($row['order_shipping_city']); ?>"/>
+								<div class="form-group">
+								    <label for="last-name">Shipping City<span class="required">*</span></label>
+									<input type="text" class="form-control" id="shippingcity" placeholder="Shipping City" name="order_shipping_city" value="<?php echo($row['order_shipping_city']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Area</label>
-								<div class="col-lg-10">
-								<select class="form-control" id= "category" name="order_shipping_area">
-								<?php
-			                    $query = mysql_query("select * from stork_area where area_status='1'");
-		                        while ($staterow = mysql_fetch_array($query)) {
-		                        if($row['order_shipping_area_id'] == $staterow['area_id'])   
-		                        	echo "<option selected value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
-		                        else
-		                        	echo "<option value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
-		                        }
+								<div class="form-group">
+								    <label for="first-name">Area<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_c" name="order_shipping_area">
+								        <option>
+											<span>Select Area</span>
+										</option>
+								        <?php
+					                    $query = mysql_query("select * from stork_area where area_status='1'");
+				                        while ($staterow = mysql_fetch_array($query)) {
+				                        if($row['order_shipping_area_id'] == $staterow['area_id'])   
+				                        	echo "<option selected value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
+				                        else
+				                        	echo "<option value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
+				                        }
+					                        ?>
 			                        ?>
-								</select>
+								    </select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping Email</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>"/>
+								<div class="form-group">
+								    <label for="last-name">Shipping Email<span class="required">*</span></label>
+									<input type="text" class="form-control" id="test" placeholder="Shipping Email" name="order_shipping_email" value="<?php echo($row['order_shipping_email']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Shipping Mobile</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>"/>
+								<div class="form-group">
+								    <label for="last-name">Shipping Mobile<span class="required">*</span></label>
+									<input type="text" class="form-control" id="phone" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Total Items</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" name="order_total_items" value="<?php echo($row['order_total_items']); ?>"/>
+								<div class="form-group">
+								    <label for="last-name">Total Items<span class="required">*</span></label>
+									<input type="text" class="form-control" id="totalitems" placeholder="Total Items" name="order_total_items" value="<?php echo($row['order_total_items']); ?>">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">Order status</label>
-								<div class="col-lg-10">
-									<select class="form-control" name="order_status">
-										<option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['area_status'] == 0) echo "selected"; ?>>InActive</option>
-										
-									</select>
+								<div class="cate-filter-content">	
+								    <label for="first-name">Order status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_d" name="order_status">
+								        <option>
+											<span>Select Status</span>
+										</option>
+								        <option value="1" <?php if ($row['order_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['order_status'] == 0) echo "selected"; ?>>InActive</option>
+								    </select>
 								</div>
-							</div>
-							<hr />
-							<input type="hidden" name="csrf" value="<?php echo $key; ?>" />
-							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10">
-									<button type="submit" name="submit" class="btn btn-success" value="Add"><i class="fa fa-floppy-o"></i> Update</button> 
-								
+								<div class="account-bottom-action">
+									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
 								</div>
-							</div>
 							<?php 
-						} 
-						}
-						?>
-						</form>
-						<?php              
-					?>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div> 
+							} 
+							}
+							?>
+							</form>
+						</div>
+					</section><!-- Cart main content : End -->
+</div><!-- container -->
 </div>
-<?php include 'includes/footer.php'; ?>
-<script>
-	$(document).ready(function () 
-	{
-		$('#teg').tagsInput({
-		// my parameters here
-		});
-		$('.alert-success').delay(2000).fadeOut();
-	});
-</script>
+</div>
+<?php include 'includes/footer.php'; ?> 

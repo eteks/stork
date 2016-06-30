@@ -40,6 +40,8 @@ define("PAPERSIZE",'stork_paper_size');
 define("PAPERTYPE",'stork_paper_type');
 define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
+define("CITY",'stork_city');
+
 
 
 //php allows only ajax call

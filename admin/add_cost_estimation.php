@@ -1,171 +1,150 @@
+
 <?php
 include "includes/header.php";
-$error = "";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add New Cost Estimation</title>
+<title>All States</title>
 </head>
 <body>
 <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$paper_print_type = $_POST["paper_print_type"];
-	$paper_side = $_POST["paper_side"];
-	$paper_size = $_POST["paper_size"];
-	$paper_type = $_POST["paper_type"];
-	$amount = $_POST["amount"];
-	$cost_estimation_status = $_POST["cost_estimation_status"];
-	
-	if($paper_print_type=="" || $paper_side=="" || $paper_size=="" || $paper_type=="" || $amount=="" || $cost_estimation_status=="") {
-		// header('Location: add_state.php');
-		// exit();
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Please fill all the fields.</b></div>";
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+$cost_print_type=$_POST['cost_print_type'];
+$cost_paper_side=$_POST['cost_paper_side'];
+$cost_paper_size=$_POST['cost_paper_size'];
+$cost_paper_type=$_POST['cost_paper_type'];
+$cost_amount=$_POST['cost_amount'];
+$cost_status=$_POST['cost_status'];
+	if($cost_print_type=="" || $cost_paper_side=="" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
-		$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$paper_print_type' AND cost_estimation_paper_side_id = '$paper_side' AND 	cost_estimation_paper_size_id ='$paper_size' AND cost_estimation_paper_type_id = '$paper_type'");
+		$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$cost_print_type' AND cost_estimation_paper_side_id = '$cost_paper_side' AND cost_estimation_paper_size_id = '$cost_paper_size' AND cost_estimation_paper_type_id = '$cost_paper_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Already Cost Assigned</b></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> Already Exists </span></div>";
 		} else {
-			mysqlQuery("INSERT INTO `stork_cost_estimation` (cost_estimation_paper_print_type_id,cost_estimation_paper_side_id,cost_estimation_paper_size_id,cost_estimation_paper_type_id,cost_estimation_amount,cost_estimation_status) VALUES ('$paper_print_type','$paper_side','$paper_size','$paper_type','$amount','$cost_estimation_status')");
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> Cost Assigned Successfully.</b></div>";
-		}
-		
+			mysqlQuery("INSERT INTO `stork_cost_estimation` (cost_estimation_paper_print_type_id,cost_estimation_paper_side_id,cost_estimation_paper_size_id,cost_estimation_paper_type_id,cost_estimation_amount,cost_estimation_status) VALUES ('$cost_print_type','$cost_paper_side','$cost_paper_size','$cost_paper_type','$cost_amount','$cost_status')");
+			$successMessage = "<div class='container error_message_mandatory'><span> Cost Inserted Successfully! </span></div>";
+		}		
 	}
 } ?>
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="page-content blocky">
-<div class="container" style="margin-top:20px;">
-	<?php include 'includes/sidebar.php'; ?>
-	<div class="mainy">
-		<div class="page-title">
-			<h2><i class="fa fa-plus-circle color"></i> Add New State </h2> 
-			<hr />
-		</div>
+<section class="header-page">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="awidget">  
-					<script>
-						$(document).ready(function () 
-						{
-							$('.alert-success').delay(2000).fadeOut();
-							$('.wobblebar').hide();
-							$( document ).ajaxStop(function() 
-							{
-								$('.wobblebar').hide();
-							});
-							// $('#submit').click(function(e)
-							// {  
-							// 	$('.wobblebar').show();
-							// 	$(".result").html("");
-							// 	e.preventDefault();
-							// 	var cid = $('#category').val();
-							// 	alert($('#urls').val());
-							// 	var urls = $('#urls').val().split(/\n/);
-							// 	$.each(urls, function(index,url)   
-							// 	{
-							// 		$.ajaxq("myQueue", 
-							// 		{
-							// 			type:"POST",
-							// 			url:"productAdd.php",   
-							// 			data:{URL:url,CID:cid},
-							// 			success:function(result)
-							// 			{   
-							// 				var results = result.split("_");
-							// 				$(".result").append(results[0]); 
-							// 				$('#allProducts').text(" All Products ("+results[1]+")");
-							// 			}
-							// 		});
-							// 	});
-							// });
-						});
-					</script>
-					<form class="form-horizontal add_cost_estimation
-					"  role="form" action="add_cost_estimation.php" method="post">
-					<span class="error_add_cost_estimation"> Please fill out required fields </span>
-						<?php if($successMessage) echo $successMessage; ?>
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Cost Estimation </span>
+					</li>
+					<li>
+						<span>Add Cost Estimation</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container">
+	<span class="error_test"> Please fill out all mandatory fields </span>
+</div>
+<?php if($successMessage) echo $successMessage; ?>
+<div class="page-content blocky">
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<!--Account main content : Begin -->
+		<section class="account-main col-md-9 col-sm-8 col-xs-12">
+			<h3 class="acc-title lg">Add Cost Estimation Information</h3>
+			<div class="form-edit-info">
+				<h4 class="acc-sub-title">Cost Estimation Information</h4>
+				<form action="add_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
+					<div class="form-group">
+					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">
+					        <option value="">
+								<span>Select Paper Print Type</span>
+							</option>
+					        <?php 
+					        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
+					        while($row_cost=mysql_fetch_array($query)) {
+					        	?>
+					        <option value="<?php echo $row_cost['paper_print_type_id']; ?>"> <?php echo $row_cost['paper_print_type']; ?></option>
+					        <?php } ?>
+					        
+					    </select>
+					</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Print Type</label><span>*</span>
-							<div class="col-lg-10">
-								<select class="form-control" id= "category" name="paper_print_type">
-								<option value="">Select the Paper Print Type</option>
-								<?php
-			                        $query = mysql_query("select * from stork_paper_print_type");
-			                        while ($row = mysql_fetch_array($query)) {
-			                            ?>
-			                        <option value="<?php echo $row['paper_print_type_id']; ?>"><?php echo $row['paper_print_type']; ?></option>
-			                    <?php } ?>
-								</select>
-							 </div>	
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Side</label><span>*</span>
-							<div class="col-lg-10">
-								<select class="form-control" id= "category1" name="paper_side">
-								<option value="">Select the Paper Side</option>
-								<?php
-			                        $query = mysql_query("select * from stork_paper_side");
-			                        while ($row = mysql_fetch_array($query)) {
-			                            ?>
-			                        <option value="<?php echo $row['paper_side_id']; ?>"><?php echo $row['paper_side']; ?></option>
-			                    <?php } ?>
-								</select>
-							 </div>	
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Size</label><span>*</span>
-							<div class="col-lg-10">
-								<select class="form-control" id= "category2" name="paper_size">
-								<option value="">Select the Paper Size</option>
-								<?php
-			                        $query = mysql_query("select * from stork_paper_size");
-			                        while ($row = mysql_fetch_array($query)) {
-			                            ?>
-			                        <option value="<?php echo $row['paper_size_id']; ?>"><?php echo $row['paper_size']; ?></option>
-			                    <?php } ?>
-								</select>
-							 </div>	
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Paper Type</label><span>*</span>
-							<div class="col-lg-10">
-								<select class="form-control" id= "category3" name="paper_type">
-								<option value="">Select the Paper Type</option>
-								<?php
-			                        $query = mysql_query("select * from stork_paper_type");
-			                        while ($row = mysql_fetch_array($query)) {
-			                            ?>
-			                        <option value="<?php echo $row['paper_type_id']; ?>"><?php echo $row['paper_type']; ?></option>
-			                    <?php } ?>
-								</select>
-							 </div>	
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Amount</label><span>*</span>
-							<div class="col-lg-10">
-								<input  class="form-control" maxlength="10" type="text"  value="" placeholder="State Name" name="amount">
-							</div>
-						</div> 
-						<div class="form-group">
-							<label class="col-lg-2 control-label">Status</label><span>*</span>
-							<div class="col-lg-10">
-								<select class="form-control" id= "category4" name="cost_estimation_status">
-									<option value="">Status</option>
-									<option value="1">Active</option>
-									<option value="0">InActive</option>
-								</select>
-							 </div>
-						</div>
-						<hr />
-						<div class="form-group">
-							<div class="col-lg-offset-2 col-lg-10">
-								<button class="btn btn-success" id="submit"><i class="fa fa-floppy-o"></i> Save</button>
-							</div>
-						</div>
-					 </form>
-				</div><!-- Awidget -->
-			</div><!-- col-md-12 -->
-		</div><!-- row -->
-	</div><!-- mainy -->
-	<div class="clearfix"></div> 
+					    <label for="first-name">Paper Side<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_side" id="sel_b">
+					        <option value="">
+								<span>Select Paper Side</span>
+							</option>
+					 		<?php 
+					        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1'");
+					        while($row_cost1=mysql_fetch_array($query1)) {
+					        	?>
+					        <option value="<?php echo $row_cost1['paper_side_id']; ?>"> <?php echo $row_cost1['paper_side']; ?></option>
+					        <?php } ?>
+					    </select>
+					</div>
+					<div class="form-group">
+					    <label for="first-name">Paper Type<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
+					        <option value="">
+								<span>Select Paper Type</span>
+							</option>
+					         <?php 
+					        $query3=mysql_query("SELECT * FROM stork_paper_type WHERE paper_type_status='1'");
+					        while($row_cost3=mysql_fetch_array($query3)) {
+					        	?>
+					        <option value="<?php echo $row_cost3['paper_type_id']; ?>"> <?php echo $row_cost3['paper_type']; ?></option>
+					        <?php } ?>
+					    </select>
+					</div>
+					<div class="form-group">
+					    <label for="first-name">Paper Size<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
+					        <option value="">
+								<span>Select Paper Size</span>
+							</option>
+					        <?php 
+					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1'");
+					        while($row_cost2=mysql_fetch_array($query2)) {
+					        	?>
+					        <option value="<?php echo $row_cost2['paper_size_id']; ?>"> <?php echo $row_cost2['paper_size']; ?></option>
+					        <?php } ?>
+					    </select>
+					</div>
+					<div class="form-group">
+					    <label for="last-name">Amount<span class="required">*</span></label>
+						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
+					</div>
+					<div class="cate-filter-content">	
+					    <label for="first-name">Cost Estimation Status<span class="required">*</span></label>
+						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
+					        <option value="">
+								<span>Select Status</span>
+							</option>
+					        <option value="1">
+								<span>Active</span>
+							</option>
+							<option value="0">
+								<span>Inactive</span>
+							</option>
+					    </select>
+					</div>
+					<div class="account-bottom-action">
+						<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
+					</div>
+				</form>
+			</div>
+		</section><!-- Cart main content : End -->
 </div><!-- container -->
+</div>
+</div>
 <?php include 'includes/footer.php'; ?> 
