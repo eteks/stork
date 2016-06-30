@@ -406,7 +406,7 @@ color: #000;
 	position: relative;
 }*/
 .add_btn,.del_btn{
-	-moz-border-bottom-colors: none;
+    -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
@@ -418,9 +418,9 @@ color: #000;
     color: #444444;
     float: left;
     font-size: 26px;
-    padding: 0px 20px;
+    margin-left: 8px;
+    padding: 0 10px;
     text-transform: uppercase;
-    margin-left:10px;
 }
 .add_btn:hover,.del_btn:hover  {
    background-color: #25bce9;
@@ -432,11 +432,11 @@ color: #000;
 	right: -93px;
     top: -65px;
 }*/
-.del_btn{
+/*.del_btn{
 	position:absolute;
 	right: -183px;
     top: -65px;
-}
+}*/
 h4.order_or_button{
     color: #444444;
     float: left;
@@ -667,6 +667,9 @@ h4.order_or_button{
     margin-top: 20px;
     margin-left: 10px;
 }
+.radio_holder input {
+    cursor: pointer;
+}
 .display_binding_type {
     display: none;
 }
@@ -684,4 +687,10 @@ h4.order_or_button{
 }
 .clear_both {
     clear : both;
+}
+.padding_form {
+    padding-right: 0px;
+}
+.remove_paper_range {
+    display: none;
 }

@@ -57,7 +57,7 @@
 	    </section>	
 	    <section class="pr-main" id="pr-register">	
 			<div class="container">	
-				<div class="col-md-12 col-sm-12 col-xs-12 ">
+				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form">
 					<form id="print_booking_form" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
@@ -136,7 +136,7 @@
 					        				<option value="" >Cover</option>
 					        				<option value="" >Content</option>
 		        				   		</select>
-									 	<input type="text" name="" id="" class="col-md-8 file_name_box style_range" placeholder="Filename"/>
+									 	<input type="text" name="" id="file_name_box" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
 										<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 		       							<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		       							<!-- <div class="clear_both"> </div> -->
@@ -149,16 +149,12 @@
    								</div>
    								<div class="input_holder row pad_15 upload_file_holder display_paper_range">
 									<p> Paper print page number<span class="star">*</span></p>	
-									<div class="file_range_holder upload_range_section" id="input1">
+									<div class="file_range_holder upload_range_section" id="file_range_holder">
 									 	<select name="" class="select_margin display_range_page" id="content_file">
 					        				<option value="" >Select Content File Name</option>
-					        				<option value="" >File1</option>
-					        				<option value="" >File2</option>
 		        				   	    </select>
 		        				   	    <select name="" class="select_margin display_normal_file" id="normal_file">
-					        				<option value="" >Select File Name</option>
-					        				<option value="" >File1</option>
-					        				<option value="" >File2</option>
+					        				<option value="select_file_name" >Select File Name</option>
 		        				   	    </select>
 									 	<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" placeholder="Page no.1-13,15,18-23"/>
 									</div>
