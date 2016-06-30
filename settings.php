@@ -7,7 +7,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "root");
+define("DBPASSWORD", "");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
@@ -41,7 +41,7 @@ define("PAPERTYPE",'stork_paper_type');
 define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
 define("CITY",'stork_city');
-
+define("BINDINGAMOUNT",'stork_cost_estimation_binding');
 
 
 //php allows only ajax call
