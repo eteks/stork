@@ -402,9 +402,9 @@ color: #000;
 	padding-left: 15px!important;
 	padding-right: 15px!important;
 }
-.pos_rel{
+/*.pos_rel{
 	position: relative;
-}
+}*/
 .add_btn,.del_btn{
 	-moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -427,11 +427,11 @@ color: #000;
    color: #fff;
    cursor: pointer;
 }
-.add_btn{
+/*.add_btn{
 	position:absolute;
 	right: -93px;
     top: -65px;
-}
+}*/
 .del_btn{
 	position:absolute;
 	right: -183px;
@@ -524,8 +524,12 @@ h4.order_or_button{
 .paper_range {
     margin-right: 20px !important;
 }
+.file_name_box {
+    margin-right: 20px !important;
+}
 .uploadbutton {
     margin-bottom: 20px;
+    margin-right: 10px;
 }
 .track_order_details {
     height: auto;
@@ -594,4 +598,90 @@ h4.order_or_button{
 .error_input_field_phone{
 	background: #ffebeb none repeat scroll 0 0 !important;
     border: 1px solid red !important;	
+}
+/* Popup css added by siva*/
+.popup_index label {
+    color: #fff;
+    float: left;
+    letter-spacing: 1px;
+    line-height: 40px;
+}
+.popup_index select {
+    margin-left: 14px;
+    float: left;
+    padding: 5px 0 !important;
+    width: 50%;
+}
+.background_shadow {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+    display:none;
+    width: 100%;
+}
+.popup_index {
+    position:absolute;
+    left:0;
+    top:0;
+    width:520px;
+    height:200px;
+    display:none;
+    z-index:9999;
+    padding:20px;
+    border-radius: 0;
+    text-align: center;
+    background-color: #000;
+}
+.popup_content {
+    margin: 50px 0;
+}
+.button_holder h3 {
+    float: right;
+    margin: 2px 0;
+}
+.style_range {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #d7d7d7;
+    font-size: 14px;
+    margin: 0 0 24px;
+    max-width: 425px;
+    padding: 10px;
+    width: 100%;
+}
+.select_margin {
+    float: left;
+    margin: 0 20px 0 0 !important;
+}
+.file_range_holder .style_range {
+    margin-right : 10px !important;
+}
+.binding_option input {
+    max-width: none !important;
+    width: auto !important;
+    margin-left: 40px !important;
+    margin-right: 4px !important;
+}
+.radio_holder {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.display_binding_type {
+    display: none;
+}
+.display_page_type {
+    display: none;
+}
+.active_upload {
+    display: block;
+}
+.display_paper_range {
+    display: none;
+}
+.display_range_page {
+    display: none;
+}
+.clear_both {
+    clear : both;
 }

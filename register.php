@@ -1,5 +1,6 @@
 <?php 
 include('header.php');
+include('captcha.php');
 if($_SESSION['login_status'] == 1){
 		header('location:index.php');
 }
@@ -13,6 +14,7 @@ if($_SESSION['login_status'] == 1){
   		$username=$_POST['username'];
   		$email=$_POST['email'];
   		$password=$_POST['password'];
+  		// echo $_SESSION['digit'];
 		// if($_SESSION['usertype']=='stu'){
 			// $user_type = 1;
 		// }
@@ -105,6 +107,9 @@ if($_SESSION['login_status'] == 1){
 								<img id="img" src="captcha.php" /></div>
 								<img id="reload" src="images/reload.png" />
 							<div> -->
+							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
+							<input id="captcha_original" type="hidden" value="">
+							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
 							<div>
 								<br/>
 								<button type="submit" name="save_new_user" class="register">Register</button>

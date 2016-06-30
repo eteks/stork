@@ -1,6 +1,7 @@
 <?php
 include('dbconnect.php');
 require_once("function.php");
+@ob_start();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//print_r($_POST);
@@ -14,10 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$comments = $_POST['print_comments'];
 		$session_id = $_SESSION['session_id'];
 		$upload_path = "upload_files/";
+		chmod($upload_path, 0777);
 		$additional_path = $_SESSION['session_id'].'/';
 		if(!is_dir($upload_path.$additional_path)){
-			@mkdir($upload_path.$additional_path, 0666, true);
+			@mkdir($upload_path.$additional_path, 0777, true);
 		}
+		
 		$insert_data_order_details = $print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
 		if(isset($_FILES['printfiles'])){
 			//print_r($_FILES['printfiles']);
@@ -43,20 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 							header('Location:printbooking.php');
 						}
 						else if($_POST['submit_type'] == 'add_to_checkout'){
-							//header('Location:checkout.php');
+							header('Location:checkout.php');
 						}
 						
 			        } else {
-						//header('Location:printbooking.php?error1=true');
+						header('Location:printbooking.php?error1=true');
 			        }
 				}
 				else{
-					//header('Location:printbooking.php?error2=true');
+					header('Location:printbooking.php?error2=true');
 				}
 		    }
 		}
 		else {
-			//header('Location:printbooking.php?error3=true');
+			header('Location:printbooking.php?error3=true');
 		}
 	}// end of add to cart
 	

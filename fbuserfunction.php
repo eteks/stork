@@ -1,5 +1,6 @@
 <?php
 require 'dbconnect.php';
+@ob_start();	
 session_start();
 require_once('fbsettings.php'); 
 if (isset($accessToken)) {

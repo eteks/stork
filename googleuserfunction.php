@@ -1,5 +1,6 @@
 <?php
 	require 'dbconnect.php';
+	@ob_start();
 	session_start();
 	if(isset($_GET['error'])){
 		die('<script type="text/javascript">window.location.href="login.php";</script>');

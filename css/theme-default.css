@@ -4603,7 +4603,7 @@ span.star{
 #pr-login .container .col-md-6.col-sm-6.col-xs-12.right #forgotpass-form .email{
     margin-bottom:40px;
 }
-.container .col-md-6  input{
+.container .no_pad  input{
 	border: 1px solid #d7d7d7;
 	font-size:14px;
 	padding:10px;
@@ -4653,8 +4653,11 @@ span.star{
 #pr-login  .col-md-3{
     float:right;
 }
-#pr-login #login-form{
+#pr-login #login-form {
     padding-top: 15px;
+}
+#pr-login #forgotpass-form {
+  padding-top: 15px;
 }
 #pr-login #login-form button.login{ 
     color: #646464;
@@ -5583,7 +5586,7 @@ h1.ct-header{
 	#pr-login{
 		padding-top:0;
 	}
-	#pr-login .container .col-md-6 input{
+	#pr-login .container .no_pad input{
 		max-width:430px;
 	}
 	.container .col-md-6 button{
