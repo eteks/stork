@@ -115,11 +115,7 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			}
 			}
 		}
-	});
-	
-	
-	
-	
+	});		
 jQuery("#edit_users").submit(function(){ 
 			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
@@ -218,8 +214,7 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			}
 			}
 		}
-	});
-		
+	});		
 jQuery("#add_city").submit(function(){ 
 
 		var input = jQuery('#'+required_city);
@@ -806,14 +801,16 @@ jQuery("#add_paper_print_type").submit(function(){
 		else { $('#sel_e').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
+
 jQuery("#edit_cost_estimation").submit(function(){ 
 
 		var input = jQuery('#'+required_cost_estimation);
@@ -864,14 +861,16 @@ jQuery("#edit_cost_estimation").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
+
 	jQuery("#add_binding_cost_estimation").submit(function(){ 
 
 		var input = jQuery('#'+required_binding_cost_estimation);
@@ -902,11 +901,55 @@ jQuery("#edit_cost_estimation").submit(function(){
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			 
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+	jQuery("#edit_cost_estimation_binding").submit(function(){ 
+
+		var input = jQuery('#'+required_binding_cost_estimation);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				// $('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				// $('.error_test').css('display','none');
+			}
+	//  select field
+
+		if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_a').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+		}
+		else { 
+			$('#sel_b').removeClass('error_input_field'); 
+			// $('.error_test').css('display','none');
+		}
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
