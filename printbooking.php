@@ -210,5 +210,30 @@
 			</div>     
 		</section>
 		 
+
+							<!--  </div>
+							 <input type="hidden" class="per_page_costing" value="" />
+							 <input type="hidden" class="submit_type" value="" name="submit_type" />						</div>
+					        </div>
+					<div class="cb">  </div>
+				</div>	
+			 </section>
+			 <section>
+				<div class="container">	
+			  		<div class="col-md-9 col-sm-9 col-xs-12">		
+						<div class="button_holder button_holder_printbooking">
+			 	       		<h4 class="btn_prf print_add_to_cart_btn" data-submit="print_add_to_cart_btn"><a>Add to cart</a></h4>
+			 	     	</div>
+						<div class="button_holder button_holder_printbooking">
+							<h4 class="order_or_button">OR</h4>
+		 	      		</div>
+			 	   		<div class="button_holder button_holder_printbooking">
+		        	   		<h4 class="btn_prf print_add_to_cart_clear_btn"><a>Clear</a></h4>
+		        	   		<h4 class="btn_prf print_check_out_btn"><a>Check Out</a></h4>
+		             	</div>
+	               	</div>
+				</div>     
+			 </section>
+		 </form> -->
 	</div><!-- Main Product Detail: End -->	
 <?php include('footer.php') ?>

@@ -1,30 +1,26 @@
-
 <?php
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Cities</title>
 </head>
 <body>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$state_id = $_POST["state_id"];
-	$city_id = $_POST["city_id"];
-	$area_name = $_POST["area_name"];
-	$area_status = $_POST["area_status"];
-	if($city_id=="" || $area_name=="" || $area_status=="") {
-		// header('Location: add_area.php');
-		// exit();
+	$city_name = $_POST["city_name"];
+	$city_status = $_POST["city_status"];
+	if($city_name=="" || $city_status=="") {
 		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}	
 	else{
-		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
+		$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> City Already Exists </span></div>";
 		} else {
-			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_status) VALUES ('$area_name','$state_id','$city_id','$area_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
+			mysqlQuery("INSERT INTO `stork_city` (city_name,city_state_id,city_status) VALUES ('$city_name','$state_id','$city_status')");
+			$successMessage = "<div class='container error_message_mandatory'><span> City Inserted Successfully! </span></div>";
 		}		
 	}
 } ?>  
@@ -39,30 +35,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> State </span>
+						<span> City </span>
 					</li>
 					<li>
-						<span>Add Area</span>
+						<span>Add city</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- <div class="container error_message_mandatory">
+	<span> Please fill out all mandatory fields </span>
+</div> -->
+<?php if($successMessage) echo $successMessage; ?>
 <div class="container">
  <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-<?php if($successMessage) echo $successMessage; ?>
+
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Area Information</h3>
+						<h3 class="acc-title lg">Add City Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Area Information</h4>
-							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
+							<h4 class="acc-sub-title">City Information</h4>
+							<form action="add_city.php" id="add_city" method="POST" name="edit-acc-info">
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="state_id">
@@ -78,28 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Select City<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="city_id">
-								        <option value="">
-											<span>Select City</span>
-										</option>
-										<?php
-					                        $query = mysql_query("select * from stork_city  where city_status='1'");
-					                        while ($row = mysql_fetch_array($query)) {
-					                            ?>
-					                        <option value="<?php echo $row['city_id']; ?>"><span><?php echo $row['city_name']; ?></span></option>
-					                    <?php } ?>   
-								    </select>
-								</div>
-								<div class="form-group">
-								    <label for="last-name">Area Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="areaname" autocomplete="off" placeholder="Area Name" name="area_name">
+								    <label for="last-name">City Name<span class="required">*</span></label>
+									<input type="text" class="form-control" id="cityname" autocomplete="off" placeholder="City Name" name="city_name">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Area Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="area_status">
+								    <label for="first-name">City Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="city_status">
 								        <option value="">
-								        	<span>Select status</span>
+											<span>Select status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

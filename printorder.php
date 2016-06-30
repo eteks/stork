@@ -1,6 +1,7 @@
 <?php
 include('dbconnect.php');
 require_once("function.php");
+@ob_start();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//print_r($_POST);
@@ -14,10 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$comments = $_POST['print_comments'];
 		$session_id = $_SESSION['session_id'];
 		$upload_path = "upload_files/";
+		chmod($upload_path, 0777);
 		$additional_path = $_SESSION['session_id'].'/';
 		if(!is_dir($upload_path.$additional_path)){
-			@mkdir($upload_path.$additional_path, 0666, true);
+			@mkdir($upload_path.$additional_path, 0777, true);
 		}
+		
 		$insert_data_order_details = $print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
 		if(isset($_FILES['printfiles'])){
 			//print_r($_FILES['printfiles']);
@@ -39,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						$order_detail_id = mysqli_insert_id($connection);
 			        	$insert_data_upload_files = $order_detail_id.',"'.$upload_path.$additional_path.$name_array[$i].'",1';
 			            insertfunction('upload_files_order_details_id,upload_files,upload_files_status',$insert_data_upload_files,UPLOADFILES,'',$connection);
-						echo $order_detail_id;
 						if($_POST['submit_type'] == 'add_to_cart'){
 							header('Location:printbooking.php');
 						}
@@ -48,12 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						}
 						
 			        } else {
-			            echo "file uploading file";
 						header('Location:printbooking.php?error1=true');
 			        }
 				}
 				else{
-					echo 'invalid file format';
 					header('Location:printbooking.php?error2=true');
 				}
 		    }

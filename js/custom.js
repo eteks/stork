@@ -249,12 +249,12 @@ jQuery(document).ready(function() {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
       	
-      	// if(eval($("#captcha_original").val()) == $("#captcha").val()){
-      	// 	$('#captcha').removeClass("error_input_field");
-      	// }
-      	// else{
-      	// 	$('#captcha').addClass("error_input_field");
-      	// }
+      	if(eval($("#captcha_original").val()) == $("#captcha").val()){
+      		$('#captcha').removeClass("error_input_field");
+      	}
+      	else{
+      		$('#captcha').addClass("error_input_field");
+      	}
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
@@ -305,6 +305,7 @@ jQuery(document).ready(function() {
 		}
 		
 	});
+	
 	// upload file holder add button
 	// $(document).on('click','#print_booking_form .add_btn',function(){
 	// 	if($('#print_booking_form .upload_file_holder:last .print_book_color_page_no').val() && $('#print_booking_form .upload_file_holder:last .uploadFile').val() != ''){
@@ -447,7 +448,7 @@ jQuery(document).ready(function() {
            		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
            		cache: false,
            		success: function(data) {
-           			var per_page_amount = parseInt(data);
+           			var per_page_amount = parseFloat(data);
            			if(per_page_amount){
            				$('#print_booking_form .per_page_costing').val(per_page_amount);
            			}
@@ -468,8 +469,9 @@ jQuery(document).ready(function() {
     	name = file.name;
     	size = file.size;
     	type = file.type;
+    	// alert(type);
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','vnd.openxmlformats-officedocument.wordprocessingml.document','msword']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
     		return false;
     	}
@@ -479,18 +481,19 @@ jQuery(document).ready(function() {
 	});
 	
 	// 	total cost amoutn display based on total no of pages and per page amount
-	// $('.print_total_no_of_pages').on('blur',function(){
+	$('.print_total_no_of_pages').on('blur',function(){
 
-	// 	var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
-	// 	var total_amount = $(this).val();
-	// 	if(perpageamount){
-	// 		$('.print_total_amount').val(perpageamount*total_amount).attr('readonly','readonly');
-	// 	}else{
-	// 		error_popup('Please select print type,print side,paper size,paper type!');
-	// 		$(this).val('');
-	// 	}
+		var perpageamount = ($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+		var total_amount = $(this).val();
+		if(perpageamount){
+			$('.print_total_amount').val(parseFloat(Math.ceil( (perpageamount*total_amount) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			
+		}else{
+		error_popup('Please select print type,print side,paper size,paper type!');
+			$(this).val('');
+		}
 		
-	// });
+	});
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
@@ -498,6 +501,94 @@ jQuery(document).ready(function() {
 		$('#print_booking_form').submit();
 	});
 	
+	// clear print booking form when clear button
+	$('.print_add_to_cart_clear_btn').on('click',function(){
+		$('#print_booking_form').find("input[type=text], textarea").val("");
+		$('#print_booking_form').find("select").prop('selectedIndex', 0);
+		if($('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").hasClass('error_print_booking_field')){
+			$('#print_booking_form').find("input[type=text], textarea,select,.uploadbutton").removeClass('error_print_booking_field');
+		}
+		$('.error_print_booking').hide();
+	});
+	
+	// form post when paynow button in check out page
+	$(document).on('click','.check_out_payment',function(){
+		$('#print_checkout_form').submit();
+	});
+	
+	// remove item from cart 
+	$(document).on('click','.ordered_item .cart_remove_item',function(){
+		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
+		var order_details_id = $(this).parents('.ordered_item').find('.ordered_item_oreder_detail_id').val();
+		if(session_id != '' && order_details_id != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'session_id':session_id,'order_details_id':order_details_id,'remove_order':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data == 'remove_success'){
+           				location.reload();
+           			}
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// address form clear when clear button in check out page
+	$(document).on('click','.check_out_clear_btn',function(){
+		$('.checkout_address').find("input[type=text], textarea").val("");
+	});
+	
+	
+	// update amount details based on quantity in check out page
+	$(document).on('keyup','.ordered_item_quantity',function(){
+		var amount = $(this).parents('.review_order_checkout').find('.oredered_item_amount').val();
+		var quantity = $(this).val();
+		var final_amount = 0;
+		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+amount*quantity);
+		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(amount*quantity);
+		$('.updated_oredered_item_amount').each(function(){
+			final_amount += parseInt($(this).val());
+		});
+		$('.final_payment_amount_checkout').val(final_amount);
+		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+	});
+	
+	// post form when click check button in print booking page and submit type
+	$('.print_check_out_btn').on('click',function(){
+		$('#print_booking_form .submit_type').val('add_to_checkout');
+		$('#print_booking_form').submit();
+	});
+	
+	// captcha genaration
+ 	var n1 = Math.round(Math.random() * 100 + 1);
+    var n2 = Math.round(Math.random() * 100 + 1);
+    $("#captcha_original").val(n1 + " + " + n2);
+    $('#captcha_f_n').text(n1);
+    $('#captcha_s_n').text(n2);
+    
+    //allowed numbers only at registration form
+	$("#mobile").keypress(function (e) {
+		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+			return false;
+		}
+	});
+	
+	//allowed charaters only at registration form
+	$("#firstname,#lastname").keypress(function (e) {
+		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
+        	e.preventDefault();
+    	}
+	});
+	
+	//disable cut,copy,paste
+	$(document).bind('copy paste cut', function (e) {
+        e.preventDefault(); 
+        return false;
+    });
 });
 
 //  == Added by siva ==
