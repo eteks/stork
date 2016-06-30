@@ -1,8 +1,12 @@
+
 <?php
 include "includes/header.php";
-$error = "";
-$csrfError = false;
-$csrfVariable = 'csrf_' . basename($_SERVER['PHP_SELF']);
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>All States</title>
+</head>
+<body>
+<?php 
 if (isset($_GET['update']))
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -10,15 +14,13 @@ if (isset($_GET['update']))
 		$val = mres($val);
 		$state_name = $_POST["state_name"];
 		$state_status = $_POST["state_status"];
-		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
-		// $fetch = mysql_fetch_array($qry);
 		$qr = mysqlQuery("SELECT * FROM stork_state WHERE state_name='$state_name' AND state_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Already exists</b></div>";	
+			$successMessage = "<div class='container error_message_mandatory'><span> State Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_state` SET `state_name`='$state_name',`state_status`='$state_status' WHERE `state_id`=".$val);
-			$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b> State Updated Successfully.</b></div>";	
+			$successMessage = "<div class='container error_message_mandatory'><span> State Updated Successfully! </span></div>";	
 		}
 				
 	}
@@ -28,110 +30,87 @@ $id=$val;
 if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
-}
-if(isset($_POST['title']))
-{
-	if($_SESSION[$csrfVariable] != $_POST['csrf'])
-		$csrfError = true;
-	$id = $_GET['id'];
-	$title = htmlspecialchars($_POST["title"]);
-	$description = mysql_real_escape_string($_POST["description"]);
-	$screens = $_POST["screens"];
-	$cat = $_POST["category"];
-	$image = $_POST["image"];
-	$url = $_POST["url"];
-	$demo = $_POST["demo"];
-	$price = $_POST["price"];
-	$tags = $_POST["tags"];
-	$rating = $_POST["rating"];
-	if(strlen($title)<5 || strlen($title)>50)
-		$error .="o. Title Must Be Between 5 to 50 Characters<br />";
-	if(!validUrl($url))
-		$error .="o. Invalid Purchase URL<br />";
-	if(!is_numeric($price))
-		$error .="o. Price Is Not In Valid Format<br />";
-	if($error=="" && !$csrfError)
-	{
-		updateProductDb($id,$cat,$title,$description,$screens,$image,$url,$demo,$price,$tags,$rating);
-		$successMessage = "<div class='alert alert-success'><li class='fa fa-check-square-o'></li><b>  Product saved Successfully.</b></div>";
-	}
-}
-$key = sha1(microtime());
-$_SESSION[$csrfVariable] = $key;
- ?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- TemplateBeginEditable name="doctitle" -->
-<title>Edit State: <?php echo(getTitle()) ?></title>
-</head>
-<body>
+}  
+?>
 <?php include 'includes/navbar_admin.php'; ?>
-<div class="page-content blocky">
-	<div class="container" style="margin-top:20px;">
-		<?php include 'includes/sidebar.php'; ?>
-		<div class="mainy">
-			<!-- Page title -->
-			<div class="page-title">
-				<h2><i class="fa fa-pencil-square color"></i> Edit State </h2> 
-				<hr />
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<!-- Page title -->
-			<div class="row">
-				<div class="awidget">
-					<form class="form-horizontal" id="edit_state" role="form" action="edit_state.php?update=<?php echo $id; ?>" method="post">
-					<span class="error_edit_state"> Please fill out required fields </span>
-					<?php 
-					if($successMessage) echo $successMessage; 
-					$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
-					$qry = mysqlQuery($match);
-					$numRows = mysql_num_rows($qry); 
-					if ($numRows > 0)
-					{
-						while($row = mysql_fetch_array($qry)) 
-						{
-						?>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">State Name</label><span>*</span>
-								<div class="col-lg-10">
-									<input type="text" id="state_name" class="form-control" name="state_name" value="<?php echo($row['state_name']); ?>"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 control-label">State status</label><span>*</span>
-								<div class="col-lg-10">
-									<select class="form-control" name="state_status">
-										<option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>InActive</option>
-									</select>
-								</div>
-							</div>
-							<hr />
-							<input type="hidden" name="csrf" value="<?php echo $key; ?>" />
-							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10">
-									<button type="submit" name="submit" class="btn btn-success" value="Add"><i class="fa fa-floppy-o"></i> Update</button> 
-								
-								</div>
-							</div>
-							<?php 
-						} 
-						}
-						?>
-						</form>
-						<?php              
-					?>
-				</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> State </span>
+					</li>
+					<li>
+						<span>Edit States</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div> 
+</section>
+<?php if($successMessage) echo $successMessage; ?>
+<div class="container">
+ <span class="error_test"> Please fill out all mandatory fields </span>
 </div>
-<?php include 'includes/footer.php'; ?>
-<script>
-	$(document).ready(function () 
-	{
-		$('#teg').tagsInput({
-		// my parameters here
-		});
-		$('.alert-success').delay(2000).fadeOut();
-	});
-</script>
+
+<div class="page-content blocky">
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<!--Account main content : Begin -->
+					<section class="account-main col-md-9 col-sm-8 col-xs-12">
+						<h3 class="acc-title lg">Edit State Information</h3>
+						<div class="form-edit-info">
+							<h4 class="acc-sub-title">State Information</h4>
+							<form action="edit_state.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+								<?php
+									$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
+									$qry = mysqlQuery($match);
+									$numRows = mysql_num_rows($qry); 
+									if ($numRows > 0)
+									{
+										while($row = mysql_fetch_array($qry)) 
+										{
+								?>
+								<div class="form-group">
+								    <label for="last-name">State Name<span class="required">*</span></label>
+									<input type="text" class="form-control" id="statename" placeholder="State Name" name="state_name" value="<?php echo($row['state_name']); ?>">
+								</div>
+								<div class="cate-filter-content">	
+								    <label for="first-name">State Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="state_status">
+								        <option>
+											<span>Select status</span>
+										</option>
+								        <option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>
+											<span>Active</span>
+										</option>
+										<option value="0" <?php if ($row['state_status'] == 0) echo "selected"; ?>>
+											<span>Inactive</span>
+										</option>
+								    </select>
+								</div>
+								<div class="account-bottom-action">
+									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
+								</div>
+							<?php 
+							} 
+							}
+							?>
+							</form>
+
+
+
+
+							
+						</div>
+					</section><!-- Cart main content : End -->
+</div><!-- container -->
+</div>
+</div>
+<?php include 'includes/footer.php'; ?> 

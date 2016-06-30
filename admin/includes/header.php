@@ -3,8 +3,8 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600italic,600' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'> -->
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600italic,600' rel='stylesheet' type='text/css'> -->
   
 	<?php
 		if (!isset($_SESSION)) session_start();
@@ -28,12 +28,13 @@
 	<link href="style/css/bootstrap-select.min.css" rel="stylesheet">
 	<link href="style/css/upload.css" rel="stylesheet">
 	<link href="style/css/style.css" rel="stylesheet">
+	<link href="style/css/theme-default.css" rel="stylesheet">
 		
     <!-- Javascript files -->
 	<script src="style/js/jquery.1.9.1.js"></script>
 	<script src="style/js/bootstrap.min.js"></script>
-	<!-- <script src="style/js/jquery-ui-1.10.2.custom.min.js"></script> -->
 	<script src="style/js/jquery-ui.min.js"></script>
+	<!-- <script src="style/js/jquery-ui-1.10.2.custom.min.js"></script> -->
 	<script src="style/js/jquery.bootstrap-growl.min.js"></script>
 	<script src="style/js/bootstrap-switch.min.js"></script>
 	<script src="style/js/respond.min.js"></script>
@@ -44,7 +45,8 @@
 	<script src="style/js/upload.js"></script>
 	<script src="style/js/paging.js"></script>
 	<script src="style/js/custom.js"></script>
-	<script src="style/js/jquery.validate.min.js"></script>
 	<script src="style/js/action.js"></script>
-
-	  
+	<script src="style/js/owl.carousel.min.js"></script>  
+    <script src="style/js/theme.js"></script>
+    <!-- // <script src="style/js/jquery.dataTables.min.js"></script> -->
+    <script src="style/js/jquery.dataTables.js"></script>
