@@ -12,16 +12,16 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-
-		$binding_type = $_POST["binding_type"];
-		$amount = $_POST["amount"];
+		$cost_estimation_binding_type = $_POST["cost_estimation_binding_type"];
+		$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 		$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
-		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_binding` WHERE cost_estimation_binding_type='$binding_type' AND cost_estimation_binding_id NOT IN('$val')");
+		echo('1');
+		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_binding` WHERE cost_estimation_binding_type='$cost_estimation_binding_type' AND cost_estimation_binding_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Already Binding Cost Assigned! </span></div>";
 		} else {	
-			mysqlQuery("UPDATE `stork_cost_estimation_binding` SET cost_estimation_binding_type='$binding_type',cost_estimation_binding_amount='$amount', cost_estimation_binding_status='$cost_estimation_binding_status' WHERE cost_estimation_binding_id=".$val);
+			mysqlQuery("UPDATE `stork_cost_estimation_binding` SET cost_estimation_binding_type='$binding_type',cost_estimation_binding_amount='$cost_estimation_binding_amount', cost_estimation_binding_status='$cost_estimation_binding_status' WHERE cost_estimation_binding_id=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Updated Successfully! </span></div>";
 		}
 				
@@ -68,7 +68,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Binding Cost Estimation Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Binding Cost Estimation Information</h4>
-							<form action="edit_cost_estimation_binding.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_binding_cost_estimation">
+							<form action="edit_cost_estimation_binding.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation_binding">
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation_binding` WHERE `cost_estimation_binding_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -96,7 +96,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_e" name="cost_estimation_binding_status">
+									<select class="product-type-filter form-control" id="sel_b" name="cost_estimation_binding_status">
 								        <option>
 											<span>Select status</span>
 										</option>
