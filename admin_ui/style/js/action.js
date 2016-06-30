@@ -242,6 +242,16 @@ jQuery("#add_city").submit(function(){
 		$('.error_test').css('display','none');
 
 		 }
+ 	if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
@@ -372,6 +382,13 @@ jQuery("#add_area").submit(function(){
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
 		$('.error_test').css('display','none'); }
 		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
