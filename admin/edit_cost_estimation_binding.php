@@ -15,7 +15,6 @@ if (isset($_GET['update']))
 		$cost_estimation_binding_type = $_POST["cost_estimation_binding_type"];
 		$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 		$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
-		echo('1');
 		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_binding` WHERE cost_estimation_binding_type='$cost_estimation_binding_type' AND cost_estimation_binding_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
