@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Orders</title>
 </head>
 <body>
 <?php
@@ -158,6 +158,24 @@ if(isset($_GET["id"]))
 					                        if($row['order_shipping_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        else
 					                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        }
+			                        ?>
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Shipping City<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="order_shipping_city">
+								        <option>
+											<span>Select State</span>
+										</option>
+								        <?php
+						                    $query = mysql_query("select * from stork_city where city_status='1'");
+						                    echo mysql_num_rows($query);
+						                    echo $row['order_shipping_city_id'];
+					                        while ($cityrow = mysql_fetch_array($query)) {
+					                        echo $cityrow['city_id']."<br>";
+					                        if($cityrow['city_id'] == $row['order_shipping_city_id'])
+					                        	echo "<option selected value='".$cityrow['city_id']."'>".$cityrow['city_name']."</option>";
 					                        }
 			                        ?>
 								    </select>

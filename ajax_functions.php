@@ -41,5 +41,36 @@
 				echo "remove_error";
 			}
 		}
+		
+		
+		// show all college and area list
+		if(isset($_POST['city_data_for_college'])){
+			$college_list_with_area_query = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id where stork_area.area_city_id =".$_POST['city_id'];
+			$college_list_with_area_data = mysqli_query($connection, $college_list_with_area_query);
+			while($row = mysqli_fetch_array($college_list_with_area_data)){
+				echo "<option value ='".$row['college_id']."'>".$row['college_name'].",".$row['area_name']."</option>";
+			}
+		}
+		
+		// show all area list
+		if(isset($_POST['city_data_for_area'])){
+			$area_list_query = "select * from stork_area where stork_area.area_city_id =".$_POST['city_id'];
+			$area_list_data = mysqli_query($connection, $area_list_query);
+			while($row = mysqli_fetch_array($area_list_data)){
+				echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
+			}
+		}
+		
+		// retrive binding amount based on type
+		if(isset($_POST['binding_amount_value'])){
+			$binding_amount_query = selectfunction('*',BINDINGAMOUNT,'cost_estimation_binding_type ="'.$_POST['binding_type'].'" and cost_estimation_binding_status ="1"',$connection);
+			$row = mysqli_fetch_array($binding_amount_query);
+			if($row['cost_estimation_binding_amount']){
+				echo $row['cost_estimation_binding_amount'];
+			}
+			else{
+				echo "error_bind_amt";
+			}
+		}
 	}// end of is ajax if condition
 ?>

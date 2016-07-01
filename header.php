@@ -10,13 +10,13 @@ include('function.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
 	<meta name="description" content="Printing template">
 	<meta name="author" content="Netbase">
-	<meta name="google-signin-client_id" content="917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com ">
+	<!-- <meta name="google-signin-client_id" content="917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com "> -->
 	<!--Add css lib--> 
 	<link rel="stylesheet" type="text/css" href="css/style-main.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css">   
-  	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
-  	<link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'>
-  	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'>
+  	<!-- <link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'> -->
+  	<!-- <link href='https://fonts.googleapis.com/css?family=Arimo:500,300,700,400' rel='stylesheet' type='text/css'> -->
+  	<!-- <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:500,300,700,400' rel='stylesheet' type='text/css'> -->
 <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 .cont{
@@ -215,6 +215,13 @@ progress::-moz-progress-bar {
 												<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
 												<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
 												<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
+												<?php
+												if($cart_data['order_details_is_binding'] == '1'){
+												?>
+												<a class="mcart-name"><b>Binding type</b> : <?php echo $cart_data['order_details_binding_type']; ?></a>
+												<?php	
+												}
+												?>
 												<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
 												<span class="mcart-remove-item cart_remove_item">
 													<i class="fa fa-times-circle"></i>
