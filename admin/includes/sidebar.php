@@ -120,7 +120,7 @@ function countOfferZone()
 				<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin User (<?php echo countAdminUsers() ?>)</span></a>
+							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin Users (<?php echo countAdminUsers() ?>)</span></a>
 						</li> 
 						<li>
 							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo countUsers() ?>)</span></a>
@@ -151,7 +151,7 @@ function countOfferZone()
 					<ul>
 						<li>
 							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-							<a href="add_state.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add States</span></a>
+							<a href="add_state.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add State</span></a>
 						</li>
 						<!-- <li>
 							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
@@ -378,8 +378,8 @@ function countOfferZone()
 				</li>
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_cost_estimation.php" || 
-					basename($_SERVER['PHP_SELF'])=="cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="cost_estimation_combination.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_printing_cost_estimation.php" || 
+					basename($_SERVER['PHP_SELF'])=="printing_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_printing_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="printing_cost_estimation_combination.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -399,13 +399,13 @@ function countOfferZone()
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Printing Cost Estimation </span></a>
+							<a href="add_printing_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Printing Cost Estimation </span></a>
 						</li> 
 						<!-- <li>
-							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
+							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
 						</li> --> 
 						<li>
-							<a href="cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Printing Cost Estimation </span></a>
+							<a href="printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Printing Cost Estimation </span></a>
 						</li> 
 					</ul>
 				</li>
@@ -464,7 +464,7 @@ function countOfferZone()
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="orders.php"><i class="fa fa-list"></i><span> All Order (<?php echo countOrder() ?>)</span></a>
+							<a href="orders.php"><i class="fa fa-list"></i><span> All Orders (<?php echo countOrder() ?>)</span></a>
 						</li> 
 						<li>
 							<a href="order_details.php"><i class="fa fa-list"></i><span> Order Details (<?php echo countOrderDetails() ?>) </span></a>
@@ -496,10 +496,10 @@ function countOfferZone()
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i><span> Add OfferZone </span></a>
+							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i><span> Add Offer Zone </span></a>
 						</li>
 						<li>
-							<a href="offer_zones.php"><i class="fa fa-list"></i><span> All OfferZone (<?php echo countOfferZone() ?>) </span></a>
+							<a href="offer_zones.php"><i class="fa fa-list"></i><span> All Offer Zone (<?php echo countOfferZone() ?>) </span></a>
 						</li> 
 					</ul>
 				</li>

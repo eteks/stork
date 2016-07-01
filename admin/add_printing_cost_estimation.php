@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add Cost Estimation</title>
+<title>Add Printing Cost Estimation</title>
 </head>
 <body>
 <?php 
@@ -39,10 +39,10 @@ $cost_status=$_POST['cost_status'];
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Cost Estimation </span>
+						<span> Printing Cost Estimation </span>
 					</li>
 					<li>
-						<span>Add Cost Estimation</span>
+						<span>Add Printing Cost Estimation</span>
 					</li>
 				</ul>
 			</div>
@@ -59,10 +59,10 @@ $cost_status=$_POST['cost_status'];
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 		<section class="account-main col-md-9 col-sm-8 col-xs-12">
-			<h3 class="acc-title lg">Add Cost Estimation Information</h3>
+			<h3 class="acc-title lg">Add Printing Cost Estimation</h3>
 			<div class="form-edit-info">
-				<h4 class="acc-sub-title">Cost Estimation Information</h4>
-				<form action="add_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
+				<h4 class="acc-sub-title">Printing Cost Estimation</h4>
+				<form action="add_printing_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
 					<div class="form-group">
 					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">
@@ -125,7 +125,7 @@ $cost_status=$_POST['cost_status'];
 						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
 					</div>
 					<div class="cate-filter-content">	
-					    <label for="first-name">Cost Estimation Status<span class="required">*</span></label>
+					    <label for="first-name">Printing Cost Estimation Status<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
 					        <option value="">
 								<span>Select Status</span>

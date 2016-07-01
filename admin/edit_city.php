@@ -46,7 +46,7 @@ if(isset($_GET["id"]))
 						<span> City </span>
 					</li>
 					<li>
-						<span>Edit Cities</span>
+						<span>Edit City</span>
 					</li>
 				</ul>
 			</div>

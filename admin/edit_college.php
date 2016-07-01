@@ -103,7 +103,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">College Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s6" name="college_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['college_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['college_status'] == 0) echo "selected"; ?>>InActive</option>

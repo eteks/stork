@@ -109,7 +109,7 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="First Name" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Lastname<span class="required">*</span></label>
+								    <label for="first-name">Lastname<span class="required"></span></label>
 									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
@@ -140,8 +140,8 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="user_state_id">
+								    <label for="first-name">State<span class="required"></span></label>
+									<select class="product-type-filter form-control" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -157,8 +157,8 @@ include "includes/header.php";
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="user_area_id">
+								    <label for="first-name">Area<span class="required"></span></label>
+									<select class="product-type-filter form-control"  name="user_area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
@@ -180,7 +180,7 @@ include "includes/header.php";
 								
 								<div class="cate-filter-content">	
 								    <label for="first-name">Users Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_d" name="user_status">
+									<select class="product-type-filter form-control" id="sel_b" name="user_status">
 								        <option>
 											<span>Select status</span>
 										</option>

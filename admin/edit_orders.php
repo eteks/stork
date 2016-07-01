@@ -208,7 +208,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Shipping Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="phone" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" maxlength="10" placeholder="Shipping Mobile" name="order_shipping_mobile" value="<?php echo($row['order_shipping_mobile']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Items<span class="required">*</span></label>

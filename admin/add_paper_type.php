@@ -38,10 +38,10 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Paper type </span>
+						<span> Paper Type </span>
 					</li>
 					<li>
-						<span>Add Paper type</span>
+						<span>Add Paper Type</span>
 					</li>
 				</ul>
 			</div>
@@ -67,7 +67,7 @@ include "includes/header.php";
 									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Papertype Status<span class="required">*</span></label>
+								    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">
 								        <option value="">
 											<span>Select Status</span>

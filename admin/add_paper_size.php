@@ -39,10 +39,10 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Paper size </span>
+						<span> Paper Size </span>
 					</li>
 					<li>
-						<span>Add Paper size</span>
+						<span>Add Paper Size</span>
 					</li>
 				</ul>
 			</div>
@@ -64,11 +64,11 @@ include "includes/header.php";
 							<h4 class="acc-sub-title">Paper size Information</h4>
 							<form action="add_paper_size.php" method="POST" name="edit-acc-info" id="add_paper_size">
 								<div class="form-group">
-								    <label for="last-name">Papersize<span class="required">*</span></label>
-									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="PaperSize">
+								    <label for="last-name">Paper Size<span class="required">*</span></label>
+									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="Paper Size">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Papersize Status<span class="required">*</span></label>
+								    <label for="first-name">Paper Size Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_size_status" id="sel_a">
 								        <option value="">
 											<span>Select Status</span>

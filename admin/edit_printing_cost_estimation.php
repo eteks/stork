@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Edit Cost Estimation</title>
+<title>Edit Printing Cost Estimation</title>
 </head>
 <body>
 <?php
@@ -49,10 +49,10 @@ if(isset($_GET["id"]))
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Cost Estimation</a>
+						<a href="/">Printing Cost Estimation</a>
 					</li>
 					<li>
-						<span>Edit Cost Estimation</span>
+						<span>Edit Printing Cost Estimation</span>
 					</li>
 				</ul>
 			</div>
@@ -69,10 +69,10 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Cost Estimation Information</h3>
+						<h3 class="acc-title lg">Edit Printing Cost Estimation </h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">CostEstimation Information</h4>
-							<form action="edit_cost_estimation.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
+							<h4 class="acc-sub-title">Printing Cost Estimation Information</h4>
+							<form action="edit_printing_cost_estimation.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$id'";
 								$qry = mysqlQuery($match);

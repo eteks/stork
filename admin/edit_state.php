@@ -85,7 +85,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">State Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="state_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>
 											<span>Active</span>

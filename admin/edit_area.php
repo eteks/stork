@@ -123,7 +123,7 @@ include "includes/header.php";
 								    <label for="first-name">Area Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="area_status">
 										<option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['area_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['area_status'] == 0) echo "selected"; ?>>InActive</option>

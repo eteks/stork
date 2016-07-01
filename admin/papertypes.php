@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All Paper Type</title>
+<title>All Paper Types</title>
 </head>
 <body>
 <!-- Php query for delete -->
@@ -44,7 +44,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<div class="heading_section col-md-12">
-		<h3 class="acc-title lg clone_heading"> Papertypes</h3>
+		<h3 class="acc-title lg clone_heading"> Paper Types</h3>
 		<div class="clear_both"> </div>
 	</div>
 			<div class="form-edit-info">

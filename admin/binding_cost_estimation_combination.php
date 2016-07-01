@@ -45,7 +45,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     <?php include 'includes/sidebar.php'; ?>
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
-        <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
+        <h3 class="acc-title lg clone_heading">Binding Cost estimation</h3>
 <div class="amout_fixed_status">
         <span>Amount fixed status </span><select id="select-category" name="categories">
     <option value="">All</option>
