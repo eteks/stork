@@ -52,66 +52,79 @@
 				        	</div>
 				        	<div class="row location">
 				        		<div class="stu_area_college_holder dn">
-		        					<select id="print_book_state" name="pro_state" required>
+		        					<!-- <select id="print_book_state" name="pro_state" required>
 		        						<option value="" >Select your State</option>
 		        						<?php
-		        							$state = selectfunction('*',STATE,'',$connection);
-											while($row = mysqli_fetch_array($state)){
-												echo "<option value ='".$row['state_id']."'>".$row['state_name']."</option>";
-											}
+		        							//$state = selectfunction('*',STATE,'',$connection);
+											//while($row = mysqli_fetch_array($state)){
+												//echo "<option value ='".$row['state_id']."'>".$row['state_name']."</option>";
+											//}
 		        						?>
-		        					</select>
+		        					</select> -->
 		        					<select id="print_book_area_professional" name="pro_area" required>
 		        						<option value="" >Select your Area</option>
 		        					</select>
 	        					</div>
 	        					<div class="profession_state_area_holder">
-		        					<select id="print_book_area_student" name="stu_area" required>
+		        					<!-- <select id="print_book_area_student" name="stu_area" required>
 		        						<option value=""  >Select your Area</option>
 		        						<?php
-		        							$area = selectfunction('*',AREA,'',$connection);
-											while($row = mysqli_fetch_array($area)){
-												echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
-											}
+		        							//$area = selectfunction('*',AREA,'',$connection);
+											//while($row = mysqli_fetch_array($area)){
+												//echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
+											//}
 		        						?>
-		        					</select>
+		        					</select> -->
 		        					<select name="stu_college" id="print_book_college" required>
-		        						<option value="" >Select your College/University</option>
+		        						<option value="" >Select your College/Area</option>
 		        					</select>
+		        					<span class="no_college_found_error dn">No college or area found!</span>
 	        					</div>
 				        	</div>
 				        </div> <!---#green---->
-				         				         
 				        <div class="button_holder">
 				        	<h4 class="btn_prf"><a class="index_go_btn">Go</a></h4>
 				         	<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
 				        </div>
 				  </div>
+				  <?php
+				  if(!isset($_SESSION['city'])) {
+				  ?>
+				  <div class="boxes">
+				    <div class="popup_index" id="popup_index">
+					    <div class="popup_content">
+					    	<label>Select your city</label>
+							<select name="print_book_city_name" class="initial_city_name">
+								<option value="" >Select your city</option>
+								<?php
+        							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry'";
+									$city = mysqli_query($connection, $city_query);
+									while($row = mysqli_fetch_array($city,MYSQLI_ASSOC)){
+										if(strtolower($row['city_name']) == 'puducherry'){
+											echo "<option selected value ='".$row['city_id']."'>".$row['city_name']."</option>";
+										}
+										// else{
+											// echo "<option value ='".$row['city_id']."'>".$row['city_name']."</option>";
+										// }
+										
+									}
+        						?>
+							</select>
+					   		<div class="button_holder">
+							   	<h3 class="select_city_btn"><a class="">Go</a></h3>
+							</div>
+					    </div>
+					</div>
+				    <div class="background_shadow" id="background_shadow"> </div>
+				</div>
+				 <?php } else {?>
+		     		<input type="hidden" name="print_book_city_name" value="<?php echo $_SESSION['city']; ?>" class="initial_city_name" />
+		    	 <?php } ?>
 		     </form>
+		    
 			</div> <!--id content---->
 	       </div> <!-- container -->
 	     </section>  
     </main><!-- Main Product Detail: End -->
-    <div class="boxes">
-	    <div class="popup_index" id="popup_index">
-		    <div class="popup_content">
-		    	<label>Select your city</label>
-				<select name="" class="" id="">
-					<option value="" >Select your city</option>
-					<option value="" >Tamilnadu</option>
-					<option value="" >Pudhucherry</option>
-					<!-- <?php
-						$state = selectfunction('*',PAPERSIZE,'',$connection);
-						while($row = mysqli_fetch_array($state)){
-							echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
-						}
-					?> -->
-				</select>
-		   		<div class="button_holder">
-				   	<h3><a class="" href="#">Go</a></h3>
-				</div>
-		    </div>
-		</div>
-	    <div class="background_shadow" id="background_shadow"> </div>
-	</div>
+    
 <?php include('footer.php') ?>
