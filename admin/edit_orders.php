@@ -36,7 +36,8 @@ if (isset($_GET['update']))
 			$order_shipping_department = '';
 			$order_shipping_college = NULL;
 		}
-		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_student_id='$order_student',order_student_year='$order_student_year',	order_shipping_department='$order_shipping_department',order_shipping_college_id='$order_shipping_college',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state_id='$order_shipping_state',order_shipping_city='$order_shipping_city',order_shipping_area_id='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);	
+
+		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_student_id='$order_student',order_student_year='$order_student_year',order_shipping_department='$order_shipping_department',order_shipping_college_id='$order_shipping_college',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state_id='$order_shipping_state',order_shipping_city_id='$order_shipping_city',order_shipping_area_id='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);	
 		$successMessage = "<div class='container error_message_mandatory'><span> Order Updated Successfully! </span></div>";	
 	}
 	
@@ -148,7 +149,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Shipping State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="order_shipping_state">
+									<select class="product-type-filter form-control state_act" id="sel_b" name="order_shipping_state">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -164,39 +165,29 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Shipping City<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="order_shipping_city">
+									<select class="product-type-filter form-control city_act" id="sel_b" name="order_shipping_city">
 								        <option>
-											<span>Select State</span>
+											<span>Select City</span>
 										</option>
 								        <?php
 						                    $query = mysql_query("select * from stork_city where city_status='1'");
-						                    echo mysql_num_rows($query);
-						                    echo $row['order_shipping_city_id'];
-					                        while ($cityrow = mysql_fetch_array($query)) {
-					                        echo $cityrow['city_id']."<br>";
-					                        if($cityrow['city_id'] == $row['order_shipping_city_id'])
-					                        	echo "<option selected value='".$cityrow['city_id']."'>".$cityrow['city_name']."</option>";
+					                        while ($staterow = mysql_fetch_array($query)) {
+					                        if($row['order_shipping_city_id'] == $staterow['city_id'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
 					                        }
 			                        ?>
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Shipping City<span class="required">*</span></label>
-									<input type="text" class="form-control" id="shippingcity" placeholder="Shipping City" name="order_shipping_city" value="<?php echo($row['order_shipping_city']); ?>">
-								</div>
-								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="order_shipping_area">
+									<select class="product-type-filter form-control area_act" id="sel_c" name="order_shipping_area">
 								        <option>
 											<span>Select Area</span>
 										</option>
 								        <?php
 					                    $query = mysql_query("select * from stork_area where area_status='1'");
-				                        while ($staterow = mysql_fetch_array($query)) {
-				                        if($row['order_shipping_area_id'] == $staterow['area_id'])   
-				                        	echo "<option selected value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
-				                        else
-				                        	echo "<option value='".$staterow['area_id']."'>".$staterow['area_name']."</option>";
+				                        while ($arearow = mysql_fetch_array($query)) {
+				                        if($row['order_shipping_area_id'] == $arearow['area_id'])   
+				                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
 				                        }
 					                        ?>
 			                        ?>

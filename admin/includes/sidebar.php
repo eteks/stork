@@ -92,6 +92,12 @@ function countOfferZone()
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
+function countTransaction()
+{
+	$query = mysqlQuery("SELECT count(transaction_id) as total FROM stork_ccavenue_transaction");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 ?> 
 <aside class="col-md-3 col-sm-4 col-xs-12 account-sidebar sidebar">
 	<h3 class="acc-title lg">Dashboard</h3>
@@ -444,7 +450,7 @@ function countOfferZone()
 				</li>
 				
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="orders.php" || basename($_SERVER['PHP_SELF'])=="edit_orders.php" || basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="edit_order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php" || basename($_SERVER['PHP_SELF'])=="edit_track_order.php")
+					if(basename($_SERVER['PHP_SELF'])=="orders.php" || basename($_SERVER['PHP_SELF'])=="edit_orders.php" || basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="edit_order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php" || basename($_SERVER['PHP_SELF'])=="edit_track_order.php" || basename($_SERVER['PHP_SELF'])=="transaction.php")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -458,7 +464,7 @@ function countOfferZone()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Order
+						<!-- <i class="fa fa-file"></i> --> Order and Transaction
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
@@ -472,8 +478,12 @@ function countOfferZone()
 						<li>
 							<a href="track_order.php"><i class="fa fa-list"></i><span> Track Order (<?php echo countOrder() ?>) </span></a>
 						</li>
+						<li>
+							<a href="transaction.php"><i class="fa fa-list"></i><span> Transaction Details (<?php echo countTransaction() ?>) </span></a>
+						</li>
 					</ul>
 				</li>
+
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_offer_zone.php" || 
 					basename($_SERVER['PHP_SELF'])=="offer_zones.php" ||basename($_SERVER['PHP_SELF'])=="edit_offer_zone.php")

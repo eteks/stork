@@ -458,6 +458,37 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
                }
            });
        });
+
+	jQuery(".city_act").on('change',function () {
+		// alert('success');
+        selected_city = $('option:selected',this).text();
+        selected_city_id = $('option:selected',this).val();
+        form_data = {'city_name':selected_city,'city_id':selected_city_id};
+        // alert(form_data);
+        // alert(JSON.stringify(form_data));
+         $.ajax({
+               type: "POST",
+               url: "load_area.php?loadareafromdb=true",
+               data: form_data,
+               cache: false,
+               success: function(data) { 
+               	// alert(data);             
+                var obj = JSON.parse(data);
+                var options = '<option value="">Select Area</option>';   
+                if(obj.length!=0){               
+                  $.each(obj, function(i){
+                    options += '<option value="'+obj[i].area_id+'">'+obj[i].area_name+'</option>';
+                  });  
+                }   
+                else{
+                    alert('No Area added for '+selected_city);    
+                }  
+                $('.area_act').html(options);                  
+               }
+           });
+       });
+
+
 jQuery("#add_city").submit(function(){ 
 
 		var input = jQuery('#'+required_myform);
