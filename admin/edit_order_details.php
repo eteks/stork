@@ -79,7 +79,7 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">Order ID<span class="required">*</span></label>
-									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>">
+									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>" disabled>
 								</div>
 								<div class="cate-filter-content">
 								    <label for="last-name">Order Paper Print Type<span class="required">*</span></label>
