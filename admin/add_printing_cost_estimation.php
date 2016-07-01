@@ -49,9 +49,6 @@ $cost_status=$_POST['cost_status'];
 		</div>
 	</div>
 </section>
-<div class="container">
-	<span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -63,6 +60,9 @@ $cost_status=$_POST['cost_status'];
 			<div class="form-edit-info">
 				<h4 class="acc-sub-title">Printing Cost Estimation</h4>
 				<form action="add_printing_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
+					<div class="container">
+						<span class="error_test"> Please fill all required(*) fields </span>
+					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">

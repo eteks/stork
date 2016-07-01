@@ -5,9 +5,6 @@ include "includes/header.php";
 <title>Add Offer Zone</title>
 </head>
 <body>
-
-
-
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$message ='';
@@ -79,9 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	</div>
 </section>
 <div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<div class="container">
  <span class="error_image"> Please Upload Image </span>
 </div>
 <div class="container">
@@ -94,10 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Offer Zone Information</h3>
-						<div class="form-edit-info">
+						<h3 class="acc-title lg">Add Offer Zone Information</h3>						
+						<div class="form-edit-info">							
 							<h4 class="acc-sub-title">Offer Zone Information</h4>
 							<form action="add_offer_zone.php" method="POST" id="add_offer_zone" name="edit-acc-info" enctype="multipart/form-data">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
 								    <label for="first-name">Offer Zone Title<span class="required">*</span></label>
 									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offer Zone Title" name="offerzone_title">

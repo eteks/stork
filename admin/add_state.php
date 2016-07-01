@@ -43,9 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			</div>
 		</div>
 	</div>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -55,8 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
 						<h3 class="acc-title lg">Add State Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">State Information</h4>
+							<h4 class="acc-sub-title">State Information</h4>							
 							<form action="add_state.php" id="add_state" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
 								    <label for="last-name">State Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="statename" autocomplete="off" placeholder="State Name" name="state_name">

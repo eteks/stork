@@ -69,15 +69,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<div class="container">
- <span class="error_email"> Please Enter Valid email address </span>
-</div>
-<div class="container">
- <span class="error_phone"> Please Enter Valid mobile number </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -89,6 +80,15 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Order Information</h4>
 							<form action="edit_orders.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_orders">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ <span class="error_email"> Please Enter Valid email address </span>
+</div>
+<div class="container">
+ <span class="error_phone"> Please Enter Valid mobile number </span>
+</div>
 							<?php 
 								$match = "SELECT * FROM `stork_order` WHERE `order_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -111,20 +111,20 @@ if(isset($_GET["id"]))
 									<input type="text" class="form-control" id="studentname" placeholder="Student Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Student Id<span class="required">*</span></label>
-									<input type="text" class="form-control" id="studentid" placeholder="Student Id" name="order_student" value="<?php if($row['order_student_id'] !=0) echo($row['order_student_id']); else echo ""; ?>">
+								    <label for="last-name">Student Id<span class="required"></span></label>
+									<input type="text" class="form-control"  placeholder="Student Id" name="order_student" value="<?php if($row['order_student_id'] !=0) echo($row['order_student_id']); else echo ""; ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Student Year<span class="required">*</span></label>
-									<input type="text" class="form-control" id="studentyear" placeholder="Student Year" name="order_student_year" value="<?php if($row['order_student_year']) echo($row['order_student_year']); else echo ""; ?>"/>
+								    <label for="last-name">Student Year<span class="required"></span></label>
+									<input type="text" class="form-control"  placeholder="Student Year" name="order_student_year" value="<?php if($row['order_student_year']) echo($row['order_student_year']); else echo ""; ?>"/>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Shipping Department<span class="required">*</span></label>
-									<input type="text" class="form-control" id="shippingdepartment" placeholder="Firstname" name="order_shipping_department" value="<?php echo($row['order_shipping_department']); ?>">
+								    <label for="first-name">Shipping Department<span class="required"></span></label>
+									<input type="text" class="form-control"  placeholder="Firstname" name="order_shipping_department" value="<?php echo($row['order_shipping_department']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Shipping College<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="order_shipping_college">
+								    <label for="first-name">Shipping College<span class="required"></span></label>
+									<select class="product-type-filter form-control"  name="order_shipping_college">
 								        <option>
 											<span>Select College</span>
 										</option>
@@ -144,12 +144,12 @@ if(isset($_GET["id"]))
 									<input type="text" class="form-control" id="shippingaddressline1" placeholder="Shipping Address Line1" name="order_shipping_line1" value="<?php echo($row['order_shipping_line1']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Shipping Address Line2<span class="required">*</span></label>
+								    <label for="last-name">Shipping Address Line2<span class="required"></span></label>
 									<input type="text" class="form-control" id="" placeholder="Shipping Address Line2" name="order_shipping_line2" value="<?php echo($row['order_shipping_line2']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Shipping State<span class="required">*</span></label>
-									<select class="product-type-filter form-control state_act" id="sel_b" name="order_shipping_state">
+									<select class="product-type-filter form-control state_act" id="sel_a" name="order_shipping_state">
 								        <option>
 											<span>Select State</span>
 										</option>

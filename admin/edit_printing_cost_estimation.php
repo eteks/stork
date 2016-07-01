@@ -59,9 +59,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -73,6 +70,9 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Printing Cost Estimation Information</h4>
 							<form action="edit_printing_cost_estimation.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$id'";
 								$qry = mysqlQuery($match);

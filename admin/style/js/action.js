@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 	var required_paperprinttype =["paperprinttype","amount"];
 	var required_cost_estimation =["amount"];
 	var required_binding_cost_estimation =["amount"];
-	var required_edit_orders =["customername","studentname","studentid","studentyear","shippingdepartment","shippingaddressline1","shippingcity","totalitems","test","phone"];
+	var required_edit_orders =["customername","studentname","shippingaddressline1","shippingcity","totalitems","test","phone"];
 	var required_edit_order_details =["orderid","pages","colorprintpage","comments","amount"];
 	var required_edit_track_order =["dateofdelivered"];
 	sel_a = jQuery("#sel_a");

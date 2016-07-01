@@ -67,15 +67,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<div class="container">
- <span class="error_email"> Please Enter Valid email address </span>
-</div>
-<div class="container">
- <span class="error_phone"> Please Enter Valid mobile number </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -87,6 +78,15 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">User Information</h4>
 							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_users">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ 									<span class="error_email"> Please Enter Valid email address </span>
+								</div>
+								<div class="container">
+									 <span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
 							<?php 
 								$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 								$qry = mysqlQuery($match);

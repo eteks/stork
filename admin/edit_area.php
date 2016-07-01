@@ -54,9 +54,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -68,6 +65,9 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="edit_area.php?update=<?php echo $id; ?>" id="edit_area" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 							<?php  
 								$match = "SELECT * FROM `stork_area` WHERE `area_id`='$id'";
 								$qry = mysqlQuery($match);

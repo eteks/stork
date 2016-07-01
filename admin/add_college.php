@@ -46,9 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -60,6 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
 							<form action="add_college.php" id="add_college" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="area_id">
