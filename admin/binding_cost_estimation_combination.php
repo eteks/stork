@@ -13,7 +13,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Binding cost Estimation</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
