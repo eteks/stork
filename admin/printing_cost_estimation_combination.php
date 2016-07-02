@@ -75,7 +75,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Printing Cost Estimation Combination</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -108,7 +108,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     <?php include 'includes/sidebar.php'; ?>
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
-        <h3 class="acc-title lg clone_heading"> Cost estimation</h3>
+        <h3 class="acc-title lg clone_heading"> Printing Cost estimation</h3>
 <div class="amout_fixed_status">
         <span>Amount fixed status </span><select id="select-category" name="categories">
     <option value="">All</option>
@@ -163,7 +163,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                                     if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){        
                                         $status = "<td>".$cost_array['cost_estimation_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
                                                     <span class='nobr'>
-                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_cost_estimation.php?id=".$cost_array['cost_estimation_id']."'><i class='fa fa-pencil-square-o'></i></a>
+                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_printing_cost_estimation.php?id=".$cost_array['cost_estimation_id']."'><i class='fa fa-pencil-square-o'></i></a>
                                                     <span class='separator'></span> 
                                                     <a class='btn btn-xs btn-danger delete' title='Delete' data-id=".$cost_array['cost_estimation_id']." href='#myModal1' data-toggle='modal' id='delete'><i class='fa fa-trash-o'></i></a>
                                                     </span>
@@ -187,7 +187,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         $(document).on("click", ".delete", function () {
         var myId = $(this).data('id');
         $(".modal-body #vId").val( myId );
-        $("#del_link").prop("href", "cost_estimation_combination.php?delete="+myId);
+        $("#del_link").prop("href", "printing_cost_estimation_combination.php?delete="+myId);
         });
     </script>
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All Cities</title>
+<title>Edit City</title>
 </head>
 <body>
 <?php 
@@ -46,7 +46,7 @@ if(isset($_GET["id"]))
 						<span> City </span>
 					</li>
 					<li>
-						<span>Edit Cities</span>
+						<span>Edit City</span>
 					</li>
 				</ul>
 			</div>
@@ -54,10 +54,6 @@ if(isset($_GET["id"]))
 	</div>
 </section>
 <?php if($successMessage) echo $successMessage; ?>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -68,6 +64,9 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">City Information</h4>
 							<form action="edit_city.php?update=<?php echo $id; ?>" id="edit_city" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<?php
 									$match = "SELECT * FROM `stork_city` WHERE `city_id`='$id'";
 									$qry = mysqlQuery($match);

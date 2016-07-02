@@ -105,7 +105,7 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 						<span class="error_admin_login"> Please fill out all mandatory fields </span>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<h4>Returning Customers</h4>
+						<h4>Returning Administration</h4>
 						<p>If you have an account with us, please log in.</p>
 						<form id="login-form" class="form-validate form-horizontal" method="post" action="index.php" accept-charset="UTF-8">
 							<p>User Name <span class="star">*</span></p>

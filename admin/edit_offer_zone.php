@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Edit Offerzone</title>
+<title>Edit Offer zone</title>
 </head>
 <body>
 <?php 
@@ -104,9 +104,6 @@ if(isset($_GET["id"]))
   </div>
  </div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -118,6 +115,9 @@ if(isset($_GET["id"]))
    <div class="form-edit-info">
     <h4 class="acc-sub-title">Offerzone Information</h4>
     <form action="edit_offer_zone.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_offer_zone" enctype="multipart/form-data">
+    	<div class="container">
+		<span class="error_test"> Please fill all required(*) fields </span>
+		</div>
      <?php  
       $offer_query = mysqlQuery("SELECT * FROM `stork_offer_zone` WHERE `offer_zone_id`='$id'");
       $offer_array = mysql_fetch_array($offer_query);

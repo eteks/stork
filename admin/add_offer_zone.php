@@ -2,12 +2,9 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add Offerzone</title>
+<title>Add Offer Zone</title>
 </head>
 <body>
-
-
-
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$message ='';
@@ -68,19 +65,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Offerzone </span>
+						<span> Offer Zone </span>
 					</li>
 					<li>
-						<span>Add Offerzone</span>
+						<span>Add Offer Zone</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <div class="container">
  <span class="error_image"> Please Upload Image </span>
 </div>
@@ -94,26 +88,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Offerzone Information</h3>
-						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Offerzone Information</h4>
+						<h3 class="acc-title lg">Add Offer Zone Information</h3>						
+						<div class="form-edit-info">							
+							<h4 class="acc-sub-title">Offer Zone Information</h4>
 							<form action="add_offer_zone.php" method="POST" id="add_offer_zone" name="edit-acc-info" enctype="multipart/form-data">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
-								    <label for="first-name">Offerzone Title<span class="required">*</span></label>
-									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offerzone Title" name="offerzone_title">
+								    <label for="first-name">Offer Zone Title<span class="required">*</span></label>
+									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offer Zone Title" name="offerzone_title">
 								</div>
 								<div class="form-group offer_zone_position">
-								    <label for="last-name">Offerzone Image<span class="required">*</span></label>
+								    <label for="last-name">Offer Zone Image<span class="required">*</span></label>
 
 							<input type="file" class="form-control browse_style" id="OfferzoneImage" name="offerzone_image">
 									<!-- <a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a> -->
 
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Offerzone Status<span class="required">*</span></label>
+								    <label for="first-name">Offer Zone Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="offerzone_status">
 								        <option value="">
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1">
 											<span>Active</span>

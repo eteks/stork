@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Add Paper Size</title>
 </head>
 <body>
 <?php 
@@ -39,19 +39,16 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Paper size </span>
+						<span> Paper Size </span>
 					</li>
 					<li>
-						<span>Add Paper size</span>
+						<span>Add Paper Size</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -63,12 +60,15 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper size Information</h4>
 							<form action="add_paper_size.php" method="POST" name="edit-acc-info" id="add_paper_size">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
-								    <label for="last-name">Papersize<span class="required">*</span></label>
-									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="PaperSize">
+								    <label for="last-name">Paper Size<span class="required">*</span></label>
+									<input type="text" class="form-control" id="papersize" autocomplete="off" name="paper_size" placeholder="Paper Size">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Papersize Status<span class="required">*</span></label>
+								    <label for="first-name">Paper Size Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_size_status" id="sel_a">
 								        <option value="">
 											<span>Select Status</span>

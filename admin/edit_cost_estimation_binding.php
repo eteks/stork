@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Cost Estimation Binding</title>
 </head>
 <body>
 <?php
@@ -15,13 +15,12 @@ if (isset($_GET['update']))
 		$cost_estimation_binding_type = $_POST["cost_estimation_binding_type"];
 		$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 		$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
-		echo('1');
 		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_binding` WHERE cost_estimation_binding_type='$cost_estimation_binding_type' AND cost_estimation_binding_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Already Binding Cost Assigned! </span></div>";
 		} else {	
-			mysqlQuery("UPDATE `stork_cost_estimation_binding` SET cost_estimation_binding_type='$binding_type',cost_estimation_binding_amount='$cost_estimation_binding_amount', cost_estimation_binding_status='$cost_estimation_binding_status' WHERE cost_estimation_binding_id=".$val);
+			mysqlQuery("UPDATE `stork_cost_estimation_binding` SET cost_estimation_binding_type='$cost_estimation_binding_type',cost_estimation_binding_amount='$cost_estimation_binding_amount', cost_estimation_binding_status='$cost_estimation_binding_status' WHERE cost_estimation_binding_id=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Updated Successfully! </span></div>";
 		}
 				
@@ -55,9 +54,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -69,6 +65,9 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Binding Cost Estimation Information</h4>
 							<form action="edit_cost_estimation_binding.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation_binding">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation_binding` WHERE `cost_estimation_binding_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -80,7 +79,7 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="first-name">Binding Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="binding_type">
+									<select class="product-type-filter form-control" id="sel_a" name="cost_estimation_binding_type">
 								        <option>
 											<span>Select Binding Type</span>
 										</option>
@@ -92,7 +91,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" placeholder="Amount" name="amount" value="<?php echo($row['cost_estimation_binding_amount']); ?>">
+									<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" placeholder="Amount" name="cost_estimation_binding_amount" value="<?php echo($row['cost_estimation_binding_amount']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>

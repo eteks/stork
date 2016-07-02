@@ -24,7 +24,7 @@ $(document).ready(function(){
   //     }).hide();   
   // });
 
-  $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table').DataTable();
+  $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable();
 
   $('.error_message_mandatory').delay(2000).fadeOut();
 

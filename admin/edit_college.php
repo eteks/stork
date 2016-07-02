@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit College</title>
 </head>
 <body>
 <?php
@@ -55,10 +55,6 @@ if(isset($_GET["id"]))
 	</div>
 </section>
 <?php if($successMessage) echo $successMessage; ?>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -69,6 +65,9 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
 							<form action="edit_college.php?update=<?php echo $id; ?>" id="edit_college" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<?php 
 								$match = "SELECT * FROM `stork_college` WHERE `college_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -103,7 +102,7 @@ if(isset($_GET["id"]))
 								    <label for="first-name">College Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="s6" name="college_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['college_status'] == 1) echo "selected"; ?>>Active</option>
 										<option value="0" <?php if ($row['college_status'] == 0) echo "selected"; ?>>InActive</option>

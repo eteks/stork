@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Order Details</title>
 </head>
 <body>
 <?php
@@ -54,9 +54,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -68,6 +65,9 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Order Details Information</h4>
 							<form action="edit_order_details.php?update=<?php echo $id; ?>" id="edit_order_details" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 							<?php 
 								$match = "SELECT * FROM `stork_order_details` WHERE `order_details_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -79,7 +79,7 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">Order ID<span class="required">*</span></label>
-									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>">
+									<input type="text" class="form-control" id="orderid" placeholder="Order ID" name="order_id" value="<?php echo($row['order_id']); ?>" disabled>
 								</div>
 								<div class="cate-filter-content">
 								    <label for="last-name">Order Paper Print Type<span class="required">*</span></label>

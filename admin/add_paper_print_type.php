@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Add Paper Print Type</title>
 </head>
 <body>
 <?php 
@@ -48,9 +48,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
@@ -62,6 +59,9 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Print Type Information</h4>
 							<form action="add_paper_print_type.php" method="POST" name="edit-acc-info" id="add_paper_print_type">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
 									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paper Print Type">
