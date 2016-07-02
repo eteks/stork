@@ -42,48 +42,42 @@
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-4 col-xs-12 corporate footer-col">
-						<h2>Corporate</h2>
+						<h2>Services</h2>
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a href="about-us.html" title="About us">About</a>
+									<a title="Printing">Printing</a>
 								</li>
 								<li>
-									<a href="cart.html" title="Green">Green</a>
+									<a title="Project Binding">Project Binding</a>
 								</li>
 								<li>
-									<a href="checkout.html" title="Afiliates">Afiliates</a>
+									<a title="Cabin Booking ">Cabin Booking </a>
 								</li>
 								<li>
-									<a href="contact.html" title="Non-profits and Government">Non-profits and Government</a>
-								</li>
-								<li>
-									<a href="detail.html" title="Terms of Service">Terms of Service</a>
-								</li>
-								<li>
-									<a href="faq.html" title="Privacy Policy">Privacy Policy</a>
+									<a  title="Multi printing">Multi printing</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-4 col-xs-12 support footer-col">
-						<h2>Support</h2>
+						<h2>Feedback</h2>
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a href="myaccount-information.html" title="My Account">My Account</a>
+									<a  title="My Account">Name</a>
+									<input type="text" name="" value="">
 								</li>
 								<li>
-									<a href="#" title="Design Guide">Design Guide</a>
+									<a  title="My Account">Email</a>
+									<input type="text" name="" value="">
 								</li>
 								<li>
-									<a href="faq.html" title="FAQ">FAQ</a>
+									<a  title="My Account">Message</a>
+									<textarea cols="27" rows="3"></textarea>
 								</li>
 								<li>
-									<a href="#" title="Design Service">Design Services</a>
-								</li>
-								<li>
-									<a href="contact.html" title="Contact Us">Contact Us</a>
+									<h4><a>Submit</a></h4>
 								</li>
 							</ul>
 						</div>
@@ -92,7 +86,7 @@
 						<h2>Other Info</h2>
 						<div class="footer-content">
 							<p>
-								Printmart provides fast online printing for both homes and businesses. We  provide high quality business cards, postcards, flyers, brochures, stationery and  other premium online print products.
+								Printstork provides fast online printing for both homes and businesses. We  provide high quality business cards, postcards, flyers, brochures, stationery and  other premium online print products.
 							</p>
 							<img src="images/footer-payment.png" alt="Payment method">
 						</div>
@@ -103,8 +97,12 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-						<p class="copy-right">Central - Copyright © 2016 <a href="http://www.atomicka.com/" title="Cmsmart - Magento theme">Infom Atomicka Tech Pvt Ltd</a>. All Rights Reserved</p>
+					<div class="col-md-6">
+						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
+						
+					</div>
+					<div class="col-md-6">
+						<p class="dev_partner" style="text-align: right;"><a href="http://www.atomicka.com">Development Partner Infom Atomicka (Tech) Pvt Ltd.</a></p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top
@@ -221,6 +219,7 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/dateofbirth.js" type="text/javascript"></script>
+    <script src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript">
     	$("#dob").birthdayPicker();

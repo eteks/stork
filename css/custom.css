@@ -601,10 +601,13 @@ h4.order_or_button{
 }
 /* Popup css added by siva*/
 .popup_index label {
-    color: #fff;
+    color: #000;
     float: left;
     letter-spacing: 1px;
     line-height: 40px;
+}
+#popup_index .select_city_btn a{
+	background-color :#25bce9 !important;
 }
 .popup_index select {
     margin-left: 14px;
@@ -632,7 +635,7 @@ h4.order_or_button{
     padding:20px;
     border-radius: 0;
     text-align: center;
-    background-color: #000;
+    background-color: #d7d7d7;
 }
 .popup_content {
     margin: 50px 0;
@@ -694,3 +697,24 @@ h4.order_or_button{
 .remove_paper_range {
     display: none;
 }
+.footer-content input ,.footer-content textarea {
+    width: 100%;
+}
+
+.footer-content h4 a{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: right;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    cursor:pointer;
+	}

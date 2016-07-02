@@ -1,10 +1,8 @@
 <?php 
 include('header.php');
-include('captcha.php');
 if($_SESSION['login_status'] == 1){
 		header('location:index.php');
 }
-
 ?>
 <?php 
   	if(isset($_POST['save_new_user'])) {

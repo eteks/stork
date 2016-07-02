@@ -1,12 +1,8 @@
 <?php 
 	include('header.php');
-?>
-<?php 
-	$_SESSION['service'] = 'print';
-?>
-	<?php 
+	if(!empty($_POST)){
 	$track_order_search=$_POST['track_order_search'];
-	echo $track_order_search;
+	//echo $track_order_search;
 	// echo $track_order_search;
 	$track_status = mysqli_query($connection,"SELECT * FROM stork_order_details
 								INNER JOIN stork_order ON stork_order.order_id=stork_order_details.order_id
@@ -215,6 +211,11 @@
 		</div>
 	</section>
 	<?php } 
+	}
+else{
+	die('<script type="text/javascript">window.location.href="index.php";</script>');
+	exit();
+}
 	?>	
 	</div><!-- Main Product Detail: End -->	
 <?php include('footer.php') ?>

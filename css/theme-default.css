@@ -4603,7 +4603,7 @@ span.star{
 #pr-login .container .col-md-6.col-sm-6.col-xs-12.right #forgotpass-form .email{
     margin-bottom:40px;
 }
-.container .no_pad  input{
+.container .col-md-6  input{
 	border: 1px solid #d7d7d7;
 	font-size:14px;
 	padding:10px;
@@ -4625,7 +4625,7 @@ span.star{
 .pr-main .container .col-md-6  button:hover{
 	border-bottom:2px solid #646464;
 	cursor:pointer;
-	background:#25bce9;
+	background:#fbc443;
 	color:#ffffff;
 }
 .container .col-md-6 .socail{
@@ -4653,11 +4653,8 @@ span.star{
 #pr-login  .col-md-3{
     float:right;
 }
-#pr-login #login-form {
+#pr-login #login-form{
     padding-top: 15px;
-}
-#pr-login #forgotpass-form {
-  padding-top: 15px;
 }
 #pr-login #login-form button.login{ 
     color: #646464;
@@ -5586,7 +5583,7 @@ h1.ct-header{
 	#pr-login{
 		padding-top:0;
 	}
-	#pr-login .container .no_pad input{
+	#pr-login .container .col-md-6 input{
 		max-width:430px;
 	}
 	.container .col-md-6 button{
@@ -6229,13 +6226,4 @@ section.home-slidershow{
 }
 .upload-add-cart{
 	width:50%;
-}
-.file_name_extension {
-  position: relative;
-}
-.file_name_extension strong {
-  font-size: 12px;
-  left: -114px;
-  /*position: absolute;*/
-  top: 57px;
 }

@@ -452,7 +452,7 @@ $(document).ready(function () {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
     		return false;
     	}
@@ -466,13 +466,15 @@ $(document).ready(function () {
 		var perpageamount = parseFloat($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
 		var bindingamout = parseFloat($('#print_booking_form .print_book_binding_amount').val()?$('#print_booking_form .print_book_binding_amount').val():'0.00');
 		var total_amount = parseFloat($(this).val());
-		if(perpageamount){
-			$('.print_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
-			
-		}else{
-			error_popup('Please select print type,print side,paper size,paper type!');
-			$(this).val('');
+		if(total_amount){
+			if(perpageamount){
+				$('.print_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			}else{
+				error_popup('Please select print type,print side,paper size,paper type!');
+				$(this).val('');
+			}
 		}
+		
 	});
 	
 	// post from when click button and submit type
