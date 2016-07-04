@@ -20,6 +20,9 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> Papersize Already exists! </span></div>";	
 		} else {
 			mysqlQuery("UPDATE `stork_paper_size` SET `paper_size`='$paper_size',`paper_size_status`='$paper_size_status' WHERE `paper_size_id`=".$val);
+			if(($paper_size_status == 0 && !$_POST['change_status'])||($paper_size_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_size_status' WHERE `cost_estimation_paper_size_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Papersize Updated Successfully! </span></div>";		
 		}				
 	}	
@@ -69,13 +72,16 @@ if(isset($_GET["id"]))
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
+								<?php if ($papersize_array['paper_size_status'] == 0){ ?>
+									<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Size<span class="required">*</span></label>
 									<input type="text" class="form-control" id="papersize" name="Papersize" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Papersize Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="paper_size_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="paper_size_status">
 								 <option value="">
 											<span>Select Status</span>
 										</option>
