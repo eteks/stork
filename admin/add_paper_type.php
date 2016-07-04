@@ -5,6 +5,27 @@ include "includes/header.php";
 <title>Add Paper Type</title>
 </head>
 <body>
+<?php 
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$paper_type = $_POST['paper_type'];
+		$paper_type_status=$_POST['paper_type_status'];
+		if($paper_type=="" || $paper_type_status=="") {
+			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}
+		else {
+			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");
+			$row=mysql_fetch_array($qr);
+			if($row > 0) {
+				$successMessage = "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
+			}
+			else {
+				mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status) VALUES ('$paper_type','$paper_type_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
+			}
+		}
+	}
+
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -26,7 +47,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -40,27 +60,7 @@ include "includes/header.php";
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
-								 <?php 
-									if($_SERVER['REQUEST_METHOD'] == 'POST') {
-										$paper_type = $_POST['paper_type'];
-										$paper_type_status=$_POST['paper_type_status'];
-										if($paper_type=="" || $paper_type_status=="") {
-											// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-										}
-										else {
-											$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");
-											$row=mysql_fetch_array($qr);
-											if($row > 0) {
-												echo "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
-											}
-											else {
-												mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status) VALUES ('$paper_type','$paper_type_status')");
-												echo "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
-											}
-										}
-									}
-								
-								?>
+								 <?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Type<span class="required">*</span></label>
 									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">

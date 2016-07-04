@@ -6,6 +6,27 @@ include "includes/header.php";
 <title>Add Paper Side</title>
 </head>
 <body>
+<?php 
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$paper_side = $_POST['paper_side'];
+		$paper_side_status=$_POST['paper_side_status'];
+		if($paper_side=="" || $paper_side_status=="") {
+			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}
+		else {
+			$qr=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side='$paper_side'");
+			$row=mysql_fetch_array($qr);
+			if($row > 0) {
+			$successMessage =  "<div class='container error_message_mandatory'><span> Paper side already exist </span></div>";
+			}
+			else {
+				mysqlQuery("INSERT INTO `stork_paper_side` (paper_side,paper_side_status) VALUES ('$paper_side','$paper_side_status')");
+				$successMessage =  "<div class='container error_message_mandatory'><span> Paper side inserted successfully </span></div>";
+			}
+		}
+	}
+
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -27,7 +48,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -41,27 +61,7 @@ include "includes/header.php";
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
-								<?php 
-										if($_SERVER['REQUEST_METHOD'] == 'POST') {
-											$paper_side = $_POST['paper_side'];
-											$paper_side_status=$_POST['paper_side_status'];
-											if($paper_side=="" || $paper_side_status=="") {
-												// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-											}
-											else {
-												$qr=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side='$paper_side'");
-												$row=mysql_fetch_array($qr);
-												if($row > 0) {
-												echo "<div class='container error_message_mandatory'><span> Paper side already exist </span></div>";
-												}
-												else {
-													mysqlQuery("INSERT INTO `stork_paper_side` (paper_side,paper_side_status) VALUES ('$paper_side','$paper_side_status')");
-													echo "<div class='container error_message_mandatory'><span> Paper side inserted successfully </span></div>";
-												}
-											}
-										}
-									
-									?> 
+					 				<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Side<span class="required">*</span></label>
 									<input type="text" class="form-control" id="paperside" autocomplete="off" name="paper_side" placeholder="Paper Side">
