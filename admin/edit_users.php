@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Users</title>
 </head>
 <body>
 <?php
@@ -67,16 +67,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<div class="container">
- <span class="error_email"> Please Enter Valid email address </span>
-</div>
-<div class="container">
- <span class="error_phone"> Please Enter Valid mobile number </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -87,6 +77,16 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">User Information</h4>
 							<form action="edit_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_users">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ 									<span class="error_email"> Please Enter Valid email address </span>
+								</div>
+								<div class="container">
+									 <span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
 								$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 								$qry = mysqlQuery($match);
@@ -109,7 +109,7 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="First Name" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Lastname<span class="required">*</span></label>
+								    <label for="first-name">Lastname<span class="required"></span></label>
 									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
@@ -140,8 +140,8 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="user_state_id">
+								    <label for="first-name">State<span class="required"></span></label>
+									<select class="product-type-filter form-control" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -157,8 +157,8 @@ include "includes/header.php";
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Area<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="user_area_id">
+								    <label for="first-name">Area<span class="required"></span></label>
+									<select class="product-type-filter form-control"  name="user_area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
@@ -180,7 +180,7 @@ include "includes/header.php";
 								
 								<div class="cate-filter-content">	
 								    <label for="first-name">Users Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_d" name="user_status">
+									<select class="product-type-filter form-control" id="sel_b" name="user_status">
 								        <option>
 											<span>Select status</span>
 										</option>

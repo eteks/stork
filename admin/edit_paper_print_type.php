@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Paper Print Type</title>
 </head>
 <body>
 <?php
@@ -20,6 +20,9 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_paper_print_type` SET `paper_print_type`='$paper_print_type',`paper_print_type_status`='$paper_print_type_status' WHERE `paper_print_type_id`=".$val);
+			if(($paper_print_type_status == 0 && !$_POST['change_status'])||($paper_print_type_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_print_type_status' WHERE `cost_estimation_paper_print_type_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Updated Successfully! </span></div>";	
 		}		
 	}	
@@ -51,10 +54,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -65,6 +64,10 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Print Type Information</h4>
 							<form action="edit_paper_print_type.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_print_type">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php  
 								$match = "SELECT * FROM `stork_paper_print_type` WHERE `paper_print_type_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -74,13 +77,19 @@ if(isset($_GET["id"]))
 									while($row = mysql_fetch_array($qry)) 
 									{
 							?>	
+								<?php if ($row['paper_print_type_status'] == 0){ ?>
+									<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>" <?php if($row['paper_print_type'] == "Color with Black & white"){ echo "disabled";} ?>>
+									<?php if($row['paper_print_type'] == "Color with Black & white"){ ?>
+										<input type="hidden" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<?php } ?>
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Print Type Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="paper_print_type_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="paper_print_type_status">
 								        <option>
 											<span>Select Status</span>
 										</option>

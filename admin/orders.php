@@ -2,9 +2,20 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Orders</title>
 </head>
 <body>  
+<?php 
+	if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+	{ 	
+
+		$val = $_GET['delete'];
+		mysqlQuery("DELETE FROM `stork_order` WHERE `order_id`='$val'");
+		mysqlQuery("DELETE FROM `stork_order_details` WHERE `order_id`='$val'");
+		$isDeleted = true;
+		$deleteProduct = true;
+	}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -58,6 +69,7 @@ include "includes/header.php";
 						<th>Mobile</th>
 						<th>Address</th>
 						<th>State</th>
+						<th>City</th>
 						<th>Area</th>
 						<th>Created Date</th>
 						<th>Status</th>
@@ -70,6 +82,9 @@ include "includes/header.php";
 					{		
 						$qrystate = mysqlQuery("SELECT * FROM `stork_state` WHERE `state_id`=".$fetch['order_shipping_state_id']);
 						$rowstate = mysql_fetch_array($qrystate);
+
+						$qrycity = mysqlQuery("SELECT * FROM `stork_city` WHERE `city_id`=".$fetch['order_shipping_city_id']);
+						$rowcity = mysql_fetch_array($qrycity);
 
 						$qryarea = mysqlQuery("SELECT * FROM `stork_area` WHERE `area_id`=".$fetch['order_shipping_area_id']);
 						$rowarea = mysql_fetch_array($qryarea);
@@ -87,7 +102,7 @@ include "includes/header.php";
 				            <?php 
 				            if($fetch['order_user_type']==1)
 								echo "Student";
-							else if($fetch['user_type']==2)
+							else if($fetch['order_user_type']==2)
 								echo "Profession";
 							?>
 						</td>
@@ -103,8 +118,9 @@ include "includes/header.php";
 						<td><?php echo $fetch['order_total_items'] ?></td>
 						<td><?php echo $fetch['order_shipping_email'] ?></td>
 						<td><?php echo $fetch['order_shipping_mobile'] ?></td>
-						<td><?php echo $fetch['order_shipping_line1'].$fetch['order_shipping_line2'] ?></td>
+						<td><?php echo $fetch['order_shipping_line1']." ".$fetch['order_shipping_line2'] ?></td>
 			            <td><?php echo $rowstate['state_name'] ?></td>
+			            <td><?php echo $rowcity['city_name'] ?></td>
 			            <td><?php echo $rowarea['area_name'] ?></td>
 			             <?php  $createddate=strtotime($fetch['created_date']);
 								   
@@ -125,7 +141,7 @@ include "includes/header.php";
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_orders.php?id=<?php echo $fetch['order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['order_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
 				        </td>
 				   	</tr>
@@ -141,6 +157,15 @@ include "includes/header.php";
 			} ?>					
 	</div>
 	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "orders.php?delete="+myId);
+		});
+	</script>
+	<!-- Delete popup Start -->
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

@@ -106,7 +106,7 @@ progress::-moz-progress-bar {
 						<div class="w-header-right">
 							<div class="th-hotline">
 								<i class="fa fa-phone"></i>
-								<span>1.866.614.8002</span>
+								<span>0413-2239886</span>
 							</div> 
 						</div>
 					</div>
@@ -215,6 +215,13 @@ progress::-moz-progress-bar {
 												<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
 												<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
 												<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
+												<?php
+												if($cart_data['order_details_is_binding'] == '1'){
+												?>
+												<a class="mcart-name"><b>Binding type</b> : <?php echo $cart_data['order_details_binding_type']; ?></a>
+												<?php	
+												}
+												?>
 												<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
 												<span class="mcart-remove-item cart_remove_item">
 													<i class="fa fa-times-circle"></i>

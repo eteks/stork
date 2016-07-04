@@ -553,12 +553,13 @@
 						<ul>
 							<li class="active"><a data-toggle="tab" href="#tab1">All projects</a></li>
 							<li><a data-toggle="tab" href="#tab2">Leaflets & Flyers</a></li>
-							<li><a data-toggle="tab" href="#tab3" class="last">Logo</a></li>
-							<li><a data-toggle="tab" href="#tab4" class="last">Stationary</a></li>
+							<li><a data-toggle="tab" href="#tab3" class="last">visiting card</a></li>
+							<li><a data-toggle="tab" href="#tab4" class="last">/a>Personalized gift</li>
 							<li><a data-toggle="tab" href="#tab5" class="last">3d product</a></li>
 							<li><a data-toggle="tab" href="#tab6" class="last">Presentation</a></li>
 							<li><a data-toggle="tab" href="#tab7" class="last">Brochure</a></li>
-							<li><a data-toggle="tab" href="#tab8" class="last">Ecommerce</a></li>
+							<li><a data-toggle="tab" href="#tab8" class="last"></a>Multicolor</li>
+							<li><a data-toggle="tab" href="#tab9" class="last"></a>Project binding</li>
 						</ul>
 					</div><!--New Products Title : End -->
 					<div class="tab-content">
@@ -2618,13 +2619,13 @@
 						<ul>
 							<li class="active"><a data-toggle="tab" href="#tab11">All projects</a></li>
 							<li><a data-toggle="tab" href="#tab21">Leaflets & Flyers</a></li>
-							<li><a data-toggle="tab" href="#tab31" class="last">Logo</a></li>
-							<li><a data-toggle="tab" href="#tab41" class="last">Stationary</a></li>
+							<li><a data-toggle="tab" href="#tab31" class="last">visiting card</a></li>
+							<li><a data-toggle="tab" href="#tab41" class="last">Personalized gift</a></li>
 							<li><a data-toggle="tab" href="#tab51" class="last">3d product</a></li>
 							<li><a data-toggle="tab" href="#tab61" class="last">Presentation</a></li>
 							<li><a data-toggle="tab" href="#tab71" class="last">Brochure</a></li>
-							<li><a data-toggle="tab" href="#tab81" class="last">Ecommerce</a></li>
-						</ul>
+							<li><a data-toggle="tab" href="#tab81" class="last">Multicolor</a></li>
+							<li><a data-toggle="tab" href="#tab91" class="last">Project binding</a></li>
 					</div>
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab11">	
@@ -2635,7 +2636,7 @@
 											<img src="images/our_service/5.png" alt="service-05"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2643,7 +2644,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2653,7 +2654,7 @@
 											<img src="images/our_service/6.png" alt="service-06"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2661,7 +2662,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2671,7 +2672,7 @@
 											<img src="images/our_service/6.png" alt="service-07"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2679,7 +2680,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2689,7 +2690,7 @@
 											<img src="images/our_service/8.png" alt="service-08"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2697,7 +2698,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2707,7 +2708,7 @@
 											<img src="images/our_service/6.png" alt="service-09"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2715,7 +2716,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2725,7 +2726,7 @@
 											<img src="images/our_service/10.png" alt="service-10"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -2733,7 +2734,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div> 
@@ -2745,7 +2746,7 @@
 												<img src="images/our_service/5.png" alt="service-05"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2753,7 +2754,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2763,7 +2764,7 @@
 												<img src="images/our_service/6.png" alt="service-06"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2771,7 +2772,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2781,7 +2782,7 @@
 												<img src="images/our_service/8.png" alt="service-08"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2789,7 +2790,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2799,7 +2800,7 @@
 												<img src="images/our_service/9.png" alt="service-09"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2807,7 +2808,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2817,7 +2818,7 @@
 												<img src="images/our_service/10.png" alt="service-10"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2825,7 +2826,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2835,7 +2836,7 @@
 												<img src="images/our_service/7.png" alt="service-07"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2843,7 +2844,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div> 
 							</div> 
@@ -2855,7 +2856,7 @@
 												<img src="images/our_service/6.png" alt="service-06"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2863,7 +2864,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div> 
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2873,7 +2874,7 @@
 												<img src="images/our_service/8.png" alt="service-08"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2881,7 +2882,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2891,7 +2892,7 @@
 												<img src="images/our_service/5.png" alt="service-05"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2899,7 +2900,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2909,7 +2910,7 @@
 												<img src="images/our_service/9.png" alt="service-09"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2917,7 +2918,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2927,7 +2928,7 @@
 												<img src="images/our_service/10.png" alt="service-10"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2935,7 +2936,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2945,7 +2946,7 @@
 												<img src="images/our_service/7.png" alt="service-07"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2953,7 +2954,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div> 
@@ -2965,7 +2966,7 @@
 												<img src="images/our_service/6.png" alt="service-06"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2973,7 +2974,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -2983,7 +2984,7 @@
 												<img src="images/our_service/7.png" alt="service-07"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -2991,7 +2992,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3001,7 +3002,7 @@
 												<img src="images/our_service/8.png" alt="service-08"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -3009,7 +3010,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div> 
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3019,7 +3020,7 @@
 												<img src="images/our_service/5.png" alt="service-05"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -3027,7 +3028,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3037,7 +3038,7 @@
 												<img src="images/our_service/10.png" alt="service-10"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -3045,7 +3046,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3055,7 +3056,7 @@
 												<img src="images/our_service/9.png" alt="service-09"/>
 											</a>
 										</div>
-										<div class="info-recent">
+										<!-- <div class="info-recent">
 											<h2 class="title">eSliproser Postcards</h2>
 											<div class="text-recent">
 												<p>
@@ -3063,7 +3064,7 @@
 												</p>
 											</div>
 											<a href="#" class="read-more">read more</a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div> 
@@ -3075,7 +3076,7 @@
 											<img src="images/our_service/6.png" alt="service-06"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3083,7 +3084,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3093,7 +3094,7 @@
 											<img src="images/our_service/7.png" alt="service-07"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3101,7 +3102,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div> 
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3111,7 +3112,7 @@
 											<img src="images/our_service/5.png" alt="service-05"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3119,7 +3120,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3129,7 +3130,7 @@
 											<img src="images/our_service/9.png" alt="service-09"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3137,7 +3138,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3147,7 +3148,7 @@
 											<img src="images/our_service/8.png" alt="service-08"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3155,7 +3156,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3165,7 +3166,7 @@
 											<img src="images/our_service/10.png" alt="service-10"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3173,7 +3174,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div> 
@@ -3185,7 +3186,7 @@
 											<img src="images/our_service/6.png" alt="service-06"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3193,7 +3194,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3203,7 +3204,7 @@
 											<img src="images/our_service/7.png" alt="service-07"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3211,7 +3212,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3221,7 +3222,7 @@
 											<img src="images/our_service/8.png" alt="service-08"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3229,7 +3230,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3239,7 +3240,7 @@
 											<img src="images/our_service/5.png" alt="service-05"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3247,7 +3248,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3257,7 +3258,7 @@
 											<img src="images/our_service/9.png" alt="service-09"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3265,7 +3266,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3275,7 +3276,7 @@
 											<img src="images/our_service/10.png" alt="service-10"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3283,7 +3284,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div> 
@@ -3295,7 +3296,7 @@
 											<img src="images/our_service/10.png" alt="service-10"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3303,7 +3304,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3313,7 +3314,7 @@
 											<img src="images/our_service/5.png" alt="service-05"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3321,7 +3322,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div> 
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3331,7 +3332,7 @@
 											<img src="images/our_service/7.png" alt="service-07"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3339,7 +3340,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3349,7 +3350,7 @@
 											<img src="images/our_service/8.png" alt="service-08"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3357,7 +3358,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3367,7 +3368,7 @@
 											<img src="images/our_service/6.png" alt="service-06"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3375,7 +3376,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3385,7 +3386,7 @@
 											<img src="images/our_service/9.png" alt="service-09"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3393,7 +3394,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div> 
 						</div> 
@@ -3405,7 +3406,7 @@
 											<img src="images/our_service/5.png" alt="service-05"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3413,7 +3414,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3423,7 +3424,7 @@
 											<img src="images/our_service/6.png" alt="service-06"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3431,7 +3432,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3441,7 +3442,7 @@
 											<img src="images/our_service/7.png" alt="service-07"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3449,7 +3450,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3459,7 +3460,7 @@
 											<img src="images/our_service/8.png" alt="service-08"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3467,7 +3468,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3477,7 +3478,7 @@
 											<img src="images/our_service/9.png" alt="service-09"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3485,7 +3486,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
@@ -3495,7 +3496,7 @@
 											<img src="images/our_service/10.png" alt="service-10"/>
 										</a>
 									</div>
-									<div class="info-recent">
+								<!-- <div class="info-recent">
 										<h2 class="title">eSliproser Postcards</h2>
 										<div class="text-recent">
 											<p>
@@ -3503,7 +3504,7 @@
 											</p>
 										</div>
 										<a href="#" class="read-more">read more</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div> 

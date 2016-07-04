@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit Paper size</title>
 </head>
 <body>
 <?php 
@@ -31,10 +31,6 @@ if(isset($_GET["id"]))
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
-
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
 <section class="header-page">
 	<div class="container">
 		<div class="row">
@@ -55,7 +51,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -70,6 +65,10 @@ if(isset($_GET["id"]))
 							$papersize_array=mysql_fetch_array($papersize_query);
 							?>
 							<form action="edit_paper_size.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_size">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Size<span class="required">*</span></label>
 									<input type="text" class="form-control" id="papersize" name="Papersize" value="<?php echo $papersize_array['paper_size']; ?>" id="first-name" placeholder="Area Name">

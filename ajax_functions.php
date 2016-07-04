@@ -60,5 +60,17 @@
 				echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
 			}
 		}
+		
+		// retrive binding amount based on type
+		if(isset($_POST['binding_amount_value'])){
+			$binding_amount_query = selectfunction('*',BINDINGAMOUNT,'cost_estimation_binding_type ="'.$_POST['binding_type'].'" and cost_estimation_binding_status ="1"',$connection);
+			$row = mysqli_fetch_array($binding_amount_query);
+			if($row['cost_estimation_binding_amount']){
+				echo $row['cost_estimation_binding_amount'];
+			}
+			else{
+				echo "error_bind_amt";
+			}
+		}
 	}// end of is ajax if condition
 ?>

@@ -9,11 +9,12 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
 									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
 									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
-									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
+									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
+									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
 if(mysqli_num_rows($review_details)>0){
 ?>
 
-<main class="main">
+<main class="main" ng-app="">
 	<section class="header-page">
 		<div class="container">
 			<div class="row">
@@ -67,7 +68,7 @@ if(mysqli_num_rows($review_details)>0){
 											<th width="10%" class="th-price">Print side</th>
 											<th width="10%" class="th-tax"><span class="priceColor2">Paper Size</span></th>
 											<th width="15%"  class="th-quanlity">Paper Type</th>
-											<th width="15%"  class="th-quanlity">Color pages no.</th>
+											<!-- <th width="15%"  class="th-quanlity">Color pages no.</th> -->
 											<th width="15%"  class="th-quanlity">Total no. of pages</th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Quantity</span></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Comments</span></th>
@@ -103,22 +104,22 @@ if(mysqli_num_rows($review_details)>0){
 			  	  									</div>
 			  	 								</span>
 			  								</td>
-			  								<td align="right" class="pro_tax">
+			  								<!-- <td align="right" class="pro_tax">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
 												  		<span class="PricetaxAmount">
-												  			<?php if($review_data['order_details_color_print_pages'] != ''){
-												  				echo $review_data['order_details_color_print_pages'];
-												  			}
-															else {
-																echo "NIL";
-															} 
+												  			<?php //if($review_data['upload_files_color_print_pages'] != ''){
+												  				//echo $review_data['upload_files_color_print_pages'];
+												  			//}
+															//else {
+																//echo "NIL";
+															//} 
 												  			?>
 												  		</span>
 			  	  									</div>
 			  	 								</span>
-			  								</td>
+			  								</td> -->
 			  								<td align="right" class="pro_tax">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
@@ -194,70 +195,63 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="name"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 1<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address2"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Area<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="area"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="city"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" value="" size="30" name="zip" id="address_1_field"> 
+						<input type="text" maxlength="32" class="required" value="" size="30" name="zip" id="address_1_field" ng-model="zipcode"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="state"> 
 					   </div>
 					 </li>
-  					 <li class="short">
-                      <div class="field-wrapper">
-						<label for="phone_1_field" class="phone_1">Phone</label>
-						<br>
-						<input type="text" maxlength="32" value="" size="30" name="phone_1" id="phone_1_field"> 
-					  </div>
-					 </li>
-   					 <li class="short right">
+					 <li class="long">
 					  <div class="field-wrapper">
-     					<label for="phone_2_field" class="phone_2">	Mobile phone<em>*</em></label>
+						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" value="" size="30" name="phone_2" id="phone_2_field"> 
-					  </div>
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="mobilenumber"> 
+					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="email"> 
 					   </div>
 					 </li>
 				  </ul>
@@ -295,77 +289,70 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Student Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="name"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">ID No.<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="studentid"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Year of Studying<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="yearofstuding"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Department<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address2"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
-						<label for="address_1_field" class="address_1">Area<em>*</em></label>
+						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="city"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" value="" size="30" name="zip" id="address_1_field"> 
+						<input type="text" maxlength="32" class="required" value="" size="30" name="zip" id="address_1_field" ng-model="zipcode"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="state"> 
 					   </div>
 					 </li>
-  					 <li class="short">
-                      <div class="field-wrapper">
-						<label for="phone_1_field" class="phone_1">Phone</label>
-						<br>
-						<input type="text" maxlength="32" value="" size="30" name="phone_1" id="phone_1_field"> 
-					  </div>
-					 </li>
-   					 <li class="short right">
+  					  <li class="long">
 					  <div class="field-wrapper">
-     					<label for="phone_2_field" class="phone_2">	Mobile phone<em>*</em></label>
+						<label for="address_1_field" class="address_1">Mobile number<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" value="" size="30" name="phone_2" id="phone_2_field"> 
-					  </div>
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="mobilenumber"> 
+					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="email"> 
 					   </div>
 					 </li>
 				  </ul>
@@ -458,7 +445,7 @@ if(mysqli_num_rows($review_details)>0){
 	   }
 	   ?>
 	   <div class="clearfix">  </div>
-	   <div class="button_holder btn_pay">
+	   <div class="button_holder btn_pay" >
 	   		<form method="post" name="customerData" action="ccavRequestHandler.php" id="print_checkout_form">
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
@@ -468,6 +455,18 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 		   		<input type="hidden" name="language" value="EN"/>
+		   		<input type="hidden" name="billing_name" value="{{name}} "/>
+		   		<input type="hidden" name="merchant_param2" value="{{studentid}}"/>
+		   		<input type="hidden" name="merchant_param3" value="{{yearofstuding}}"/>
+		   		<input type="hidden" name="merchant_param1" value="{{address1}}"/>
+		   		<input type="hidden" name="billing_address" value="{{address2}}"/>
+		   		<input type="hidden" name="merchant_param4" value="{{area}}"/>
+		   		<input type="hidden" name="billing_city" value="{{city}}"/>
+		   		<input type="hidden" name="billing_state" value="{{state}}"/>
+		   		<input type="hidden" name="billing_zip" value="{{zipcode}}"/>
+		   		<input type="hidden" name="billing_country" value="India"/>
+		   		<input type="hidden" name="billing_tel" value="{{mobilenumber}}"/>
+		   		<input type="hidden" name="billing_email" value="{{email}}"/>
 		   		<h4 class="btn_prf check_out_payment"><a>Pay Now</a></h4>
 				<h4 class="btn_prf check_out_clear_btn"><a>Clear</a></h4>
 			</form>
@@ -481,10 +480,10 @@ if(mysqli_num_rows($review_details)>0){
 
 <?php
 }
-else{
-	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
-	exit();
-} 
+// else{
+	// die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
+	// exit();
+// } 
 include('footer.php'); 
 ?>
 <script>

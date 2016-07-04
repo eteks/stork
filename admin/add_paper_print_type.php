@@ -3,28 +3,28 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Add Paper Print Type</title>
 </head>
 <body>
 <?php 
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$paper_print_type = $_POST['paper_print_type'];
-		$paper_print_type_status=$_POST['paper_print_type_status'];
-		if($paper_print_type=="" || $paper_print_type_status=="") {
-			$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$paper_print_type = $_POST['paper_print_type'];
+	$paper_print_type_status=$_POST['paper_print_type_status'];
+	if($paper_print_type=="" || $paper_print_type_status=="") {
+		// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+	}
+	else {
+		$qr=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type'");
+		$row=mysql_fetch_array($qr);
+		if($row > 0) {
+			$successMessage ="<div class='container error_message_mandatory'><span> Paper print type already exist </span></div>";
 		}
 		else {
-			$qr=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type'");
-			$row=mysql_fetch_array($qr);
-			if($row > 0) {
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper print type already exist </span></div>";
-			}
-			else {
-				mysqlQuery("INSERT INTO `stork_paper_print_type` (paper_print_type,paper_print_type_status) VALUES ('$paper_print_type','$paper_print_type_status')");
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper print type inserted successfully </span></div>";
-			}
+			mysqlQuery("INSERT INTO `stork_paper_print_type` (paper_print_type,paper_print_type_status) VALUES ('$paper_print_type','$paper_print_type_status')");
+			$successMessage = "<div class='container error_message_mandatory'><span> Paper print type inserted successfully </span></div>";
 		}
 	}
+}
 
 ?> 
 <?php include 'includes/navbar_admin.php'; ?>
@@ -48,10 +48,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -62,6 +58,10 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Print Type Information</h4>
 							<form action="add_paper_print_type.php" method="POST" name="edit-acc-info" id="add_paper_print_type">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
 									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paper Print Type">

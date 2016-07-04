@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Edit State</title>
 </head>
 <body>
 <?php 
@@ -20,11 +20,14 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> State Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_state` SET `state_name`='$state_name',`state_status`='$state_status' WHERE `state_id`=".$val);
+			//newly added code when remove edit restrict
+			if(($state_status == 0 && !$_POST['change_status'])||($state_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_city` SET `city_status`='$state_status' WHERE `city_state_id`=".$val);
+				mysqlQuery("UPDATE `stork_area` SET `area_status`='$state_status' WHERE `area_state_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> State Updated Successfully! </span></div>";	
-		}
-				
-	}
-	
+		}				
+	}	
 }
 $id=$val;
 if(isset($_GET["id"]))
@@ -53,11 +56,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -68,6 +66,10 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>
 							<form action="edit_state.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<?php
 									$match = "SELECT * FROM `stork_state` WHERE `state_id`='$id'";
 									$qry = mysqlQuery($match);
@@ -76,16 +78,19 @@ if(isset($_GET["id"]))
 									{
 										while($row = mysql_fetch_array($qry)) 
 										{
-								?>
+								?>	
+								<?php if ($row['state_status'] == 0){ ?>
+								<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">State Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="statename" placeholder="State Name" name="state_name" value="<?php echo($row['state_name']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">State Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="state_status">
 								        <option>
-											<span>Select status</span>
+											<span>Select Status</span>
 										</option>
 								        <option value="1" <?php if ($row['state_status'] == 1) echo "selected"; ?>>
 											<span>Active</span>

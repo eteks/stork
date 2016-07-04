@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Paper Print Types</title>
 </head>
 <body>
 <!-- Php query for delete -->
@@ -44,7 +44,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<div class="heading_section col-md-12">
-		<h3 class="acc-title lg clone_heading"> Paperprinttypes</h3>
+		<h3 class="acc-title lg clone_heading"> Paper Print Types</h3>
 		<div class="clear_both"> </div>
 	</div>
 			<div class="form-edit-info">
@@ -87,10 +87,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							if(mysql_num_rows($check_in_cost_estimation)>0 || mysql_num_rows($check_in_order)>0){
 		                ?>
 			                <span class="nobr">
-				                <span class="restrict">
-				                	<a title="Edit" class="btn  btn-primary btn-xs"><i class="fa fa-pencil-square-o "> 
-				                	<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div></i></a>
-					            </span>   
+				                <a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_print_type.php?id=<?php echo $paperprinttypes_array['paper_print_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				               <span class="separator"></span> 
 				               <span class="restrict">
 				               		<a class="btn btn-xs btn-danger delete" title="Delete"><i class="fa fa-trash-o"> 

@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Order Details</title>
 </head>
 <body>  
 <?php include 'includes/navbar_admin.php'; ?>
@@ -59,8 +59,8 @@ include "includes/header.php";
 						<th>Comments</th>
 						<th>Total Amount</th>
 						<th>Uploaded Files</th>
-						<th>Created Date</th>
-						<th>Order Detail Status</th>
+						<!-- <th>Created Date</th>
+						<th>Order Detail Status</th> -->
 						<th class='table_action'>Action</th>
 			        </tr>
 			      </thead>
@@ -101,29 +101,13 @@ include "includes/header.php";
 							}
 						?>
 						</td>
-						<td>
-		            		<span class="price"> 
-			            		<?php  $createddate=strtotime($fetch['created_date']);
-									   $date = date('d/m/Y', $createddate);
-							            echo $date; 
-							    ?>
-						    </span>
-						</td>
-			            <td>
-				            <?php 
-				            if($fetch['order_details_status']==1)
-								echo "Active";
-							else
-								echo "InActive";
-							?>
-						</td>
 			            <td class="table_action th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_order_details.php?id=<?php echo $fetch['order_details_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
 				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
-				        </td>
+				       </td>
 				   	</tr>
 				   <?php
 					}

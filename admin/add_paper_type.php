@@ -1,17 +1,16 @@
-
 <?php
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Add Paper Type</title>
 </head>
 <body>
- <?php 
+<?php 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$paper_type = $_POST['paper_type'];
 		$paper_type_status=$_POST['paper_type_status'];
 		if($paper_type=="" || $paper_type_status=="") {
-			$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 		}
 		else {
 			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");
@@ -38,20 +37,16 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Paper type </span>
+						<span> Paper Type </span>
 					</li>
 					<li>
-						<span>Add Paper type</span>
+						<span>Add Paper Type</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -62,12 +57,16 @@ include "includes/header.php";
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Type Information</h4>
 							<form action="add_paper_type.php" method="POST" name="edit-acc-info" id="add_paper_type">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								 <?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Type<span class="required">*</span></label>
 									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">Papertype Status<span class="required">*</span></label>
+								    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">
 								        <option value="">
 											<span>Select Status</span>

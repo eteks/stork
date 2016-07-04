@@ -3,28 +3,28 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>Add College</title>
 </head>
 <body>
-<?php 
+	<?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$area_id = $_POST["area_id"];
 	$college_name = $_POST["college_name"];
 	$college_status = $_POST["college_status"];
 	if($area_id=="" || $college_name=="" || $college_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}
 	else{
 		$qr = mysql_query("SELECT * FROM stork_college WHERE college_name = '$college_name' AND college_area_id='$area_id'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> College Already Exists </span></div>";
+			$successMessage =  "<div class='container error_message_mandatory'><span> College Already Exists </span></div>";
 		} else {
 			mysqlQuery("INSERT INTO `stork_college` (college_name,college_area_id,college_status) VALUES ('$college_name','$area_id','$college_status')");
 			$successMessage = "<div class='container error_message_mandatory'><span> College Inserted Sucessfully! </span></div>";
 		}		
 	}
-} ?> 
+} ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -46,10 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_test"> Please fill out all mandatory fields </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -60,6 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">College Information</h4>
 							<form action="add_college.php" id="add_college" method="POST" name="edit-acc-info">
+								<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+			   						<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">Area<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="area_id">

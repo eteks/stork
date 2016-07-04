@@ -2,19 +2,9 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All Users</title>
+<title>Transaction Details</title>
 </head>
-<body> 
-<!-- Php query for delete -->
-<?php 
-if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
-{
-	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_users` WHERE `user_id`='$val'");
-	$isDeleted = true;
-	$deleteProduct = true;
-}
-?>
+<body>  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -44,28 +34,32 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<div class="heading_section col-md-12">
-		<h3 class="acc-title lg clone_heading"> Users</h3>
+		<h3 class="acc-title lg clone_heading"> Transaction Details</h3>
 		<div class="clear_both"> </div>
 	</div>
-			<div class="form-edit-info">
+			<div class="form-edit-info width_order_details">
 				<?php
-					$sql = "SELECT * FROM `stork_users`";
+					$sql = "SELECT * FROM `stork_ccavenue_transaction`";
 					$query = mysqlQuery($sql);
 					$count_rows = mysql_num_rows($query);
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table" id="my-orders-table">
+				<table class="data-table transaction_table width_order_details_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
-			            <th>User Name</th>
-			            <th>User Type</th>
-			            <th>Email</th>
-			            <th>Date of Birth</th>
-			            <th>Mobile</th>
-			            <th>Status</th>
-			            <th>Created Date</th>
-			            <th class="table_action">Action</th>
+			        	<th>Order Id</th>
+			        	<th>User Id</th>
+						<th>Tracking Id</th>
+						<th>Bank Reference Number</th>
+						<th>Payment Mode</th>
+						<th>Card Name</th>			
+						<th>Amount</th>
+						<th>Currency</th>
+						<th>Order Status</th>
+						<th>Status Code</th>
+						<th>Status Message</th>
+						<th>Created Date</th>
 			        </tr>
 			      </thead>
 			       <?php              
@@ -74,45 +68,29 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					{		
 				   ?>
 				    <tr class="">
-			            <td><?php echo $fetch['username'] ?></td>
+			            <td><?php echo $fetch['order_id'] ?></td>
 			            <td>
-				            <?php 
-				            if($fetch['user_type']==1)
-								echo "Student";
-							else if($fetch['user_type']==2)
-								echo "Profession";
-							?>
-						</td>
-			            <td><?php echo $fetch['user_email'] ?></td>
-			            
-			            	<?php  $dobdate=strtotime($fetch['user_dob']);
-								   
-						            $dob = date('d/m/Y', $dobdate);
-						            // echo $date; 
-						            ?>
-						          <td> <?php echo $dob; ?> </td>
-			            <td><?php echo $fetch['user_mobile'] ?></td>
-			            <td>
-			            <?php 
-			            if($fetch['user_status']==1)
-							echo "Active";
+			            <?php if ($fetch['user_id'] === NULL)
+							echo "None";
 						else
-							echo "InActive";
+							echo $fetch['user_id'];
 						?>
 						</td>
-						   <?php  $createddate=strtotime($fetch['create_date']);
+						<td><?php echo $fetch['tracking_id'] ?></td>	
+						<td><?php echo $fetch['bank_referrence_number'] ?></td>
+						<td><?php echo $fetch['payment_mode'] ?></td>
+						<td><?php echo $fetch['card_name'] ?></td>
+						<td><?php echo $fetch['amount'] ?></td>
+			            <td><?php echo $fetch['currency'] ?></td>
+			            <td><?php echo $fetch['order_status'] ?></td>
+			            <td><?php echo $fetch['status_code'] ?></td>
+			            <td><?php echo $fetch['status_message'] ?></td>
+			            <?php  $createddate=strtotime($fetch['created_date']);
 								   
 						            $date = date('d/m/Y', $createddate);
 						            // echo $date; 
-						            ?>						          
-			            <td><?php echo $date; ?></td>
-			            <td class="table_action th_hidden a-center last">
-			                <span class="nobr">
-			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_users.php?id=<?php echo $fetch['user_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
-				                <span class="separator"></span> 
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['user_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
-				            </span>
-				        </td>
+						            ?>
+		            	<td><span class="price"><?php echo $date; ?></span></td>
 				   	</tr>
 				   <?php
 					}
@@ -131,9 +109,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "users.php?delete="+myId);
+		$("#del_link").prop("href", "orders.php?delete="+myId);
 		});
 	</script>
+	<!-- Delete popup Start -->
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
