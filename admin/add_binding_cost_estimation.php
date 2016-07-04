@@ -11,19 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 	$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
 	if($cost_estimation_binding_type=="" || $cost_estimation_binding_amount=="" || $cost_estimation_binding_status=="") {	
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
 	}
 	else{
 		$qr = mysql_query("SELECT * FROM stork_cost_estimation_binding WHERE cost_estimation_binding_type = '$cost_estimation_binding_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Estimation Already Exists </span></div>";
+			$successMessage =  "<div class='container error_message_mandatory'><span> Binding Cost Estimation Already Exists </span></div>";
 		} else {
 			
 			mysqlQuery("INSERT INTO `stork_cost_estimation_binding` (cost_estimation_binding_type,cost_estimation_binding_amount,cost_estimation_binding_status) VALUES ('$cost_estimation_binding_type','$cost_estimation_binding_amount','$cost_estimation_binding_status')");
 			$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Assigned Sucessfully! </span></div>";
-		}		
-	}
+			}		
+		}
 } ?> 
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -60,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">Select Binding Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="cost_estimation_binding_type">

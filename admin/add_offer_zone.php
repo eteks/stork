@@ -6,54 +6,54 @@ include "includes/header.php";
 </head>
 <body>
 <?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$message ='';
-	$offerzone_title = $_POST["offerzone_title"];
-	$offerzone_status = $_POST["offerzone_status"];
-
-	// echo $_FILES["offerzone_image"]["name"];
-	if($offerzone_title =="" || empty($_FILES['offerzone_image']['name']) || $offerzone_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-	}	
-	else{
-		$target_dir = "style/img/zone/";
-		$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
-		// echo $target_file;
-		$info = pathinfo($_FILES['offerzone_image']['name']);
-		$uploadOk = 1;	
-		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-		
-	    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-		    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-		    $uploadOk = 0;
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+		$message ='';
+		$offerzone_title = $_POST["offerzone_title"];
+		$offerzone_status = $_POST["offerzone_status"];
+	
+		// echo $_FILES["offerzone_image"]["name"];
+		if($offerzone_title =="" || empty($_FILES['offerzone_image']['name']) || $offerzone_status=="") {
+			// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}	
+		else{
+			$target_dir = "style/img/zone/";
+			$target_file = $target_dir . basename($_FILES["offerzone_image"]["name"]);
+			// echo $target_file;
+			$info = pathinfo($_FILES['offerzone_image']['name']);
+			$uploadOk = 1;	
+			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			
+		    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+			    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			    $uploadOk = 0;
+			}
+			if ($_FILES["fileToUpload"]["size"] > 500000) {
+			    $message = "Sorry, your file is too large.";
+			    $uploadOk = 0;
+			}
+			if ($uploadOk == 0) {
+			    $successMessage =  "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
+			// if everything is ok, try to upload file
+			} 
+			else {
+				$offer_query = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title'");
+			 	$row = mysql_num_rows($offer_query);
+				if($row > 0){
+			 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
+			  	} else {
+			  	$i = 0;
+				do {
+				    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+				    $i++;
+				    $target_file = "style/img/zone/" . $image_name;
+				} while(file_exists($target_file));
+				move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
+				mysqlQuery("INSERT INTO `stork_offer_zone` (offer_zone_title,offer_zone_image,offer_zone_status) VALUES ('$offerzone_title','$target_file','$offerzone_status')");
+			 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Inserted Successfully </span></div>";
+			  	}		
+			}
 		}
-		if ($_FILES["fileToUpload"]["size"] > 500000) {
-		    $message = "Sorry, your file is too large.";
-		    $uploadOk = 0;
-		}
-		if ($uploadOk == 0) {
-		    $successMessage = "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
-		// if everything is ok, try to upload file
-		} 
-		else {
-			$offer_query = mysql_query("SELECT * FROM stork_offer_zone WHERE offer_zone_title = '$offerzone_title'");
-		 	$row = mysql_num_rows($offer_query);
-			if($row > 0){
-		 	$successMessage = "<div class='container error_message_mandatory'><span> Offerzone Already exist </span></div>";
-		  	} else {
-		  	$i = 0;
-			do {
-			    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
-			    $i++;
-			    $target_file = "style/img/zone/" . $image_name;
-			} while(file_exists($target_file));
-			move_uploaded_file($_FILES["offerzone_image"]["tmp_name"], $target_file);
-			mysqlQuery("INSERT INTO `stork_offer_zone` (offer_zone_title,offer_zone_image,offer_zone_status) VALUES ('$offerzone_title','$target_file','$offerzone_status')");
-		 	$successMessage ="<div class='container error_message_mandatory'><span> Offerzone Inserted Successfully </span></div>";
-		  	}		
-		}
-	}
-} ?>
+	} ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -75,13 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_image"> Please Upload Image </span>
-</div>
-<div class="container">
- <span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -95,6 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<div class="container">
+ 									<span class="error_image"> Please Upload Image </span>
+								</div>
+								<div class="container">
+ 									<span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>	
 								<div class="form-group">
 								    <label for="first-name">Offer Zone Title<span class="required">*</span></label>
 									<input type="text" class="form-control" id="offerzonetitle" autocomplete="off" placeholder="Offer Zone Title" name="offerzone_title">

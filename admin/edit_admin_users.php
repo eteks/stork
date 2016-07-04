@@ -38,6 +38,7 @@ if(isset($_GET["id"]))
 	$id = $_GET["id"];
 }  
 ?>
+	
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -59,13 +60,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<div class="container">
- <span class="error_email"> Please Enter Valid email address </span>
-</div>
-<div class="container">
- <span class="error_phone"> Please Enter Valid mobile number </span>
-</div>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -76,9 +70,16 @@ if(isset($_GET["id"]))
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
 							<form action="edit_admin_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_admin_users">
-								<div class="container">
+							<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<div class="container">
+ 									<span class="error_email"> Please Enter Valid email address </span>
+								</div>
+								<div class="container">
+ 									<span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
 								$match = "SELECT * FROM `stork_admin_users` WHERE `adminuser_id`='$id'";
 								$qry = mysqlQuery($match);

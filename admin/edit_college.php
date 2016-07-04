@@ -54,7 +54,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -68,6 +67,7 @@ if(isset($_GET["id"]))
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<?php 
 								$match = "SELECT * FROM `stork_college` WHERE `college_id`='$id'";
 								$qry = mysqlQuery($match);

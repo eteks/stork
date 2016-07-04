@@ -69,7 +69,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -84,11 +83,12 @@ if(isset($_GET["id"]))
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<div class="container">
- <span class="error_email"> Please Enter Valid email address </span>
-</div>
-<div class="container">
- <span class="error_phone"> Please Enter Valid mobile number </span>
-</div>
+ 									<span class="error_email"> Please Enter Valid email address </span>
+								</div>
+								<div class="container">
+ 									<span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
 								$match = "SELECT * FROM `stork_order` WHERE `order_id`='$id'";
 								$qry = mysqlQuery($match);

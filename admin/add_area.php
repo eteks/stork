@@ -7,28 +7,29 @@ include "includes/header.php";;
 </head>
 <body>
 <?php 	
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$state_id = $_POST["state_id"];
-	$city_id = $_POST["city_id"];
-	$area_name = $_POST["area_name"];
-	$area_status = $_POST["area_status"];
-	if($city_id=="" || $area_name=="" || $area_status=="") {
-		// header('Location: add_area.php');
-		// exit();
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-	}	
-	else{
-		$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
-		} else {
-			mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_status) VALUES ('$area_name','$state_id','$city_id','$area_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
-		}		
-	}
-} 
-?>  
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+		$state_id = $_POST["state_id"];
+		$city_id = $_POST["city_id"];
+		$area_name = $_POST["area_name"];
+		$area_status = $_POST["area_status"];
+		$area_delivery_charge = $_POST["area_delivery_charge"];
+		if($city_id=="" || $area_name=="" || $area_status=="") {
+			// header('Location: add_area.php');
+			// exit();
+			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}	
+		else{
+			$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
+			} else {
+				mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_delivery_charge,area_status) VALUES ('$area_name','$state_id','$city_id','$area_delivery_charge','$area_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
+			}		
+		}
+	} 
+?>   
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -50,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -61,9 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
-									<div class="container">
+								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
 									<select class="product-type-filter form-control state_act" id="sel_a" name="state_id">
@@ -89,6 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="form-group">
 								    <label for="last-name">Area Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="areaname" autocomplete="off" placeholder="Area Name" name="area_name">
+								</div>
+								<div class="form-group">
+								    <label for="last-name">Delivery Charge</label>
+									<input type="text" class="form-control" id="areaname" autocomplete="off" placeholder="Delivery Charge Ex.:100.50" name="area_delivery_charge">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>

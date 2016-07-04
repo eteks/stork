@@ -6,16 +6,16 @@
 						<h2>About Us</h2>
 						<div class="footer-content">
 							<a href="index.html" title="Cmsmart logo footer" class="logo-footer">
-								<img src="images/printstork_logo.png" width="90%"  height="auto" alt="logo footer">
+								<img src="images/printstork_footer_logo.png" width="90%"  height="auto" alt="logo footer">
 							</a>
 							<ul class="info">
 								<li>
 									<i class="fa fa-home"></i>
-									<span>102580 Santa Monica Los Angeles</span>
+									<span>Door no:2A,Karuvadikuppam Main road,Kaniya garden,Muthialpet-3.</span>
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
-									<span>+3 045 224 33 12</span>
+									<span>9655707844,8344625888</span>
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
@@ -56,6 +56,9 @@
 								</li>
 								<li>
 									<a  title="Multi printing">Multi printing</a>
+								</li>
+								<li>
+									<a  title="Multi-color printing">Multi-color printing</a>
 								</li>
 							</ul>
 						</div>

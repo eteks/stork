@@ -22,11 +22,10 @@ if (isset($_GET['update']))
 		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation` WHERE cost_estimation_paper_print_type_id='$paper_print_type' AND cost_estimation_paper_side_id='$paper_side' AND cost_estimation_paper_size_id='$paper_size' AND cost_estimation_paper_type_id='$paper_type' AND cost_estimation_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Already Cost Assigned! </span></div>";
-		} else {
-			
+			$successMessage = "<div class='container error_message_mandatory'><span> Already Printing Cost Assigned! </span></div>";
+		} else {			
 			mysqlQuery("UPDATE `stork_cost_estimation` SET cost_estimation_paper_print_type_id='$paper_print_type',cost_estimation_paper_side_id='$paper_side',cost_estimation_paper_size_id='$paper_size',cost_estimation_paper_type_id='$paper_type',cost_estimation_amount='$amount', cost_estimation_status='$cost_estimation_status' WHERE cost_estimation_id=".$val);
-			$successMessage = "<div class='container error_message_mandatory'><span> Cost Assigned Successfully! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Printing Cost Updated Successfully! </span></div>";
 		}
 				
 	}
@@ -59,7 +58,6 @@ if(isset($_GET["id"]))
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -73,6 +71,7 @@ if(isset($_GET["id"]))
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$id'";
 								$qry = mysqlQuery($match);

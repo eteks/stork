@@ -67,7 +67,6 @@ include "includes/header.php";
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -87,6 +86,7 @@ include "includes/header.php";
 								<div class="container">
 									 <span class="error_phone"> Please Enter Valid mobile number </span>
 								</div>
+								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
 								$match = "SELECT * FROM stork_users WHERE user_id='$id'";
 								$qry = mysqlQuery($match);
