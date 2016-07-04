@@ -1,7 +1,7 @@
 <?php 
 	include('header.php');
 	if(!isset($_SESSION['usertype'])){
-		//header('Location:index.php');
+		// header('Location:index.php');
 		die('<script type="text/javascript">window.location.href="index.php";</script>');
 		exit();
 	}
