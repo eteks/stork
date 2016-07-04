@@ -6,7 +6,7 @@
 						<h2>About Us</h2>
 						<div class="footer-content">
 							<a href="index.html" title="Cmsmart logo footer" class="logo-footer">
-								<img src="images/printstork_logo.png" width="90%"  height="auto" alt="logo footer">
+								<img src="images/printstork_footer_logo.png" width="90%"  height="auto" alt="logo footer">
 							</a>
 							<ul class="info">
 								<li>
