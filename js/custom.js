@@ -468,7 +468,7 @@ $(document).ready(function () {
 			var file_name_box = $(this).val();
 			
 			if( file_name_box == file_name_section ) {
-				alert("filename already exists");
+				error_popup('Filename already exists');
 				this_name.val('');
 			}
 			else {
