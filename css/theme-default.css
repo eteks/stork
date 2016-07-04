@@ -4612,6 +4612,9 @@ span.star{
 	margin:0 0 24px;
     background: #ffffff;
 }
+#checkout .container .col-md-6  input[type=checkbox]{
+	width:auto;
+}
 .pr-main .container .col-md-6  button {
 	float:right;
 	background:#d6d6d6;

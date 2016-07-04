@@ -525,18 +525,19 @@ $(document).ready(function () {
 	
 	// update amount details based on quantity in check out page
 	$(document).on('keyup','.ordered_item_quantity',function(){
-		var amount = $(this).parents('.review_order_checkout').find('.oredered_item_amount').val();
+		var amount = parseFloat($(this).parents('.review_order_checkout').find('.oredered_item_amount').val());
 		var quantity = $(this).val();
+		var delivery_amount = parseFloat($('.final_delivery_charge_amount').val());
 		var final_amount = 0;
-		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+amount*quantity);
-		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+amount*quantity);
-		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(amount*quantity);
+		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
+		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
+		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
 		$('.updated_oredered_item_amount').each(function(){
 			final_amount += parseInt($(this).val());
 		});
-		$('.final_payment_amount_checkout').val(final_amount);
-		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
-		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+final_amount);
+		$('.final_payment_amount_checkout').val(parseFloat(Math.ceil((final_amount+delivery_amount) * 100 ) / 100).toFixed(2));
+		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount+delivery_amount) * 100 ) / 100).toFixed(2));
+		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount) * 100 ) / 100).toFixed(2));
 	});
 	
 	// post form when click check button in print booking page and submit type
@@ -1103,5 +1104,21 @@ $(document).ready(function () {
 				$('#print_booking_form .print_total_amount').val(parseFloat(Math.ceil((total_amount-binding_amount) * 100 ) / 100).toFixed(2));
 			}
 		}
+	});
+	
+	// check out page address data validation
+	//$('.send_to_address_personal').prop('checked', true);
+	$('.send_to_address_college_data,.send_to_address_personal_data').hide();
+	$('.send_to_address_personal').on('change',function(){
+		$(this).prop("disabled", true);
+		$('.send_to_address_college').prop('checked', false).prop("disabled", false);
+		$('.send_to_address_college_data').hide();
+		$('.send_to_address_personal_data').slideDown();
+	});
+	$('.send_to_address_college').on('change',function(){
+		$(this).prop("disabled", true);
+		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
+		$('.send_to_address_personal_data').hide();
+		$('.send_to_address_college_data').slideDown();
 	});
 });  

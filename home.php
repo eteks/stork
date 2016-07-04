@@ -155,26 +155,26 @@
 		<section class="trust-w hidden-xs">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 col-sm-6 block-trust trust-col-quantity">
-						<a href="printbooking.php"><div class="tr-icon"><i class="fa fa-thumbs-up"></i></div></a>
+					<div class="col-md-4 col-sm-6 block-trust trust-col-quantity">
+						<a href="printbooking.php"><div class="tr-icon"><i class="fa fa-file-text-o"></i></div></a>
 						<div class="tr-text">
-							<h3>Printing</h3>
+							<h3>Plain Printing</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">Bright inks. Thick Paper. Precise cuts. We believe that quality printing matters.  That quality printing matters.</p>
 							<a style="display:none;" href="#" class="btn-readmore" title="Quality Printing">Read more</a>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6 block-trust trust-col-time-delivery">
-						<div class="tr-icon"><i class="fa fa-paper-plane"></i></div>
+					<div class="col-md-4 col-sm-6 block-trust trust-col-time-delivery">
+						<div class="tr-icon"><i class="fa fa-files-o"></i></div>
 						<div class="tr-text">
-							<h3>Binding</h3>
+							<h3>project Printing</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">No printer is faster. Order today by 8:00pm EST and you can even get it tomorrow.</p>
 							<a style="display:none;" href="#" class="btn-readmore" title="Timely Delivery">Read more</a>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6 block-trust trust-col-eco-minded">
-						<div class="tr-icon"><i class="fa fa-leaf"></i></div>
+					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-minded">
+						<div class="tr-icon"><i class="fa fa-life-buoy"></i></div>
 						<div class="tr-text">
 							<h3>Cabin Booking</h3>
 							<span class="tr-line"></span>
@@ -184,8 +184,33 @@
 							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6 block-trust trust-col-eco-money">
-						<div class="tr-icon"><i class="fa fa-money"></i></div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
+						<div class="tr-icon"><i class="fa fa-paint-brush"></i></div>
+						<div class="tr-text">
+							<h3>Muiticolors</h3>
+							<span class="tr-line"></span>
+							<p style="display:none;">
+								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.
+							</p>
+							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
+						<div class="tr-icon"><i class="fa fa-heart-o"></i></div>
+						<div class="tr-text">
+							<h3>Personalized Products</h3>
+							<span class="tr-line"></span>
+							<p style="display:none;">
+								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.
+							</p>
+							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
+						<div class="tr-icon"><i class="fa fa-map-o"></i></div>
 						<div class="tr-text">
 							<h3>Brochure</h3>
 							<span class="tr-line"></span>

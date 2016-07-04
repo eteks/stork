@@ -4,6 +4,7 @@ if(!isset($_SESSION['session_id'])){
 	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
 	exit();
 }
+
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
 									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
@@ -14,7 +15,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 if(mysqli_num_rows($review_details)>0){
 ?>
 
-<main class="main" ng-app="">
+<main class="main" ng-app="" id="checkout">
 	<section class="header-page">
 		<div class="container">
 			<div class="row">
@@ -172,6 +173,30 @@ if(mysqli_num_rows($review_details)>0){
 	   
 	   
 	   <br> 
+	   <?php
+	   if(isset($_SESSION['usertype'])){
+	   	$usertype_name = $_SESSION['usertype'];
+		if($usertype_name == 'stu'){
+			$city_query1 = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_college.college_id =".$_SESSION['college_id'];
+			$city1 = mysqli_fetch_array(mysqli_query($connection, $city_query1));
+			$college_name = $city1['college_name'];
+			$area_name = $city1['area_name'];
+			$city_name = $city1['city_name'];
+			$state_name = $city1['state_name'];
+			$delivery_amount = $city1['area_delivery_charge'];
+			
+		}
+		elseif ($usertype_name == 'pro') {
+			$city_query2 = "select * from stork_area inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_area.area_id =".$_SESSION['area_id'];
+			$city2 = mysqli_fetch_array(mysqli_query($connection, $city_query2));
+			$area_name = $city2['area_name'];
+			$city_name = $city2['city_name'];
+			$state_name = $city2['state_name'];
+			$delivery_amount = $city1['area_delivery_charge'];
+		}
+		  
+	   ?>
+	   
 	   <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Shopping Cart</h1>
@@ -183,12 +208,12 @@ if(mysqli_num_rows($review_details)>0){
 	   </hr>	
        <div class=""> <!---Shipping details----> 
        	 <!---shipping detail1 starts--->
-  		 <div  class="col-md-4 col-sm-6 col-xs-12">
+  		 <div  class="col-md-6 col-sm-6 col-xs-12">
 		   <div id="div_billto" class="checkout_address">
-			 <div class="pane round-box">
-			   <input type="checkbox" id="register"><label class="registers">Send to Personnel Address</label>	
+			 <div class="pane round-box no_pad">
+			   <input type="checkbox" id="register" class="send_to_address_personal"><label class="registers">Send to Personnel Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
-				<div class="pane-inner">
+				<div class="pane-inner send_to_address_personal_data">
 				 <br>	
 				  <ul id="table_billto" class="adminform user-details no-border">
 				  	<li class="long">
@@ -216,14 +241,14 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Area<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="area"> 
+						<input type="text" maxlength="64" class="required" value="<?php echo $area_name; ?>" size="30" name="address_1" id="address_1_field" readonly=""> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="city"> 
+						<input type="text" maxlength="64" class="required" value="<?php echo $city_name; ?>" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -237,7 +262,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="state"> 
+						<input type="text" maxlength="64" class="required" value="<?php echo $state_name; ?>" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -277,12 +302,12 @@ if(mysqli_num_rows($review_details)>0){
 		
          
          <!---shipping detail2 starts--->
-         <div  class="col-md-4 col-sm-6 col-xs-12 fl">
+         <div  class="col-md-6 col-sm-6 col-xs-12 fl">
 		   <div id="div_billto" class="checkout_address">
-			 <div class="pane round-box">
-			  <input type="checkbox" id="register"><label class="registers">Send to College Address</label>	
+			 <div class="pane round-box no_pad">
+			  <input type="checkbox" id="register" class="send_to_address_college"><label class="registers">Send to College Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
-				<div class="pane-inner">
+				<div class="pane-inner send_to_address_college_data">
 				 <br>	
 				  <ul id="table_billto" class="adminform user-details no-border">
 				  	<li class="long">
@@ -310,21 +335,21 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Department<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address1"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="address2"> 
+						<input type="text" maxlength="64" class="required" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="city"> 
+						<input type="text" maxlength="64" class="required" value="<?php echo $city_name; ?>" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -338,7 +363,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="address_1_field" ng-model="state"> 
+						<input type="text" maxlength="64" class="required" value="<?php echo $state_name; ?>" size="30" name="address_1" id="address_1_field" readonly> 
 					   </div>
 					 </li>
   					  <li class="long">
@@ -364,6 +389,9 @@ if(mysqli_num_rows($review_details)>0){
 		}
        	?>
       </div> <!---shipping details --->
+      <?php
+	   }
+	   ?>
       <div class="clearfix"> </div>
       <!--cost details---->
       <div class="cart-view-top">
@@ -388,10 +416,11 @@ if(mysqli_num_rows($review_details)>0){
 							<td>SubTotal:</td>
 							<td class="pr-right"><div class="PricesalesPrice vm-display vm-price-value"><span class="vm-price-desc"></span><span class="PricesalesPrice final_visible_sub_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount ; ?></span></div></td>
 						</tr>
-						<tr style="display:none;">
-							<td>Discount:</td>
+						<tr>
+							<td>Delivery Charge:</td>
 							<td class="pr-right">
-							  <span id="total_amount" class="priceColor2">Rs30.00</span>                           
+							  <span id="total_amount" class="priceColor2"><b>&#8377;</b>  <?php echo $delivery_amount;?></span>
+							  <input type="hidden" class="final_delivery_charge_amount" value="<?php echo $delivery_amount;?>">
 							</td>
 						</tr>
 						<tr style="display:none;">
@@ -404,7 +433,7 @@ if(mysqli_num_rows($review_details)>0){
 						</tr>
 						<tr class="last">
 							<td>Total:</td>
-							<td class="pr-right"><strong id="bill_total" class="final_visible_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount ; ?></strong></td>
+							<td class="pr-right"><strong id="bill_total" class="final_visible_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount + $delivery_amount; ?></strong></td>
 						</tr>
 					  </tbody>
 			        </table>
@@ -425,12 +454,12 @@ if(mysqli_num_rows($review_details)>0){
 			<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
 			<h4 class="btn_prf"><a href="login.php">Sign in</a></h4>
 			<?php	
-				// require_once('fbsettings.php'); 
-				// if (isset($accessToken)) {
-				// } else {
-					// $loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
-					// echo '<h4 class="btn_prf"><a href="' . $loginUrl . '">Login with Facebooko</a></h4>';
-				// }
+				require_once('fbsettings.php'); 
+				if (isset($accessToken)) {
+				} else {
+					$loginUrl = $helper->getLoginUrl(FACEBOOKLOGINURL, $permissions);
+					echo '<h4 class="btn_prf"><a href="' . $loginUrl . '">Login with Facebooko</a></h4>';
+				}
 			?>
 			<?php
 				require_once('googlesettings.php'); 
@@ -459,10 +488,10 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="merchant_param2" value="{{studentid}}"/>
 		   		<input type="hidden" name="merchant_param3" value="{{yearofstuding}}"/>
 		   		<input type="hidden" name="merchant_param1" value="{{address1}}"/>
-		   		<input type="hidden" name="billing_address" value="{{address2}}"/>
-		   		<input type="hidden" name="merchant_param4" value="{{area}}"/>
-		   		<input type="hidden" name="billing_city" value="{{city}}"/>
-		   		<input type="hidden" name="billing_state" value="{{state}}"/>
+		   		<input type="hidden" name="billing_address" value="{{address2}}<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
+		   		<input type="hidden" name="merchant_param4" value="<?php echo $area_name; ?>"/>
+		   		<input type="hidden" name="billing_city" value="<?php echo $city_name; ?>"/>
+		   		<input type="hidden" name="billing_state" value="<?php echo $state_name; ?>"/>
 		   		<input type="hidden" name="billing_zip" value="{{zipcode}}"/>
 		   		<input type="hidden" name="billing_country" value="India"/>
 		   		<input type="hidden" name="billing_tel" value="{{mobilenumber}}"/>
