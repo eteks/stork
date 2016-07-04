@@ -22,6 +22,9 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> Papertype Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_paper_type` SET `paper_type`='$paper_type',`paper_type_status`='$paper_type_status' WHERE `paper_type_id`=".$val);
+			if(($paper_type_status == 0 && !$_POST['change_status'])||($paper_type_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_type_status' WHERE `cost_estimation_paper_type_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Papertype Updated Successfully! </span></div>";
 		}
 				
@@ -78,13 +81,16 @@ if(isset($_GET["id"]))
 									while($row = mysql_fetch_array($qry)) 
 									{
 							?>
+							<?php if ($row['paper_type_status'] == 0){ ?>
+								<input type="hidden" name="change_status" class="change_status_value">
+							<?php } ?>
 							<div class="form-group">
 							    <label for="last-name">Paper Type<span class="required">*</span></label>
 								<input type="text" class="form-control" id="papertype" placeholder="Paper Type" name="paper_type" value="<?php echo($row['paper_type']); ?>">
 							</div>
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paper Type Status<span class="required">*</span></label>
-								<select class="product-type-filter form-control" id="sel_a" name="paper_type_status">
+								<select class="product-type-filter form-control change_status" id="sel_a" name="paper_type_status">
 							        <option>
 										<span>Select Status</span>
 									</option>
