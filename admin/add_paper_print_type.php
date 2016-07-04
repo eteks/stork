@@ -6,27 +6,6 @@ include "includes/header.php";
 <title>Add Paper Print Type</title>
 </head>
 <body>
-<?php 
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$paper_print_type = $_POST['paper_print_type'];
-		$paper_print_type_status=$_POST['paper_print_type_status'];
-		if($paper_print_type=="" || $paper_print_type_status=="") {
-			$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-		}
-		else {
-			$qr=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type'");
-			$row=mysql_fetch_array($qr);
-			if($row > 0) {
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper print type already exist </span></div>";
-			}
-			else {
-				mysqlQuery("INSERT INTO `stork_paper_print_type` (paper_print_type,paper_print_type_status) VALUES ('$paper_print_type','$paper_print_type_status')");
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper print type inserted successfully </span></div>";
-			}
-		}
-	}
-
-?> 
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -62,6 +41,27 @@ include "includes/header.php";
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php 
+										if($_SERVER['REQUEST_METHOD'] == 'POST') {
+											$paper_print_type = $_POST['paper_print_type'];
+											$paper_print_type_status=$_POST['paper_print_type_status'];
+											if($paper_print_type=="" || $paper_print_type_status=="") {
+												// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+											}
+											else {
+												$qr=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type'");
+												$row=mysql_fetch_array($qr);
+												if($row > 0) {
+													echo"<div class='container error_message_mandatory'><span> Paper print type already exist </span></div>";
+												}
+												else {
+													mysqlQuery("INSERT INTO `stork_paper_print_type` (paper_print_type,paper_print_type_status) VALUES ('$paper_print_type','$paper_print_type_status')");
+													echo "<div class='container error_message_mandatory'><span> Paper print type inserted successfully </span></div>";
+												}
+											}
+										}
+									
+									?> 
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
 									<input type="text" class="form-control" id="paperprinttype" autocomplete="off" name="paper_print_type" placeholder="Paper Print Type">

@@ -5,24 +5,6 @@ include "includes/header.php";
 <title>Add State</title>
 </head>
 <body>
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$state_name = $_POST["state_name"];
-	$state_status = $_POST["state_status"];
-	if($state_name=="" || $state_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-	}	
-	else{
-		$qr = mysql_query("SELECT * FROM stork_state WHERE state_name = '$state_name'");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> State Already Exists </span></div>";
-		} else {
-			mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> State Inserted Successfully! </span></div>";
-		}		
-	}
-} ?>  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -54,9 +36,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">State Information</h4>							
 							<form action="add_state.php" id="add_state" method="POST" name="edit-acc-info">
-								<div class="container">
+									<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+								<?php 
+									if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+										
+										$state_name = $_POST["state_name"];
+										$state_status = $_POST["state_status"];
+										if($state_name=="" && $state_status=="") {
+											// echo "<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
+										}	
+										else{
+											$qr = mysql_query("SELECT * FROM stork_state WHERE state_name = '$state_name'");
+											$row = mysql_num_rows($qr);
+											if($row > 0){
+												echo "<div class='container error_message_mandatory'><span> State Already Exists </span></div>";
+											} else {
+												mysqlQuery("INSERT INTO `stork_state` (state_name,state_status) VALUES ('$state_name','$state_status')");
+												echo "<div class='container error_message_mandatory'><span> State Inserted Successfully! </span></div>";
+											}		
+										}
+								} ?>  
 								<div class="form-group">
 								    <label for="last-name">State Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="statename" autocomplete="off" placeholder="State Name" name="state_name">

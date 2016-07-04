@@ -6,28 +6,6 @@ include "includes/header.php";
 <title>Add Printing Cost Estimation</title>
 </head>
 <body>
-<?php 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-$cost_print_type=$_POST['cost_print_type'];
-$cost_paper_side=$_POST['cost_paper_side'];
-$cost_paper_size=$_POST['cost_paper_size'];
-$cost_paper_type=$_POST['cost_paper_type'];
-$cost_amount=$_POST['cost_amount'];
-$cost_status=$_POST['cost_status'];
-	if($cost_print_type=="" || $cost_paper_side=="" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-	}	
-	else{
-		$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$cost_print_type' AND cost_estimation_paper_side_id = '$cost_paper_side' AND cost_estimation_paper_size_id = '$cost_paper_size' AND cost_estimation_paper_type_id = '$cost_paper_type'");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> Already Exists </span></div>";
-		} else {
-			mysqlQuery("INSERT INTO `stork_cost_estimation` (cost_estimation_paper_print_type_id,cost_estimation_paper_side_id,cost_estimation_paper_size_id,cost_estimation_paper_type_id,cost_estimation_amount,cost_estimation_status) VALUES ('$cost_print_type','$cost_paper_side','$cost_paper_size','$cost_paper_type','$cost_amount','$cost_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> Cost Inserted Successfully! </span></div>";
-		}		
-	}
-} ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -63,6 +41,28 @@ $cost_status=$_POST['cost_status'];
 					<div class="container">
 						<span class="error_test"> Please fill all required(*) fields </span>
 					</div>
+					<?php 
+						if($_SERVER['REQUEST_METHOD'] == 'POST') {
+						$cost_print_type=$_POST['cost_print_type'];
+						$cost_paper_side=$_POST['cost_paper_side'];
+						$cost_paper_size=$_POST['cost_paper_size'];
+						$cost_paper_type=$_POST['cost_paper_type'];
+						$cost_amount=$_POST['cost_amount'];
+						$cost_status=$_POST['cost_status'];
+							if($cost_print_type=="" || $cost_paper_side=="" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
+								// echo "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+							}	
+							else{
+								$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$cost_print_type' AND cost_estimation_paper_side_id = '$cost_paper_side' AND cost_estimation_paper_size_id = '$cost_paper_size' AND cost_estimation_paper_type_id = '$cost_paper_type'");
+								$row = mysql_num_rows($qr);
+								if($row > 0){
+								echo"<div class='container error_message_mandatory'><span> Already Exists </span></div>";
+								} else {
+									mysqlQuery("INSERT INTO `stork_cost_estimation` (cost_estimation_paper_print_type_id,cost_estimation_paper_side_id,cost_estimation_paper_size_id,cost_estimation_paper_type_id,cost_estimation_amount,cost_estimation_status) VALUES ('$cost_print_type','$cost_paper_side','$cost_paper_size','$cost_paper_type','$cost_amount','$cost_status')");
+									echo "<div class='container error_message_mandatory'><span> Cost Inserted Successfully! </span></div>";
+								}		
+							}
+						} ?>
 					<div class="form-group">
 					    <label for="first-name">Paper Print Type<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_print_type" id="sel_a">

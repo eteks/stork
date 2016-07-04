@@ -6286,8 +6286,11 @@ section.home-slidershow{
   left : auto;
 }
 .error_message_mandatory {
-  text-align: center ;
+  text-align: left ;
   padding: 0px;
+  	color :red ;
+	font-size : 12px;	
+	/*display : none;*/
 }
 .error_message_mandatory span {
   color: red;

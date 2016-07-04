@@ -4,26 +4,7 @@ include "includes/header.php";
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Add City</title>
 </head>
-<body>
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-	$state_id = $_POST["state_id"];
-	$city_name = $_POST["city_name"];
-	$city_status = $_POST["city_status"];
-	if($city_name=="" || $city_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-	}	
-	else{
-		$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> City Already Exists </span></div>";
-		} else {
-			mysqlQuery("INSERT INTO `stork_city` (city_name,city_state_id,city_status) VALUES ('$city_name','$state_id','$city_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> City Inserted Successfully! </span></div>";
-		}		
-	}
-} ?>  
+<body>  
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -62,6 +43,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
+							<?php 
+								if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+									$state_id = $_POST["state_id"];
+									$city_name = $_POST["city_name"];
+									$city_status = $_POST["city_status"];
+									if($city_name=="" || $city_status=="") {
+										// echo "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+									}	
+									else{
+										$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");
+										$row = mysql_num_rows($qr);
+										if($row > 0){
+										echo "<div class='container error_message_mandatory'><span> City Already Exists </span></div>";
+										} else {
+											mysqlQuery("INSERT INTO `stork_city` (city_name,city_state_id,city_status) VALUES ('$city_name','$state_id','$city_status')");
+											echo"<div class='container error_message_mandatory'><span> City Inserted Successfully! </span></div>";
+										}		
+									}
+								} ?>
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="state_id">
