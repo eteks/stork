@@ -17,12 +17,16 @@ include "includes/header.php";
 			$area_name = $_POST["area_name"];
 			$area_status = $_POST["area_status"];
 			$area_delivery_charge = $_POST["area_delivery_charge"];
+			echo "area status",$area_status;
 			$qr = mysqlQuery("SELECT * FROM stork_area WHERE area_city_id='$area_city_id' AND area_name='$area_name' AND area_id NOT IN('$val')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Area Already exists! </span></div>";
 			} else {
 				mysqlQuery("UPDATE `stork_area` SET area_name='$area_name',area_state_id='$area_state_id',area_city_id='$area_city_id',area_delivery_charge= '$area_delivery_charge',area_status='$area_status' WHERE `area_id`=".$val);
+				if(($area_status == 0 && !$_POST['change_status'])||($area_status == 1 && $_POST['change_status'])){
+					mysqlQuery("UPDATE `stork_college` SET `college_status`='$area_status' WHERE `college_area_id`=".$val);
+				}
 				$successMessage = "<div class='container error_message_mandatory'><span> Area Updated Successfully! </span></div>";
 			}
 					
@@ -79,6 +83,9 @@ include "includes/header.php";
 										while($row = mysql_fetch_array($qry)) 
 										{
 								?>
+								<?php if ($row['area_status'] == 0){ ?>
+									<input type="hidden" name="change_status" class="change_status_value" value="">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="first-name">State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="" name="state_id" disabled="true">
@@ -127,7 +134,7 @@ include "includes/header.php";
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="area_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="area_status">
 										<option>
 											<span>Select Status</span>
 										</option>

@@ -23,8 +23,7 @@ if (isset($_GET['update']))
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Already Printing Cost Assigned! </span></div>";
-		} else {
-			
+		} else {			
 			mysqlQuery("UPDATE `stork_cost_estimation` SET cost_estimation_paper_print_type_id='$paper_print_type',cost_estimation_paper_side_id='$paper_side',cost_estimation_paper_size_id='$paper_size',cost_estimation_paper_type_id='$paper_type',cost_estimation_amount='$amount', cost_estimation_status='$cost_estimation_status' WHERE cost_estimation_id=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> Printing Cost Updated Successfully! </span></div>";
 		}

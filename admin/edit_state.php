@@ -20,6 +20,11 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> State Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_state` SET `state_name`='$state_name',`state_status`='$state_status' WHERE `state_id`=".$val);
+			//newly added code when remove edit restrict
+			if(($state_status == 0 && !$_POST['change_status'])||($state_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_city` SET `city_status`='$state_status' WHERE `city_state_id`=".$val);
+				mysqlQuery("UPDATE `stork_area` SET `area_status`='$state_status' WHERE `area_state_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> State Updated Successfully! </span></div>";	
 		}				
 	}	
@@ -74,6 +79,9 @@ if(isset($_GET["id"]))
 										while($row = mysql_fetch_array($qry)) 
 										{
 								?>	
+								<?php if ($row['state_status'] == 0){ ?>
+								<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">State Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="statename" placeholder="State Name" name="state_name" value="<?php echo($row['state_name']); ?>">
