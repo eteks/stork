@@ -6,6 +6,30 @@ include "includes/header.php";;
 <title>Add Area</title>
 </head>
 <body>
+<?php 	
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+		$state_id = $_POST["state_id"];
+		$city_id = $_POST["city_id"];
+		$area_name = $_POST["area_name"];
+		$area_status = $_POST["area_status"];
+		$area_delivery_charge = $_POST["area_delivery_charge"];
+		if($city_id=="" || $area_name=="" || $area_status=="") {
+			// header('Location: add_area.php');
+			// exit();
+			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		}	
+		else{
+			$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
+			} else {
+				mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_delivery_charge,area_status) VALUES ('$area_name','$state_id','$city_id','$area_delivery_charge','$area_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
+			}		
+		}
+	} 
+?>   
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -27,7 +51,6 @@ include "includes/header.php";;
 		</div>
 	</div>
 </section>
-<?php if($successMessage) echo $successMessage; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
 	<?php include 'includes/sidebar.php'; ?>
@@ -38,32 +61,10 @@ include "includes/header.php";;
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Area Information</h4>
 							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
-									<div class="container">
+								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
-							<?php 	
-								if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-									$state_id = $_POST["state_id"];
-									$city_id = $_POST["city_id"];
-									$area_name = $_POST["area_name"];
-									$area_status = $_POST["area_status"];
-									if($city_id=="" || $area_name=="" || $area_status=="") {
-										// header('Location: add_area.php');
-										// exit();
-										// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
-									}	
-									else{
-										$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
-										$row = mysql_num_rows($qr);
-										if($row > 0){
-											echo"<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
-										} else {
-											mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_status) VALUES ('$area_name','$state_id','$city_id','$area_status')");
-											echo"<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
-										}		
-									}
-								} 
-								?>   
+								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
 									<select class="product-type-filter form-control state_act" id="sel_a" name="state_id">

@@ -46,6 +46,10 @@ $(document).ready(function(){
       menu_li.addClass("open");
     }
   });
+
+  $('.change_status').on('change',function(){
+    $('.change_status_value').val('1');
+  });
   
 });
 

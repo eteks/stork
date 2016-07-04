@@ -76,7 +76,10 @@ if(isset($_GET["id"]))
 							?>	
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>" <?php if($row['paper_print_type'] == "Color with Black & white"){ echo "disabled";} ?>>
+									<?php if($row['paper_print_type'] == "Color with Black & white"){ ?>
+										<input type="hidden" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<?php } ?>
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Print Type Status<span class="required">*</span></label>
