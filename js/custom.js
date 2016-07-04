@@ -660,11 +660,10 @@ $(document).ready(function () {
 	$('#print_type').on('change',function() {
 		var selected_type = $('#print_type option:selected').text().toLowerCase();
 		$('#radio_no').prop('checked',true);
-		$('#binding_type').slideUp();
+		$('.display_binding_type').slideUp();
 		$('#page_radio_no').prop('checked',true);
-		$('#page_radio_no').slideUp();
+		$('.print_page_option').slideUp();
 		$('#cover_file_name').val('');
-		
 		$('.cover_section_holder').slideUp();
 		if( selected_type == "color with black & white" ) {
 			$('.display_paper_range').css('display','block');
@@ -786,97 +785,6 @@ $(document).ready(function () {
 
 	// customized browse button in order page End
 
-	// customized browse button in order page End
-
-
-	$(document).on('change','.uploadFile',function(e) { 
-		var select = document.getElementById("normal_file");
-		var filename= [];
-		$('.uploadFile').each(function() {
-			var file_name_holder = $(this).val();
-			filename.push(file_name_holder);
-		});
-		$("#normal_file option[class='new']").remove();
-		for(var i = 0; i < filename.length; i++) {
-		    var opt = filename[i];
-		    var el = document.createElement("option");
-		    el.className = "new";
-		    el.textContent = opt;
-		    el.value = opt;
-		    select.add(el);
-		}
-	});
-
-
-	$(document).on('change','.uploadFile',function(e) { 
-		var select1 = document.getElementById("content_file");
-		var content_filename = [];
-		$('.uploadFile').each(function() {
-			var file_name_content = $(this).attr('id');
-			var content_file_id = jQuery('#'+file_name_content);
-			var content_file = content_file_id.parents('.upload_clone_holder').find('.display_page_type option:selected').text();
-			if(content_file=='Content') {
-				file_content_holder=$(this).val();
-				content_filename.push(file_content_holder);
-			}
-			else {
-				
-			}
-		});
-		$("#content_file option[class='new_content']").remove();
-		for(var i = 0; i < content_filename.length; i++) {
-		    var opt1 = content_filename[i];
-		    var el1 = document.createElement("option");
-		    el1.className = "new_content";
-		    el1.textContent = opt1;
-		    el1.value = opt1;
-		    select1.add(el1);
-		}
-	});
-
-	$('.display_page_type').on('change',function () {
-		var change_clear = $(this).parents('.upload_clone_holder').find('.uploadFile');
-		var change_clear_input = $(this).parents('.upload_clone_holder').find('.file_name_box');
-		if(change_clear.val() == '') {
-			$('.clone_upload').css('pointer-events', 'auto');
-	 	}
-	 	else {
-	 		var change_value_name=change_clear.val();
-	 		if($(this).text() != 'Content') {
-				if($("#content_file option[class='new_content']").text() == change_value_name) {
-					$('#content_file option[class="new_content"]').remove();
-				}
-				else {
-
-				}
-			}
-			else {
-				change_clear.val('');
-	 			change_clear_input.val('No file selected');
-				$('.clone_upload').css('pointer-events', 'none');
-			}
-			change_clear.val('');
-	 		change_clear_input.val('No file selected');
-			$('.clone_upload').css('pointer-events', 'none');
-	 	}
-
-
-	});
-
-	//  == Add and Remove Button Start ==
-
-	$('.remove_upload').css('display','none');
-	$(document).on('click','.clone_upload, .remove_upload',function() {
-		var input_length=$('.uploadbutton').length;
-		if(input_length <= 1) {
-			$('.remove_upload').css('display','none');
-			// $('.uploadbutton').css('pointer-events', 'auto');
-		}
-		else {
-			$('.remove_upload').css('display','block');
-		}
-	});
-
 
 	//  == Add and Remove Button End ==
 
@@ -889,6 +797,8 @@ $(document).ready(function () {
 	});
 
 
+
+
 	$(document).on('click','.remove_upload',function() {
 		var last_section = $('.upload_section:last').find('.uploadFile');
 		if(last_section.val() == '') {
@@ -898,6 +808,8 @@ $(document).ready(function () {
 			$('.clone_upload').css('pointer-events', 'auto');
 		}
 	});
+
+
 
 	// Validaion for adding restriction to clone Start
 
