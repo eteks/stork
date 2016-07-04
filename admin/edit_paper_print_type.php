@@ -20,6 +20,9 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_paper_print_type` SET `paper_print_type`='$paper_print_type',`paper_print_type_status`='$paper_print_type_status' WHERE `paper_print_type_id`=".$val);
+			if(($paper_print_type_status == 0 && !$_POST['change_status'])||($paper_print_type_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_print_type_status' WHERE `cost_estimation_paper_print_type_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Updated Successfully! </span></div>";	
 		}		
 	}	
@@ -74,13 +77,19 @@ if(isset($_GET["id"]))
 									while($row = mysql_fetch_array($qry)) 
 									{
 							?>	
+								<?php if ($row['paper_print_type_status'] == 0){ ?>
+									<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>" <?php if($row['paper_print_type'] == "Color with Black & white"){ echo "disabled";} ?>>
+									<?php if($row['paper_print_type'] == "Color with Black & white"){ ?>
+										<input type="hidden" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
+									<?php } ?>
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Print Type Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="paper_print_type_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="paper_print_type_status">
 								        <option>
 											<span>Select Status</span>
 										</option>

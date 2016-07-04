@@ -1,5 +1,5 @@
 <?php
-include '../includes/functions.php';
+include 'includes/functions.php';
 include '../config/config.php';
 if((isset($_POST['email']) && $_POST['email']!="") || (isset($_POST['username']) && $_POST['username']!=""))
 {
