@@ -62,9 +62,9 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Paperside Information</h3>
+						<h3 class="acc-title lg">Edit Paper Side Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Paperside Information</h4>
+							<h4 class="acc-sub-title">Paper Side Information</h4>
 							<form action="edit_paper_side.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_paper_side">	
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
@@ -87,7 +87,7 @@ if(isset($_GET["id"]))
 								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
 							</div>
 							<div class="cate-filter-content">	
-							    <label for="first-name">Paperside Status<span class="required">*</span></label>
+							    <label for="first-name">Paper Side Status<span class="required">*</span></label>
 								<select class="product-type-filter form-control change_status" id="sel_a" name="paper_side_status">
 							        <option>
 										<span>Select status</span>

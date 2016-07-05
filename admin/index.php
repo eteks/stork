@@ -42,7 +42,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 		}
 		else
 		{
-			$error = "Invalid username and password combination";
+			$error = "Invalid Username or Password";
 		}
 	// }
 }
@@ -95,18 +95,19 @@ if (isset($_SESSION['admin_eap_secure']) && !$error)
 						// {
 					?>
 					<!-- <div class="admin_login_error"> -->
-					<div class="container admin_login_error_section">
-						<span class="admin_login_error"> <?php 
-						echo $error; ?> </span>
-						<!-- </div> -->
-						<?php
-							// }
-						?>	
-						<span class="error_admin_login"> Please fill out all mandatory fields </span>
-					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<h4>Returning Administration</h4>
 						<p>If you have an account with us, please log in.</p>
+						<div class="admin_login_error_section">
+								<span class="admin_login_error"> <?php 
+								echo $error; ?> </span>
+							<!-- </div> -->
+							<?php
+								// }
+							?>	
+							<!-- <span class="error_admin_login"> Please fill out all mandatory fields </span> -->
+								<span class="error_test error_admin_login"> Please fill all required(*) fields </span>	
+						</div>
 						<form id="login-form" class="form-validate form-horizontal" method="post" action="index.php" accept-charset="UTF-8">
 							<p>User Name <span class="star">*</span></p>
 							<input class="email admin_login_field" type="text" id="admin_username" autocomplete="off" placeholder="Username" name="username" value="<?php echo $user?>" aria-describedby="basic-addon1">
