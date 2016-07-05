@@ -666,7 +666,7 @@ $(document).ready(function () {
 		$('.print_page_option').slideUp();
 		$('#cover_file_name').val('');
 		$('.cover_section_holder').slideUp();
-		if( selected_type == "color with black & white" ) {
+		if( selected_type == "Color with Black & White" ) {
 			$('.display_paper_range').css('display','block');
 			$('.display_paper_range .file_range_holder').each (function() {
 				$(this).children('.display_normal_file').val('');
