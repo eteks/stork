@@ -60,9 +60,9 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit order Details Information</h3>
+						<h3 class="acc-title lg">Edit order Details</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Order Details Information</h4>
+							<h4 class="acc-sub-title">Order Details</h4>
 							<form action="edit_order_details.php?update=<?php echo $id; ?>" id="edit_order_details" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>

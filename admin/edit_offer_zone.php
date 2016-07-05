@@ -110,9 +110,9 @@ if(isset($_GET["id"]))
  <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
   <!--Account main content : Begin -->
   <section class="account-main col-md-9 col-sm-8 col-xs-12">
-   <h3 class="acc-title lg">Edit Offerzone Information</h3>
+   <h3 class="acc-title lg">Edit Offer Zone Information</h3>
    <div class="form-edit-info">
-    <h4 class="acc-sub-title">Offerzone Information</h4>
+    <h4 class="acc-sub-title">Offer Zone Information</h4>
     <form action="edit_offer_zone.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_offer_zone" enctype="multipart/form-data">
     	<div class="container">
 		<span class="error_test"> Please fill all required(*) fields </span>
@@ -123,11 +123,11 @@ if(isset($_GET["id"]))
       $offer_array = mysql_fetch_array($offer_query);
      ?>
      <div class="form-group">
-         <label for="first-name">Offerzone Title<span class="required">*</span></label>
+         <label for="first-name">Offer Zone Title<span class="required">*</span></label>
       <input type="text" class="form-control" id="offerzonetitle" autocomplete="off" value="<?php echo $offer_array['offer_zone_title']; ?>" placeholder="Offerzone Title" name="offerzone_title">
      </div>
      <div class="form-group offer_zone_position">
-         <label for="last-name">Offerzone Image<span class="required">*</span></label>
+         <label for="last-name">Offer Zone Image<span class="required">*</span></label>
       <input type="file" class="form-control browse_style" value="<?php echo $offer_array['offer_zone_image']; ?>" id="offerzoneimage" name="offerzone_image">
       <?php
         $img_source= $offer_array['offer_zone_image']; ?>
@@ -142,7 +142,7 @@ if(isset($_GET["id"]))
             <input type="hidden" value="<?php echo $img_source; ?>" name="old_path_name" />
      </div>
      <div class="cate-filter-content"> 
-         <label for="first-name">Offerzone Status<span class="required">*</span></label>
+         <label for="first-name">Offer Zone Status<span class="required">*</span></label>
       <select class="product-type-filter form-control" id="sel_a" name="offerzone_status">
              <option value="1" <?php if ($offer_array['offer_zone_status'] == 1) echo "selected";?>>
         <span>Active</span>

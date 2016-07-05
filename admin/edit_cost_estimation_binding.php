@@ -60,7 +60,7 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Binding Cost Estimation Information</h3>
+						<h3 class="acc-title lg">Edit Binding Cost Estimation</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Binding Cost Estimation Information</h4>
 							<form action="edit_cost_estimation_binding.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation_binding">
