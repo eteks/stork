@@ -48,7 +48,7 @@
 			$college_list_with_area_query = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id where stork_area.area_city_id =".$_POST['city_id'];
 			$college_list_with_area_data = mysqli_query($connection, $college_list_with_area_query);
 			while($row = mysqli_fetch_array($college_list_with_area_data)){
-				echo "<option value ='".$row['college_id']."'>".$row['college_name'].",".$row['area_name']."</option>";
+				echo "<option value ='".$row['college_id']."'>".$row['college_name'].", ".$row['area_name']."</option>";
 			}
 		}
 		

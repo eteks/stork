@@ -11,11 +11,17 @@
 							<ul class="info">
 								<li>
 									<i class="fa fa-home"></i>
-									<span>Door no:2A,Karuvadikuppam Main road,Kaniya garden,Muthialpet-3.</span>
+									<span><a>Door no:2A,</a><span>
+								</li>
+								<li>
+									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karuvadikuppam Main road,</a></span>
+								</li>
+								<li>
+									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kaniya garden,Muthialpet-3.</a></span>
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
-									<span>9655707844,8344625888</span>
+									<span><a>9655707844,8344625888</a></span>
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
@@ -46,19 +52,22 @@
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a title="Printing">Printing</a>
+									<a title="Plain Printing">Plain Printing</a>
 								</li>
 								<li>
-									<a title="Project Binding">Project Binding</a>
+									<a title="Project Printing">Project Printing</a>
 								</li>
 								<li>
-									<a title="Cabin Booking ">Cabin Booking </a>
+									<a title="Cabin Booking ">Cabin Booking</a>
 								</li>
 								<li>
-									<a  title="Multi printing">Multi printing</a>
+									<a  title="Muiticolors">Muiticolors</a>
 								</li>
 								<li>
-									<a  title="Multi-color printing">Multi-color printing</a>
+									<a  title="Multi-color printing">Personalized Products</a>
+								</li>
+								<li>
+									<a  title="Brochure">Brochure</a>
 								</li>
 							</ul>
 						</div>
@@ -77,10 +86,10 @@
 								</li>
 								<li>
 									<a  title="My Account">Message</a>
-									<textarea cols="27" rows="3"></textarea>
+									<textarea cols="27" rows="3" style="resize: none"></textarea>
 								</li>
 								<li>
-									<h4><a>Submit</a></h4>
+									<h4><span>Submit</span></h4>
 								</li>
 							</ul>
 						</div>
@@ -102,7 +111,6 @@
 				<div class="row">
 					<div class="col-md-6">
 						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
-						
 					</div>
 					<div class="col-md-6">
 						<p class="dev_partner" style="text-align: right;"><a href="http://www.atomicka.com">Development Partner Infom Atomicka (Tech) Pvt Ltd.</a></p>
@@ -116,89 +124,6 @@
 		</div>
 	</footer>
 	<div id="sitebodyoverlay"></div>
-	<nav id="mb-main-menu" class="main-menu">
-		<div class="mb-menu-title">
-			<h3>Navigation</h3>
-			<span id="close-mb-menu">
-				<i class="fa fa-times-circle"></i>
-			</span>
-		</div>
-		<ul  class="cate_list">
-			<li class="level0 parent col1 all-product">
-				<a href="#">
-					<span>All Product</span>
-					<i class="fa fa-chevron-down"></i><i class="fa fa-chevron-right"></i>
-				</a>
-				<ul class="level0">
-					<li class="level1">
-						<a href="#" title="Business Card">Business Card</a>
-					</li>
-					<li class="level1">
-						<a href="#" title="Premium Business Card">Premium Business Card</a>
-					</li>
-					<li class="level1">
-						<a href="#" title="Free Business Card">Free Business Card</a>
-					</li>
-					<li class="level1">
-						<a href="#" title="Marketing Materials">Marketing Materials</a>
-					</li>
-					<li class="level1">
-						<a href="#" title="Dance Marketing Kit">Dance Marketing Kit</a>
-					</li>
-					<li class="level1 view-all-pro">
-						<a href="#" title="view all product">View all</a>
-					</li>
-				</ul>
-			</li>
-			<li class="level0 parent col1">
-				<a href="#" title="Business Cards">
-					<span>Business Cards</span>
-					<i class="fa fa-chevron-down"></i><i class="fa fa-chevron-right"></i>
-				</a>
-				<ul class="level0">
-					<li class="level1 nav-1-1 first item">
-						<a href="#" title="Premium Business Cards">Premium Business Cards</a>
-					</li>
-					<li class="level1 nav-1-2 item">
-						<a href="#" title="Free Business Cards">Free Business Cards</a>
-					</li>
-					<li class="level1 nav-1-3 item">
-						<a href="#" title="Die-Cut Business Cards">Die-Cut Business Cards</a>
-					</li>
-					<li class="level1 nav-1-4 item">
-						<a href="#" title="Standard Business Cards">Standard Business Cards</a>
-					</li>
-					<li class="level1 nav-1-5 item">
-						<a href="#" class="Personal Business Cards">Personal Business Cards</a>
-					</li>
-					<li class="level1 nav-1-6 item">
-						<a href="#" title="Business Card Holders">Business Card Holders</a>
-					</li>
-					<li class="level1 nav-1-7 item">
-						<a href="#" title="Networking Cards">Networking Cards</a>
-					</li>
-					<li class="level1 nav-1-8 item">
-						<a href="#" title="Appointment Cards">Appointment Cards</a>
-					</li>
-					<li class="level1 nav-1-9 last item">
-						<a href="#" title="Mommy Cards">Mommy Cards</a>
-					</li>
-				</ul>
-			</li>
-			<li class="level0">
-				<a href="category_grid.html" title="Marketing">Marketing</a>
-			</li>
-			<li class="level0">
-				<a href="#" title="Postcards">Postcards</a>
-			</li>
-			<li class="level0">
-				<a href="#" title="Stickers & Badges">Stickers & Badges</a>
-			</li>
-			<li class="level0" title="Promotional">
-				<a href="#">Promotional</a>
-			</li>
-		</ul>
-	</nav> 
 	<!---   Pop up error msg--->
 	<div class="popup_fade cancel_btn"></div> 
  	<div class="error_popup_msg">

@@ -259,7 +259,7 @@ color: #000;
 .cart-w, .search-w{
   position: relative;
   display: block;
-  width: 20% !important;
+  /*width: 20% !important;*/
   vertical-align: middle;
 }
 
@@ -354,7 +354,7 @@ color: #000;
 	
 .headerCS {
     float: left;
-    width: 60%;
+    width: 58%;
 }
 
 .location, select {
@@ -748,7 +748,7 @@ h4.order_or_button{
     width: 100%;
 }
 
-.footer-content h4 a{
+.footer-content h4 span{
 	-moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -765,3 +765,13 @@ h4.order_or_button{
     text-transform: uppercase;
     cursor:pointer;
 	}
+.footer-content h4 span:hover { 
+	background-color: #25bce9;
+	color: #ffffff; 
+}
+.fr{
+	float:right;
+}
+/*.navmenu_icons_header{
+	width: 68%;
+}*/

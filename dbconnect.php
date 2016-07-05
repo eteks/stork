@@ -13,10 +13,10 @@ class dbConnect {
         }
         else{
             // Code to insert default data on Paper Print Type Table
-            $print_type_query = mysqli_query($conn, 'select * from stork_paper_print_type where paper_print_type="Color with Black & white"');
+            $print_type_query = mysqli_query($conn, 'select * from stork_paper_print_type where paper_print_type="Color with Black & White"');
             if(mysqli_num_rows($print_type_query) == 0){
                 mysqli_query($conn,"INSERT INTO stork_paper_print_type (paper_print_type, 
-                    paper_print_type_status) VALUES ('Color with Black & white',1)");
+                    paper_print_type_status) VALUES ('Color with Black & White',1)");
             }      
         }
         return $conn;

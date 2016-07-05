@@ -382,31 +382,31 @@ $(document).ready(function () {
 	//index page form validation
 	$('#index_page_form').submit(function(){
 			if($('#student').is(':checked')){
-				if($('#print_book_area_student').val() == ''){
-					$('#index_page_form #print_book_area_student').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_college').val() == ''){
+				// if($('#print_book_area_student').val() == ''){
+					// $('#index_page_form #print_book_area_student').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_college').val() == ''){
 					$('#index_page_form #print_book_college').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_area_student').removeClass('error_border');
+					//$('#index_page_form #print_book_area_student').removeClass('error_border');
 					$('#index_page_form #print_book_college').removeClass('error_border');
 					return true;
 				}
 			}
 			else if($('#professional').is(':checked')){
-				if($('#print_book_state').val() == ''){
-					$('#index_page_form #print_book_state').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_area_professional').val() == ''){
+				// if($('#print_book_state').val() == ''){
+					// $('#index_page_form #print_book_state').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_area_professional').val() == ''){
 					$('#index_page_form #print_book_area_professional').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_state').removeClass('error_border');
+					//$('#index_page_form #print_book_state').removeClass('error_border');
 					$('#index_page_form #print_book_area_professional').removeClass('error_border');
 					return true;
 				}
@@ -999,7 +999,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .no_college_found_error').addClass('dn');
-           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           		$('#print_book_college').empty().append('<option value="">Select your College/Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_college').attr('disabled','disabled');
@@ -1015,7 +1015,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
-           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           		$('#print_book_area_professional').empty().append('<option value="">Select your Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_area_professional').attr('disabled','disabled');
