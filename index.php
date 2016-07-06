@@ -61,7 +61,7 @@
 											//}
 		        						?>
 		        					</select> -->
-		        					<select id="print_book_area_professional" name="pro_area" required>
+		        					<select id="print_book_area_professional" name="pro_area" >
 		        						<option value="" >Select your Area</option>
 		        					</select>
 	        					</div>
@@ -75,7 +75,7 @@
 											//}
 		        						?>
 		        					</select> -->
-		        					<select name="stu_college" id="print_book_college" required>
+		        					<select name="stu_college" id="print_book_college">
 		        						<option value="" >Select your College/Area</option>
 		        					</select>
 		        					<span class="no_college_found_error dn">No college or area found!</span>

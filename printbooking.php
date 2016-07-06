@@ -66,7 +66,7 @@
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php
-			        							$state = selectfunction('*',PRINTTYPE,'',$connection);
+			        							$state = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
 												while($row = mysqli_fetch_array($state)){
 													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
 												}
@@ -79,7 +79,7 @@
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIDE,'',$connection);
+		        							$state = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
 											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
 											}
@@ -91,7 +91,7 @@
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERTYPE,'',$connection);
+		        							$state = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
 											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
 											}
@@ -103,7 +103,7 @@
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIZE,'',$connection);
+		        							$state = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
 											while($row = mysqli_fetch_array($state)){
 												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
 											}
