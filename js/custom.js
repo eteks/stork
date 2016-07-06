@@ -4,10 +4,6 @@ function error_popup(message){
 	$('.error_popup_msg').show();
 	document.body.style.overflow = 'hidden';
 }
-
-
-
-
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
@@ -1138,25 +1134,25 @@ $(document).ready(function () {
 			var input = jQuery('#'+required_address_1[i]);
 			
 			if ((input.val() == "")) {
-				input.addClass("error_input_field");
+				input.addClass("error_input1_field");
 				 $('.error_test').css('display','block');		
 			 }
 			 else{
-				 input.removeClass("error_input_field");
+				 input.removeClass("error_input1_field");
 			  $('.error_test').css('display','none');
 				
 			 }
 			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input_field_email");
+		 	forget_email.addClass("error_input1_field_email");
 	  	}else{
-	  		forget_email.removeClass("error_input_field_email");
+	  		forget_email.removeClass("error_input1_field_email");
 	  	}
 	  
 		}
 		  
 
 //if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+	if (jQuery(":input").hasClass("error_input1_field") || jQuery("select").hasClass("error_input1_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
 		$('.error_mobile').css('display','none');
@@ -1165,7 +1161,7 @@ $(document).ready(function () {
 			return false;
 		}
 		else {
-			if(jQuery(":input").hasClass("error_input_field_email"))  {
+			if(jQuery(":input").hasClass("error_input1_field_email"))  {
 				$('.error_test').css('display','none');
 				$('.error_mobile').css('display','none');
 				$('.error_email').css('display','block');
@@ -1174,7 +1170,7 @@ $(document).ready(function () {
 			}
 			
 			else {
-				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				if(jQuery(":input").hasClass("error_input1_field_phone"))  {
 				$('.error_test').css('display','none');
 				$('.error_email').css('display','none');
 				$('.error_mobile').css('display','block');
