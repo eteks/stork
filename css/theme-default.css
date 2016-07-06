@@ -6230,3 +6230,33 @@ section.home-slidershow{
 .upload-add-cart{
 	width:50%;
 }
+.error_input_field {
+   border:1px solid red !important;
+}
+.error_input2_field {
+   border:1px solid red !important;
+}
+.error_input_field_email {
+   border:1px solid red !important;
+}
+.error_input2_field_email {
+   border:1px solid red !important;
+}
+.error_input_field_mobile {
+   border:1px solid red !important;
+}
+.error_test {
+	color :red ;
+	font-size : 12px;	
+	display : none;
+}
+.error_email  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
+.error_mobile  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
