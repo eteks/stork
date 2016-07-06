@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$paper_size = $_POST['paper_size'];
 	$paper_size_status=$_POST['paper_size_status'];
 	if($paper_size=="" || $paper_size_status=="") {
-		// echo "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
 	}
 	else {
 		$qr=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size='$paper_size'");

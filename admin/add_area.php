@@ -16,7 +16,7 @@ include "includes/header.php";;
 		if($city_id=="" || $area_name=="" || $area_status=="") {
 			// header('Location: add_area.php');
 			// exit();
-			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
 		}	
 		else{
 			$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");

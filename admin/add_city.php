@@ -11,7 +11,7 @@ include "includes/header.php";
 		$city_name = $_POST["city_name"];
 		$city_status = $_POST["city_status"];
 		if($city_name=="" || $city_status=="") {
-			// echo "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+			$successMessage ="<div class='container error_message_mandatory'><span>Please fill all required(*) fields </span></div>";
 		}	
 		else{
 			$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");

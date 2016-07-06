@@ -11,7 +11,7 @@ include "includes/header.php";
 		$paper_side = $_POST['paper_side'];
 		$paper_side_status=$_POST['paper_side_status'];
 		if($paper_side=="" || $paper_side_status=="") {
-			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
 		}
 		else {
 			$qr=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side='$paper_side'");

@@ -15,7 +15,7 @@ $cost_paper_type=$_POST['cost_paper_type'];
 $cost_amount=$_POST['cost_amount'];
 $cost_status=$_POST['cost_status'];
 	if($cost_print_type=="" || $cost_paper_side=="" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
-		// echo "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		$successMessage= "<div class='container error_message_mandatory'><span>Please fill all required(*) fields </span></div>";
 	}	
 	else{
 		$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$cost_print_type' AND cost_estimation_paper_side_id = '$cost_paper_side' AND cost_estimation_paper_size_id = '$cost_paper_size' AND cost_estimation_paper_type_id = '$cost_paper_type'");

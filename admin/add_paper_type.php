@@ -10,7 +10,7 @@ include "includes/header.php";
 		$paper_type = $_POST['paper_type'];
 		$paper_type_status=$_POST['paper_type_status'];
 		if($paper_type=="" || $paper_type_status=="") {
-			// echo"<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 		}
 		else {
 			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 	$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
 	if($cost_estimation_binding_type=="" || $cost_estimation_binding_amount=="" || $cost_estimation_binding_status=="") {	
-		// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 	}
 	else{
 		$qr = mysql_query("SELECT * FROM stork_cost_estimation_binding WHERE cost_estimation_binding_type = '$cost_estimation_binding_type'");
