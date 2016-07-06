@@ -156,7 +156,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-sm-6 block-trust trust-col-quantity">
-						<a href="printbooking.php"><div class="tr-icon"><i class="fa fa-file-text-o"></i></div></a>
+						<a href="printbooking.php?service=plain" id="home_plain_printing"><div class="tr-icon"><i class="fa fa-file-text-o"></i></div></a>
 						<div class="tr-text">
 							<h3>Plain Printing</h3>
 							<span class="tr-line"></span>
@@ -165,7 +165,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 block-trust trust-col-time-delivery">
-						<div class="tr-icon"><i class="fa fa-files-o"></i></div>
+						<a href="printbooking.php?service=project" id="home_project_printing"><div class="tr-icon"><i class="fa fa-files-o"></i></div></a>
 						<div class="tr-text">
 							<h3>project Printing</h3>
 							<span class="tr-line"></span>
@@ -188,7 +188,7 @@
 				
 				<div class="row">
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
-						<div class="tr-icon"><i class="fa fa-paint-brush"></i></div>
+						<a href="printbooking.php?service=multi" id="home_multi_printing"><div class="tr-icon"><i class="fa fa-paint-brush"></i></div></a>
 						<div class="tr-text">
 							<h3>Muiticolors</h3>
 							<span class="tr-line"></span>

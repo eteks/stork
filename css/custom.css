@@ -779,12 +779,12 @@ h4.order_or_button{
 .label_page_range {
     display: none;
 }
-#pr-register {
+/*#pr-register {
     display: none;
 }
 #pr-login {
     display: none;
-}
+}*/
 .upload_content_section {
     float: left;
 }

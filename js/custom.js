@@ -1102,8 +1102,8 @@ $(document).ready(function () {
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
 		
-		// for empty field validation
-		jQuery(".check_out_payment").on('click',function(){ 
+	// for empty field validation
+	jQuery(".check_out_payment").on('click',function(){ 
 	if($('.send_to_address_personal_data').css('display')=='block')	 {
 		for(var i = 0 ; i<required_address_1.length;i++ ){
 			var input = jQuery('#'+required_address_1[i]);
@@ -1121,12 +1121,11 @@ $(document).ready(function () {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
 	  		forget_email.removeClass("error_input_field_email");
-	  	}
-	  
-		}
+  		}
+	}
 		  
 
-//if any inputs on the page have the class 'error_input_field' the form will not submit
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
@@ -1162,56 +1161,38 @@ $(document).ready(function () {
 	}
 	});
 	jQuery(".check_out_payment").on('click',function(){ 	
-	if($('.send_to_address_college_data').css('display')=='block')	{
-		for(var i = 0 ; i<required_address_2.length;i++ ){
-			var input = jQuery('#'+required_address_2[i]);
-			
-			if ((input.val() == "")) {
-				input.addClass("error_input2_field");
-				 $('.error_test').css('display','block');		
-			 }
-			 else{
-				 input.removeClass("error_input2_field");
-			  $('.error_test').css('display','none');
-				
-			 }
-			 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input2_field_email");
-	  	}else{
-	  		forget_email.removeClass("error_input2_field_email");
-	  	}
-	  
+		if($('.send_to_address_college_data').css('display')=='block')	{
+			for(var i = 0 ; i<required_address_2.length;i++ ){
+				var input = jQuery('#'+required_address_2[i]);
+				if ((input.val() == "")) {
+					input.addClass("error_input2_field");
+				 	$('.error_test').css('display','block');		
+			 	}
+			 	else{
+				 	input.removeClass("error_input2_field");
+			  		$('.error_test').css('display','none');
+			 	}
+		 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 			forget_email.addClass("error_input2_field_email");
+	  			}else{
+	  				forget_email.removeClass("error_input2_field_email");
+	  			}
 			}
-	
-			   $("#phone").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        // $("#error_test").html("Digits Only").show().fadeOut("slow");
-        return false;
-    }
-   });
-		
-		
-	if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			 
-			return true;
+		   $("#phone").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        		//display error message
+        		// $("#error_test").html("Digits Only").show().fadeOut("slow");
+        			return false;
+    			}
+   			});
+			if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
+				return false;
+			} else {
+				errornotice.hide();
+				return true;
+			}
 		}
-}
-});
-jQuery(".check_out_payment").click(function(){ 	
-if($('.send_to_address_personal').prop('checked')==true) {
+	});
 	
-}
-else if($('.send_to_address_college').prop('checked')==true) {
-	
-}
-else {
-	alert("please select one option");
-	return false;
-}
-});
 });
