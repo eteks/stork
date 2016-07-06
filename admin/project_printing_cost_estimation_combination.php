@@ -66,7 +66,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
     $val = $_GET['delete'];
-    mysqlQuery("DELETE FROM `stork_cost_estimation_project_printing` WHERE `    cost_estimation_project_printing_id`='$val'");
+    mysqlQuery("DELETE FROM `stork_cost_estimation_project_printing` WHERE `cost_estimation_project_printing_id`='$val'");
     $isDeleted = true;
     $deleteProduct = true;
 }
@@ -186,7 +186,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         $(document).on("click", ".delete", function () {
         var myId = $(this).data('id');
         $(".modal-body #vId").val( myId );
-        $("#del_link").prop("href", "printing_cost_estimation_combination.php?delete="+myId);
+        $("#del_link").prop("href", "project_printing_cost_estimation_combination.php?delete="+myId);
         });
     </script>
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
