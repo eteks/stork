@@ -19,12 +19,12 @@ if (isset($_GET['update']))
 		$paper_type = $_POST["paper_type"];
 		$amount = $_POST["amount"];
 		$cost_estimation_status = $_POST["cost_estimation_status"];
-		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_project_printing` WHERE cost_estimation_project_printing_paper_print_type_id='$paper_print_type' AND cost_estimation_project_printing_paper_side_id='$paper_side' AND cost_estimation_project_printing_paper_size_id='$paper_size' AND cost_estimation_project_printing_paper_type_id='$paper_type' AND cost_estimation_project_printing_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_multicolor` WHERE cost_estimation_multicolor_paper_print_type_id='$paper_print_type' AND cost_estimation_multicolor_paper_side_id='$paper_side' AND cost_estimation_multicolor_paper_size_id='$paper_size' AND cost_estimation_multicolor_paper_type_id='$paper_type' AND cost_estimation_multicolor_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Already Project Printing Cost Assigned! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Already Multicolor Printing Cost Assigned! </span></div>";
 		} else {			
-			mysqlQuery("UPDATE `stork_cost_estimation_project_printing` SET cost_estimation_project_printing_paper_print_type_id='$paper_print_type',cost_estimation_project_printing_paper_side_id='$paper_side',cost_estimation_project_printing_paper_size_id='$paper_size',cost_estimation_project_printing_paper_type_id='$paper_type',cost_estimation_project_printing_amount='$amount', cost_estimation_project_printing_status='$cost_estimation_status' WHERE cost_estimation_project_printing_id=".$val);
+			mysqlQuery("UPDATE `stork_cost_estimation_multicolor` SET cost_estimation_multicolor_paper_print_type_id='$paper_print_type',cost_estimation_multicolor_paper_side_id='$paper_side',cost_estimation_multicolor_paper_size_id='$paper_size',cost_estimation_multicolor_paper_type_id='$paper_type',cost_estimation_multicolor_amount='$amount', cost_estimation_multicolor_status='$cost_estimation_status' WHERE cost_estimation_multicolor_id=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> Project Printing Cost Updated Successfully! </span></div>";
 		}
 				
@@ -94,16 +94,20 @@ if(isset($_GET["id"]))
 									?>	
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Paper Side<span class="required">*</span></label>
-									<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Single Side" disabled>
-									<?php 
-								        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1'");
-								        while($row_cost1=mysql_fetch_array($query1)) {
-								    		if(strtolower($row_cost1['paper_side']) == "single side"){
-									        	echo "<input type='hidden' name='paper_side' value=".$row_cost1['paper_side_id'].">";
-									        }
-									    }
-								    ?>
+								    <label for="first-name">Paper Side<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="paper_side">
+								        <option>
+											<span>Select Paper Side</span>
+										</option>
+								        <?php
+					                        $query = mysql_query("select * from stork_paper_side");
+					                        while ($rowPaperSide = mysql_fetch_array($query)) {
+					                        if($row['cost_estimation_multicolor_paper_side_id'] == $rowPaperSide['paper_side_id'])   
+												echo "<option selected value='".$rowPaperSide['paper_side_id']."'>".$rowPaperSide['paper_side']."</option>";
+											else
+												echo "<option value='".$rowPaperSide['paper_side_id']."'>".$rowPaperSide['paper_side']."</option>";	
+					                    } ?>
+								    </select>
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Type<span class="required">*</span></label>
@@ -114,7 +118,7 @@ if(isset($_GET["id"]))
 								        <?php
 				                        $query = mysql_query("select * from stork_paper_type");
 				                        while ($rowPaperType = mysql_fetch_array($query)) {
-					                        if($row['cost_estimation_project_printing_paper_type_id'] == $rowPaperType['paper_type_id'])   
+					                        if($row['cost_estimation_multicolor_paper_type_id'] == $rowPaperType['paper_type_id'])   
 												echo "<option selected value='".$rowPaperType['paper_type_id']."'>".$rowPaperType['paper_type']."</option>";
 											else
 												echo "<option value='".$rowPaperType['paper_type_id']."'>".$rowPaperType['paper_type']."</option>";	
@@ -130,7 +134,7 @@ if(isset($_GET["id"]))
 								        <?php
 				                        $query = mysql_query("select * from stork_paper_size");
 				                        while ($rowPaperSize = mysql_fetch_array($query)) {
-					                        if($row['cost_estimation_project_printing_paper_size_id'] == $rowPaperSize['paper_size_id'])   
+					                        if($row['cost_estimation_multicolor_paper_size_id'] == $rowPaperSize['paper_size_id'])   
 												echo "<option selected value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";
 											else
 												echo "<option value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";	
@@ -139,7 +143,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" placeholder="Amount" name="amount" value="<?php echo($row['cost_estimation_project_printing_amount']); ?>">
+									<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" placeholder="Amount" name="amount" value="<?php echo($row['cost_estimation_multicolor_amount']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
@@ -147,8 +151,8 @@ if(isset($_GET["id"]))
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="1" <?php if ($row['cost_estimation_project_printing_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['cost_estimation_project_printing_status'] == 0) echo "selected"; ?>>InActive</option>
+								        <option value="1" <?php if ($row['cost_estimation_multicolor_status'] == 1) echo "selected"; ?>>Active</option>
+										<option value="0" <?php if ($row['cost_estimation_multicolor_status'] == 0) echo "selected"; ?>>InActive</option>
 								    </select>
 								</div>
 								<div class="account-bottom-action">

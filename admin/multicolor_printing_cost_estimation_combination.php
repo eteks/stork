@@ -62,7 +62,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
     $val = $_GET['delete'];
-    mysqlQuery("DELETE FROM `stork_cost_estimation_multicolor` WHERE `    cost_estimation_multicolor_id`='$val'");
+    mysqlQuery("DELETE FROM `stork_cost_estimation_multicolor` WHERE `cost_estimation_multicolor_id`='$val'");
     $isDeleted = true;
     $deleteProduct = true;
 }
@@ -151,13 +151,13 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                                echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
                             }
                             else{
-                                while ($cost_array = mysql_fetch_array($estimated_cost)) {   
+                                while ($cost_array = mysql_fetch_array($estimated_cost)) {  
                                     $createddate=strtotime($cost_array['created_date']);
                                     $date = date('d/m/Y', $createddate);
                                     if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){
                                         $status = "<td>".$cost_array['cost_estimation_multicolor_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_multicolor_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
                                                     <span class='nobr'>
-                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_multicolor_printing_cost.php?id=".$cost_array['  cost_estimation_multicolor_id']."'><i class='fa fa-pencil-square-o'></i></a>
+                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_multicolor_printing_cost.php?id=".$cost_array['cost_estimation_multicolor_id']."'><i class='fa fa-pencil-square-o'></i></a>
                                                     <span class='separator'></span> 
                                                     <a class='btn btn-xs btn-danger delete' title='Delete' data-id=".$cost_array['cost_estimation_multicolor_id']." href='#myModal1' data-toggle='modal' id='delete'><i class='fa fa-trash-o'></i></a>
                                                     </span>
@@ -181,7 +181,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         $(document).on("click", ".delete", function () {
         var myId = $(this).data('id');
         $(".modal-body #vId").val( myId );
-        $("#del_link").prop("href", "printing_cost_estimation_combination.php?delete="+myId);
+        $("#del_link").prop("href", "multicolor_printing_cost_estimation_combination.php?delete="+myId);
         });
     </script>
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

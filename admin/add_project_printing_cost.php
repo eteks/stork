@@ -72,6 +72,7 @@ include "includes/header.php";
 						<?php 
 						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
 						        while($row_cost=mysql_fetch_array($query)) {
+						        	echo ""
 						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
 						        		echo "<input type='hidden' name='cost_print_type' value=".$row_cost['paper_print_type_id'].">";
 						        	}
