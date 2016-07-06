@@ -61,7 +61,7 @@ include "includes/header.php";
 			<h3 class="acc-title lg">Add Project Printing Cost Estimation</h3>
 			<div class="form-edit-info">
 				<h4 class="acc-sub-title">Project Printing Cost Estimation</h4>
-				<form action="add_project_printing_cost.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
+				<form action="add_project_printing_cost.php" method="POST" name="edit-acc-info" id="add_project_printing_cost">
 					<div class="container">
 						<span class="error_test"> Please fill all required(*) fields </span>
 					</div>
@@ -71,8 +71,8 @@ include "includes/header.php";
 						<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" disabled>
 						<?php 
 						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
-						        while($row_cost=mysql_fetch_array($query)) {
-						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
+						        while($row_cost=mysql_fetch_array($query)) {						        	
+						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){						        	
 						        		echo "<input type='hidden' name='cost_print_type' value=".$row_cost['paper_print_type_id'].">";
 						        	}
 						        }
@@ -92,7 +92,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_a">
 					        <option value="">
 								<span>Select Paper Type</span>
 							</option>
@@ -106,7 +106,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Size<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_b">
 					        <option value="">
 								<span>Select Paper Size</span>
 							</option>
@@ -120,11 +120,11 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="last-name">Amount<span class="required">*</span></label>
-						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
+						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="amount">
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Project Printing Cost Estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
+						<select class="product-type-filter form-control" name="cost_status" id="sel_c">
 					        <option value="">
 								<span>Select Status</span>
 							</option>

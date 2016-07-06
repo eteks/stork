@@ -61,7 +61,7 @@ include "includes/header.php";
 			<h3 class="acc-title lg">Add Multicolor Printing Cost Estimation</h3>
 			<div class="form-edit-info">
 				<h4 class="acc-sub-title">Multicolor Printing Cost Estimation</h4>
-				<form action="add_multicolor_printing_cost.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
+				<form action="add_multicolor_printing_cost.php" method="POST" name="edit-acc-info" id="add_multicolor_printing_cost">
 					<div class="container">
 						<span class="error_test"> Please fill all required(*) fields </span>
 					</div>
@@ -80,7 +80,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Side<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_side" id="sel_b">
+						<select class="product-type-filter form-control" name="cost_paper_side" id="sel_a">
 					        <option value="">
 								<span>Select Paper Side</span>
 							</option>
@@ -94,7 +94,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_d">
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_b">
 					        <option value="">
 								<span>Select Paper Type</span>
 							</option>
@@ -126,7 +126,7 @@ include "includes/header.php";
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Multicolor Printing Cost Estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
+						<select class="product-type-filter form-control" name="cost_status" id="sel_d">
 					        <option value="">
 								<span>Select Status</span>
 							</option>
