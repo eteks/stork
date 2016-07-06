@@ -21,17 +21,13 @@ function generate_combinations(array $data, array &$all = array(), array $group 
 }
 
 $papersize = mysqlQuery("SELECT * FROM `stork_paper_size`");
-$papersides = mysqlQuery("SELECT * FROM `stork_paper_side` where LOWER(paper_side)='single side'");
+$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`");
 $papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
 $paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` where LOWER(paper_print_type)='color with black & white'");
-$papersides = mysql_fetch_array($papersides);
 $paperprinttypes = mysql_fetch_array($paperprinttypes);
-// echo $papersides['paper_side'];
-// echo $papersides['paper_side_id'];
-
 
 $papersize_array = array();
-$papersides_array = array($papersides['paper_side_id']=>$papersides['paper_side']);
+$papersides_array = array();
 $papertypes_array = array();
 $paperprinttypes_array = array($paperprinttypes['paper_print_type_id']=>$paperprinttypes['paper_print_type']);
 
@@ -43,10 +39,10 @@ while ( $result = mysql_fetch_array( $papersize )){
     array_push( $papersize_array, $tmp );
 }
 
-// while ( $result = mysql_fetch_array( $papersides )){
-//     $tmp = array($result['paper_side']);    
-//     array_push( $papersides_array, $tmp );
-// }
+while ( $result = mysql_fetch_array( $papersides )){
+    $tmp = array($result['paper_side']);    
+    array_push( $papersides_array, $tmp );
+}
 
 while ( $result = mysql_fetch_array( $papertypes )){
     $tmp = array($result['paper_type']);    
@@ -66,7 +62,7 @@ $datas = generate_combinations(array($papersize_array,$papersides_array,$paperty
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
     $val = $_GET['delete'];
-    mysqlQuery("DELETE FROM `stork_cost_estimation_project_printing` WHERE `    cost_estimation_project_printing_id`='$val'");
+    mysqlQuery("DELETE FROM `stork_cost_estimation_multicolor` WHERE `    cost_estimation_multicolor_id`='$val'");
     $isDeleted = true;
     $deleteProduct = true;
 }
@@ -134,8 +130,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                     <?php 
                     foreach ($datas as $key=>$value) {
                         $size = implode(" ",$value[0]);
-                        $side_id = $key[1];
-                        $side = $value[1];
+                        $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type_id = $key[3];
                         $print_type = $value[3];
@@ -146,11 +141,11 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         <td><?php echo $type ?></td> 
                         <td><?php echo $size ?></td>  
                         <?php 
-                            $estimated_cost = mysqlQuery("SELECT cepp.*,ppt.paper_print_type,pside.paper_side,psize.paper_size,pt.paper_type FROM stork_cost_estimation_project_printing as cepp 
-                                    INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id= cepp.cost_estimation_project_printing_paper_print_type_id 
-                                    INNER JOIN stork_paper_side as pside ON pside.paper_side_id=cepp.cost_estimation_project_printing_paper_side_id
-                                    INNER JOIN stork_paper_size as psize ON psize.paper_size_id=cepp.cost_estimation_project_printing_paper_size_id
-                                    INNER JOIN stork_paper_type as pt ON pt.paper_type_id=cepp.cost_estimation_project_printing_paper_type_id");
+                            $estimated_cost = mysqlQuery("SELECT cem.*,ppt.paper_print_type,pside.paper_side,psize.paper_size,pt.paper_type FROM stork_cost_estimation_multicolor as cem 
+                                    INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id= cem.cost_estimation_multicolor_paper_print_type_id 
+                                    INNER JOIN stork_paper_side as pside ON pside.paper_side_id=cem.cost_estimation_multicolor_paper_side_id
+                                    INNER JOIN stork_paper_size as psize ON psize.paper_size_id=cem.cost_estimation_multicolor_paper_size_id
+                                    INNER JOIN stork_paper_type as pt ON pt.paper_type_id=cem.cost_estimation_multicolor_paper_type_id");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
                                echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
@@ -159,12 +154,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                                 while ($cost_array = mysql_fetch_array($estimated_cost)) {   
                                     $createddate=strtotime($cost_array['created_date']);
                                     $date = date('d/m/Y', $createddate);
-                                    if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){        
-                                        $status = "<td>".$cost_array['cost_estimation_project_printing_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_project_printing_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
+                                    if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){
+                                        $status = "<td>".$cost_array['cost_estimation_multicolor_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_multicolor_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
                                                     <span class='nobr'>
-                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_project_printing_cost.php?id=".$cost_array['cost_estimation_project_printing_id']."'><i class='fa fa-pencil-square-o'></i></a>
+                                                    <a title='Edit' class='btn btn-primary btn-xs' href='edit_multicolor_printing_cost.php?id=".$cost_array['  cost_estimation_multicolor_id']."'><i class='fa fa-pencil-square-o'></i></a>
                                                     <span class='separator'></span> 
-                                                    <a class='btn btn-xs btn-danger delete' title='Delete' data-id=".$cost_array['cost_estimation_project_printing_id']." href='#myModal1' data-toggle='modal' id='delete'><i class='fa fa-trash-o'></i></a>
+                                                    <a class='btn btn-xs btn-danger delete' title='Delete' data-id=".$cost_array['cost_estimation_multicolor_id']." href='#myModal1' data-toggle='modal' id='delete'><i class='fa fa-trash-o'></i></a>
                                                     </span>
                                                     </td>";
                                         break;
