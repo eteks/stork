@@ -4,10 +4,6 @@ function error_popup(message){
 	$('.error_popup_msg').show();
 	document.body.style.overflow = 'hidden';
 }
-
-
-
-
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
@@ -20,31 +16,22 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
-		//  == Validation for Page range Format Start ==
-  	// $('.clone').css('pointer-events', 'none');
+	//  == Validation for Page range Format Start ==
+
 	$(document).on('keyup','.paper_range',function() {
-		// var path_range=$(this).attr('id');
-
-
 		var page_range_code_array = [] ;
-			$('.paper_range').each(function() { 
-			   var code_id = $(this).attr('id');
-		       page_range_code_array.push(code_id);
-		    });
-		// // alert(page_range_array);
-		// for(i=0;i<page_range_array.length;i++) {
-
+		$('.paper_range').each(function() { 
+		   var code_id = $(this).attr('id');
+	       page_range_code_array.push(code_id);
+	    });
 		for(i=0;i<page_range_code_array.length;i++) {	
 			var range_path = jQuery('#'+page_range_code_array[i]);
 			var inputVal=range_path.val();
 		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 		  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-		  		// $('.page_range_error').css('display','block');
-		  		// alert("page_range_error");
 				$('.uploadbutton').css('pointer-events', 'none');
 				$('.clone').css('pointer-events', 'none');
 				$(range_path).addClass("error_print_booking_code");
-
 			}
 		 	else {
 				$('.uploadbutton').css('pointer-events', 'auto');
@@ -60,25 +47,14 @@ $(document).ready(function () {
 			} 	
 	    }
 	    if (jQuery(".paper_range").hasClass("error_print_booking_code")) {
-		  	$('.page_range_error').css('display','block');
 		  	return false;
 	    }
 	    else {
-	    	$('.page_range_error').css('display','none');
 		  	return true;
 	    }
 
 	});
-
-
-
-
-
-
-
-	
-
-	//  == Validation for Page range Keycode Start ==
+	//  == Validation for Page range Format End ==
 
 	//  == Add and Remove Button Start ==
 
@@ -625,7 +601,7 @@ $(document).ready(function () {
 	$('#page_radio_yes').click(function() {
 		$('.cover_section_holder').slideDown();
 		$('.upload_section').css('width','100%');
-		$('#cover_file_name').val('');
+		$('#cover_file_name').val('No file selected');
 	});
 	$('#page_radio_no').click(function() {
 		$('.cover_section_holder').slideUp();
@@ -661,6 +637,7 @@ $(document).ready(function () {
 	$('#print_type').on('change',function() {
 		var selected_type = $('#print_type option:selected').text().toLowerCase();
 		$('#radio_no').prop('checked',true);
+		$('#binding_type').prop('selectedIndex',0);
 		$('.display_binding_type').slideUp();
 		$('#page_radio_no').prop('checked',true);
 		$('.print_page_option').slideUp();
@@ -669,13 +646,15 @@ $(document).ready(function () {
 		if( selected_type == "Color with Black & White" ) {
 			$('.display_paper_range').css('display','block');
 			$('.display_paper_range .file_range_holder').each (function() {
-				$(this).children('.display_normal_file').val('');
-				$(this).children('.paper_range').val('');
+				$(this).children('.display_normal_file').val('No file selected');
+				$(this).children('.paper_range').val('0-0');
+				$('.label_page_range').css('display','block');
 			});
 		}
 
 		else {
 			$('.display_paper_range').css('display','none');
+			$('.label_page_range').css('display','none');
 		}
 	});
 	//  == Add input box when selected white & black and color End ==
@@ -734,7 +713,7 @@ $(document).ready(function () {
 			  	.attr("id", "display_paper_range" +  cloneIndex)
 			  	.data("sectionvalue",cloneIndex);
 			  	var input_file = path_file_section_clone.children('#display_paper_range'+ cloneIndex).find('.paper_range');
-			 	input_file.val("");
+			 	input_file.val("0-0");
 			   	input_file.attr("id","print_page_range"+ cloneIndex);
 			   	var input_file = path_file_section_clone.children('#display_paper_range'+cloneIndex).find('.display_normal_file');
 			  	input_file.val("No file selected")
@@ -1080,11 +1059,138 @@ $(document).ready(function () {
 		$('.send_to_address_college').prop('checked', false).prop("disabled", false);
 		$('.send_to_address_college_data').hide();
 		$('.send_to_address_personal_data').slideDown();
+		$('#name_a').val('');
+		$('#address1').val('');
+		$('#address2').val('');
+		$('#area_a').val('');
+		$('#city_a').val('');
+		$('#address1').val('');
+		$('#postalcode').val('');
+		$('#state_a').val('');
+		$('#mobile').val('');
+		$('#email').val('');
 	});
 	$('.send_to_address_college').on('change',function(){
 		$(this).prop("disabled", true);
 		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
 		$('.send_to_address_personal_data').hide();
 		$('.send_to_address_college_data').slideDown();
+			$('#studentname').val('');
+		$('#idno').val('');
+		$('#yearofstudying').val('');
+		$('#department').val('');
+		$('#collegename').val('');
+		$('#area_b').val('');
+		$('#postal').val('');
+		$('#state_b').val('');
+		$('#phone').val('');
+		$('#email2').val('');		
 	});
-});  
+	//mobile validation
+  //called when key is pressed in textbox
+
+
+	//Validation for checkout
+	var required_address_1 = ["name_a","address1","address2","area_a","city_a","postalcode","state_a","mobile","email"];
+	var required_address_2 = ["studentname","idno","yearofstudying","department","collegename","area_b","postal","state_b","phone","email2"];
+	forget_email=jQuery("#test");
+	email=jQuery("#email");
+ 	test=jQuery("#test");
+	errornotice = jQuery("#error");
+		
+	// for empty field validation
+	jQuery(".check_out_payment").on('click',function(){ 
+	if($('.send_to_address_personal_data').css('display')=='block')	 {
+		for(var i = 0 ; i<required_address_1.length;i++ ){
+			var input = jQuery('#'+required_address_1[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input1_field");
+				 $('.error_test').css('display','block');		
+			 }
+			 else{
+				 input.removeClass("error_input1_field");
+			  $('.error_test').css('display','none');
+				
+			 }
+			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input1_field_email");
+	  	}else{
+
+	  		forget_email.removeClass("error_input1_field_email");
+	  	}
+	  
+		}
+		  
+
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input1_field") || jQuery("select").hasClass("error_input1_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_mobile').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#mobile').removeClass("error_input_field_mobile");
+			return false;
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input1_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_mobile').css('display','none');
+				$('.error_email').css('display','block');
+				$('#mobile').removeClass("error_input_field_mobile");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input1_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_mobile').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_mobile').css('display','none');
+			return true;
+			}
+			}
+		}
+	
+	}
+	});
+	jQuery(".check_out_payment").on('click',function(){ 	
+		if($('.send_to_address_college_data').css('display')=='block')	{
+			for(var i = 0 ; i<required_address_2.length;i++ ){
+				var input = jQuery('#'+required_address_2[i]);
+				if ((input.val() == "")) {
+					input.addClass("error_input2_field");
+				 	$('.error_test').css('display','block');		
+			 	}
+			 	else{
+				 	input.removeClass("error_input2_field");
+			  		$('.error_test').css('display','none');
+			 	}
+		 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 			forget_email.addClass("error_input2_field_email");
+	  			}else{
+	  				forget_email.removeClass("error_input2_field_email");
+	  			}
+			}
+		   $("#phone").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        		//display error message
+        		// $("#error_test").html("Digits Only").show().fadeOut("slow");
+        			return false;
+    			}
+   			});
+			if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
+				return false;
+			} else {
+				errornotice.hide();
+				return true;
+			}
+		}
+	});
+	
+});
