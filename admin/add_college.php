@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$college_name = $_POST["college_name"];
 	$college_status = $_POST["college_status"];
 	if($area_id=="" || $college_name=="" || $college_status=="") {
-		// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+		 $successMessage = "<div class='container error_message_mandatory'><span>Please fill all required(*) fields </span></div>";
 	}
 	else{
 		$qr = mysql_query("SELECT * FROM stork_college WHERE college_name = '$college_name' AND college_area_id='$area_id'");

@@ -11,7 +11,7 @@ include "includes/header.php";
 		$state_name = $_POST["state_name"];
 		$state_status = $_POST["state_status"];
 		if($state_name=="" && $state_status=="") {
-			// echo "<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
+			$successMessage =  "<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
 		}	
 		else{
 			$qr = mysql_query("SELECT * FROM stork_state WHERE state_name = '$state_name'");
