@@ -243,14 +243,14 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Area<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php echo $area_name; ?>" size="30" name="address_1" id="area" readonly=""> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $area_name; ?>" size="30" name="address_1" id="area" readonly=""> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_a" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_a" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -264,7 +264,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -316,70 +316,70 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Student Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="studentname" ng-model="name"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="studentname" ng-model="name"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">ID No.<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="idno" ng-model="studentid"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="idno" ng-model="studentid"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Year of Studying<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="yearofstudying" ng-model="yearofstuding"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="yearofstudying" ng-model="yearofstuding"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Department<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="department" readonly> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="department" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30" name="address_1" id="collegename" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_b" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30"  id="city_b" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30" name="zip" id="postal" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_b" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly> 
 					   </div>
 					 </li>
   					  <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile number<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone" ng-model="mobilenumber"> 
+						<input type="text"  class="required" value="" size="30" autocomplete="off"  maxlength="10" id="phone" ng-model="mobilenumber"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" autocomplete="off" "address_1" id="email2" ng-model="email"> 
+						<input type="text" maxlength="64" class="required" value="" size="30" autocomplete="off" id="email2" ng-model="email"> 
 					   </div>
 					 </li>
 				  </ul>
@@ -481,7 +481,7 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
-		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php echo $checkout_total_amount; ?>"/>
+		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php //echo $checkout_total_amount; ?>1"/>
 		   		<input type="hidden" name="currency" value="INR"/>
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>

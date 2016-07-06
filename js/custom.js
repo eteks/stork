@@ -1091,8 +1091,8 @@ $(document).ready(function () {
 
 
 	//Validation for checkout
-	var required_address_1 = ["name_a","address1","address2","area_a","city_a","postalcode","state_a","mobile","email"];
-	var required_address_2 = ["studentname","idno","yearofstudying","department","collegename","area_b","postal","state_b","phone","email2"];
+	var required_address_1 = ["name_a","address1","address2","postalcode","mobile","email"];
+	var required_address_2 = ["studentname","idno","yearofstudying","department","postal","phone","email2"];
 	forget_email=jQuery("#test");
 	email=jQuery("#email");
  	test=jQuery("#test");
