@@ -20,31 +20,22 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
-		//  == Validation for Page range Format Start ==
-  	// $('.clone').css('pointer-events', 'none');
+	//  == Validation for Page range Format Start ==
+
 	$(document).on('keyup','.paper_range',function() {
-		// var path_range=$(this).attr('id');
-
-
 		var page_range_code_array = [] ;
-			$('.paper_range').each(function() { 
-			   var code_id = $(this).attr('id');
-		       page_range_code_array.push(code_id);
-		    });
-		// // alert(page_range_array);
-		// for(i=0;i<page_range_array.length;i++) {
-
+		$('.paper_range').each(function() { 
+		   var code_id = $(this).attr('id');
+	       page_range_code_array.push(code_id);
+	    });
 		for(i=0;i<page_range_code_array.length;i++) {	
 			var range_path = jQuery('#'+page_range_code_array[i]);
 			var inputVal=range_path.val();
 		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 		  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
-		  		// $('.page_range_error').css('display','block');
-		  		// alert("page_range_error");
 				$('.uploadbutton').css('pointer-events', 'none');
 				$('.clone').css('pointer-events', 'none');
 				$(range_path).addClass("error_print_booking_code");
-
 			}
 		 	else {
 				$('.uploadbutton').css('pointer-events', 'auto');
@@ -60,25 +51,14 @@ $(document).ready(function () {
 			} 	
 	    }
 	    if (jQuery(".paper_range").hasClass("error_print_booking_code")) {
-		  	$('.page_range_error').css('display','block');
 		  	return false;
 	    }
 	    else {
-	    	$('.page_range_error').css('display','none');
 		  	return true;
 	    }
 
 	});
-
-
-
-
-
-
-
-	
-
-	//  == Validation for Page range Keycode Start ==
+	//  == Validation for Page range Format End ==
 
 	//  == Add and Remove Button Start ==
 
@@ -382,31 +362,31 @@ $(document).ready(function () {
 	//index page form validation
 	$('#index_page_form').submit(function(){
 			if($('#student').is(':checked')){
-				// if($('#print_book_area_student').val() == ''){
-					// $('#index_page_form #print_book_area_student').addClass('error_border');
-					// return false;
-				// }else
-				 if($('#print_book_college').val() == ''){
+				if($('#print_book_area_student').val() == ''){
+					$('#index_page_form #print_book_area_student').addClass('error_border');
+					return false;
+				}
+				else if($('#print_book_college').val() == ''){
 					$('#index_page_form #print_book_college').addClass('error_border');
 					return false;
 				}
 				else{
-					//$('#index_page_form #print_book_area_student').removeClass('error_border');
+					$('#index_page_form #print_book_area_student').removeClass('error_border');
 					$('#index_page_form #print_book_college').removeClass('error_border');
 					return true;
 				}
 			}
 			else if($('#professional').is(':checked')){
-				// if($('#print_book_state').val() == ''){
-					// $('#index_page_form #print_book_state').addClass('error_border');
-					// return false;
-				// }else
-				 if($('#print_book_area_professional').val() == ''){
+				if($('#print_book_state').val() == ''){
+					$('#index_page_form #print_book_state').addClass('error_border');
+					return false;
+				}
+				else if($('#print_book_area_professional').val() == ''){
 					$('#index_page_form #print_book_area_professional').addClass('error_border');
 					return false;
 				}
 				else{
-					//$('#index_page_form #print_book_state').removeClass('error_border');
+					$('#index_page_form #print_book_state').removeClass('error_border');
 					$('#index_page_form #print_book_area_professional').removeClass('error_border');
 					return true;
 				}
@@ -625,7 +605,7 @@ $(document).ready(function () {
 	$('#page_radio_yes').click(function() {
 		$('.cover_section_holder').slideDown();
 		$('.upload_section').css('width','100%');
-		$('#cover_file_name').val('');
+		$('#cover_file_name').val('No file selected');
 	});
 	$('#page_radio_no').click(function() {
 		$('.cover_section_holder').slideUp();
@@ -661,21 +641,53 @@ $(document).ready(function () {
 	$('#print_type').on('change',function() {
 		var selected_type = $('#print_type option:selected').text().toLowerCase();
 		$('#radio_no').prop('checked',true);
+		$('#binding_type').prop('selectedIndex',0);
 		$('.display_binding_type').slideUp();
 		$('#page_radio_no').prop('checked',true);
 		$('.print_page_option').slideUp();
 		$('#cover_file_name').val('');
 		$('.cover_section_holder').slideUp();
-		if( selected_type == "Color with Black & White" ) {
+		$('.display_page_type').css('display','none');
+		$('.main_section_input_holder').find('.upload_section').each(function() {
+			var upload_select_length = $('.upload_section').length;
+			if(upload_select_length >=2) {
+				$(this).remove();
+
+			}
+			// if($(this).data('sectionvalue')!=0) {
+			// 	$(this).remove();
+			// }
+			else {
+				$(this).find('.clone_upload').css('display','inline');
+				$(this).find('.clone_upload').css('pointer-events','none');
+				$(this).find('.remove_upload').css('pointer-events','none');
+				$(this).find('.file_name_box').val('No file selected');
+				$(this).data('sectionvalue','0');
+			}
+		});
+		$('.main_section_input_holder').find('.display_paper_range').each(function() {
+			var paper_select_length = $('.display_paper_range').length;
+			if(paper_select_length >=2) {
+				$(this).remove();
+
+			}
+			else {
+				$(this).find('.display_normal_file').val('No file selected');
+				$(this).data('sectionvalue','0');
+			}
+		});
+		if( selected_type == "color with black & white" ) {
 			$('.display_paper_range').css('display','block');
 			$('.display_paper_range .file_range_holder').each (function() {
-				$(this).children('.display_normal_file').val('');
-				$(this).children('.paper_range').val('');
+				$(this).children('.display_normal_file').val('No file selected');
+				$(this).children('.paper_range').val('0-0');
+				$('.label_page_range').css('display','block');
 			});
 		}
 
 		else {
 			$('.display_paper_range').css('display','none');
+			$('.label_page_range').css('display','none');
 		}
 	});
 	//  == Add input box when selected white & black and color End ==
@@ -734,7 +746,7 @@ $(document).ready(function () {
 			  	.attr("id", "display_paper_range" +  cloneIndex)
 			  	.data("sectionvalue",cloneIndex);
 			  	var input_file = path_file_section_clone.children('#display_paper_range'+ cloneIndex).find('.paper_range');
-			 	input_file.val("");
+			 	input_file.val("0-0");
 			   	input_file.attr("id","print_page_range"+ cloneIndex);
 			   	var input_file = path_file_section_clone.children('#display_paper_range'+cloneIndex).find('.display_normal_file');
 			  	input_file.val("No file selected")
@@ -999,7 +1011,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .no_college_found_error').addClass('dn');
-           		$('#print_book_college').empty().append('<option value="">Select your College/Area</option>'+data);
+           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_college').attr('disabled','disabled');
@@ -1015,7 +1027,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
-           		$('#print_book_area_professional').empty().append('<option value="">Select your Area</option>'+data);
+           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_area_professional').attr('disabled','disabled');
