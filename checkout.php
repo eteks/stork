@@ -1,9 +1,9 @@
 <?php 
 include('header.php');
-if(!isset($_SESSION['session_id'])){
-	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
-	exit();
-}
+// if(!isset($_SESSION['session_id'])){
+// 	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
+// 	exit();
+// }
 
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
