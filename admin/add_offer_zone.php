@@ -13,7 +13,7 @@ include "includes/header.php";
 	
 		// echo $_FILES["offerzone_image"]["name"];
 		if($offerzone_title =="" || empty($_FILES['offerzone_image']['name']) || $offerzone_status=="") {
-			// $successMessage = "<div class='container error_message_mandatory'><span> Please fill out all mandatory fields </span></div>";
+			 $successMessage = "<div class='container error_message_mandatory'><span>Please fill all required(*) fields </span></div>";
 		}	
 		else{
 			$target_dir = "style/img/zone/";

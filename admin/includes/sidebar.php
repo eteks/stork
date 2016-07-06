@@ -417,6 +417,70 @@ function countTransaction()
 				</li>
 
 				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_project_printing_cost.php" ||basename($_SERVER['PHP_SELF'])=="project_printing_cost_estimation_combination.php" ||basename($_SERVER['PHP_SELF'])=="edit_project_printing_cost.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-file"></i> --> Project Printing Cost Estimation
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<a href="add_project_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Project Printing Cost </span></a>
+						</li> 
+						<!-- <li>
+							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
+						</li> --> 
+						<li>
+							<a href="project_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Project Printing Cost Estimation </span></a>
+						</li> 
+					</ul>
+				</li>
+
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_multicolor_printing_cost.php" ||basename($_SERVER['PHP_SELF'])=="multicolor_printing_cost_estimation_combination.php" ||basename($_SERVER['PHP_SELF'])=="edit_multicolor_printing_cost.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-file"></i> --> Mutlticolor Printing Cost Estimation
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<a href="add_multicolor_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Mutlticolor Printing Cost </span></a>
+						</li> 
+						<!-- <li>
+							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
+						</li> --> 
+						<li>
+							<a href="multicolor_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Mutlticolor Printing Cost Estimation </span></a>
+						</li> 
+					</ul>
+				</li>
+
+				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_binding_cost_estimation.php" || 
 					basename($_SERVER['PHP_SELF'])=="binding_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation_binding.php")
 					{ 
