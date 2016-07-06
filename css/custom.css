@@ -765,3 +765,33 @@ h4.order_or_button{
     text-transform: uppercase;
     cursor:pointer;
 	}
+.label_page_range {
+    display: none;
+}
+#pr-register {
+    display: none;
+}
+#pr-login {
+    display: none;
+}
+.upload_content_section {
+    float: left;
+}
+.label_text {
+    float: left;
+    font-size: 16px !important;
+    line-height: 40px;
+    width: 150px;
+}
+.label_page_paper_range {
+    margin-bottom: 26px;    
+}
+/*#project_printing_section {
+    display: none;
+}
+.project_printing_header {
+    display: none;
+}*/
+#cover_file_name {
+    margin-left: 0px !important;
+}
