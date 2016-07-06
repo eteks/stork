@@ -358,31 +358,31 @@ $(document).ready(function () {
 	//index page form validation
 	$('#index_page_form').submit(function(){
 			if($('#student').is(':checked')){
-				if($('#print_book_area_student').val() == ''){
-					$('#index_page_form #print_book_area_student').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_college').val() == ''){
+				// if($('#print_book_area_student').val() == ''){
+					// $('#index_page_form #print_book_area_student').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_college').val() == ''){
 					$('#index_page_form #print_book_college').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_area_student').removeClass('error_border');
+					//$('#index_page_form #print_book_area_student').removeClass('error_border');
 					$('#index_page_form #print_book_college').removeClass('error_border');
 					return true;
 				}
 			}
 			else if($('#professional').is(':checked')){
-				if($('#print_book_state').val() == ''){
-					$('#index_page_form #print_book_state').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_area_professional').val() == ''){
+				// if($('#print_book_state').val() == ''){
+					// $('#index_page_form #print_book_state').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_area_professional').val() == ''){
 					$('#index_page_form #print_book_area_professional').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_state').removeClass('error_border');
+					//$('#index_page_form #print_book_state').removeClass('error_border');
 					$('#index_page_form #print_book_area_professional').removeClass('error_border');
 					return true;
 				}
@@ -643,36 +643,7 @@ $(document).ready(function () {
 		$('.print_page_option').slideUp();
 		$('#cover_file_name').val('');
 		$('.cover_section_holder').slideUp();
-		$('.display_page_type').css('display','none');
-		$('.main_section_input_holder').find('.upload_section').each(function() {
-			var upload_select_length = $('.upload_section').length;
-			if(upload_select_length >=2) {
-				$(this).remove();
-
-			}
-			// if($(this).data('sectionvalue')!=0) {
-			// 	$(this).remove();
-			// }
-			else {
-				$(this).find('.clone_upload').css('display','inline');
-				$(this).find('.clone_upload').css('pointer-events','none');
-				$(this).find('.remove_upload').css('pointer-events','none');
-				$(this).find('.file_name_box').val('No file selected');
-				$(this).data('sectionvalue','0');
-			}
-		});
-		$('.main_section_input_holder').find('.display_paper_range').each(function() {
-			var paper_select_length = $('.display_paper_range').length;
-			if(paper_select_length >=2) {
-				$(this).remove();
-
-			}
-			else {
-				$(this).find('.display_normal_file').val('No file selected');
-				$(this).data('sectionvalue','0');
-			}
-		});
-		if( selected_type == "color with black & white" ) {
+		if( selected_type == "Color with Black & White" ) {
 			$('.display_paper_range').css('display','block');
 			$('.display_paper_range .file_range_holder').each (function() {
 				$(this).children('.display_normal_file').val('No file selected');
@@ -1007,7 +978,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .no_college_found_error').addClass('dn');
-           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           		$('#print_book_college').empty().append('<option value="">Select your College/Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_college').attr('disabled','disabled');
@@ -1023,7 +994,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
-           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           		$('#print_book_area_professional').empty().append('<option value="">Select your Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_area_professional').attr('disabled','disabled');
@@ -1127,8 +1098,8 @@ $(document).ready(function () {
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
 		
-		// for empty field validation
-		jQuery(".check_out_payment").on('click',function(){ 
+	// for empty field validation
+	jQuery(".check_out_payment").on('click',function(){ 
 	if($('.send_to_address_personal_data').css('display')=='block')	 {
 		for(var i = 0 ; i<required_address_1.length;i++ ){
 			var input = jQuery('#'+required_address_1[i]);
@@ -1145,13 +1116,14 @@ $(document).ready(function () {
 			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input1_field_email");
 	  	}else{
+
 	  		forget_email.removeClass("error_input1_field_email");
 	  	}
 	  
 		}
 		  
 
-//if any inputs on the page have the class 'error_input_field' the form will not submit
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input1_field") || jQuery("select").hasClass("error_input1_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
@@ -1187,56 +1159,38 @@ $(document).ready(function () {
 	}
 	});
 	jQuery(".check_out_payment").on('click',function(){ 	
-	if($('.send_to_address_college_data').css('display')=='block')	{
-		for(var i = 0 ; i<required_address_2.length;i++ ){
-			var input = jQuery('#'+required_address_2[i]);
-			
-			if ((input.val() == "")) {
-				input.addClass("error_input2_field");
-				 $('.error_test').css('display','block');		
-			 }
-			 else{
-				 input.removeClass("error_input2_field");
-			  $('.error_test').css('display','none');
-				
-			 }
-			 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input2_field_email");
-	  	}else{
-	  		forget_email.removeClass("error_input2_field_email");
-	  	}
-	  
+		if($('.send_to_address_college_data').css('display')=='block')	{
+			for(var i = 0 ; i<required_address_2.length;i++ ){
+				var input = jQuery('#'+required_address_2[i]);
+				if ((input.val() == "")) {
+					input.addClass("error_input2_field");
+				 	$('.error_test').css('display','block');		
+			 	}
+			 	else{
+				 	input.removeClass("error_input2_field");
+			  		$('.error_test').css('display','none');
+			 	}
+		 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 			forget_email.addClass("error_input2_field_email");
+	  			}else{
+	  				forget_email.removeClass("error_input2_field_email");
+	  			}
 			}
-	
-			   $("#phone").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        // $("#error_test").html("Digits Only").show().fadeOut("slow");
-        return false;
-    }
-   });
-		
-		
-	if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
-			return false;
-		} else {
-			errornotice.hide();
-			 
-			return true;
+		   $("#phone").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        		//display error message
+        		// $("#error_test").html("Digits Only").show().fadeOut("slow");
+        			return false;
+    			}
+   			});
+			if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
+				return false;
+			} else {
+				errornotice.hide();
+				return true;
+			}
 		}
-}
-});
-jQuery(".check_out_payment").click(function(){ 	
-if($('.send_to_address_personal').prop('checked')==true) {
+	});
 	
-}
-else if($('.send_to_address_college').prop('checked')==true) {
-	
-}
-else {
-	alert("please select one option");
-	return false;
-}
-});
 });

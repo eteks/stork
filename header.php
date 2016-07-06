@@ -120,160 +120,156 @@ progress::-moz-progress-bar {
 					<div class="col-lg-4 col-md-2 col-sm-4 col-xs-5 w-logo">
 						<div class="logo hd-pd ">
 							<a href="index.php">
-								<img src="images/printstork_logo.png" width="35%"  height="auto" alt="printshop logo">
+								<img src="images/printstork_logo.png" width="30%"  height="auto" alt="printshop logo">
 							</a>
 						</div>	
 					</div>
 					<div class="col-lg-7 col-md-8 visible-md visible-lg">
 					</div>
-					<div class="col-sm-1 col-sm-offset-5 col-xs-offset-2 col-xs-2 visible-sm visible-xs mbmenu-icon-w">
-						<span class="mbmenu-icon hd-pd">
-							<i class="fa fa-bars"></i>
-						</span>
-					</div>
 					
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
-						<?php 
-						@ob_start();
-						session_start();
-						
-						if(isset($_SESSION['login_status'])){
-							if($_SESSION['login_status'] != 1){
+						<div class="fr navmenu_icons_header">
+							<?php 
+							@ob_start();
+							session_start();
+							if(isset($_SESSION['login_status'])){
+								if($_SESSION['login_status'] != 1){
+									$_SESSION['login_status'] = 0;
+								}
+							}
+							else{
 								$_SESSION['login_status'] = 0;
 							}
-						}
-						else{
-							$_SESSION['login_status'] = 0;
-						}
-						
-						// print_r($_SESSION);
-						if(isset($_SESSION['facebook_access_token'])||$_SESSION['login_status'] == 1){
 							
-						?>
-						<div class="cart-w SC-w hd-pd ">
-							<span class="mcart-icon dropdowSCIcon">
-								<a href="logout.php">
-									<i class="fa fa-sign-out"></i>
-									<!-- Sign Up -->
-								</a>
-							</span>
-						</div>
-						<?php
-						}else{
-						?>
-						<div class="cart-w SC-w hd-pd ">
-							<span class="mcart-icon dropdowSCIcon">
-								<a href="login.php">
-									<i class="fa fa-user"></i>
-								</a>
-							</span>	
-						</div>
-						<!-- Added by siva -->
-						<div class="cart-w SC-w hd-pd ">
-							<span class="mcart-icon dropdowSCIcon">
-								<a href="register.php">
-									<i class="fa fa-pencil"></i>
-									<!-- Sign Up -->
-								</a>
-							</span>
-						</div>
-						<?php
-						}
-						?>
-						
-						<?php
-						if(isset($_SESSION['session_id'])){
-							$add_to_cart_quantity = selectfunction('*',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'" and order_id IS NULL',$connection);
-							$add_to_cart_count = mysqli_num_rows($add_to_cart_quantity);
-							if(mysqli_num_rows($add_to_cart_quantity)>0){
-						?>
-						<div class="cart-w SC-w hd-pd">
-							<span class="mcart-icon dropdowSCIcon">
-								<i class="fa fa-shopping-cart"></i>
-								<span class="mcart-dd-qty"><?php echo $add_to_cart_count; ?></span>
-							</span>
-							<div class="mcart-dd-content dropdowSCContent clearfix">
+							// print_r($_SESSION);
+							if(isset($_SESSION['facebook_access_token'])||$_SESSION['login_status'] == 1){
+								
+							?>
+							<div class="cart-w SC-w hd-pd ">
+								<span class="mcart-icon dropdowSCIcon">
+									<a href="logout.php">
+										<i class="fa fa-sign-out"></i>
+										<!-- Sign Up -->
+									</a>
+								</span>
+							</div>
 							<?php
-								$total_amount = 0; 
-								$cart_details = mysqli_query($connection,"SELECT * FROM stork_order_details
-									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
-									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
-									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
-									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
-									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
-								while($cart_data = mysqli_fetch_array($cart_details, MYSQLI_ASSOC)){
-										$total_amount += $cart_data['order_details_total_amount'];
+							}else{
+							?>
+							<div class="cart-w SC-w hd-pd ">
+								<span class="mcart-icon dropdowSCIcon">
+									<a href="login.php">
+										<i class="fa fa-user"></i>
+									</a>
+								</span>	
+							</div>
+							<!-- Added by siva -->
+							<div class="cart-w SC-w hd-pd ">
+								<span class="mcart-icon dropdowSCIcon">
+									<a href="register.php">
+										<i class="fa fa-pencil"></i>
+										<!-- Sign Up -->
+									</a>
+								</span>
+							</div>
+							<?php
+							}
 							?>
 							
-								<div class="mcart-item-w clearfix">
-									<ul>
-										<li class="mcart-item">
-											<div class="mcart-info ordered_item">
-												<input type="hidden" value="<?php echo $cart_data['order_details_session_id']; ?>" class="ordered_item_session_id" />
-												<input type="hidden" value="<?php echo $cart_data['order_details_id']; ?>" class="ordered_item_oreder_detail_id" />
-												<a class="mcart-name"><b>Print type</b> : <?php echo $cart_data['paper_print_type']; ?> </a>
-												<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
-												<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
-												<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
-												<?php
-												if($cart_data['order_details_is_binding'] == '1'){
-												?>
-												<a class="mcart-name"><b>Binding type</b> : <?php echo $cart_data['order_details_binding_type']; ?></a>
-												<?php	
-												}
-												?>
-												<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
-												<span class="mcart-remove-item cart_remove_item">
-													<i class="fa fa-times-circle"></i>
-												</span>
-											</div>
-										</li>
-									</ul>
-								</div>
+							<?php
+							if(isset($_SESSION['session_id'])){
+								$add_to_cart_quantity = selectfunction('*',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'" and order_id IS NULL',$connection);
+								$add_to_cart_count = mysqli_num_rows($add_to_cart_quantity);
+								if(mysqli_num_rows($add_to_cart_quantity)>0){
+							?>
+							<div class="cart-w SC-w hd-pd">
+								<span class="mcart-icon dropdowSCIcon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="mcart-dd-qty"><?php echo $add_to_cart_count; ?></span>
+								</span>
+								<div class="mcart-dd-content dropdowSCContent clearfix">
 								<?php
-								}//while contidioin
+									$total_amount = 0; 
+									$cart_details = mysqli_query($connection,"SELECT * FROM stork_order_details
+										        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
+										        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
+										        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
+										        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
+										        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."'");
+									while($cart_data = mysqli_fetch_array($cart_details, MYSQLI_ASSOC)){
+											$total_amount += $cart_data['order_details_total_amount'];
 								?>
-								<div class="mcart-total clearfix">
-									<table>
-										<tr>
-											<td>Sub-Total</td>
-											<td><b>&#8377;</b><?php echo $total_amount ; ?></td>
-										</tr>
-										<!-- <tr>
-											<td>Eco Tax (-2.00)</td>
-											<td>$ 2.00</td>
-										</tr>
-										<tr>
-											<td>VAT (20%)</td>
-											<td>$ 2.018</td>
-										</tr> -->
-										<tr class="total">
-											<td>Total</td>
-											<td><b>&#8377;</b><?php echo $total_amount; ?></td>
-										</tr>
-									</table>
-								</div>
-								<div class="mcart-links buttons-set clearfix">
-									<a href="checkout.php" class="gbtn mcart-link-checkout">Checkout</a>
+								
+									<div class="mcart-item-w clearfix">
+										<ul>
+											<li class="mcart-item">
+												<div class="mcart-info ordered_item">
+													<input type="hidden" value="<?php echo $cart_data['order_details_session_id']; ?>" class="ordered_item_session_id" />
+													<input type="hidden" value="<?php echo $cart_data['order_details_id']; ?>" class="ordered_item_oreder_detail_id" />
+													<a class="mcart-name"><b>Print type</b> : <?php echo $cart_data['paper_print_type']; ?> </a>
+													<a class="mcart-name"><b>Print side</b> : <?php echo $cart_data['paper_side']; ?></a>
+													<a class="mcart-name"><b>Paper type</b> : <?php echo $cart_data['paper_type']; ?></a>
+													<a class="mcart-name"><b>Paper size</b> : <?php echo $cart_data['paper_size']; ?></a>
+													<?php
+													if($cart_data['order_details_is_binding'] == '1'){
+													?>
+													<a class="mcart-name"><b>Binding type</b> : <?php echo $cart_data['order_details_binding_type']; ?></a>
+													<?php	
+													}
+													?>
+													<span class="mcart-price"><b>&#8377;</b> <?php echo $cart_data['order_details_total_amount']; ?></span>
+													<span class="mcart-remove-item cart_remove_item">
+														<i class="fa fa-times-circle"></i>
+													</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<?php
+									}//while contidioin
+									?>
+									<div class="mcart-total clearfix">
+										<table>
+											<tr>
+												<td>Sub-Total</td>
+												<td><b>&#8377;</b><?php echo $total_amount ; ?></td>
+											</tr>
+											<!-- <tr>
+												<td>Eco Tax (-2.00)</td>
+												<td>$ 2.00</td>
+											</tr>
+											<tr>
+												<td>VAT (20%)</td>
+												<td>$ 2.018</td>
+											</tr> -->
+											<tr class="total">
+												<td>Total</td>
+												<td><b>&#8377;</b><?php echo $total_amount; ?></td>
+											</tr>
+										</table>
+									</div>
+									<div class="mcart-links buttons-set clearfix">
+										<a href="checkout.php" class="gbtn mcart-link-checkout">Checkout</a>
+									</div>
 								</div>
 							</div>
-						</div>
-						<?php
-						}
-						}
-						?>
-						
-						<div class="search-w SC-w hd-pd ">
-							<span class="search-icon dropdowSCIcon">
-								<i class="fa fa-search"></i>
-							</span>
-							<div class="search-safari">
-								<div class="search-form dropdowSCContent">
-									<form method="POST" action="trackorderstatus.php">
-										<input type="text" name="track_order_search" placeholder="Track Your Order" />
-										<input type="submit" name="search" value="Search">
-										<i class="fa fa-search"></i>
-									</form>
+							<?php
+							}
+							}
+							?>
+							
+							<div class="search-w SC-w hd-pd ">
+								<span class="search-icon dropdowSCIcon">
+									<i class="fa fa-search"></i>
+								</span>
+								<div class="search-safari">
+									<div class="search-form dropdowSCContent">
+										<form method="POST" action="trackorderstatus.php">
+											<input type="text" name="track_order_search" placeholder="Track Your Order" />
+											<input type="submit" name="search" value="Search">
+											<i class="fa fa-search"></i>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -6521,10 +6521,10 @@ table th, td {
 button:hover {
   background-color: #25bce9 !important;
 }
-.admin_login_error {
+/*.admin_login_error {
   font-size: 14px;
   color: #b94a48;
-}
+}*/
 .dataTables_paginate {
   font-size: 14px;
   margin-top: 30px;
@@ -6578,9 +6578,9 @@ button:hover {
 .current:hover {
   color: #fff;
 }
-.admin_login_error_section {
+/*.admin_login_error_section {
   text-align: center;
-}
+}*/
 #my-orders-table td , #my-orders-table th{
   padding: 10px 16px;
 }

@@ -1,11 +1,11 @@
 <?php 
 	include('header.php');
-	if(!isset($_SESSION['usertype'])){
+	if(!isset($_SESSION['usertype'])&& !isset($_GET['service'])){
 		// header('Location:index.php');
 		die('<script type="text/javascript">window.location.href="index.php";</script>');
 		exit();
 	}
-	$_SESSION['service'] = 'print';
+	$_SESSION['service']=$_GET['service'];
 	$random = uniqid();
 	if(!isset($_SESSION['session_id'])){
 		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
@@ -46,7 +46,7 @@
 		</section> <!---breadcrumb-->
 
 		<!-- Plain Printing Start-->
-
+		<?php if($_SESSION['service']=='plain'){ ?>
 	    <section class="pr-main" id="pr-login">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -69,8 +69,8 @@
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php
-			        							$state = selectfunction('*',PRINTTYPE,'',$connection);
-												while($row = mysqli_fetch_array($state)){
+			        							$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
+												while($row = mysqli_fetch_array($printtype)){
 													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
 												}
 		        						?>
@@ -82,8 +82,8 @@
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIDE,'',$connection);
-											while($row = mysqli_fetch_array($state)){
+		        							$paperside = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
+											while($row = mysqli_fetch_array($paperside)){
 												echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
 											}
 	        						?>
@@ -94,8 +94,8 @@
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERTYPE,'',$connection);
-											while($row = mysqli_fetch_array($state)){
+		        							$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+											while($row = mysqli_fetch_array($papertype)){
 												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
 											}
 	        						?>
@@ -106,8 +106,8 @@
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
-		        							$state = selectfunction('*',PAPERSIZE,'',$connection);
-											while($row = mysqli_fetch_array($state)){
+		        							$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
+											while($row = mysqli_fetch_array($papersize)){
 												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
 											}
 	        						?>
@@ -204,7 +204,7 @@
 		</section> <!-- Plain Printing End-->
 
 		<!-- Project Binding Start-->
-
+		<?php } else if($_SESSION['service']=='project'){  ?>
 		 <section class="pr-main project_printing_header" id="pr-login_project">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -227,23 +227,31 @@
 				        			<p>Paper Size<span class="star">*</span></p>
 				        			<select name="papar_size" class="print_book_paper_size" id="">
 				        				<option value="" >Select Paper Size</option>
-				        				<option value="" >A4</option>
-				        				<option value="" >A3</option>
+				        				<?php
+		        							$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
+											while($row = mysqli_fetch_array($papersize)){
+												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
+											}
+	        							?>
 		        					</select>
 				        		</div> <!-- input_holder -->
 				        	 	<div class="input_holder row pad_15">
 				        			<p>Paper Type<span class="star">*</span></p>
 				        			<select name="papar_type" class="print_book_paper_type" id="">
 				        				<option value="" >Select Paper Type</option>
-				        				<option value="" >Normal sheet</option>
-				        				<option value="" >Bone sheet</option>
+				        				<?php
+		        							$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+											while($row = mysqli_fetch_array($papertype)){
+												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
+											}
+	        							?>
 		        				    </select>
 				        		</div> <!-- input_holder -->
 				        		<div class="input_holder row pad_15">
 				        			<p>Binding Type<span class="star">*</span></p>
 				        			<select name="binding_type" class="print_book_binding_type" id="">	 
 				        				<option value="" >Select Binding Type</option>
-				        				<option value="soft_binding" >Handmade Binding</option>
+				        				<option value="home_made_binding" >Handmade Binding</option>
 				        				<option value="comb_binding" >Comb Binding</option>
 		        				    </select>
 				        		</div> <!-- input_holder -->
@@ -325,14 +333,12 @@
 							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 						</div>
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
 					</form>
 				</div>
 			</div>
 			<div class="cb">  </div>
 		</section>
-
+		<?php } ?>
 		<!-- Project Binding End -->
 	</div>	<!-- Main End -->
 	<section>

@@ -59,7 +59,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				  <thead>
 			        <tr class="">
 			            <th>User Name</th>
-			            <th>User Type</th>
+			            <!-- <th>User Type</th> -->
 			            <th>Email</th>
 			            <th>Date of Birth</th>
 			            <th>Mobile</th>
@@ -75,14 +75,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				   ?>
 				    <tr class="">
 			            <td><?php echo $fetch['username'] ?></td>
-			            <td>
-				            <?php 
-				            if($fetch['user_type']==1)
+			            <!-- <td>
+				            /*if($fetch['user_type']==1)
 								echo "Student";
 							else if($fetch['user_type']==2)
-								echo "Profession";
-							?>
-						</td>
+								echo "Profession"; */
+						</td> -->
 			            <td><?php echo $fetch['user_email'] ?></td>
 			            
 			            	<?php  $dobdate=strtotime($fetch['user_dob']);
