@@ -1123,7 +1123,55 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
+	jQuery("#edit_multicolor_printing_cost").submit(function(){ 
+		var input = jQuery('#'+required_multicolor_printing_cost);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			
+	//  select field
 
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_c').selectedIndex < 1)
+		{
+			$('#sel_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_c').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_d').selectedIndex < 1)
+		{
+			$('#sel_d').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_d').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			// $('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 // $('.error_test').css('display','none');
+			return true;
+		}
+	});
 	jQuery("#add_binding_cost_estimation").submit(function(){ 
 
 		var input = jQuery('#'+required_binding_cost_estimation);

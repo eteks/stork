@@ -67,7 +67,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Multicolor Printing Cost Estimation </h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Multicolor Printing Cost Estimation Information</h4>
-							<form action="edit_multicolor_printing_cost.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
+							<form action="edit_multicolor_printing_cost.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_multicolor_printing_cost">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -95,7 +95,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Side<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="paper_side">
+									<select class="product-type-filter form-control" id="sel_a" name="paper_side">
 								        <option>
 											<span>Select Paper Side</span>
 										</option>
@@ -111,7 +111,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_d" name="paper_type">
+									<select class="product-type-filter form-control" id="sel_b" name="paper_type">
 								        <option>
 											<span>Select Paper Type</span>
 										</option>
@@ -147,7 +147,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_e" name="cost_estimation_status">
+									<select class="product-type-filter form-control" id="sel_d" name="cost_estimation_status">
 								        <option>
 											<span>Select status</span>
 										</option>
