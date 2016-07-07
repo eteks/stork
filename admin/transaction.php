@@ -56,7 +56,6 @@ include "includes/header.php";
 						<th>Card Name</th>			
 						<th>Amount</th>
 						<th>Currency</th>
-						<th>Order Status</th>
 						<th>Status Code</th>
 						<th>Status Message</th>
 						<th>Created Date</th>
@@ -82,7 +81,6 @@ include "includes/header.php";
 						<td><?php echo $fetch['card_name'] ?></td>
 						<td><?php echo $fetch['amount'] ?></td>
 			            <td><?php echo $fetch['currency'] ?></td>
-			            <td><?php echo $fetch['order_status'] ?></td>
 			            <td><?php echo $fetch['status_code'] ?></td>
 			            <td><?php echo $fetch['status_message'] ?></td>
 			            <?php  $createddate=strtotime($fetch['created_date']);

@@ -5,6 +5,9 @@ include "includes/header.php";
 <title>All Order Details</title>
 </head>
 <body>  
+<?php 
+$printbooking_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Mutlticolor Printing');
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -48,6 +51,7 @@ include "includes/header.php";
 				  <thead>
 			        <tr class="">
 			        	<th>Order Id</th>
+			        	<th>Order Print Booking Type</th>
 						<th>Paper Print Type</th>
 						<th>Paper Size</th>
 						<th>Paper Side</th>
@@ -71,6 +75,14 @@ include "includes/header.php";
 				   ?>
 				    <tr class="">
 			            <td><?php echo $fetch['order_id'] ?></td>
+			            <td>
+				            <?php 
+				            	foreach($printbooking_type as $key => $value){
+				            		if($key == $fetch['order_print_booking_type'])
+				            			echo $value;
+				            	}
+				            ?> 	
+			            </td>
 			            <td><?php echo $fetch['paper_print_type'] ?></td>
 			            <td><?php echo $fetch['paper_size'] ?></td>
 			            <td><?php echo $fetch['paper_side'] ?></td>

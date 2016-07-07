@@ -741,30 +741,9 @@ h4.order_or_button{
 .label_page_range {
     display: none;
 }
-
-/*Visible for Printing layout Start*/
-
-#pr-register {
+.label_page_range {
     display: none;
 }
-#pr-login {
-    display: none;
-}
-#multicolors_header {
-    display: none;
-}
-#multicolors_section {
-    display: none;
-}
-#project_printing_section {
-    display: block;
-}
-.project_printing_header {
-    display: block;
-}
-
-
-/*Visible for Printing layout End*/
 .upload_content_section {
     float: left;
 }
@@ -777,7 +756,6 @@ h4.order_or_button{
 .label_page_paper_range {
     margin-bottom: 26px;    
 }
-
 #cover_file_name {
     margin-left: 0px !important;
 }
