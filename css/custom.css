@@ -369,25 +369,8 @@ color: #000;
 
 	
 }
-.cover_uploadbutton {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: #d6d6d6 none repeat scroll 0 0;
-    border-color: transparent transparent #646464;
-    border-image: none;
-    border-style: solid;
-    border-width: 2px;
-    color: #444444;
-    float: left;
-    font-size: 12px;
-    padding: 10px 35px;
-    text-transform: uppercase;
-    width : 115px;
-}
 /* By muthu */
-.uploadbutton {
+.browse_button {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -404,13 +387,7 @@ color: #000;
     text-transform: uppercase;
     width : 115px;
 }
-
-.uploadbutton:hover {
-   background-color: #25bce9;
-   color: #fff;
-   cursor: pointer;
-}
-.cover_uploadbutton:hover {
+.browse_button:hover {
    background-color: #25bce9;
    color: #fff;
    cursor: pointer;
@@ -549,11 +526,7 @@ h4.order_or_button{
 .file_name_box {
     margin-right: 20px !important;
 }
-.uploadbutton {
-    margin-bottom: 20px;
-    margin-right: 10px;
-}
-.cover_uploadbutton {
+.browse_button {
     margin-bottom: 20px;
     margin-right: 10px;
 }
@@ -768,12 +741,30 @@ h4.order_or_button{
 .label_page_range {
     display: none;
 }
+
+/*Visible for Printing layout Start*/
+
 #pr-register {
     display: none;
 }
 #pr-login {
     display: none;
 }
+#multicolors_header {
+    display: none;
+}
+#multicolors_section {
+    display: none;
+}
+#project_printing_section {
+    display: block;
+}
+.project_printing_header {
+    display: block;
+}
+
+
+/*Visible for Printing layout End*/
 .upload_content_section {
     float: left;
 }
@@ -786,12 +777,20 @@ h4.order_or_button{
 .label_page_paper_range {
     margin-bottom: 26px;    
 }
-/*#project_printing_section {
-    display: none;
-}
-.project_printing_header {
-    display: none;
-}*/
+
 #cover_file_name {
     margin-left: 0px !important;
+}
+.project_file_name {
+    margin-left: 20px !important;
+}
+.project_file_name_margin {
+    margin-right: 20px !important;
+    float: left;
+}
+.display_project_section {
+    display: none;
+}
+.upload_content_section {
+    width: 100%
 }

@@ -12,11 +12,18 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-		$paper_print_type = $_POST["paper_print_type"];
+		$paper_print_type = $_POST["paper_print_type12"];
+		$str_lower = strtolower($paper_print_type);
 		$paper_print_type_status = $_POST["paper_print_type_status"];
-		$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND paper_print_type_id NOT IN('$val')");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
+		
+		if($str_lower!="color with black & white"){
+			$successMessage = "<div class='container error_message_mandatory'><span> Something went wrong! </span></div>";
+		}
+		else {
+
+			$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND paper_print_type_id NOT IN('$val')");	
+			$row = mysql_num_rows($qr);
+			if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_paper_print_type` SET `paper_print_type`='$paper_print_type',`paper_print_type_status`='$paper_print_type_status' WHERE `paper_print_type_id`=".$val);
@@ -25,6 +32,7 @@ if (isset($_GET['update']))
 			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Updated Successfully! </span></div>";	
 		}		
+	}
 	}	
 }
 $id=$val;
@@ -82,7 +90,7 @@ if(isset($_GET["id"]))
 								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>" <?php if($row['paper_print_type'] == "Color with Black & White"){ echo "disabled";} ?>>
+									<input type="text" class="form-control" id="paperprinttype" placeholder="Paper Print Type" name="paper_print_type12" value="<?php echo($row['paper_print_type']); ?>" <?php if($row['paper_print_type'] == "Color with Black & White"){ echo "disabled";} ?>>
 									<?php if($row['paper_print_type'] == "Color with Black & White"){ ?>
 										<input type="hidden" class="form-control" name="paper_print_type" value="<?php echo($row['paper_print_type']); ?>">
 									<?php } ?>
