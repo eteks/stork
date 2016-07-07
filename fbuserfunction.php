@@ -42,13 +42,16 @@ if (isset($accessToken)) {
 			if ($check == 0) { // if new user . Insert a new record		
 			
 				$query = "INSERT INTO stork_users (social_id,username,password,first_name,last_name,user_type,user_email,user_dob,line1,line2,user_mobile,user_access_type,user_status) VALUES ('".$profile['id']."','".$profile['email']."','".$profile['first_name']."','".$profile['first_name']."','".$profile['last_name']."','fb','".$profile['email']."','fb','fb','fb','fb','2','1')";
-				
 				mysqli_query($connection,$query);
+				$user_id = mysqli_insert_id($connection);
 				$_SESSION['login_status'] = 1;
-			} else {   // If Returned user . update the user record		
+				$_SESSION['user_id'] = $user_id;
+			} else {   // If Returned user . update the user record	
+				$user_id_data= mysqli_fetch_array($check1);
 				$query = "UPDATE stork_users SET first_name='$ffname', user_email='$femail' where Fuid='$fuid'";
 				mysqli_query($connection,$query);
 				$_SESSION['login_status'] = 1;
+				$_SESSION['user_id'] = $user_id_data['user_id'];
 			}
 			// printing $profile array on the screen which holds the basic info about user
 			header("Location: index.php");

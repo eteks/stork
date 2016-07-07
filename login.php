@@ -8,10 +8,12 @@
   		$password=$_POST['login_pass'];
   		$login_query=mysqli_query($connection,"select * from stork_users where user_email='$username_email'or username='$username_email' and password='$password'") or die(mysql_error());
   		$login_count=mysqli_num_rows($login_query);
+		$login_user_id_data = mysqli_fetch_array($login_query);
 		
   		if($login_count == 1) {
   			//echo "<script> $('.login_error').css('display','none'); </script>";
 			$_SESSION['login_status']=1;
+			$_SESSION['user_id'] = $login_user_id_data['user_id'];
   			//echo "login successful";		
   		}
   		else {
@@ -29,18 +31,10 @@
   		$forget_email_count=mysqli_num_rows($forget_query);
   		$fotget_password=$forget_array['password'];
   		if($forget_email_count == 1) {
-          	
-
-
           	$subject="Login Info";
 			$message="Your password is ".$fotget_password;
 			$from="sweetkannan05@gmail.com";
 			$send=mail($forget_email, $subject, $message, $from);
-			
-
-
-
-
 			if($send) {
 				$forgot_success = 1;
 			}
@@ -120,10 +114,10 @@
 						<p><span>Google+  Users</span></p>
 						<p>Use your google account to login or register within our store.You're just one click away.</p>
 						<?php
-							// require_once('googlesettings.php'); 
-							// if(isset($authUrl)) {
-							// 	echo '<a href="'.$authUrl.'"><button type="submit" class="connectfa">Connect with Google+</button></a>';
-							// }
+							require_once('googlesettings.php'); 
+							if(isset($authUrl)) {
+								echo '<a href="'.$authUrl.'"><button type="submit" class="connectfa">Connect with Google+</button></a>';
+							}
 						?>
 					</div>  
 				</div>					

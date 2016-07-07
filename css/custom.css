@@ -806,4 +806,22 @@ h4.order_or_button{
 #cover_file_name {
     margin-left: 0px !important;
 }
-
+.label_page_range {
+    display: none;
+}
+.upload_content_section {
+    float: left;
+}
+.project_file_name {
+    margin-left: 20px !important;
+}
+.project_file_name_margin {
+    margin-right: 20px !important;
+    float: left;
+}
+.display_project_section {
+    display: none;
+}
+.upload_content_section {
+    width: 100%
+}
