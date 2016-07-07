@@ -192,7 +192,7 @@ if(mysqli_num_rows($review_details)>0){
 			$area_name = $city2['area_name'];
 			$city_name = $city2['city_name'];
 			$state_name = $city2['state_name'];
-			$delivery_amount = $city1['area_delivery_charge'];
+			$delivery_amount = $city2['area_delivery_charge'];
 		}
 		  
 	   ?>
