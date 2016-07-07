@@ -2,6 +2,8 @@
 	include('header.php');
 	if(!empty($_POST)){
 	$track_order_search=$_POST['track_order_search'];
+	//echo $track_order_search;
+	// echo $track_order_search;
 	$track_status = mysqli_query($connection,"SELECT * FROM stork_order_details
 								INNER JOIN stork_order ON stork_order.order_id=stork_order_details.order_id
 								INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
@@ -66,9 +68,9 @@
 									<li><b>Print type :</b> <?php echo $track_status_array['paper_print_type']; ?>  </li>
 									<li><b>Print side :</b> <?php echo $track_status_array['paper_side']; ?>  </li>
 									<li><b>Paper type :</b> <?php echo $track_status_array['paper_type']; ?>  </li>                                                                      
-								    <li><b>Paper size : </b> <?php echo $track_status_array['paper_size']; ?>  </li>
-								    <li><b>Total no of pages : </b> <?php echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
-								    <li><b>Total amount : </b> <?php echo $track_status_array['order_details_total_amount']; ?>  </li>
+								    <li><b> Paper size : </b> <?php echo $track_status_array['paper_size']; ?>  </li>
+								    <li><b> Total no of pages : </b> <?php echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
+								    <li><b> Total amount : </b> <?php echo $track_status_array['order_details_total_amount']; ?>  </li>
 								</ul>
 							</div>
 						</td>
@@ -153,7 +155,7 @@
 
 	<!-- Delivery Start  -->
 	<?php }
-	else if ($order_delivery_status == "delivered") {
+	else {
 	?>
 	<section class="container track_order_status_delivery">
 			<h1> Your order is Delivered </h1>
@@ -176,7 +178,7 @@
 									<li><b> Shipping address : </b> <?php echo $track_status_array['order_shipping_line1']; ?> <?php echo $track_status_array['order_shipping_line2']; ?> </li>
 									<li><b> Mobile number : </b> <?php echo $track_status_array['order_shipping_mobile']; ?> </li>
 									<li><b> Delivery date : </b> <?php echo $track_status_array['order_delivery_date']; ?> </li>                                                                      
-								    <!-- <li><b> Delivery time : </b> <?php //echo $track_status_array['order_delivery_time']; ?> </li> -->
+								    <li><b> Delivery time : </b> <?php echo $track_status_array['order_delivery_time']; ?> </li>
 								    <hr>
 								    <li><b> Order id : </b> <?php echo $track_status_array['order_id']; ?> </li>
 								    <hr>

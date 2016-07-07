@@ -5,10 +5,7 @@
 		die('<script type="text/javascript">window.location.href="index.php";</script>');
 		exit();
 	}
-	if(!isset($_SESSION['service'])){
-		$_SESSION['service']=$_GET['service'];
-	}
-	
+	$_SESSION['service']=$_GET['service'];
 	$random = uniqid();
 	if(!isset($_SESSION['session_id'])){
 		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
@@ -40,7 +37,7 @@
 								<a href="home.php">Home</a>
 							</li>
 							<li>
-								<span>Printing</span>
+								<span>Order</span>
 							</li>
 						</ul>
 					</div>
@@ -72,7 +69,6 @@
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php
-
 			        							$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
 												while($row = mysqli_fetch_array($printtype)){
 													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
@@ -150,7 +146,7 @@
 								<p class="label_text"> Cover </p>
 								<input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
 								<input type="file" class="user dn upload_cover_File" id="upload_cover_File" name="cover_printfiles"/>
-		    	   				<div class="cover_uploadbutton browse_button" id="cover_uploadTrigger">Browse</div>
+		    	   				<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
    							</div>
    							<div class="clear_both"> </div>
 							<p> Upload Your Files<span class="star">*</span></p>	
@@ -160,7 +156,7 @@
 									<p class="label_text display_page_type"> Content </p>
 								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
 									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
-			       					<div class="uploadbutton browse_button col-md-4" id="uploadTrigger">Browse</div>
+			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
 		   						<div class="pos_rel" id="pos_rel">
    									<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
@@ -224,7 +220,7 @@
 		<section class="pr-main" id="project_printing_section">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form">
-					<form id="project_printing_form" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
+					<form id="" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="input_holder row pad_15">
@@ -261,182 +257,87 @@
 				        		</div> <!-- input_holder -->
 				        	</div>
 			        		<div class="clear_both"> </div>
-				        	<div class="main_project_section_input_holder">
+				        	<div class="main_section_input_holder">
 				        		<div class="project_upload_section">
 									<p class="label_page_paper_range"> Upload Your Files</p>
 									<div class="input_holder row pad_15 upload_cover_section" id="">
 										<p class="label_text" >Cover </p>
-									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="cover_uplopadfile" name=""/>
-				       					<div class="browse_button col-md-4" id="cover_browse_button">Browse</div>
-				       					<div class="clear_both"> </div>
+									 	<input type="text" name="" id="" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+										<input type="file" class="user dn col-md-8 uploadFile" id="" name="printfiles[]"/>
+				       					<div class="uploadbutton col-md-4" id="">Browse</div>
 				   					</div>
 		   							<div class="input_holder row pad_15 upload_index_page_section"id="">
 										<p class="label_text" >Index Pages </p>
-									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="index_uplopadfile" name=""/>
-				       					<div class="browse_button col-md-4" id="index_browse_button">Browse</div>
-				       					<div class="clear_both"> </div>
+									 	<input type="text" name="" id="" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+										<input type="file" class="user dn col-md-8 uploadFile" id="" name="printfiles[]"/>
+				       					<div class="uploadbutton col-md-4" id="">Browse</div>
 				   					</div>
-				   					<div class="input_holder row pad_15 upload_content_section" id="upload_content_section" data-projectsectionvalue="0">
-										<p class="label_text" > Content <span class="star">*</span> </p>
-									 	<input type="text" name="" id="project_file_holder" class="project_file_name_margin style_range project_file_holder" value="No file selected" data-projectfilevalue="0" disabled />
-										<input type="file" class="user dn col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name=""/>
-				       					<div class="browse_button cotent_browse_button col-md-4" id="cotent_browse_button">Browse</div>
-				       					<div class="project_clone_remove" id="">
-			   								<div class="del_btn project_remove" id="project_remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-			   								<div class="add_btn project_clone" id="project_clone"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-			   							</div>
-				   					</div>				   					
+				   					<div class="input_holder row pad_15 upload_content_section"id="">
+										<p class="label_text" > Content </p>
+									 	<input type="text" name="" id="" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+										<input type="file" class="user dn col-md-8 uploadFile" id="" name="printfiles[]"/>
+				       					<div class="uploadbutton col-md-4" id="">Browse</div>
+				   					</div>
+				   					<div class="pos_rel" id="">
+		   								<div class="del_btn remove_upload" id=""><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
+		   								<div class="add_btn clone_upload" id=""><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
+			   						</div>
 			   						<div class="clear_both"> </div>
 			   						<div class="input_holder row pad_15 upload_references_section"id="">
 										<p class="label_text" > References </p>
-									 	<input type="text" name="" class="col-md-8 project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="refer_uplopadfile" name=""/>
-				       					<div class="browse_button col-md-4" id="refer_browse_button">Browse</div>
-				       					<div class="clear_both"> </div>
+									 	<input type="text" name="" id="" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+										<input type="file" class="user dn col-md-8 uploadFile" id="" name="printfiles[]"/>
+				       					<div class="uploadbutton col-md-4" id="">Browse</div>
 				   					</div>
 	   							</div>
-	   							<div class="page_number_section display_project_section">
-	   								<p class="label_page_paper_range"> Enter Color Page Range (ex: 1-10, 20, 42-100 ) </p>
-	   								<div class="input_holder row pad_15 project_range_section">
+	   							<div class="page_number_section">
+	   								<p class="label_page_paper_range"> Enter Color Page Range<span class="star">*</span>  (ex: 1-10, 20, 42-100 ) </p>
+	   								<div class="input_holder row pad_15 upload_file_holder">
 	   									<p class="label_text" > Cover </p>     				  
-						        		<input type="text" name="" id="cover_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
-						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
+						        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+						        		<input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 									</div>
-									<div class="clear_both"> </div>
-									<div class="input_holder row pad_15 project_range_section">
+									<div class="input_holder row pad_15 upload_file_holder">
 	   									<p class="label_text" > Index Pages </p>    		  
-						        		<input type="text" name="" id="index_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
-						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
+						        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+						        		<input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 									</div>
-									<div class="clear_both"> </div>
-									<div class="input_holder row pad_15 project_range_section project_content_range_section" data-projectsectionvalue ="0">
+									<div class="input_holder row pad_15 upload_file_holder">
 	   									<p class="label_text" > Content </p>      			  
-						        		<input type="text" name="" id="content_range" class="style_range content_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
-						        		<input type="text" class="project_file_name content_file_name_range style_range project_file_holder" id="content_file_name_range" value="No file selected" data-projectfilevalue="0" disabled>
+						        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+						        		<input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 									</div>
-									<div class="clear_both"> </div>
-									<div class="input_holder row pad_15 project_range_section">
+									<div class="input_holder row pad_15 upload_file_holder">
 	   									<p class="label_text" > References </p>        		  
-						        		<input type="text" name="" id="refer_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled / >
-						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
+						        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+						        		<input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 									</div>
-									<div class="clear_both"> </div>
 	   							</div>
 	   						</div>
 							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
 								 	<p>Total No of Pages<span class="star">*</span></p>
-								 	<input class="user" id="project_total_pages" type="text" value="" name=""> 
+								 	<input class="user print_total_no_of_pages" id="total_pages" type="text" value="" name="print_totalpage"> 
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Total Cost </p>
-								 	<input class="email" type="text" value="" name="print_totalcost" readonly>
+								 	<input class="email print_total_amount" type="text" value="" name="print_totalcost" readonly>
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Comments</p>
-								 	<textarea rows="7" cols="50" class="" value="" name="print_comments"></textarea>
+								 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
 								</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
 							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 						</div>
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
 					</form>
 				</div>
 			</div>
 			<div class="cb">  </div>
-		</section>  <!-- Project Binding End --> 
-	<?php } else if($_SESSION['service']=='multi'){  ?>
-		<!-- Multicolors Printing Start-->
-
-	    <section class="pr-main" id="multicolors_header">	
-			<div class="container">	
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<h1 class="ct-header">Multicolors Printing</h1>			
-					<div class="col-md-6 col-sm-6 col-xs-12 no_pad">
-						<h4>Please make your order here</h4>
-					</div>
-				</div>
-			</div>
-			<span class="error_print_booking"> Please fill out all mandatory fields </span>
-	    </section>	
-	    <section class="pr-main" id="multicolors_section">	
-			<div class="container">	
-				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form">
-					<form id="" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
-						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
-							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
-								<div class="input_holder row pad_15">
-				        			<p>Print Side<span class="star">*</span></p>
-				        			<select name="" class="" id="">
-				        				<option value="" >Select Print Side</option>
-				        				<option value="" >Single</option>
-				        				<option value="" >Double</option>			
-		        				    </select>
-				        		</div> <!-- input_holder -->
-				        		<div class="input_holder row pad_15">
-				        			<p>Paper Type<span class="star">*</span></p>
-				        			<select name="" class="" id="">
-				        				<option value="" >Select Paper Type</option>
-				        				<option value="" >Normal</option>
-		        						<option value="" >Bonesheet</option>
-		        				    </select>
-				        		</div> <!-- input_holder -->
-				        		<div class="input_holder row pad_15">
-				        			<p>Paper Size<span class="star">*</span></p>
-				        			<select name="" class="" id="">
-				        				<option value="" >Select Paper Size</option>
-				        				<option value="" >A4</option>
-										<option value="" >A3</option>
-		        				    </select>
-				        		</div> <!-- input_holder -->
-			        		</div>
-			        		<div class="clear_both"> </div>
-			        		<div class="main_section_input_holder">
-				        		<p> Upload Your Files<span class="star">*</span></p>	
-   								<div class="input_holder row pad_15" id="">
-									<div class="" id="">
-									 	<input type="text" name="" id="" class="col-md-8 style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 " id="" name=""/>
-				       					<div class="col-md-4 browse_button" id="">Browse</div>
-		   							</div>
-			   						<div class="" id="">
-	   									<div class="del_btn " id=""><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-	   									<div class="add_btn " id=""><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-		   							</div>
-   								</div>
-   							</div>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
-							<div class="cb">  </div>
-							<div class="input_holder row pad_15">
-							 	<p>Total No of Pages<span class="star">*</span></p>
-							 	<input class="user " id="" type="text" value="" name=""> 
-							</div>
-							<div class="input_holder row pad_15">
-							 	<p>Total Cost </p>
-							 	<input class="email" type="text" value="" name="" readonly>
-							</div>
-							<div class="input_holder row pad_15">
-							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="" value="" name=""></textarea>
-							</div>
-						</div>
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
-					</form>
-				</div>
-			</div>
-			<div class="cb">  </div>
-		</section> <!-- Plain Printing End-->
+		</section>
 		<?php } ?>
 		<!-- Project Binding End -->
 	</div>	<!-- Main End -->

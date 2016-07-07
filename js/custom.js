@@ -358,31 +358,31 @@ $(document).ready(function () {
 	//index page form validation
 	$('#index_page_form').submit(function(){
 			if($('#student').is(':checked')){
-				if($('#print_book_area_student').val() == ''){
-					$('#index_page_form #print_book_area_student').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_college').val() == ''){
+				// if($('#print_book_area_student').val() == ''){
+					// $('#index_page_form #print_book_area_student').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_college').val() == ''){
 					$('#index_page_form #print_book_college').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_area_student').removeClass('error_border');
+					//$('#index_page_form #print_book_area_student').removeClass('error_border');
 					$('#index_page_form #print_book_college').removeClass('error_border');
 					return true;
 				}
 			}
 			else if($('#professional').is(':checked')){
-				if($('#print_book_state').val() == ''){
-					$('#index_page_form #print_book_state').addClass('error_border');
-					return false;
-				}
-				else if($('#print_book_area_professional').val() == ''){
+				// if($('#print_book_state').val() == ''){
+					// $('#index_page_form #print_book_state').addClass('error_border');
+					// return false;
+				// }else
+				 if($('#print_book_area_professional').val() == ''){
 					$('#index_page_form #print_book_area_professional').addClass('error_border');
 					return false;
 				}
 				else{
-					$('#index_page_form #print_book_state').removeClass('error_border');
+					//$('#index_page_form #print_book_state').removeClass('error_border');
 					$('#index_page_form #print_book_area_professional').removeClass('error_border');
 					return true;
 				}
@@ -422,7 +422,7 @@ $(document).ready(function () {
 	
 	
 	//file upload validation in print booking page
-	$('#print_booking_form .uploadFile,#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form .content_upload_file,#project_printing_form #refer_uplopadfile').change(function(){
+	$('#print_booking_form .uploadFile').change(function(){
     	var file = this.files[0];
     	name = file.name;
     	size = file.size;
@@ -430,7 +430,6 @@ $(document).ready(function () {
     	var ext = type.split('/');
     	if($.inArray(ext[1], ['pdf','doc','docx','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
     		error_popup('Allowed pdf, doc, docx files only!');
-    		$(this).val('');
     		return false;
     	}
     	else{
@@ -476,18 +475,8 @@ $(document).ready(function () {
 	
 	// post from when click button and submit type
 	$('.print_add_to_cart_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_cart');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_cart');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
+		$('#print_booking_form .submit_type').val('add_to_cart');
+		$('#print_booking_form').submit();
 	});
 	
 	// clear print booking form when clear button
@@ -549,18 +538,8 @@ $(document).ready(function () {
 	
 	// post form when click check button in print booking page and submit type
 	$('.print_check_out_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_checkout');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_checkout');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
+		$('#print_booking_form .submit_type').val('add_to_checkout');
+		$('#print_booking_form').submit();
 	});
 	
 	// captcha genaration
@@ -664,36 +643,7 @@ $(document).ready(function () {
 		$('.print_page_option').slideUp();
 		$('#cover_file_name').val('');
 		$('.cover_section_holder').slideUp();
-		$('.display_page_type').css('display','none');
-		$('.main_section_input_holder').find('.upload_section').each(function() {
-			var upload_select_length = $('.upload_section').length;
-			if(upload_select_length >=2) {
-				$(this).remove();
-
-			}
-			// if($(this).data('sectionvalue')!=0) {
-			// 	$(this).remove();
-			// }
-			else {
-				$(this).find('.clone_upload').css('display','inline');
-				$(this).find('.clone_upload').css('pointer-events','none');
-				$(this).find('.remove_upload').css('pointer-events','none');
-				$(this).find('.file_name_box').val('No file selected');
-				$(this).data('sectionvalue','0');
-			}
-		});
-		$('.main_section_input_holder').find('.display_paper_range').each(function() {
-			var paper_select_length = $('.display_paper_range').length;
-			if(paper_select_length >=2) {
-				$(this).remove();
-
-			}
-			else {
-				$(this).find('.display_normal_file').val('No file selected');
-				$(this).data('sectionvalue','0');
-			}
-		});
-		if( selected_type == "color with black & white" ) {
+		if( selected_type == "Color with Black & White" ) {
 			$('.display_paper_range').css('display','block');
 			$('.display_paper_range .file_range_holder').each (function() {
 				$(this).children('.display_normal_file').val('No file selected');
@@ -951,34 +901,34 @@ $(document).ready(function () {
 		 }
 
 
-		// if($('.display_paper_range').css('display') == 'block') {
-		// 	if($('.').css('display') == 'none') {
-		// 		$('.display_range_page').each(function() {
-		// 			if($(this).val() == '') {
-		// 				$(this).addClass('error_print_booking_field');
-		// 			}
-		// 			else {
-		// 				$(this).removeClass('error_print_booking_field');
-		// 			}
+		if($('.display_paper_range').css('display') == 'block') {
+			if($('.').css('display') == 'none') {
+				$('.display_range_page').each(function() {
+					if($(this).val() == '') {
+						$(this).addClass('error_print_booking_field');
+					}
+					else {
+						$(this).removeClass('error_print_booking_field');
+					}
 					
-		// 		});
-		// 	}
-		// 	else {
-		// 		$('.display_range_page').each(function() {
-		// 			if($(this).val() == '') {
-		// 				$(this).addClass('error_print_booking_field');
-		// 			}
-		// 			else {
-		// 				$(this).removeClass('error_print_booking_field');
-		// 			}
+				});
+			}
+			else {
+				$('.display_range_page').each(function() {
+					if($(this).val() == '') {
+						$(this).addClass('error_print_booking_field');
+					}
+					else {
+						$(this).removeClass('error_print_booking_field');
+					}
 					
-		// 		});
-		// 	}
-		// }
-		// else {
-		// 	$('.display_normal_file').removeClass('error_print_booking_field');
-		// 	$('.display_range_page').removeClass('error_print_booking_field');
-		// } // File name validation - normal file, content file
+				});
+			}
+		}
+		else {
+			$('.display_normal_file').removeClass('error_print_booking_field');
+			$('.display_range_page').removeClass('error_print_booking_field');
+		} // File name validation - normal file, content file
 
 		if($('.display_page_type').css('display') == 'block') {
 			$('.display_page_type').each(function() {
@@ -1007,10 +957,6 @@ $(document).ready(function () {
 	});
 	
 	//  == Print Booking Empty Validation End ==
-
-	
-
-
 	
 	// close city popup in index page
 	$('.select_city_btn').on('click',function(){
@@ -1032,7 +978,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .no_college_found_error').addClass('dn');
-           		$('#print_book_college').empty().append('<option>Select your College/Area</option>'+data);
+           		$('#print_book_college').empty().append('<option value="">Select your College/Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_college').attr('disabled','disabled');
@@ -1048,7 +994,7 @@ $(document).ready(function () {
            success: function(data) {
            	if(data != ''){
            		$('#index_page_form .popup_index .no_college_found_error').addClass('dn');
-           		$('#print_book_area_professional').empty().append('<option>Select your Area</option>'+data);
+           		$('#print_book_area_professional').empty().append('<option value="">Select your Area</option>'+data);
            	}else{
            		$('#index_page_form .no_college_found_error').removeClass('dn');
            		$('#print_book_area_professional').attr('disabled','disabled');
@@ -1140,288 +1086,6 @@ $(document).ready(function () {
 		$('#phone').val('');
 		$('#email2').val('');		
 	});
-
-	// Project Printing validaton Start
-
-	// File name exist Start
-
-	$(document).on('change','.content_upload_file',function() {
-		var file_name_section = $(this).val();
-		var this_name = $(this);
-		$('.project_file_holder').each(function() {
-			var file_name_box = $(this).val();			
-			if( file_name_box == file_name_section ) {
-				error_popup('Filename already exists.......');
-				this_name.val('');
-			}
-			else {
-				// changes
-				// file_name_gallary.push(file_name_section);
-			}
-		});
-	});
-
-	// File name exist End
-
-	//  Paper range validation start
-
-	$(document).on('keypress','.project_paper_range',function (e) {
-        if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-     	   return false;
-    	}
-    });
-
-	//  Paper range validation End
-
-	//  Paper range format validation Start
-
-	$('.project_paper_range').each(function() { 
-		$(this).on('keyup',function() {
-			var inputVal=$(this).val();
-		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
-		  	if(!num0to255Regex.test(inputVal)) {
-				$(this).addClass("error_print_booking_code");
-			}
-		 	else {
-				$(this).removeClass("error_print_booking_code");
-			} 	
-	    });
-	});
-
-	// Paper range format validation End
-
-	// Empty Validation Start
-
-	
-	jQuery(document).on('submit','#project_printing_form',function(){
-		var project_input = jQuery('#'+"project_total_pages");
-		if ((project_input.val() == "")) 
-		{
-			project_input.addClass("error_print_booking_field");
-		} else {
-			project_input.removeClass("error_print_booking_field");
-		}
-		if (document.getElementById('project_paper_size').selectedIndex < 1){
-			$('#project_paper_size').addClass('error_print_booking_field');
-		}
-		else{ 
-			$('#project_paper_size').removeClass('error_print_booking_field');
-		} // paper size validation
-		if (document.getElementById('project_paper_type').selectedIndex < 1){
-			$('#project_paper_type').addClass('error_print_booking_field');
-		}
-		else{ 
-			$('#project_paper_type').removeClass('error_print_booking_field');
-		} // paper type validation
-		if (document.getElementById('project_binding_type').selectedIndex < 1){
-			$('#project_binding_type').addClass('error_print_booking_field');
-		}
-		else{ 
-			$('#project_binding_type').removeClass('error_print_booking_field');
-		} // Binding type validation
-	 	
-	 	$('.upload_content_section').each(function(){
-			var flie_upload_id=  $(this).find('.content_upload_file');
-			if(flie_upload_id.val() =='' || file_name_box == 'No file selected'){
-				flie_upload_id.next('.cotent_browse_button').addClass('error_print_booking_field');
-			}
-			else {
-				flie_upload_id.next('.cotent_browse_button').removeClass('error_print_booking_field');
-			}
-		}); 
-
-		if (jQuery(":input").hasClass("error_print_booking_field") ||jQuery("select").hasClass("error_print_booking_field") || jQuery('.cotent_browse_button').hasClass('error_print_booking_field') || jQuery(".project_paper_range").hasClass("error_print_booking_code")) {
-			return false;
-		}else {
-			errornotice.hide();
-			return true;
-		}
-	});	
-
-	//  Cover browse button
-
-	$(document).on('click','#cover_browse_button',function(){
-		$(this).prev().click();
-	});
-
-	//  Index pages browse button
-
-	$(document).on('click','#index_browse_button',function(){
-		$(this).prev().click();
-	});
-
-	//  Content browse button
-
-	$(document).on('click','.cotent_browse_button',function(){
-		$(this).prev().click();
-	});
-
-	//  References browse button
-
-	$(document).on('click','#refer_browse_button',function(){
-		$(this).prev().click();
-	});
-
-	// Display Page range section
-
-	$('.project_uploadfile').on('change',function() {
-		if($(this).val()!='') {
-			$('.display_project_section').slideDown();
-		}
-	});
-
-	// Cover file name
-
-	$('#cover_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#cover_range').prop('disabled',false);
-		$('#cover_range').next().val(project_file_name);
-	});
-
-	// Index file name
-
-	$('#index_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#index_range').prop('disabled',false);
-		$('#index_range').next().val(project_file_name);
-	});
-
-	// Content file name
-
-	$('.content_upload_file').on('change',function() {
-		// var project_file_name = $(this).val();
-		// $(this).prev().val(project_file_name);
-		$('.content_range').prop('disabled',false);
-	});
-
-	// Reference file name
-
-	$('#refer_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#refer_range').prop('disabled',false);
-		$('#refer_range').next().val(project_file_name);
-	});
-
-	// Clone and Remove button Restriction Start
-
-	$(document).on('click','.project_remove:last',function() {
-		$(this).parents('.upload_content_section').prev().find('.project_clone').css('display','inline');
-	});
-	$('.project_remove').css('pointer-events','none');
-	$(document).on('click','.project_remove',function() {
-		var upload_content_length = $('.upload_content_section').length;
-		if(upload_content_length <= 2) {
-			$('.project_remove').css('pointer-events','none');
-		}
-		else {
-			$('.project_remove').css('pointer-events','auto');
-		}
-	});
-
-	// Clone and Remove button Restriction End
-
-	//  Project Clone and Remove Start 
-
-	var project_cloneIndex = $(".upload_content_section").length;
-	function project_clone(){
-			$('.project_remove').css('pointer-events','auto');
-	  		var project_path_section_clone = $(this).parents('.project_upload_section');
-			project_path_section_clone.find('.upload_content_section:last').clone()
-	  		.val("")
-	  		.insertAfter('.upload_content_section:last')
-	  		.attr("id", "upload_content_section" +  project_cloneIndex)
-	  		.data("projectsectionvalue",project_cloneIndex);
-	  		$(this).css('display','none');
-
-	  		var clone_project = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.project_clone');
-	  		clone_project.attr("id","project_clone" + project_cloneIndex);
-	  		clone_project.css('display','inline');
-
-	  		var project_remove = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.project_remove');
-	  		project_remove.attr("id","project_remove" + project_cloneIndex);
-
-	  		var project_input_file = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.content_upload_file');
-	  		project_input_file.val("");
-	  		project_input_file.attr("id","content_upload_file" + project_cloneIndex);
-
-  		  	var project_input_file = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.cotent_browse_button');
-		  	project_input_file.attr("id","cotent_browse_button" + project_cloneIndex);
-
-	  	  	var project_input_file = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.project_file_holder');
-		  	project_input_file.val("No file selected")
-	  		project_input_file.attr("id","project_file_holder" + project_cloneIndex)
-	  		project_input_file.data("projectfilevalue",project_cloneIndex);
-
-
-	  		//  Project paper range section
-
-		  	var project_range_section_clone = $(this).parents('.main_project_section_input_holder').children('.page_number_section');
-			project_range_section_clone.find('.project_content_range_section:last').clone()
-		  	.val("")
-		  	.insertAfter('.project_content_range_section:last')
-		  	.attr("id", "project_content_range_section" +  project_cloneIndex)
-		  	.data("projectsectionvalue",project_cloneIndex);
-
-		  	var project_input_file = project_range_section_clone.children('#project_content_range_section'+ project_cloneIndex).find('.content_range');
-		 	project_input_file.val("0-0");
-		 	project_input_file.attr("id","content_range"+ project_cloneIndex);
-
-		   	var project_input_file = project_range_section_clone.children('#project_content_range_section'+project_cloneIndex).find('.content_file_name_range');
-		  	project_input_file.val("No file selected")
-		  	project_input_file.attr("id","content_file_name_range"+project_cloneIndex)
-		  	project_input_file.data("projectfilevalue",project_cloneIndex);
-	  	project_cloneIndex++;
-	}
-	function project_remove(){
-
-	 	var path_section_remove1 = $(this).parents('.upload_content_section').attr('id');
-	 	var path_section_remove1_id = jQuery('#'+path_section_remove1);
-		var data_value_section = path_section_remove1_id.data('projectsectionvalue');
-	 	$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
-			var cloned_file_remove = $(this).data('projectsectionvalue');
-			if(cloned_file_remove==data_value_section){
-				$(this).remove();
-			}
-		});
-	path_section_remove1_id.remove();
-
-	}
-	$(document).on('click','.project_clone', project_clone);
-	$(document).on('click','.project_remove', project_remove);
-
-	//  Project Clone and Remove End
-
-	
-
-	// Validaion for adding restriction to clone and Store file value Start
-
-	$('.project_clone').css('pointer-events', 'none');
-	$(document).on('change','.content_upload_file',function() {
-		if($(this).val()==''){
-			$('.project_clone').css('pointer-events', 'none');
-		}
-		else{
-			var uploaded_file_name=$(this).val();
-			var file_name_box_id = $(this).prev('.project_file_holder').attr('id');
-			var file_name_box = jQuery('#'+file_name_box_id);
-			var data_file_name = file_name_box.data('projectfilevalue');
-			$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
-				if($(this).find('.content_file_name_range').data('projectfilevalue')==data_file_name){
-					$(this).find('.content_file_name_range').val(uploaded_file_name);
-				}
-			});
-			file_name_box.attr('value',uploaded_file_name);
-			$('.project_clone').css('pointer-events', 'auto');
-		}
-	});
-
-	// Validaion for adding restriction to clone and Store file value End
-
-	// Project printing validation End
-
 	//mobile validation
   //called when key is pressed in textbox
 
@@ -1528,7 +1192,5 @@ $(document).ready(function () {
 			}
 		}
 	});
-
-}); // Document Ready End 
-
 	
+});

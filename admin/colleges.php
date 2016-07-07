@@ -140,7 +140,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					<input type="hidden" name="delete" id="vId" autocomplete="off" value=""/>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<center>
-							<h5>Are you sure you want to delete this item? </h5>
+							<h5>Are you sure you want to delete this Product? </h5>
 						</center>
 				</div>
 				<div class="modal-footer footer_model_button">

@@ -6,12 +6,10 @@ require 'dbconnect.php';
 	
 	error_reporting(0);
 	date_default_timezone_set("Asia/Kolkata");
-	$business_hour_start = date("h:i", strtotime("08:00"));
-	$business_hour_end = date("h:i", strtotime("08:00"));
+	$business_hour_start = '08:00 AM';
+	$business_hour_end = '08:00 PM';
 	$business_day_start = 'Mon';
 	$business_day_end = 'Sat';
-	$delivery_hours = strtotime("+12 hour");
-	$sunday_delivery_hours = strtotime("+36 hour");
 	$delivery_hours = strtotime("+12 hour");
 	$workingKey='1DD4304715928B37B1170BED9EDB13A6';		//Working Key should be provided here.
 	$encResponse=$_POST["encResp"];			//This is the response sent by the CCAvenue Server
@@ -66,70 +64,40 @@ require 'dbconnect.php';
 
 	if($order_status==="Success")
 	{	
-		$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$merchant_param5."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
-		echo $trans_success_query;
+		$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,tracking_id,bank_referrence_number,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$tracking_id."','".$bank_ref_no."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 		mysqli_query($connection,$trans_success_query);
 		$transactionid = mysqli_insert_id($connection);
 		$total_items_query = "select * from stork_order_details where order_details_session_id='".$order_id."'";
 		$total_item_count = mysqli_num_rows(mysqli_query($connection,$total_items_query));
 		$user_type_split = explode('_', $order_id);
 		$user_type = $user_type_split[0].'_'.$user_type_split[1];
-		$current = date("d-m-Y h:i A D");
-		$current_split = explode(' ', $current);
-		$current_date = date("d-m-Y", strtotime($current_split[0]));
-		$current_hour = date("h:i", strtotime($current_split[1]));
-		$current_meridian = date("A", strtotime($current_split[2]));
-		$current_day = date("D", strtotime($current_split[3]));
-		$current_hour_meridian = date("h:i A", strtotime($current_split[1].' '.$current_split[2]));
-		$delivery = date("Y-m-d h:i A D",$delivery_hours);
-		$delivery_split = explode(' ', $delivery);
-		$delivery_date = date("d-m-Y", strtotime($delivery_split[0]));
-		$delivery_hour = date("h:i", strtotime($delivery_split[1]));
-		$delivery_meridian = date("A", strtotime($delivery_split[2]));
-		$delivery_day = date("D", strtotime($delivery_split[3]));
-		$delivery_hour_meridian = date("h:i A", strtotime($delivery_split[1].' '.$delivery_split[2]));
-		if($delivery_day != 'Sun'){
-			$delivery_date_cal = $delivery;
-		}
-		else{
-			$delivery_date_cal = date("Y-m-d h:i A D",$sunday_delivery_hours);
-		}
-		$delivery_split_cal = explode(' ', $delivery_date);	
-		$final_delivery_date = date("Y-m-d", strtotime($delivery_split_cal[0]));
-		$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_status) 
-														values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'pending','".$final_delivery_date."','1')";
-		mysqli_query($connection,$order_success_query);
-		$order_details_orderid = mysqli_insert_id($connection);
-		mysqli_query($connection,"update stork_order_details set order_id ='".$order_details_orderid."' where order_details_session_id='".$order_id."'");
-		header('location:orderconfirm.php?order_id='.$order_details_orderid);
+		
 	}
 	else if($order_status==="Aborted")
 	{	
-		$trans_abort_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_status) 
-														values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'pending','".$final_delivery_date."','1')";
+		$trans_abort_query = "INSERT INTO stork_ccavenue_transaction (order_id,tracking_id,bank_referrence_number,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$tracking_id."','".$bank_ref_no."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 		mysqli_query($connection,$trans_abort_query);
 		$transactionid = mysqli_insert_id($connection);
-		header('location:orderconfirm.php?error=aborted');
 	
 	}
 	else if($order_status==="Failure")
 	{	
-		$trans_failure_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_status) 
-														values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'pending','".$final_delivery_date."','1')";
+		$trans_failure_query = "INSERT INTO stork_ccavenue_transaction (order_id,tracking_id,bank_referrence_number,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$tracking_id."','".$bank_ref_no."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 		mysqli_query($connection,$trans_failure_query);
-		header('location:orderconfirm.php?error=failure');
+		$transactionid = mysqli_insert_id($connection);
 	
 	}
 	else
 	{
 		echo "<br>Security Error. Illegal access detected";
+	
 	}
 
 
-	// for($i = 0; $i < $dataSize; $i++) 
-	// {
-		// $information=explode('=',$decryptValues[$i]);
-	    	// echo $information[0].'='.$information[1].'<br>';
-	// }
+	//for($i = 0; $i < $dataSize; $i++) 
+	//{
+		//$information=explode('=',$decryptValues[$i]);
+	    	//echo $information[0].'='.$information[1].'<br>';
+	//}
 
 ?>
