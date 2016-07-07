@@ -5,7 +5,10 @@
 		die('<script type="text/javascript">window.location.href="index.php";</script>');
 		exit();
 	}
-	$_SESSION['service']=$_GET['service'];
+	if(!isset($_SESSION['service'])){
+		$_SESSION['service']=$_GET['service'];
+	}
+	
 	$random = uniqid();
 	if(!isset($_SESSION['session_id'])){
 		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){

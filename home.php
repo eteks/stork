@@ -9,6 +9,7 @@
 				$_SESSION['college_id'] =trim($_POST['stu_college']);
 				$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 				// $_SESSION['area_id'] =trim($_POST['stu_area']);
+				unset($_SESSION['area_id']);
 				
 			}
 			
@@ -17,6 +18,7 @@
 				$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 				// $_SESSION['state_id'] =trim($_POST['pro_state']);
 				$_SESSION['area_id'] =trim($_POST['pro_area']);
+				unset($_SESSION['college_id']);
 			}
 		}
 	}
@@ -28,12 +30,14 @@
 					$_SESSION['college_id'] =trim($_POST['stu_college']);
 					$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 					// $_SESSION['area_id'] =trim($_POST['stu_area']);
+					unset($_SESSION['area_id']);
 				}
 				if(trim($_POST['user_type']) == 'pro'){
 					$_SESSION['usertype'] = 'pro';
 					$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 					//$_SESSION['state_id'] =trim($_POST['pro_state']);
 					$_SESSION['area_id'] =trim($_POST['pro_area']);
+					unset($_SESSION['college_id']);
 				}
 			}
 		}
