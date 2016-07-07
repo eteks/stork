@@ -140,7 +140,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 					<input type="hidden" name="delete" id="vId" value=""/>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<center>
-							<h5>Are you sure you want to delete this Product? </h5>
+							<h5>Are you sure you want to delete this item? </h5>
 						</center>
 				</div>
 				<div class="modal-footer footer_model_button">
