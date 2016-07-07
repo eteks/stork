@@ -2589,6 +2589,7 @@ ul.cate_list li.parent a.active i.fa-minus{
 }
 .breadcrumb-w{
   text-align: right;
+  top: 15px;
 }
 .breadcrumb{
   float: right;
