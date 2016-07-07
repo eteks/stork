@@ -7,7 +7,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "");
+define("DBPASSWORD", "root");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
