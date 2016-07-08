@@ -806,4 +806,66 @@ h4.order_or_button{
 #cover_file_name {
     margin-left: 0px !important;
 }
+.label_page_range {
+    display: none;
+}
+.upload_content_section {
+    float: left;
+}
+.label_text {
+    float: left;
+    font-size: 16px !important;
+    line-height: 40px;
+    width: 150px;
+}
+.label_page_paper_range {
+    margin-bottom: 26px;    
+}
+#cover_file_name {
+    margin-left: 0px !important;
+}
+.project_file_name {
+    margin-left: 20px !important;
+}
+.project_file_name_margin {
+    margin-right: 20px !important;
+    float: left;
+}
+.display_project_section {
+    display: none;
+}
+.upload_content_section {
+    width: 100%
+}
 
+/*Added by siva*/
+
+/*css for project printing and multicolors Start*/
+
+.browse_button {
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.browse_button:hover {
+   background-color: #25bce9;
+   color: #fff;
+   cursor: pointer;
+}
+.browse_button {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #d6d6d6 none repeat scroll 0 0;
+    border-color: transparent transparent #646464;
+    border-image: none;
+    border-style: solid;
+    border-width: 2px;
+    color: #444444;
+    float: left;
+    font-size: 12px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    width : 115px;
+}
+/*css for project printing and multicolors End*/

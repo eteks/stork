@@ -192,7 +192,7 @@ if(mysqli_num_rows($review_details)>0){
 			$area_name = $city2['area_name'];
 			$city_name = $city2['city_name'];
 			$state_name = $city2['state_name'];
-			$delivery_amount = $city1['area_delivery_charge'];
+			$delivery_amount = $city2['area_delivery_charge'];
 		}
 		  
 	   ?>
@@ -250,7 +250,16 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_a" readonly> 
+						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_a" readonly=""/>
+						<input type="text" value="<?php echo $city_name; ?>" maxlength="64" autocomplete="off" size="30" name="address_1" id="city_a" readonly/> 
+					   </div>
+					 </li>
+					 <li class="long">
+					  <div class="field-wrapper">
+						<label for="address_1_field" class="address_1">State<em>*</em></label>
+						<br>
+						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly>
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -258,13 +267,6 @@ if(mysqli_num_rows($review_details)>0){
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
 						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
-					   </div>
-					 </li>
-					 <li class="long">
-					  <div class="field-wrapper">
-						<label for="address_1_field" class="address_1">State<em>*</em></label>
-						<br>
-						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -337,13 +339,14 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Department<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="department" readonly> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="department" ng-model="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
+						<input type="hidden" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly>
 						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly> 
 					   </div>
 					 </li>
@@ -354,18 +357,20 @@ if(mysqli_num_rows($review_details)>0){
 						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30"  id="city_b" readonly> 
 					   </div>
 					 </li>
+					 
+					 <li class="long">
+					  <div class="field-wrapper">
+						<label for="address_1_field" class="address_1">State<em>*</em></label>
+						<br>
+						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly>
+						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly> 
+					   </div>
+					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
 						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
-					   </div>
-					 </li>
-					 <li class="long">
-					  <div class="field-wrapper">
-						<label for="address_1_field" class="address_1">State<em>*</em></label>
-						<br>
-						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly> 
 					   </div>
 					 </li>
   					  <li class="long">
@@ -492,6 +497,7 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="merchant_param1" value="{{address1}}"/>
 		   		<input type="hidden" name="billing_address" value="{{address2}}<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
 		   		<input type="hidden" name="merchant_param4" value="<?php echo $area_name; ?>"/>
+		   		<input type="hidden" name="merchant_param5" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>"/>
 		   		<input type="hidden" name="billing_city" value="<?php echo $city_name; ?>"/>
 		   		<input type="hidden" name="billing_state" value="<?php echo $state_name; ?>"/>
 		   		<input type="hidden" name="billing_zip" value="{{zipcode}}"/>
@@ -511,10 +517,10 @@ if(mysqli_num_rows($review_details)>0){
 
 <?php
 }
-// else{
-	// die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
-	// exit();
-// } 
+else{
+	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+	exit();
+} 
 include('footer.php'); 
 ?>
 <script>
