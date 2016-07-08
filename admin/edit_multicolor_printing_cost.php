@@ -7,30 +7,45 @@ include "includes/header.php";
 </head>
 <body>
 <?php
+$paper_print_type = '';
+$val = '';
+$successMessage = '';
+function edit_multicolor_printing_cost(){
+	$paper_print_type_status = $_POST["paper_print_type_status"];	
+	$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND paper_print_type_id NOT IN('$val')");
+	$row = mysql_num_rows($qr);
+	if($row > 0){
+		$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Already exists! </span></div>";
+	} else {
+		global $paper_print_type,$val,$successMessage;
+		mysqlQuery("UPDATE `stork_paper_print_type` SET `paper_print_type`='$paper_print_type',`paper_print_type_status`='$paper_print_type_status' WHERE `paper_print_type_id`=".$val);
+		if(($paper_print_type_status == 0 && !$_POST['change_status'])||($paper_print_type_status == 1 && $_POST['change_status'])){
+			mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_print_type_status' WHERE `cost_estimation_paper_print_type_id`=".$val);
+		}
+		$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Updated Successfully! </span></div>";	
+	}	
+}
 if (isset($_GET['update']))
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
-
-		$paper_print_type = $_POST["paper_print_type"];
-		$paper_side = $_POST["paper_side"];
-		$paper_size = $_POST["paper_size"];
-		$paper_type = $_POST["paper_type"];
-		$amount = $_POST["amount"];
-		$cost_estimation_status = $_POST["cost_estimation_status"];
-		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation_multicolor` WHERE cost_estimation_multicolor_paper_print_type_id='$paper_print_type' AND cost_estimation_multicolor_paper_side_id='$paper_side' AND cost_estimation_multicolor_paper_size_id='$paper_size' AND cost_estimation_multicolor_paper_type_id='$paper_type' AND cost_estimation_multicolor_id NOT IN('$val')");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Already Multicolor Printing Cost Assigned! </span></div>";
-		} else {			
-			mysqlQuery("UPDATE `stork_cost_estimation_multicolor` SET cost_estimation_multicolor_paper_print_type_id='$paper_print_type',cost_estimation_multicolor_paper_side_id='$paper_side',cost_estimation_multicolor_paper_size_id='$paper_size',cost_estimation_multicolor_paper_type_id='$paper_type',cost_estimation_multicolor_amount='$amount', cost_estimation_multicolor_status='$cost_estimation_status' WHERE cost_estimation_multicolor_id=".$val);
-			$successMessage = "<div class='container error_message_mandatory'><span> Project Printing Cost Updated Successfully! </span></div>";
+		if($_POST["paper_print_type_hidden"]){
+			$paper_print_type = $_POST["paper_print_type_hidden"];
+			if($_POST['paper_print_type'] && $_POST['paper_print_type'] != "color with black & white"){				
+				$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong</span></div>";			
+			}
+			else{
+				edit_multicolor_printing_cost();
+			}
 		}
-				
-	}
-	
+		else{
+			$paper_print_type = $_POST["paper_print_type"];		
+			edit_multicolor_printing_cost();	
+		}		
+	}	
 }
+
 $id=$val;
 if(isset($_GET["id"]))
 {
@@ -83,7 +98,7 @@ if(isset($_GET["id"]))
 								?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" disabled>
+									<input type="text" class="form-control" maxlength="10" name="paper_print_type_hidden" autocomplete="off" value="Color with Black & White" disabled>
 									<?php 
 									        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
 									        while($row_cost=mysql_fetch_array($query)) {
