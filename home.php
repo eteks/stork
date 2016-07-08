@@ -52,8 +52,8 @@
 				<div class="vt-slideshow">
 					<ul>
 						<li class="slide1" data-transition="random" ><img src="images/slider/home/bg_slider_1.jpg" alt="" />
-							<div class="tp-caption lfr" data-x="right"  data-hoffset="-56" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor">Flyers</span> & Leaflets</span></div> 
-							<div class="tp-caption lfb" data-x="right"  data-hoffset="-15" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
+							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor"></span>PROJECT BINDING</span></div> 
+							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
 									This is because they're perfect for potential prospects<br>  
@@ -62,10 +62,10 @@
 									for only &pound; 24!
 								</span>
 							</div>
-							<div class="tp-caption lfr" data-x="right" data-hoffset="-315" data-y="375" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
+							<div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
 						</li>
 						<li class="slide2" data-transition="random" ><img src="images/slider/home/bg_slider_2.jpg" alt="" />
-							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor">Flyers</span> & Leaflets</span></div> 
+							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor"></span>CABIN BOOKING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
@@ -78,7 +78,7 @@
 							<div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
 						</li>
 						<li class="slide3" data-transition="random" ><img src="images/slider/home/bg_slider_3.jpg" alt="" />
-							<div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor">Flyers</span> & Leaflets</span></div> 
+							<div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
@@ -89,6 +89,19 @@
 								</span>
 							</div>
 							<div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
+						</li>
+						<li class="slide4" data-transition="random" ><img src="images/slider/home/bg_slider_4.jpg" alt="" />
+							<!-- <div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
+							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
+								<span class="style2">
+									Our A5 flyers and leaflets are our bestselling size.<br> 
+									This is because they're perfect for potential prospects<br>  
+									to carry around and are extremely cost effective. We<br> 
+									currently have an offer of 1000 flyers and leaflets<br> 
+									for only &pound; 24!
+								</span>
+							</div>
+							<div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
 						</li>
 					</ul> 
 				</div>
@@ -113,7 +126,7 @@
 									<img src="images/banner/category/2.jpg" alt="banner-category"/>
 								</a>
 								<div class="info">
-									<a href="#">BROCHURE</a>
+									<a href="#">DESIGN TEMPLATES</a>
 								</div>
 							</div>
 							<div class="box-right">
@@ -169,7 +182,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 block-trust trust-col-time-delivery">
-						<a href="printbooking.php?service=project" id="home_project_printing"><div class="tr-icon"><i class="fa fa-files-o"></i></div></a>
+						<a href="printbooking.php?service=project" id="home_project_printing"><div class="tr-icon"><i class="fa fa-book"></i></div></a>
 						<div class="tr-text">
 							<h3>Project Printing</h3>
 							<span class="tr-line"></span>
@@ -216,7 +229,7 @@
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
 						<div class="tr-icon"><i class="fa fa-map-o"></i></div>
 						<div class="tr-text">
-							<h3>Brochure</h3>
+							<h3>Design Templates</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">
 								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.
@@ -585,8 +598,8 @@
 							<li><a data-toggle="tab" href="#tab3" class="last">visiting card</a></li>
 							<li><a data-toggle="tab" href="#tab4" class="last">/a>Personalized gift</li>
 							<li><a data-toggle="tab" href="#tab5" class="last">3d product</a></li>
-							<li><a data-toggle="tab" href="#tab6" class="last">Presentation</a></li>
-							<li><a data-toggle="tab" href="#tab7" class="last">Brochure</a></li>
+							<!-- <li><a data-toggle="tab" href="#tab6" class="last">Presentation</a></li> -->
+							<li><a data-toggle="tab" href="#tab7" class="last">Design Templates</a></li>
 							<li><a data-toggle="tab" href="#tab8" class="last">Multicolor</a></li>
 							<li><a data-toggle="tab" href="#tab9" class="last">Project binding</a></li>
 						</ul>
@@ -2651,8 +2664,8 @@
 							<li><a data-toggle="tab" href="#tab31" class="last">visiting card</a></li>
 							<li><a data-toggle="tab" href="#tab41" class="last">Personalized gift</a></li>
 							<li><a data-toggle="tab" href="#tab51" class="last">3d product</a></li>
-							<li><a data-toggle="tab" href="#tab61" class="last">Presentation</a></li>
-							<li><a data-toggle="tab" href="#tab71" class="last">Brochure</a></li>
+							<!-- <li><a data-toggle="tab" href="#tab61" class="last">Presentation</a></li> -->
+							<li><a data-toggle="tab" href="#tab71" class="last">Design Templates</a></li>
 							<li><a data-toggle="tab" href="#tab81" class="last">Multicolor</a></li>
 							<li><a data-toggle="tab" href="#tab91" class="last">Project binding</a></li>
 					</div>
@@ -2826,7 +2839,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/7.png" alt="service-06"/>
+												<!-- <img src="images/our_service/7.png" alt="service-06"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2844,7 +2857,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/7.png" alt="service-08"/>
+												<!-- <img src="images/our_service/7.png" alt="service-08"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2882,7 +2895,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/12.png" alt="service-08"/>
+												<!-- <img src="images/our_service/12.png" alt="service-08"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2900,7 +2913,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/12.png" alt="service-05"/>
+												<!-- <img src="images/our_service/12.png" alt="service-05"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2938,7 +2951,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/9.png" alt="service-07"/>
+												<!-- <img src="images/our_service/9.png" alt="service-07"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2956,7 +2969,7 @@
 									<!-- <div class="w-block-recent"> -->
 										<div class="image-recent">
 											<a href="#">
-												<img src="images/our_service/9.png" alt="service-08"/>
+												<!-- <img src="images/our_service/9.png" alt="service-08"/> -->
 											</a>
 										</div>
 										<!-- <div class="info-recent">
@@ -2994,7 +3007,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/5.png" alt="service-07"/>
+											<!-- <img src="images/our_service/5.png" alt="service-07"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3012,7 +3025,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/5.png" alt="service-05"/>
+											<!-- <img src="images/our_service/5.png" alt="service-05"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3027,7 +3040,7 @@
 								<!-- </div> -->
 							</div>							
 						</div> 
-						<div class="tab-pane" id="tab61">	 
+						<!-- <div class="tab-pane" id="tab61">	  -->
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
@@ -3050,7 +3063,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/10.png" alt="service-07"/>
+											<!-- <img src="images/our_service/10.png" alt="service-07"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3068,7 +3081,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/10.png" alt="service-08"/>
+											<!-- <img src="images/our_service/10.png" alt="service-08"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3106,7 +3119,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/6.png" alt="service-05"/>
+											<!-- <img src="images/our_service/6.png" alt="service-05"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3124,7 +3137,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/6.png" alt="service-07"/>
+											<!-- <img src="images/our_service/6.png" alt="service-07"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3162,7 +3175,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/8.png" alt="service-06"/>
+											<!-- <img src="images/our_service/8.png" alt="service-06"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3180,7 +3193,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/8.png" alt="service-07"/>
+											<!-- <img src="images/our_service/8.png" alt="service-07"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3218,7 +3231,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/11.png" alt="service-06"/>
+											<!-- <img src="images/our_service/11.png" alt="service-06"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3236,7 +3249,7 @@
 								<div class="w-block-recent">
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/11.png" alt="service-07"/>
+											<!-- <img src="images/our_service/11.png" alt="service-07"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">

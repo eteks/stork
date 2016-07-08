@@ -6,6 +6,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//print_r($_POST);
 	if($_POST['submit_type'] == 'add_to_cart' || $_POST['submit_type'] == 'add_to_checkout'){
+		$printing_type = $_POST['printing_type'];
 		$print_type = $_POST['print_type'];
 		// $print_type_query = mysqli_query($connection, 'select * from stork_paper_print_type where paper_print_type_id="'.$print_type.'"') ;
 		// $print_type_array = mysqli_fetch_array($print_type_query, MYSQL_ASSOC);
@@ -35,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if(!is_dir($upload_path.$additional_path)){
 			@mkdir($upload_path.$additional_path, 0777, true);
 		}
-		$insert_data_order_details = $print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$is_binding.',"'.$binding_type.'",'.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
-		insertfunction('order_details_paper_print_type_id,order_details_paper_size_id,order_details_paper_side_id,order_details_paper_type_id,order_details_is_binding,order_details_binding_type,order_details_total_no_of_pages,order_details_total_amount,order_details_comments,order_details_session_id,order_details_status',$insert_data_order_details,ORDERDETAILS,'',$connection);
+		$insert_data_order_details = '"'.$printing_type.'",'.$print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$is_binding.',"'.$binding_type.'",'.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
+		insertfunction('order_print_booking_type,order_details_paper_print_type_id,order_details_paper_size_id,order_details_paper_side_id,order_details_paper_type_id,order_details_is_binding,order_details_binding_type,order_details_total_no_of_pages,order_details_total_amount,order_details_comments,order_details_session_id,order_details_status',$insert_data_order_details,ORDERDETAILS,'',$connection);
 		$order_detail_id = mysqli_insert_id($connection);
 		if(isset($_FILES['printfiles'])){
 			//print_r($_FILES['printfiles']);

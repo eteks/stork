@@ -23,11 +23,27 @@
 		
 		// cost estimation for per page in print booking page
 		if(isset($_POST['cost_estimation_per_page'])){
-			$amount_per_page = selectfunction('cost_estimation_amount',COSTESTIMATION,'cost_estimation_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_status ="1"',$connection);
-			$amount_data = mysqli_fetch_array($amount_per_page);
-			if(mysqli_num_rows($amount_per_page) == 1){
-				echo $amount_data['cost_estimation_amount'];
-			}
+			//old code only for plain printing
+			// $amount_per_page = selectfunction('cost_estimation_amount',COSTESTIMATION,'cost_estimation_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_status ="1"',$connection);
+			// $amount_data = mysqli_fetch_array($amount_per_page);
+			// if(mysqli_num_rows($amount_per_page) == 1){
+			// 	echo $amount_data['cost_estimation_amount'];
+			// }
+
+			// newly changed the above code by kalai for both supporting plain and multi color printing on 07/06/16
+			if($_POST['printing_type'] == "multicolor_printing"){
+				$amount_per_page = selectfunction('cost_estimation_multicolor_amount',MULTICOLOR,'cost_estimation_multicolor_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_multicolor_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_multicolor_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_multicolor_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_multicolor_status ="1"',$connection);
+				$amount_data = mysqli_fetch_array($amount_per_page);
+				if(mysqli_num_rows($amount_per_page) == 1){
+					echo $amount_data['cost_estimation_multicolor_amount'];
+				}
+			}else{
+				$amount_per_page = selectfunction('cost_estimation_amount',COSTESTIMATION,'cost_estimation_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_status ="1"',$connection);
+				$amount_data = mysqli_fetch_array($amount_per_page);
+				if(mysqli_num_rows($amount_per_page) == 1){
+					echo $amount_data['cost_estimation_amount'];
+				}
+			}		
 		}
 		
 		

@@ -7,7 +7,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "root");
+define("DBPASSWORD", "");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
@@ -42,6 +42,8 @@ define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
 define("CITY",'stork_city');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
+//newly added by kalai for multi color printing on 08/07/16
+define("MULTICOLOR",'stork_cost_estimation_multicolor');
 
 
 //php allows only ajax call
