@@ -97,15 +97,15 @@ include "includes/header.php";
 								{
 							?>
 								<div class="form-group">
-								    <label for="last-name">User Name<span class="required">*</span></label>
+								    <label for="last-name">User Name<span class="required"></span></label>
 									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Password<span class="required">*</span></label>
+								    <label for="last-name">Password<span class="required"></span></label>
 									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="password" value="<?php echo($row['password']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Firstname<span class="required">*</span></label>
+								    <label for="first-name">Firstname<span class="required"></span></label>
 									<input type="text" class="form-control" id="firstname" autocomplete="off" placeholder="First Name" name="first_name" value="<?php echo($row['first_name']); ?>">
 								</div>
 								<div class="form-group">
@@ -113,7 +113,7 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">User Type<span class="required">*</span></label>
+								    <label for="first-name">User Type<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="user_type">
 								        <option>
 											<span>Select User Type</span>
@@ -127,12 +127,12 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Date of Birth<span class="required">*</span></label>
+								    <label for="last-name">Date of Birth<span class="required"></span></label>
 								   
 									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Date Of Birth" name="user_dob" value="<?php $dobdate=strtotime($row['user_dob']); $dob = date('d/m/Y', $dobdate); echo $dob; ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Address Line1<span class="required">*</span></label>
+								    <label for="last-name">Address Line1<span class="required"></span></label>
 									<input type="text" class="form-control" id="address" autocomplete="off" placeholder="Address" name="line1" value="<?php echo($row['line1']); ?>">
 								</div>
 								<div class="form-group">
@@ -179,7 +179,7 @@ include "includes/header.php";
 								</div>
 								
 								<div class="cate-filter-content">	
-								    <label for="first-name">Users Status<span class="required">*</span></label>
+								    <label for="first-name">Users Status<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="user_status">
 								        <option>
 											<span>Select status</span>

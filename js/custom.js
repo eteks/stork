@@ -1,9 +1,9 @@
-function error_popup(message){
-	$('.error_popup_msg .success-alert span').text(message);
-	$('.popup_fade').show();
-	$('.error_popup_msg').show();
-	document.body.style.overflow = 'hidden';
-}
+// function error_popup(message){
+	// $('.error_popup_msg .success-alert span').text(message);
+	// $('.popup_fade').show();
+	// $('.error_popup_msg').show();
+	// document.body.style.overflow = 'hidden';
+// }
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
@@ -1107,8 +1107,8 @@ $(document).ready(function () {
 		$('#address1').val('');
 		$('#postalcode').val('');
 		$('#state_a').val('');
-		$('#mobile').val('');
-		$('#email').val('');
+		$('#phone1').val('');
+		$('#email1').val('');
 	});
 	$('.send_to_address_college').on('change',function(){
 		$(this).prop("disabled", true);
@@ -1123,7 +1123,7 @@ $(document).ready(function () {
 		$('#area_b').val('');
 		$('#postal').val('');
 		$('#state_b').val('');
-		$('#phone').val('');
+		$('#phone2').val('');
 		$('#email2').val('');		
 	});
 	//mobile validation
@@ -1131,10 +1131,12 @@ $(document).ready(function () {
 
 
 	//Validation for checkout
-	var required_address_1 = ["name_a","address1","address2","postalcode","mobile","email"];
+	var required_address_1 = ["name_a","address1","address2","postalcode","mobile","email1"];
 	var required_address_2 = ["studentname","idno","yearofstudying","department","postal","phone","email2"];
-	forget_email=jQuery("#test");
+	forget_email1=jQuery("#email1");
+	forget_email2=jQuery("#email2");
 	email=jQuery("#email");
+	
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
 		
@@ -1153,11 +1155,19 @@ $(document).ready(function () {
 			  $('.error_test').css('display','none');
 				
 			 }
-			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input1_field_email");
+			 	 var mobile=$('#phone1').val().length;
+     			if(mobile<=9){
+    			$('#phone1').addClass("error_input1_field_phone");
+ 				}
+ 				else {
+ 				$('#phone1').removeClass("error_input1_field_phone");
+ 				}
+         
+			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email1.val())) {
+		 	forget_email1.addClass("error_input1_field_email");
 	  	}else{
 
-	  		forget_email.removeClass("error_input1_field_email");
+	  		forget_email1.removeClass("error_input1_field_email");
 	  	}
 	  
 		}
@@ -1210,10 +1220,18 @@ $(document).ready(function () {
 				 	input.removeClass("error_input2_field");
 			  		$('.error_test').css('display','none');
 			 	}
-		 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 			forget_email.addClass("error_input2_field_email");
+			 		 var mobile=$('#phone2').val().length;
+     			if(mobile<=9){
+    			$('#phone2').addClass("error_input2_field_phone");
+ 				}
+ 				else {
+ 				$('#phone2').removeClass("error_input2_field_phone");
+ 				}
+         
+		 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email2.val())) {
+		 			forget_email2.addClass("error_input2_field_email");
 	  			}else{
-	  				forget_email.removeClass("error_input2_field_email");
+	  				forget_email2.removeClass("error_input2_field_email");
 	  			}
 			}
 		   $("#phone").keypress(function (e) {

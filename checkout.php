@@ -273,14 +273,14 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="mobile" ng-model="mobilenumber"> 
+						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1" ng-model="mobilenumber"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" autocomplete="off" size="30" name="address_1" id="email" ng-model="email"> 
+						<input type="text" maxlength="64" class="required" value="" autocomplete="off" size="30" name="address_1" id="email1" ng-model="email"> 
 					   </div>
 					 </li>
 				  </ul>
@@ -377,7 +377,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile number<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off"  maxlength="10" id="phone" ng-model="mobilenumber"> 
+						<input type="text"  class="required" value="" size="30" autocomplete="off"  maxlength="10" id="phone2" ng-model="mobilenumber"> 
 					   </div>
 					 </li>
 					 <li class="long">
