@@ -72,5 +72,16 @@
 				echo "error_bind_amt";
 			}
 		}
+		
+		// cost estimation for per page in project print booking page
+		if(isset($_POST['cost_estimation_per_page_for_project'])){
+			$amount_per_page = selectfunction('cost_estimation_project_printing_amount',PROJECTCOSTESTIMATION,'cost_estimation_project_printing_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_project_printing_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_project_printing_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_project_printing_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_project_printing_status ="1"',$connection);
+			$amount_data = mysqli_fetch_array($amount_per_page);
+			if(mysqli_num_rows($amount_per_page) == 1){
+				echo $amount_data['cost_estimation_project_printing_amount'];
+			}
+		}
+		
+		
 	}// end of is ajax if condition
 ?>

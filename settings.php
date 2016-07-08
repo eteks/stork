@@ -7,7 +7,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "root");
+define("DBPASSWORD", "");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
@@ -42,6 +42,8 @@ define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
 define("CITY",'stork_city');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
+define("PROJECTCOSTESTIMATION",'stork_cost_estimation_project_printing');
+define("MULTICOLORCOSTESTIMATION",'stork_cost_estimation_multicolor');
 
 
 //php allows only ajax call
@@ -58,4 +60,7 @@ define('CCAVENUECANCELURL','http://printstork.com/stork/checkout/ccavResponseHan
 // forgot password from email address
 define("FORGOTPASSWORDEMAILID",'info@etekchnoservices.com'); 
 
+
+//printing type
+$printing_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Mutlticolor Printing');
 ?>

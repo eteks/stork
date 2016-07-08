@@ -21,8 +21,10 @@
    $_SESSION['session_id'] = 'gue_pro_'.$random;
   }
  }
+ 
+
 ?>
-	<div class="main" id="product-detail">	
+	<div class="main printbooking_main_page" id="product-detail">	
    	    <section class="header-page">
 			<div class="container">
 				<div class="row">
@@ -64,6 +66,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<div class="input_holder row pad_15">
+								<input type="hidden" name="printing_type" value="plain_printing" id="printing_type" />
 				        		<p>Print Type<span class="star">*</span></p>
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
@@ -144,7 +147,7 @@
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
 								<p class="label_text"> Cover </p>
 								<input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
-								<input type="file" class="user dn upload_cover_File" id="upload_cover_File" name="cover_printfiles"/>
+								<input type="file" class="user dn upload_cover_File" id="upload_cover_File" name="cover_printfiles[]"/>
 		    	   				<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
    							</div>
    							<div class="clear_both"> </div>
@@ -193,9 +196,8 @@
 							<input type="hidden" class="per_page_costing" value="" />
 							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
+							<input type="submit" class="plain_printing_submit dn form_submit_button" />
 						</div>
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
 				</form>
 				</div>
 			</div>
@@ -204,6 +206,8 @@
 
 		<!-- Project Binding Start-->
 		<?php } else if($_SESSION['service']=='project'){  ?>
+			
+			
 		 <section class="pr-main project_printing_header" id="pr-login_project">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -223,8 +227,17 @@
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="input_holder row pad_15">
+									<input type="hidden" name="printing_type" value="project_printing" />
+									<?php
+										 $printtype = selectfunction('*',PRINTTYPE,'paper_print_type="Color with Black & White" and paper_print_type_status=1',$connection);
+										 $printtypedata = mysqli_fetch_array($printtype);
+										 echo '<input name="project_print_type" type="hidden" class="project_print_type" value="'.$printtypedata['paper_print_type_id'].'" />';
+										 $printside = selectfunction('*',PAPERSIDE,'paper_side="Single Side" and paper_side_status=1',$connection);
+										 $printsidedata = mysqli_fetch_array($printside);
+										 echo '<input name="project_print_side" type="hidden" class="project_print_side" value="'.$printsidedata['paper_side_id'].'" />';
+									?>
 				        			<p>Paper Size<span class="star">*</span></p>
-				        			<select name="papar_size" class="print_book_paper_size" id="project_paper_size">
+				        			<select name="project_papar_size" class="project_paper_size" id="project_paper_size">
 				        				<option value="" >Select Paper Size</option>
 				        				<?php
 		        							$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
@@ -236,7 +249,7 @@
 				        		</div> <!-- input_holder -->
 				        	 	<div class="input_holder row pad_15">
 				        			<p>Paper Type<span class="star">*</span></p>
-				        			<select name="papar_type" class="print_book_paper_type" id="project_paper_type">
+				        			<select name="project_papar_type" class="project_paper_type" id="project_paper_type">
 				        				<option value="" >Select Paper Type</option>
 				        				<?php
 		        							$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
@@ -248,10 +261,10 @@
 				        		</div> <!-- input_holder -->
 				        		<div class="input_holder row pad_15">
 				        			<p>Binding Type<span class="star">*</span></p>
-				        			<select name="binding_type" class="print_book_binding_type" id="project_binding_type">	 
+				        			<select name="binding_type" class="project_binding_type" id="project_binding_type">	 
 				        				<option value="" >Select Binding Type</option>
-				        				<option value="home_made_binding" >Handmade Binding</option>
-				        				<option value="comb_binding" >Comb Binding</option>
+				        				<option value="hand_made_binding" >Handmade Binding</option>
+				        				<option value="case_binding" >Case Binding</option>
 		        				    </select>
 				        		</div> <!-- input_holder -->
 				        	</div>
@@ -262,21 +275,21 @@
 									<div class="input_holder row pad_15 upload_cover_section" id="">
 										<p class="label_text" >Cover </p>
 									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="cover_uplopadfile" name=""/>
+										<input type="file" class="user dn col-md-8 project_uploadfile" id="cover_uplopadfile" name="cover_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="cover_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
 		   							<div class="input_holder row pad_15 upload_index_page_section"id="">
 										<p class="label_text" >Index Pages </p>
 									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="index_uplopadfile" name=""/>
+										<input type="file" class="user dn col-md-8 project_uploadfile" id="index_uplopadfile" name="index_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="index_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
 				   					<div class="input_holder row pad_15 upload_content_section" id="upload_content_section" data-projectsectionvalue="0">
 										<p class="label_text" > Content <span class="star">*</span> </p>
 									 	<input type="text" name="" id="project_file_holder" class="project_file_name_margin style_range project_file_holder" value="No file selected" data-projectfilevalue="0" disabled />
-										<input type="file" class="user dn col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name=""/>
+										<input type="file" class="user dn col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name="content_print_file[]"/>
 				       					<div class="browse_button cotent_browse_button col-md-4" id="cotent_browse_button">Browse</div>
 				       					<div class="project_clone_remove" id="">
 			   								<div class="del_btn project_remove" id="project_remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
@@ -287,7 +300,7 @@
 			   						<div class="input_holder row pad_15 upload_references_section"id="">
 										<p class="label_text" > References </p>
 									 	<input type="text" name="" class="col-md-8 project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="refer_uplopadfile" name=""/>
+										<input type="file" class="user dn col-md-8 project_uploadfile" id="refer_uplopadfile" name="reference_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="refer_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
@@ -296,25 +309,25 @@
 	   								<p class="label_page_paper_range"> Enter Color Page Range (ex: 1-10, 20, 42-100 ) </p>
 	   								<div class="input_holder row pad_15 project_range_section">
 	   									<p class="label_text" > Cover </p>     				  
-						        		<input type="text" name="" id="cover_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
+						        		<input type="text" name="cover_project_color_page_nos" id="cover_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
 						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
 									</div>
 									<div class="clear_both"> </div>
 									<div class="input_holder row pad_15 project_range_section">
 	   									<p class="label_text" > Index Pages </p>    		  
-						        		<input type="text" name="" id="index_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
+						        		<input type="text" name="index_project_color_page_nos" id="index_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
 						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
 									</div>
 									<div class="clear_both"> </div>
 									<div class="input_holder row pad_15 project_range_section project_content_range_section" data-projectsectionvalue ="0">
 	   									<p class="label_text" > Content </p>      			  
-						        		<input type="text" name="" id="content_range" class="style_range content_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
+						        		<input type="text" name="content_project_color_page_nos[]" id="content_range" class="style_range content_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled />
 						        		<input type="text" class="project_file_name content_file_name_range style_range project_file_holder" id="content_file_name_range" value="No file selected" data-projectfilevalue="0" disabled>
 									</div>
 									<div class="clear_both"> </div>
 									<div class="input_holder row pad_15 project_range_section">
 	   									<p class="label_text" > References </p>        		  
-						        		<input type="text" name="" id="refer_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled / >
+						        		<input type="text" name="reference_project_color_page_nos" id="refer_range" class="col-md-8 style_range project_paper_range" value="0-0" placeholder="Page no.1-13,15,18-23" disabled / >
 						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
 									</div>
 									<div class="clear_both"> </div>
@@ -324,23 +337,22 @@
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
 								 	<p>Total No of Pages<span class="star">*</span></p>
-								 	<input class="user" id="project_total_pages" type="text" value="" name=""> 
+								 	<input class="user project_total_pages" id="project_total_pages" type="text" value="" name="project_total_pages"> 
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Total Cost </p>
-								 	<input class="email" type="text" value="" name="print_totalcost" readonly>
+								 	<input class="email project_total_amount" type="text" value="" name="project_total_amount" readonly>
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Comments</p>
-								 	<textarea rows="7" cols="50" class="" value="" name="print_comments"></textarea>
+								 	<textarea rows="7" cols="50" class="" value="" name="project_print_comments"></textarea>
 								</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
-							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
+							<input type="hidden" class="project_binding_amount" value="0.00" name="project_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
+							<input type="submit" class="plain_printing_submit dn form_submit_button" />
 						</div>
-						<input type="hidden" class="per_page_costing" value="" />
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
 					</form>
 				</div>
 			</div>
@@ -424,8 +436,6 @@
 						</div>
 						<input type="hidden" class="per_page_costing" value="" />
 						<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
-						<input type="hidden" class="submit_type" value="" name="submit_type" />
-						<input type="hidden" class="per_page_costing" value="" />
 						<input type="hidden" class="submit_type" value="" name="submit_type" />
 					</form>
 				</div>
