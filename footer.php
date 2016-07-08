@@ -5,7 +5,7 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 about-us footer-col">
 						<h2>About Us</h2>
 						<div class="footer-content">
-							<a href="index.html" title="Cmsmart logo footer" class="logo-footer">
+							<a href="index.php" title="Cmsmart logo footer" class="logo-footer">
 								<img src="images/printstork_footer_logo.png" width="90%"  height="auto" alt="logo footer">
 							</a>
 							<ul class="info">

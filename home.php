@@ -171,7 +171,7 @@
 					<div class="col-md-4 col-sm-6 block-trust trust-col-time-delivery">
 						<a href="printbooking.php?service=project" id="home_project_printing"><div class="tr-icon"><i class="fa fa-files-o"></i></div></a>
 						<div class="tr-text">
-							<h3>project Printing</h3>
+							<h3>Project Printing</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">No printer is faster. Order today by 8:00pm EST and you can even get it tomorrow.</p>
 							<a style="display:none;" href="#" class="btn-readmore" title="Timely Delivery">Read more</a>
@@ -194,7 +194,7 @@
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
 						<a href="printbooking.php?service=multi" id="home_multi_printing"><div class="tr-icon"><i class="fa fa-paint-brush"></i></div></a>
 						<div class="tr-text">
-							<h3>Muiticolors</h3>
+							<h3>Multicolors</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">
 								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.

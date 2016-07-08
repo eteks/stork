@@ -53,7 +53,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					$papertypes_rows = mysql_num_rows($papertypes);
 					if ($papertypes_rows > 0 ) {
 				?>
-				<table class="data-table papertypes_table" id="my-orders-table">
+				<table class="data-table papertypes_table stork_admin_table" id="my-orders-table">
 			        <thead>
 				        <tr class="">
 				            <th>Paper Type</th>

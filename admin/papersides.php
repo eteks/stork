@@ -53,7 +53,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					$papersides_rows = mysql_num_rows($papersides);
 					if ($papersides_rows > 0 ) {
 					?>
-				<table class="data-table paperside_table" id="my-orders-table">
+				<table class="data-table paperside_table stork_admin_table" id="my-orders-table">
 			        <thead>
 				        <tr class="">
 				            <th>Paper Side</th>

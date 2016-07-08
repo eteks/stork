@@ -26,6 +26,31 @@ $(document).ready(function(){
 
   $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable();
 
+var table = $('.stork_admin_table').DataTable();
+
+$('.stork_admin_table th').each(function(index, th) {
+  $(th).unbind('click');
+  $(th).append('<span class="sort-btn btn-asc sort_asc"><i class="fa fa-sort-asc" aria-hidden="true"></i></span>');
+  $(th).append('<span class="sort-btn btn-desc sort_desc"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>');
+  $('.sort_desc').css('display','none');
+  $(th).find('.btn-asc').click(function(e) {
+    var this_button = $(this);
+     table.column(index).order('asc').draw();
+        this_button.css('display','none');
+        this_button.next().css('display','inline');
+  }); 
+  $(th).find('.btn-desc').click(function(e) {
+    var this_button = $(this);
+     table.column(index).order('desc').draw(); 
+     this_button.css('display','none'); 
+     this_button.prev().css('display','inline'); 
+  }); 
+
+});    
+
+
+
+
   $('.error_message_mandatory').delay(2000).fadeOut();
 
   $(".has_submenu > a").click(function(e){

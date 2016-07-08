@@ -868,4 +868,13 @@ h4.order_or_button{
     text-transform: uppercase;
     width : 115px;
 }
+.multi_browse {
+    margin-left: 20px;
+}
 /*css for project printing and multicolors End*/
+/*css for captcha refresh option added by siva */
+.captcha_click {
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 12px;
+}

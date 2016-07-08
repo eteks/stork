@@ -146,7 +146,21 @@ $(document).ready(function () {
 			return true;
 		}
 	});
-		
+	
+	// captcha genaration
+	function addition_captcha() {
+	 	var n1 = Math.round(Math.random() * 100 + 1);
+	    var n2 = Math.round(Math.random() * 100 + 1);
+	    $("#captcha_original").val(n1 + " + " + n2);
+	    $('#captcha_f_n').text(n1);
+	    $('#captcha_s_n').text(n2);
+	}
+	addition_captcha();
+	$(document).on('click','.captcha_click',function() {
+		addition_captcha();
+	});
+
+    // alert(total_captcha);
 	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
 		var input = jQuery('#'+required_signup[i]);
@@ -171,11 +185,26 @@ $(document).ready(function () {
 	        else {
 				$('#repassword').removeClass("error_input_field");
 	        }
+       }  
+       
+       var number1 = parseInt($('#captcha_f_n').text());
+       var number2 = parseInt($('#captcha_s_n').text());
+       var total_captcha = number1 + number2 ;
+       var captcha_text= $("#captcha").val();     
+       
+       if(total_captcha!=captcha_text) {
+       		$("#captcha").addClass("error_input_field");
+       }
+       else {
+       		$("#captcha").removeClass("error_input_field");
        }
 
 		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(reg_email.val())) {
 			reg_email.addClass("error_input_field");
+		}
+		else {
+			reg_email.removeClass("error_input_field");
 		}
 		
 		var mobile=$('#mobile').val().length;
@@ -422,7 +451,7 @@ $(document).ready(function () {
 	
 	
 	//file upload validation in print booking page edited by siva
-	$('#print_booking_form .uploadFile,#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form .content_upload_file,#project_printing_form #refer_uplopadfile').change(function(){
+	$(document).on('change','#print_booking_form .uploadFile,#project_printing_form .content_upload_file',function(){
     	var file = this.files[0];
     	name = file.name;
     	size = file.size;
@@ -437,6 +466,9 @@ $(document).ready(function () {
     		return true;
     	}
 	}); 
+
+
+	 
 
 
 
@@ -582,12 +614,7 @@ $(document).ready(function () {
 	});
 
 	
-	// captcha genaration
- 	var n1 = Math.round(Math.random() * 100 + 1);
-    var n2 = Math.round(Math.random() * 100 + 1);
-    $("#captcha_original").val(n1 + " + " + n2);
-    $('#captcha_f_n').text(n1);
-    $('#captcha_s_n').text(n2);
+
     
     //allowed numbers only at registration form
 	$("#mobile").keypress(function (e) {
@@ -1354,33 +1381,67 @@ $(document).ready(function () {
 
 	// Display Page range section
 
-	$('.project_uploadfile').on('change',function() {
+	$('.content_upload_file').change(function() {
+		// alert($(this).val());
 		if($(this).val()!='') {
 			$('.display_project_section').slideDown();
 		}
+	});
+
+	//file upload validation in print booking page edited by siva
+	$('#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form #refer_uplopadfile').change(function(){
+    	var file = this.files[0];
+    	name = file.name;
+    	size = file.size;
+    	type = file.type;
+    	var ext = type.split('/');
+    	if($.inArray(ext[1], ['pdf','doc','docx','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
+    		error_popup('Allowed pdf, doc, docx files only!');
+    		$(this).val('');
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
 	});
 
 	// Cover file name
 
 	$('#cover_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#cover_range').prop('disabled',false);
-		$('#cover_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#cover_range').next().val('No file selected');
+			$('#cover_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#cover_range').prop('disabled',false);
+			$('#cover_range').next().val(project_file_name);
+		}
+		
+		
 	});
 
 	// Index file name
 
 	$('#index_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#index_range').prop('disabled',false);
-		$('#index_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#index_range').next().val('No file selected');
+			$('#index_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#index_range').prop('disabled',false);
+			$('#index_range').next().val(project_file_name);
+		}
 	});
 
 	// Content file name
 
-	$('.content_upload_file').on('change',function() {
+	$('.project_uploadfile').on('change',function() {
 		// var project_file_name = $(this).val();
 		// $(this).prev().val(project_file_name);
 		$('.content_range').prop('disabled',false);
@@ -1390,9 +1451,16 @@ $(document).ready(function () {
 
 	$('#refer_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#refer_range').prop('disabled',false);
-		$('#refer_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#refer_range').next().val('No file selected');
+			$('#refer_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#refer_range').prop('disabled',false);
+			$('#refer_range').next().val(project_file_name);
+		}
 	});
 
 	// Clone and Remove button Restriction Start
@@ -1409,6 +1477,10 @@ $(document).ready(function () {
 		else {
 			$('.project_remove').css('pointer-events','auto');
 		}
+	});
+	$(document).on('click','.project_clone',function() {
+		$('.project_clone').css('pointer-events', 'none');
+
 	});
 
 	// Clone and Remove button Restriction End
@@ -1492,6 +1564,14 @@ $(document).ready(function () {
 	$(document).on('change','.content_upload_file',function() {
 		if($(this).val()==''){
 			$('.project_clone').css('pointer-events', 'none');
+			$(this).prev().val('No file selected');
+			var data_file_name = $(this).prev().data('projectfilevalue');
+			$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
+				if($(this).find('.content_file_name_range').data('projectfilevalue')==data_file_name){
+					$(this).find('.content_file_name_range').val('No file selected');
+					$(this).find('.content_file_name_range').prev('disabled',true);
+				}
+			});
 		}
 		else{
 			var uploaded_file_name=$(this).val();
@@ -1501,6 +1581,7 @@ $(document).ready(function () {
 			$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
 				if($(this).find('.content_file_name_range').data('projectfilevalue')==data_file_name){
 					$(this).find('.content_file_name_range').val(uploaded_file_name);
+					$(this).find('.content_file_name_range').prev('disabled',false);
 				}
 			});
 			file_name_box.attr('value',uploaded_file_name);
@@ -1511,5 +1592,6 @@ $(document).ready(function () {
 	// Validaion for adding restriction to clone and Store file value End
 
 	// Project printing validation End
+
 	// Ended by siva
 });

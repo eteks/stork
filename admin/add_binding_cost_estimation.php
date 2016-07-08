@@ -68,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 											<option value="spiral_binding"><span>Sprial Binding</span></option>
 											<option value="wireo_binding"><span>Wireo Binding</span></option>
 											<option value="comb_binding"><span>Comb Binding</span></option>
+											<option value="handmade_binding"><span>Handmade Binding</span></option>
+											<option value="case_binding"><span>Case Binding</span></option>
 								    </select>
 								</div>
 								<div class="form-group">

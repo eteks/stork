@@ -53,7 +53,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				if($admin_rows > 0) {
 			?>
 
-			<table class="data-table admin_table" id="my-orders-table">
+			<table class="data-table admin_table stork_admin_table" id="my-orders-table">
 		        <thead>
 			        <tr class="">
 			            <th>User Name</th>
