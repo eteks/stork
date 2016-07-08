@@ -436,8 +436,8 @@
 		<!-- Project Binding End -->
 	</div>	<!-- Main End -->
 	<section>
-		<div class="container">	
-	  		<div class="col-md-9 col-sm-9 col-xs-12">		
+		<div class="container" style="padding-left:0px;">	
+	  		<div class="col-md-9 col-sm-9 col-xs-12" style="padding-left:0px;">		
 				<div class="button_holder button_holder_printbooking">
 	 	       		<h4 class="btn_prf print_add_to_cart_btn" data-submit="print_add_to_cart_btn"><a>Add to cart</a></h4>
 	 	     	</div>
@@ -445,8 +445,8 @@
 					<h4 class="order_or_button">OR</h4>
 	      		</div>
 	 	   		<div class="button_holder button_holder_printbooking">
-	       	   		<h4 class="btn_prf"><a href="printbooking.php">Clear</a></h4>
-	       	   		<h4 class="btn_prf print_check_out_btn"><a>Check Out</a></h4>
+	       	   		<h4 class="btn_prf"><a href="printbooking.php">Check Out</a></h4>
+	       	   		<h4 class="btn_prf print_check_out_btn"><a>Clear</a></h4>
 	           	</div>
            	</div>
 		</div>     

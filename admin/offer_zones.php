@@ -62,7 +62,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        <thead>
 			        <tr class="">
 			            <th> Offer Zone Title </th>
-			            <th> Offer Zone Image</th>
+			            <th> Offer Zone Path &amp; Image</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
 			            <th class="table_action">Action</th>

@@ -147,6 +147,8 @@ $(document).ready(function () {
 		}
 	});
 		
+//register-validation
+		
 	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
 		var input = jQuery('#'+required_signup[i]);
