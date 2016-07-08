@@ -469,10 +469,10 @@ if(mysqli_num_rows($review_details)>0){
 				}
 			?>
 			<?php
-				require_once('googlesettings.php'); 
+				/*require_once('googlesettings.php'); 
 				if(isset($authUrl)) {
 					echo '<h4 class="btn_prf"><a href="'.$authUrl.'">Login with Google+</a></h4><br>';
-				}
+				}*/
 			?>
 			
 			
