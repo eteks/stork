@@ -1525,7 +1525,7 @@ section.trust-w{
 	-o-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	margin: 0 6px;
+	margin: 6px 6px;
 	cursor:pointer;
 }
 .block-title-w ul li:hover,.block-title-w ul li.active{
@@ -2556,6 +2556,7 @@ ul.cate_list li.parent a.active i.fa-minus{
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   height: 55px;
+  font-size: 25px;
   line-height: 55px;
   background: #fcfcfc;
 }
@@ -4126,6 +4127,10 @@ footer{
 .footer-main .about-us li i{
   margin-right: 6px;
 }
+
+.footer-main .info li a:hover {
+  color: #25bce9;
+}
 .footer-main .info li:hover i{
   color: #25bce9;
 }
@@ -4186,13 +4191,13 @@ footer{
   background: #161616;
   font-size: 14px;
 }
-.footer-bottom p{
+.footer-bottom p, .footer-bottom p a {
   margin-bottom: 0;
   line-height: 50px;
   color: #999999;
 }
-.footer-bottom a{
-  color: #25bce9;
+.footer-bottom p:hover,.footer-bottom p a:hover, .footer-content p:hover{
+  color: #25bce9 !important;
 }
 #back-to-top{
   position: absolute;
@@ -4281,9 +4286,9 @@ footer{
 #product-detail .add-to-cart-w{
     color: #666666;
 }
-#product-detail .tab-content{
+/*#product-detail .tab-content{
 	margin-top:20px;
-}
+}*/
 @media(max-width:768px){
 	.table-cart.table tr td.product-subtotal{
 		font-size:14px;
@@ -4563,13 +4568,32 @@ span.star{
     margin-top:-5px;
   font-weight:bold;
 }
-#pr-login h4,#pr-register h4{
+#pr-login h4 {
+	font-size:16px;
+	position:relative;
+	float:left;
+	margin:25px 0px;
+}
+
+#pr-register h4{
 	font-size:16px;
 	position:relative;
 	float:left;
 	margin-bottom:25px;
 }
+#multicolors_header h1.ct-header{
+  font-size:24px;
+  padding:0 0 25px;
+    margin-top:-5px;
+  font-weight:bold;
+}
 #pr-login_project h4,#pr-register h4{
+  font-size:16px;
+  position:relative;
+  float:left;
+  margin-bottom:25px;
+}
+#multicolors_header h4,#pr-register h4{
   font-size:16px;
   position:relative;
   float:left;
@@ -4610,7 +4634,15 @@ span.star{
   height:1px;
   background:#25bce9;
 }
-
+#multicolors_header h4:after,#pr-register h4:after{
+  position:absolute;
+  content:"";
+  bottom:-8px;
+  left:0;
+  width:100%;
+  height:1px;
+  background:#25bce9;
+}
 #login-form p,#forgotpass-form p{
 	font-size:14px;
 	color:#444444;

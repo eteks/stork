@@ -17,15 +17,14 @@ if (isset($_GET['update']))
 		$adminuser_email = $_POST["adminuser_email"];
 		$adminuser_mobile = $_POST["adminuser_mobile"];
 		$adminuser_type = $_POST["adminuser_type"];
-		$adminuser_status = $_POST["adminuser_status"];
+		// $adminuser_status = $_POST["adminuser_status"];
 		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
-				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type',
-				adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
+				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type' WHERE adminuser_id=".$val);
 			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
 		}
 				
@@ -114,16 +113,16 @@ if(isset($_GET["id"]))
 								        <option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
 								    </select>
 								</div>
-								<div class="cate-filter-content">	
+								<!-- <div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>Active</option>
-										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>InActive</option>
+								        <option value="1">Active</option>
+										<option value="0">InActive</option>
 								    </select>
-								</div>
+								</div> -->
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
 								</div>

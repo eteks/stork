@@ -146,7 +146,21 @@ $(document).ready(function () {
 			return true;
 		}
 	});
-		
+	
+	// captcha genaration
+	function addition_captcha() {
+	 	var n1 = Math.round(Math.random() * 100 + 1);
+	    var n2 = Math.round(Math.random() * 100 + 1);
+	    $("#captcha_original").val(n1 + " + " + n2);
+	    $('#captcha_f_n').text(n1);
+	    $('#captcha_s_n').text(n2);
+	}
+	addition_captcha();
+	$(document).on('click','.captcha_click',function() {
+		addition_captcha();
+	});
+
+	//register-validation
 	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
 		var input = jQuery('#'+required_signup[i]);
@@ -171,11 +185,26 @@ $(document).ready(function () {
 	        else {
 				$('#repassword').removeClass("error_input_field");
 	        }
+       }  
+       
+       var number1 = parseInt($('#captcha_f_n').text());
+       var number2 = parseInt($('#captcha_s_n').text());
+       var total_captcha = number1 + number2 ;
+       var captcha_text= $("#captcha").val();     
+       
+       if(total_captcha!=captcha_text) {
+       		$("#captcha").addClass("error_input_field");
+       }
+       else {
+       		$("#captcha").removeClass("error_input_field");
        }
 
 		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(reg_email.val())) {
 			reg_email.addClass("error_input_field");
+		}
+		else {
+			reg_email.removeClass("error_input_field");
 		}
 		
 		var mobile=$('#mobile').val().length;
@@ -399,20 +428,31 @@ $(document).ready(function () {
 	 	var paper_size = ($('#print_booking_form .print_book_paper_size').val()?$('#print_booking_form .print_book_paper_size').val():'');
 	 	var paper_type = ($('#print_booking_form .print_book_paper_type').val()?$('#print_booking_form .print_book_paper_type').val():'');
 	 	//alert(print_type+'|'+print_side+'|'+paper_size+'|'+paper_type);
+
+	 	//newly added by kalai for multi color printing on 08/06/16
+	 	var printing_type =$('#printing_type').val();
+
 	 	if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
 	 		$.ajax({
            		type: "POST",
            		url: "ajax_functions.php",
-           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
+           		// data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
+           		//newly changed the above line by kalai for multi color printing on 08/06/16
+           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
            		cache: false,
            		success: function(data) {
            			var per_page_amount = parseFloat(data);
+           			// alert(per_page_amount);
            			if(per_page_amount){
            				$('#print_booking_form .per_page_costing').val(per_page_amount);
            			}
            			else{
            				error_popup('Printing option not available!');
-           				$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+           				//newly changed by kalai for multi color printing on 08/06/16
+           				if(printing_type == "multicolor_printing")
+           					$('#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+           				else
+           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
 					}
            			
           		}
@@ -422,7 +462,7 @@ $(document).ready(function () {
 	
 	
 	//file upload validation in print booking page edited by siva
-	$('#print_booking_form .uploadFile,#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form .content_upload_file,#project_printing_form #refer_uplopadfile').change(function(){
+	$(document).on('change','#print_booking_form .uploadFile,#project_printing_form .content_upload_file',function(){
     	var file = this.files[0];
     	name = file.name;
     	size = file.size;
@@ -437,6 +477,9 @@ $(document).ready(function () {
     		return true;
     	}
 	}); 
+
+
+	 
 
 
 
@@ -455,10 +498,11 @@ $(document).ready(function () {
 				// file_name_gallary.push(file_name_section);
 			}
 		});
+		//newly added by kalai for multi color printing on 08/06/16
+		if($(this).val()!='' && $('#printing_type').val() == "multicolor_printing") {
+			$('.display_paper_range,.label_page_range').slideDown();
+		}
 	});
-
-
-
 
 	// 	total cost amoutn display based on total no of pages and per page amount
 	$('.print_total_no_of_pages').on('blur',function(){
@@ -468,6 +512,22 @@ $(document).ready(function () {
 		if(total_amount){
 			if(perpageamount){
 				$('.print_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			}else{
+				error_popup('Please select print type,print side,paper size,paper type!');
+				$(this).val('');
+			}
+		}
+		
+	});
+
+	//newly added by kalai for multi color printing on 08/06/16
+	// 	total cost amoutn display based on total no of pages and per page amount
+	$('.mutli_print_total_no_of_pages').on('blur',function(){
+		var perpageamount = parseFloat($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+		var total_amount = parseFloat($(this).val());
+		if(total_amount){
+			if(perpageamount){
+				$('.print_total_amount').val(parseFloat(Math.ceil( (perpageamount*total_amount))).toFixed(2)).attr('readonly','readonly');
 			}else{
 				error_popup('Please select print type,print side,paper size,paper type!');
 				$(this).val('');
@@ -492,22 +552,12 @@ $(document).ready(function () {
 	});
 
 
-		// post from when click button and submit type
-	$('.print_add_to_cart_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_cart');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_cart');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
-	});
-	
+	// // post from when click button and submit type
+	// $('.print_add_to_cart_btn').on('click',function(){
+		// $('.printbooking_main_page form .submit_type').val('add_to_cart');
+		// $('.printbooking_main_page form .form_submit_button').click();
+	// });
+// 	
 	// clear print booking form when clear button
 	$('.print_add_to_cart_clear_btn').on('click',function(){
 		$('#print_booking_form').find("input[type=text], textarea").val("");
@@ -582,12 +632,7 @@ $(document).ready(function () {
 	});
 
 	
-	// captcha genaration
- 	var n1 = Math.round(Math.random() * 100 + 1);
-    var n2 = Math.round(Math.random() * 100 + 1);
-    $("#captcha_original").val(n1 + " + " + n2);
-    $('#captcha_f_n').text(n1);
-    $('#captcha_s_n').text(n2);
+
     
     //allowed numbers only at registration form
 	$("#mobile").keypress(function (e) {
@@ -857,7 +902,7 @@ $(document).ready(function () {
 
 	
 
-
+	//newly added by kalai for supporting both plain and multi color printing on 08/06/16
 	jQuery(document).on('submit','#print_booking_form',function(){
 	// jQuery('#print_booking_form').submit(function(){
 		
@@ -882,13 +927,8 @@ $(document).ready(function () {
 		else {
 			$('.paper_range').removeClass("error_print_booking_field");
 		} // page range validation
-	
-		if (document.getElementById('print_type').selectedIndex < 1){
-			$('#print_type').addClass('error_print_booking_field');
-		}
-		else{ 
-			$('#print_type').removeClass('error_print_booking_field');
-		} // print type validation
+		
+		
 		if (document.getElementById('print_side').selectedIndex < 1){
 			$('#print_side').addClass('error_print_booking_field');
 		}
@@ -907,85 +947,67 @@ $(document).ready(function () {
 		else{ 
 			$('#paper_size').removeClass('error_print_booking_field');
 		} // paper size validation
-		if($('.display_binding_type').css('display') == 'block') {
-			if (document.getElementById('binding_type').selectedIndex < 1){
-				$('#binding_type').addClass('error_print_booking_field');
+		if($('#printing_type').val() !="multicolor_printing"){
+			if (document.getElementById('print_type').selectedIndex < 1){
+				$('#print_type').addClass('error_print_booking_field');
 			}
 			else{ 
+				$('#print_type').removeClass('error_print_booking_field');
+			} // print type validation
+			if($('.display_binding_type').css('display') == 'block') {
+				if (document.getElementById('binding_type').selectedIndex < 1){
+					$('#binding_type').addClass('error_print_booking_field');
+				}
+				else{ 
+					$('#binding_type').removeClass('error_print_booking_field');
+				}
+			} 
+			else {
 				$('#binding_type').removeClass('error_print_booking_field');
+			} // Binding type validation
+
+			if($('.cover_section_holder').css('display') == 'block') {
+				if($('#upload_cover_File').val() == '') {
+					$('#cover_uploadTrigger').addClass('error_print_booking_field');
+				}
+			 	else {
+			 		$('#cover_uploadTrigger').removeClass('error_print_booking_field');
+			 	}
+			 }
+			 else {
+			 	$('#cover_uploadTrigger').removeClass('error_print_booking_field');
+			 }
+
+			if($('.display_page_type').css('display') == 'block') {
+				$('.display_page_type').each(function() {
+					var id_page_type = $('option:selected',$(this)).index(); 
+					if (id_page_type == '0'){
+						$(this).addClass('error_print_booking_field');
+					}
+					else {
+						$(this).removeClass('error_print_booking_field');	
+					}
+				});
 			}
-		} 
-		else {
-			$('#binding_type').removeClass('error_print_booking_field');
-		} // Binding type validation
+			else {
+				$('.display_page_type').removeClass('error_print_booking_field');
+			} // Page type validation
+		}
+		
 		
 		$('.upload_section').each(function(){
 			var flie_upload_id=  $(this).find('.uploadFile');
-			if(flie_upload_id.val() =='' || file_name_box == 'No file selected'){
+			if(flie_upload_id.val() ==''){
 				flie_upload_id.next('.uploadbutton').addClass('error_print_booking_field');
 			}
 			else {
 				flie_upload_id.next('.uploadbutton').removeClass('error_print_booking_field');
 			}
 		});  
-		if($('.cover_section_holder').css('display') == 'block') {
-			if($('#upload_cover_File').val() == '') {
-				$('#cover_uploadTrigger').addClass('error_print_booking_field');
-			}
-		 	else {
-		 		$('#cover_uploadTrigger').removeClass('error_print_booking_field');
-		 	}
-		 }
-		 else {
-		 	$('#cover_uploadTrigger').removeClass('error_print_booking_field');
-		 }
+		
+		// File name validation - normal file, content file
 
-
-		if($('.display_paper_range').css('display') == 'block') {
-			if($('.').css('display') == 'none') {
-				$('.display_range_page').each(function() {
-					if($(this).val() == '') {
-						$(this).addClass('error_print_booking_field');
-					}
-					else {
-						$(this).removeClass('error_print_booking_field');
-					}
-					
-				});
-			}
-			else {
-				$('.display_range_page').each(function() {
-					if($(this).val() == '') {
-						$(this).addClass('error_print_booking_field');
-					}
-					else {
-						$(this).removeClass('error_print_booking_field');
-					}
-					
-				});
-			}
-		}
-		else {
-			$('.display_normal_file').removeClass('error_print_booking_field');
-			$('.display_range_page').removeClass('error_print_booking_field');
-		} // File name validation - normal file, content file
-
-		if($('.display_page_type').css('display') == 'block') {
-			$('.display_page_type').each(function() {
-				var id_page_type = $('option:selected',$(this)).index(); 
-				if (id_page_type == '0'){
-					$(this).addClass('error_print_booking_field');
-				}
-				else {
-					$(this).removeClass('error_print_booking_field');	
-				}
-			});
-		}
-		else {
-			$('.display_page_type').removeClass('error_print_booking_field');
-		} // Page type validation
-
-				
+		
 		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery(".paper_range").hasClass("error_print_booking_code") || jQuery("select").hasClass("error_print_booking_field") || jQuery('.uploadbutton').hasClass('error_print_booking_field')) {
 			// $('.error_print_booking').css('display','block');
 			return false;
@@ -1397,33 +1419,67 @@ $(document).ready(function () {
 
 	// Display Page range section
 
-	$('.project_uploadfile').on('change',function() {
+	$('.content_upload_file').change(function() {
+		// alert($(this).val());
 		if($(this).val()!='') {
 			$('.display_project_section').slideDown();
 		}
+	});
+
+	//file upload validation in print booking page edited by siva
+	$('#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form #refer_uplopadfile').change(function(){
+    	var file = this.files[0];
+    	name = file.name;
+    	size = file.size;
+    	type = file.type;
+    	var ext = type.split('/');
+    	if($.inArray(ext[1], ['pdf','doc','docx','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
+    		error_popup('Allowed pdf, doc, docx files only!');
+    		$(this).val('');
+    		return false;
+    	}
+    	else{
+    		return true;
+    	}
 	});
 
 	// Cover file name
 
 	$('#cover_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#cover_range').prop('disabled',false);
-		$('#cover_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#cover_range').next().val('No file selected');
+			$('#cover_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#cover_range').prop('disabled',false);
+			$('#cover_range').next().val(project_file_name);
+		}
+		
+		
 	});
 
 	// Index file name
 
 	$('#index_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#index_range').prop('disabled',false);
-		$('#index_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#index_range').next().val('No file selected');
+			$('#index_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#index_range').prop('disabled',false);
+			$('#index_range').next().val(project_file_name);
+		}
 	});
 
 	// Content file name
 
-	$('.content_upload_file').on('change',function() {
+	$('.project_uploadfile').on('change',function() {
 		// var project_file_name = $(this).val();
 		// $(this).prev().val(project_file_name);
 		$('.content_range').prop('disabled',false);
@@ -1433,9 +1489,16 @@ $(document).ready(function () {
 
 	$('#refer_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
-		$(this).prev().val(project_file_name);
-		$('#refer_range').prop('disabled',false);
-		$('#refer_range').next().val(project_file_name);
+		if(project_file_name == '') {
+			// $(this).prev().val('No file selected');
+			// $('#refer_range').next().val('No file selected');
+			$('#refer_range').prop('disabled',true);
+		}
+		else {
+			$(this).prev().val(project_file_name);
+			$('#refer_range').prop('disabled',false);
+			$('#refer_range').next().val(project_file_name);
+		}
 	});
 
 	// Clone and Remove button Restriction Start
@@ -1452,6 +1515,10 @@ $(document).ready(function () {
 		else {
 			$('.project_remove').css('pointer-events','auto');
 		}
+	});
+	$(document).on('click','.project_clone',function() {
+		$('.project_clone').css('pointer-events', 'none');
+
 	});
 
 	// Clone and Remove button Restriction End
@@ -1535,6 +1602,14 @@ $(document).ready(function () {
 	$(document).on('change','.content_upload_file',function() {
 		if($(this).val()==''){
 			$('.project_clone').css('pointer-events', 'none');
+			$(this).prev().val('No file selected');
+			var data_file_name = $(this).prev().data('projectfilevalue');
+			$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
+				if($(this).find('.content_file_name_range').data('projectfilevalue')==data_file_name){
+					$(this).find('.content_file_name_range').val('No file selected');
+					$(this).find('.content_file_name_range').prev('disabled',true);
+				}
+			});
 		}
 		else{
 			var uploaded_file_name=$(this).val();
@@ -1544,6 +1619,7 @@ $(document).ready(function () {
 			$(this).parents('.main_project_section_input_holder').children('.page_number_section').find('.project_content_range_section').each(function(){
 				if($(this).find('.content_file_name_range').data('projectfilevalue')==data_file_name){
 					$(this).find('.content_file_name_range').val(uploaded_file_name);
+					$(this).find('.content_file_name_range').prev('disabled',false);
 				}
 			});
 			file_name_box.attr('value',uploaded_file_name);
@@ -1552,7 +1628,80 @@ $(document).ready(function () {
 	});
 
 	// Validaion for adding restriction to clone and Store file value End
-
 	// Project printing validation End
+
 	// Ended by siva
+	
+	
+	//find out cost per page for printing order using print type on multiple combination for project printing
+	$('#project_printing_form .project_paper_size,#project_printing_form .project_paper_type').on('change',function(){
+	 	var print_type = ($('#project_printing_form .project_print_type').val()?$('#project_printing_form .project_print_type').val():'');
+	 	var print_side = ($('#project_printing_form .project_print_side').val()?$('#project_printing_form .project_print_side').val():'');
+	 	var paper_size = ($('#project_printing_form .project_paper_size').val()?$('#project_printing_form .project_paper_size').val():'');
+	 	var paper_type = ($('#project_printing_form .project_paper_type').val()?$('#project_printing_form .project_paper_type').val():'');
+	 	//alert(print_type+'|'+print_side+'|'+paper_size+'|'+paper_type);
+	 	if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
+	 		$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page_for_project':'true'},
+           		cache: false,
+           		success: function(data) {
+           			var per_page_amount = parseFloat(data);
+           			if(per_page_amount){
+           				$('#project_printing_form .per_page_costing').val(per_page_amount);
+           			}
+           			else{
+           				error_popup('Printing option not available!');
+           				$('#project_printing_form .project_paper_size,#print_booking_form .project_paper_type').prop('selectedIndex', 0);
+					}
+           			
+          		}
+       		});// end of ajax
+	 	}//end of if condition
+	});// end of event
+	
+	
+	// get binding amount based on type for project printing
+	$('#project_printing_form .project_binding_type').on('change',function(){
+		var print_bind_type = $(this).val();
+		if(print_bind_type != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'binding_type':print_bind_type,'binding_amount_value':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data != 'error_bind_amt'){
+           				if($('#project_printing_form #project_total_pages').val() == ''){
+           					$('#project_printing_form .project_binding_amount').val(parseFloat(Math.ceil((data) * 100 ) / 100).toFixed(2));
+           				}else{
+           					$('#project_printing_form .project_binding_amount').val(parseFloat(Math.ceil((data) * 100 ) / 100).toFixed(2));
+           					$('#project_printing_form .project_total_amount').val(parseFloat(Math.ceil(((parseFloat($('#project_printing_form .per_page_costing').val())*parseFloat($('#project_printing_form .project_total_pages').val()))+parseFloat(data)) * 100 ) / 100).toFixed(2));
+           				}
+           			}else{
+           				error_popup('Your selected binding option not available!');
+           				$('#project_binding_type').prop('selectedIndex',0);
+           			}
+           			
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// 	total cost amoutn display based on total no of pages and per page amount for project print
+	$('#project_printing_form .project_total_pages').on('blur',function(){
+		var perpageamount = parseFloat($('#project_printing_form .per_page_costing').val()?$('#project_printing_form .per_page_costing').val():'');
+		var bindingamout = parseFloat($('#project_printing_form .project_binding_amount').val()?$('#project_printing_form .project_binding_amount').val():'0.00');
+		var total_amount = parseFloat($(this).val());
+		if(total_amount){
+			if(perpageamount){
+				$('#project_printing_form .project_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			}else{
+				error_popup('Please select print type,print side,paper size,paper type!');
+				$(this).val('');
+			}
+		}
+		
+	});
 });
