@@ -1,9 +1,9 @@
-// function error_popup(message){
-	// $('.error_popup_msg .success-alert span').text(message);
-	// $('.popup_fade').show();
-	// $('.error_popup_msg').show();
-	// document.body.style.overflow = 'hidden';
-// }
+function error_popup(message){
+	$('.error_popup_msg .success-alert span').text(message);
+	$('.popup_fade').show();
+	$('.error_popup_msg').show();
+	document.body.style.overflow = 'hidden';
+}
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
@@ -1162,6 +1162,8 @@ $(document).ready(function () {
  				else {
  				$('#phone1').removeClass("error_input1_field_phone");
  				}
+ 				  //called when key is pressed in textbox
+
          
 			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email1.val())) {
 		 	forget_email1.addClass("error_input1_field_email");
@@ -1171,6 +1173,8 @@ $(document).ready(function () {
 	  	}
 	  
 		}
+		
+
 		  
 
 	//if any inputs on the page have the class 'error_input_field' the form will not submit
@@ -1208,6 +1212,34 @@ $(document).ready(function () {
 	
 	}
 	});
+	 $("#phone2").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   			 $("#phone1").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   				 $("#postal").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   				 $("#postalcode").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
 	jQuery(".check_out_payment").on('click',function(){ 	
 		if($('.send_to_address_college_data').css('display')=='block')	{
 			for(var i = 0 ; i<required_address_2.length;i++ ){
@@ -1234,14 +1266,7 @@ $(document).ready(function () {
 	  				forget_email2.removeClass("error_input2_field_email");
 	  			}
 			}
-		   $("#phone").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        		//display error message
-        		// $("#error_test").html("Digits Only").show().fadeOut("slow");
-        			return false;
-    			}
-   			});
+		  
 			if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
 				return false;
 			} else {

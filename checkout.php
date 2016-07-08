@@ -266,7 +266,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -370,7 +370,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
 					   </div>
 					 </li>
   					  <li class="long">
