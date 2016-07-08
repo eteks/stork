@@ -463,19 +463,19 @@ function countTransaction()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Mutlticolor Printing Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> Multicolor Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
 					<ul>
 						<li>
-							<a href="add_multicolor_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Mutlticolor Printing Cost </span></a>
+							<a href="add_multicolor_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Multicolor Printing Cost </span></a>
 						</li> 
 						<!-- <li>
 							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
 						</li> --> 
 						<li>
-							<a href="multicolor_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Mutlticolor Printing Cost Estimation </span></a>
+							<a href="multicolor_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Multicolor Printing Cost Estimation </span></a>
 						</li> 
 					</ul>
 				</li>

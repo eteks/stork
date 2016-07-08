@@ -47,7 +47,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table width_order_details_table" id="my-orders-table">
+				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
 			        	<th>Order Id</th>

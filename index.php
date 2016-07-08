@@ -36,7 +36,7 @@
 				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="stu" checked/>
 				        		   <label for="student">Student</label>
 				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="pro"/>
-				            	    <label for="professional">Professional</label>
+				            	    <label for="professional">Professional/Individual</label>
 				        	</div>
 				        	<div class="row location">
 				        		<div class="stu_area_college_holder dn">
