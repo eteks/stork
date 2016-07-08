@@ -56,7 +56,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				if ($count_rows > 0)
 				{
 			?>
-			<table class="data-table area_table" id="my-orders-table">
+			<table class="data-table area_table stork_admin_table" id="my-orders-table">
 				<thead>
 			        <tr class="">
 			            <th>Area Name</th>

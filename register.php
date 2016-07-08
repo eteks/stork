@@ -105,7 +105,7 @@ if($_SESSION['login_status'] == 1){
 								<img id="img" src="captcha.php" /></div>
 								<img id="reload" src="images/reload.png" />
 							<div> -->
-							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span></p>
+							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span> <span class="captcha_click"> <i class="fa fa-refresh" aria-hidden="true"></i> </span> </p> 
 							<input id="captcha_original" type="hidden" value="">
 							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
 							<div>

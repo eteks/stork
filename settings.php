@@ -43,7 +43,8 @@ define("USERS",'stork_users');
 define("CITY",'stork_city');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
 define("PROJECTCOSTESTIMATION",'stork_cost_estimation_project_printing');
-define("MULTICOLORCOSTESTIMATION",'stork_cost_estimation_multicolor');
+define("MULTICOLOR",'stork_cost_estimation_multicolor');
+
 
 
 //php allows only ajax call

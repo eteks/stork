@@ -54,9 +54,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Papersize Information</h3>
+						<h3 class="acc-title lg">Add Paper Size Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Paper size Information</h4>
+							<h4 class="acc-sub-title">Paper Size Information</h4>
 							<form action="add_paper_size.php" method="POST" name="edit-acc-info" id="add_paper_size">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>

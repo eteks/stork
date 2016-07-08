@@ -58,11 +58,11 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				$offer_rows = mysql_num_rows($offer_query);	
 				if ($offer_rows > 0)  {
 				?>
-				<table class="data-table offerzone_table" id="my-orders-table">
+				<table class="data-table offerzone_table stork_admin_table" id="my-orders-table">
 			        <thead>
 			        <tr class="">
 			            <th> Offer Zone Title </th>
-			            <th> Offer Zone Image</th>
+			            <th> Offer Zone Path &amp; Image</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
 			            <th class="table_action">Action</th>

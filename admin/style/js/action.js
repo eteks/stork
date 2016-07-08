@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
 	var required_edit_offer_zone =["offerzonetitle"];
-	var required_edit_users =["username","password","firstname","test","dob","address","phone"];
+	// var required_edit_users =["username","password","firstname","test","dob","address","phone"];
 	var required_myform =["areaname"];
 	var admin_login=["admin_username","admin_password"];
 	var required_state =["statename"];

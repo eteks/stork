@@ -12,18 +12,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-3 hidden-xs">
-						<h1 class="mh-title">Home</h1>
-					</div>
-					<div class="breadcrumb-w col-sm-9">
-						<span class="hidden-xs">You are here:</span>
-						<ul class="breadcrumb">
-							<li>
-								<a>Home</a>
-							</li>
-							<li>
-								<span>Print Stork</span>
-							</li>
-						</ul>
+						<span class="ct-header"><b>Welcome!</b></span>
 					</div>
 				</div>
 			</div>
@@ -31,7 +20,6 @@
 	    <section class="pr-main" id="pr-login">	
 			<div class="container">	
 				<div class="col-md-9 col-sm-9 col-xs-12">
-					<h1 class="ct-header">Welcome</h1>			
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<h4>Please select your category &amp; location</h4>
 					</div>
@@ -48,7 +36,7 @@
 				        		<input type="radio" class="print_book_user_type" id="student" name="user_type" value="stu" checked/>
 				        		   <label for="student">Student</label>
 				            	<input type="radio" class="print_book_user_type" id="professional" name="user_type" value="pro"/>
-				            	    <label for="professional">Professional</label>
+				            	    <label for="professional">Professional/Individual</label>
 				        	</div>
 				        	<div class="row location">
 				        		<div class="stu_area_college_holder dn">
@@ -75,7 +63,7 @@
 											//}
 		        						?>
 		        					</select> -->
-		        					<select name="stu_college" id="print_book_college">
+		        					<select  name="stu_college" id="print_book_college">
 		        						<option value="" >Select your College/Area</option>
 		        					</select>
 		        					<span class="no_college_found_error dn">No college or area found!</span>

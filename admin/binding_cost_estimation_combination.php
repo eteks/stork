@@ -1,7 +1,7 @@
 <?php
 include "includes/header.php";
 
-$binding_type_array = array("soft_binding"=>"Soft Binding","spiral_binding"=>"Sprial Binding","wireo_binding"=>"Wireo Binding","comb_binding"=>"Comb Binding");
+$binding_type_array = array("soft_binding"=>"Soft Binding","spiral_binding"=>"Sprial Binding","wireo_binding"=>"Wireo Binding","comb_binding"=>"Comb Binding","handmade_binding"=>"Handmade Binding","case_binding"=>"Case Binding");
 
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
@@ -56,7 +56,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         <div class="clear_both"> </div>
         </div>
             <div class="form-edit-info">
-                <table class="data-table cost_table" id="my-orders-table">
+                <table class="data-table cost_table stork_admin_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Binding Type</th>

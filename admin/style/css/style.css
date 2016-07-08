@@ -1518,3 +1518,16 @@ text-align: center;
 .restrict:hover .restrict_tooltip{
     display: block;
 }
+.sort_asc {
+   float: right;
+   cursor: pointer;
+   font-size: 16px;
+}
+.sort_desc {
+   float: right;
+   cursor: pointer;
+   font-size: 16px;
+}
+.table_action .sort-btn {
+   display: none;
+}

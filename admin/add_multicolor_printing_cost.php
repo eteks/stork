@@ -8,15 +8,15 @@ include "includes/header.php";
 <body>
 <?php 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$cost_print_type=$_POST['cost_print_type'];
+	$cost_print_type=$_POST['paper_print_type_hidden'];
 	$cost_paper_side=$_POST['cost_paper_side'];
 	$cost_paper_size=$_POST['cost_paper_size'];
 	$cost_paper_type=$_POST['cost_paper_type'];
 	$cost_amount=$_POST['cost_amount'];
 	$cost_status=$_POST['cost_status'];
-	if($cost_paper_side=="" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
-		$successMessage = "<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
-	}	
+	if($_POST['paper_print_type'] ||  !$_POST['paper_print_type_hidden']){
+			$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong! </span></div>";
+		}	
 	else if($cost_print_type=="") {
 		$successMessage = "<div class='container error_message_mandatory'><span> Something went Wrong! </span></div>";
 	}
@@ -68,12 +68,12 @@ include "includes/header.php";
 					<?php if($successMessage) echo $successMessage; ?>
 					<div class="form-group">
 					    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-						<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" disabled>
+						<input type="text" class="form-control" maxlength="10" name="paper_print_type_hidden" autocomplete="off" value="Color with Black & White" disabled>
 						<?php 
 						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
 						        while($row_cost=mysql_fetch_array($query)) {
 						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
-						        		echo "<input type='hidden' name='cost_print_type' value=".$row_cost['paper_print_type_id'].">";
+						        		echo "<input type='hidden' name='paper_print_type' value=".$row_cost['paper_print_type_id'].">";
 						        	}
 						        }
 						?>	

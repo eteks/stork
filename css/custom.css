@@ -31,16 +31,15 @@ input[type=checkbox] {
 	margin: 20px 20px 20px 0px;
 	font-size: 14px;
 }
-
 /*#print_book_college, select:focus {
 	border: 1px solid #25bce9;
 	border-radius: 4px;
 }*/
 
-#product-detail .tab-content{
+/*#product-detail .tab-content{
 	margin: 20px 0px;
 	padding: 20px 0px;
-}
+}*/
 
 .step2{
 	margin: 20px;
@@ -109,7 +108,7 @@ h3, .h3{
 	font-size: 14px;
 }
 .error_input_field {
-	background: #ffebeb !important;
+	/*background: #ffebeb !important;*/
     border: 1px solid red !important;	
 }
 .forget_email_valid {
@@ -838,6 +837,55 @@ h4.order_or_button{
     width: 100%
 }
 
+.error_input1_field {
+   border:1px solid red !important;
+}
+.error_input2_field {
+   border:1px solid red !important;
+}
+.error_input1_field_email {
+	border : 1px solid red !important;
+}
+.error_input2_field_email {
+   border:1px solid red !important;
+}
+.error_input1_field_mobile {
+   border:1px solid red !important;
+}
+.error_input2_field_mobile {
+   border:1px solid red !important;
+}
+.error_input1_field_phone {
+	border:1px solid red !important;
+}
+.error_input2_field_phone {
+	border:1px solid red !important;
+}
+.error_test {
+	color :red ;
+	font-size : 12px;	
+	display : none;
+}
+.error_email1  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
+.error_email2  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
+.error_mobile  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
+.error_phone  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
 /*Added by siva*/
 
 /*css for project printing and multicolors Start*/
@@ -868,4 +916,13 @@ h4.order_or_button{
     text-transform: uppercase;
     width : 115px;
 }
+.multi_browse {
+    margin-left: 20px;
+}
 /*css for project printing and multicolors End*/
+/*css for captcha refresh option added by siva */
+.captcha_click {
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 12px;
+}

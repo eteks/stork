@@ -6,7 +6,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if($_POST['submit_type'] == 'add_to_cart' || $_POST['submit_type'] == 'add_to_checkout'){
 		$printing_type = $_POST['printing_type'];
-		if($printing_type == 'plain_printing'){
+		if($printing_type == 'plain_printing' || $printing_type == 'multicolor_printing'){
 			$print_type = $_POST['print_type'];
 			$print_type_query = mysqli_query($connection, 'select * from stork_paper_print_type where paper_print_type_id="'.$print_type.'"') ;
 			$print_type_array = mysqli_fetch_array($print_type_query, MYSQL_ASSOC);
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					        }
 						}
 						else{
-							header('Location:printbooking.php?error5=trueservice='.$_SESSION[service]);
+							header('Location:printbooking.php?error5=true&service='.$_SESSION[service]);
 						}
 				    }
 				}
@@ -112,19 +112,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				        }
 					}
 					else{
-						header('Location:printbooking.php?error2=trueservice='.$_SESSION[service]);
+						header('Location:printbooking.php?error2=true&service='.$_SESSION[service]);
 					}
 			    }
 			}
 			else {
-				header('Location:printbooking.php?error3=trueservice='.$_SESSION[service]);
+				header('Location:printbooking.php?error3=true&service='.$_SESSION[service]);
 			}
+			// echo "<pre>";
+			// print_r($_POST);
+			// print_r($_FILES);
+			// echo "</pre>";
 		} // end of plain printing
 		else if($printing_type == 'project_printing'){
-			echo "<pre>";
-			print_r($_POST);
-			print_r($_FILES);
-			echo "</pre>";
+			
 			$print_type = $_POST['project_print_type'];
 			$print_side = $_POST['project_print_side'];
 			$paper_type = $_POST['project_papar_type'];
@@ -232,12 +233,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				        }
 					}
 					else{
-						header('Location:printbooking.php?error2=trueservice='.$_SESSION[service]);
+						header('Location:printbooking.php?error2=true&service='.$_SESSION[service]);
 					}
 			    }
 			}
 			else {
-				header('Location:printbooking.php?error3=trueservice='.$_SESSION[service]);
+				header('Location:printbooking.php?error3=true&service='.$_SESSION[service]);
 			}
 	}// end of add to cart
 	
