@@ -68,12 +68,12 @@ include "includes/header.php";
 					<?php if($successMessage) echo $successMessage; ?>
 					<div class="form-group">
 					    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-						<input type="text" class="form-control" maxlength="10" name="paper_print_type_hidden" autocomplete="off" value="Color with Black & White" disabled>
+						<input type="text" class="form-control" maxlength="10" name="paper_print_type" autocomplete="off" value="Color with Black & White" disabled>
 						<?php 
 						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
 						        while($row_cost=mysql_fetch_array($query)) {
 						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
-						        		echo "<input type='hidden' name='paper_print_type' value=".$row_cost['paper_print_type_id'].">";
+						        		echo "<input type='hidden' name='paper_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
 						        	}
 						        }
 						?>	
