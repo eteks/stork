@@ -3942,7 +3942,7 @@ Account dashboard
 Edit account information
 */
 .form-edit-info{
-  padding: 0 15px 30px;
+  padding: 0 0px 30px;
   background: #ffffff;
   /*overflow: hidden;*/
 }
@@ -4045,6 +4045,7 @@ aside.account-sidebar.sidebar ul{
 }
 .account-sidebar{
   margin-bottom: 30px;
+  border: 1px solid #f1f1f1;
 }
 /*
 * My Order

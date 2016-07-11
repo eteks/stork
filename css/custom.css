@@ -36,10 +36,10 @@ input[type=checkbox] {
 	border-radius: 4px;
 }*/
 
-#product-detail .tab-content{
+/*#product-detail .tab-content{
 	margin: 20px 0px;
 	padding: 20px 0px;
-}
+}*/
 
 .step2{
 	margin: 20px;
@@ -108,7 +108,7 @@ h3, .h3{
 	font-size: 14px;
 }
 .error_input_field {
-	background: #ffebeb !important;
+	/*background: #ffebeb !important;*/
     border: 1px solid red !important;	
 }
 .forget_email_valid {

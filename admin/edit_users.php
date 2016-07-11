@@ -179,7 +179,7 @@ include "includes/header.php";
 								</div>
 								
 								<div class="cate-filter-content">	
-								    <label for="first-name">Users Status<span class="required"></span></label>
+								    <label for="first-name">User Status<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="user_status">
 								        <option>
 											<span>Select status</span>

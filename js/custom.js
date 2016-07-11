@@ -1,9 +1,9 @@
-// function error_popup(message){
-	// $('.error_popup_msg .success-alert span').text(message);
-	// $('.popup_fade').show();
-	// $('.error_popup_msg').show();
-	// document.body.style.overflow = 'hidden';
-// }
+function error_popup(message){
+	$('.error_popup_msg .success-alert span').text(message);
+	$('.popup_fade').show();
+	$('.error_popup_msg').show();
+	document.body.style.overflow = 'hidden';
+}
 $(document).ready(function () { 
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
@@ -160,7 +160,7 @@ $(document).ready(function () {
 		addition_captcha();
 	});
 
-    // alert(total_captcha);
+	//register-validation
 	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
 		var input = jQuery('#'+required_signup[i]);
@@ -499,7 +499,7 @@ $(document).ready(function () {
 			}
 		});
 		//newly added by kalai for multi color printing on 08/06/16
-		if($(this).val()!='') {
+		if($(this).val()!='' && $('#printing_type').val() == "multicolor_printing") {
 			$('.display_paper_range,.label_page_range').slideDown();
 		}
 	});
@@ -552,22 +552,12 @@ $(document).ready(function () {
 	});
 
 
-		// post from when click button and submit type
-	$('.print_add_to_cart_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_cart');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_cart');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
-	});
-	
+	// // post from when click button and submit type
+	// $('.print_add_to_cart_btn').on('click',function(){
+		// $('.printbooking_main_page form .submit_type').val('add_to_cart');
+		// $('.printbooking_main_page form .form_submit_button').click();
+	// });
+// 	
 	// clear print booking form when clear button
 	$('.print_add_to_cart_clear_btn').on('click',function(){
 		$('#print_booking_form').find("input[type=text], textarea").val("");
@@ -1194,6 +1184,8 @@ $(document).ready(function () {
  				else {
  				$('#phone1').removeClass("error_input1_field_phone");
  				}
+ 				  //called when key is pressed in textbox
+
          
 			 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email1.val())) {
 		 	forget_email1.addClass("error_input1_field_email");
@@ -1203,6 +1195,8 @@ $(document).ready(function () {
 	  	}
 	  
 		}
+		
+
 		  
 
 	//if any inputs on the page have the class 'error_input_field' the form will not submit
@@ -1240,6 +1234,34 @@ $(document).ready(function () {
 	
 	}
 	});
+	 $("#phone2").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   			 $("#phone1").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   				 $("#postal").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
+   				 $("#postalcode").keypress(function (e) {
+     			//if the letter is not digit then display error and don't type anything
+     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        			return false;
+        		
+    			}
+   			});
 	jQuery(".check_out_payment").on('click',function(){ 	
 		if($('.send_to_address_college_data').css('display')=='block')	{
 			for(var i = 0 ; i<required_address_2.length;i++ ){
@@ -1266,14 +1288,7 @@ $(document).ready(function () {
 	  				forget_email2.removeClass("error_input2_field_email");
 	  			}
 			}
-		   $("#phone").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        		//display error message
-        		// $("#error_test").html("Digits Only").show().fadeOut("slow");
-        			return false;
-    			}
-   			});
+		  
 			if (jQuery(":input").hasClass("error_input2_field") || jQuery("select").hasClass("error_input2_field") ) {
 				return false;
 			} else {
@@ -1623,7 +1638,7 @@ $(document).ready(function () {
 			$('.project_clone').css('pointer-events', 'auto');
 		}
 	});
-
+	
 	// Project printing validation End
 
 	// To scroll fullwindow and particular div jquery
@@ -1641,4 +1656,77 @@ $(document).ready(function () {
 	});
 
 	// Ended by siva
+	
+	
+	//find out cost per page for printing order using print type on multiple combination for project printing
+	$('#project_printing_form .project_paper_size,#project_printing_form .project_paper_type').on('change',function(){
+	 	var print_type = ($('#project_printing_form .project_print_type').val()?$('#project_printing_form .project_print_type').val():'');
+	 	var print_side = ($('#project_printing_form .project_print_side').val()?$('#project_printing_form .project_print_side').val():'');
+	 	var paper_size = ($('#project_printing_form .project_paper_size').val()?$('#project_printing_form .project_paper_size').val():'');
+	 	var paper_type = ($('#project_printing_form .project_paper_type').val()?$('#project_printing_form .project_paper_type').val():'');
+	 	//alert(print_type+'|'+print_side+'|'+paper_size+'|'+paper_type);
+	 	if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
+	 		$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page_for_project':'true'},
+           		cache: false,
+           		success: function(data) {
+           			var per_page_amount = parseFloat(data);
+           			if(per_page_amount){
+           				$('#project_printing_form .per_page_costing').val(per_page_amount);
+           			}
+           			else{
+           				error_popup('Printing option not available!');
+           				$('#project_printing_form .project_paper_size,#print_booking_form .project_paper_type').prop('selectedIndex', 0);
+					}
+           			
+          		}
+       		});// end of ajax
+	 	}//end of if condition
+	});// end of event
+	
+	
+	// get binding amount based on type for project printing
+	$('#project_printing_form .project_binding_type').on('change',function(){
+		var print_bind_type = $(this).val();
+		if(print_bind_type != ''){
+			$.ajax({
+           		type: "POST",
+           		url: "ajax_functions.php",
+           		data:{'binding_type':print_bind_type,'binding_amount_value':'true'},
+           		cache: false,
+           		success: function(data) {
+           			if(data != 'error_bind_amt'){
+           				if($('#project_printing_form #project_total_pages').val() == ''){
+           					$('#project_printing_form .project_binding_amount').val(parseFloat(Math.ceil((data) * 100 ) / 100).toFixed(2));
+           				}else{
+           					$('#project_printing_form .project_binding_amount').val(parseFloat(Math.ceil((data) * 100 ) / 100).toFixed(2));
+           					$('#project_printing_form .project_total_amount').val(parseFloat(Math.ceil(((parseFloat($('#project_printing_form .per_page_costing').val())*parseFloat($('#project_printing_form .project_total_pages').val()))+parseFloat(data)) * 100 ) / 100).toFixed(2));
+           				}
+           			}else{
+           				error_popup('Your selected binding option not available!');
+           				$('#project_binding_type').prop('selectedIndex',0);
+           			}
+           			
+          		}
+       		});// end of ajax
+		}
+	});
+	
+	// 	total cost amoutn display based on total no of pages and per page amount for project print
+	$('#project_printing_form .project_total_pages').on('blur',function(){
+		var perpageamount = parseFloat($('#project_printing_form .per_page_costing').val()?$('#project_printing_form .per_page_costing').val():'');
+		var bindingamout = parseFloat($('#project_printing_form .project_binding_amount').val()?$('#project_printing_form .project_binding_amount').val():'0.00');
+		var total_amount = parseFloat($(this).val());
+		if(total_amount){
+			if(perpageamount){
+				$('#project_printing_form .project_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+			}else{
+				error_popup('Please select print type,print side,paper size,paper type!');
+				$(this).val('');
+			}
+		}
+		
+	});
 });

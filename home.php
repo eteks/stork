@@ -2765,7 +2765,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/10.png" alt="service-10"/>
+											<!-- <img src="images/our_service/10.png" alt="service-10"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">
@@ -3040,12 +3040,12 @@
 								<!-- </div> -->
 							</div>							
 						</div> 
-						<!-- <div class="tab-pane" id="tab61">	  -->
+						<div class="tab-pane" id="tab61">	 
 							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/10.png" alt="service-06"/>
+											<!-- <img src="images/our_service/10.png" alt="service-06"/> -->
 										</a>
 									</div>
 								<!-- <div class="info-recent">

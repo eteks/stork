@@ -266,7 +266,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -370,7 +370,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
 					   </div>
 					 </li>
   					  <li class="long">
@@ -486,7 +486,7 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
-		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php //echo $checkout_total_amount; ?>1"/>
+		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php echo $checkout_total_amount; ?>"/>
 		   		<input type="hidden" name="currency" value="INR"/>
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>

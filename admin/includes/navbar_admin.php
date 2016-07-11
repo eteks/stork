@@ -22,14 +22,14 @@
 						</li>
 					</ul>
 				</div>
-				<div class="top-header-right f-right col-lg-5 col-md-6 col-sm-7 col-xs-6">
+				<!-- <div class="top-header-right f-right col-lg-5 col-md-6 col-sm-7 col-xs-6">
 					<div class="w-header-right">
 						<div class="th-hotline">
 							<i class="fa fa-phone"></i>
 							<span>1.866.614.8002</span>
 						</div> 
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

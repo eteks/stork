@@ -11,17 +11,17 @@
 							<ul class="info">
 								<li>
 									<i class="fa fa-home"></i>
-									<span><a>Door no:2A,</a><span>
+									<span><a>Door no: 2A,</a><span>
 								</li>
 								<li>
 									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karuvadikuppam Main road,</a></span>
 								</li>
 								<li>
-									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kaniya garden,Muthialpet-3.</a></span>
+									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kaniya garden, Muthialpet-3.</a></span>
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
-									<span><a>9655707844,8344625888</a></span>
+									<span><a>9655707844, 8344625888</a></span>
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
@@ -113,7 +113,7 @@
 						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
 					</div>
 					<div class="col-md-6">
-						<p class="dev_partner" style="text-align: right;"><a href="http://www.atomicka.com">Development Partner Infom Atomicka (Tech) Pvt Ltd.</a></p>
+						<p class="dev_partner" style="text-align: right;">Development Partner<a href="http://www.atomicka.com"> Infom Atomicka (Tech) Pvt Ltd.</a></p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top
