@@ -146,5 +146,9 @@ $(document).ready(function () {
   $('#my-orders-table_length').insertAfter(".clone_heading");
   $('#my-orders-table_filter').addClass('search-form');
 });
+// $('.plain_print_menu').on('click',function() {
+//   $('.plain_printing').addclass('open');
+// });
+
 });
 /* Admin sidebar navigation ends */

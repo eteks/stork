@@ -1,5 +1,9 @@
 <?php
 include "includes/header.php";
+if(!isset($_GET['type'])){
+  die('<script type="text/javascript">window.location.href="index.php";</script>');
+  exit();
+ }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>All Paper Types</title>
@@ -47,7 +51,14 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<h3 class="acc-title lg clone_heading"> Paper Types</h3>
 		<div class="clear_both"> </div>
 	</div>
+	<?php
+		$type = $_GET['type'];
+	?>
+	<div class="add_section">
+		<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span> </a>
+	</div>
 			<div class="form-edit-info">
+
 				<?php 
 					$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
 					$papertypes_rows = mysql_num_rows($papertypes);

@@ -9,7 +9,7 @@
 						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
 					</div>
 					<div class="col-md-6">
-						<p class="dev_partner" style="text-align: right;">Development Partner<a href="http://www.atomicka.com"> Infom Atomicka (Tech) Pvt Ltd.</a></p>
+						<p class="dev_partner" style="text-align: right;">Development Partner<a href="http://www.atomicka.com" target="_blank"> Infom Atomicka (Tech) Pvt Ltd.</a></p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top

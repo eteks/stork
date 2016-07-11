@@ -16,6 +16,11 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
+	// To enable cut copy paste option added by siva
+	$('body').bind('cut copy paste', function (e) {
+        e.stopPropagation();
+    });
+
 	//  == Validation for Page range Format Start ==
 
 	$(document).on('keyup','.paper_range',function() {
@@ -1517,6 +1522,7 @@ $(document).ready(function () {
 		}
 	});
 	$(document).on('click','.project_clone',function() {
+
 		$('.project_clone').css('pointer-events', 'none');
 
 	});
@@ -1638,22 +1644,29 @@ $(document).ready(function () {
 			$('.project_clone').css('pointer-events', 'auto');
 		}
 	});
-	
+
 	// Project printing validation End
 
 	// To scroll fullwindow and particular div jquery
 
-	$('#checkout_details_scroll').mouseenter(function() {
+	// $('#checkout_details_scroll').mouseenter(function() {
 	
-		$(this).bind('mousewheel DOMMouseScroll', function(e) {
-		    return true;
-	    });
-	    $('body').css('overflow','hidden');
-	  
-	});
-	$('#checkout_details_scroll').mouseleave(function() {
-		  $('body').css('overflow','auto');
-	});
+	// 	// $(this).bind('mousewheel DOMMouseScroll', function(e) {
+	// 	//     return true;
+	//  //    });
+	//  //    $('body').css('overflow','hidden');
+	//  $('body').bind('mousewheel');
+	//   $(this).unbind();
+	// });
+	// $('#checkout_details_scroll').mouseleave(function() {
+	// 	  $('body').css('overflow','auto');
+	// });
+
+	$('#checkout_details_scroll').hover(function() {
+     $('body').scroll().disable();
+     $(this).scroll().enable();
+
+});
 
 	// Ended by siva
 	
@@ -1729,4 +1742,67 @@ $(document).ready(function () {
 		}
 		
 	});
-});
+
+	//  Total no. of pages validation for project printing
+	$("#project_total_pages").keypress(function (e) {
+     	if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+    	}
+    });
+	$(document).on('keypress','#project_total_pages',function() {
+		var upload_files_value =$('.content_upload_file').val();
+		if(upload_files_value == '') {
+			return false;
+		}
+		else {
+			return true;
+		}		
+	});
+	$(document).on('blur','#project_total_pages',function() {
+		if($(this).val()=="0") {
+			
+			$(this).val('');
+			$('#project_paper_size option:first-child').attr("selected", "selected");
+			$('#project_paper_type option:first-child').attr("selected", "selected");
+			$('#project_binding_type option:first-child').attr("selected", "selected");
+
+		}
+    });
+	//  Total no. of pages validation for plain printing and multicolors printing
+	$("#total_pages").keypress(function (e) {
+     	if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+    	}
+    });
+	$(document).on('keypress','#total_pages',function() {
+		var upload_files_value =$('.uploadFile').val();
+		if(upload_files_value == '') {
+			return false;
+		}
+		else {
+			return true;
+		}
+	});
+	$(document).on('blur','#total_pages',function() {
+		if($(this).val()=="0") {
+			
+			$(this).val('');
+			$('#print_side option:first-child').attr("selected", "selected");
+			$('#paper_type option:first-child').attr("selected", "selected");
+			$('#paper_size option:first-child').attr("selected", "selected");
+
+		}
+    });
+
+	$('.select_city_btn a').on('click',function() {
+		if (document.getElementById('initial_city_name').selectedIndex < 1){
+			$('#initial_city_name').addClass('error_print_booking_field');
+		}
+		else {
+			$('#initial_city_name').removeClass('error_print_booking_field');
+		}
+	});
+
+
+
+}); // Document ready end

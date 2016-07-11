@@ -82,7 +82,7 @@
 				    <div class="popup_index" id="popup_index">
 					    <div class="popup_content">
 					    	<label>Select your city</label>
-							<select name="print_book_city_name" class="initial_city_name">
+							<select name="print_book_city_name" id="initial_city_name" class="initial_city_name">
 								<option value="" >Select your city</option>
 								<?php
         							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry'";

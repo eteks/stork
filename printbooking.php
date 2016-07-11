@@ -67,7 +67,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<div class="input_holder row pad_15">
 								<input type="hidden" name="printing_type" value="plain_printing" id="printing_type" />
-				        		<p>Print Type<span class="star">*</span></p>
+				        		<p>Print Type<span class="star">&nbsp;*</span></p>
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php
@@ -80,7 +80,7 @@
 			        		</div> <!-- input holder -->
 			        	
 						   	<div class="input_holder row pad_15">
-			        			<p>Print Side<span class="star">*</span></p>
+			        			<p>Print Side<span class="star">&nbsp;*</span></p>
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
@@ -92,7 +92,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
-			        			<p>Paper Type<span class="star">*</span></p>
+			        			<p>Paper Type<span class="star">&nbsp;*</span></p>
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
@@ -104,7 +104,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
-			        			<p>Paper Size<span class="star">*</span></p>
+			        			<p>Paper Size<span class="star">&nbsp;*</span></p>
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
@@ -116,14 +116,14 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 binding_option">
-			        			<p>Binding Required<span class="star">*</span></p>
+			        			<p>Binding Required<span class="star">&nbsp;*</span></p>
 			        			<div class="radio_holder">
 			        				<input type="radio" class="print_booking_binding_required" name="binding_option" id="radio_yes" value="yes"> <span> Yes </span>
   									<input type="radio" class="print_booking_binding_required" name="binding_option" value="no" id="radio_no" checked> <span> No </span>
   								</div>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 display_binding_type">
-			        			<p>Type of Binding<span class="star">*</span></p>
+			        			<p>Type of Binding<span class="star">&nbsp;*</span></p>
 			        			<select name="binding_type" class="print_book_binding_type" id="binding_type">
 			        				<option value="" >Select Binding Type</option>
 			        				<option value="soft_binding" >Soft Binding</option>
@@ -133,7 +133,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 print_page_option">
-			        			<p>Print page type Required<span class="star">*</span></p>
+			        			<p>Print page type Required<span class="star">&nbsp;*</span></p>
 			        			<div class="radio_holder">
 			        				<input type="radio" name="page_type_option" id="page_radio_yes" value="yes"> <span> Yes </span>
   									<input type="radio" name="page_type_option" value="no" id="page_radio_no" checked> <span> No </span>
@@ -143,7 +143,7 @@
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
 			        		<div class="input_holder row pad_15 cover_section_holder">
-			        			<p> Upload Your Cover File<span class="star">*</span></p>
+			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
 								<p class="label_text"> Cover </p>
 								<input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
@@ -151,7 +151,7 @@
 		    	   				<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
    							</div>
    							<div class="clear_both"> </div>
-							<p> Upload Your Files<span class="star">*</span></p>	
+							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
@@ -165,7 +165,7 @@
    									<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
 	   							</div>
    							</div>
-   							<p class="label_page_range"> Enter Color Page Range<span class="star">*</span>  (ex: 1-10, 20, 42-100 ) </p>
+   							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
@@ -181,7 +181,7 @@
 						 		<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
 							</div> -->
 							<div class="input_holder row pad_15">
-							 	<p>Total No of Pages<span class="star">*</span></p>
+							 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
 							 	<input class="user print_total_no_of_pages" id="total_pages" type="text" value="" name="print_totalpage"> 
 							</div>
 							<div class="input_holder row pad_15">
@@ -236,7 +236,7 @@
 										 $printsidedata = mysqli_fetch_array($printside);
 										 echo '<input name="project_print_side" type="hidden" class="project_print_side" value="'.$printsidedata['paper_side_id'].'" />';
 									?>
-				        			<p>Paper Size<span class="star">*</span></p>
+				        			<p>Paper Size<span class="star">&nbsp;*</span></p>
 				        			<select name="project_papar_size" class="project_paper_size" id="project_paper_size">
 				        				<option value="" >Select Paper Size</option>
 				        				<?php
@@ -248,7 +248,7 @@
 		        					</select>
 				        		</div> <!-- input_holder -->
 				        	 	<div class="input_holder row pad_15">
-				        			<p>Paper Type<span class="star">*</span></p>
+				        			<p>Paper Type<span class="star">&nbsp;*</span></p>
 				        			<select name="project_papar_type" class="project_paper_type" id="project_paper_type">
 				        				<option value="" >Select Paper Type</option>
 				        				<?php
@@ -260,7 +260,7 @@
 		        				    </select>
 				        		</div> <!-- input_holder -->
 				        		<div class="input_holder row pad_15">
-				        			<p>Binding Type<span class="star">*</span></p>
+				        			<p>Binding Type<span class="star">&nbsp;*</span></p>
 				        			<select name="binding_type" class="project_binding_type" id="project_binding_type">	 
 				        				<option value="" >Select Binding Type</option>
 				        				<option value="hand_made_binding" >Handmade Binding</option>
@@ -287,7 +287,7 @@
 				       					<div class="clear_both"> </div>
 				   					</div>
 				   					<div class="input_holder row pad_15 upload_content_section" id="upload_content_section" data-projectsectionvalue="0">
-										<p class="label_text" > Content <span class="star">*</span> </p>
+										<p class="label_text" > Content <span class="star">&nbsp;*</span> </p>
 									 	<input type="text" name="" id="project_file_holder" class="project_file_name_margin style_range project_file_holder" value="No file selected" data-projectfilevalue="0" disabled />
 										<input type="file" class="user dn col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name="content_print_file[]"/>
 				       					<div class="browse_button cotent_browse_button col-md-4" id="cotent_browse_button">Browse</div>
@@ -336,7 +336,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
-								 	<p>Total No of Pages<span class="star">*</span></p>
+								 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
 								 	<input class="user project_total_pages" id="project_total_pages" type="text" value="" name="project_total_pages"> 
 								</div>
 								<div class="input_holder row pad_15">
@@ -381,7 +381,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 						<input type="hidden" name="printing_type" value="multicolor_printing" id="printing_type"/>						
 							<div class="input_holder row pad_15" style="display:none;">
-				        		<p>Print Type<span class="star">*</span></p>
+				        		<p>Print Type<span class="star">&nbsp;*</span></p>
 				        		<select name="print_type" class="print_book_print_type" id="print_type" >
 				        				<option value="" >Select Print Type</option>
 		        						<?php
@@ -396,7 +396,7 @@
 			        		</div> <!-- input holder -->
 			        	
 						   	<div class="input_holder row pad_15">
-			        			<p>Print Side<span class="star">*</span></p>
+			        			<p>Print Side<span class="star">&nbsp;*</span></p>
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
@@ -408,7 +408,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
-			        			<p>Paper Type<span class="star">*</span></p>
+			        			<p>Paper Type<span class="star">&nbsp;*</span></p>
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
@@ -420,7 +420,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
-			        			<p>Paper Size<span class="star">*</span></p>
+			        			<p>Paper Size<span class="star">&nbsp;*</span></p>
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
@@ -435,7 +435,7 @@
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
 			        		<div class="input_holder row pad_15 cover_section_holder">
-			        			<p> Upload Your Cover File<span class="star">*</span></p>
+			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
 								<p class="label_text"> Cover </p>
 								<input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
@@ -443,7 +443,7 @@
 		    	   				<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
    							</div>
    							<div class="clear_both"> </div>
-							<p> Upload Your Files<span class="star">*</span></p>	
+							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
@@ -457,7 +457,7 @@
    									<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
 	   							</div>
    							</div>
-   							<p class="label_page_range"> Enter Color Page Range<span class="star">*</span>  (ex: 1-10, 20, 42-100 ) </p>
+   							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
@@ -473,7 +473,7 @@
 						 		<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
 							</div> -->
 							<div class="input_holder row pad_15">
-							 	<p>Total No of Pages<span class="star">*</span></p>
+							 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
 							 	<input class="user mutli_print_total_no_of_pages" id="total_pages" type="text" value="" name="print_totalpage"> 
 							</div>
 							<div class="input_holder row pad_15">

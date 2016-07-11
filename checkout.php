@@ -45,7 +45,7 @@ if(mysqli_num_rows($review_details)>0){
 							<h1>Review Your Order here..</h1>
 						 </div>
 						 <div class="col-md-6 col-sm-6 col-xs-12 right">
-						    <h1><a href="printbooking.php">Continue Shopping</a></h1>
+						    <h1><a href="printbooking.php?service=plain">Continue Shopping</a></h1>
 						 </div>
        				</div>
   				<br>	
