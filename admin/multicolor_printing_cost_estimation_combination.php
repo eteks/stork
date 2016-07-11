@@ -20,16 +20,21 @@ function generate_combinations(array $data, array &$all = array(), array $group 
     return $all;
 }
 
-$papersize = mysqlQuery("SELECT * FROM `stork_paper_size`");
-$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`");
-$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
-$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` where LOWER(paper_print_type)='color with black & white'");
+$query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='multicolor_printing'");
+$row_printing_type = mysql_fetch_array($query_printing_type);
+
+$papersize = mysqlQuery("SELECT * FROM `stork_paper_size` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` where LOWER(paper_print_type)='color with black & white' AND printing_type_id=".$row_printing_type['printing_type_id']);
 $paperprinttypes = mysql_fetch_array($paperprinttypes);
+$multicolor_copies = mysqlQuery("SELECT * FROM `stork_multicolor_copies`");
 
 $papersize_array = array();
 $papersides_array = array();
 $papertypes_array = array();
 $paperprinttypes_array = array($paperprinttypes['paper_print_type_id']=>$paperprinttypes['paper_print_type']);
+$multicolor_copies_array = array();
 
 // echo print_r($papersides_array);
 // echo print_r($paperprinttypes_array);
@@ -54,7 +59,14 @@ while ( $result = mysql_fetch_array( $papertypes )){
 //     array_push( $paperprinttypes_array, $tmp );
 // }
 
-$datas = generate_combinations(array($papersize_array,$papersides_array,$papertypes_array,$paperprinttypes_array));
+while ( $result = mysql_fetch_array( $multicolor_copies )){
+    $tmp = array($result['multicolor_copies']);    
+    array_push( $multicolor_copies_array, $tmp );
+}
+
+$datas = generate_combinations(array($papersize_array,$papersides_array,$papertypes_array,$paperprinttypes_array,$multicolor_copies_array));
+
+// echo print_r($multicolor_copies_array);
 
 // echo count($datas);
 // echo print_r($datas);
@@ -120,6 +132,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         <th>Paper Side</th>
                         <th>Paper Type</th>
                         <th>Paper Size</th> 
+                        <th>No. Of Copies</th> 
                         <th>Amount</th>                     
                         <th>Amount fixed Status</th> 
                         <th>Status</th> 
@@ -129,23 +142,28 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                     </thead>
                     <?php 
                     foreach ($datas as $key=>$value) {
+                        // echo print_r($value[4]);
                         $size = implode(" ",$value[0]);
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type_id = $key[3];
                         $print_type = $value[3];
+                        $copies = implode(" ",$value[4]);
+                        // echo $copies."<br>";
                     ?>
                     <tr class="">
                         <td><?php echo $print_type ?></td>
                         <td><?php echo $side ?></td>
                         <td><?php echo $type ?></td> 
                         <td><?php echo $size ?></td>  
+                        <td><?php echo $copies ?></td>  
                         <?php 
-                            $estimated_cost = mysqlQuery("SELECT cem.*,ppt.paper_print_type,pside.paper_side,psize.paper_size,pt.paper_type FROM stork_cost_estimation_multicolor as cem 
+                            $estimated_cost = mysqlQuery("SELECT cem.*,ppt.paper_print_type,pside.paper_side,psize.paper_size,pt.paper_type,mc.multicolor_copies FROM stork_cost_estimation_multicolor as cem 
                                     INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id= cem.cost_estimation_multicolor_paper_print_type_id 
                                     INNER JOIN stork_paper_side as pside ON pside.paper_side_id=cem.cost_estimation_multicolor_paper_side_id
                                     INNER JOIN stork_paper_size as psize ON psize.paper_size_id=cem.cost_estimation_multicolor_paper_size_id
-                                    INNER JOIN stork_paper_type as pt ON pt.paper_type_id=cem.cost_estimation_multicolor_paper_type_id");
+                                    INNER JOIN stork_paper_type as pt ON pt.paper_type_id=cem.cost_estimation_multicolor_paper_type_id 
+                                    INNER JOIN stork_multicolor_copies as mc ON mc.multicolor_copies_id=cem.cost_estimation_multicolor_copies_id");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
                                echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
@@ -154,7 +172,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                                 while ($cost_array = mysql_fetch_array($estimated_cost)) {  
                                     $createddate=strtotime($cost_array['created_date']);
                                     $date = date('d/m/Y', $createddate);
-                                    if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type)){
+                                    if(trim($cost_array['paper_print_type']) == trim($print_type) && trim($cost_array['paper_size']) == trim($size) && trim($cost_array['paper_side']) == trim($side) && trim($cost_array['paper_type']) == trim($type) && trim($cost_array['multicolor_copies']) == trim($copies)){
                                         $status = "<td>".$cost_array['cost_estimation_multicolor_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_multicolor_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
                                                     <span class='nobr'>
                                                     <a title='Edit' class='btn btn-primary btn-xs' href='edit_multicolor_printing_cost.php?id=".$cost_array['cost_estimation_multicolor_id']."'><i class='fa fa-pencil-square-o'></i></a>
