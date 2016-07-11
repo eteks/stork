@@ -187,7 +187,7 @@ progress::-moz-progress-bar {
 									<i class="fa fa-shopping-cart"></i>
 									<span class="mcart-dd-qty"><?php echo $add_to_cart_count; ?></span>
 								</span>
-								<div class="mcart-dd-content dropdowSCContent clearfix">
+								<div class="mcart-dd-content dropdowSCContent clearfix" id="checkout_details_scroll">
 								<?php
 									$total_amount = 0; 
 									$cart_details = mysqli_query($connection,"SELECT * FROM stork_order_details

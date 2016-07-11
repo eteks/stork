@@ -926,3 +926,8 @@ h4.order_or_button{
     font-size: 16px;
     margin-left: 12px;
 }
+.mcart-dd-content {
+    height: 100%;
+    min-height: 516px;
+    overflow: auto;
+}

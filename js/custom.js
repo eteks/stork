@@ -1614,7 +1614,31 @@ $(document).ready(function () {
 
 	// Validaion for adding restriction to clone and Store file value End
 
+	$(document).on('click','.project_remove',function() {
+		var last_section = $('.upload_content_section:last').find('.content_upload_file');
+		if(last_section.val() == '') {
+			$('.project_clone').css('pointer-events', 'none');
+		}
+		else {
+			$('.project_clone').css('pointer-events', 'auto');
+		}
+	});
+
 	// Project printing validation End
+
+	// To scroll fullwindow and particular div jquery
+
+	$('#checkout_details_scroll').mouseenter(function() {
+	
+		$(this).bind('mousewheel DOMMouseScroll', function(e) {
+		    return true;
+	    });
+	    $('body').css('overflow','hidden');
+	  
+	});
+	$('#checkout_details_scroll').mouseleave(function() {
+		  $('body').css('overflow','auto');
+	});
 
 	// Ended by siva
 });
