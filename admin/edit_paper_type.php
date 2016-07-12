@@ -13,10 +13,11 @@ if (isset($_GET['update']))
 		$val = $_GET['update'];
 		$val = mres($val);
 		$paper_type = $_POST["paper_type"];
+		$printing_type = $_POST['printing_type'];
 		$paper_type_status = $_POST["paper_type_status"];
 		// $qry   = mysqlQuery("SELECT * FROM `stork_state` WHERE `id`='$val'");
 		// $fetch = mysql_fetch_array($qry);
-		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND paper_type_id NOT IN('$val')  AND printing_type_id='$printing_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Papertype Already exists! </span></div>";
@@ -35,6 +36,9 @@ $id=$val;
 if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
+	$select_type = mysql_query ("SELECT * FROM stork_paper_type WHERE paper_type_id='$id'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];
 }
 ?>  
 <?php include 'includes/navbar_admin.php'; ?>
@@ -88,6 +92,7 @@ if(isset($_GET["id"]))
 							    <label for="last-name">Paper Type<span class="required">*</span></label>
 								<input type="text" class="form-control" id="papertype" placeholder="Paper Type" name="paper_type" value="<?php echo($row['paper_type']); ?>">
 							</div>
+							<input type="hidden" name="printing_type" value="<?php echo $printing_type ?>" >
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 								<select class="product-type-filter form-control change_status" id="sel_a" name="paper_type_status">

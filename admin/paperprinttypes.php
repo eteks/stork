@@ -54,14 +54,18 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php
 		$type = $_GET['type'];
 	?>
-	<div class="add_section">
-		<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
-	</div>
+	<?php
+		if($type == 'plain') { ?>
+			<div class="add_section">
+				<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+			</div>
+	<?php	}
+	?>
 			<div class="form-edit-info">
 				<?php 
-					$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"	multicolor_printing");
+					$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
   					$type_name = $type_array[$type];
-					$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'"	);
+					$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
 					$printing_type_id = mysql_fetch_array($select_type);
 					$printing_type = $printing_type_id ['printing_type_id'];
 
@@ -114,7 +118,15 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				            <span class="nobr">
 			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_print_type.php?id=<?php echo $paperprinttypes_array['paper_print_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
+				            <?php if($type == 'plain') { ?>
 				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $paperprinttypes_array['paper_print_type_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				              <?php } else { ?>
+				                  <span class="restrict">      
+									   	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>"><i class="fa fa-trash-o">
+									  	<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+									   	</i> </a>
+									</span>
+								<?php } ?>
 				            </span>
 				        <?php } ?>
 				        </td>

@@ -50,27 +50,43 @@ function countCollege()
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
-function countPapersize()
+function countPapersize($type_name)
 {
-	$query = mysqlQuery("SELECT count(paper_size_id) as total FROM `stork_paper_size`");
+	$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];
+
+	$query = mysqlQuery("SELECT count(paper_size_id) as total FROM `stork_paper_size` WHERE printing_type_id='$printing_type'");
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
-function countPaperside()
+function countPaperside($type_name)
 {
-	$query = mysqlQuery("SELECT count(paper_side_id) as total FROM `stork_paper_side`");
+	$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];
+
+	$query = mysqlQuery("SELECT count(paper_side_id) as total FROM `stork_paper_side` WHERE printing_type_id='$printing_type'");
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
-function countPapertype()
+function countPapertype($type_name)
 {
-	$query = mysqlQuery("SELECT count(paper_type_id) as total FROM `stork_paper_type`");
+	$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];
+
+	$query = mysqlQuery("SELECT count(paper_type_id) as total FROM `stork_paper_type` WHERE printing_type_id='$printing_type'");
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
-function countPaperprinttype()
+function countPaperprinttype($type_name)
 {
-	$query = mysqlQuery("SELECT count(paper_print_type_id) as total FROM `stork_paper_print_type`");
+	$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];
+
+	$query = mysqlQuery("SELECT count(paper_print_type_id) as total FROM `stork_paper_print_type` WHERE printing_type_id='$printing_type'");
 	$fecth = mysql_fetch_array($query);
 	return $fecth['total'];
 }
@@ -272,19 +288,21 @@ function countTransaction()
 
 				<!--  Plain printing start -->
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=plain")
-					{ 
+					if(basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain"  || basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])==trim("add_paper_size.php?type=plain") || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain")
+					{
 						?> 
+						
 						<li class="has_submenu open">
 						<?php 
+
 					} 
 					else 
-					{ 
+					{
 						?>
+
 						<li class="has_submenu">
 						<?php 
 					}  
@@ -296,19 +314,19 @@ function countTransaction()
 				<ul>
 				<!-- Paper_print_type -->
 				<li>
-					<a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+					<a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_side -->
 				<li>
-					<a href="papersides.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+					<a href="papersides.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_type -->
 				<li>
-					<a href="papertypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+					<a href="papertypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_size -->
 				<li>
-					<a href="paper_size.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+					<a href="paper_size.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize("plain_printing") ?>) </span></a>
 				</li>
 			</ul>
 			</li>
@@ -319,11 +337,11 @@ function countTransaction()
 					
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=project" )
+					if(basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=project")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -343,19 +361,19 @@ function countTransaction()
 					<ul>
 					<!-- Paper_print_type -->
 					<li>
-						<a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+						<a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_side -->
 					<li>
-						<a href="papersides.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+						<a href="papersides.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_type -->
 					<li>
-						<a href="papertypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+						<a href="papertypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_size -->
 					<li>
-						<a href="paper_size.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+						<a href="paper_size.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize("project_printing") ?>) </span></a>
 					</li>
 					</ul>
 				</li>
@@ -365,11 +383,11 @@ function countTransaction()
 			<!-- Multicolor printing start -->
 
 			<?php 
-				if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=multi" || 
-				basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=multi")
+				if(basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=multi" || 
+				basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=multi")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -389,19 +407,19 @@ function countTransaction()
 					<ul>
 					<!-- Paper_print_type -->
 					<li>
-						<a href="paperprinttypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+						<a href="paperprinttypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_side -->
 					<li>
-						<a href="papersides.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+						<a href="papersides.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_type -->
 					<li>
-						<a href="papertypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+						<a href="papertypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_size -->
 					<li>
-						<a href="paper_size.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+						<a href="paper_size.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize("multicolor_printing") ?>) </span></a>
 					</li>
 					</ul>
 				</li>

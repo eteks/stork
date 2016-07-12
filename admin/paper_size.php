@@ -58,7 +58,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	</div>
 		<div class="form-edit-info">
 		<?php 
-		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"	multicolor_printing");
+		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
   		$type_name = $type_array[$type];
 		$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'"	);
 		$printing_type_id = mysql_fetch_array($select_type);
