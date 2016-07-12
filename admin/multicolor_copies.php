@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Multicolor Copies</title>
 </head>
 <body>
 <!-- Php query for delete -->
@@ -10,7 +10,7 @@ include "includes/header.php";
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_multicolor_copies` WHERE `multicolor_copies_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -44,15 +44,14 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12">
 	<div class="heading_section col-md-12">
-		<h3 class="acc-title lg clone_heading"> States</h3>
+		<h3 class="acc-title lg clone_heading"> Multicolor Copies</h3>
 		<div class="clear_both"> </div>
 	</div>
 	<div class="add_section">
-		<a href="add_state.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+		<a href="add_multicolor_copies.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
 	</div>
 			<div class="form-edit-info">
-							<?php 
-								$sql = "SELECT * FROM `stork_state`"; 
+							<?php $sql = "SELECT * FROM `stork_multicolor_copies`"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)
@@ -61,7 +60,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							<table class="data-table state_table stork_admin_table" id="my-orders-table">
 								<thead>
 							        <tr class="">
-							            <th>State Name</th>						            
+							            <th>No. Of Copies</th>						            
 							            <th>Status</th>
 							            <th>Created Date</th>
 							            <th class="table_action">Action</th>
@@ -71,14 +70,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								$i = 0;
 								while ($fetch = mysql_fetch_array($query))
 								{
-								$qryCategory = mysqlQuery("SELECT * FROM `categories` WHERE `id`=".$fetch['cid']);
-								$rowCategory = mysql_fetch_array($qryCategory);
 								?>
 							    <tr class="">						            
-						            <td><span class="nobr"><?php echo $fetch['state_name'] ?></span></td>
+						            <td><span class="nobr"><?php echo $fetch['multicolor_copies'] ?></span></td>
 						            <td>
 						            	<span class="price">
-						            	<?php if($fetch['state_status']==1)
+						            	<?php if($fetch['multicolor_copies_status']==1)
 												echo "Active";
 											  else
 												echo "InActive";
@@ -100,19 +97,19 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 											if(mysql_num_rows($check_in_area)>0 || mysql_num_rows($check_in_city)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
 						                ?>
 							                <span class="nobr">
-								                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>    
+								                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_multicolor_copies.php?id=<?php echo $fetch['multicolor_copies_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>    
 									            <span class="separator"></span> 
 									            <span class="restrict">      
-									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>"><i class="fa fa-trash-o">
+									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['multicolor_copies_id'] ?>"><i class="fa fa-trash-o">
 									             		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
 									             	</i> </a>
 									            </span>
 									        </span>
 									        <?php } else{ ?>
 									        <span class="nobr">
-							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_state.php?id=<?php echo $fetch['state_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_multicolor_copies.php?id=<?php echo $fetch['multicolor_copies_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 								                <span class="separator"></span> 
-								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['state_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['multicolor_copies_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 								            </span>
 							            <?php } ?>
 							        </td>
@@ -131,7 +128,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "states.php?delete="+myId);
+		$("#del_link").prop("href", "multicolor_copies.php?delete="+myId);
 		});
 	</script>
 	<!-- Delete popup Start -->

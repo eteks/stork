@@ -17,7 +17,7 @@ function countArea()
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
-function countCopies()
+function countMulticolorCopies()
 {
 	$query = mysqlQuery("SELECT count(multicolor_copies_id) as total FROM stork_multicolor_copies");
 	$fetch = mysql_fetch_array($query);
@@ -140,132 +140,32 @@ function countTransaction()
 					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 
-					basename($_SERVER['PHP_SELF'])=="states.php" || basename($_SERVER['PHP_SELF'])=="edit_state.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				?>
-					<a href="#">
+				<li>
+					<a href="states.php">
 						<!--<i class="fa fa-map-marker"></i> --> State
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-							<a href="add_state.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add State</span></a>
-						</li>
-						<!-- <li>
-							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
-						</li> -->
-						<li>
-							<a href="states.php"> <i class="fa fa-list"></i><span id="allProducts"> All States (<?php echo countState() ?>)</span></a>
-						</li> 
-					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_city.php" || 
-					basename($_SERVER['PHP_SELF'])=="city.php" || basename($_SERVER['PHP_SELF'])=="edit_city.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				?>
-					<a href="#">
+				<li>
+					<a href="city.php">
 						<!--<i class="fa fa-map-marker"></i> --> City
 						<span class="caret pull-right"></span>
-					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<!-- <a href="add_product.php"><i class="fa fa-plus-circle"></i> Bulk Add Products</a> -->
-							<a href="add_city.php"><i class="fa fa-plus-circle"></i><span id="allProducts"> Add City</span></a>
-						</li>
-						<!-- <li>
-							<a href="update_product.php"><i class="fa fa-check-square-o"></i> Bulk Update Products</a>
-						</li> -->
-						<li>
-							<a href="city.php"> <i class="fa fa-list"></i><span id="allProducts"> All Cities (<?php echo countCity() ?>)</span></a>
-						</li> 
-					</ul>
+					</a>		
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_area.php" || 
-					basename($_SERVER['PHP_SELF'])=="areas.php" || basename($_SERVER['PHP_SELF'])=="edit_area.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="areas.php">
 						<!-- <i class="fa fa-home"></i> -->Area
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_area.php"><i class="fa fa-plus-circle"></i><span> Add Area </span></a>
-						</li>
-						<li>
-							<a href="areas.php"><i class="fa fa-list"></i><span> All Areas (<?php echo countArea() ?>)</span></a>
-						</li>				
-					</ul>
 				</li>
 		 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_college.php" || 
-					basename($_SERVER['PHP_SELF'])=="colleges.php" || basename($_SERVER['PHP_SELF'])=="edit_college.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="colleges.php">
 						<!-- <i class="fa fa-location-arrow"></i> --> College
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_college.php"><i class="fa fa-plus-circle"></i><span> Add college </span></a>
-						</li>
-						<li>
-							<a href="colleges.php"><i class="fa fa-list"></i><span> All Colleges (<?php echo countCollege() ?>) </span></a>
-						</li> 
-					</ul>
 				</li>
 
 				<li>
@@ -279,11 +179,15 @@ function countTransaction()
 
 				<!--  Plain printing start -->
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=plain" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=plain" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=plain")
+					if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=plain")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -303,19 +207,19 @@ function countTransaction()
 				<ul>
 				<!-- Paper_print_type -->
 				<li>
-					<a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+					<a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types </span></a>
 				</li>
 				<!-- Paper_side -->
 				<li>
-					<a href="papersides.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+					<a href="papersides.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sides </span></a>
 				</li>
 				<!-- Paper_type -->
 				<li>
-					<a href="papertypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+					<a href="papertypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Types </span></a>
 				</li>
 				<!-- Paper_size -->
 				<li>
-					<a href="paper_size.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+					<a href="paper_size.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sizes </span></a>
 				</li>
 			</ul>
 			</li>
@@ -326,11 +230,16 @@ function countTransaction()
 					
 
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=project" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=project" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=project" )
+					if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=project" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=project" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=project")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -350,19 +259,19 @@ function countTransaction()
 					<ul>
 					<!-- Paper_print_type -->
 					<li>
-						<a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+						<a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types </span></a>
 					</li>
 					<!-- Paper_side -->
 					<li>
-						<a href="papersides.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+						<a href="papersides.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sides </span></a>
 					</li>
 					<!-- Paper_type -->
 					<li>
-						<a href="papertypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+						<a href="papertypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Types </span></a>
 					</li>
 					<!-- Paper_size -->
 					<li>
-						<a href="paper_size.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+						<a href="paper_size.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sizes </span></a>
 					</li>
 					</ul>
 				</li>
@@ -372,11 +281,15 @@ function countTransaction()
 			<!-- Multicolor printing start -->
 
 			<?php 
-				if(basename($_SERVER['PHP_SELF'])=="add_paper_print_type.php?type=multi" || 
-				basename($_SERVER['PHP_SELF'])=="paperprinttypes.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_side.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="papersides.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_type.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="papertypes.php?type=multi" || basename($_SERVER['PHP_SELF'])=="add_paper_size.php?type=multi" || 
-					basename($_SERVER['PHP_SELF'])=="paper_size.php?type=multi")
+				if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=multi" || 
+					basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=multi")
 					{ 
 						?> 
 						<li class="has_submenu open">
@@ -396,185 +309,57 @@ function countTransaction()
 					<ul>
 					<!-- Paper_print_type -->
 					<li>
-						<a href="paperprinttypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype() ?>) </span></a>
+						<a href="paperprinttypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Print Types </span></a>
 					</li>
 					<!-- Paper_side -->
 					<li>
-						<a href="papersides.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside() ?>) </span></a>
+						<a href="papersides.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sides </span></a>
 					</li>
 					<!-- Paper_type -->
 					<li>
-						<a href="papertypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype() ?>) </span></a>
+						<a href="papertypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Types </span></a>
 					</li>
 					<!-- Paper_size -->
 					<li>
-						<a href="paper_size.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize() ?>) </span></a>
+						<a href="paper_size.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sizes </span></a>
 					</li>
 					</ul>
 				</li>
 
-			<!--  Multicolor printing end -->
-
-			<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_copies.php" || 
-					basename($_SERVER['PHP_SELF'])=="copies.php" || basename($_SERVER['PHP_SELF'])=="edit_copies.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
-						<!-- <i class="fa fa-home"></i> -->Multicolor Copies
+				<li>
+					<a href="multicolor_copies.php">
+						<!--<i class="fa fa-user"></i> --> Mutlicolor Copies
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_copies.php"><i class="fa fa-plus-circle"></i><span> Add Copies </span></a>
-						</li>
-						<li>
-							<a href="copies.php"><i class="fa fa-list"></i><span> All Copies (<?php echo countCopies() ?>)</span></a>
-						</li>				
-					</ul>
 				</li>
 
-
-
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_printing_cost_estimation.php" || 
-					basename($_SERVER['PHP_SELF'])=="printing_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_printing_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="printing_cost_estimation_combination.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+		
+				<li>
+					<a href="printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_printing_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Printing Cost Estimation </span></a>
-						</li> 
-						<!-- <li>
-							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
-						</li> --> 
-						<li>
-							<a href="printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Printing Cost Estimation </span></a>
-						</li> 
-					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_project_printing_cost.php" ||basename($_SERVER['PHP_SELF'])=="project_printing_cost_estimation_combination.php" ||basename($_SERVER['PHP_SELF'])=="edit_project_printing_cost.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="project_printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Project Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_project_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Project Printing Cost </span></a>
-						</li> 
-						<!-- <li>
-							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
-						</li> --> 
-						<li>
-							<a href="project_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Project Printing Cost Estimation </span></a>
-						</li> 
-					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_multicolor_printing_cost.php" ||basename($_SERVER['PHP_SELF'])=="multicolor_printing_cost_estimation_combination.php" ||basename($_SERVER['PHP_SELF'])=="edit_multicolor_printing_cost.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="multicolor_printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Multicolor Printing Cost Estimation
 						<span class="caret pull-right"></span>
-					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_multicolor_printing_cost.php"><i class="fa fa-plus-circle"></i><span> Add Multicolor Printing Cost </span></a>
-						</li> 
-						<!-- <li>
-							<a href="printing_cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
-						</li> --> 
-						<li>
-							<a href="multicolor_printing_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Multicolor Printing Cost Estimation </span></a>
-						</li> 
-					</ul>
+					</a>					
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_binding_cost_estimation.php" || 
-					basename($_SERVER['PHP_SELF'])=="binding_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_cost_estimation_binding.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="binding_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Binding Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_binding_cost_estimation.php"><i class="fa fa-plus-circle"></i><span> Add Binding Cost Estimation </span></a>
-						</li> 
-						<!-- <li>
-							<a href="cost_estimation.php"><i class="fa fa-list"></i><span> View Estimated Cost (<?php echo countCostEstimation() ?>) </span></a>
-						</li> --> 
-						<li>
-							<a href="binding_cost_estimation_combination.php"><i class="fa fa-list"></i><span> All Binding Cost Estimation </span></a>
-						</li> 
-					</ul>
 				</li>
 				
 				<?php 
@@ -612,34 +397,11 @@ function countTransaction()
 					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_offer_zone.php" || 
-					basename($_SERVER['PHP_SELF'])=="offer_zones.php" ||basename($_SERVER['PHP_SELF'])=="edit_offer_zone.php")
-					{ 
-						?> 
-						<li class="has_submenu open">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="has_submenu">
-						<?php 
-					}  
-				 ?>
-					<a href="#">
+				<li>
+					<a href="offer_zones.php">
 						<!-- <i class="fa fa-file"></i> --> Offer Zone
 						<span class="caret pull-right"></span>
 					</a>
-					<!-- Sub menu -->
-					<ul>
-						<li>
-							<a href="add_offer_zone.php"><i class="fa fa-plus-circle"></i><span> Add Offer Zone </span></a>
-						</li>
-						<li>
-							<a href="offer_zones.php"><i class="fa fa-list"></i><span> All Offer Zone (<?php echo countOfferZone() ?>) </span></a>
-						</li> 
-					</ul>
 				</li>
 				<!-- <li>
 					<a href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
