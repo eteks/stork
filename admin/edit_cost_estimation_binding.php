@@ -87,6 +87,8 @@ if(isset($_GET["id"]))
 										<option value="spiral_binding" <?php if ($row['cost_estimation_binding_type'] == "spiral_binding") echo "selected"; ?>><span>Sprial Binding</span></option>
 										<option value="wireo_binding" <?php if ($row['cost_estimation_binding_type'] == "wireo_binding") echo "selected"; ?>><span>Wireo Binding</span></option>
 										<option value="comb_binding" <?php if ($row['cost_estimation_binding_type'] == "comb_binding") echo "selected"; ?>><span>Comb Binding</span></option>
+										<option value="handmade_binding" <?php if ($row['cost_estimation_binding_type'] == "handmade_binding") echo "selected"; ?>><span>Handmade Binding</span></option>
+										<option value="case_binding" <?php if ($row['cost_estimation_binding_type'] == "case_binding") echo "selected"; ?>><span>Case Binding</span></option>
 								    </select>
 								</div>
 								<div class="form-group">
@@ -105,7 +107,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
-								</div>
+								</div> 
 							<?php 
 							} 
 							}

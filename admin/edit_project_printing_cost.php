@@ -14,11 +14,6 @@ function edit_project_printing_cost(){
 if($_POST['paper_print_type'] || !$_POST['paper_print_type_hidden'] || $_POST['paper_side'] || !$_POST['paper_side_hidden']){
 			$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong! </span></div>";
 		}
-		if($_POST['paper_side'] && $_POST['paper_side'] != "single side"){
-							
-				$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong</span></div>";
-							
-			}
 			$paper_print_type_status = $_POST["paper_print_type_status"];	
 	$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND paper_print_type_id NOT IN('$val')");
 	$row = mysql_num_rows($qr);
@@ -107,24 +102,24 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-									<input type="text" class="form-control" maxlength="10" name="paper_print_type_hidden" autocomplete="off" value="Color with Black & White" disabled>
+									<input type="text" class="form-control" maxlength="10" name="paper_print_type" autocomplete="off" value="Color with Black & White" disabled>
 									<?php 
 									        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
 									        while($row_cost=mysql_fetch_array($query)) {
 									        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
-									        		echo "<input type='hidden' name='paper_print_type' value=".$row_cost['paper_print_type_id'].">";
+									        		echo "<input type='hidden' name='paper_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
 									        	}
 									        }
 									?>	
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Paper Side<span class="required">*</span></label>
-									<input type="text" class="form-control" maxlength="10" name="paper_side_hidden" autocomplete="off" value="Single Side" disabled>
+									<input type="text" class="form-control" maxlength="10" name="paper_side" autocomplete="off" value="Single Side" disabled>
 									<?php 
 								        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1'");
 								        while($row_cost1=mysql_fetch_array($query1)) {
 								    		if(strtolower($row_cost1['paper_side']) == "single side"){
-									        	echo "<input type='hidden' name='paper_side' value=".$row_cost1['paper_side_id'].">";
+									        	echo "<input type='hidden' name='paper_side_hidden' value=".$row_cost1['paper_side_id'].">";
 									        }
 									    }
 								    ?>

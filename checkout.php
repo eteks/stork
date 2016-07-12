@@ -1,7 +1,7 @@
 <?php 
 include('header.php');
 if(!isset($_SESSION['session_id'])){
-	die('<script type="text/javascript">window.location.href="printbooking.php";</script>');
+	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION[service].'";</script>');
 	exit();
 }
 

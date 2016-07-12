@@ -621,7 +621,6 @@ h4.order_or_button{
 	margin-bottom : 25px !important;
 }
 .error_input_field_phone{
-	background: #ffebeb none repeat scroll 0 0 !important;
     border: 1px solid red !important;	
 }
 /* Popup css added by siva*/
@@ -925,4 +924,15 @@ h4.order_or_button{
     cursor: pointer;
     font-size: 16px;
     margin-left: 12px;
+}
+.mcart-dd-content {
+    min-height:335px ;
+    max-height: 516px;
+    overflow: auto;
+}
+.mcart-price {
+    cursor: default;
+}
+.mcart-total table td {
+    cursor: default;
 }

@@ -188,7 +188,6 @@
 								    <li><b> Paper size : </b> <?php echo $track_status_array['paper_size']; ?> </li>
 								    <li><b> Total no of pages : </b> <?php echo $track_status_array['order_details_total_no_of_pages']; ?> </li>
 								    <li><b> Total amount : </b> <?php echo $track_status_array['order_details_total_amount']; ?> </li>
-
 								</ul>
 							</div>
 						</td>

@@ -16,6 +16,11 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
+	// To enable cut copy paste option added by siva
+	$('body').bind('cut copy paste', function (e) {
+        e.stopPropagation();
+    });
+
 	//  == Validation for Page range Format Start ==
 
 	$(document).on('keyup','.paper_range',function() {
@@ -535,20 +540,10 @@ $(document).ready(function () {
 		}
 		
 	});
-// post from when click button and submit type edited by siva
+// post from when click button and submit type edited by muthu
 	$('.print_add_to_cart_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_cart');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_cart');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
+		$('.printbooking_main_page form .submit_type').val('add_to_cart');
+		$('.printbooking_main_page form .form_submit_button').click();
 	});
 
 
@@ -617,18 +612,8 @@ $(document).ready(function () {
 	
 	// post form when click check button in print booking page and submit type edited by siva
 	$('.print_check_out_btn').on('click',function(){
-		if($('#pr-register').css('display')=='block') {
-			$('#print_booking_form .submit_type').val('add_to_checkout');
-			$('#print_booking_form').submit();
-		}
-		else if($('#project_printing_section').css('display')=='block') {
-			$('#project_printing_form .submit_type').val('add_to_checkout');
-			$('#project_printing_form').submit();
-		}
-		else {
-			// $('#project_printing_form .submit_type').val('add_to_checkout');
-			// $('#project_printing_form').submit();
-		}
+		$('.printbooking_main_page form .submit_type').val('add_to_checkout');
+		$('.printbooking_main_page form .form_submit_button').click();
 	});
 
 	
@@ -1517,6 +1502,7 @@ $(document).ready(function () {
 		}
 	});
 	$(document).on('click','.project_clone',function() {
+
 		$('.project_clone').css('pointer-events', 'none');
 
 	});
@@ -1628,7 +1614,39 @@ $(document).ready(function () {
 	});
 
 	// Validaion for adding restriction to clone and Store file value End
+
+	$(document).on('click','.project_remove',function() {
+		var last_section = $('.upload_content_section:last').find('.content_upload_file');
+		if(last_section.val() == '') {
+			$('.project_clone').css('pointer-events', 'none');
+		}
+		else {
+			$('.project_clone').css('pointer-events', 'auto');
+		}
+	});
+
 	// Project printing validation End
+
+	// To scroll fullwindow and particular div jquery
+
+	// $('#checkout_details_scroll').mouseenter(function() {
+	
+	// 	// $(this).bind('mousewheel DOMMouseScroll', function(e) {
+	// 	//     return true;
+	//  //    });
+	//  //    $('body').css('overflow','hidden');
+	//  $('body').bind('mousewheel');
+	//   $(this).unbind();
+	// });
+	// $('#checkout_details_scroll').mouseleave(function() {
+	// 	  $('body').css('overflow','auto');
+	// });
+
+	$('#checkout_details_scroll').hover(function() {
+     $('body').scroll().disable();
+     $(this).scroll().enable();
+
+});
 
 	// Ended by siva
 	
@@ -1704,4 +1722,67 @@ $(document).ready(function () {
 		}
 		
 	});
-});
+
+	//  Total no. of pages validation for project printing
+	$("#project_total_pages").keypress(function (e) {
+     	if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+    	}
+    });
+	$(document).on('keypress','#project_total_pages',function() {
+		var upload_files_value =$('.content_upload_file').val();
+		if(upload_files_value == '') {
+			return false;
+		}
+		else {
+			return true;
+		}		
+	});
+	$(document).on('blur','#project_total_pages',function() {
+		if($(this).val()=="0") {
+			
+			$(this).val('');
+			$('#project_paper_size option:first-child').attr("selected", "selected");
+			$('#project_paper_type option:first-child').attr("selected", "selected");
+			$('#project_binding_type option:first-child').attr("selected", "selected");
+
+		}
+    });
+	//  Total no. of pages validation for plain printing and multicolors printing
+	$("#total_pages").keypress(function (e) {
+     	if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+    	}
+    });
+	$(document).on('keypress','#total_pages',function() {
+		var upload_files_value =$('.uploadFile').val();
+		if(upload_files_value == '') {
+			return false;
+		}
+		else {
+			return true;
+		}
+	});
+	$(document).on('blur','#total_pages',function() {
+		if($(this).val()=="0") {
+			
+			$(this).val('');
+			$('#print_side option:first-child').attr("selected", "selected");
+			$('#paper_type option:first-child').attr("selected", "selected");
+			$('#paper_size option:first-child').attr("selected", "selected");
+
+		}
+    });
+
+	$('.select_city_btn a').on('click',function() {
+		if (document.getElementById('initial_city_name').selectedIndex < 1){
+			$('#initial_city_name').addClass('error_print_booking_field');
+		}
+		else {
+			$('#initial_city_name').removeClass('error_print_booking_field');
+		}
+	});
+
+
+
+}); // Document ready end

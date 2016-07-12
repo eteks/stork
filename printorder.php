@@ -1,7 +1,6 @@
 <?php
 include('dbconnect.php');
 require_once("function.php");
-@ob_start();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if($_POST['submit_type'] == 'add_to_cart' || $_POST['submit_type'] == 'add_to_checkout'){
@@ -79,12 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				}
 			}
 			if(isset($_FILES['printfiles'])){
+
 	    		$name_array = $_FILES['printfiles']['name'];
 				$tmp_name_array = $_FILES['printfiles']['tmp_name'];
 	    		$type_array = $_FILES['printfiles']['type'];
 	    		$size_array = $_FILES['printfiles']['size'];
 	    		$error_array = $_FILES['printfiles']['error'];
 			    for($i = 0; $i < count($tmp_name_array); $i++){
+			    	
 			    	$filename = $name_array[$i];
 					$filename = str_replace('..', '', $filename);
 					$filename = str_replace('/', '', $filename);
@@ -92,7 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$extesion_find = explode(".", $filename);
 					$extension = end($extesion_find);
 					if(in_array($extension, $ALLOWEDFILE)){
+						
 				        if(move_uploaded_file($tmp_name_array[$i], $upload_path.$additional_path.$name_array[$i])){
+				        	
 		        			if($print_type_name == 'Color with Black & White'){
 								$insert_data_upload_files = $order_detail_id.','.$is_binding.',"content","'.$upload_path.$additional_path.$name_array[$i].'","'.$_POST['filepageno'][$i].'",1';			
 							}
@@ -101,28 +104,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 							}
 				            insertfunction('upload_files_order_details_id,upload_files_is_binding,upload_files_type,upload_files,upload_files_color_print_pages,upload_files_status',$insert_data_upload_files,UPLOADFILES,'',$connection);
 							if($_POST['submit_type'] == 'add_to_cart'){
-								header('Location:printbooking.php?service='.$_SESSION[service]);
+								
+								//header('Location:printbooking.php?service='.$_SESSION['service']);
+								die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION['service'].'";</script>');
+	  							exit();
 							}
 							else if($_POST['submit_type'] == 'add_to_checkout'){
-								header('Location:checkout.php');
+								//header('Location:checkout.php');
+								die('<script type="text/javascript">window.location.href="checkout.php";</script>');
+	  							exit();
 							}	
 							
 				        } else {
-							header('Location:printbooking.php?error1=true&service='.$_SESSION[service]);
+							//header('Location:printbooking.php?error1=true&service='.$_SESSION['service']);
+							die('<script type="text/javascript">window.location.href="printbooking.php?error1=true&service='.$_SESSION['service'].'";</script>');
+  							exit();
 				        }
 					}
 					else{
-						header('Location:printbooking.php?error2=true&service='.$_SESSION[service]);
+						//header('Location:printbooking.php?error2=true&service='.$_SESSION['service']);
+						die('<script type="text/javascript">window.location.href="printbooking.php?error2=true&service='.$_SESSION['service'].'";</script>');
+						exit();
 					}
 			    }
 			}
 			else {
-				header('Location:printbooking.php?error3=true&service='.$_SESSION[service]);
+				
+				//header('Location:printbooking.php?error3=true&service='.$_SESSION['service']);
+				die('<script type="text/javascript">window.location.href="printbooking.php?error3=true&service='.$_SESSION['service'].'";</script>');
+				exit();
+				
 			}
-			// echo "<pre>";
-			// print_r($_POST);
-			// print_r($_FILES);
-			// echo "</pre>";
+			
 		} // end of plain printing
 		else if($printing_type == 'project_printing'){
 			
@@ -222,23 +235,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			        		$insert_content_data_upload_files = $order_detail_id.','.$is_binding.',"content","'.$upload_path.$additional_path.$content_name_array[$i].'","'.$_POST['content_print_file'][$i].'",1';
 				            insertfunction('upload_files_order_details_id,upload_files_is_binding,upload_files_type,upload_files,upload_files_color_print_pages,upload_files_status',$insert_content_data_upload_files,UPLOADFILES,'',$connection);
 							if($_POST['submit_type'] == 'add_to_cart'){
-								header('Location:printbooking.php?service='.$_SESSION[service]);
+								//header('Location:printbooking.php?service='.$_SESSION['service']);
+								die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION['service'].'";</script>');
+	  							exit();
 							}
 							else if($_POST['submit_type'] == 'add_to_checkout'){
-								header('Location:checkout.php');
+								//header('Location:checkout.php');
+								die('<script type="text/javascript">window.location.href="checkout.php";</script>');
+	  							exit();
 							}	
 							
 				        } else {
-							header('Location:printbooking.php?error1=true&service='.$_SESSION[service]);
+							//header('Location:printbooking.php?error1=true&service='.$_SESSION['service']);
+							die('<script type="text/javascript">window.location.href="printbooking.php?error1=true&service='.$_SESSION['service'].'";</script>');
+  							exit();
 				        }
 					}
 					else{
-						header('Location:printbooking.php?error2=true&service='.$_SESSION[service]);
+						//header('Location:printbooking.php?error2=true&service='.$_SESSION['service']);
+						die('<script type="text/javascript">window.location.href="printbooking.php?error2=true&service='.$_SESSION['service'].'";</script>');
+						exit();
 					}
 			    }
 			}
 			else {
-				header('Location:printbooking.php?error3=true&service='.$_SESSION[service]);
+				//header('Location:printbooking.php?error3=true&service='.$_SESSION['service']);
+				die('<script type="text/javascript">window.location.href="printbooking.php?error3=true&service='.$_SESSION['service'].'";</script>');
+				exit();
 			}
 	}// end of add to cart
 	

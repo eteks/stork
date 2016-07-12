@@ -1,8 +1,11 @@
 
 <?php
 include "includes/header.php";
-?>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+if(!isset($_GET['type'])){
+  die('<script type="text/javascript">window.location.href="index.php";</script>');
+  exit();
+ }
+?><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Add Paper Side</title>
 </head>
 <body>

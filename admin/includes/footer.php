@@ -2,11 +2,14 @@
 <div id="push"></div>
 </div>
 	<footer>
-	<div class="footer-bottom">
+<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-						<p class="copy-right">Central - Copyright &copy; 2016 <a title="Cmsmart - Magento theme" href="http://www.atomicka.com/">Infom Atomicka Tech Pvt Ltd</a>. All Rights Reserved</p>
+					<div class="col-md-6">
+						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
+					</div>
+					<div class="col-md-6">
+						<p class="dev_partner" style="text-align: right;">Development Partner<a href="http://www.atomicka.com" target="_blank"> Infom Atomicka (Tech) Pvt Ltd.</a></p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>
 							Top
