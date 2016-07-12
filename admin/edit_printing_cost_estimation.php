@@ -72,6 +72,10 @@ if(isset($_GET["id"]))
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
+								<?php 
+									$query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='plain_printing'");
+									$row_printing_type = mysql_fetch_array($query_printing_type);
+								?>
 							<?php 
 								$match = "SELECT * FROM `stork_cost_estimation` WHERE `cost_estimation_id`='$id'";
 								$qry = mysqlQuery($match);
@@ -88,7 +92,7 @@ if(isset($_GET["id"]))
 											<span>Select Paper Print Type</span>
 										</option>
 								        <?php
-				                        $query = mysql_query("select * from stork_paper_print_type");
+				                        $query = mysql_query("select * from stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 				                        while ($rowPaperPrintType = mysql_fetch_array($query)) {
 				                        if($row['cost_estimation_paper_print_type_id'] == $rowPaperPrintType['paper_print_type_id'])   
 											echo "<option selected value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
@@ -104,7 +108,7 @@ if(isset($_GET["id"]))
 											<span>Select State</span>
 										</option>
 								        <?php
-					                        $query = mysql_query("select * from stork_paper_side");
+					                        $query = mysql_query("select * from stork_paper_side WHERE paper_side_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 					                        while ($rowPaperSide = mysql_fetch_array($query)) {
 					                        if($row['cost_estimation_paper_side_id'] == $rowPaperSide['paper_side_id'])   
 												echo "<option selected value='".$rowPaperSide['paper_side_id']."'>".$rowPaperSide['paper_side']."</option>";
@@ -120,7 +124,7 @@ if(isset($_GET["id"]))
 											<span>Select Paper Type</span>
 										</option>
 								        <?php
-				                        $query = mysql_query("select * from stork_paper_type");
+				                        $query = mysql_query("select * from stork_paper_type WHERE paper_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 				                        while ($rowPaperType = mysql_fetch_array($query)) {
 					                        if($row['cost_estimation_paper_type_id'] == $rowPaperType['paper_type_id'])   
 												echo "<option selected value='".$rowPaperType['paper_type_id']."'>".$rowPaperType['paper_type']."</option>";
@@ -136,7 +140,7 @@ if(isset($_GET["id"]))
 											<span>Select State</span>
 										</option>
 								        <?php
-				                        $query = mysql_query("select * from stork_paper_size");
+				                        $query = mysql_query("select * from stork_paper_size WHERE paper_size_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 				                        while ($rowPaperSize = mysql_fetch_array($query)) {
 					                        if($row['cost_estimation_paper_size_id'] == $rowPaperSize['paper_size_id'])   
 												echo "<option selected value='".$rowPaperSize['paper_size_id']."'>".$rowPaperSize['paper_size']."</option>";

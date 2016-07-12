@@ -14,6 +14,7 @@
 		}
 		include "../config/config.php";
 		include "../includes/functions.php";
+		include 'global.php';
 	?>
   
     <!-- CSS Files -->

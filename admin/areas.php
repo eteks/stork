@@ -48,6 +48,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<h3 class="acc-title lg clone_heading"> Areas</h3>
 		<div class="clear_both"> </div>
 	</div>
+	<div class="add_section">
+		<a href="add_area.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+	</div>
 		<div class="form-edit-info">
 			<?php 
 				$sql = "SELECT * FROM `stork_area`";

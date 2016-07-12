@@ -55,6 +55,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 </div>
         <div class="clear_both"> </div>
         </div>
+        <div class="add_section">
+            <a href="add_binding_cost_estimation.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+        </div>
             <div class="form-edit-info">
                 <table class="data-table cost_table stork_admin_table" id="my-orders-table">
                     <thead>
