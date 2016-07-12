@@ -20,15 +20,20 @@ function generate_combinations(array $data, array &$all = array(), array $group 
     return $all;
 }
 
-$papersize = mysqlQuery("SELECT * FROM `stork_paper_size`");
-$papersides = mysqlQuery("SELECT * FROM `stork_paper_side`");
-$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
-$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type`");
+$query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='plain_printing'");
+$row_printing_type = mysql_fetch_array($query_printing_type);
+
+$papersize = mysqlQuery("SELECT * FROM `stork_paper_size` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$papersides = mysqlQuery("SELECT * FROM `stork_paper_side` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+
 
 $papersize_array = array();
 $papersides_array = array();
 $papertypes_array = array();
 $paperprinttypes_array = array();
+
 
 while ( $result = mysql_fetch_array( $papersize )){
     $tmp = array($result['paper_size']);    
@@ -49,6 +54,7 @@ while ( $result = mysql_fetch_array( $paperprinttypes )){
     $tmp = array($result['paper_print_type']);  
     array_push( $paperprinttypes_array, $tmp );
 }
+
 
 // print_r($papersize_array);
 // print_r($papersides_array);
@@ -139,7 +145,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type = implode(" ",$value[3]);
-
+                        $copies = implode(" ",$value[4]);
                     ?>
                     <tr class="">
                         <td><?php echo $print_type ?></td>
@@ -147,11 +153,11 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         <td><?php echo $type ?></td> 
                         <td><?php echo $size ?></td>  
                         <?php 
-                            $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation 
-                                    INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id= stork_cost_estimation.cost_estimation_paper_print_type_id 
-                                    INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_cost_estimation.cost_estimation_paper_side_id 
-                                    INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_cost_estimation.cost_estimation_paper_size_id 
-                                    INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_cost_estimation.cost_estimation_paper_type_id");
+                            $estimated_cost = mysqlQuery("SELECT cep.*,ppt.paper_print_type,pside.paper_side,psize.paper_size,pt.paper_type FROM stork_cost_estimation as cep 
+                                    INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id= cep.cost_estimation_paper_print_type_id 
+                                    INNER JOIN stork_paper_side as pside ON pside.paper_side_id=cep.cost_estimation_paper_side_id
+                                    INNER JOIN stork_paper_size as psize ON psize.paper_size_id=cep.cost_estimation_paper_size_id
+                                    INNER JOIN stork_paper_type as pt ON pt.paper_type_id=cep.cost_estimation_paper_type_id");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
                                echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 

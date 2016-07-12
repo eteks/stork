@@ -70,11 +70,15 @@ include "includes/header.php";
 						<span class="error_test"> Please fill all required(*) fields </span>
 					</div>
 					<?php if($successMessage) echo $successMessage; ?>
+					<?php 
+						$query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='project_printing'");
+						$row_printing_type = mysql_fetch_array($query_printing_type);
+					?>
 					<div class="form-group">
 					    <label for="last-name">Paper Print Type<span class="required">*</span></label>
 						<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" name='cost_print_type' disabled>
 						<?php 
-						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1'");
+						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 						        while($row_cost=mysql_fetch_array($query)) {						
 						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){						        	
 						        		echo "<input type='hidden' name='cost_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
@@ -86,7 +90,7 @@ include "includes/header.php";
 					    <label for="last-name">Paper Side<span class="required">*</span></label>
 						<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Single Side" name='cost_paper_side' disabled>
 						<?php 
-					        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1'");
+					        $query1=mysql_query("SELECT * FROM stork_paper_side WHERE paper_side_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 					        while($row_cost1=mysql_fetch_array($query1)) {
 					    		if(strtolower($row_cost1['paper_side']) == "single side"){
 						        	echo "<input type='hidden' name='cost_paper_side_hidden' value=".$row_cost1['paper_side_id'].">";
@@ -101,7 +105,7 @@ include "includes/header.php";
 								<span>Select Paper Type</span>
 							</option>
 					        <?php 
-					        $query3=mysql_query("SELECT * FROM stork_paper_type WHERE paper_type_status='1'");
+					        $query3=mysql_query("SELECT * FROM stork_paper_type WHERE paper_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 					        while($row_cost3=mysql_fetch_array($query3)) {
 					        	?>
 					        <option value="<?php echo $row_cost3['paper_type_id']; ?>"> <?php echo $row_cost3['paper_type']; ?></option>
@@ -115,7 +119,7 @@ include "includes/header.php";
 								<span>Select Paper Size</span>
 							</option>
 					        <?php 
-					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1'");
+					        $query2=mysql_query("SELECT * FROM stork_paper_size WHERE paper_size_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 					        while($row_cost2=mysql_fetch_array($query2)) {
 					        	?>
 					        <option value="<?php echo $row_cost2['paper_size_id']; ?>"> <?php echo $row_cost2['paper_size']; ?></option>

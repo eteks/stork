@@ -142,14 +142,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                     </thead>
                     <?php 
                     foreach ($datas as $key=>$value) {
-                        // echo print_r($value[4]);
                         $size = implode(" ",$value[0]);
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type_id = $key[3];
                         $print_type = $value[3];
                         $copies = implode(" ",$value[4]);
-                        // echo $copies."<br>";
                     ?>
                     <tr class="">
                         <td><?php echo $print_type ?></td>

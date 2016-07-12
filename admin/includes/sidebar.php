@@ -262,6 +262,13 @@ function countTransaction()
 					</ul>
 				</li>
 
+				<li>
+					<a href="printing_type.php">
+						<!-- <i class="fa fa-location-arrow"></i> --> Printing Type
+						<span class="caret pull-right"></span>
+					</a>
+				</li>
+
 
 
 				<!--  Plain printing start -->
