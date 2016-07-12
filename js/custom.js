@@ -503,6 +503,8 @@ $(document).ready(function () {
 				// file_name_gallary.push(file_name_section);
 			}
 		});
+
+
 		//newly added by kalai for multi color printing on 08/06/16
 		if($(this).val()!='' && $('#printing_type').val() == "multicolor_printing") {
 			$('.display_paper_range,.label_page_range').slideDown();
@@ -952,6 +954,16 @@ $(document).ready(function () {
 		else{ 
 			$('#paper_size').removeClass('error_print_booking_field');
 		} // paper size validation
+		if($('#printing_type').val() =="multicolor_printing"){
+			$('.num_of_copies').each(function() {
+				if($(this,'option:selected').val() == 'select_copies') {
+					$(this).addClass('error_print_booking_field');
+				}
+				else {
+					$(this).removeClass('error_print_booking_field');
+				}
+			});
+		}
 		if($('#printing_type').val() !="multicolor_printing"){
 			if (document.getElementById('print_type').selectedIndex < 1){
 				$('#print_type').addClass('error_print_booking_field');
@@ -1432,7 +1444,7 @@ $(document).ready(function () {
 	});
 
 	//file upload validation in print booking page edited by siva
-	$('#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form #refer_uplopadfile').change(function(){
+	$('#project_printing_form #cover_uplopadfile,#project_printing_form #index_uplopadfile,#project_printing_form #refer_uplopadfile,#print_booking_form #upload_cover_File').change(function(){
     	var file = this.files[0];
     	name = file.name;
     	size = file.size;
@@ -1449,7 +1461,6 @@ $(document).ready(function () {
 	});
 
 	// Cover file name
-
 	$('#cover_uplopadfile').on('change',function() {
 		var project_file_name = $(this).val();
 		if(project_file_name == '') {

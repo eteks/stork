@@ -936,3 +936,6 @@ h4.order_or_button{
 .mcart-total table td {
     cursor: default;
 }
+.num_of_copies {
+    max-width: 228px !important;
+}

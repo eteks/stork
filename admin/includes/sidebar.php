@@ -17,6 +17,12 @@ function countArea()
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countCopies()
+{
+	$query = mysqlQuery("SELECT count(multicolor_copies_id) as total FROM stork_multicolor_copies");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 function countCostEstimation(){
 	$query = mysqlQuery("SELECT count(cost_estimation_id) as total FROM stork_cost_estimation");
 	$fetch = mysql_fetch_array($query);
@@ -408,6 +414,37 @@ function countTransaction()
 				</li>
 
 			<!--  Multicolor printing end -->
+
+			<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_copies.php" || 
+					basename($_SERVER['PHP_SELF'])=="copies.php" || basename($_SERVER['PHP_SELF'])=="edit_copies.php")
+					{ 
+						?> 
+						<li class="has_submenu open">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-home"></i> -->Multicolor Copies
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<a href="add_copies.php"><i class="fa fa-plus-circle"></i><span> Add Copies </span></a>
+						</li>
+						<li>
+							<a href="copies.php"><i class="fa fa-list"></i><span> All Copies (<?php echo countCopies() ?>)</span></a>
+						</li>				
+					</ul>
+				</li>
+
 
 
 				<?php 
