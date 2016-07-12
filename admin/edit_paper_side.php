@@ -1,10 +1,6 @@
 
 <?php
 include "includes/header.php";
-if(!isset($_GET['type'])){
-  die('<script type="text/javascript">window.location.href="index.php";</script>');
-  exit();
- }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Edit Paper Side</title>
@@ -16,9 +12,10 @@ if (isset($_GET['update']))
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$val = $_GET['update'];
 		$val = mres($val);
+		$printing_type = $_POST['printing_type'];
 		$paper_side = $_POST["paper_side"];
 		$paper_side_status = $_POST["paper_side_status"];
-		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_id NOT IN('$val')");
+		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_id NOT IN('$val') AND printing_type_id='$printing_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span>  Paperside Already exists! </span></div>";
@@ -37,6 +34,9 @@ $id=$val;
 if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
+	$select_type = mysql_query ("SELECT * FROM stork_paper_side WHERE paper_side_id='$id'");
+	$printing_type_id = mysql_fetch_array($select_type);
+	$printing_type = $printing_type_id ['printing_type_id'];					
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -90,6 +90,7 @@ if(isset($_GET["id"]))
 							    <label for="last-name">Paper Side<span class="required">*</span></label>
 								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
 							</div>
+							<input type="hidden" name="printing_type" value="<?php echo $printing_type ?>" >
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paper Side Status<span class="required">*</span></label>
 								<select class="product-type-filter form-control change_status" id="sel_a" name="paper_side_status">

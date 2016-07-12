@@ -124,6 +124,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         </div>
         <div class="clear_both"> </div>
         </div>
+        <div class="add_section">
+            <a href="add_multicolor_printing_cost.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+        </div>
             <div class="form-edit-info">
                 <table class="data-table cost_table stork_admin_table" id="my-orders-table">
                     <thead>
@@ -142,14 +145,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                     </thead>
                     <?php 
                     foreach ($datas as $key=>$value) {
-                        // echo print_r($value[4]);
                         $size = implode(" ",$value[0]);
                         $side = implode(" ",$value[1]);
                         $type = implode(" ",$value[2]);
                         $print_type_id = $key[3];
                         $print_type = $value[3];
                         $copies = implode(" ",$value[4]);
-                        // echo $copies."<br>";
                     ?>
                     <tr class="">
                         <td><?php echo $print_type ?></td>

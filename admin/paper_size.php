@@ -54,11 +54,17 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$type = $_GET['type'];
 	?>
 	<div class="add_section">
-		<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span> </a>
+		<a href="add_paper_size.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span> <span>[+]</span></a>
 	</div>
 		<div class="form-edit-info">
 		<?php 
-		$papersize_query = mysqlQuery("SELECT * FROM `stork_paper_size`");
+		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
+  		$type_name = $type_array[$type];
+		$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'"	);
+		$printing_type_id = mysql_fetch_array($select_type);
+		$printing_type = $printing_type_id ['printing_type_id'];
+
+		$papersize_query = mysqlQuery("SELECT * FROM `stork_paper_size`  WHERE printing_type_id='$printing_type'");
 		$papersize_rows = mysql_num_rows($papersize_query);
 		if ($papersize_rows > 0 ) {
 		?>

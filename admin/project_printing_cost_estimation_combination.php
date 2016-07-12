@@ -20,10 +20,13 @@ function generate_combinations(array $data, array &$all = array(), array $group 
     return $all;
 }
 
-$papersize = mysqlQuery("SELECT * FROM `stork_paper_size`");
-$papersides = mysqlQuery("SELECT * FROM `stork_paper_side` where LOWER(paper_side)='single side'");
-$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type`");
-$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` where LOWER(paper_print_type)='color with black & white'");
+$query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='project_printing'");
+$row_printing_type = mysql_fetch_array($query_printing_type);
+
+$papersize = mysqlQuery("SELECT * FROM `stork_paper_size` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$papersides = mysqlQuery("SELECT * FROM `stork_paper_side` where LOWER(paper_side)='single side' AND printing_type_id=".$row_printing_type['printing_type_id']);
+$papertypes = mysqlQuery("SELECT * FROM `stork_paper_type` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` where LOWER(paper_print_type)='color with black & white' AND printing_type_id=".$row_printing_type['printing_type_id']);
 $papersides = mysql_fetch_array($papersides);
 $paperprinttypes = mysql_fetch_array($paperprinttypes);
 // echo $papersides['paper_side'];
@@ -115,6 +118,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
             </select>
         </div>
         <div class="clear_both"> </div>
+        </div>
+        <div class="add_section">
+            <a href="add_project_printing_cost.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
         </div>
             <div class="form-edit-info">
                 <table class="data-table cost_table stork_admin_table" id="my-orders-table">

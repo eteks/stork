@@ -12,12 +12,31 @@ class dbConnect {
             die ("Cannot connect to the database");
         }
         else{
-            // Code to insert default data on Paper Print Type Table
-            $print_type_query = mysqli_query($conn, 'select * from stork_paper_print_type where paper_print_type="Color with Black & White"');
-            if(mysqli_num_rows($print_type_query) == 0){
-                mysqli_query($conn,"INSERT INTO stork_paper_print_type (paper_print_type, 
-                    paper_print_type_status) VALUES ('Color with Black & White',1)");
-            }      
+            // Code to insert default data on Printing Type Table
+            $printing_type_plain_query = mysqli_query($conn, 'select * from stork_printing_type where printing_type="plain_printing"');
+            if(mysqli_num_rows($printing_type_plain_query) == 0){
+                mysqli_query($conn,"INSERT INTO `stork_printing_type` (`printing_type_id`, `printing_type`, `printing_type_status`, `created_date`) VALUES (NULL, 'plain_printing', '1', CURRENT_TIMESTAMP)");
+                $printing_type_id = mysqli_insert_id($conn);
+                // Code to insert default data on Paper Print Type Table
+                mysqli_query($conn,"INSERT INTO `stork_paper_print_type` (`paper_print_type_id`, `paper_print_type`,`printing_type_id`,`paper_print_type_status`, `created_date`) VALUES (NULL, 'Color with Black & White','$printing_type_id','1', CURRENT_TIMESTAMP)");
+
+            }   
+            $printing_type_project_query = mysqli_query($conn, 'select * from stork_printing_type where printing_type="project_printing"');
+            if(mysqli_num_rows($printing_type_plain_query) == 0){
+                mysqli_query($conn,"INSERT INTO `stork_printing_type` (`printing_type_id`, `printing_type`, `printing_type_status`, `created_date`) VALUES (NULL, 'project_printing', '1', CURRENT_TIMESTAMP)");
+                $printing_type_id = mysqli_insert_id($conn);
+                // Code to insert default data on Paper Print Type Table
+                mysqli_query($conn,"INSERT INTO `stork_paper_print_type` (`paper_print_type_id`, `paper_print_type`,`printing_type_id`,`paper_print_type_status`, `created_date`) VALUES (NULL, 'Color with Black & White','$printing_type_id','1', CURRENT_TIMESTAMP)");
+                // Code to insert default data on Paper Side Table
+                mysqli_query($conn,"INSERT INTO `stork_paper_side` (`paper_side_id`, `paper_side`,`printing_type_id`,`paper_side_status`, `created_date`) VALUES (NULL, 'Single Side','$printing_type_id','1', CURRENT_TIMESTAMP)");
+            }   
+            $printing_type_multi_query = mysqli_query($conn, 'select * from stork_printing_type where printing_type="multicolor_printing"');
+            if(mysqli_num_rows($printing_type_plain_query) == 0){
+                mysqli_query($conn,"INSERT INTO `stork_printing_type` (`printing_type_id`, `printing_type`, `printing_type_status`, `created_date`) VALUES (NULL, 'multicolor_printing', '1', CURRENT_TIMESTAMP)");
+                $printing_type_id = mysqli_insert_id($conn);
+                // Code to insert default data on Paper Print Type Table
+                mysqli_query($conn,"INSERT INTO `stork_paper_print_type` (`paper_print_type_id`, `paper_print_type`,`printing_type_id`,`paper_print_type_status`, `created_date`) VALUES (NULL, 'Color with Black & White','$printing_type_id','1', CURRENT_TIMESTAMP)");
+            }  
         }
         return $conn;
     }
