@@ -13,17 +13,25 @@ if(!isset($_GET['type'])){
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$paper_type = $_POST['paper_type'];
 		$paper_type_status=$_POST['paper_type_status'];
+
+		$type = $_POST['type_name'];
+		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
+  		$type_name = $type_array[$type];
+		$select_type = mysql_query ("SELECT * FROM stork_printing_type WHERE printing_type='$type_name'");
+		$printing_type_id = mysql_fetch_array($select_type);
+		$printing_type = $printing_type_id ['printing_type_id'];
+
 		if($paper_type=="" || $paper_type_status=="") {
 			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 		}
 		else {
-			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type'");
+			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND printing_type_id = '$printing_type'");
 			$row=mysql_fetch_array($qr);
 			if($row > 0) {
 				$successMessage = "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
 			}
 			else {
-				mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status) VALUES ('$paper_type','$paper_type_status')");
+				mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status,printing_type_id) VALUES ('$paper_type','$paper_type_status','$printing_type')");
 				$successMessage = "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
 			}
 		}
@@ -60,7 +68,8 @@ if(!isset($_GET['type'])){
 						<h3 class="acc-title lg">Add Paper Type Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Type Information</h4>
-							<form action="add_paper_type.php" method="POST" name="edit-acc-info" id="add_paper_type">
+							<?php 	$type_name = $_GET['type']; ?>
+							<form action="add_paper_type.php?type=<?php echo $type_name; ?>" method="POST" name="edit-acc-info" id="add_paper_type">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -69,6 +78,7 @@ if(!isset($_GET['type'])){
 								    <label for="last-name">Paper Type<span class="required">*</span></label>
 									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">
 								</div>
+								<input type="hidden" name="type_name" value="<?php echo $type_name; ?>">
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">

@@ -1,10 +1,6 @@
 
 <?php
 include "includes/header.php";
-if(!isset($_GET['type'])){
-  die('<script type="text/javascript">window.location.href="index.php";</script>');
-  exit();
- }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Edit Paper Print Type</title>
