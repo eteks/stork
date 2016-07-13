@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Edit Printing Cost Estimation</title>
+<title>Edit Plain Printing Cost Estimation</title>
 </head>
 <body>
 <?php
@@ -22,10 +22,10 @@ if (isset($_GET['update']))
 		$qr = mysqlQuery("SELECT * FROM `stork_cost_estimation` WHERE cost_estimation_paper_print_type_id='$paper_print_type' AND cost_estimation_paper_side_id='$paper_side' AND cost_estimation_paper_size_id='$paper_size' AND cost_estimation_paper_type_id='$paper_type' AND cost_estimation_id NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Already Printing Cost Assigned! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Already Plain Printing Cost Assigned! </span></div>";
 		} else {			
 			mysqlQuery("UPDATE `stork_cost_estimation` SET cost_estimation_paper_print_type_id='$paper_print_type',cost_estimation_paper_side_id='$paper_side',cost_estimation_paper_size_id='$paper_size',cost_estimation_paper_type_id='$paper_type',cost_estimation_amount='$amount', cost_estimation_status='$cost_estimation_status' WHERE cost_estimation_id=".$val);
-			$successMessage = "<div class='container error_message_mandatory'><span> Printing Cost Updated Successfully! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span> Plain Printing Cost Updated Successfully! </span></div>";
 		}
 				
 	}
@@ -48,10 +48,10 @@ if(isset($_GET["id"]))
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Printing Cost Estimation</a>
+						<a href="/">Plain Printing Cost Estimation</a>
 					</li>
 					<li>
-						<span>Edit Printing Cost Estimation</span>
+						<span>Edit Plain Printing Cost Estimation</span>
 					</li>
 				</ul>
 			</div>
@@ -64,9 +64,9 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Edit Printing Cost Estimation </h3>
+						<h3 class="acc-title lg">Edit Plain Printing Cost Estimation </h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Printing Cost Estimation Information</h4>
+							<h4 class="acc-sub-title">Plain Printing Cost Estimation Information</h4>
 							<form action="edit_printing_cost_estimation.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cost_estimation">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>

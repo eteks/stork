@@ -148,7 +148,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">No. of Copies<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="cost_copies">
+									<select class="product-type-filter form-control" id="sel_d" name="cost_copies">
 								        <option>
 											<span>Select No. of Copies</span>
 										</option>
@@ -168,7 +168,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_d" name="cost_estimation_status">
+									<select class="product-type-filter form-control" id="sel_e" name="cost_estimation_status">
 								        <option>
 											<span>Select status</span>
 										</option>

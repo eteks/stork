@@ -53,18 +53,18 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Multicolor Copies Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Multicolor Copies Information</h4>							
-							<form action="add_multicolor_copies.php" id="add_state" method="POST" name="edit-acc-info">
+							<form action="add_multicolor_copies.php" id="add_multicolor_copies" method="POST" name="edit-acc-info">
 									<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 									 <?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="last-name">No. Of Copies<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" autocomplete="off" placeholder="No. Of Copies" name="number_of_copies">
+									<input type="text" class="form-control" id="copies" autocomplete="off" placeholder="No. Of Copies" name="number_of_copies">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Copies Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="number_of_copies_status">
+									<select class="product-type-filter form-control" id="sel_a" name="number_of_copies_status">
 								        <option value="">
 											<span>Select Status</span>
 										</option>
