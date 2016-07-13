@@ -123,7 +123,7 @@ $(document).ready(function(){
       $(this).find('th:last-child').css('width','100px');
     }
     else if(thCount == 15) {
-      $(this).css('width','1720px');
+      $(this).css('width','1770px');
       $(this).find('th:first-child').css('width','270px');
       $(this).find('th:nth-child(2)').css('width','400px');
       $(this).find('th:nth-child(3)').css('width','240px');
