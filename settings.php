@@ -37,7 +37,6 @@ define("PRINTINGTYPE",'stork_printing_type');
 define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
 define("NUMBEROFCOPIES",'stork_multicolor_copies');
-define("PRINTINGTYPE",'stork_printing_type');
 define("CITY",'stork_city');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
 define("PROJECTCOSTESTIMATION",'stork_cost_estimation_project_printing');
