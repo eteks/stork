@@ -16,10 +16,10 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
-	// To enable cut copy paste option added by siva
-	$('body').bind('cut copy paste', function (e) {
-        e.stopPropagation();
-    });
+	// // To enable cut copy paste option added by siva
+	// $('body').bind('cut copy paste', function (e) {
+        // e.stopPropagation();
+    // });
 
 	//  == Validation for Page range Format Start ==
 
@@ -1794,6 +1794,14 @@ $(document).ready(function () {
 		}
 	});
 
-
+	$('.personal_address').on('blur',function(){
+		$('#print_checkout_form #billing_address').val($(this).val());
+	});
+	
+	$('.send_to_address_college').on('change',function(){
+		if($(this).prop("checked") == true){
+			$('#billing_address').val($('#collegename1').val());
+		}
+	});
 
 }); // Document ready end
