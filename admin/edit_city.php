@@ -20,6 +20,10 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> City Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_city` SET `city_name`='$city_name',`city_status`='$city_status' WHERE `city_id`=".$val);
+			//newly added code when remove edit restrict
+			if(($city_status == 0 && !$_POST['change_status'])||($city_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE `stork_area` SET `area_status`='$city_status' WHERE `area_city_id`=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> City Updated Successfully! </span></div>";	
 		}
 				
@@ -77,6 +81,9 @@ if(isset($_GET["id"]))
 										while($row = mysql_fetch_array($qry)) 
 										{
 								?>
+								<?php if ($row['city_status'] == 0){ ?>
+									<input type="hidden" name="change_status" class="change_status_value">
+								<?php } ?>
 								<div class="form-group">
 								    <label for="first-name">Select State<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="" name="state_id" disabled="true">
@@ -102,7 +109,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">City Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="city_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="city_status">
 								        <option>
 											<span>Select status</span>
 										</option>

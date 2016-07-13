@@ -447,7 +447,6 @@ $(document).ready(function () {
            		cache: false,
            		success: function(data) {
            			var per_page_amount = parseFloat(data);
-           			// alert(per_page_amount);
            			if(per_page_amount){
            				$('#print_booking_form .per_page_costing').val(per_page_amount);
            			}
@@ -1793,7 +1792,8 @@ $(document).ready(function () {
 			$('#initial_city_name').removeClass('error_print_booking_field');
 		}
 	});
-
+	
+	// address 2 validation field 
 	$('.personal_address').on('blur',function(){
 		$('#print_checkout_form #billing_address').val($(this).val());
 	});
@@ -1802,6 +1802,19 @@ $(document).ready(function () {
 		if($(this).prop("checked") == true){
 			$('#billing_address').val($('#collegename1').val());
 		}
+	});
+	
+	//amount calculation for multicolor
+	$(document).on('change','#print_booking_form .display_paper_range .num_of_copies',function(){
+		var multi_total_copies = 0;
+		var per_page_amount = parseFloat($('#print_booking_form .per_page_costing').val());
+		$('#print_booking_form .display_paper_range').each(function(){
+			if($(this).find('.num_of_copies').val() != ''){
+				multi_total_copies += parseFloat($(this).find('.num_of_copies').val());
+			}
+		});
+		$('.multiprint_total_amount').val(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
+		//alert(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
 	});
 
 }); // Document ready end

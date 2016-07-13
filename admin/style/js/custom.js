@@ -15,6 +15,7 @@ $(document).ready(function(){
  
 $(document).ready(function(){
 
+ 
   // var $rows = $('.state_table tbody tr');
   // $(document).on('keyup','.search',function() {
   //     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();      
@@ -24,9 +25,132 @@ $(document).ready(function(){
   //     }).hide();   
   // });
 
-  $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable();
+  $('.stork_admin_table').each(function() {
+    var thCount = $(this).find('th').length;
+    if(thCount == 3) {
+      $(this).css('width','850px');
+      $(this).find('th:first-child').css('width','350px');
+      $(this).find('th:nth-child(2)').css('width','280x');
+      $(this).find('th:nth-child(3)').css('width','200px');
+    }
+    else if(thCount == 4) {
+      $(this).css('width','850px');
+      $(this).find('th:first-child').css('width','268px');
+      $(this).find('th:nth-child(2)').css('width','168px');
+      $(this).find('th:nth-child(3)').css('width','168px');
+      $(this).find('th:last-child').css('width','145px');
+    }
+    else if(thCount == 5) {
+      $(this).css('width','850px');
+      $(this).find('th:first-child').css('width','208px');
+      $(this).find('th:nth-child(2)').css('width','208px');
+      $(this).find('th:nth-child(3)').css('width','110px');
+      $(this).find('th:nth-child(4)').css('width','110px');
+      $(this).find('th:last-child').css('width','100px');
+    }
+    else if(thCount == 6) {
+      $(this).css('width','930px');
+      $(this).find('th:first-child').css('width','250px');
+      $(this).find('th:nth-child(2)').css('width','130px');
+      $(this).find('th:nth-child(3)').css('width','234px');
+      $(this).find('th:nth-child(4)').css('width','250px');
+      $(this).find('th:nth-child(5)').css('width','230px');
+      $(this).find('th:last-child').css('width','100px');
+    }
+    else if(thCount == 7) {
+      $(this).css('width','950px');
+      $(this).find('th:first-child').css('width','230px');
+      $(this).find('th:nth-child(2)').css('width','170px');
+      $(this).find('th:nth-child(3)').css('width','260px');
+      $(this).find('th:nth-child(4)').css('width','240px');
+      $(this).find('th:nth-child(5)').css('width','150px');
+      $(this).find('th:nth-child(6)').css('width','230px');
+      $(this).find('th:last-child').css('width','100px');
+    }
+    else if(thCount == 9) {
+      $(this).css('width','1230px');
+      $(this).find('th:first-child').css('width','330px');
+      $(this).find('th:nth-child(2)').css('width','200px');
+      $(this).find('th:nth-child(3)').css('width','444px');
+      $(this).find('th:nth-child(4)').css('width','200px');
+      $(this).find('th:nth-child(5)').css('width','150px');
+      $(this).find('th:nth-child(6)').css('width','346px');
+      $(this).find('th:nth-child(7)').css('width','110px');
+      $(this).find('th:nth-child(8)').css('width','230px');
+      $(this).find('th:last-child').css('width','110px');
+    }
+     else if(thCount == 10) {
+      $(this).css('width','1380px');
+      $(this).find('th:first-child').css('width','284px');
+      $(this).find('th:nth-child(2)').css('width','180px');
+      $(this).find('th:nth-child(3)').css('width','319px');
+      $(this).find('th:nth-child(4)').css('width','200px');
+      $(this).find('th:nth-child(5)').css('width','210px');
+      $(this).find('th:nth-child(6)').css('width','170px');
+      $(this).find('th:nth-child(7)').css('width','320px');
+      $(this).find('th:nth-child(8)').css('width','202px');
+      $(this).find('th:nth-child(9)').css('width','202px');
+      $(this).find('th:last-child').css('width','100px');
+    }
+    else if(thCount == 11) {
+      $(this).css('width','1500px');
+      $(this).find('th:first-child').css('width','204px');
+      $(this).find('th:nth-child(2)').css('width','180px');
+      $(this).find('th:nth-child(3)').css('width','200px');
+      $(this).find('th:nth-child(4)').css('width','445px');
+      $(this).find('th:nth-child(5)').css('width','340px');
+      $(this).find('th:nth-child(6)').css('width','280px');
+      $(this).find('th:nth-child(7)').css('width','190px');
+      $(this).find('th:nth-child(8)').css('width','202px');
+      $(this).find('th:nth-child(9)').css('width','300px');
+      $(this).find('th:nth-child(10)').css('width','326px');
+      $(this).find('th:last-child').css('width','230px');
+    }
+    else if(thCount == 13) {
+      $(this).css('width','1620px');
+      $(this).find('th:first-child').css('width','204px');
+      $(this).find('th:nth-child(2)').css('width','600px');
+      $(this).find('th:nth-child(3)').css('width','400px');
+      $(this).find('th:nth-child(4)').css('width','280px');
+      $(this).find('th:nth-child(5)').css('width','280px');
+      $(this).find('th:nth-child(6)').css('width','280px');
+      $(this).find('th:nth-child(7)').css('width','200px');
+      $(this).find('th:nth-child(8)').css('width','280px');
+      $(this).find('th:nth-child(9)').css('width','430px');
+      $(this).find('th:nth-child(10)').css('width','194px');
+      $(this).find('th:nth-child(11)').css('width','326px');
+      $(this).find('th:nth-child(12)').css('width','326px');
+      $(this).find('th:last-child').css('width','100px');
+    }
+    else if(thCount == 15) {
+      $(this).css('width','1770px');
+      $(this).find('th:first-child').css('width','270px');
+      $(this).find('th:nth-child(2)').css('width','400px');
+      $(this).find('th:nth-child(3)').css('width','240px');
+      $(this).find('th:nth-child(4)').css('width','300px');
+      $(this).find('th:nth-child(5)').css('width','410px');
+      $(this).find('th:nth-child(6)').css('width','320px');
+      $(this).find('th:nth-child(7)').css('width','200px');
+      $(this).find('th:nth-child(8)').css('width','280px');
+      $(this).find('th:nth-child(9)').css('width','480px');
+      $(this).find('th:nth-child(10)').css('width','250px');
+      $(this).find('th:nth-child(11)').css('width','250px');
+      $(this).find('th:nth-child(12)').css('width','250px');
+      $(this).find('th:nth-child(13)').css('width','326px');
+      $(this).find('th:nth-child(14)').css('width','250px');
+      $(this).find('th:last-child').css('width','130px');
+    }
+
+  });
+
+  // $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable();
+
+  $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable({
+    "bAutoWidth": false, // Disable the auto width calculation
+  });
 
 var table = $('.stork_admin_table').DataTable();
+
 
 $('.stork_admin_table th').each(function(index, th) {
   $(th).unbind('click');

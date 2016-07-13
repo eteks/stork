@@ -1,41 +1,13 @@
 <?php
 if (!isset($_SESSION))
 session_start();
-include '../config/config.php';
-include '../includes/functions.php';
-include 'captcha.php';
+include 'includes/config.php';
+include 'includes/functions.php';
 $error = false;
 if(isset($_POST['username']) && isset($_POST['password'])) 
 {
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
-	// if(onOffAdminCaptcha()==1) 
-	// { 
-	// 	if(isset($_POST["captcha_code"]) && trim($_POST["captcha_code"])!="") 
-	// 	{ 
-	// 		if (trim($_POST["captcha_code"])!=$_SESSION['captcha']['code']) 
-	// 		{
-	// 			$error = 'Invalid Captcha';
-	// 		}
-	// 		else
-	// 		{
-	// 			if (authenticate(trim($user) , trim($pass))) 
-	// 			{
-	// 				$_SESSION['admin_eap_secure'] = 1;
-	// 			}
-	// 			else
-	// 			{
-	// 				$error .= "Invalid username and password combination.";
-	// 			}
-	// 		}	
-	// 	}
-	// 	else
-	// 	{
-	// 		$error="Captcha field must not be empty.";
-	// 	}
-	// }	
-	// else 
-	// {
 		if (authenticate(trim($user) , trim($pass))) 
 		{  
 			$_SESSION['admin_eap_secure'] = 1;
@@ -44,9 +16,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 		{
 			$error = "Invalid Username or Password";
 		}
-	// }
 }
-// $_SESSION['captcha'] = simple_php_captcha();
 if (isset($_SESSION['admin_eap_secure']) && !$error)
 {
 	header('Location: ./users.php');

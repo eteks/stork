@@ -125,7 +125,7 @@ function countTransaction()
 	<h3 class="acc-title lg">Dashboard</h3>
 	<div class="sidey" style="">
 		<div class="side-cont">
-			<ul class="nav">
+			<ul class="nav admin_sidebar">
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="admin_users.php" || 
 					basename($_SERVER['PHP_SELF'])=="users.php" || basename($_SERVER['PHP_SELF'])=="edit_admin_users.php" || basename($_SERVER['PHP_SELF'])=="edit_users.php")
@@ -277,21 +277,17 @@ function countTransaction()
 
 				<!--  Plain printing start -->
 				<?php 
-					if(basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain"  || basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=plain" || 
-					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || 
-					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])==trim("add_paper_size.php?type=plain") || 
-					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain")
-					{
-					// if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=plain" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=plain")
-					// { 
+					// if(basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain"  || basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=plain" || 
+					// basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || 
+					// basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || basename($_SERVER['REQUEST_URI'])==trim("add_paper_size.php?type=plain") || 
+					// basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain")
+					// {
+					if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=plain" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_print_type.php?type=plain")!==false || basename($_SERVER['REQUEST_URI'])=="papersides.php?type=plain" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_side.php?type=plain")!==false || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=plain" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_type.php?type=plain")!==false || 
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=plain" || 
+					basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=plain" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_size.php?type=plain")!==false)
+					{ 
 						?> 
 						
 						<li class="has_submenu open test">
@@ -405,17 +401,7 @@ function countTransaction()
 					basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=project" || 
 					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=project" || 
 					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=project" || 
-					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=project")
-					// if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="papersides.php?type=project" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=project" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=project" || 
-					// basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=project")
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=project" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_type.php?type=project")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_side.php?type=project")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_print_type.php?type=project")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_size.php?type=project")!==false)
 					{ 
 						?> 
 						<li class="has_submenu open test">
@@ -523,16 +509,7 @@ function countTransaction()
 				basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php?type=multi" || 
 					basename($_SERVER['REQUEST_URI'])=="papersides.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=multi" || 
 					basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=multi" || 
-					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=multi")
-				// if(basename($_SERVER['REQUEST_URI'])=="paperprinttypes.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="add_paper_print_type.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="edit_paper_print_type.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="papersides.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="add_paper_side.php" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="edit_paper_side.php?type=multi" || basename($_SERVER['REQUEST_URI'])=="papertypes.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="add_paper_type.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="edit_paper_type.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="add_paper_size.php?type=multi" || 
-				// 	basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=multi")
+					basename($_SERVER['REQUEST_URI'])=="paper_size.php?type=multi" || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_type.php?type=multi")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_side.php?type=multi")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_print_type.php?type=multi")!==false || strpos(basename($_SERVER['REQUEST_URI']), "edit_paper_size.php?type=multi")!==false)
 					{ 
 						?> 
 						<li class="has_submenu open test">

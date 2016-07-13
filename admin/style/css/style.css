@@ -1518,14 +1518,14 @@ text-align: center;
     display: block;
 }
 .sort_asc {
-   float: right;
+   margin-left: 8px;
    cursor: pointer;
-   font-size: 16px;
+   font-size: 12px;
 }
 .sort_desc {
-   float: right;
+   margin-left: 8px;
    cursor: pointer;
-   font-size: 16px;
+   font-size: 12px;
 }
 .table_action .sort-btn {
    display: none;
@@ -1545,7 +1545,7 @@ text-align: center;
    margin-top: 20px;
 }
 .add_section a{
-   background: green none repeat scroll 0 0;
+   background: #3CB371;
    color: #fff;
    padding: 6px 20px;
 }

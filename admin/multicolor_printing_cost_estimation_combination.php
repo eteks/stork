@@ -113,7 +113,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     <?php include 'includes/sidebar.php'; ?>
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
-        <h3 class="acc-title lg clone_heading"> Project Printing Cost estimation</h3>
+        <h3 class="acc-title lg clone_heading"> Multicolor Printing Cost estimation</h3>
         <div class="amout_fixed_status">
             <span>Amount fixed status </span>
             <select id="select-category" name="categories">
@@ -125,10 +125,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         <div class="clear_both"> </div>
         </div>
         <div class="add_section">
-            <a href="add_multicolor_printing_cost.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+            <a href="add_multicolor_printing_cost.php"> <span> Add </span><span>[+]</span> </a>
         </div>
             <div class="form-edit-info">
-                <table class="data-table cost_table stork_admin_table" id="my-orders-table">
+                <table class="data-table multi_cost_table stork_admin_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Paper Print Type </th>
@@ -227,10 +227,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     $('#select-category').on('change',function(){
         if($("#select-category").val()!=""){
             var selectedValue = $(this).val();
-            dataTable.fnFilter("^"+selectedValue+"$", 5, true); //Exact value, column, reg 
+            dataTable.fnFilter("^"+selectedValue+"$", 6, true); //Exact value, column, reg 
         }
         else {
-            dataTable.fnFilter( $('#select-category').val(),5);
+            dataTable.fnFilter( $('#select-category').val(),6);
             // alert("test");
         }
             

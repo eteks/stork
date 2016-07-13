@@ -1,6 +1,6 @@
 <?php 
 			if (!isset($_SESSION)) session_start();
-			include "../config/config.php";		
+			include "includes/config.php";		
 			if(isset($_GET['loadcityfromdb'])){
 				$state_id=$_POST['states_id'];		
 				$json =array();

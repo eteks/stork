@@ -14,13 +14,21 @@ if (isset($_GET['update']))
 		$val = mres($val);
 		$printing_type = $_POST['printing_type'];
 		$paper_side = $_POST["paper_side"];
+		$printing_type_name = $_POST['printing_type_name'];
+		echo $printing_type_name;
 		$paper_side_status = $_POST["paper_side_status"];
 		$qr = mysqlQuery("SELECT * FROM stork_paper_side WHERE 	paper_side='$paper_side' AND paper_side_id NOT IN('$val') AND printing_type_id='$printing_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span>  Paperside Already exists! </span></div>";
 		} else {
-			mysqlQuery("UPDATE `stork_paper_side` SET `paper_side`='$paper_side',`paper_side_status`='$paper_side_status' WHERE `paper_side_id`=".$val);
+			if($printing_type_name != 'project_printing') {
+				mysqlQuery("UPDATE `stork_paper_side` SET `paper_side`='$paper_side',`paper_side_status`='$paper_side_status' WHERE `paper_side_id`=".$val);
+			}
+			else {
+				mysqlQuery("UPDATE `stork_paper_side` SET `paper_side_status`='$paper_side_status' WHERE `paper_side_id`=".$val);
+			}
+
 			if(($paper_side_status == 0 && !$_POST['change_status'])||($paper_side_status == 1 && $_POST['change_status'])){
 				mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_side_status' WHERE `cost_estimation_paper_side_id`=".$val);
 			}
@@ -86,10 +94,24 @@ if(isset($_GET["id"]))
 							<?php if ($row['paper_side_status'] == 0){ ?>
 								<input type="hidden" name="change_status" class="change_status_value">
 							<?php } ?>
+							<?php 
+								$printing_type_query = mysql_query("SELECT * FROM stork_printing_type WHERE printing_type_id='$printing_type'");
+								$printing_type_array = mysql_fetch_array($printing_type_query);
+								$printing_type_name = $printing_type_array ['printing_type'];
+								if($printing_type_name == 'project_printing') {
+
+							?>
+							<div class="form-group">
+							    <label for="last-name">Paper Side<span class="required">*</span></label>
+								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>" disabled>
+							</div>
+							<?php } else { ?>
 							<div class="form-group">
 							    <label for="last-name">Paper Side<span class="required">*</span></label>
 								<input type="text" class="form-control" id="paperside" placeholder="Paper Side" name="paper_side" value="<?php echo($row['paper_side']); ?>">
 							</div>
+							<?php } ?>
+							<input type="hidden" name="printing_type_name" value="<?php echo $printing_type_name; ?>">
 							<input type="hidden" name="printing_type" value="<?php echo $printing_type ?>" >
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paper Side Status<span class="required">*</span></label>

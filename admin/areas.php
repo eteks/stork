@@ -49,7 +49,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<div class="clear_both"> </div>
 	</div>
 	<div class="add_section">
-		<a href="add_area.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+		<a href="add_area.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 		<div class="form-edit-info">
 			<?php 

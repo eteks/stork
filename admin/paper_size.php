@@ -54,7 +54,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$type = $_GET['type'];
 	?>
 	<div class="add_section">
-		<a href="add_paper_size.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span> <span>[+]</span></a>
+		<a href="add_paper_size.php?type=<?php echo $type; ?>"> <span> Add </span> <span>[+]</span></a>
 	</div>
 		<div class="form-edit-info">
 		<?php 
@@ -113,7 +113,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            </span>
 			        <?php } else{ ?> 
 			            <span class="nobr">
-		                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_size.php?id=<?php echo $papersize_array['paper_size_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+		                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_size.php?type=<?php echo $type; ?> &id=<?php echo $papersize_array['paper_size_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <span class="separator"></span> 
 			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papersize_array['paper_size_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 			            </span>
