@@ -65,7 +65,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Copies Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Copies Information</h4>
-							<form action="edit_multicolor_copies.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+							<form action="edit_multicolor_copies.php?update=<?php echo $id; ?>" id="edit_multicolor_copies" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -84,7 +84,7 @@ if(isset($_GET["id"]))
 								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">No. Of Copies<span class="required">*</span></label>
-									<input type="text" class="form-control" id="statename" placeholder="No. Of Copies" name="number_of_copies" value="<?php echo($row['multicolor_copies']); ?>">
+									<input type="text" class="form-control" id="copies" placeholder="No. Of Copies" name="number_of_copies" value="<?php echo($row['multicolor_copies']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Copies Status<span class="required">*</span></label>

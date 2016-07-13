@@ -236,7 +236,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="address2" ng-model="address2"> 
+						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="" size="30" name="address_1" id="address2" > 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -347,7 +347,7 @@ if(mysqli_num_rows($review_details)>0){
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
 						<input type="hidden" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly>
-						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly> 
+						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename1" readonly> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -495,7 +495,7 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="merchant_param2" value="{{studentid}}"/>
 		   		<input type="hidden" name="merchant_param3" value="{{yearofstuding}}"/>
 		   		<input type="hidden" name="merchant_param1" value="{{address1}}"/>
-		   		<input type="hidden" name="billing_address" value="{{address2}}<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
+		   		<input type="hidden" id="billing_address" name="billing_address" value="<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
 		   		<input type="hidden" name="merchant_param4" value="<?php echo $area_name; ?>"/>
 		   		<input type="hidden" name="merchant_param5" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>"/>
 		   		<input type="hidden" name="billing_city" value="<?php echo $city_name; ?>"/>

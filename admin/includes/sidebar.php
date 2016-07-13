@@ -403,7 +403,7 @@ function countTransaction()
 		
 				<li>
 					<a href="printing_cost_estimation_combination.php">
-						<!-- <i class="fa fa-file"></i> --> Printing Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> Plain Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
 				</li>

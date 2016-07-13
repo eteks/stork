@@ -3,7 +3,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add Printing Cost Estimation</title>
+<title>Add Plain Printing Cost Estimation</title>
 </head>
 <body>
 <?php 
@@ -21,10 +21,10 @@ $cost_status=$_POST['cost_status'];
 		$qr = mysql_query("SELECT * FROM stork_cost_estimation WHERE cost_estimation_paper_print_type_id = '$cost_print_type' AND cost_estimation_paper_side_id = '$cost_paper_side' AND cost_estimation_paper_size_id = '$cost_paper_size' AND cost_estimation_paper_type_id = '$cost_paper_type'");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> Printing Cost Already Exists </span></div>";
+		$successMessage = "<div class='container error_message_mandatory'><span>Plain Printing Cost Already Exists </span></div>";
 		} else {
 			mysqlQuery("INSERT INTO `stork_cost_estimation` (cost_estimation_paper_print_type_id,cost_estimation_paper_side_id,cost_estimation_paper_size_id,cost_estimation_paper_type_id,cost_estimation_amount,cost_estimation_status) VALUES ('$cost_print_type','$cost_paper_side','$cost_paper_size','$cost_paper_type','$cost_amount','$cost_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> Printing Cost Inserted Successfully! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory'><span>Plain Printing Cost Inserted Successfully! </span></div>";
 		}		
 	}
 } ?>
@@ -39,10 +39,10 @@ $cost_status=$_POST['cost_status'];
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> Printing Cost Estimation </span>
+						<span>Plain Printing Cost Estimation </span>
 					</li>
 					<li>
-						<span>Add Printing Cost Estimation</span>
+						<span>Add Plain Printing Cost Estimation</span>
 					</li>
 				</ul>
 			</div>
@@ -55,9 +55,9 @@ $cost_status=$_POST['cost_status'];
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 		<section class="account-main col-md-9 col-sm-8 col-xs-12">
-			<h3 class="acc-title lg">Add Printing Cost Estimation</h3>
+			<h3 class="acc-title lg">Add Plain Printing Cost Estimation</h3>
 			<div class="form-edit-info">
-				<h4 class="acc-sub-title">Printing Cost Estimation</h4>
+				<h4 class="acc-sub-title">Plain Printing Cost Estimation</h4>
 				<form action="add_printing_cost_estimation.php" method="POST" name="edit-acc-info" id="add_cost_estimation">
 					<div class="container">
 						<span class="error_test"> Please fill all required(*) fields </span>
@@ -129,7 +129,7 @@ $cost_status=$_POST['cost_status'];
 						<input type="text" class="form-control" id="amount" maxlength="10" autocomplete="off" name="cost_amount" placeholder="Amount">
 					</div>
 					<div class="cate-filter-content">	
-					    <label for="first-name">Printing Cost Estimation Status<span class="required">*</span></label>
+					    <label for="first-name">Plain Printing Cost Estimation Status<span class="required">*</span></label>
 						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
 					        <option value="">
 								<span>Select Status</span>

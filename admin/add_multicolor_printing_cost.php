@@ -127,7 +127,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">No. of Copies<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_copies" id="">
+						<select class="product-type-filter form-control" name="cost_copies" id="sel_d">
 					        <option value="">
 								<span>Select No. of Copies</span>
 							</option>
@@ -145,7 +145,7 @@ include "includes/header.php";
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Multicolor Printing Cost Estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="sel_d">
+						<select class="product-type-filter form-control" name="cost_status" id="sel_e">
 					        <option value="">
 								<span>Select Status</span>
 							</option>
