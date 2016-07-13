@@ -139,7 +139,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         <th>Amount fixed Status</th> 
                         <th>Status</th> 
                         <th>Created Date</th>
-                        <th>Action</th>               
+                        <th class="table_action">Action</th>               
                     </tr>
                     </thead>
                     <?php 

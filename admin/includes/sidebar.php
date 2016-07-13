@@ -131,7 +131,7 @@ function countTransaction()
 					basename($_SERVER['PHP_SELF'])=="users.php" || basename($_SERVER['PHP_SELF'])=="edit_admin_users.php" || basename($_SERVER['PHP_SELF'])=="edit_users.php")
 					{ 
 						?> 
-						<li class="has_submenu open">
+						<li class="has_submenu open test">
 						<?php 
 					} 
 					else 
@@ -147,37 +147,119 @@ function countTransaction()
 					</a>
 				<!-- Sub menu -->
 					<ul>
-						<li>
-							<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin Users (<?php echo countAdminUsers() ?>)</span></a>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="admin_users.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="">
+						<?php 
+					}  
+				?>				
+					<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin Users (<?php echo countAdminUsers() ?>)</span></a>
 						</li> 
-						<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="users.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="">
+						<?php 
+					}  
+				?>
 							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo countUsers() ?>)</span></a>
 						</li> 
 					</ul>
 				</li>
-
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 
+					basename($_SERVER['PHP_SELF'])=="states.php" || basename($_SERVER['PHP_SELF'])=="edit_state.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>				
 					<a href="states.php">
 						<!--<i class="fa fa-map-marker"></i> --> State
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
-
-				<li>
+				
+				
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_city.php" || 
+					basename($_SERVER['PHP_SELF'])=="city.php" || basename($_SERVER['PHP_SELF'])=="edit_city.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="city.php">
 						<!--<i class="fa fa-map-marker"></i> --> City
 						<span class="caret pull-right"></span>
 					</a>		
 				</li>
 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_area.php" || 
+					basename($_SERVER['PHP_SELF'])=="areas.php" || basename($_SERVER['PHP_SELF'])=="edit_area.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="areas.php">
 						<!-- <i class="fa fa-home"></i> -->Area
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
 		 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_college.php" || 
+					basename($_SERVER['PHP_SELF'])=="colleges.php" || basename($_SERVER['PHP_SELF'])=="edit_college.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="colleges.php">
 						<!-- <i class="fa fa-location-arrow"></i> --> College
 						<span class="caret pull-right"></span>
@@ -212,7 +294,7 @@ function countTransaction()
 					// { 
 						?> 
 						
-						<li class="has_submenu open">
+						<li class="has_submenu open test">
 						<?php 
 
 					} 
@@ -230,19 +312,71 @@ function countTransaction()
 					</a>
 				<ul>
 				<!-- Paper_print_type -->
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="paperprinttypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_side -->
-				<li>
+			<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papersides.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 					<a href="papersides.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_type -->
-				<li>
+			<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papertypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 					<a href="papertypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("plain_printing") ?>) </span></a>
 				</li>
 				<!-- Paper_size -->
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="paper_size.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 					<a href="paper_size.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize("plain_printing") ?>) </span></a>
 					<!-- <a href="paperprinttypes.php?type=plain" class="plain_print_menu"><i class="fa fa-list"></i><span> Paper Print Types </span></a>
 				</li>
@@ -284,7 +418,7 @@ function countTransaction()
 					// basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=project")
 					{ 
 						?> 
-						<li class="has_submenu open">
+						<li class="has_submenu open test">
 						<?php 
 					} 
 					else 
@@ -300,19 +434,71 @@ function countTransaction()
 					</a>
 					<ul>
 					<!-- Paper_print_type -->
-					<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="paperprinttypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_side -->
-					<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papersides.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="papersides.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_type -->
-					<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papertypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="papertypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("project_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_size -->
-					<li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="paper_size.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="paper_size.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Sizes (<?php echo countPapersize("project_printing") ?>) </span></a>
 						<!-- <a href="paperprinttypes.php?type=project" class="project_print_menu"><i class="fa fa-list"></i><span> Paper Print Types </span></a>
 					</li>
@@ -349,7 +535,7 @@ function countTransaction()
 				// 	basename($_SERVER['REQUEST_URI'])=="edit_paper_size.php?type=multi")
 					{ 
 						?> 
-						<li class="has_submenu open">
+						<li class="has_submenu open test">
 						<?php 
 					} 
 					else 
@@ -365,15 +551,54 @@ function countTransaction()
 					</a>
 					<ul>
 					<!-- Paper_print_type -->
-					<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="paperprinttypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="paperprinttypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Print Types (<?php echo countPaperprinttype("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_side -->
-					<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papersides.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="papersides.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Sides (<?php echo countPaperside("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_type -->
-					<li>
+						<?php 
+					if(basename($_SERVER['PHP_SELF'])=="papertypes.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 						<a href="papertypes.php?type=multi" class="multicolor_print_menu"><i class="fa fa-list"></i><span> Paper Types (<?php echo countPapertype("multicolor_printing") ?>) </span></a>
 					</li>
 					<!-- Paper_size -->
@@ -393,7 +618,21 @@ function countTransaction()
 					</ul>
 				</li>
 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_multicolor_copies.php" || 
+					basename($_SERVER['PHP_SELF'])=="multicolor_copies.php" || basename($_SERVER['PHP_SELF'])=="edit_multicolor_copies.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="multicolor_copies.php">
 						<!--<i class="fa fa-user"></i> --> Mutlicolor Copies
 						<span class="caret pull-right"></span>
@@ -401,28 +640,84 @@ function countTransaction()
 				</li>
 
 		
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_printing_cost_estimation_combination.php" || 
+					basename($_SERVER['PHP_SELF'])=="printing_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_printing_cost_estimation_combination.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Plain Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_project_printing_cost_estimation_combination.php" || 
+					basename($_SERVER['PHP_SELF'])=="project_printing_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_project_printing_cost_estimation_combination.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="project_printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Project Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_multicolor_printing_cost_estimation_combination.php" || 
+					basename($_SERVER['PHP_SELF'])=="multicolor_printing_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_multicolor_printing_cost_estimation_combination.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="multicolor_printing_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Multicolor Printing Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>					
 				</li>
 
-				<li>
+			<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_binding_cost_estimation_combination.php" || 
+					basename($_SERVER['PHP_SELF'])=="binding_cost_estimation_combination.php" || basename($_SERVER['PHP_SELF'])=="edit_binding_cost_estimation_combination.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
 					<a href="binding_cost_estimation_combination.php">
 						<!-- <i class="fa fa-file"></i> --> Binding Cost Estimation
 						<span class="caret pull-right"></span>
@@ -433,7 +728,7 @@ function countTransaction()
 					if(basename($_SERVER['PHP_SELF'])=="orders.php" || basename($_SERVER['PHP_SELF'])=="edit_orders.php" || basename($_SERVER['PHP_SELF'])=="order_details.php" || basename($_SERVER['PHP_SELF'])=="edit_order_details.php" || basename($_SERVER['PHP_SELF'])=="track_order.php" || basename($_SERVER['PHP_SELF'])=="edit_track_order.php" || basename($_SERVER['PHP_SELF'])=="transaction.php")
 					{ 
 						?> 
-						<li class="has_submenu open">
+						<li class="has_submenu open test">
 						<?php 
 					} 
 					else 
@@ -449,22 +744,88 @@ function countTransaction()
 					</a>
 					<!-- Sub menu -->
 					<ul>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="orders.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
 						<li>
+						<?php 
+					}  
+				?>
 							<a href="orders.php"><i class="fa fa-list"></i><span> All Orders (<?php echo countOrder() ?>)</span></a>
 						</li> 
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="order_details.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
 						<li>
+						<?php 
+					}  
+				?>
 							<a href="order_details.php"><i class="fa fa-list"></i><span> Order Details (<?php echo countOrderDetails() ?>) </span></a>
 						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="track_order.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
 						<li>
+						<?php 
+					}  
+				?>
 							<a href="track_order.php"><i class="fa fa-list"></i><span> Track Order (<?php echo countOrder() ?>) </span></a>
 						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="transaction.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
 						<li>
+						<?php 
+					}  
+				?>
 							<a href="transaction.php"><i class="fa fa-list"></i><span> Transaction Details (<?php echo countTransaction() ?>) </span></a>
 						</li>
 					</ul>
 				</li>
 
-				<li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || 
+					basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 					<a href="offer_zones.php">
 						<!-- <i class="fa fa-file"></i> --> Offer Zone
 						<span class="caret pull-right"></span>
