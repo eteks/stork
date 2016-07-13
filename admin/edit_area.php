@@ -130,7 +130,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Delivery Charge</label>
-									<input type="text" class="form-control" id="areaname" autocomplete="off" placeholder="Delivery Charge Ex.:100.50" name="area_delivery_charge" value="<?php echo($row['area_delivery_charge']); ?>">
+									<input type="text" class="form-control" id="deliverycharge" autocomplete="off" placeholder="Delivery Charge Ex.:100.50" name="area_delivery_charge" value="<?php echo($row['area_delivery_charge']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Area Status<span class="required">*</span></label>

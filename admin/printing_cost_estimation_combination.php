@@ -81,7 +81,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All Printing Cost Estimation Combination</title>
+<title>All Plain Printing Cost Estimation Combination</title>
 </head>
 <body>
 <?php include 'includes/navbar_admin.php'; ?>
