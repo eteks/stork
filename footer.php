@@ -61,7 +61,7 @@
 									<a title="Cabin Booking ">Cabin Booking</a>
 								</li>
 								<li>
-									<a  title="Muiticolors">Muiticolors</a>
+									<a  title="Multicolors">Multicolors</a>
 								</li>
 								<li>
 									<a  title="Multi-color printing">Personalized Products</a>
