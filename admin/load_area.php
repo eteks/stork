@@ -1,6 +1,6 @@
 <?php 
 			if (!isset($_SESSION)) session_start();
-			include "../config/config.php";		
+			include "includes/config.php";		
 			if(isset($_GET['loadareafromdb'])){
 				$city_id=$_POST['city_id'];	
 				// echo $city_id;	

@@ -12,22 +12,19 @@
 		{
 			header('Location: ./index.php');
 		}
-		include "../config/config.php";
-		include "../includes/functions.php";
-		include 'global.php';
+		include "includes/config.php";
+		include "includes/functions.php";
+		include "global.php";
 	?>
   
     <!-- CSS Files -->
 	<link href="style/css/bootstrap.min.css" rel="stylesheet">
-	<link href="style/css/animate.min.css" rel="stylesheet">
 	<link href="style/css/jquery.tagsinput.css" rel="stylesheet">
-	<link href="style/css/jquery.gritter.css" rel="stylesheet">
 	<link href="style/css/jquery-ui.css" rel="stylesheet">  
 	<link href="style/css/bootstrap-switch.css" rel="stylesheet">
 	<link href="style/ui/jquery.ui.all.css" rel="stylesheet">	
 	<link href="style/css/font-awesome.min.css" rel="stylesheet">
 	<link href="style/css/bootstrap-select.min.css" rel="stylesheet">
-	<link href="style/css/upload.css" rel="stylesheet">
 	<link href="style/css/style.css" rel="stylesheet">
 	<link href="style/css/theme-default.css" rel="stylesheet">
 		
