@@ -11,16 +11,14 @@ $paper_print_type = '';
 $val = '';
 $successMessage = '';
 function add_paper_print_type(){
+	global $paper_print_type,$val,$successMessage;
 	$paper_print_type_status = $_POST["paper_print_type_status"];
 	$printing_type = $_POST['printing_type'];
-	$paper_print_type = $_POST['paper_print_type'];
-	$val = $_GET['update'];
-	$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND paper_print_type_id NOT IN('$val') AND printing_type_id='$printing_type'");
+	$qr = mysqlQuery("SELECT * FROM stork_paper_print_type WHERE paper_print_type='$paper_print_type' AND printing_type_id='$printing_type' AND paper_print_type_id NOT IN('$val')");
 	$row = mysql_num_rows($qr);
 	if($row > 0){
 		$successMessage = "<div class='container error_message_mandatory'><span> Paperprinttype Already exists! </span></div>";
 	} else {
-		global $paper_print_type,$val,$successMessage;
 		mysqlQuery("UPDATE `stork_paper_print_type` SET `paper_print_type`='$paper_print_type',`paper_print_type_status`='$paper_print_type_status' WHERE `paper_print_type_id`=".$val);
 		if(($paper_print_type_status == 0 && !$_POST['change_status'])||($paper_print_type_status == 1 && $_POST['change_status'])){
 			mysqlQuery("UPDATE `stork_cost_estimation` SET `cost_estimation_status`='$paper_print_type_status' WHERE `cost_estimation_paper_print_type_id`=".$val);
@@ -35,7 +33,7 @@ if (isset($_GET['update']))
 		$val = mres($val);
 		if($_POST["paper_print_type_hidden"]){
 			$paper_print_type = $_POST["paper_print_type_hidden"];
-			if($_POST['paper_print_type'] && $_POST['paper_print_type'] != "color with black & white"){				
+			if($_POST['paper_print_type'] && $_POST['paper_print_type'] != "color with black & white"){
 				$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong</span></div>";			
 			}
 			else{
@@ -53,9 +51,6 @@ $id=$val;
 if(isset($_GET["id"]))
 {
 	$id = $_GET["id"];
-	$select_type = mysql_query ("SELECT * FROM stork_paper_print_type WHERE paper_print_type_id='$id'");
-	$printing_type_id = mysql_fetch_array($select_type);
-	$printing_type = $printing_type_id ['printing_type_id'];
 }
 ?>  
 <?php include 'includes/navbar_admin.php'; ?>
@@ -112,7 +107,7 @@ if(isset($_GET["id"]))
 										<input type="hidden" class="form-control" name="paper_print_type_hidden" value="<?php echo($row['paper_print_type']); ?>">
 									<?php } ?>
 								</div>
-								<input type="hidden" name="printing_type" value="<?php echo $printing_type ?>" >
+								<input type="hidden" name="printing_type" value="<?php echo($row['printing_type_id']); ?>" >
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Print Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control change_status" id="sel_a" name="paper_print_type_status">
