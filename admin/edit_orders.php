@@ -16,9 +16,19 @@ if (isset($_GET['update']))
 		$order_customer_name = $_POST["order_customer_name"];
 		$order_shipping_line1 = $_POST["order_shipping_line1"];
 		$order_shipping_line2 = $_POST["order_shipping_line2"];
+		
 		$order_shipping_state = $_POST["order_shipping_state"];
+		$state = mysql_fetch_array(mysql_query("SELECT * FROM stork_state WHERE state_id = '$order_shipping_state'"));
+		$order_shipping_state = $state['state_name'];
+		
 		$order_shipping_city = $_POST["order_shipping_city"];
+		$city = mysql_fetch_array(mysql_query("SELECT * FROM stork_city WHERE city_id = '$order_shipping_city'"));
+		$order_shipping_city = $city['city_name'];
+
 		$order_shipping_area = $_POST["order_shipping_area"];
+		$area = mysql_fetch_array(mysql_query("SELECT * FROM stork_area WHERE area_id = '$order_shipping_area'"));
+		$order_shipping_area = $area['area_name'];
+
 		$order_shipping_email = $_POST["order_shipping_email"];
 		$order_shipping_mobile = $_POST["order_shipping_mobile"];
 		$order_total_items = $_POST["order_total_items"];
@@ -29,6 +39,8 @@ if (isset($_GET['update']))
 			$order_student_year = $_POST["order_student_year"];
 			$order_shipping_department = $_POST["order_shipping_department"];
 			$order_shipping_college = $_POST["order_shipping_college"];
+			$college = mysql_fetch_array(mysql_query("SELECT * FROM stork_college WHERE college_id = '$order_shipping_college'"));
+			$order_shipping_college = $college['college_name'];
 		}
 		else{
 			$order_student = NULL;
@@ -37,7 +49,7 @@ if (isset($_GET['update']))
 			$order_shipping_college = NULL;
 		}
 
-		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_student_id='$order_student',order_student_year='$order_student_year',order_shipping_department='$order_shipping_department',order_shipping_college_id='$order_shipping_college',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state_id='$order_shipping_state',order_shipping_city_id='$order_shipping_city',order_shipping_area_id='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);	
+		mysqlQuery("UPDATE stork_order SET order_customer_name='$order_customer_name',order_student_id='$order_student',order_student_year='$order_student_year',order_shipping_department='$order_shipping_department',order_shipping_college='$order_shipping_college',order_shipping_line1='$order_shipping_line1',order_shipping_line2='$order_shipping_line2',order_shipping_state='$order_shipping_state',order_shipping_city='$order_shipping_city',order_shipping_area='$order_shipping_area',order_shipping_email='$order_shipping_email',order_shipping_mobile='$order_shipping_mobile',order_total_items='$order_total_items',order_status='$order_status' WHERE order_id=".$val);	
 		$successMessage = "<div class='container error_message_mandatory'><span> Order Updated Successfully! </span></div>";	
 	}
 	
@@ -99,7 +111,7 @@ if(isset($_GET["id"]))
 									{
 							?>
 							<?php 
-							if($row['order_shipping_college_id'] === NULL) {?>
+							if($row['order_shipping_college'] === NULL) {?>
 								<div class="form-group">
 								    <label for="last-name">Customer Name<span class="required">*</span></label>
 									<input type="text" class="form-control" id="customername" placeholder="Customer Name" name="order_customer_name" value="<?php echo($row['order_customer_name']); ?>">
@@ -131,7 +143,7 @@ if(isset($_GET["id"]))
 								        <?php
 						                    $query = mysql_query("select * from stork_college where college_status='1'");
 					                        while ($staterow = mysql_fetch_array($query)) {
-					                        if($row['order_shipping_college_id'] == $staterow['college_id'])echo "<option selected value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
+					                        if($row['order_shipping_college'] == $staterow['college_name'])echo "<option selected value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
 					                        else
 					                        	echo "<option value='".$staterow['college_id']."'>".$staterow['college_name']."</option>";
 					                        }
@@ -156,7 +168,7 @@ if(isset($_GET["id"]))
 								        <?php
 						                    $query = mysql_query("select * from stork_state where state_status='1'");
 					                        while ($staterow = mysql_fetch_array($query)) {
-					                        if($row['order_shipping_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        if($row['order_shipping_state'] == $staterow['state_name'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        else
 					                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        }
@@ -172,7 +184,7 @@ if(isset($_GET["id"]))
 								        <?php
 						                    $query = mysql_query("select * from stork_city where city_status='1'");
 					                        while ($staterow = mysql_fetch_array($query)) {
-					                        if($row['order_shipping_city_id'] == $staterow['city_id'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
+					                        if($row['order_shipping_city'] == $staterow['city_name'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
 					                        }
 			                        ?>
 								    </select>
@@ -186,7 +198,7 @@ if(isset($_GET["id"]))
 								        <?php
 					                    $query = mysql_query("select * from stork_area where area_status='1'");
 				                        while ($arearow = mysql_fetch_array($query)) {
-				                        if($row['order_shipping_area_id'] == $arearow['area_id'])   
+				                        if($row['order_shipping_area'] == $arearow['area_name'])   
 				                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
 				                        }
 					                        ?>

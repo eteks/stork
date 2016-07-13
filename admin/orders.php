@@ -92,23 +92,24 @@ include "includes/header.php";
 				    <tr class="">
 			            <td><?php echo $fetch['order_id'] ?></td>
 			            <td>
-			            <?php if ($fetch['order_user_id'] === NULL)
-							echo "None";
+			            <?php if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
+							echo "NULL";
 						else
 							echo $fetch['order_user_id'];
 						?>
 						</td>
 			            <td>
 				            <?php 
-				            if($fetch['order_user_type']==1)
+				            echo $fetch['order_user_type'];
+				            /*if($fetch['order_user_type']==1)
 								echo "Student";
 							else if($fetch['order_user_type']==2)
-								echo "Profession";
+								echo "Profession"; */
 							?>
 						</td>
 						<td>
 						<?php
-							if($fetch['order_user_id'] === NULL)
+							if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
 								echo "Guest User";
 							else
 								echo "Registered User";
@@ -119,9 +120,9 @@ include "includes/header.php";
 						<td><?php echo $fetch['order_shipping_email'] ?></td>
 						<td><?php echo $fetch['order_shipping_mobile'] ?></td>
 						<td><?php echo $fetch['order_shipping_line1']." ".$fetch['order_shipping_line2'] ?></td>
-			            <td><?php echo $rowstate['state_name'] ?></td>
-			            <td><?php echo $rowcity['city_name'] ?></td>
-			            <td><?php echo $rowarea['area_name'] ?></td>
+			            <td><?php echo $fetch['order_shipping_state'] ?></td>
+			            <td><?php echo $fetch['order_shipping_city'] ?></td>
+			            <td><?php echo $fetch['order_shipping_area'] ?></td>
 			             <?php  $createddate=strtotime($fetch['created_date']);
 								   
 						            $date = date('d/m/Y', $createddate);

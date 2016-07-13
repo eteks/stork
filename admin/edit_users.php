@@ -123,7 +123,7 @@ include "includes/header.php";
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Email<span class="required">*</span></label>
+								    <label for="last-name">Email<span class="required"></span></label>
 									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email id" name="user_email" value="<?php echo($row['user_email']); ?>">
 								</div>
 								<div class="form-group">
@@ -174,7 +174,7 @@ include "includes/header.php";
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Mobile<span class="required">*</span></label>
+								    <label for="last-name">Mobile<span class="required"></span></label>
 									<input type="text" class="form-control" id="phone" maxlength="10"  autocomplete="off" placeholder="Mobile Number" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
 								</div>
 								

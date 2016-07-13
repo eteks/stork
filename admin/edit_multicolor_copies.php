@@ -20,11 +20,11 @@ if (isset($_GET['update']))
 			$successMessage = "<div class='container error_message_mandatory'><span> Copies Already exists! </span></div>";
 		} else {
 			mysqlQuery("UPDATE `stork_multicolor_copies` SET `multicolor_copies`='$number_of_copies',`multicolor_copies_status`='$number_of_copies_status' WHERE `multicolor_copies_id`=".$val);
-			// //newly added code when remove edit restrict
-			// if(($state_status == 0 && !$_POST['change_status'])||($state_status == 1 && $_POST['change_status'])){
-			// 	mysqlQuery("UPDATE `stork_city` SET `city_status`='$state_status' WHERE `city_state_id`=".$val);
-			// 	mysqlQuery("UPDATE `stork_area` SET `area_status`='$state_status' WHERE `area_state_id`=".$val);
-			// }
+			//newly added code when remove edit restrict
+			if(($number_of_copies_status == 0 && !$_POST['change_status'])||($number_of_copies_status == 1 && $_POST['change_status'])){
+				mysqlQuery("UPDATE stork_cost_estimation_multicolor SET cost_estimation_multicolor_status='$number_of_copies_status' WHERE
+					cost_estimation_multicolor_copies_id=".$val);
+			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Copies Updated Successfully! </span></div>";	
 		}				
 	}	
@@ -65,7 +65,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Copies Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Copies Information</h4>
-							<form action="edit_multicolor_copies.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+							<form action="edit_multicolor_copies.php?update=<?php echo $id; ?>" id="edit_multicolor_copies" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -84,7 +84,7 @@ if(isset($_GET["id"]))
 								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">No. Of Copies<span class="required">*</span></label>
-									<input type="text" class="form-control" id="statename" placeholder="No. Of Copies" name="number_of_copies" value="<?php echo($row['multicolor_copies']); ?>">
+									<input type="text" class="form-control" id="copies" placeholder="No. Of Copies" name="number_of_copies" value="<?php echo($row['multicolor_copies']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Copies Status<span class="required">*</span></label>
@@ -108,11 +108,6 @@ if(isset($_GET["id"]))
 							}
 							?>
 							</form>
-
-
-
-
-							
 						</div>
 					</section><!-- Cart main content : End -->
 </div><!-- container -->

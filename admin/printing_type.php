@@ -53,6 +53,7 @@ include "includes/header.php";
 							            <th>Printing Type</th>						            
 							            <th>Status</th>
 							            <th>Created Date</th>
+							            <th>Action</th>
 							        </tr>
 							    </thead>
 						        <?php              
@@ -84,6 +85,21 @@ include "includes/header.php";
 						            // echo $date; 
 						            ?>
 						            <td><span class="nobr"><?php echo $date; ?></span></td>
+						            <td class="table_action th_hidden a-center last">
+							            <span class="nobr">
+						                	<span class="restrict">      
+							                	<a title="Edit" class="btn  btn-primary btn-xs"><i class="fa fa-pencil-square-o ">
+							                		<div class="restrict_tooltip">Static data.No rights to edit.</div>
+							                	</i> </a>
+											</span>
+							                <span class="separator"></span> 
+							                  <span class="restrict">      
+												   	<a class="btn btn-xs btn-danger delete" title="Delete"><i class="fa fa-trash-o">
+												  	<div class="restrict_tooltip">Static data.No rights to delete.</div>
+												   	</i> </a>
+												</span>
+							            </span>
+				        			</td>
 							   	</tr>
 							   <?php } ?>
 							</table>

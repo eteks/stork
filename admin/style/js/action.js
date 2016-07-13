@@ -1,12 +1,12 @@
 jQuery(document).ready(function() {
 
-	var required_area =["areaname"];
+	var required_area =["areaname","deliverycharge"];
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
 	var required_edit_offer_zone =["offerzonetitle"];
 	// var required_edit_users =["username","password","firstname","test","dob","address","phone"];
-	var required_myform =["areaname"];
+	// var required_myform =["areaname","deliverycharge"];
 	var admin_login=["admin_username","admin_password"];
 	var required_state =["statename"];
 	var required_city =["cityname"];
@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
 	var required_edit_track_order =["dateofdelivered"];
 	var required_project_printing_cost =["amount"];
 	var required_multicolor_printing_cost=["amount"];
-	
+	var required_multicolor_copies =["copies"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
 	sel_c = jQuery("#sel_c");
@@ -70,16 +70,16 @@ jQuery(document).ready(function() {
 			// $('.error_test').css('display','none');
 		}
 		
-		if (document.getElementById('sel_b').selectedIndex < 1){
-			$('#sel_b').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-		}
-		else { 
-			$('#sel_b').removeClass('error_input_field'); 
-			// $('.error_test').css('display','none');
-		}
-	
-		
+		// if (document.getElementById('sel_b').selectedIndex < 1){
+			// $('#sel_b').addClass('error_input_field');
+			// // $('.error_test').css('display','block');
+		// }
+		// else { 
+			// $('#sel_b').removeClass('error_input_field'); 
+			// // $('.error_test').css('display','none');
+		// }
+// 	
+// 		
 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
@@ -341,15 +341,16 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 	});
 jQuery("#add_area").submit(function(){ 
-
-		var input = jQuery('#'+required_myform);
+		for(var i = 0 ; i<required_area.length;i++ ){
+			var input = jQuery('#'+required_area[i]);
+		
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
 				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
+				$('.error_test').css('display','none'); }
 			}
 	//  select field
 
@@ -387,14 +388,16 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 	});
 	jQuery("#edit_area").submit(function(){ 
-		var input = jQuery('#'+required_area);
+		for(var i = 0 ; i<required_area.length;i++ ){
+			var input = jQuery('#'+required_area[i]);
+		
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
 				$('.error_test').css('display','block');
 			} else {
 				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
+				$('.error_test').css('display','none'); }
 			}
 	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
@@ -404,8 +407,7 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		else { $('#sel_a').removeClass('error_input_field');
 		$('.error_test').css('display','none');
 
-		 }
-		
+		 }		
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
@@ -1074,6 +1076,70 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
+		
+jQuery("#add_multicolor_copies").submit(function(){ 
+
+		var input = jQuery('#'+required_multicolor_copies);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+	jQuery("#edit_multicolor_copies").submit(function(){ 
+		var input = jQuery('#'+required_multicolor_copies);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
 	jQuery("#add_multicolor_printing_cost").submit(function(){ 
 		var input = jQuery('#'+required_multicolor_printing_cost);
 		if ((input.val() == "")) 
@@ -1114,14 +1180,21 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
+		if (document.getElementById('sel_e').selectedIndex < 1)
+		{
+			$('#sel_e').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_e').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			// $('.error_test').css('display','block');
+			 $('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			 // $('.error_test').css('display','none');
+			  $('.error_test').css('display','none');
 			return true;
-		}
+		}		
 	});
 	jQuery("#edit_multicolor_printing_cost").submit(function(){ 
 		var input = jQuery('#'+required_multicolor_printing_cost);
@@ -1163,12 +1236,19 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_e').selectedIndex < 1)
+		{
+			$('#sel_e').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_e').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			// $('.error_test').css('display','block');
+			 $('.error_test').css('display','block');
 			return false;
 		} else {
 			errornotice.hide();
-			 // $('.error_test').css('display','none');
+			 $('.error_test').css('display','none');
 			return true;
 		}
 	});
