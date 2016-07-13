@@ -459,15 +459,6 @@
 			        	</div>
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
-			        		<div class="input_holder row pad_15 cover_section_holder">
-			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
-								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
-								<p class="label_text"> Cover </p>
-								<input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
-								<input type="file" class="user dn upload_cover_File" id="upload_cover_File" name="cover_printfiles"/>
-		    	   				<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
-   							</div>
-   							<div class="clear_both"> </div>
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
@@ -489,12 +480,12 @@
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
-									<select name="num_of_copies" class="num_of_copies" id="num_of_copies">
-				        				<option value="select_copies" >Select Number of copies</option>
+									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
+				        				<option value="" >Select Number of copies</option>
 		        						<?php 
 			        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
 												while($row = mysqli_fetch_array($numofcopies)){
-													echo "<option value ='".$row['multicolor_copies_id']."'>".$row['multicolor_copies']."</option>";
+													echo "<option value ='".$row['multicolor_copies']."'>".$row['multicolor_copies']."</option>";
 												}
 		        						?>
 		        				    </select>
@@ -512,14 +503,14 @@
 							</div> -->
 							<div class="input_holder row pad_15">
 							 	<p>Total Cost </p>
-							 	<input class="email print_total_amount" type="text" value="" name="print_totalcost" readonly>
+							 	<input class="email print_total_amount multiprint_total_amount" type="text" value="" name="print_totalcost" readonly>
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
 							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
 							</div>
 							</div>
-							<input type="hidden" class="per_page_costing" value="" />
+							<input type="hidden" class="per_page_costing" value="0.00" />
 							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 							<input type="submit" class="multi_printing_submit dn form_submit_button" />
