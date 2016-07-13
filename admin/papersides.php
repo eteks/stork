@@ -56,7 +56,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	?>
 	<?php if($type != "project") { ?>
 	<div class="add_section">
-		<a href="add_paper_side.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span> <span>[+]</span></a>
+		<a href="add_paper_side.php?type=<?php echo $type; ?>"> <span> Add </span> <span>[+]</span></a>
 	</div>
 	<?php } ?>
 			<div class="form-edit-info">
@@ -117,7 +117,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				        <?php } else{ ?>   
 				            <span class="nobr">
 				            <?php if($type != 'project') { ?>
-			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_side.php?id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_side.php?type=<?php echo $type; ?>&id=<?php echo $papersides_array['paper_side_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <?php } else { ?>
 			                	<span class="restrict">   
 			                		<a title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o ">

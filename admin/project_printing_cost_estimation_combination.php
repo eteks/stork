@@ -120,10 +120,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         <div class="clear_both"> </div>
         </div>
         <div class="add_section">
-            <a href="add_project_printing_cost.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+            <a href="add_project_printing_cost.php"> <span> Add </span><span>[+]</span> </a>
         </div>
             <div class="form-edit-info">
-                <table class="data-table cost_table stork_admin_table" id="my-orders-table">
+                <table class="data-table project_cost_table stork_admin_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Paper Print Type </th>

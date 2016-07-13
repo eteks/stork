@@ -56,10 +56,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         <div class="clear_both"> </div>
         </div>
         <div class="add_section">
-            <a href="add_binding_cost_estimation.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+            <a href="add_binding_cost_estimation.php"> <span> Add </span><span>[+]</span> </a>
         </div>
             <div class="form-edit-info">
-                <table class="data-table cost_table stork_admin_table" id="my-orders-table">
+                <table class="data-table binding_cost_table stork_admin_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Binding Type</th>
@@ -67,7 +67,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
                         <th>Amount fixed Status</th> 
                         <th>Status</th> 
                         <th>Created Date</th>
-                        <th>Action</th>               
+                        <th class="table_action">Action</th>               
                     </tr>
                     </thead>
                     <?php 
@@ -141,11 +141,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     $('#select-category').on('change',function(){
         if($("#select-category").val()!=""){
             var selectedValue = $(this).val();
-            dataTable.fnFilter("^"+selectedValue+"$", 5, true); //Exact value, column, reg 
+            dataTable.fnFilter("^"+selectedValue+"$", 2, true); //Exact value, column, reg 
         }
         else {
-            dataTable.fnFilter( $('#select-category').val(),5);
-            // alert("test");
+            dataTable.fnFilter( $('#select-category').val(),2);
         }
             
     });

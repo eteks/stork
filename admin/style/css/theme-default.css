@@ -4051,7 +4051,8 @@ aside.account-sidebar.sidebar ul{
 * My Order
 */
 #my-orders-table{
-  width: 100%;
+  /*width: 100%;*/
+  max-width: none;
   margin-top: 30px;
   border: 1px solid #cecece;
 }
@@ -6414,13 +6415,13 @@ select::-ms-expand {
   height: 100%;
   width: 100%;
 }
-.width_order_details {
+/*.width_order_details {
   overflow: auto;
-}
-.width_order_details_table {
+}*/
+/*.width_order_details_table {
   max-width: none;
   width: 1450px !important;
-}
+}*/
 .width_text_area {
   max-width: 378px;
 }
@@ -6429,7 +6430,7 @@ select::-ms-expand {
   float: left;
   text-align: left;
   /*text-indent: 3px;*/
-  width: 286px;
+  width: 240px;
 }
 .search-form input[type="text"] {
   height: 40px !important;
@@ -6589,10 +6590,10 @@ button:hover {
 .table_action {
   text-align: right !important;
 }
-.data-table .table_action {
+/*.data-table .table_action {
   padding: 10px 5px 10px 0px !important;
   width : 7% !important;
-}
+}*/
 .user_table td, .user_table th {
   padding: 10px 10px !important;
 }
@@ -6613,4 +6614,12 @@ button:hover {
 }
 .dataTables_wrapper {
   overflow-x: auto;
+  width: 850px;
+}
+.highlight_menu {
+  background: red;
+  color: #fff;
+}
+thead {
+   background: #eff0f1;
 }

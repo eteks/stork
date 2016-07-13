@@ -57,7 +57,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php
 		if($type == 'plain') { ?>
 			<div class="add_section">
-				<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+				<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <span> Add </span><span>[+]</span> </a>
 			</div>
 	<?php	}
 	?>
@@ -117,7 +117,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				        <?php } else{ ?>    
 				            <span class="nobr">
 				            <?php if($type == 'plain') { ?>
-			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_print_type.php?id=<?php echo $paperprinttypes_array['paper_print_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_print_type.php?type=<?php echo $type; ?>&id=<?php echo $paperprinttypes_array['paper_print_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <?php } else { ?>
 			                	<span class="restrict">      
 				                	<a title="Edit" class="btn  btn-primary btn-xs"><i class="fa fa-pencil-square-o ">
