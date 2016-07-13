@@ -48,7 +48,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<div class="clear_both"> </div>
 	</div>
 	<div class="add_section">
-		<a href="add_multicolor_copies.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+		<a href="add_multicolor_copies.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 			<div class="form-edit-info">
 							<?php $sql = "SELECT * FROM `stork_multicolor_copies`"; 

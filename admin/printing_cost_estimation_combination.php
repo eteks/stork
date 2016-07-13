@@ -114,7 +114,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
     <?php include 'includes/sidebar.php'; ?>
     <div class="mainy col-md-9 col-sm-8 col-xs-12"> 
         <div class="heading_section col-md-12">
-        <h3 class="acc-title lg clone_heading"> Printing Cost estimation</h3>
+        <h3 class="acc-title lg clone_heading"> Plain Printing Cost estimation</h3>
 <div class="amout_fixed_status">
         <span>Amount fixed status </span><select id="select-category" name="categories">
     <option value="">All</option>
@@ -125,10 +125,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
         <div class="clear_both"> </div>
         </div>
         <div class="add_section">
-            <a href="add_printing_cost_estimation.php"> <i class="fa fa-user"></i> <span> Add </span><span>[+]</span> </a>
+            <a href="add_printing_cost_estimation.php"> <span> Add </span><span>[+]</span> </a>
         </div>
             <div class="form-edit-info">
-                <table class="data-table cost_table stork_admin_table" id="my-orders-table">
+                <table class="data-table plain_cost_table stork_admin_table" id="my-orders-table">
                     <thead>
                     <tr class="">
                         <th>Paper Print Type </th>
