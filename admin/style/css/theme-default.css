@@ -6417,7 +6417,7 @@ select::-ms-expand {
   float: left;
   text-align: left;
   /*text-indent: 3px;*/
-  width: 240px;
+  width: 200px;
 }
 .search-form input[type="text"] {
   height: 40px !important;

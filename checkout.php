@@ -213,7 +213,7 @@ if(mysqli_num_rows($review_details)>0){
   		 <div  class="col-md-6 col-sm-6 col-xs-12">
 		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box no_pad">
-			   <input type="checkbox" id="register" class="send_to_address_personal"><label class="registers">Send to Personnel Address</label>	
+			   <input type="checkbox" id="register" class="send_to_address_personal check_a"><label class="registers">Send to Personnel Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
 				<div class="pane-inner send_to_address_personal_data">
 				 <br>	
@@ -309,7 +309,7 @@ if(mysqli_num_rows($review_details)>0){
          <div  class="col-md-6 col-sm-6 col-xs-12 fl">
 		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box no_pad">
-			  <input type="checkbox" id="register_b" class="send_to_address_college"><label class="registers">Send to College Address</label>	
+			  <input type="checkbox" id="register" class="send_to_address_college check_a"><label class="registers">Send to College Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
 				<div class="pane-inner send_to_address_college_data">
 				 <br>	

@@ -1439,7 +1439,7 @@ text-align: center;
 }
 .nav > li > a:hover, .nav > li > a:focus {
    background-color: #fff !important;
-   color: #25bce9;
+   color: #444444;
 }
 .error_input_field {
    border:1px solid red !important;
@@ -1468,7 +1468,6 @@ text-align: center;
 .error_image,.error_extension  {
 	color :red ;
 	font-size : 12px;
-	text-align :center;
 	display : none;
 }
 /*.error_admin_login  {
@@ -1560,4 +1559,10 @@ text-align: center;
 }
 .add_section a:focus {
    text-decoration : none;
+}
+.test> a{
+	color:#25bce9;
+}
+.test_a span{
+	color:#25bce9;
 }

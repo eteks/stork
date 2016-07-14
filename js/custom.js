@@ -1199,12 +1199,19 @@ $(document).ready(function () {
 	email=jQuery("#email");
 	
  	test=jQuery("#test");
-	errornotice = jQuery("#error");
-		
+	errornotice = jQuery("#error");			
 	// for empty field validation
 	jQuery(".check_out_payment").on('click',function(){ 
-	if($('.send_to_address_personal_data').css('display')=='block')	 {
-		for(var i = 0 ; i<required_address_1.length;i++ ){
+		if(!$('.check_a:checked').length) {
+    		$('.send_to_address_personal_data').slideDown();
+    		$('#register').prop('checked',true);
+    		$('#register').prop('disabled',true);
+      	  		//stop the form from submitting
+   	 			return false;
+   			 }
+			 				 
+		if($('.send_to_address_personal_data').css('display')=='block')	 {
+			for(var i = 0 ; i<required_address_1.length;i++ ){
 			var input = jQuery('#'+required_address_1[i]);
 			
 			if ((input.val() == "")) {
@@ -1301,8 +1308,38 @@ $(document).ready(function () {
         			return false;
         		
     			}
-   			});
-	jQuery(".check_out_payment").on('click',function(){ 
+   			});   			   		  
+      $('#name_a').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+        $('#studentname').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });	
+           $('#address1').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          }           
+      });	
+           $('#address2').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          }           
+      });	
+	jQuery(".check_out_payment").on('click',function(){ 	
 		if($('.send_to_address_college_data').css('display')=='block')	{
 			for(var i = 0 ; i<required_address_2.length;i++ ){
 				var input = jQuery('#'+required_address_2[i]);

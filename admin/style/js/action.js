@@ -1517,46 +1517,54 @@ jQuery("#add_offer_zone").submit(function(){
 		var input = jQuery('#'+required_add_offer_zone[i]);
 		var input_selector ='#'+required_add_offer_zone[i];
 		var ext = $("#OfferzoneImage").val().split('.').pop().toLowerCase();
-		if ((input.val() == "" || input.val() == undefined)) 
-			{	
-				if(input_selector == "#offerzoneimage" && $('#offerzonetitle').val()!='' &&  $('#sel_a').val()!=''){
-					if($("#OfferzoneImage")[0].files[0]){
-						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-						    $("#OfferzoneImage").addClass("error_input_field");
-							$('.error_extension').css('display','block');
-						}
-						else{
-							$("#OfferzoneImage").removeClass("error_input_field");
-							$('.error_image,.error_extension').css('display','none');
-						}	
-					}	
-					else{
-						$("#OfferzoneImage").addClass("error_input_field");
-						$('.error_image').css('display','block');
-					}
-				}
-				else{
-					input.addClass("error_input_field");
-					$('.error_test').css('display','block');
-				}			
-			} else {
+		if ((input.val() != "")) 
+			{
 				input.removeClass("error_input_field");
 				$('.error_test').css('display','none'); 
-			}
-	}
-			
-	//  select field
+				
+				//  select field
 	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');  }
+		$('.error_test').css('display','none');  
+			
+				if($('#offerzonetitle').val()!=''){
+					if($("#OfferzoneImage")[0].files[0]){
+						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+						    $("#OfferzoneImage").addClass("error_input_field");
+						    $('.error_test').css('display','none');
+							$('.error_extension').css('display','block');
+						}
+						else{
+							$("#OfferzoneImage").removeClass("error_input_field");
+							$('.error_test').css('display','none');
+							$('.error_image,.error_extension').css('display','none');
+						}	
+					}	
+					else{
+						$("#OfferzoneImage").addClass("error_input_field");
+						$('.error_test').css('display','none');
+						$('.error_image').css('display','block');
+					}
+				}
+				else{
+					input.addClass("error_input_field");
+					$('.error_test').css('display','none');
+				}
+				}			
+			} else {
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block'); 
+			}
+	}
+			
+	
 		
 	//if any inputs on the page have the class 'error_input_field' the form will not submit
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {	
 			return false;
 		} else {
 			errornotice.hide();
