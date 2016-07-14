@@ -67,7 +67,7 @@
 									<a  title="Multi-color printing">Personalized Products</a>
 								</li>
 								<li>
-									<a  title="Brochure">Brochure</a>
+									<a  title="Design Template">Design Template</a>
 								</li>
 							</ul>
 						</div>

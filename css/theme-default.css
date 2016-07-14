@@ -4668,6 +4668,9 @@ span.star{
 	margin:0 0 24px;
     background: #ffffff;
 }
+#forget_email {
+  margin:0 0 24px !important;
+}
 #checkout .container .col-md-6  input[type=checkbox]{
 	width:auto;
 }
@@ -6300,4 +6303,7 @@ p.dev_partner:hover {
 }
 .logo a {
   cursor: text !important;
+}
+#forgotpass-form {
+  padding-top: 15px;
 }

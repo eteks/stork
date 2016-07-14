@@ -57,7 +57,7 @@
 
 		<!-- Plain Printing Start-->
 		<?php if($_SESSION['service']=='plain'){ ?>
-	    <section class="pr-main" id="pr-login">	
+	    <section class="pr-main plain_printing_holder" id="pr-login">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Plain Printing</h1>			
@@ -170,11 +170,11 @@
    							</div>
    							<div class="clear_both"> </div>
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
-   							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
+   							<div class="input_holder row pad_15 plain_clone_section upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
 									<p class="label_text display_page_type"> Content </p>
-								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range" value="No file selected"/ disabled>
 									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
@@ -184,11 +184,11 @@
 	   							</div>
    							</div>
    							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
-   							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
+   							<div class="input_holder row pad_15 upload_file_holder display_paper_range plain_paper_range" data-sectionvalue="0" id="display_paper_range ">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
-		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
+		        				    <input type="text" class="select_margin display_normal_file plain_range_file_name style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
 								</div>
    							</div>
@@ -226,7 +226,7 @@
 		<?php } else if($_SESSION['service']=='project'){  ?>
 			
 			
-		 <section class="pr-main project_printing_header" id="pr-login_project">	
+		 <section class="pr-main project_printing_header project_printing_holder" id="pr-login_project">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Project Printing</h1>			
@@ -389,7 +389,7 @@
 	<?php } else if($_SESSION['service']=='multi'){  ?>
 		<!-- Multicolors Printing Start-->
 
-	    <section class="pr-main" id="multicolors_header">	
+	    <section class="pr-main multicolor_printing_holder" id="multicolors_header">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Multicolors Printing</h1>			
@@ -476,20 +476,20 @@
 									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
-		   						<div class="pos_rel" id="pos_rel">
+		   						<!-- <div class="pos_rel" id="pos_rel">
    									<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
    									<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-	   							</div>
+	   							</div> -->
    							</div>
-   							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
+   							<p class="label_page_range"> NUmber of copies <span class="star">&nbsp;*</span> </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
-					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
 									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
-				        				<option value="" >Select Number of copies</option>
+				        				<option value="select_copies" >Select Number of copies</option>
 		        						<?php 
 			        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
 												while($row = mysqli_fetch_array($numofcopies)){

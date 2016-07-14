@@ -21,7 +21,6 @@ html {
 
 body {
   background: #fcfcfc;
-  /*font-family: 'Roboto', sans-serif !important;*/
   font-weight: 400;
   color: #444444;
 }
@@ -301,24 +300,20 @@ a.product-name:hover{
   -o-transition: all 0.2s; 
 }
 ::-webkit-input-placeholder {
-  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
 :-ms-input-placeholder {  
-  /*font-family: 'Roboto', sans-serif !important;*/
   opacity: 0.5;
   color: #ccc;
 }
@@ -6261,12 +6256,6 @@ section.home-slidershow{
 .my_account {
   color: #25bce9;
 }
-.header-page {
-  font-family: "Roboto",sans-serif !important;
-}
-/*.acc-title, .mh-title, .has_submenu a, .has_submenu ul li a{
-  font-family: "Roboto",sans-serif !important;
-}*/
 .page_table_content {
   background-color: #fff ;
   margin: 0px !important;
@@ -6305,11 +6294,9 @@ section.home-slidershow{
 }
 .style_popup_header h3 {
   color : #fff;
-  font-family: "Roboto",sans-serif !important;
 }
 .delete_message_style {
   font-size: 19px;
-  font-family: "Roboto",sans-serif !important;
 }
 select::-ms-expand {
     display: none !important ;
@@ -6430,7 +6417,7 @@ select::-ms-expand {
   float: left;
   text-align: left;
   /*text-indent: 3px;*/
-  width: 240px;
+  width: 200px;
 }
 .search-form input[type="text"] {
   height: 40px !important;
@@ -6614,7 +6601,7 @@ button:hover {
 }
 .dataTables_wrapper {
   overflow-x: auto;
-  width: 850px;
+  width: 860px;
 }
 .highlight_menu {
   background: red;
@@ -6622,4 +6609,13 @@ button:hover {
 }
 thead {
    background: #eff0f1;
+}
+.stork_admin_table {
+  margin-left: 12px;
+}
+.acc-sub-title {
+  margin-left: 15px !important;
+}
+form {
+  margin: 0px 15px;
 }
