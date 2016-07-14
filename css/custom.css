@@ -109,7 +109,7 @@ h3, .h3{
 }
 .error_input_field {
 	/*background: #ffebeb !important;*/
-    border: 1px solid red !important;	
+    border: 1px solid #cb1d1d  !important;	
 }
 .forget_email_valid {
 	display: none;
@@ -282,7 +282,7 @@ color: #000;
 
 .socail_fb { padding-top: 19px;}
 
-.socail_google { padding-top: 115px;}
+.socail_google { padding-top: 134px;}
 
 #pr-login .container .col-md-6.col-sm-6.col-xs-12.right p {
     margin-bottom: 10px !important;
