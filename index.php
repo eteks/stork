@@ -6,6 +6,7 @@
 		}
 	}
 	//print_r($_SESSION);
+	$_SESSION['city'] = $_COOKIE["city_id"];
 ?>
 	<main class="main" id="product-detail">
    		<section class="header-page">
@@ -76,7 +77,7 @@
 				        </div>
 				  </div>
 				  <?php
-				  if(!isset($_SESSION['city'])) {
+				  if($_SESSION['city'] == 0 ) {
 				  ?>
 				  <div class="boxes">
 				    <div class="popup_index" id="popup_index">
@@ -85,7 +86,7 @@
 							<select name="print_book_city_name" id="initial_city_name" class="initial_city_name">
 								<option value="" >Select your city</option>
 								<?php
-        							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry'";
+        							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry' and stork_state.state_status = 1 and stork_city.city_status = 1";
 									$city = mysqli_query($connection, $city_query);
 									while($row = mysqli_fetch_array($city,MYSQLI_ASSOC)){
 										if(strtolower($row['city_name']) == 'puducherry'){

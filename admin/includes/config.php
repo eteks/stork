@@ -1,4 +1,5 @@
 <?php
+include('/../../settings.php');
 ini_set('mysql.connect_timeout', 60);
 
 ini_set('default_socket_timeout', 60);
@@ -9,10 +10,10 @@ if (substr($root, -1) == "/")    $root = 'http://' . $_SERVER['SERVER_NAME'];
 
 
 // define("database", "affiliate_store");
-define("database", "stork");
-define("databaseServer", "localhost");
-define("databaseUser", "root");
-define("databasePass", "root");
+define("database",DATABASE); // variable called from settings.php
+define("databaseServer", HOSTNAME); // variable called from settings.php
+define("databaseUser", DBUSER); // variable called from settings.php
+define("databasePass", DBPASSWORD); // variable called from settings.php
 
 define("displayMySqlErrors",false);
 

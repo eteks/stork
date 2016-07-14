@@ -43,9 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$total_cost = $_POST['print_totalcost'];
 			$comments = $_POST['print_comments'];
 			$session_id = $_SESSION['session_id'];
+			$folder_split = explode('_', $session_id);
+			$folder_name  = $folder_split[2].'_'.date('d-m-Y');
 			$upload_path = "upload_files/";
 			chmod($upload_path, 0777);
-			$additional_path = $_SESSION['session_id'].'/';
+			$additional_path = $folder_name.'/';
 			if(!is_dir($upload_path.$additional_path)){
 				@mkdir($upload_path.$additional_path, 0777, true);
 			}
@@ -148,10 +150,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$total_no_page = $_POST['project_total_pages'];
 			$total_cost = $_POST['project_total_amount'];
 			$comments = $_POST['project_print_comments'];
-			$session_id = $_SESSION['session_id'];
+			$folder_split = explode('_', $session_id);
+			$folder_name  = $folder_split[2].'_'.date('d-m-Y');
 			$upload_path = "upload_files/";
 			chmod($upload_path, 0777);
-			$additional_path = $_SESSION['session_id'].'/';
+			$additional_path = $folder_name.'/';
 			if(!is_dir($upload_path.$additional_path)){
 				@mkdir($upload_path.$additional_path, 0777, true);
 			}

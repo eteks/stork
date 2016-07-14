@@ -14,7 +14,31 @@
   			//echo "<script> $('.login_error').css('display','none'); </script>";
 			$_SESSION['login_status']=1;
 			$_SESSION['user_id'] = $login_user_id_data['user_id'];
-  			//echo "login successful";		
+			$user_type_for_login = (isset($_SESSION['usertype'])?$_SESSION['usertype']:'stu');
+  			//echo "login successful";	
+  			$random = uniqid();
+  			if(!isset($_SESSION['session_id'])){
+		  		if($_SESSION['login_status'] == 1 && $user_type_for_login == 'stu'){
+		   			$_SESSION['session_id'] = 'reg_stu_'.$random; 
+		  		}
+		  		else if($_SESSION['login_status'] == 1 && $user_type_for_login == 'pro'){
+			   		$_SESSION['session_id'] = 'reg_pro_'.$random;
+			  	}
+			  	else if($_SESSION['login_status'] == 0 && $user_type_for_login == 'stu'){
+		   			$_SESSION['session_id'] = 'gue_stu_'.$random;
+		  		}
+		  		else if($_SESSION['login_status'] == 0 && $user_type_for_login == 'pro'){
+			   		$_SESSION['session_id'] = 'gue_pro_'.$random;
+			  	}
+		 	}
+			if(isset($_SESSION['session_id'])){
+	  			$session_data_check = explode("_", $_SESSION['session_id']);
+	  			$changed_session_id = 'reg_'.$user_type_for_login.'_'.$session_data_check[2];
+		 	 	updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
+			 	$_SESSION['session_id'] = $changed_session_id;	
+			}
+  			die('<script type="text/javascript">window.location.href="'.$_POST['redirect_url'].'";</script>');
+			exit();
   		}
   		else {
   			$login_error = 1;
@@ -82,6 +106,7 @@
 						<p>Password <span class="star">*</span></p>
 						<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="" />
 						<span class="forget_email_valid" style="<?php if($login_error == 1) echo "display:block"; ?>"> Please enter valid login details </span>
+						<input type="hidden" name="redirect_url" value="<?php echo $_GET['redirect_url']; ?>">
 						<button type="submit" class="login" name="login_user">Login</button>
 					</form>
 				    <br/><br/><br/>
