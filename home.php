@@ -126,7 +126,7 @@
 									<img src="images/banner/category/2.jpg" alt="banner-category"/>
 								</a>
 								<div class="info">
-									<a href="#">DESIGN TEMPLATES</a>
+									<a href="#">DESIGN TEMPLATE</a>
 								</div>
 							</div>
 							<div class="box-right">
@@ -229,7 +229,7 @@
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
 						<div class="tr-icon"><i class="fa fa-map-o"></i></div>
 						<div class="tr-text">
-							<h3>Design Templates</h3>
+							<h3>Design Template</h3>
 							<span class="tr-line"></span>
 							<p style="display:none;">
 								Most sellers work with buyers to quickly resolve issues, but if a solution isn't reached, we can help.
@@ -599,7 +599,7 @@
 							<li><a data-toggle="tab" href="#tab4" class="last">/a>Personalized gift</li>
 							<li><a data-toggle="tab" href="#tab5" class="last">3d product</a></li>
 							<!-- <li><a data-toggle="tab" href="#tab6" class="last">Presentation</a></li> -->
-							<li><a data-toggle="tab" href="#tab7" class="last">Design Templates</a></li>
+							<li><a data-toggle="tab" href="#tab7" class="last">Design Template</a></li>
 							<li><a data-toggle="tab" href="#tab8" class="last">Multicolor</a></li>
 							<li><a data-toggle="tab" href="#tab9" class="last">Project binding</a></li>
 						</ul>
@@ -2665,7 +2665,7 @@
 							<li><a data-toggle="tab" href="#tab41" class="last">Personalized gift</a></li>
 							<li><a data-toggle="tab" href="#tab51" class="last">3d product</a></li>
 							<!-- <li><a data-toggle="tab" href="#tab61" class="last">Presentation</a></li> -->
-							<li><a data-toggle="tab" href="#tab71" class="last">Design Templates</a></li>
+							<li><a data-toggle="tab" href="#tab71" class="last">Design Template</a></li>
 							<li><a data-toggle="tab" href="#tab81" class="last">Multicolor</a></li>
 							<li><a data-toggle="tab" href="#tab91" class="last">Project binding</a></li>
 					</div>
