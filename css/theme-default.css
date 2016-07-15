@@ -6302,7 +6302,7 @@ p.dev_partner:hover {
   cursor: default !important;
 }
 .logo a {
-  cursor: text !important;
+  cursor: pointer !important;
 }
 #forgotpass-form {
   padding-top: 15px;

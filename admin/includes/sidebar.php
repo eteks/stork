@@ -120,6 +120,12 @@ function countTransaction()
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countScheduleTime()
+{
+	$query = mysqlQuery("SELECT count(schedule_time_id) as total FROM stork_cabin_schedule_time");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 ?> 
 <aside class="col-md-3 col-sm-4 col-xs-12 account-sidebar sidebar">
 	<h3 class="acc-title lg">Dashboard</h3>
@@ -266,7 +272,20 @@ function countTransaction()
 					</a>
 				</li>
 
-				<li>
+					<?php 
+					if(basename($_SERVER['PHP_SELF'])=="printing_type.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
 					<a href="printing_type.php">
 						<!-- <i class="fa fa-location-arrow"></i> --> Printing Type
 						<span class="caret pull-right"></span>
@@ -699,6 +718,93 @@ function countTransaction()
 						<!-- <i class="fa fa-file"></i> --> Binding Cost Estimation
 						<span class="caret pull-right"></span>
 					</a>
+				</li>
+				
+			<?php 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_system.php" || 
+					basename($_SERVER['PHP_SELF'])=="cabin.php" || basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php"|| basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php"|| basename($_SERVER['PHP_SELF'])=="holiday.php")					{ 
+						?> 
+						<li class="has_submenu open test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li class="has_submenu">
+						<?php 
+					}  
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-file"></i> --> Cabin
+						<span class="caret pull-right"></span>
+					</a>
+					<!-- Sub menu -->
+					<ul>						
+					<?php 
+					if(basename($_SERVER['PHP_SELF'])=="holiday_details.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
+							<a href="holiday_details.php"><i class="fa fa-list"></i><span> Holiday Details (<?php echo countOrderDetails() ?>) </span></a>
+						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
+							<a href="cabin_system_details.php"><i class="fa fa-list"></i><span> Cabin System Details (<?php echo countOrderDetails() ?>) </span></a>
+						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
+							<a href="cabin_schedule_time.php"><i class="fa fa-list"></i><span> Cabin Schedule Time (<?php echo countOrder() ?>) </span></a>
+						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
+							<a href="cabin_cost_estimation.php"><i class="fa fa-list"></i><span> Cabin Cost Estimation(<?php echo countTransaction() ?>) </span></a>
+						</li>
+					</ul>
 				</li>
 				
 				<?php 

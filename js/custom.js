@@ -1774,7 +1774,7 @@ $(document).ready(function () {
            			}
            			else{
            				error_popup('Printing option not available!');
-           				$('#project_printing_form .project_paper_size,#print_booking_form .project_paper_type').prop('selectedIndex', 0);
+           				$('#project_printing_form .project_paper_size,#project_printing_form .project_paper_type').prop('selectedIndex', 0);
 					}
            			
           		}

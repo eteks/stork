@@ -40,7 +40,7 @@ include('header.php');
 
                  <div class="short-description">
 	                  <p class="visible-md visible-lg">
-	                   Your Order delivered with on before <?php echo $row['order_delivery_date']; ?>
+	                   Your Order delivered with on before <?php echo $row['order_delivery_date'].'  '.$row['order_delivery_time']; ?>
 	                  </p><br>
                  </div>
                  <div class="price-box">
