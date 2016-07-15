@@ -939,3 +939,54 @@ h4.order_or_button{
 .num_of_copies {
     max-width: 228px !important;
 }
+
+/* Cabin Bookin */
+
+#table_billto li {
+	list-style-type: none;
+	padding: 0px 20px 10px 0px;
+}
+
+.field-wrapper select{ 
+	padding-bottom: 3px;
+	margin-bottom: 0px !important;
+}
+
+.onepage h3 {
+    background: #25bce9 none repeat scroll 0 0;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 8px 6px;
+    text-transform: uppercase;
+}
+
+.cabin_button_holder {
+    margin-left: 100px;
+}
+
+#txtDate{
+    background-image: url(../images/calender.png);
+    background-repeat: no-repeat;
+    cursor:pointer;
+    background-position: right;
+}
+div.ui-datepicker {
+   font-size: 62.5%;
+   background: #25bce9;
+   border: 1px solid #25bce9;
+   color: #fff;    
+ } 
+
+.fa-clock-o {
+	font-size: 60px;
+}
+
+.slot{
+	margin: 20px 45px;
+	width: 20%;
+	text-align: center;
+}
+.align{
+	text-align:center;
+	margin:10px;
+}
