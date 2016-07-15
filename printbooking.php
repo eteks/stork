@@ -1,27 +1,36 @@
 <?php 
 	include('header.php');
-	 if(!isset($_SESSION['usertype']) || !isset($_GET['service'])){
-	  //header('Location:index.php');
-	  die('<script type="text/javascript">window.location.href="index.php";</script>');
-	  exit();
-	 }
- $_SESSION['service']=$_GET['service'];
- $random = uniqid();
- if(!isset($_SESSION['session_id'])){
-  if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
-   $_SESSION['session_id'] = 'reg_stu_'.$random; 
-  }
-  else if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'pro'){
-   $_SESSION['session_id'] = 'reg_pro_'.$random;
-  }
-  else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'stu'){
-   $_SESSION['session_id'] = 'gue_stu_'.$random;
-  }
-  else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'pro'){
-   $_SESSION['session_id'] = 'gue_pro_'.$random;
-  }
- }
+	if(!isset($_SESSION['usertype']) || !isset($_GET['service'])){
+		//header('Location:index.php');
+		die('<script type="text/javascript">window.location.href="index.php";</script>');
+		exit();
+	}
+	$_SESSION['service']=$_GET['service'];
+ 	$random = uniqid();
  
+ 	if(!isset($_SESSION['session_id'])){
+  		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
+   			$_SESSION['session_id'] = 'reg_stu_'.$random; 
+  		}
+  		else if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'pro'){
+	   		$_SESSION['session_id'] = 'reg_pro_'.$random;
+	  	}
+	  	else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'stu'){
+   			$_SESSION['session_id'] = 'gue_stu_'.$random;
+  		}
+  		else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'pro'){
+	   		$_SESSION['session_id'] = 'gue_pro_'.$random;
+	  	}
+ 	}
+ 	
+ 	if(isset($_SESSION['session_id'])){
+ 		$session_data_check = explode("_", $_SESSION['session_id']);
+	 	if($_SESSION['usertype'] != $session_data_check[1]){
+		 	$changed_session_id = $session_data_check[0].'_'.$_SESSION['usertype'].'_'.$session_data_check[2];
+ 	 		updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
+	 		$_SESSION['session_id'] = $changed_session_id;
+	 	}
+ 	}
 
 ?>
 	<div class="main printbooking_main_page" id="product-detail">	
@@ -48,7 +57,7 @@
 
 		<!-- Plain Printing Start-->
 		<?php if($_SESSION['service']=='plain'){ ?>
-	    <section class="pr-main" id="pr-login">	
+	    <section class="pr-main plain_printing_holder" id="pr-login">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Plain Printing</h1>			
@@ -66,7 +75,6 @@
 						$printingtype = selectfunction('*',PRINTINGTYPE,'printing_type="plain_printing"',$connection);
 						$printing_type_id = mysqli_fetch_array($printingtype);
 						$printing_type = $printing_type_id ['printing_type_id'];
-
 					?>
 					<form id="print_booking_form" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
@@ -77,11 +85,11 @@
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php	
-		        								$printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-			        							//$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
-												while($row = mysqli_fetch_array($printtype_query)){
-													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
-												}
+	        								$printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+		        							//$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
+											while($row = mysqli_fetch_array($printtype_query)){
+												echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
+											}
 		        						?>
 		        				</select>
 			        		</div> <!-- input holder -->
@@ -91,11 +99,11 @@
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
-	        								$printside_query = mysqli_query($connection, "select * from ".PAPERSIDE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIDE.".printing_type_id where ".PAPERSIDE.".paper_side_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$paperside = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
-											while($row = mysqli_fetch_array($printside_query)){
-												echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
-											}
+        								$printside_query = mysqli_query($connection, "select * from ".PAPERSIDE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIDE.".printing_type_id where ".PAPERSIDE.".paper_side_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$paperside = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
+										while($row = mysqli_fetch_array($printside_query)){
+											echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->
@@ -104,11 +112,11 @@
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
-	        								$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
-											while($row = mysqli_fetch_array($paper_type_query)){
-												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
-											}
+        								$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+										while($row = mysqli_fetch_array($paper_type_query)){
+											echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->
@@ -117,11 +125,11 @@
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
-	        								$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
-											while($row = mysqli_fetch_array($paper_size_query)){
-												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
-											}
+        								$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
+										while($row = mysqli_fetch_array($paper_size_query)){
+											echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->
@@ -162,11 +170,11 @@
    							</div>
    							<div class="clear_both"> </div>
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
-   							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
+   							<div class="input_holder row pad_15 plain_clone_section upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
 									<p class="label_text display_page_type"> Content </p>
-								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
+								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range" value="No file selected"/ disabled>
 									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
@@ -176,11 +184,11 @@
 	   							</div>
    							</div>
    							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
-   							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
+   							<div class="input_holder row pad_15 upload_file_holder display_paper_range plain_paper_range" data-sectionvalue="0" id="display_paper_range ">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
-		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
+		        				    <input type="text" class="select_margin display_normal_file plain_range_file_name style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
 								</div>
    							</div>
@@ -218,7 +226,7 @@
 		<?php } else if($_SESSION['service']=='project'){  ?>
 			
 			
-		 <section class="pr-main project_printing_header" id="pr-login_project">	
+		 <section class="pr-main project_printing_header project_printing_holder" id="pr-login_project">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Project Printing</h1>			
@@ -381,7 +389,7 @@
 	<?php } else if($_SESSION['service']=='multi'){  ?>
 		<!-- Multicolors Printing Start-->
 
-	    <section class="pr-main" id="multicolors_header">	
+	    <section class="pr-main multicolor_printing_holder" id="multicolors_header">	
 			<div class="container">	
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<h1 class="ct-header">Multicolors Printing</h1>			
@@ -468,20 +476,20 @@
 									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
-		   						<div class="pos_rel" id="pos_rel">
+		   						<!-- <div class="pos_rel" id="pos_rel">
    									<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
    									<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
-	   							</div>
+	   							</div> -->
    							</div>
-   							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
+   							<p class="label_page_range"> NUmber of copies <span class="star">&nbsp;*</span> </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
-					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
 									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
-				        				<option value="" >Select Number of copies</option>
+				        				<option value="select_copies" >Select Number of copies</option>
 		        						<?php 
 			        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
 												while($row = mysqli_fetch_array($numofcopies)){

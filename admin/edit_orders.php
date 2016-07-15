@@ -182,9 +182,14 @@ if(isset($_GET["id"]))
 											<span>Select City</span>
 										</option>
 								        <?php
-						                    $query = mysql_query("select * from stork_city where city_status='1'");
+								        	$state_name = $row['order_shipping_state'];
+								        	$state_fetch = mysql_fetch_array(mysql_query("select * from stork_state where state_status='1' and state_name='$state_name'"));
+								        	$state_id = $state_fetch["state_id"];
+						                    $query = mysql_query("select * from stork_city where city_status='1' and city_state_id='$state_id'");
 					                        while ($staterow = mysql_fetch_array($query)) {
 					                        if($row['order_shipping_city'] == $staterow['city_name'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
+					                        else
+					                        	echo "<option value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";
 					                        }
 			                        ?>
 								    </select>
@@ -196,13 +201,17 @@ if(isset($_GET["id"]))
 											<span>Select Area</span>
 										</option>
 								        <?php
-					                    $query = mysql_query("select * from stork_area where area_status='1'");
-				                        while ($arearow = mysql_fetch_array($query)) {
-				                        if($row['order_shipping_area'] == $arearow['area_name'])   
-				                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
-				                        }
-					                        ?>
-			                        ?>
+								        	$city_name = $row['order_shipping_city'];
+								        	$city_fetch = mysql_fetch_array(mysql_query("select * from stork_city where city_status='1' and city_name='$city_name'"));
+								        	$city_id = $city_fetch["city_id"];
+						                    $query = mysql_query("select * from stork_area where area_status='1' and area_city_id='$city_id'");
+					                        while ($arearow = mysql_fetch_array($query)) {
+					                        if($row['order_shipping_area'] == $arearow['area_name'])   
+					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        else
+					                        	echo "<option value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        }
+					                    ?>
 								    </select>
 								</div>
 								<div class="form-group">

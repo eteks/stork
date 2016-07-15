@@ -1,6 +1,26 @@
 <?php 
 include('header.php');
-if(!isset($_SESSION['session_id'])){
+
+$session_data = $_SESSION['session_id'];
+if($_SESSION['login_status']==1){
+	$session_spilit = explode('_', $session_data);
+	$session_id_changed = 'reg_'.$session_spilit[1].'_'.$session_spilit[2];
+	$_SESSION['session_id'] = $session_id_changed;
+}else if($_SESSION['login_status']==0){
+	$session_spilit = explode('_', $session_data);
+	$session_id_changed = 'gue_'.$session_spilit[1].'_'.$session_spilit[2];
+	$_SESSION['session_id'] = $session_id_changed;
+}
+
+ if(isset($_SESSION['session_id'])){
+ 	$session_data_check = explode("_", $_SESSION['session_id']);
+	 if($_SESSION['usertype'] != $session_data_check[1]){
+	 	$changed_session_id = $session_data_check[0].'_'.$_SESSION['usertype'].'_'.$session_data_check[2];
+ 	 	updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
+	 	$_SESSION['session_id'] = $changed_session_id;
+	 }
+ }
+ if(!isset($_SESSION['session_id'])){
 	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION[service].'";</script>');
 	exit();
 }
@@ -213,9 +233,9 @@ if(mysqli_num_rows($review_details)>0){
   		 <div  class="col-md-6 col-sm-6 col-xs-12">
 		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box no_pad">
-			   <input type="checkbox" id="register" class="send_to_address_personal check_a"><label class="registers">Send to Personnel Address</label>	
+			   <input type="checkbox" id="register" class="send_to_address_personal check_a <?php if($usertype_name == 'pro') echo "dn"; ?>" <?php if($usertype_name == 'pro') echo "checked"; ?>><label class="registers">Send to Personnel Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
-				<div class="pane-inner send_to_address_personal_data">
+				<div class="pane-inner send_to_address_personal_data <?php if($usertype_name != 'pro') echo "dn"; ?>">
 				 <br>	
 				  <ul id="table_billto" class="adminform user-details no-border">
 				  	<li class="long">
@@ -299,6 +319,7 @@ if(mysqli_num_rows($review_details)>0){
 		   </div>  <!-- billto -->
          </div>
          <?php
+       
 		$user_access_type = explode('_', $_SESSION['session_id']);
 		
 		if($user_access_type[0] == 'gue' && $user_access_type[1] == 'stu'||	$user_access_type[0] == 'reg' && $user_access_type[1] == 'stu'){
@@ -311,7 +332,7 @@ if(mysqli_num_rows($review_details)>0){
 			 <div class="pane round-box no_pad">
 			  <input type="checkbox" id="register" class="send_to_address_college check_a"><label class="registers">Send to College Address</label>	
 			   <h3 class="title"><span class="icon fa fa-check"></span>Shipping Detail </h3>
-				<div class="pane-inner send_to_address_college_data">
+				<div class="pane-inner send_to_address_college_data <?php if($usertype_name != 'pro') echo "dn"; ?>">
 				 <br>	
 				  <ul id="table_billto" class="adminform user-details no-border">
 				  	<li class="long">
@@ -454,12 +475,12 @@ if(mysqli_num_rows($review_details)>0){
 	   </div> <!---Cost details---->
 	   <!---button holder------>
 	   <?php
-	   if($user_access_type[0]=='gue'){
+	   if($_SESSION['login_status']==0){
 	   	?>
 	   <div class="button_holder">
 			<h4 class="btn_prf"><a href="register.php">Sign up</a></h4>
 			<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
-			<h4 class="btn_prf"><a href="login.php">Sign in</a></h4>
+			<h4 class="btn_prf"><a href="login.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">Sign in</a></h4>
 			<?php	
 				require_once('fbsettings.php'); 
 				if (isset($accessToken)) {
@@ -517,10 +538,10 @@ if(mysqli_num_rows($review_details)>0){
 
 <?php
 }
-else{
-	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	exit();
-} 
+// else{
+	// die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+	// exit();
+// } 
 include('footer.php'); 
 ?>
 <script>

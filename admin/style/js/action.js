@@ -445,7 +445,8 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
                 else{
                     alert('No City added for '+selected_state);    
                 }  
-                $('.city_act').html(options);                  
+                $('.city_act').html(options); 
+                $('.area_act').html('<option value="">Select Area</option>');                 
                }
            });
        });

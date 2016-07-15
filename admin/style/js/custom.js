@@ -28,20 +28,20 @@ $(document).ready(function(){
   $('.stork_admin_table').each(function() {
     var thCount = $(this).find('th').length;
     if(thCount == 3) {
-      $(this).css('width','850px');
+      $(this).css('width','840px');
       $(this).find('th:first-child').css('width','350px');
       $(this).find('th:nth-child(2)').css('width','280x');
       $(this).find('th:nth-child(3)').css('width','200px');
     }
     else if(thCount == 4) {
-      $(this).css('width','850px');
+      $(this).css('width','840px');
       $(this).find('th:first-child').css('width','268px');
       $(this).find('th:nth-child(2)').css('width','168px');
       $(this).find('th:nth-child(3)').css('width','168px');
       $(this).find('th:last-child').css('width','145px');
     }
     else if(thCount == 5) {
-      $(this).css('width','850px');
+      $(this).css('width','840px');
       $(this).find('th:first-child').css('width','208px');
       $(this).find('th:nth-child(2)').css('width','208px');
       $(this).find('th:nth-child(3)').css('width','110px');
@@ -159,13 +159,13 @@ $('.stork_admin_table th').each(function(index, th) {
   $('.sort_desc').css('display','none');
   $(th).find('.btn-asc').click(function(e) {
     var this_button = $(this);
-     table.column(index).order('asc').draw();
+     table.column(index).order('desc').draw();
         this_button.css('display','none');
         this_button.next().css('display','inline');
   }); 
   $(th).find('.btn-desc').click(function(e) {
     var this_button = $(this);
-     table.column(index).order('desc').draw(); 
+     table.column(index).order('asc').draw(); 
      this_button.css('display','none'); 
      this_button.prev().css('display','inline'); 
   }); 
