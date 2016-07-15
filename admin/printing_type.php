@@ -53,7 +53,7 @@ include "includes/header.php";
 							            <th>Printing Type</th>						            
 							            <th>Status</th>
 							            <th>Created Date</th>
-							            <th>Action</th>
+							            <th class="table_action sorting">Action</th>
 							        </tr>
 							    </thead>
 						        <?php              
