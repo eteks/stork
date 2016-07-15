@@ -6299,5 +6299,5 @@ p.dev_partner:hover {
   cursor: default !important;
 }
 .logo a {
-  cursor: text !important;
+  cursor: pointer !important;
 }

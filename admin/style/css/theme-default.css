@@ -722,6 +722,7 @@ a.product-name:hover{
 .logo a img {
   height: auto;
   width: 25%;
+  cursor: pointer !important;
 }
 /*.main-header .logo.hd-pd{
   padding:22px 0px;
