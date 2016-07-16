@@ -5,6 +5,7 @@ function error_popup(message){
 	document.body.style.overflow = 'hidden';
 }
 $(document).ready(function () { 
+	
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
 	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob"];
@@ -20,6 +21,34 @@ $(document).ready(function () {
 	// $('body').bind('cut copy paste', function (e) {
         // e.stopPropagation();
     // });
+
+   // cabin booking form - field show & Hide
+   
+	    $('#time-type').on('change', function() {
+	      if ( this.value == 'flexible')
+	       {
+	      	$("#flexi-show").show();
+	      }
+	      else
+	      {
+	        $("#flexi-show").hide();
+	      }
+	    });
+	    
+  	 
+		 
+   // Cabin-Booking Calendar
+	   	  /* generate a simple calendar inside a specified container. */	
+		   	$('#pickdate').dcalendar();
+		   	
+		  /* generate a simple date picker that appears when an input field is focused. */ 
+		   	$('#pickdate').dcalendarpicker();
+		   	
+		  /* Change the date format option for date picker to meet your special design needs. */
+		 	   $('#pickdate').dcalendarpicker({
+		 	   	// default: mm/dd/yyyy
+				format: 'dd-mm-yyyy'
+		        });
 
 	//  == Validation for Page range Format Start ==
 
@@ -1913,6 +1942,8 @@ $(document).ready(function () {
 		var city_id = $('#initial_city_name').val();
 		Cookies.set('city_id',city_id);
 	});
+	
+	
 
 
 	// Cabin booking form validation

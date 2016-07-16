@@ -721,8 +721,8 @@ function countScheduleTime()
 				</li>
 				
 			<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_system.php" || 
-					basename($_SERVER['PHP_SELF'])=="cabin.php" || basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php"|| basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php"|| basename($_SERVER['PHP_SELF'])=="holiday.php")					{ 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_system_details.php"|| basename($_SERVER['PHP_SELF'])=="edit_cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_schedule_time.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_schedule_time.php" ||
+						basename($_SERVER['PHP_SELF'])=="cabin.php" || basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php"|| basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php"|| basename($_SERVER['PHP_SELF'])=="holiday.php")					{ 
 						?> 
 						<li class="has_submenu open test">
 						<?php 
@@ -753,23 +753,7 @@ function countScheduleTime()
 						<li>
 						<?php 
 					}  
-				?>
-							<a href="holiday_details.php"><i class="fa fa-list"></i><span> Holiday Details (<?php echo countOrderDetails() ?>) </span></a>
-						</li>
-							<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php")
-					{ 
-						?> 
-						<li class="test_a">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li>
-						<?php 
-					}  
-				?>
+				?>		
 							<a href="cabin_system_details.php"><i class="fa fa-list"></i><span> Cabin System Details (<?php echo countOrderDetails() ?>) </span></a>
 						</li>
 							<?php 
@@ -790,6 +774,22 @@ function countScheduleTime()
 						</li>
 							<?php 
 					if(basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php")
+					{ 
+						?> 
+						<li class="test_a">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>
+				<a href="holiday_details.php"><i class="fa fa-list"></i><span> Holiday Details (<?php echo countOrderDetails() ?>) </span></a>
+						</li>
+							<?php 
+					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php")
 					{ 
 						?> 
 						<li class="test_a">
