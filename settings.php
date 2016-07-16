@@ -2,7 +2,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "");
+define("DBPASSWORD", "root");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
@@ -38,6 +38,9 @@ define("UPLOADFILES",'stork_upload_files');
 define("USERS",'stork_users');
 define("NUMBEROFCOPIES",'stork_multicolor_copies');
 define("CITY",'stork_city');
+define("CABINTOTALSYSTEM",'stork_cabin_total_number_of_system');
+define("CABINSLOTTIME",'stork_cabin_schedule_time');
+define("CABINSYSTEMAVAILABLE",'stork_cabin_system_availability');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
 define("PROJECTCOSTESTIMATION",'stork_cost_estimation_project_printing');
 define("MULTICOLOR",'stork_cost_estimation_multicolor');
@@ -61,4 +64,7 @@ define("FORGOTPASSWORDEMAILID",'info@etekchnoservices.com');
 
 //printing type
 $printing_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Mutlticolor Printing');
+
+// Array for decalring timing type to be used throughout the application for cabin booking
+$timing_type = array('fixed' => 'Fixed','flexible' => 'Flexible');
 ?>

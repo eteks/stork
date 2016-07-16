@@ -1914,4 +1914,76 @@ $(document).ready(function () {
 		Cookies.set('city_id',city_id);
 	});
 
+
+	// Cabin booking form validation
+
+	$('#cabin_book_button').on('click',function(){
+		$('#cabin_booking').submit();
+	});
+	$("#cabin_mobile,#cabin_required_system").keypress(function (e) {
+		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+   			return false;
+		}
+	});
+	$("#cabin_name").keypress(function (e) {
+	 	if (e.which != 8 && e.which != 0 && (e.which < 97 || e.which > 122) ) {
+		   return false;;
+		}
+	});
+
+	jQuery(document).on('submit','#cabin_booking',function(){
+
+	required_cabin_fields = ["cabin_name", "cabin_mobile","txtDate","cabin_required_system"];
+	for (i=0;i<required_cabin_fields.length;i++) {
+			var input = jQuery('#'+required_cabin_fields[i]);
+			if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+			} else {
+				input.removeClass("error_input_field");
+				}
+		}
+		if (document.getElementById('cabin_timing_type').selectedIndex < 1){
+			$('#cabin_timing_type').addClass('error_input_field');
+		}
+		else{ 
+			$('#cabin_timing_type').removeClass('error_input_field');
+		}
+		var mobile=$('#cabin_mobile').val().length;
+		if(mobile<=9){
+			$('#cabin_mobile').addClass("error_input_field");
+		}
+		else {
+			$('#cabin_mobile').removeClass("error_input_field");
+ 		}
+ 		//  No need now , commented by siva
+		// var system=$('#cabin_required_system').val();
+		// if(system>10 || system == 0){
+		// 	$('#cabin_required_system').addClass("error_input_field");
+		// }
+		// else {
+		// 	$('#cabin_required_system').removeClass("error_input_field");
+ 	// 	}
+
+		if (jQuery(":input").hasClass("error_input_field") ||  jQuery("select").hasClass("error_input_field")) {
+				return false;
+			} else {
+				errornotice.hide();
+				return true;
+			}
+		});
+
+		$('.slot').each(function() {
+			$(this).find('i').click(function(){
+				var selected_slot =$('.slot').find('.seleted_slot');
+				$(this).addClass('seleted_slot');
+				selected_slot.removeClass('seleted_slot');
+			});
+		});
+
+
+    
+
+
 }); // Document ready end
+

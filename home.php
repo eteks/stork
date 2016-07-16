@@ -191,15 +191,17 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-minded">
-						<div class="tr-icon"><i class="fa fa-life-buoy"></i></div>
-						<div class="tr-text">
-							<h3>Cabin Booking</h3>
-							<span class="tr-line"></span>
-							<p style="display:none;">
-								Overnight Prints is the greenest online printer in the world. See our Waterless technology. 
-							</p>
-							<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
-						</div>
+						<a href="cabin_booking.php">
+							<div class="tr-icon"><i class="fa fa-life-buoy"></i></div>
+							<div class="tr-text">
+								<h3>Cabin Booking</h3>
+								<span class="tr-line"></span>
+								<p style="display:none;">
+									Overnight Prints is the greenest online printer in the world. See our Waterless technology. 
+								</p>
+								<a style="display:none;" href="#" class="btn-readmore" title="Eco-Minded">Read more</a>
+							</div>
+						</a>
 					</div>
 				</div>
 				

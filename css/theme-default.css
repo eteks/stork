@@ -5210,8 +5210,8 @@ h1.ct-header{
 	padding-left:10px;
 }
 .onepage .pane-inner ul li input, .onepage .pane-inner ul li  select {
-	min-width:95%;
-	max-width:95%;
+	width:100%;
+	max-width:100%;
 	font-size:12px;
 	color:#444444;
 	border:1px solid #e8e8e8;
@@ -6306,4 +6306,36 @@ p.dev_partner:hover {
 }
 #forgotpass-form {
   padding-top: 15px;
+}
+#coupon_booked_button {
+  background-color: #ff0000;
+}
+#coupon_selected_button {
+  background-color: #0000ff;
+}
+#coupon_available_button {
+  background-color: #008000;
+}
+.details-button {
+    color: #fff;
+    margin: 0 0 0 20px;
+    padding: 5px 12px;
+}
+#cabin_book_button {
+  color: #000;
+}
+#cabin_clear_button {
+  color: #000;
+}
+.slot i {
+  cursor: pointer;
+}
+.slot i:hover {
+  color: #000;
+}
+.seleted_slot {
+  color: #0000ff !important;
+}
+.num_of_system_restiction {
+  display: none;
 }
