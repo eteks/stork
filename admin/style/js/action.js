@@ -1,5 +1,17 @@
 jQuery(document).ready(function() {
 
+	var options = {
+        now: "12:00", //hh:mm 24 hour format only, defaults to current time
+        twentyFour: false,  //Display 24 hour format, defaults to false
+        upArrow: 'wickedpicker__controls__control-up',  //The up arrow class selector to use, for custom CSS
+        downArrow: 'wickedpicker__controls__control-down', //The down arrow class selector to use, for custom CSS
+        close: 'wickedpicker__close', //The close class selector to use, for custom CSS
+        hoverState: 'hover-state', //The hover state class to use, for custom CSS
+        title: 'Timepicker' //The Wickedpicker's title
+    };
+    
+    $('.timepicker').wickedpicker(options);
+
 	var required_area =["areaname","deliverycharge"];
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];

@@ -1566,3 +1566,12 @@ text-align: center;
 .test_a span{
 	color:#25bce9;
 }
+.schedule_block label{
+   display:block;
+}
+.schedule_block input{
+    float: left;
+    margin: 0 7px 0 0;
+    max-width: 185px !important;
+    padding-left: 4px;
+}

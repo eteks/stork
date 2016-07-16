@@ -7,20 +7,20 @@ include "includes/header.php";
 <body> 
 <?php 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-		$state_id = $_POST["state_id"];
-		$city_name = $_POST["city_name"];
-		$city_status = $_POST["city_status"];
-		if($city_name=="" || $city_status=="") {
+		$system_timing_type = $_POST["timing_type"];
+		$no_of_system = $_POST["no_of_system"];
+		$system_status = $_POST["system_status"];
+		if($system_timing_type=="" || $no_of_system=="" || $system_status=="") {
 			$successMessage ="<div class='container error_message_mandatory'><span>Please fill all required(*) fields </span></div>";
 		}	
 		else{
-			$qr = mysql_query("SELECT * FROM stork_city WHERE city_name = '$city_name' AND city_state_id	='$state_id'");
+			$qr = mysql_query("SELECT * FROM stork_cabin_total_number_of_system WHERE total_number_of_system_timing_type = '$system_timing_type'");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
-			$successMessage =  "<div class='container error_message_mandatory'><span> City Already Exists </span></div>";
+			$successMessage =  "<div class='container error_message_mandatory'><span> Already No. Of system entered for this timing type</span></div>";
 			} else {
-				mysqlQuery("INSERT INTO `stork_city` (city_name,city_state_id,city_status) VALUES ('$city_name','$state_id','$city_status')");
-				$successMessage = "<div class='container error_message_mandatory'><span> City Inserted Successfully! </span></div>";
+				mysqlQuery("INSERT INTO `stork_cabin_total_number_of_system` (total_number_of_system_timing_type,total_number_of_system,total_number_of_system_status) VALUES ('$system_timing_type','$no_of_system','$system_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> System Details Inserted Successfully! </span></div>";
 			}		
 		}
 	} ?> 
@@ -35,10 +35,10 @@ include "includes/header.php";
 				<span class="">You are here:</span>
 				<ul class="breadcrumb">
 					<li>
-						<span> City </span>
+						<span> Cabin </span>
 					</li>
 					<li>
-						<span>Add city</span>
+						<span>Add Cabin System Details</span>
 					</li>
 				</ul>
 			</div>
@@ -51,35 +51,34 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add City Information</h3>
+						<h3 class="acc-title lg">Add Cabin System Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">City Information</h4>
-							<form action="add_city.php" id="add_city" method="POST" name="edit-acc-info">
+							<h4 class="acc-sub-title">Cabin System Information</h4>
+							<form action="add_cabin_system_details.php" id="cabin_system_details" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 									<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
-								    <label for="first-name">Select State<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="state_id">
+								    <label for="first-name">Timing Type<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="timing_type">
 								        <option value="">
-											<span>Select State</span>
+											<span>Select Timing Type</span>
 										</option>
 										<?php
-					                        $query = mysql_query("select * from stork_state  where state_status='1'");
-					                        while ($row = mysql_fetch_array($query)) {
-					                            ?>
-					                        <option value="<?php echo $row['state_id']; ?>"><span><?php echo $row['state_name']; ?></span></option>
-					                    <?php } ?>   
+											foreach ($timing_type as $key => $value) {
+												echo "<option value=".$key.">". $value."</option>";
+											}
+					                    ?>   
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">City Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="cityname" autocomplete="off" placeholder="City Name" name="city_name">
+								    <label for="last-name">No. of System<span class="required">*</span></label>
+									<input type="text" class="form-control" id="noofsystem" autocomplete="off" placeholder="No of System" name="no_of_system">
 								</div>
 								<div class="cate-filter-content">	
-								    <label for="first-name">City Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="city_status">
+								    <label for="first-name"> Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="system_status">
 								        <option value="">
 											<span>Select Status</span>
 										</option>

@@ -27,6 +27,7 @@
 	<link href="style/css/bootstrap-select.min.css" rel="stylesheet">
 	<link href="style/css/style.css" rel="stylesheet">
 	<link href="style/css/theme-default.css" rel="stylesheet">
+	<link href="style/css/wickedpicker.min.css" rel="stylesheet">
 		
     <!-- Javascript files -->
 	<script src="style/js/jquery.1.9.1.js"></script>
@@ -48,3 +49,5 @@
     <script src="style/js/theme.js"></script>
     <!-- // <script src="style/js/jquery.dataTables.min.js"></script> -->
     <script src="style/js/jquery.dataTables.js"></script>
+    <script src="style/js/wickedpicker.min.js"></script>
+
