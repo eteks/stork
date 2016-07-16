@@ -23,6 +23,7 @@ jQuery(document).ready(function() {
 	var required_project_printing_cost =["amount"];
 	var required_multicolor_printing_cost=["amount"];
 	var required_multicolor_copies =["copies"];
+	var required_cabin_system_details =["noofsystem"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
 	sel_c = jQuery("#sel_c");
@@ -444,7 +445,8 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
                 else{
                     alert('No City added for '+selected_state);    
                 }  
-                $('.city_act').html(options);                  
+                $('.city_act').html(options); 
+                $('.area_act').html('<option value="">Select Area</option>');                 
                }
            });
        });
@@ -1596,6 +1598,48 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});	
+	jQuery("#cabin_system_details").submit(function(){ 
+
+		var input = jQuery('#'+required_cabin_system_details);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+ 	if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			return false;
+		} else {
+			errornotice.hide();
+			// alert("success"); 
+			return true;
+		}
+	});
 
 //  =======   Admin Login form Validation   =========
 

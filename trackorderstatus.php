@@ -41,7 +41,7 @@
 	<section class="container track_order_details">
 	<!-- Process Start  -->
 	<?php 
-		if($order_delivery_status == "processed") {
+		if($order_delivery_status == "processing") {
 	?>
 	<section class="container track_order_status_process active_status">
 			<h1> Your order is in process </h1>

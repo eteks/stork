@@ -1,27 +1,36 @@
 <?php 
 	include('header.php');
-	 if(!isset($_SESSION['usertype']) || !isset($_GET['service'])){
-	  //header('Location:index.php');
-	  die('<script type="text/javascript">window.location.href="index.php";</script>');
-	  exit();
-	 }
- $_SESSION['service']=$_GET['service'];
- $random = uniqid();
- if(!isset($_SESSION['session_id'])){
-  if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
-   $_SESSION['session_id'] = 'reg_stu_'.$random; 
-  }
-  else if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'pro'){
-   $_SESSION['session_id'] = 'reg_pro_'.$random;
-  }
-  else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'stu'){
-   $_SESSION['session_id'] = 'gue_stu_'.$random;
-  }
-  else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'pro'){
-   $_SESSION['session_id'] = 'gue_pro_'.$random;
-  }
- }
+	if(!isset($_SESSION['usertype']) || !isset($_GET['service'])){
+		//header('Location:index.php');
+		die('<script type="text/javascript">window.location.href="index.php";</script>');
+		exit();
+	}
+	$_SESSION['service']=$_GET['service'];
+ 	$random = uniqid();
  
+ 	if(!isset($_SESSION['session_id'])){
+  		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
+   			$_SESSION['session_id'] = 'reg_stu_'.$random; 
+  		}
+  		else if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'pro'){
+	   		$_SESSION['session_id'] = 'reg_pro_'.$random;
+	  	}
+	  	else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'stu'){
+   			$_SESSION['session_id'] = 'gue_stu_'.$random;
+  		}
+  		else if($_SESSION['login_status'] == 0 && $_SESSION['usertype'] == 'pro'){
+	   		$_SESSION['session_id'] = 'gue_pro_'.$random;
+	  	}
+ 	}
+ 	
+ 	if(isset($_SESSION['session_id'])){
+ 		$session_data_check = explode("_", $_SESSION['session_id']);
+	 	if($_SESSION['usertype'] != $session_data_check[1]){
+		 	$changed_session_id = $session_data_check[0].'_'.$_SESSION['usertype'].'_'.$session_data_check[2];
+ 	 		updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
+	 		$_SESSION['session_id'] = $changed_session_id;
+	 	}
+ 	}
 
 ?>
 	<div class="main printbooking_main_page" id="product-detail">	
@@ -66,7 +75,6 @@
 						$printingtype = selectfunction('*',PRINTINGTYPE,'printing_type="plain_printing"',$connection);
 						$printing_type_id = mysqli_fetch_array($printingtype);
 						$printing_type = $printing_type_id ['printing_type_id'];
-
 					?>
 					<form id="print_booking_form" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
 						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
@@ -77,11 +85,11 @@
 				        		<select name="print_type" class="print_book_print_type" id="print_type">
 				        				<option value="" >Select Print Type</option>
 		        						<?php	
-		        								$printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-			        							//$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
-												while($row = mysqli_fetch_array($printtype_query)){
-													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
-												}
+	        								$printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+		        							//$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
+											while($row = mysqli_fetch_array($printtype_query)){
+												echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
+											}
 		        						?>
 		        				</select>
 			        		</div> <!-- input holder -->
@@ -91,11 +99,11 @@
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
 	        						<?php
-	        								$printside_query = mysqli_query($connection, "select * from ".PAPERSIDE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIDE.".printing_type_id where ".PAPERSIDE.".paper_side_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$paperside = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
-											while($row = mysqli_fetch_array($printside_query)){
-												echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
-											}
+        								$printside_query = mysqli_query($connection, "select * from ".PAPERSIDE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIDE.".printing_type_id where ".PAPERSIDE.".paper_side_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$paperside = selectfunction('*',PAPERSIDE,'paper_side_status=1',$connection);
+										while($row = mysqli_fetch_array($printside_query)){
+											echo "<option value ='".$row['paper_side_id']."'>".$row['paper_side']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->
@@ -104,11 +112,11 @@
 			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
-	        								$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
-											while($row = mysqli_fetch_array($paper_type_query)){
-												echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
-											}
+        								$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+										while($row = mysqli_fetch_array($paper_type_query)){
+											echo "<option value ='".$row['paper_type_id']."'>".$row['paper_type']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->
@@ -117,11 +125,11 @@
 			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
-	        								$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
-		        							//$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
-											while($row = mysqli_fetch_array($paper_size_query)){
-												echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
-											}
+        								$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
+	        							//$papersize = selectfunction('*',PAPERSIZE,'paper_size_status=1',$connection);
+										while($row = mysqli_fetch_array($paper_size_query)){
+											echo "<option value ='".$row['paper_size_id']."'>".$row['paper_size']."</option>";
+										}
 	        						?>
 	        				    </select>
 			        		</div> <!-- input_holder -->

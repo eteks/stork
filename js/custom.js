@@ -1154,12 +1154,11 @@ $(document).ready(function () {
 	
 	// check out page address data validation
 	//$('.send_to_address_personal').prop('checked', true);
-	$('.send_to_address_college_data,.send_to_address_personal_data').hide();
 	$('.send_to_address_personal').on('change',function(){
 		$(this).prop("disabled", true);
 		$('.send_to_address_college').prop('checked', false).prop("disabled", false);
 		$('.send_to_address_college_data').hide();
-		$('.send_to_address_personal_data').slideDown();
+		$('.send_to_address_personal_data').removeClass('dn').slideDown();
 		$('#name_a').val('');
 		$('#address1').val('');
 		$('#address2').val('');
@@ -1175,7 +1174,7 @@ $(document).ready(function () {
 		$(this).prop("disabled", true);
 		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
 		$('.send_to_address_personal_data').hide();
-		$('.send_to_address_college_data').slideDown();
+		$('.send_to_address_college_data').removeClass('dn').slideDown();
 			$('#studentname').val('');
 		$('#idno').val('');
 		$('#yearofstudying').val('');
@@ -1769,7 +1768,7 @@ $(document).ready(function () {
            			}
            			else{
            				error_popup('Printing option not available!');
-           				$('#project_printing_form .project_paper_size,#print_booking_form .project_paper_type').prop('selectedIndex', 0);
+           				$('#project_printing_form .project_paper_size,#project_printing_form .project_paper_type').prop('selectedIndex', 0);
 					}
            			
           		}
@@ -1903,6 +1902,16 @@ $(document).ready(function () {
 		});
 		$('.multiprint_total_amount').val(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
 		//alert(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
+	});
+	
+	// set city id to cookie
+	var city_id_check = Cookies.get('city_id');
+	if(!city_id_check){
+		Cookies.set('city_id','0');
+	}
+	$('.select_city_btn').on('click',function(){
+		var city_id = $('#initial_city_name').val();
+		Cookies.set('city_id',city_id);
 	});
 
 }); // Document ready end

@@ -1,6 +1,7 @@
 <?php
 include('dbconnect.php');
 include('function.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,8 +131,8 @@ progress::-moz-progress-bar {
 					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
 						<div class="fr navmenu_icons_header">
 							<?php 
-							@ob_start();
-							session_start();
+							
+							
 							if(isset($_SESSION['login_status'])){
 								if($_SESSION['login_status'] != 1){
 									$_SESSION['login_status'] = 0;
@@ -158,7 +159,7 @@ progress::-moz-progress-bar {
 							?>
 							<div class="cart-w SC-w hd-pd ">
 								<span class="mcart-icon dropdowSCIcon">
-									<a href="login.php">
+									<a href="login.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">
 										<i class="fa fa-user"></i>
 									</a>
 								</span>	

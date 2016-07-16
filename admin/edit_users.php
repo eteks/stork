@@ -23,6 +23,7 @@ include "includes/header.php";
 			$line1 = $_POST["line1"];
 			$line2 = $_POST["line2"];
 			$user_area_id = $_POST["user_area_id"];
+			$user_city_id = $_POST["user_city_id"];
 			$user_state_id = $_POST["user_state_id"];
 			$user_mobile = $_POST["user_mobile"];
 			$user_status = $_POST["user_status"];
@@ -33,7 +34,8 @@ include "includes/header.php";
 			} else {
 				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
 					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
-					user_area_id='$user_area_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
+					user_area_id='$user_area_id',
+					user_city_id='$user_city_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> User Updated Successfully! </span></div>";	
 			}
 					
@@ -140,30 +142,47 @@ include "includes/header.php";
 									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="first-name">State<span class="required"></span></label>
-									<select class="product-type-filter form-control" name="user_state_id">
+								    <label for="first-name">State</label>
+									<select class="product-type-filter form-control state_act" name="user_state_id">
 								        <option>
 											<span>Select State</span>
 										</option>
 								        <?php
-						                    $query = mysql_query("select * from stork_state");
+						                    $query = mysql_query("select * from stork_state where state_status='1'");
 					                        while ($staterow = mysql_fetch_array($query)) {
-						                        if($row['user_state_id'] == $staterow['state_id'])   
-						                        	echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
-						                        else
-						                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        if($row['user_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
+					                        else
+					                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        }
-					                    ?>
+			                        ?>
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="first-name">Area<span class="required"></span></label>
-									<select class="product-type-filter form-control"  name="user_area_id">
+								    <label for="first-name">City</span></label>
+									<select class="product-type-filter form-control city_act" name="user_city_id">
+								        <option>
+											<span>Select City</span>
+										</option>
+								        <?php
+								        	$user_state_id = $row['user_state_id'];
+						                    $query = mysql_query("select * from stork_city where city_state_id='$user_state_id' and city_status='1'");
+					                        while ($staterow = mysql_fetch_array($query)) {
+					                        if($row['user_city_id'] == $staterow['city_id'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
+					                        else
+					                        	echo "<option value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";
+					                        }
+			                        ?>
+								    </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Area</span></label>
+									<select class="product-type-filter form-control area_act" name="user_area_id">
 								        <option>
 											<span>Select Area</span>
 										</option>
 								        <?php
-						                    $query = mysql_query("select * from stork_area");
+								        	$user_city_id = $row['user_city_id'];   	
+						                    $query = mysql_query("select * from stork_area where area_city_id='$user_city_id' and area_status='1'");
 					                        while ($arearow = mysql_fetch_array($query)) {
 					                        if($row['user_area_id'] == $arearow['area_id'])   
 					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
