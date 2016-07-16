@@ -6,7 +6,7 @@
 		}
 	}
 	//print_r($_SESSION);
-	$_SESSION['city'] = $_COOKIE["city_id"];
+	$_SESSION['city'] = isset($_COOKIE["city_id"])?$_COOKIE["city_id"]:'0';
 ?>
 	<main class="main" id="product-detail">
    		<section class="header-page">
