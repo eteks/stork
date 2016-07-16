@@ -1746,12 +1746,6 @@ $(document).ready(function () {
 	// 	  $('body').css('overflow','auto');
 	// });
 
-	$('#checkout_details_scroll').hover(function() {
-     $('body').scroll().disable();
-     $(this).scroll().enable();
-
-});
-
 	// Ended by siva
 	
 	
