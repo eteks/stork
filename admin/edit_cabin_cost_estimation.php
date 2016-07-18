@@ -66,10 +66,10 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Cabin Cost Estimation Information</h3>
+						<h3 class="acc-title lg">Edit Cabin Cost Estimation Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Cost Estimation Information</h4>
-							<form action="edit_cabin_cost_estimation.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+							<form action="edit_cabin_cost_estimation.php?update=<?php echo $id; ?>" id="edit_cabin_cost_estimation" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -89,7 +89,7 @@ if(isset($_GET["id"]))
 								<?php //} ?>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Timing Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="cabin_cost_timing_type">
+									<select class="product-type-filter form-control" id="sel_a" name="cabin_cost_timing_type">
 								        <option>
 											<span>Select Timing Type</span>
 										</option>
@@ -106,7 +106,7 @@ if(isset($_GET["id"]))
 								<div class="form-group duration_block">
 								    <label for="last-name">Duration<span class="required">*</span></label>
 									<!-- <input type="text" class="form-control timepicker" autocomplete="off" placeholder="Duration" name="schedule_time_start"> -->
-									<select class="product-type-filter form-control" name="cabin_cost_duration_hour">
+									<select class="product-type-filter form-control" id="sel_b" name="cabin_cost_duration_hour">
 								        <option value="">
 											<span>Select Hours</span>
 										</option>
@@ -123,7 +123,7 @@ if(isset($_GET["id"]))
 								        <option value="11">11</option>
 								        <option value="12">12</option>
 								    </select>
-								    <select class="product-type-filter form-control" name="cabin_cost_duration_minutes">
+								    <select class="product-type-filter form-control" id="sel_c" name="cabin_cost_duration_minutes">
 								        <option value="">
 											<span>Select Minutes</span>
 										</option>
@@ -148,7 +148,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control change_status" name="cabin_cost_status">
+									<select class="product-type-filter form-control change_status" id="sel_d" name="cabin_cost_status">
 								        <option>
 											<span>Select Status</span>
 										</option>

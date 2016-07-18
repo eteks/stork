@@ -33,22 +33,8 @@ $(document).ready(function () {
 	      {
 	        $("#flexi-show").hide();
 	      }
-	    });
-	    
-  	 
-		 
-   // Cabin-Booking Calendar
-	   	  /* generate a simple calendar inside a specified container. */	
-		   	$('#pickdate').dcalendar();
-		   	
-		  /* generate a simple date picker that appears when an input field is focused. */ 
-		   	$('#pickdate').dcalendarpicker();
-		   	
-		  /* Change the date format option for date picker to meet your special design needs. */
-		 	   $('#pickdate').dcalendarpicker({
-		 	   	// default: mm/dd/yyyy
-				format: 'dd-mm-yyyy'
-		        });
+	    }); 
+  	
 
 	//  == Validation for Page range Format Start ==
 

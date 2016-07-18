@@ -55,7 +55,7 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Cabin Schedule Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Schedule Information</h4>
-							<form action="add_cabin_schedule_time.php" id="cabin_system_details" method="POST" name="edit-acc-info">
+							<form action="add_cabin_schedule_time.php" id="add_cabin_schedule_time" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -75,8 +75,8 @@ include "includes/header.php";
 								</div>
 								<div class="form-group schedule_block">
 								    <label for="last-name">Schedule Time<span class="required">*</span></label>
-									<input type="text" class="form-control timepicker" autocomplete="off" placeholder="Start time" name="schedule_time_start">
-									<input type="text" class="form-control timepicker" autocomplete="off" placeholder="End time" name="schedule_time_end">
+									<input type="text" class="form-control timepicker" id="starttime" autocomplete="off" placeholder="Start time" name="schedule_time_start">
+									<input type="text" class="form-control timepicker" id="endtime" autocomplete="off" placeholder="End time" name="schedule_time_end">
 									<div class="clear_both"></div>
 								</div>
 								<div class="cate-filter-content">	

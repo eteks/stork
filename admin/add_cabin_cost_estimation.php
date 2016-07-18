@@ -54,10 +54,10 @@ include "includes/header.php";
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Cabin Schedule Information</h3>
+						<h3 class="acc-title lg">Add Cabin Cost Estimation Information</h3>
 						<div class="form-edit-info">
-							<h4 class="acc-sub-title">Cabin Schedule Information</h4>
-							<form action="add_cabin_cost_estimation.php" id="cabin_system_details" method="POST" name="edit-acc-info">
+							<h4 class="acc-sub-title">Cabin Cost Estimation </h4>
+							<form action="add_cabin_cost_estimation.php" id="add_cabin_cost_estimation" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -78,7 +78,7 @@ include "includes/header.php";
 								<div class="form-group duration_block">
 								    <label for="last-name">Duration<span class="required">*</span></label>
 									<!-- <input type="text" class="form-control timepicker" autocomplete="off" placeholder="Duration" name="schedule_time_start"> -->
-									<select class="product-type-filter form-control" name="cabin_cost_duration_hour">
+									<select class="product-type-filter form-control" id="sel_b" name="cabin_cost_duration_hour">
 								        <option value="">
 											<span>Select Hours</span>
 										</option>
@@ -95,7 +95,7 @@ include "includes/header.php";
 								        <option value="11">11</option>
 								        <option value="12">12</option>
 								    </select>
-								    <select class="product-type-filter form-control" name="cabin_cost_duration_minutes">
+								    <select class="product-type-filter form-control" id="sel_c" name="cabin_cost_duration_minutes">
 								        <option value="">
 											<span>Select Minutes</span>
 										</option>
@@ -116,11 +116,11 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" id="cityname" autocomplete="off" placeholder="Amount" name="cabin_cost_amount">
+									<input type="text" class="form-control" id="amount" autocomplete="off" placeholder="Amount" name="cabin_cost_amount">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name"> Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="cabin_cost_status">
+									<select class="product-type-filter form-control" id="sel_d" name="cabin_cost_status">
 								        <option value="">
 											<span>Select Status</span>
 										</option>

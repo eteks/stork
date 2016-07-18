@@ -55,7 +55,7 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Cabin Holiday Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Holiday Information</h4>							
-							<form action="add_cabin_holiday_details.php" id="add_state" method="POST" name="edit-acc-info">
+							<form action="add_cabin_holiday_details.php" id="add_cabin_holiday_details" method="POST" name="edit-acc-info">
 									<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -63,16 +63,16 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="last-name">Holiday Date<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date">
+									<input type="text" class="form-control" id="holidaydate" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Holiday Day<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="">
+									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="holiday_status">
+									<select class="product-type-filter form-control" id="sel_a" name="holiday_status">
 								        <option value="">
 											<span>Select Status</span>
 										</option>

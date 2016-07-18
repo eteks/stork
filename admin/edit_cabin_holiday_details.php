@@ -69,7 +69,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Cabin Holiday Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Holiday Information</h4>
-							<form action="edit_cabin_holiday_details.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+							<form action="edit_cabin_holiday_details.php?update=<?php echo $id; ?>" id="edit_cabin_holiday_details" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -94,11 +94,11 @@ if(isset($_GET["id"]))
 						            ?>
 								    <label for="last-name">Holiday Date<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date" value="<?php echo $holiday_date; ?>">
+									<input type="text" class="form-control" id="holidaydate" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date" value="<?php echo $holiday_date; ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Holiday Day<span class="required"></span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="" value="<?php echo($row['holiday_day']); ?>">
+									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="" value="<?php echo($row['holiday_day']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>

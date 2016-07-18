@@ -63,10 +63,10 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Cabin System Information</h3>
+						<h3 class="acc-title lg">Edit Cabin System Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin System Information</h4>
-							<form action="edit_cabin_system_details.php?update=<?php echo $id; ?>" id="edit_state" method="POST" name="edit-acc-info">
+							<form action="edit_cabin_system_details.php?update=<?php echo $id; ?>" id="edit_cabin_system_details" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -86,7 +86,7 @@ if(isset($_GET["id"]))
 								<?php //} ?>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Timing Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="timing_type">
+									<select class="product-type-filter form-control" id="sel_a" name="timing_type">
 								        <option>
 											<span>Select Timing Type</span>
 										</option>
@@ -102,11 +102,11 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="last-name">No. of System<span class="required">*</span></label>
-									<input type="text" class="form-control" placeholder="No. of System" name="no_of_system" value="<?php echo($row['total_number_of_system']); ?>">
+									<input type="text" class="form-control" id="noofsystem" placeholder="No. of System" name="no_of_system" value="<?php echo($row['total_number_of_system']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control change_status" name="system_status">
+									<select class="product-type-filter form-control change_status" id="sel_b" name="system_status">
 								        <option>
 											<span>Select Status</span>
 										</option>
