@@ -63,7 +63,7 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="last-name">Holiday Date<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" id="holidaydate" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date">
+									<input type="text" class="form-control" id="holiday_date" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Holiday Day<span class="required"></span></label>

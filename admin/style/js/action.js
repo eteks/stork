@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
 	var required_multicolor_copies =["copies"];
 	var required_cabin_system_details =["noofsystem"];
 	var required_cabin_schedule_time =["starttime","endtime"];
-	var required_cabin_holiday_details =["holidaydate"];
+	var required_cabin_holiday_details =["holiday_date"];
 	var required_cabin_cost_estimation =["amount"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");

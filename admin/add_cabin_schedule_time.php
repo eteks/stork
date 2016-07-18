@@ -76,7 +76,7 @@ include "includes/header.php";
 								<div class="form-group schedule_block">
 								    <label for="last-name">Schedule Time<span class="required">*</span></label>
 									<input type="text" class="form-control timepicker" id="starttime" autocomplete="off" placeholder="Start time" name="schedule_time_start">
-									<input type="text" class="form-control timepicker" id="endtime" autocomplete="off" placeholder="End time" name="schedule_time_end">
+									<input type="text" class="form-control timepicker" id="starttime" autocomplete="off" placeholder="End time" name="schedule_time_end">
 									<div class="clear_both"></div>
 								</div>
 								<div class="cate-filter-content">	
