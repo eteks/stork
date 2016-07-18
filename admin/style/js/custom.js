@@ -15,7 +15,6 @@ $(document).ready(function(){
  
 $(document).ready(function(){
 
- 
   // var $rows = $('.state_table tbody tr');
   // $(document).on('keyup','.search',function() {
   //     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();      
@@ -199,6 +198,34 @@ $('.stork_admin_table th').each(function(index, th) {
   $('.change_status').on('change',function(){
     $('.change_status_value').val('1');
   });
+
+  var options = {
+        now: "12:00", //hh:mm 24 hour format only, defaults to current time
+        twentyFour: false,  //Display 24 hour format, defaults to false
+        upArrow: 'wickedpicker__controls__control-up',  //The up arrow class selector to use, for custom CSS
+        downArrow: 'wickedpicker__controls__control-down', //The down arrow class selector to use, for custom CSS
+        close: 'wickedpicker__close', //The close class selector to use, for custom CSS
+        hoverState: 'hover-state', //The hover state class to use, for custom CSS
+        title: 'Timepicker', //The Wickedpicker's title
+        meridiem: false
+    };
+    
+  $('.timepicker').wickedpicker(options);
+
+  $(document).on('change','#holiday_date',function(){
+    var weekday=new Array(7);
+    weekday[0]="Monday";
+    weekday[1]="Tuesday";
+    weekday[2]="Wednesday";
+    weekday[3]="Thursday";
+    weekday[4]="Friday";
+    weekday[5]="Saturday";
+    weekday[6]="Sunday";
+    var holiday_date = $(this).datepicker('getDate');
+    var dayOfWeek = weekday[holiday_date.getUTCDay()];
+    $('#holiday_day').val(dayOfWeek);
+  });
+
   
 });
 
@@ -235,7 +262,7 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () {
-    $('#dob').datepicker({
+    $('#dob,#holiday_date').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'

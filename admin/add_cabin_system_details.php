@@ -54,7 +54,7 @@ include "includes/header.php";
 						<h3 class="acc-title lg">Add Cabin System Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin System Information</h4>
-							<form action="add_cabin_system_details.php" id="cabin_system_details" method="POST" name="edit-acc-info">
+							<form action="add_cabin_system_details.php" id="add_cabin_system_details" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>

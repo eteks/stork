@@ -2,7 +2,7 @@
 include "includes/header.php";
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>All States</title>
+<title>All Holiday Details</title>
 </head>
 <body>
 <!-- Php query for delete -->
@@ -10,7 +10,7 @@ include "includes/header.php";
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_cabin_cost_estimation` WHERE `cabin_cost_estimation_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_cabin_holiday` WHERE `holiday_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -44,15 +44,15 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php include 'includes/sidebar.php'; ?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12">
 	<div class="heading_section col-md-12">
-		<h3 class="acc-title lg clone_heading"> Cabin Cost Estimation</h3>
+		<h3 class="acc-title lg clone_heading"> Holidays</h3>
 		<div class="clear_both"> </div>
 	</div>
 	<div class="add_section">
-		<a href="add_cabin_cost_estimation.php"> <span> Add </span><span>[+]</span> </a>
+		<a href="add_cabin_holiday_details.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 			<div class="form-edit-info">
 							<?php 
-								$sql = "SELECT * FROM `stork_cabin_cost_estimation`"; 
+								$sql = "SELECT * FROM `stork_cabin_holiday`"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)
@@ -61,9 +61,8 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 							<table class="data-table state_table stork_admin_table" id="my-orders-table">
 								<thead>
 							        <tr class="">
-							            <th>Timing Type</th>						 
-							            <th>Duration</th>
-							            <th>Amount</th>           
+							            <th>Date</th>
+							            <th>Day</th>						            
 							            <th>Status</th>
 							            <th>Created Date</th>
 							            <th class="table_action">Action</th>
@@ -75,22 +74,16 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								{
 								?>
 							    <tr class="">						            
-						            <td><span class="nobr">
-						            <?php 
-						            foreach ($timing_type as $key => $value) {
-							          if($key == $fetch['cabin_cost_estimation_timing_type'])
-							            		echo $value;
-							        }
+						            <td><span class="nobr"><?php echo $fetch['holiday_day'] ?></span></td>
+						            <?php  $holiday_date=strtotime($fetch['holiday_date']);
+								   
+						            $holiday_date = date('d/m/Y', $holiday_date);
+						            // echo $date; 
 						            ?>
-						            </span></td>
-						            <td><span class="nobr"><?php 
-						            $duration = explode(':',$fetch['cabin_cost_estimation_duration']);
-						            echo $duration[0].":".$duration[1] ?></span></td>
-						            <td><span class="nobr"><?php 
-						            echo $fetch['cabin_cost_estimation_amount'] ?></span></td>
+						            <td><span class="nobr"><?php echo $holiday_date; ?></span></td>
 						            <td>
 						            	<span class="price">
-						            	<?php if($fetch['cabin_cost_estimation_status']==1)
+						            	<?php if($fetch['holiday_status']==1)
 												echo "Active";
 											  else
 												echo "InActive";
@@ -112,19 +105,19 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 											if(mysql_num_rows($check_in_area)>0 || mysql_num_rows($check_in_city)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
 						                ?>
 							                <span class="nobr">
-								                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_cost_estimation.php?id=<?php echo $fetch['cabin_cost_estimation_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>    
+								                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_holiday_details.php?id=<?php echo $fetch['holiday_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>    
 									            <span class="separator"></span> 
 									            <span class="restrict">      
-									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['cabin_cost_estimation_id'] ?>"><i class="fa fa-trash-o">
+									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['holiday_id'] ?>"><i class="fa fa-trash-o">
 									             		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
 									             	</i> </a>
 									            </span>
 									        </span>
 									        <?php } else{ ?>
 									        <span class="nobr">
-							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_cost_estimation.php?id=<?php echo $fetch['cabin_cost_estimation_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_holiday_details.php?id=<?php echo $fetch['holiday_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 								                <span class="separator"></span> 
-								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['cabin_cost_estimation_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['holiday_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 								            </span>
 							            <?php } ?>
 							        </td>
@@ -143,7 +136,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href","cabin_cost_estimation.php?delete="+myId);
+		$("#del_link").prop("href", "states.php?delete="+myId);
 		});
 	</script>
 	<!-- Delete popup Start -->

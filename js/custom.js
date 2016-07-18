@@ -26,7 +26,7 @@ $(document).ready(function () {
 	        $("#flexi-show").hide();
       	}
     });
-		 
+
 	//  == Validation for Page range Format Start ==
 
 	$(document).on('keyup','.paper_range',function() {

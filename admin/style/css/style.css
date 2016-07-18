@@ -1575,3 +1575,12 @@ text-align: center;
     max-width: 185px !important;
     padding-left: 4px;
 }
+.duration_block label{
+   display: block;
+}
+.duration_block select{
+    display: block;
+    float: left;
+    margin-right: 20px;
+    max-width: 179px !important;
+}
