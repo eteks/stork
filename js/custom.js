@@ -17,39 +17,16 @@ $(document).ready(function () {
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
 
-	// // To enable cut copy paste option added by siva
-	// $('body').bind('cut copy paste', function (e) {
-        // e.stopPropagation();
-    // });
-
-   // cabin booking form - field show & Hide
-   
-	    $('#time-type').on('change', function() {
-	      if ( this.value == 'flexible')
-	       {
-	      	$("#flexi-show").show();
-	      }
-	      else
-	      {
+   	// cabin booking form - field show & Hide
+    $('#time-type').on('change', function() {
+ 		if ( this.value == 'flexible'){
+      		$("#flexi-show").show();
+      	}
+  		else{
 	        $("#flexi-show").hide();
-	      }
-	    });
-	    
-  	 
+      	}
+    });
 		 
-   // Cabin-Booking Calendar
-	   	  /* generate a simple calendar inside a specified container. */	
-		   	$('#pickdate').dcalendar();
-		   	
-		  /* generate a simple date picker that appears when an input field is focused. */ 
-		   	$('#pickdate').dcalendarpicker();
-		   	
-		  /* Change the date format option for date picker to meet your special design needs. */
-		 	   $('#pickdate').dcalendarpicker({
-		 	   	// default: mm/dd/yyyy
-				format: 'dd-mm-yyyy'
-		        });
-
 	//  == Validation for Page range Format Start ==
 
 	$(document).on('keyup','.paper_range',function() {
@@ -2012,9 +1989,71 @@ $(document).ready(function () {
 			});
 		});
 
-
-    
-
-
+		// Holiday dates data get when page loading
+		function holiday_date_list(data){
+			var disabledate = [];
+			for(var i=0;i<data.length;i++){
+				var dateAr = data[i].split('-');
+				var newDate = dateAr[2] + '-' + dateAr[1] + '-' + dateAr[0];
+				disabledate.push(newDate);
+			}
+			$('#cabin_booking_date').datepicker({
+		        format: "dd-mm-yyyy",
+		        startDate: new Date(),
+		        endDate: "+30d",
+		       	useCurrent: true,
+		        autoclose: true,
+		        todayHighlight: true,
+		        datesDisabled: disabledate,
+    		}) .on('changeDate', function(){
+    			var date = $(this).val();
+		    	var timing_type = $('#cabin_timing_type').val();
+		    	var spilted_date = date.split('-');
+		    	var newDate = spilted_date[2] + '-' + spilted_date[1] + '-' + spilted_date[0];
+		    	$.ajax({
+					type: "POST",
+					url: "cabin_query.php",
+					data:{'require_date':newDate,'timeing_type': timing_type.toLowerCase()},
+					success: function(data){
+						$('#cabin_booking_timing_slot').empty().append('<h3 class="title"><span class="icon icon-three">2</span>BOOKED TIME SLOTS</h3>'+data);
+					}
+				});
+        	});
+    		$("#cabin_booking_date").datepicker("setDate", new Date());
+		}
+		
+		if(window.location.href.indexOf("cabin_booking.php") !== -1){
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'cabin_booking_holiday_data' : 'true' },
+				dataType: 'json',
+				success: function(data){
+					holiday_date_list(data);
+				}
+			});
+		}
+	    
+	    //cabin datas shows as per timing type and date
+	    $(document).on('change','#cabin_timing_type',function(){
+	    	var timing_type = $(this).val();
+	    	var date = $('#cabin_booking_date').val();
+	    	var spilted_date = date.split('-');
+	    	var newDate = spilted_date[2] + '-' + spilted_date[1] + '-' + spilted_date[0];
+	    	$.ajax({
+				type: "POST",
+				url: "cabin_query.php",
+				data:{'require_date':newDate,'timeing_type': timing_type.toLowerCase()},
+				success: function(data){
+					$('#cabin_booking_timing_slot').empty().append('<h3 class="title"><span class="icon icon-three">2</span>BOOKED TIME SLOTS</h3>'+data);
+				}
+			});
+	    });
+		
+		// change cabin color when cick availabel cabin only
+		$(document).on('click','#cabin_booking_timing_slot .cabin_available',function(){
+			$(this).toggleClass('cabin_selected');
+		});
+		
 }); // Document ready end
 

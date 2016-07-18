@@ -2,7 +2,7 @@
 
 define("HOSTNAME", "localhost");//localhost
 define("DBUSER", "root");//root
-define("DBPASSWORD", "root");
+define("DBPASSWORD", "");
 define("DATABASE", "stork");//stork
 
 // this is for google settings
@@ -41,6 +41,8 @@ define("CITY",'stork_city');
 define("CABINTOTALSYSTEM",'stork_cabin_total_number_of_system');
 define("CABINSLOTTIME",'stork_cabin_schedule_time');
 define("CABINSYSTEMAVAILABLE",'stork_cabin_system_availability');
+define("CABINHOLIDAY",'stork_cabin_holiday');
+define("CABINORDER",'stork_cabin_order');
 define("BINDINGAMOUNT",'stork_cost_estimation_binding');
 define("PROJECTCOSTESTIMATION",'stork_cost_estimation_project_printing');
 define("MULTICOLOR",'stork_cost_estimation_multicolor');

@@ -990,8 +990,8 @@ h4.order_or_button{
 }
 
 .slot{
-	margin: 20px 25px;
-	width: 16%;
+	margin: 20px 13px;
+	width: 21%;
 	text-align: center;
 }
 .cab-book span{
@@ -1020,4 +1020,12 @@ h4.order_or_button{
 .field-wrapper select {
 	cursor: pointer;
 }
-
+.cabin_available{
+	color:#008000;
+}
+.cabin_booked{
+	color: #ff0000;
+}
+.cabin_selected{
+	color: #0000ff !important;
+}

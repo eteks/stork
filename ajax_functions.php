@@ -98,6 +98,14 @@
 			}
 		}
 		
-		
+		// get holiday date list for cabin booking
+		if(isset($_POST['cabin_booking_holiday_data'])){
+			$holiday_date_array = array();
+			$holiday_date_query = selectfunction('*',CABINHOLIDAY,'',$connection);
+			while($row = mysqli_fetch_array($holiday_date_query)){
+				array_push($holiday_date_array, $row['holiday_date']);
+			}
+			echo json_encode($holiday_date_array); 
+		}
 	}// end of is ajax if condition
 ?>
