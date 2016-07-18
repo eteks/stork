@@ -1,0 +1,179 @@
+<?php
+include "includes/header.php";
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>All Orders</title>
+</head>
+<body>  
+
+<?php include 'includes/navbar_admin.php'; ?>
+<section class="header-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9 hidden-xs dashboard_header">
+				<h1 class="mh-title"> My Dashboard </h1>
+			</div>
+			<div class="col-md-3 search-w SC-w hd-pd ">
+				<span class="search-icon dropdowSCIcon">
+					<i class="fa fa-search"></i>
+				</span>
+				<div class="search-safari" style="display:none;">
+					<!-- <div class="search-form dropdowSCContent">
+						<form method="POST" action="#">
+							<input type="text" name="search" placeholder="Search" />
+							<input type="submit" name="search" value="Search">
+							<i class="fa fa-search"></i>
+						</form>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="page-content blocky">
+<div class="container" style="margin-top:20px;">   
+	<?php include 'includes/sidebar.php'; ?>
+	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
+		<div class="heading_section col-md-12">
+		<h3 class="acc-title lg clone_heading"> Cabin Order Details</h3>
+		<div class="clear_both"> </div>
+	</div>
+			<div class="form-edit-info width_order_details">
+				<?php
+					$sql = "SELECT * FROM `stork_cabin_order`";
+					$query = mysqlQuery($sql);
+					$count_rows = mysql_num_rows($query);
+					if ($count_rows > 0)
+					{
+				?>	
+				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table">
+				  <thead>
+			        <tr class="">
+			        	<th>Cabin Order Id</th>
+						<th>User Id</th>
+						<th>UserType</th>
+						<th>User</th>
+						<th>User Name</th>
+						<th>Email</th>
+						<th>Mobile</th>
+						<th>Timing Type</th>
+						<th>Schedule Time Start</th>
+						<th>Schedule Time End</th>
+						<th>Number of System</th>
+						<th>Booked Date</th>
+						<th>Total Hours</th>
+						<th>Amount</th>
+						<th>Created Date</th>
+						<th>Status</th>
+			        </tr>
+			      </thead>
+			       <?php              
+					$i = 0;
+					while ($fetch = mysql_fetch_array($query))
+					{		
+						$qryschedule = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`=".$fetch['cabin_order_schedule_time_id']);
+						$rowschedule = mysql_fetch_array($qryschedule);
+				   ?>
+				    <tr class="">
+			            <td><?php echo $fetch['cabin_order_id'] ?></td>
+			            <td>
+			            <?php if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
+							echo "NULL";
+						else
+							echo $fetch['order_user_id'];
+						?>
+						</td>
+			            <td>
+				            <?php 
+				            echo $fetch['order_user_type'];
+				            /*if($fetch['order_user_type']==1)
+								echo "Student";
+							else if($fetch['order_user_type']==2)
+								echo "Profession"; */
+							?>
+						</td>
+						<td>
+						<?php
+							if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
+								echo "Guest User";
+							else
+								echo "Registered User";
+						?>
+						</td>
+						<td><?php echo $fetch['cabin_order_user_name'] ?></td>
+						<td><?php echo $fetch['cabin_order_email'] ?></td>
+						<td><?php echo $fetch['cabin_order_mobile'] ?></td>
+						<td><?php 
+						foreach ($timing_type as $key => $value) {
+			            	if($key == $fetch['cabin_order_timing_type'])
+			            		echo $value;
+			            }
+			            ?></td>
+						<td><?php echo $rowschedule['schedule_time_start'] ?></td>
+			            <td><?php echo $rowschedule['schedule_time_end'] ?></td>
+			            <td><?php echo $fetch['cabin_order_number_of_system'] ?></td>
+			            <?php  $requireddate=strtotime($fetch['cabin_order_required_date']);
+								   
+						            $requireddate = date('d/m/Y', $requireddate);
+						            // echo $date; 
+						            ?>
+			            <td><?php echo $requireddate ?></td>
+			            <td><?php echo $fetch['cabin_order_total_hours'] ?></td>
+			            <td><?php echo $fetch['cabin_order_total_amount'] ?></td>
+			             <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+		            <td><span class="price"> <?php echo $date; ?> </span></td>
+			            <td>
+				            <?php 
+				            if($fetch['order_status']==1)
+								echo "Active";
+							else
+								echo "InActive";
+							?>
+						</td>
+			            
+				   	</tr>
+				   <?php
+					}
+					?>
+				</table>
+			<?php
+			}
+			else
+			{
+				echo "<div class='no_result'> <span> No records found </span> </div>";
+			} ?>					
+	</div>
+	<div class="clearfix"></div>
+	<!-- Jquery for delete -->
+	<script type="text/javascript" >
+		$(document).on("click", ".delete", function () {
+		var myId = $(this).data('id');
+		$(".modal-body #vId").val( myId );
+		$("#del_link").prop("href", "orders.php?delete="+myId);
+		});
+	</script>
+	<!-- Delete popup Start -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body delete_message_style">
+					<input type="hidden" name="delete" id="vId" value=""/>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<center>
+							<h5>Are you sure you want to delete this item? </h5>
+						</center>
+				</div>
+				<div class="modal-footer footer_model_button">
+					<a name="action" id="del_link" class="btn btn-danger" href=""  value="Delete">Yes</a>						
+					<button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+</div>
+</div>
+<?php include 'includes/footer.php'; ?>
