@@ -1,6 +1,6 @@
 <?php 
 	include('header.php');
-
+	$random = uniqid();
 	if(!isset($_SESSION['session_id'])){
   		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
    			$_SESSION['session_id'] = 'reg_stu_'.$random; 
@@ -20,18 +20,12 @@
  		$session_data_check = explode("_", $_SESSION['session_id']);
 	 	if($_SESSION['usertype'] != $session_data_check[1]){
 		 	$changed_session_id = $session_data_check[0].'_'.$_SESSION['usertype'].'_'.$session_data_check[2];
- 	 		updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
+ 	 		//updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
 	 		$_SESSION['session_id'] = $changed_session_id;
 	 	}
  	}
 ?>
 	
-  	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
-  	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
-  	<!--Add JS lib--> 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
- 
 	<script>
 	function getSlot(val) {
 		$.ajax({
@@ -39,7 +33,6 @@
 			url: "cabin_query.php",
 			data:{ requiredate : val },
 			success: function(data){
-				alert(data);
 				$("#required_date").val(val);
 			}
 		});
@@ -82,10 +75,17 @@
 										<select class="select_time" id="cabin_timing_type" onChange="getSlot(this.value);">
 											<option val=""> Select Timing Type </option>
 										<?php
-											foreach($timing_type as $key => $value) { 
+											foreach($timing_type as $key => $value){
+												if($key == 'fixed') {
+										?>
+												<option val="<?php echo $key; ?>" selected="selected"><?php echo $value; ?></option>
+										<?php
+												}
+												else {
 										?>
 												<option val="<?php echo $key; ?>"><?php echo $value; ?></option>
 										<?php
+												}
 											}
 										?>
 										</select>
@@ -95,8 +95,7 @@
 			                      <div class="field-wrapper">
 									<label for="txtDate" class="phone_1">Required Date</label>
 									<br>
-									<input type="text" maxlength="32" value="" size="30" name="require_date" id="txtDate" onChange="getSlot(this.value);"> 
-									<input type="hidden" id="required_date" name="required_date">
+									<input type="text" id="cabin_booking_date" maxlength="32" value="" size="30" name="require_date" id="txtDate"> 
 								  </div>
 					 			</li>
 					 			<li class="long num_of_system_restiction">
@@ -139,11 +138,7 @@
 				      <div id="right-pane-top" class="col-md-12 col-sm-12 col-xs-12">
 				      <div id="shipping_method" class="col-md-12 col-sm-12 col-xs-12">
 					  <div class="shipment-pane">
-					   <div class="pane round-box">
-						 	<h3 class="title"><span class="icon icon-three">2</span>BOOKED TIME SLOTS</h3> 
-						 	<?php 
-						 		require_once('cabin_query.php');
-					 		?>
+					   <div class="pane round-box" id="cabin_booking_timing_slot">
 	                	    
 	                	</div>
 					  </div>
