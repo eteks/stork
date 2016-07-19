@@ -126,6 +126,48 @@ function countScheduleTime()
 	$fetch = mysql_fetch_array($query);
 	return $fetch['total'];
 }
+function countCabinSystemDetails()
+{
+	$query = mysqlQuery("SELECT count(total_number_of_system_id) as total FROM stork_cabin_total_number_of_system");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countCabinTimeSchedule()
+{
+	$query = mysqlQuery("SELECT count(schedule_time_id) as total FROM stork_cabin_schedule_time");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countHolidayDetails()
+{
+	$query = mysqlQuery("SELECT count(holiday_id) as total FROM stork_cabin_holiday");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countCabinCostEstimation()
+{
+	$query = mysqlQuery("SELECT count(cabin_cost_estimation_id) as total FROM stork_cabin_cost_estimation");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countSystemAvailability()
+{
+	$query = mysqlQuery("SELECT count(system_availability_id) as total FROM stork_cabin_system_availability");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countCabinOrderDetails()
+{
+	$query = mysqlQuery("SELECT count(cabin_order_id) as total FROM stork_cabin_order");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
+function countCabinTransactionDetails()
+{
+	$query = mysqlQuery("SELECT count(cabin_transaction_id) as total FROM stork_cabin_ccavenue_transaction");
+	$fetch = mysql_fetch_array($query);
+	return $fetch['total'];
+}
 ?> 
 <aside class="col-md-3 col-sm-4 col-xs-12 account-sidebar sidebar">
 	<h3 class="acc-title lg">Dashboard</h3>
@@ -749,7 +791,7 @@ function countScheduleTime()
 					<!-- Sub menu -->
 					<ul>						
 					<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php")
+					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_system_details.php")
 					{ 
 						?> 
 						<li class="test_a">
@@ -762,10 +804,10 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>		
-							<a href="cabin_system_details.php"><i class="fa fa-list"></i><span> Cabin System Details (<?php echo countOrderDetails() ?>) </span></a>
+							<a href="cabin_system_details.php"><i class="fa fa-list"></i><span> Cabin System Details (<?php echo countCabinSystemDetails() ?>) </span></a>
 						</li>
 							<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php")
+					if(basename($_SERVER['PHP_SELF'])=="cabin_schedule_time.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_schedule_time.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_schedule_time.php")
 					{ 
 						?> 
 						<li class="test_a">
@@ -778,10 +820,10 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-							<a href="cabin_schedule_time.php"><i class="fa fa-list"></i><span> Cabin Time Schedule (<?php echo countOrder() ?>) </span></a>
+							<a href="cabin_schedule_time.php"><i class="fa fa-list"></i><span> Cabin Time Schedule (<?php echo countCabinTimeSchedule() ?>) </span></a>
 						</li>
 							<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_holiday_details.php")
+					if(basename($_SERVER['PHP_SELF'])=="cabin_holiday_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_holiday_details.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_holiday_details.php")
 					{ 
 						?> 
 						<li class="test_a">
@@ -794,10 +836,10 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-				<a href="cabin_holiday_details.php"><i class="fa fa-list"></i><span> Holiday Details (<?php echo countOrderDetails() ?>) </span></a>
+				<a href="cabin_holiday_details.php"><i class="fa fa-list"></i><span> Holiday Details (<?php echo countHolidayDetails() ?>) </span></a>
 						</li>
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php")
+					if(basename($_SERVER['PHP_SELF'])=="cabin_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_cost_estimation.php")
 					{ 
 						?> 
 						<li class="test_a">
@@ -810,7 +852,7 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-							<a href="cabin_cost_estimation.php"><i class="fa fa-list"></i><span> Cabin Cost Estimation(<?php echo countTransaction() ?>) </span></a>
+							<a href="cabin_cost_estimation.php"><i class="fa fa-list"></i><span> Cabin Cost Estimation(<?php echo countCabinCostEstimation() ?>) </span></a>
 						</li>
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="cabin_system_availability.php")
@@ -826,10 +868,11 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-							<a href="cabin_system_availability.php"><i class="fa fa-list"></i><span> Cabin System Availability(<?php echo countTransaction() ?>) </span></a>
+							<a href="cabin_system_availability.php"><i class="fa fa-list"></i><span> Cabin System Availability(<?php echo countSystemAvailability() ?>) </span></a>
 						</li>
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="cabin_order_details.php")
+					if(basename($_SERVER['PHP_SELF'])=="cabin_order_details.php" || 
+						basename($_SERVER['PHP_SELF'])=="edit_cabin_order_details.php")
 					{ 
 						?> 
 						<li class="test_a">
@@ -842,7 +885,7 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-							<a href="cabin_order_details.php"><i class="fa fa-list"></i><span> Cabin Order Details(<?php echo countTransaction() ?>) </span></a>
+						<a href="cabin_order_details.php"><i class="fa fa-list"></i><span> Cabin Order Details(<?php echo countCabinOrderDetails() ?>) </span></a>
 						</li>
 						<?php 
 					if(basename($_SERVER['PHP_SELF'])=="cabin_transaction_details.php")
@@ -858,7 +901,7 @@ function countScheduleTime()
 						<?php 
 					}  
 				?>
-							<a href="cabin_transaction_details.php"><i class="fa fa-list"></i><span> Cabin Transaction Details(<?php echo countTransaction() ?>) </span></a>
+							<a href="cabin_transaction_details.php"><i class="fa fa-list"></i><span> Cabin Transaction Details(<?php echo countCabinTransactionDetails() ?>) </span></a>
 						</li>
 					</ul>
 				</li>

@@ -5,7 +5,16 @@ include "includes/header.php";
 <title>All Orders</title>
 </head>
 <body>  
-
+<!-- Php query for delete -->
+<?php 
+if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
+{
+	$val = $_GET['delete'];
+	mysqlQuery("DELETE FROM `stork_cabin_order` WHERE `cabin_order_id`='$val'");
+	$isDeleted = true;
+	$deleteProduct = true;
+}
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">
@@ -57,14 +66,15 @@ include "includes/header.php";
 						<th>Email</th>
 						<th>Mobile</th>
 						<th>Timing Type</th>
-						<th>Schedule Time Start</th>
-						<th>Schedule Time End</th>
+						<th>Schedule Time Start (HH:MM)</th>
+						<th>Schedule Time End (HH:MM)</th>
 						<th>Number of System</th>
 						<th>Booked Date</th>
 						<th>Total Hours</th>
 						<th>Amount</th>
 						<th>Created Date</th>
 						<th>Status</th>
+						<th>Action</th>
 			        </tr>
 			      </thead>
 			       <?php              
@@ -85,7 +95,7 @@ include "includes/header.php";
 						</td>
 			            <td>
 				            <?php 
-				            echo $fetch['order_user_type'];
+				            echo $fetch['cabin_order_user_type'];
 				            /*if($fetch['order_user_type']==1)
 								echo "Student";
 							else if($fetch['order_user_type']==2)
@@ -125,7 +135,7 @@ include "includes/header.php";
 						            $date = date('d/m/Y', $createddate);
 						            // echo $date; 
 						            ?>
-		            <td><span class="price"> <?php echo $date; ?> </span></td>
+		            	<td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td>
 				            <?php 
 				            if($fetch['order_status']==1)
@@ -134,6 +144,31 @@ include "includes/header.php";
 								echo "InActive";
 							?>
 						</td>
+						 <td class="table_action th_hidden a-center last">     
+						                <?php 
+											$check_in_area = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='".$fetch['state_id']."'"); 
+											$check_in_city = mysqlQuery("SELECT * FROM stork_city WHERE city_state_id='".$fetch['state_id']."'"); 
+											$check_in_order = mysqlQuery("SELECT * FROM stork_order WHERE order_shipping_state_id='".$fetch['state_id']."'");
+											$check_in_users = mysqlQuery("SELECT * FROM stork_users WHERE user_state_id='".$fetch['state_id']."'");  
+											if(mysql_num_rows($check_in_area)>0 || mysql_num_rows($check_in_city)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
+						                ?>
+							                <span class="nobr">
+								                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_order_details.php?id=<?php echo $fetch['cabin_order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>    
+									            <span class="separator"></span> 
+									            <span class="restrict">      
+									             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['cabin_order_id'] ?>"><i class="fa fa-trash-o">
+									             		<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
+									             	</i> </a>
+									            </span>
+									        </span>
+									        <?php } else{ ?>
+									        <span class="nobr">
+							                	<a title="Edit" class="btn btn-primary btn-xs" href="edit_cabin_order_details.php?id=<?php echo $fetch['cabin_order_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+								                <span class="separator"></span> 
+								             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['cabin_order_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+								            </span>
+							            <?php } ?>
+							        </td>
 			            
 				   	</tr>
 				   <?php
@@ -153,7 +188,7 @@ include "includes/header.php";
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "orders.php?delete="+myId);
+		$("#del_link").prop("href", "cabin_order_details.php?delete="+myId);
 		});
 	</script>
 	<!-- Delete popup Start -->
