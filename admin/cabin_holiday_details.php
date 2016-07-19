@@ -136,7 +136,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "states.php?delete="+myId);
+		$("#del_link").prop("href", "cabin_holiday_details.php?delete="+myId);
 		});
 	</script>
 	<!-- Delete popup Start -->

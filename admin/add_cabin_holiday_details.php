@@ -63,12 +63,12 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="last-name">Holiday Date<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" id="holiday_date" autocomplete="off" placeholder="Date" name="holiday_date" id="holiday_date">
+									<input type="text" class="form-control" id="holiday_date" autocomplete="off" placeholder="Date" name="holiday_date">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Holiday Day<span class="required"></span></label>
 								   
-									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="">
+									<input type="text" class="form-control" autocomplete="off" placeholder="Day" name="holiday_day" id="holiday_day" readonly="">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>

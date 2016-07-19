@@ -60,8 +60,8 @@ include "includes/header.php";
 								<thead>
 							        <tr class="">
 							            <th>Timing Type</th>	
-							            <th>Schedule Time Start</th>					            
-							            <th>Schedule Time End</th>
+							            <th>Schedule Time Start (HH:MM)</th>
+							            <th>Schedule Time End (HH:MM)</th>
 							            <th>Booked Date</th>
 							            <th>No. Of System Booked</th>
 							            <th>No. Of System Available</th>
@@ -73,7 +73,7 @@ include "includes/header.php";
 								$i = 0;
 								while ($fetch = mysql_fetch_array($query))
 								{
-								$qryschedule = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`=".$fetch['system_availability_id']);
+								$qryschedule = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`=".$fetch['system_schedule_time_id']);
 								$rowschedule = mysql_fetch_array($qryschedule);
 								?>
 							    <tr class="">						            

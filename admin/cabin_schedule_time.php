@@ -10,7 +10,7 @@ include "includes/header.php";
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
-	mysqlQuery("DELETE FROM `stork_state` WHERE `state_id`='$val'");
+	mysqlQuery("DELETE FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
 }
@@ -62,8 +62,8 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								<thead>
 							        <tr class="">
 							            <th>Timing Type</th>	
-							            <th>Schedule Time Start</th>					            
-							            <th>Schedule Time End</th>
+							            <th>Schedule Time Start (HH:MM)</th>					            
+							            <th>Schedule Time End (HH:MM)</th>
 							            <th>Status</th>
 							            <th>Created Date</th>
 							            <th class="table_action">Action</th>
@@ -139,7 +139,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "states.php?delete="+myId);
+		$("#del_link").prop("href", "cabin_schedule_time.php?delete="+myId);
 		});
 	</script>
 	<!-- Delete popup Start -->
