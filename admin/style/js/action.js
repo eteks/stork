@@ -1,3 +1,27 @@
+function ConvertTimeformat(format, str) {
+    var time = str.replace(/\ /g, "");
+    // alert("original_value"+time);
+    // alert("trim_Value"+time.replace(/\ /g, ""));
+    // var hours = Number(time.match(/^(\d+)/)[1]);
+    // alert(hours);
+    // var minutes = Number(time.match(/:(\d+)/)[1]);
+    // alert(minutes);
+    // var AMPM = time.match(/\s(.*)$/)[1];
+    // alert(AMPM);
+    hours = time.split(':')[0];
+    minutes = time.split(':')[1].substring(0,2);
+    AMPM = time.split(':')[1].slice(-2);
+    if (AMPM == "PM" && hours < 12) hours = Number(hours) + 12;
+    if (AMPM == "AM" && hours == 12) hours = Number(hours) - 12;
+    var sHours = hours.toString();
+    var sMinutes = minutes.toString();
+    if (hours < 10) sHours = "0" + sHours;
+    // if (minutes < 10) sMinutes = "0" + sMinutes;
+    // alert(sHours + ":" + sMinutes);
+    return sHours + ":" + sMinutes;
+
+}
+
 jQuery(document).ready(function() {
 	var required_area =["areaname","deliverycharge"];
 	var required_edit_admin_users =["username","password","phone","test"];
@@ -1710,6 +1734,14 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			$('.error_test').css('display','none');
 	
 			 }
+		if($('#schedule_time_start').val()!="" && $('#schedule_time_end').val()!=""){
+			start_time = $('#schedule_time_start').val();
+			end_time = $('#schedule_time_end').val();
+			start_time_change_format = ConvertTimeformat("24", start_time); 
+			end_time_change_format = ConvertTimeformat("24", end_time); 
+			if(end_time_change_format < start_time_change_format || end_time_change_format == start_time_change_format)
+				alert("yes");
+		}
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
