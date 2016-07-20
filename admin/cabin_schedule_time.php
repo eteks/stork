@@ -102,9 +102,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						            <td class="table_action th_hidden a-center last">     
 						                <?php 
 											$check_in_area = mysqlQuery("SELECT * FROM stork_area WHERE area_state_id='".$fetch['state_id']."'"); 
-											$check_in_city = mysqlQuery("SELECT * FROM stork_city WHERE city_state_id='".$fetch['state_id']."'"); 
-											$check_in_order = mysqlQuery("SELECT * FROM stork_order WHERE order_shipping_state_id='".$fetch['state_id']."'");
-											$check_in_users = mysqlQuery("SELECT * FROM stork_users WHERE user_state_id='".$fetch['state_id']."'");  
+											 
 											if(mysql_num_rows($check_in_area)>0 || mysql_num_rows($check_in_city)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
 						                ?>
 							                <span class="nobr">

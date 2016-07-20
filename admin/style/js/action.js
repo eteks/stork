@@ -23,7 +23,7 @@ jQuery(document).ready(function() {
 	var required_multicolor_printing_cost=["amount"];
 	var required_multicolor_copies =["copies"];
 	var required_cabin_system_details =["noofsystem"];
-	var required_cabin_schedule_time =["starttime","endtime"];
+	var required_cabin_schedule_time =["schedule_time_start","schedule_time_end"];
 	var required_cabin_holiday_details =["holiday_date"];
 	var required_cabin_cost_estimation =["amount"];
 	sel_a = jQuery("#sel_a");
@@ -35,7 +35,6 @@ jQuery(document).ready(function() {
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
-	
 	
 	jQuery("#edit_admin_users").submit(function(){ 
 		
@@ -1601,8 +1600,7 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 	});	
 	jQuery("#add_cabin_system_details").submit(function(){ 
-
-		var input = jQuery('#'+required_cabin_system_details);
+		       var input = jQuery('#'+required_cabin_system_details);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
@@ -1680,39 +1678,39 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
-	jQuery("#add_cabin_schedule_time").submit(function(){ 
-		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ){
-		var input = jQuery('#'+required_cabin_schedule_time);
-		if ((input.val() == "")) 
+	jQuery("#add_cabin_schedule_time").submit(function(){ 	    
+		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ) {
+			var input = jQuery('#'+required_cabin_schedule_time[i]);
+			if (input.val() == "")		 
+				{
+					input.addClass("error_input_field");	
+	
+					$('.error_test').css('display','block');
+				} else {
+					input.removeClass("error_input_field");
+					$('.error_test').css('display','none');
+			}
+		}			
+		//  select field	
+		if (document.getElementById('sel_a').selectedIndex < 1)
 			{
-				input.addClass("error_input_field");			
+				$('#sel_a').addClass('error_input_field');
 				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
 			}
+			else { $('#sel_a').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+	 	if (document.getElementById('sel_b').selectedIndex < 1)
+			{
+				$('#sel_b').addClass('error_input_field');
+				$('.error_test').css('display','block');
 			}
-	//  select field
-
-	if (document.getElementById('sel_a').selectedIndex < 1)
-		{
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
- 	if (document.getElementById('sel_b').selectedIndex < 1)
-		{
-			$('#sel_b').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_b').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			else { $('#sel_b').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
 		} else {
@@ -1945,6 +1943,7 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			 $('.error_test').css('display','none');
 			return true;
 		}
+	
 	});	
 //  =======   Admin Login form Validation   =========
 
@@ -1973,6 +1972,7 @@ jQuery("#login-form").submit(function(){
 		errornotice.hide();
 		return true;
 	}
+
 });
 
 });
