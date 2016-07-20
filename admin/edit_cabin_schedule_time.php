@@ -64,12 +64,13 @@ if(isset($_GET["id"]))
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
-						<h3 class="acc-title lg">Add Cabin Schedule Time Information</h3>
+						<h3 class="acc-title lg">Edit Cabin Schedule Time Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Schedule Time Information</h4>
 							<form action="edit_cabin_schedule_time.php?update=<?php echo $id; ?>" id="edit_cabin_schedule_time" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_time">End time must be greater than Start time </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 								<?php
@@ -103,8 +104,8 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group schedule_block">
 								    <label for="last-name">Schedule Time<span class="required">*</span></label>
-									<input type="text" class="form-control timepicker" id="starttime" autocomplete="off" placeholder="Start time" name="schedule_time_start" value="<?php echo($row['schedule_time_start']); ?>">
-									<input type="text" class="form-control timepicker" id="endtime" autocomplete="off" placeholder="End time" name="schedule_time_end" value="<?php echo($row['schedule_time_end']); ?>">
+									<input type="text" class="form-control timepicker" id="schedule_time_start" autocomplete="off" placeholder="Start time" name="schedule_time_start" value="<?php echo($row['schedule_time_start']); ?>">
+									<input type="text" class="form-control timepicker" id="schedule_time_end" autocomplete="off" placeholder="End time" name="schedule_time_end" value="<?php echo($row['schedule_time_end']); ?>">
 									<div class="clear_both"></div>
 								</div>
 								<div class="cate-filter-content">	

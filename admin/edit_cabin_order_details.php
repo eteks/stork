@@ -92,13 +92,16 @@ if(isset($_GET["id"]))
 							<h4 class="acc-sub-title">Cabin Order Information</h4>
 							<form action="edit_cabin_order_details.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cabin_order_details">
 								<div class="container">
- 									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_test"> Please fill all required(*) fields </span> 									
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
 								</div>
 								<div class="container">
  									<span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
+								<div class="container">
+ 									<span class="error_time"> End time must be greater than Start time </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 							<?php 

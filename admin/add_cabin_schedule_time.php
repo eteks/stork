@@ -58,7 +58,7 @@ include "includes/header.php";
 							<form action="add_cabin_schedule_time.php" id="add_cabin_schedule_time" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
- 									<span class="error_time"> Please choose correct time </span>
+ 									<span class="error_time"> End time must be greater than Start time </span>
 								</div>
 									<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
