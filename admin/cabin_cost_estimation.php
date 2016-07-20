@@ -62,7 +62,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								<thead>
 							        <tr class="">
 							            <th>Timing Type</th>						 
-							            <th>Duration</th>
+							            <th>Duration (HH:MM)</th>
 							            <th>Amount</th>           
 							            <th>Status</th>
 							            <th>Created Date</th>

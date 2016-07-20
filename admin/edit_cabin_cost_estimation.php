@@ -110,35 +110,29 @@ if(isset($_GET["id"]))
 								        <option value="">
 											<span>Select Hours</span>
 										</option>
-								        <option value="01">01</option>
-								        <option value="02">02</option>
-								        <option value="03">03</option>
-								        <option value="04">04</option>
-								        <option value="05">05</option>
-								        <option value="06">06</option>
-								        <option value="07">07</option>
-								        <option value="08">08</option>
-								        <option value="09">09</option>
-								        <option value="10">10</option>
-								        <option value="11">11</option>
-								        <option value="12">12</option>
+										<?php
+										$cost_duration = explode(':',$row['cabin_cost_estimation_duration']);
+									       for ($i=1; $i<=12; $i++){
+									       	if($i == $cost_duration[0])
+									         	echo "<option value='".$i."' selected>" . $i ."</option>";
+									        else
+									        	echo "<option value='".$i."'>" . $i ."</option>";
+									       }
+									    ?>
 								    </select>
 								    <select class="product-type-filter form-control" id="sel_c" name="cabin_cost_duration_minutes">
 								        <option value="">
 											<span>Select Minutes</span>
 										</option>
-								        <option value="01">01</option>
-								        <option value="02">02</option>
-								        <option value="03">03</option>
-								        <option value="04">04</option>
-								        <option value="05">05</option>
-								        <option value="06">06</option>
-								        <option value="07">07</option>
-								        <option value="08">08</option>
-								        <option value="09">09</option>
-								        <option value="10">10</option>
-								        <option value="11">11</option>
-								        <option value="12">12</option>
+								       <?php
+								       	   echo "minute time".explode(':',$row['cabin_cost_estimation_duration'][1]);
+									       for ($i=1; $i<=60; $i++){
+									       	if($i == $cost_duration[1])
+									         	echo "<option value='".$i."' selected>" . $i ."</option>";
+									        else
+									        	echo "<option value='".$i."'>" . $i ."</option>";
+									       }
+									    ?>
 								    </select>
 								    <div class="clear_both"></div>
 								</div>
