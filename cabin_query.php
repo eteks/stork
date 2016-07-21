@@ -58,7 +58,7 @@
 		else if($row_cnt>0 && strtolower($timingtype) == 'flexible'){
 ?>
 	<div class="slot fl">
-    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot"> </i> 
+    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
     	<div style="text-align:center;">
     		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
     	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>

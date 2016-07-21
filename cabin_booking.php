@@ -38,7 +38,7 @@
 				 <div id="div_billto">
 					   <div class="pane round-box">
 						 <h3 class="title"><span class="icon icon-one">1</span>Book Your Cabin Now</h3>
-						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" action="http://www.printstork.com/ccavRequestHandler.php">
+						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" ><!--action="http://www.printstork.com/ccavRequestHandler.php"-->
 						 	<input type="hidden" name="tid" id="txnid" readonly />
 		   					<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   					<input type="hidden" name="order_id" value="<?php echo 'cab_'.$_SESSION['session_id']; ?>"/>
@@ -97,7 +97,7 @@
 								  <div class="field-wrapper">
 									<label for="address_1_field" class="address_1">No. of System<em>*</em></label>
 									<br>
-									<input type="text" maxlength="2" class="required" value="" size="30" name="zip" name="merchant_param3" id="cabin_required_system">
+									<input type="text" maxlength="2" class="required" value="" size="30" name="merchant_param3" id="cabin_required_system">
 									<input type="hidden" class="maximum_booking_system" value="0">
 								   </div>
 					 			</li>

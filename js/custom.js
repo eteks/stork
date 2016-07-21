@@ -1941,7 +1941,7 @@ $(document).ready(function () {
 
 	jQuery(document).on('submit','#cabin_booking',function(){
 
-	required_cabin_fields = ["cabin_name", "cabin_mobile","txtDate","cabin_required_system"];
+	required_cabin_fields = ["cabin_name", "cabin_mobile","txtDate","cabin_required_system","phone_1_field"];
 	for (i=0;i<required_cabin_fields.length;i++) {
 			var input = jQuery('#'+required_cabin_fields[i]);
 			if ((input.val() == "")) 
@@ -1997,9 +1997,27 @@ $(document).ready(function () {
 				var newDate = dateAr[2] + '-' + dateAr[1] + '-' + dateAr[0];
 				disabledate.push(newDate);
 			}
+			var today = new Date();
+		    var dd = today.getDate();
+		    var mm = today.getMonth()+1; //January is 0!
+		
+		    var yyyy = today.getFullYear();
+		    if(dd<10){
+		        dd='0'+dd;
+		    } 
+		    if(mm<10){
+		        mm='0'+mm;;
+		    } 
+		    var today = dd+'-'+mm+'-'+yyyy;
+		    if($.inArray(today, disabledate) == -1){
+		    	var current_data = new Date();
+		    }
+		    else{
+		    	var current_data = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+		    }
 			$('#cabin_booking_date').datepicker({
 		        format: "dd-mm-yyyy",
-		        startDate: new Date(),
+		        startDate: current_data,
 		        endDate: "+30d",
 		       	useCurrent: true,
 		        autoclose: true,
@@ -2067,12 +2085,12 @@ $(document).ready(function () {
 		
 		// change cabin color when cick availabel cabin only
 		$(document).on('click','#cabin_booking_timing_slot .cabin_available',function(){
-			$('#cabin_booking_timing_slot .slot .cabin_available').each(function(){
-				if($(this).hasClass('cabin_selected')){
-					$(this).removeClass('cabin_selected');
-				}
-			});
-			$(this).addClass('cabin_selected');
+			// $('#cabin_booking_timing_slot .slot .cabin_available').each(function(){
+				// if($(this).hasClass('cabin_selected')){
+					// $(this).removeClass('cabin_selected');
+				// }
+			// });
+			$(this).toggleClass('cabin_selected');
 		});
 		
 		//user must be select system when enter no of system
@@ -2091,37 +2109,53 @@ $(document).ready(function () {
 		
 		// count maximum user can book system and calculate total hours
 		$(document).on('click','.cabin_available',function(){
+			$('#cabin_required_system').val('');
+			$('.cabin_booking_total_amount').val(0);
 			var system_availability = parseInt($(this).parents('.slot').find('.system_availability').val());
 			var amount_per_slot = parseFloat($(this).parents('.slot').find('.timeslotamount').val());
 			var maximum_number_of_availability = parseInt($('#cabin_booking .maximum_booking_system').val());
 			var timing_type = $('#cabin_timing_type').val();
-			$('.schedule_time_id').val($(this).attr('data-id'));
-			//var total_hours_cabin_booking = parseInt($('#cabin_booking .total_hours_cabin_booking').val());
+			var total_hours_cabin_booking = parseInt($('#cabin_booking .total_hours_cabin_booking').val());
 			if($(this).hasClass('cabin_selected')){
-				maximum_number_of_availability += system_availability;
-				//total_hours_cabin_booking += hours_per_slot;
+				//maximum_number_of_availability += system_availability;
+				total_hours_cabin_booking += hours_per_slot;
 			}
 			else{
-				maximum_number_of_availability -= system_availability;
-				//total_hours_cabin_booking -= hours_per_slot;
+				//maximum_number_of_availability -= system_availability;
+				total_hours_cabin_booking -= hours_per_slot;
 			}
-			$('#cabin_booking .maximum_booking_system').val(maximum_number_of_availability);
+			//$('#cabin_booking .maximum_booking_system').val(maximum_number_of_availability);
+			var system_avail = [];
+			var schedule_ids = '';
+			$('#cabin_booking_timing_slot .slot .cabin_available').each(function(){
+				if($(this).hasClass('cabin_selected')){
+					system_avail.push(parseInt($(this).parents('.slot').find('.system_availability').val()));
+					schedule_ids += $(this).attr('data-id')+'#';
+				}
+			});
+			$('.schedule_time_id').val(schedule_ids);
+			if(system_avail.length > 0){   
+    			$('#cabin_booking .maximum_booking_system').val(Math.min.apply(Math,system_avail));
+			}else{
+   				$('#cabin_booking .maximum_booking_system').val(0);
+			}
+			
 			if(timing_type.toLowerCase()!='flexible'){
 				var hours_per_slot = $(this).parents('.slot').find('.total_hours_per_slot').val();
 				$hours_split = hours_per_slot.split(':');
 				if($hours_split[1] > 0){
-					$('#cabin_booking .total_hours_cabin_booking_view').val(parseInt($hours_split[0]+1));
+					$('#cabin_booking .total_hours_cabin_booking_view').val(parseInt(($hours_split[0]+1)*system_avail.length));
 				}
 				else{
-					$('#cabin_booking .total_hours_cabin_booking_view').val(parseInt($hours_split[0]));
+					$('#cabin_booking .total_hours_cabin_booking_view').val(parseInt($hours_split[0]*system_avail.length));
 				}
 				$('#cabin_booking .total_hours_cabin_booking').val(hours_per_slot);
 			}else{
 				$('#cabin_booking .total_hours_cabin_booking_view').val(parseInt(1));
 			}
-			if($('#cabin_required_system').val()){
-				$('#cabin_booking .cabin_booking_total_amount').val(parseFloat(Math.ceil(($('#cabin_required_system').val()*amount_per_slot) * 100 ) / 100).toFixed(2));
-			}
+			// if($('#cabin_required_system').val()){
+				// $('#cabin_booking .cabin_booking_total_amount').val(parseFloat(Math.ceil(($('#cabin_required_system').val()*amount_per_slot*$('.total_hours_cabin_booking_view').val()) * 100 ) / 100).toFixed(2));
+			// }
 			
 			
 		});
@@ -2129,7 +2163,7 @@ $(document).ready(function () {
 		// check no of system from selected timing slots
 		$(document).on('blur','#cabin_required_system',function(){
 			if($(this).val() != ''){
-				
+				var no_of_hours = parseInt($('.total_hours_cabin_booking_view').val());
 				var no_of_system = parseInt($(this).val());
 				var total_amoutn = 0.00;
 				$('#cabin_booking_timing_slot .slot .cabin_available').each(function(){
@@ -2142,15 +2176,14 @@ $(document).ready(function () {
 					error_popup('You can choose maximum '+maximum_system+' systems only!');
 					$(this).val('');
 				}else{
-					$('.cabin_booking_total_amount').val(parseFloat(Math.ceil((total_amoutn*no_of_system) * 100 ) / 100).toFixed(2));
+					$('.cabin_booking_total_amount').val(parseFloat(Math.ceil((total_amoutn*no_of_system*no_of_hours) * 100 ) / 100).toFixed(2));
 				}
 			}
 		});	
 		
 		//amount calculation of flexible cabin booking system
 		$(document).on('blur','.total_hours_cabin_booking_view',function(){
-			
-			if($(this).val() != ''){
+			if($(this).val() != '' && $('#cabin_required_system').val() != '' && $('#cabin_timing_type').val().toLowerCase() == 'flexible' ){
 				var totolhours = parseInt($(this).val());
 				var no_of_system = parseInt($('#cabin_required_system').val());
 				var total_amoutn = 0.00;
@@ -2162,5 +2195,13 @@ $(document).ready(function () {
 				$('.cabin_booking_total_amount').val(parseFloat(Math.ceil((total_amoutn*no_of_system*totolhours) * 100 ) / 100).toFixed(2));
 			}
 		});
+		
+		// clear cabinbooking form
+		$('#cabin_clear_button').on('click',function(){
+			// $('#cabin_name,#cabin_mobile,#cabin_required_system,.total_hours_cabin_booking_view').val('');
+			// $('.cabin_booking_total_amount').val(0);
+			location.reload();
+		});
+		
 }); // Document ready end
 
