@@ -1453,6 +1453,14 @@ section.trust-w{
   -moz-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s; 
 } 
+.testcolor{
+	background:#555 !important;
+	cursor:auto !important;
+}
+.testcolor:hover{
+		border-color:#555!important;
+		cursor:auto !important;
+}
 .trust-w .tr-icon:hover{
 	border-color:#ade8fa;
 	transition: all 0.3s ease-out 0s;
