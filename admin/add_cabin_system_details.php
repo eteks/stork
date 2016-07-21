@@ -74,7 +74,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">No. of System<span class="required">*</span></label>
-									<input type="text" class="form-control" id="noofsystem" autocomplete="off" placeholder="No of System" name="no_of_system">
+									<input type="text" class="form-control" id="noofsystem" maxlength="10" autocomplete="off" placeholder="No of System" name="no_of_system">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name"> Status<span class="required">*</span></label>

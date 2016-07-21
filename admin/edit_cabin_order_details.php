@@ -90,15 +90,18 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Edit Cabin Order Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Cabin Order Information</h4>
-							<form action="edit_cabin_order_details.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_orders">
+							<form action="edit_cabin_order_details.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_cabin_order_details">
 								<div class="container">
- 									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_test"> Please fill all required(*) fields </span> 									
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
 								</div>
 								<div class="container">
  									<span class="error_phone"> Please Enter Valid mobile number </span>
+								</div>
+								<div class="container">
+ 									<span class="error_time"> End time must be greater than Start time </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
@@ -114,19 +117,19 @@ if(isset($_GET["id"]))
 							?>
 								<div class="form-group">
 								    <label for="last-name">Customer Name<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" placeholder="Customer Name" name="cabin_order_user_name" value="<?php echo($row['cabin_order_user_name']); ?>">
+									<input type="text" class="form-control" id="customername" autocomplete="off" placeholder="Customer Name" name="cabin_order_user_name" value="<?php echo($row['cabin_order_user_name']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" placeholder="Email" name="cabin_order_email" value="<?php echo($row['cabin_order_email']); ?>">
+									<input type="text" class="form-control" id="email" autocomplete="off" placeholder="Email" name="cabin_order_email" value="<?php echo($row['cabin_order_email']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" maxlength="10" placeholder="Mobile" name="cabin_order_mobile" value="<?php echo($row['cabin_order_mobile']); ?>">
+									<input type="text" class="form-control" id="phone" autocomplete="off" maxlength="10" placeholder="Mobile" name="cabin_order_mobile" value="<?php echo($row['cabin_order_mobile']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Timing Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="cabin_order_timing_type">
+									<select class="product-type-filter form-control" id="sel_a" name="cabin_order_timing_type">
 								        <option>
 											<span>Select Timing Type</span>
 										</option>
@@ -146,17 +149,17 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group schedule_block">
 								    <label for="last-name">Booked Time<span class="required">*</span></label>
-									<input type="text" class="form-control timepicker" id="starttime" autocomplete="off" placeholder="Start time" name="schedule_time_start" value="<?php echo($rowschedule['schedule_time_start']); ?>">
-									<input type="text" class="form-control timepicker" id="endtime" autocomplete="off" placeholder="End time" name="schedule_time_end" value="<?php echo($rowschedule['schedule_time_end']); ?>">
+									<input type="text" class="form-control timepicker" id="schedule_time_start" autocomplete="off" placeholder="Start time" name="schedule_time_start" value="<?php echo($rowschedule['schedule_time_start']); ?>">
+									<input type="text" class="form-control timepicker" id="schedule_time_end" autocomplete="off" placeholder="End time" name="schedule_time_end" value="<?php echo($rowschedule['schedule_time_end']); ?>">
 									<div class="clear_both"></div>
 								</div>
 								<div class="form-group">
 								    <label for="last-name">No. Of System Booked<span class="required">*</span></label>
-									<input type="text" class="form-control system_booked_act" id="" autocomplete="off" placeholder="No. Of System Booked" name="cabin_order_number_of_system" value="<?php echo($row['cabin_order_number_of_system']); ?>">
+									<input type="text" class="form-control system_booked_act" id="noofsystem_booked" autocomplete="off" placeholder="No. Of System Booked" name="cabin_order_number_of_system" value="<?php echo($row['cabin_order_number_of_system']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Total Hours Booked<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" autocomplete="off" placeholder="No. Of System Booked" name="cabin_order_number_of_system" value="<?php echo($row['cabin_order_number_of_system']); ?>">
+									<input type="text" class="form-control" id="totalhours_booked" autocomplete="off" placeholder="No. Of System Booked" name="cabin_order_number_of_system" value="<?php echo($row['cabin_order_number_of_system']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Amount<span class="required">*</span></label>
@@ -164,7 +167,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Order status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="cabin_order_status">
+									<select class="product-type-filter form-control" id="sel_b" name="cabin_order_status">
 								        <option>
 											<span>Select Status</span>
 										</option>

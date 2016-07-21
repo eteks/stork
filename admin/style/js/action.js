@@ -1,3 +1,27 @@
+function ConvertTimeformat(format, str) {
+    var time = str.replace(/\ /g, "");
+    // alert("original_value"+time);
+    // alert("trim_Value"+time.replace(/\ /g, ""));
+    // var hours = Number(time.match(/^(\d+)/)[1]);
+    // alert(hours);
+    // var minutes = Number(time.match(/:(\d+)/)[1]);
+    // alert(minutes);
+    // var AMPM = time.match(/\s(.*)$/)[1];
+    // alert(AMPM);
+    hours = time.split(':')[0];
+    minutes = time.split(':')[1].substring(0,2);
+    AMPM = time.split(':')[1].slice(-2);
+    if (AMPM == "PM" && hours < 12) hours = Number(hours) + 12;
+    if (AMPM == "AM" && hours == 12) hours = Number(hours) - 12;
+    var sHours = hours.toString();
+    var sMinutes = minutes.toString();
+    if (hours < 10) sHours = "0" + sHours;
+    // if (minutes < 10) sMinutes = "0" + sMinutes;
+    // alert(sHours + ":" + sMinutes);
+    return sHours + ":" + sMinutes;
+
+}
+
 jQuery(document).ready(function() {
 	var required_area =["areaname","deliverycharge"];
 	var required_edit_admin_users =["username","password","phone","test"];
@@ -23,9 +47,10 @@ jQuery(document).ready(function() {
 	var required_multicolor_printing_cost=["amount"];
 	var required_multicolor_copies =["copies"];
 	var required_cabin_system_details =["noofsystem"];
-	var required_cabin_schedule_time =["starttime","endtime"];
+	var required_cabin_schedule_time =["schedule_time_start","schedule_time_end"];
 	var required_cabin_holiday_details =["holiday_date"];
 	var required_cabin_cost_estimation =["amount"];
+	var required_cabin_order_details =["customername","email","phone","dob","schedule_time_start","schedule_time_end","noofsystem_booked","totalhours_booked","amount"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
 	sel_c = jQuery("#sel_c");
@@ -35,7 +60,6 @@ jQuery(document).ready(function() {
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
-	
 	
 	jQuery("#edit_admin_users").submit(function(){ 
 		
@@ -141,7 +165,7 @@ jQuery("#edit_users").submit(function(){
 		}
 		//end of empty field validation
 	
-					 var mobile=$('#phone').val().length;
+			    var mobile=$('#phone').val().length;
      			if(mobile<=9){
     			$('#phone').addClass("error_input_field_phone");
  				}
@@ -1601,8 +1625,7 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 	});	
 	jQuery("#add_cabin_system_details").submit(function(){ 
-
-		var input = jQuery('#'+required_cabin_system_details);
+		       var input = jQuery('#'+required_cabin_system_details);
 		if ((input.val() == "")) 
 			{
 				input.addClass("error_input_field");
@@ -1680,88 +1703,138 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
-	jQuery("#add_cabin_schedule_time").submit(function(){ 
-		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ){
-		var input = jQuery('#'+required_cabin_schedule_time);
-		if ((input.val() == "")) 
+	jQuery("#add_cabin_schedule_time").submit(function(){ 	    
+		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ) {
+			var input = jQuery('#'+required_cabin_schedule_time[i]);
+			if (input.val() == "")		 
+				{
+					input.addClass("error_input_field");	
+	
+					$('.error_test').css('display','block');
+				} else {
+					input.removeClass("error_input_field");
+					$('.error_test').css('display','none');
+			}
+		}			
+		//  select field	
+		if (document.getElementById('sel_a').selectedIndex < 1)
 			{
-				input.addClass("error_input_field");			
+				$('#sel_a').addClass('error_input_field');
 				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
 			}
-			}
-	//  select field
-
-	if (document.getElementById('sel_a').selectedIndex < 1)
-		{
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
- 	if (document.getElementById('sel_b').selectedIndex < 1)
-		{
-			$('#sel_b').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_b').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
-			return false;
-		} else {
-			errornotice.hide();
-			 $('.error_test').css('display','none');
-			return true;
-		}
-	});	
-	jQuery("#edit_cabin_schedule_time").submit(function(){ 
-		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ){
-		var input = jQuery('#'+required_cabin_schedule_time);
-		if ((input.val() == "")) 
+			else { $('#sel_a').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+	 	if (document.getElementById('sel_b').selectedIndex < 1)
 			{
-				input.addClass("error_input_field");			
+				$('#sel_b').addClass('error_input_field');
 				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
+			}
+			else { $('#sel_b').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+		if($('#schedule_time_start').val()!="" && $('#schedule_time_end').val()!=""){
+			start_time = $('#schedule_time_start').val();
+			end_time = $('#schedule_time_end').val();
+			start_time_change_format = ConvertTimeformat("24", start_time); 
+			end_time_change_format = ConvertTimeformat("24", end_time); 
+			if(end_time_change_format < start_time_change_format || end_time_change_format == start_time_change_format){
+				$('#schedule_time_end').addClass("error_input_field_time");	
+					$('.error_time').css('display','block');}
+					 else {
+					input.removeClass("error_input_field_time");					
+					$('.error_time').css('display','none');
 			}
 			}
-	//  select field
-
-	if (document.getElementById('sel_a').selectedIndex < 1)
-		{
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
- 	if (document.getElementById('sel_b').selectedIndex < 1)
-		{
-			$('#sel_b').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_b').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-
-		 }
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
+		
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_time').css('display','none');
 			return false;
-		} else {
-			errornotice.hide();
-			 $('.error_test').css('display','none');
-			return true;
 		}
+		else if(jQuery(":input").hasClass("error_input_field_time"))  {
+			
+				$('.error_test').css('display','none');
+				$('.error_time').css('display','block');
+				return false;
+			}		
+			else {
+			errornotice.hide();
+			$('.error_time').css('display','none');
+			$('.error_test').css('display','none');
+			return true;
+			}
+			
+		
 	});	
+		jQuery("#edit_cabin_schedule_time").submit(function(){ 	    
+		for(var i = 0 ; i<required_cabin_schedule_time.length;i++ ) {
+			var input = jQuery('#'+required_cabin_schedule_time[i]);
+			if (input.val() == "")		 
+				{
+					input.addClass("error_input_field");	
+	
+					$('.error_test').css('display','block');
+				} else {
+					input.removeClass("error_input_field");
+					$('.error_test').css('display','none');
+			}
+		}			
+		//  select field	
+		if (document.getElementById('sel_a').selectedIndex < 1)
+			{
+				$('#sel_a').addClass('error_input_field');
+				$('.error_test').css('display','block');
+			}
+			else { $('#sel_a').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+	 	if (document.getElementById('sel_b').selectedIndex < 1)
+			{
+				$('#sel_b').addClass('error_input_field');
+				$('.error_test').css('display','block');
+			}
+			else { $('#sel_b').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+	
+			 }
+		if($('#schedule_time_start').val()!="" && $('#schedule_time_end').val()!=""){
+			start_time = $('#schedule_time_start').val();
+			end_time = $('#schedule_time_end').val();
+			start_time_change_format = ConvertTimeformat("24", start_time); 
+			end_time_change_format = ConvertTimeformat("24", end_time); 
+			if(end_time_change_format < start_time_change_format || end_time_change_format == start_time_change_format){
+				$('#schedule_time_end').addClass("error_input_field_time");	
+					$('.error_time').css('display','block');}
+					 else {
+					input.removeClass("error_input_field_time");					
+					$('.error_time').css('display','none');
+			}
+			}
+		
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_time').css('display','none');
+			return false;
+		}
+		else if(jQuery(":input").hasClass("error_input_field_time"))  {
+			
+				$('.error_test').css('display','none');
+				$('.error_time').css('display','block');
+				return false;
+			}		
+			else {
+			errornotice.hide();
+			$('.error_time').css('display','none');
+			$('.error_test').css('display','none');
+			return true;
+			}
+			
+		
+	});
 	jQuery("#add_cabin_holiday_details").submit(function(){ 
 		for(var i = 0 ; i<required_cabin_holiday_details.length;i++ ){
 		var input = jQuery('#'+required_cabin_holiday_details);
@@ -1945,7 +2018,103 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			 $('.error_test').css('display','none');
 			return true;
 		}
+	
 	});	
+jQuery("#edit_cabin_order_details").submit(function(){ 
+	var cabin_order_email = jQuery('#email');
+		for(var i = 0 ; i<required_cabin_order_details.length;i++ ){
+			var input = jQuery('#'+required_cabin_order_details[i]);
+		
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
+			}
+			
+			
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(cabin_order_email.val())) {
+		 	cabin_order_email.addClass("error_input_field_email");
+	  	}else{
+	  		cabin_order_email.removeClass("error_input_field_email");
+	  	}
+	  	 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
+	//  select field
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+			if (document.getElementById('sel_b').selectedIndex < 1)
+		{
+			$('#sel_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_b').removeClass('error_input_field');
+		$('.error_test').css('display','none');  }
+	  	if($('#schedule_time_start').val()!="" && $('#schedule_time_end').val()!=""){
+			start_time = $('#schedule_time_start').val();
+			end_time = $('#schedule_time_end').val();
+			start_time_change_format = ConvertTimeformat("24", start_time); 
+			end_time_change_format = ConvertTimeformat("24", end_time); 
+			if(end_time_change_format < start_time_change_format || end_time_change_format == start_time_change_format){
+				$('#schedule_time_end').addClass("error_input_field_time");
+				}
+					 else {
+				$('#schedule_time_end').removeClass("error_input_field_time");					
+			}
+			}
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		$('.error_time').css('display','none');
+			return false;
+		}
+		else if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('.error_time').css('display','none');
+				return false;
+			}
+		
+			else if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				$('.error_time').css('display','none');
+				return false;
+			}
+				else if(jQuery(":input").hasClass("error_input_field_time"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_time').css('display','block');
+				return false;
+			}
+			else {
+			errornotice.hide();
+			$('.error_phone').css('display','none');
+			$('.error_time').css('display','none');
+			$('.error_test').css('display','none');
+			$('.error_email').css('display','none');
+			return true;
+			}		
+		
+	});
+	
 //  =======   Admin Login form Validation   =========
 
 jQuery("#login-form").submit(function(){ 
@@ -1973,6 +2142,7 @@ jQuery("#login-form").submit(function(){
 		errornotice.hide();
 		return true;
 	}
+
 });
 
 });

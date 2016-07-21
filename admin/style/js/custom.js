@@ -209,7 +209,6 @@ $('.stork_admin_table th').each(function(index, th) {
         title: 'Timepicker', //The Wickedpicker's title
         meridiem: false
     };
-    
   $('.timepicker').wickedpicker(options);
 
   $(document).on('change','#holiday_date',function(){
@@ -228,7 +227,6 @@ $('.stork_admin_table th').each(function(index, th) {
 
   
 });
-
 $(document).ready(function(){
   $(".sidebar-dropdown a").on('click',function(e){
       e.preventDefault();
@@ -252,7 +250,7 @@ $(document).ready(function(){
 });
 $(document).ready(function () { 
   //called when key is pressed in textbox
-  $("#phone").keypress(function (e) {
+  $('#phone,#noofsystem').keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
@@ -261,15 +259,99 @@ $(document).ready(function () {
     }
    });
 });
-$(document).ready(function () {
+$(document).ready(function () { 
     $('#dob,#holiday_date').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
-    
+      $('#firstname').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+        $('#lastname').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+         $('#statename').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+         $('#cityname').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+        $('#areaname').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+        $('#collegename').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+          $('#customername').keydown(function (e) {
+          if (e.shiftKey || e.ctrlKey || e.altKey) {
+              e.preventDefault();
+          } else {
+              var key = e.keyCode;
+              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                  e.preventDefault();
+              }
+          }
+      });
+  	  $("#deliverycharge").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   			});
+  	  $("#totalitems").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   			});	
 });
-
 $(document).ready(function () {
     $('#dateofdelivered').datepicker({
         dateFormat: 'dd/mm/yy',
