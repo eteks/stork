@@ -55,7 +55,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$type = $_GET['type'];
 	?>
 	<?php
-		if($type == 'plain') { ?>
+		if($type == 'plain' || $type == 'project') { ?>
 			<div class="add_section">
 				<a href="add_paper_print_type.php?type=<?php echo $type; ?>"> <span> Add </span><span>[+]</span> </a>
 			</div>
@@ -116,7 +116,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				            </span>
 				        <?php } else{ ?>    
 				            <span class="nobr">
-				            <?php if($type == 'plain') { ?>
+				            <?php if($type == 'plain' || $type == 'project') { ?>
 			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_print_type.php?type=<?php echo $type; ?>&id=<?php echo $paperprinttypes_array['paper_print_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <?php } else { ?>
 			                	<span class="restrict">      
@@ -126,7 +126,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 								</span>
 			                <?php } ?>
 				                <span class="separator"></span> 
-				            <?php if($type == 'plain') { ?>
+				            <?php if($type == 'plain' || $type == 'project') { ?>
 				               <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $paperprinttypes_array['paper_print_type_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				              <?php } else { ?>
 				                  <span class="restrict">      

@@ -22,11 +22,12 @@ function generate_combinations(array $data, array &$all = array(), array $group 
 
 $query_printing_type=mysql_query("SELECT * FROM stork_printing_type WHERE printing_type='plain_printing'");
 $row_printing_type = mysql_fetch_array($query_printing_type);
+$row_printing_type_id = $row_printing_type['printing_type_id'];
 
 $papersize = mysqlQuery("SELECT * FROM `stork_paper_size` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
 $papersides = mysqlQuery("SELECT * FROM `stork_paper_side` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
 $papertypes = mysqlQuery("SELECT * FROM `stork_paper_type` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
-$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` WHERE printing_type_id=".$row_printing_type['printing_type_id']);
+$paperprinttypes = mysqlQuery("SELECT * FROM `stork_paper_print_type` WHERE printing_type_id='$row_printing_type_id' AND LOWER(paper_print_type) != 'color with black & white'");
 
 
 $papersize_array = array();

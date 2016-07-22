@@ -76,9 +76,10 @@ $cost_status=$_POST['cost_status'];
 					        <?php 
 					        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 					        while($row_cost=mysql_fetch_array($query)) {
+					        	if(strtolower($row_cost['paper_print_type']) != "color with black & white"){
 					        	?>
 					        <option value="<?php echo $row_cost['paper_print_type_id']; ?>"> <?php echo $row_cost['paper_print_type']; ?></option>
-					        <?php } ?>
+					        <?php }} ?>
 					        
 					    </select>
 					</div>

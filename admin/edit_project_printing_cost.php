@@ -13,16 +13,17 @@ if (isset($_GET['update']))
 		$val = $_GET['update'];
 		$val = mres($val);
 
-		$paper_print_type = $_POST["paper_print_type_hidden"];
+		// $paper_print_type = $_POST["paper_print_type_hidden"];
+		$paper_print_type = $_POST["paper_print_type"];
 		$paper_side = $_POST["paper_side_hidden"];
 		$paper_size = $_POST["paper_size"];
 		$paper_type = $_POST["paper_type"];
 		$amount = $_POST["amount"];
 		$cost_estimation_status = $_POST["cost_estimation_status"];
-		if($_POST['paper_print_type'] ||  !$_POST['paper_print_type_hidden'] || $_POST['paper_side'] ||  !$_POST['paper_side_hidden']){
+		if($_POST['paper_side'] ||  !$_POST['paper_side_hidden']){
 			$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong! </span></div>";
 		}	
-		else if($paper_print_type=="" || $paper_side=="") {
+		else if($paper_side=="") {
 			$successMessage = "<div class='container error_message_mandatory'><span> Something went Wrong! </span></div>";
 		}
 		else{
@@ -92,17 +93,34 @@ if(isset($_GET["id"]))
 										{
 								?>
 								<div class="form-group">
+								    <label for="first-name">Paper Print Type<span class="required">*</span></label>
+									<select class="product-type-filter form-control" name="paper_print_type">
+								        <option>
+											<span>Select Paper Print Type</span>
+										</option>
+								        <?php
+				                        $query = mysql_query("select * from stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
+				                        while ($rowPaperPrintType = mysql_fetch_array($query)) {
+				                        if(strtolower($rowPaperPrintType['paper_print_type']) != "color with black & white"){	
+					                        if($row['cost_estimation_project_printing_paper_print_type_id'] == $rowPaperPrintType['paper_print_type_id'])   
+												echo "<option selected value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
+											else
+												echo "<option value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
+					                    }} ?>
+								    </select>
+								</div>
+								<!--<div class="form-group">
 								    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-								<input type="text" class="form-control" maxlength="10" name="paper_print_type" autocomplete="off" value="Color with Black & White" disabled>
+								<input type="text" class="form-control" maxlength="10" name="paper_print_type" autocomplete="off" value="Color with Black & White" disabled> -->
 									<?php 
-									        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
+									        /* $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 									        while($row_cost=mysql_fetch_array($query)) {
 									        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){
 									        		echo "<input type='hidden' name='paper_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
 									        	}
-									        }
+									        } */
 									?>	
-								</div>
+								<!-- </div> -->
 								<div class="form-group">
 								    <label for="last-name">Paper Side<span class="required">*</span></label>
 									<input type="text" class="form-control" maxlength="10" name="paper_side" autocomplete="off" value="Single Side" disabled>
