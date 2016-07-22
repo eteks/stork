@@ -126,7 +126,7 @@
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 right">
 				    <h4>Forgotten Password</h4>
-					<p>Fill your registered email address below and we’ll email it to you right away!</p>
+					<p>Fill your email address below and we’ll email it to you right away!</p>
 					<form id="forgotpass-form" class="form-validate form-horizontal" method="post">
 						<p>Email Address <span class="star">*</span></p>
 						<input class="email" name="forget_email" type="text" placeholder="Email" id="forget_email" value="">

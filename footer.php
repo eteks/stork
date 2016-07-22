@@ -5,7 +5,7 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 about-us footer-col">
 						<h2>About Us</h2>
 						<div class="footer-content">
-							<a href="index.php" title="Cmsmart logo footer" class="logo-footer">
+							<a href="index.php" title="printstork logo footer" class="logo-footer">
 								<img src="images/printstork_footer_logo.png" width="90%"  height="auto" alt="logo footer">
 							</a>
 							<ul class="info">
@@ -112,7 +112,7 @@
 					<div class="col-md-6">
 						<p class="copy-right">Copyrights @ 2016. All rights Reserved by PrintStork.</p>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 col-sm-12 col-xs-12">
 						<p class="dev_partner" style="text-align: right;">Development Partner<a href="http://www.atomicka.com" target="_blank"> Infom Atomicka (Tech) Pvt Ltd.</a></p>
 						<a href="#" id="back-to-top">
 							<i class="fa fa-chevron-up"></i>

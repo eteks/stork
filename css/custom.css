@@ -967,7 +967,7 @@ h4.order_or_button{
     background-position: right;
 }
 
-#cabin-button a{
+#cabin-button input{
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -976,11 +976,11 @@ h4.order_or_button{
     color: #444444;
     background: #d6d6d6;
     padding: 10px 15px;
-    margin: 0px 10px 0px 0px;
+    margin: 0px 40px 0px 0px;
     
 }
 
-#cabin-button a:hover {
+#cabin-button input:hover {
 	background-color:#25bce9;
 	color: #fff;
 }
@@ -1028,4 +1028,10 @@ h4.order_or_button{
 }
 .cabin_selected{
 	color: #0000ff !important;
+}
+.tab-content .block-recent {
+	margin-bottom: 5px;
+}
+#project_printing_form textarea {
+	resize: none !important;
 }
