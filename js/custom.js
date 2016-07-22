@@ -16,7 +16,7 @@ $(document).ready(function () {
 	paper_type=jQuery("#paper_type");
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
-
+	var required_footer =["footer_name","footer_email","message"];
    	// cabin booking form - field show & Hide
     $('#time-type').on('change', function() {
  		if ( this.value == 'flexible'){
@@ -26,6 +26,38 @@ $(document).ready(function () {
 	        $("#flexi-show").hide();
       	}
     });
+    	jQuery("#footer").submit(function(){ 
+		
+		// for empty field validation
+		for(var i = 0 ; i<required_footer.length;i++ ){
+			var input = jQuery('#'+required_footer[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input_field");
+				 $('.error_test').css('display','block');		
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			 	 $('.error_test').css('display','none');
+				
+			 }
+		}
+		$("#footer_name").keypress(function (e) {
+		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
+        	e.preventDefault();
+    	}
+    	});
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+		
+		
+	});
 
 	//  == Validation for Page range Format Start ==
 
@@ -1344,6 +1376,8 @@ $(document).ready(function () {
               e.preventDefault();
           }           
       });	
+      	
+
 	jQuery(".check_out_payment").on('click',function(){ 	
 		if($('.send_to_address_college_data').css('display')=='block')	{
 			for(var i = 0 ; i<required_address_2.length;i++ ){
