@@ -39,13 +39,31 @@ include('header.php');
                 </div>
 
                  <div class="short-description">
+                 	<?php
+                 	if(!isset($_GET['cabin'])){
+                 	?>
 	                  <p class="visible-md visible-lg">
 	                   Your Order delivered with on before <?php echo $row['order_delivery_date'].'  '.$row['order_delivery_time']; ?>
 	                  </p><br>
-                 </div>
-                 <div class="price-box">
-	                   <span class="normal-price">Your Order number is <?php echo $row['order_id']; ?></span>
-                 </div><br>
+	                   </div>
+	                 <div class="price-box">
+		                   <span class="normal-price">Your Order number is <?php echo $row['order_id']; ?></span>
+	                 </div><br>
+	                 <?php
+					}
+					else{
+	                 ?>
+	                 <p class="visible-md visible-lg">
+	                   Your cabin booked successfully!
+	                  </p><br>
+	                   </div>
+	                 <div class="price-box">
+		                   <span class="normal-price">Your Order number is <?php echo 'CAB'.$row['order_id']; ?></span>
+	                 </div><br>
+	                 <?php
+					}
+	                 ?>
+                
                  <div class="short-description">
 	                   <p class="visible-md visible-lg">
 	                     Working day:sunday to saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working hours:08:00 am to 08:00 pm
@@ -55,7 +73,11 @@ include('header.php');
 		</section>
 		<?php
 		} 
-		else if(isset($_GET['error']) && $_GET['error']=='aborted' || isset($_GET['error']) && $_GET['error']=='failure'){
+		else if(isset($_GET['cabin_booking'])){
+			
+			
+		}
+		else if(isset($_GET['error']) && $_GET['error']=='aborted' || isset($_GET['error']) && $_GET['error']=='failure'||isset($_GET['cabin_error']) && $_GET['cabin_error']=='aborted' || isset($_GET['cabin_error']) && $_GET['cabin_error']=='failure'){
 			$error_type = $_GET['error'];
 		?>
 		<section id="wishlist" class="pr-main">
