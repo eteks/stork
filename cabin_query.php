@@ -1,5 +1,6 @@
 <?php
 	//if(!isset($connection)){
+date_default_timezone_set('Asia/Kolkata');
 		require_once ("dbconnect.php");
 		require_once("function.php");
 	//}

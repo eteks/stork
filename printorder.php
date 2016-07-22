@@ -150,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$total_no_page = $_POST['project_total_pages'];
 			$total_cost = $_POST['project_total_amount'];
 			$comments = $_POST['project_print_comments'];
+			$session_id = $_SESSION['session_id'];
 			$folder_split = explode('_', $session_id);
 			$folder_name  = $folder_split[2].'_'.date('d-m-Y');
 			$upload_path = "upload_files/";
@@ -177,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					 if(move_uploaded_file($cover_tmp_name_array, $upload_path.$additional_path.$cover_name_array)){
 					 	$insert_cover_data_upload_files = $order_detail_id.','.$is_binding.',"cover","'.$upload_path.$additional_path.$cover_name_array.'","'.$_POST['cover_project_color_page_nos'].'",1';
 						insertfunction('upload_files_order_details_id,upload_files_is_binding,upload_files_type,upload_files,upload_files_color_print_pages,upload_files_status',$insert_cover_data_upload_files,UPLOADFILES,'',$connection);
+						echo mysqli_insert_id($connection);;
 					 }
 				}
 			}
@@ -234,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$content_extension = end($content_extesion_find);
 					if(in_array($content_extension, $ALLOWEDFILE)){
 				        if(move_uploaded_file($content_tmp_name_array[$i], $upload_path.$additional_path.$content_name_array[$i])){
-			        		$insert_content_data_upload_files = $order_detail_id.','.$is_binding.',"content","'.$upload_path.$additional_path.$content_name_array[$i].'","'.$_POST['content_print_file'][$i].'",1';
+			        		$insert_content_data_upload_files = $order_detail_id.','.$is_binding.',"content","'.$upload_path.$additional_path.$content_name_array[$i].'","'.$_POST['content_project_color_page_nos'][$i].'",1';
 				            insertfunction('upload_files_order_details_id,upload_files_is_binding,upload_files_type,upload_files,upload_files_color_print_pages,upload_files_status',$insert_content_data_upload_files,UPLOADFILES,'',$connection);
 				        } else {
 							//header('Location:printbooking.php?error1=true&service='.$_SESSION['service']);
