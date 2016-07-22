@@ -218,7 +218,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
-						<div class="tr-icon"><i class="fa fa-heart-o"></i></div>
+						<div class="tr-icon testcolor"><i class="fa fa-heart-o"></i></div>
 						<div class="tr-text">
 							<h3>Personalized Products</h3>
 							<span class="tr-line"></span>
@@ -229,7 +229,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 block-trust trust-col-eco-money">
-						<div class="tr-icon"><i class="fa fa-map-o"></i></div>
+						<div class="tr-icon testcolor hover_a"><i class="fa fa-map-o"></i></div>
 						<div class="tr-text">
 							<h3>Design Template</h3>
 							<span class="tr-line"></span>
