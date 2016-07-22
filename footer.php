@@ -74,26 +74,28 @@
 					</div>
 					<div class="col-md-3 col-sm-4 col-xs-12 support footer-col">
 						<h2>Feedback</h2>
+						<form action="index.php" id="footer">
 						<div class="footer-content">
 							<ul>
 								<li>
 									<a  title="My Account">Name</a>
-									<input type="text" name="" value="">
+									<input type="text" autocomplete="off" id="footer_name" name="" value="">
 								</li>
 								<li>
 									<a  title="My Account">Email</a>
-									<input type="text" name="" value="">
+									<input type="text" id="footer_email" autocomplete="off" name="" value="">
 								</li>
 								<li>
 									<a  title="My Account">Message</a>
-									<textarea cols="27" rows="3" style="resize: none"></textarea>
+									<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none"></textarea>
 								</li>
 								<li>
-									<h4><span>Submit</span></h4>
+									<button type="submit"class="gbtn footer_btn">Submit</button>
+									</form>
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div>					
 					<div class="col-md-3 col-xs-12 other-info footer-col hidden-sm">
 						<h2>Other Info</h2>
 						<div class="footer-content">

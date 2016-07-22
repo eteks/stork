@@ -38,7 +38,7 @@
 				 <div id="div_billto">
 					   <div class="pane round-box">
 						 <h3 class="title"><span class="icon icon-one">1</span>Book Your Cabin Now</h3>
-						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" ><!--action="http://www.printstork.com/ccavRequestHandler.php"-->
+						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" action="ccavRequestHandler.php"><!--"-->
 						 	<input type="hidden" name="tid" id="txnid" readonly />
 		   					<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   					<input type="hidden" name="order_id" value="<?php echo 'cab_'.$_SESSION['session_id']; ?>"/>
@@ -47,6 +47,7 @@
 					   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 					   		<input type="hidden" name="language" value="EN"/>
 					   		<input type="hidden" name="billing_country" value="India"/>
+					   		<input type="hidden" name="delivery_address" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>" >
 						  <div class="pane-inner">
 							 <ul id="table_billto" class="adminform user-details no-border">
 				  				<li class="long">

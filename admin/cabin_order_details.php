@@ -55,7 +55,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table">
+				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table" style="width:2000px;">
 				  <thead>
 			        <tr class="">
 			        	<th>Cabin Order Id</th>
@@ -81,8 +81,14 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					$i = 0;
 					while ($fetch = mysql_fetch_array($query))
 					{		
-						$qryschedule = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`=".$fetch['cabin_order_schedule_time_id']);
-						$rowschedule = mysql_fetch_array($qryschedule);
+						// $qryschedule = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE `schedule_time_id`=".$fetch['cabin_order_schedule_time_id']);
+						// $rowschedule = mysql_fetch_array($qryschedule);
+						if (strpos($fetch['cabin_order_schedule_time_id'], '#') !== false)
+							$schedule_id= implode(',', array_map('intval', explode('#', $fetch['cabin_order_schedule_time_id'])));
+    					else
+							$schedule_id = $fetch['cabin_order_schedule_time_id'];
+						$qryschedule_start = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE schedule_time_id IN ($schedule_id)");
+						$qryschedule_end = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE schedule_time_id IN ($schedule_id)");
 				   ?>
 				    <tr class="">
 			            <td><?php echo $fetch['cabin_order_id'] ?></td>
@@ -119,8 +125,16 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            		echo $value;
 			            }
 			            ?></td>
-						<td><?php echo $rowschedule['schedule_time_start'] ?></td>
-			            <td><?php echo $rowschedule['schedule_time_end'] ?></td>
+						<td><?php 
+						while ($fetch_start = mysql_fetch_array($qryschedule_start)){
+							echo $fetch_start['schedule_time_start']."<br>";
+						}
+						?></td>
+			            <td>
+			            <?php 
+			            while ($fetch_end = mysql_fetch_array($qryschedule_end)){
+							echo $fetch_end['schedule_time_end']."<br>";
+						} ?></td>
 			            <td><?php echo $fetch['cabin_order_number_of_system'] ?></td>
 			            <?php  $requireddate=strtotime($fetch['cabin_order_required_date']);
 								   

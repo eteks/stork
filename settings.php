@@ -8,8 +8,8 @@ define("DATABASE", "stork");//stork
 // this is for google settings
 define("GOOGLECLIENTID", "917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com"); // Client ID
 define("GOOGLECLIENTSECRET", "tKRvzUInxty26p19oMli58V9"); // Client Secret id
-define("GOOGLEREDIRECTURL", "http://www.printstork.com/demo/googleuserfunction.php"); // Redirect Url - Please check with google api account details
-define("GOOGLEHOMEURL", "http://www.printstork.com/demo/index.php"); //Google Home url - Please check with google api account details
+define("GOOGLEREDIRECTURL", "http://www.printstork.com/dev/googleuserfunction.php"); // Redirect Url - Please check with google api account details
+define("GOOGLEHOMEURL", "http://www.printstork.com/dev/index.php"); //Google Home url - Please check with google api account details
 define("GOOGLEAPPNAME", "Login to Printstork");
 
 
@@ -17,7 +17,7 @@ define("GOOGLEAPPNAME", "Login to Printstork");
 define("FACEBOOKAPPID", "800444590056438"); //facebook app id
 define("FACEBOOKAPPSECRET", "d422bcf132c700ed89d03865cdff884a"); //facebook secret id
 define("FACEBOOKGRAPHVERSION", "v2.5");//facebook graph version
-define("FACEBOOKLOGINURL", "http://www.printstork.com/demo/fbuserfunction.php");//facebook login url
+define("FACEBOOKLOGINURL", "http://www.printstork.com/dev/fbuserfunction.php");//facebook login url
 
 
 //database table names
@@ -58,8 +58,8 @@ $ALLOWEDFILE = array('doc','docx','pdf');
 
 // cc avenue details
 define("MERCHANTID",'101665'); // merchant id
-define('CCAVENUEREDIRECTURL','http://printstork.com/demo/ccavResponseHandler.php'); //redirect url
-define('CCAVENUECANCELURL','http://printstork.com/demo/ccavResponseHandler.php'); //cancel url
+define('CCAVENUEREDIRECTURL','http://printstork.com/dev/ccavResponseHandler.php'); //redirect url
+define('CCAVENUECANCELURL','http://printstork.com/dev/ccavResponseHandler.php'); //cancel url
 
 // forgot password from email address
 define("FORGOTPASSWORDEMAILID",'info@etekchnoservices.com'); 
