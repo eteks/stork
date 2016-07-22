@@ -94,11 +94,12 @@ if(isset($_GET["id"]))
 								        <?php
 				                        $query = mysql_query("select * from stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
 				                        while ($rowPaperPrintType = mysql_fetch_array($query)) {
-				                        if($row['cost_estimation_paper_print_type_id'] == $rowPaperPrintType['paper_print_type_id'])   
-											echo "<option selected value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
-										else
-											echo "<option value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
-				                        } ?>
+				                        if(strtolower($rowPaperPrintType['paper_print_type']) != "color with black & white"){	
+					                        if($row['cost_estimation_paper_print_type_id'] == $rowPaperPrintType['paper_print_type_id'])   
+												echo "<option selected value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
+											else
+												echo "<option value='".$rowPaperPrintType['paper_print_type_id']."'>".$rowPaperPrintType['paper_print_type']."</option>";
+					                    }} ?>
 								    </select>
 								</div>
 								<div class="form-group">

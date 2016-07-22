@@ -8,20 +8,21 @@ include "includes/header.php";
 <body>
 <?php 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$cost_print_type=$_POST['cost_print_type_hidden'];
+		// $cost_print_type=$_POST['cost_print_type_hidden'];
+		$cost_print_type=$_POST['cost_print_type'];
 		$cost_paper_side=$_POST['cost_paper_side_hidden'];
 		$cost_paper_size=$_POST['cost_paper_size'];
 		$cost_paper_type=$_POST['cost_paper_type'];
 		$cost_amount=$_POST['cost_amount'];
 		$cost_status=$_POST['cost_status'];
 		
-		if($_POST['cost_print_type'] || $_POST['cost_paper_side'] || !$_POST['cost_print_type_hidden'] || !$_POST['cost_paper_side_hidden']){
+		if($_POST['cost_paper_side'] || !$_POST['cost_paper_side_hidden']){
 			$successMessage = "<div class='container error_message_mandatory'><span> Something Went Wrong! </span></div>";
 		}
-		else if($cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
+		else if($cost_print_type== "" || $cost_paper_size=="" || $cost_paper_type == "" || $cost_amount=="" || $cost_status=="") {
 			$successMessage = "<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 		}	
-		else if ($cost_print_type=="" || $cost_paper_side=="") {
+		else if ($cost_paper_side=="") {
 			$successMessage = "<div class='container error_message_mandatory'><span> Something went Wrong! </span></div>";
 		}
 		else{
@@ -76,15 +77,27 @@ include "includes/header.php";
 					?>
 					<div class="form-group">
 					    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-						<input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" name='cost_print_type' disabled>
-						<?php 
+					    <select class="product-type-filter form-control" name="cost_print_type">
+					        <option value="">
+								<span>Select Paper Print Type</span>
+							</option>
+							<!-- <input type="text" class="form-control" maxlength="10" autocomplete="off" value="Color with Black & White" name='cost_print_type' disabled> -->
+							<?php 
+							        /*$query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
+							        while($row_cost=mysql_fetch_array($query)) {						
+							        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){						        	
+							        		echo "<input type='hidden' name='cost_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
+							        	}
+							        }*/
+							?>	
+							<?php 
 						        $query=mysql_query("SELECT * FROM stork_paper_print_type WHERE paper_print_type_status='1' AND printing_type_id=".$row_printing_type['printing_type_id']);
-						        while($row_cost=mysql_fetch_array($query)) {						
-						        	if(strtolower($row_cost['paper_print_type']) == "color with black & white"){						        	
-						        		echo "<input type='hidden' name='cost_print_type_hidden' value=".$row_cost['paper_print_type_id'].">";
-						        	}
-						        }
-						?>	
+						        while($row_cost=mysql_fetch_array($query)) {
+						        	if(strtolower($row_cost['paper_print_type']) != "color with black & white"){
+						        	?>
+						        <option value="<?php echo $row_cost['paper_print_type_id']; ?>"> <?php echo $row_cost['paper_print_type']; ?></option>
+						    <?php }} ?>
+					    </select>
 					</div>
 					<div class="form-group">
 					    <label for="last-name">Paper Side<span class="required">*</span></label>
