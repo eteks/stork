@@ -88,12 +88,17 @@
 	        								$printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
 		        							//$printtype = selectfunction('*',PRINTTYPE,'paper_print_type_status=1',$connection);
 											while($row = mysqli_fetch_array($printtype_query)){
-												echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";
+												if(preg_replace('/\s+/', '',strtolower($row['paper_print_type']))=='colorwithblack&white'){
+													echo "<option value ='".preg_replace('/\s+/', '',strtolower($row['paper_print_type']))."'>".$row['paper_print_type']."</option>";
+												}
+												else {
+													echo "<option value ='".$row['paper_print_type_id']."'>".$row['paper_print_type']."</option>";	
+												}
+												
 											}
 		        						?>
 		        				</select>
 			        		</div> <!-- input holder -->
-			        	
 						   	<div class="input_holder row pad_15">
 			        			<p>Print Side<span class="star">&nbsp;*</span></p>
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
@@ -214,6 +219,8 @@
 							<input type="hidden" class="per_page_costing" value="" />
 							<input type="hidden" class="print_book_binding_amount" value="0.00" name="print_book_binding_amount">
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
+							<input type="hidden" class="color_page_amount_per_page" value="0.00"/>
+							<input type="hidden" class="blackwhite_page_amount_per_page" value="0.00"/>
 							<input type="submit" class="plain_printing_submit dn form_submit_button" />
 						</div>
 				</form>
@@ -256,7 +263,7 @@
 										 $printtype_query = mysqli_query($connection, "select * from ".PRINTTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PRINTTYPE.".printing_type_id where ".PRINTTYPE.".paper_print_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'project_printing' and paper_print_type='Color with Black & White'");
 										 //$printtype = selectfunction('*',PRINTTYPE,'paper_print_type="Color with Black & White" and paper_print_type_status=1',$connection);
 										 $printtypedata = mysqli_fetch_array($printtype_query);
-										 echo '<input name="project_print_type" type="hidden" class="project_print_type" value="'.$printtypedata['paper_print_type_id'].'" />';
+										 echo '<input name="project_print_type" type="hidden" class="project_print_type" value="'.preg_replace('/\s+/', '',strtolower($printtypedata['paper_print_type_id'])).'" />';
 										 $printside_query = mysqli_query($connection, "select * from ".PAPERSIDE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIDE.".printing_type_id where ".PAPERSIDE.".paper_side_status ='1' and ".PRINTINGTYPE.".printing_type = 'project_printing' and paper_side='Single Side'");
 										// $printside = selectfunction('*',PAPERSIDE,'paper_side="Single Side" and paper_side_status=1',$connection);
 										 $printsidedata = mysqli_fetch_array($printside_query);
@@ -378,6 +385,8 @@
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
 							<input type="hidden" class="project_binding_amount" value="0.00" name="project_binding_amount">
+							<input type="hidden" class="color_page_amount_per_page" value="0.00"/>
+							<input type="hidden" class="blackwhite_page_amount_per_page" value="0.00"/>
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 							<input type="submit" class="project_printing_submit dn form_submit_button" />
 						</div>
@@ -481,7 +490,7 @@
    									<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
 	   							</div> -->
    							</div>
-   							<p class="label_page_range"> NUmber of copies <span class="star">&nbsp;*</span> </p>
+   							<p class="label_page_range">NUmber of copies <span class="star">&nbsp;*</span> </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range" data-sectionvalue="0" id="display_paper_range">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
@@ -491,10 +500,10 @@
 									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
 				        				<option value="select_copies" >Select Number of copies</option>
 		        						<?php 
-			        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
-												while($row = mysqli_fetch_array($numofcopies)){
-													echo "<option value ='".$row['multicolor_copies']."'>".$row['multicolor_copies']."</option>";
-												}
+		        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
+											while($row = mysqli_fetch_array($numofcopies)){
+												echo "<option value ='".$row['multicolor_copies']."'>".$row['multicolor_copies']."</option>";
+											}
 		        						?>
 		        				    </select>
 	        				    </div>

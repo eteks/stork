@@ -85,11 +85,11 @@ if($_SESSION['login_status'] == 1){
 							<input class="firstname" id="firstname" placeholder="Firstname" name="firstname" type="text" maxlength="50" value="">
 							<p>Last Name <span class="star">*</span></p>
 							<input class="lastname" placeholder="Lastname" id="lastname" name="lastname" type="text" maxlength="50" value="">
-							<p class="reg_fields">Create a username<span class="star">*</span></p>
+							<p class="reg_fields">Create a Username<span class="star">*</span></p>
 							<input class="user" placeholder="Username" id="username" name="username" type="text" maxlength="20" value=""> 
-							<p class="reg_fields">Create a password  <span class="star">*</span></p>
+							<p class="reg_fields">Create a Password  <span class="star">*</span></p>
 							<input class="pasword" placeholder="password" id="password" type="password" name="password" maxlength="15" value="">
-							<p class="reg_fields">Confirm a password  <span class="star">*</span></p>
+							<p class="reg_fields">Confirm a Password  <span class="star">*</span></p>
 							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" maxlength="15" value=""> 
 							<p>Email Address <span class="star">*</span></p>
 							<input class="email" placeholder="Email ID" id="email" name="email" type="text" value="">

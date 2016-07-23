@@ -473,32 +473,58 @@ $(document).ready(function () {
 	 	var printing_type =$('#printing_type').val();
 
 	 	if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
-	 		$.ajax({
-           		type: "POST",
-           		url: "ajax_functions.php",
-           		// data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
-           		//newly changed the above line by kalai for multi color printing on 08/06/16
-           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
-           		cache: false,
-           		success: function(data) {
-           			var per_page_amount = parseFloat(data);
-           			if(per_page_amount){
-           				$('#print_booking_form .per_page_costing').val(per_page_amount);
-           			}
-           			else{
-           				error_popup('Printing option not available!');
-           				//newly changed by kalai for multi color printing on 08/06/16
-           				if(printing_type == "multicolor_printing")
-           					$('#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
-           				else
-           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
-					}
-           			
-          		}
-       		});// end of ajax
+	 		if(print_type=='colorwithblack&white'){
+	 			$.ajax({
+	           		type: "POST",
+	           		url: "ajax_functions.php",
+	           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
+	           		cache: false,
+	           		success: function(data) {
+	           			var per_page_amount = data;
+	           			var amount_split = per_page_amount.split('#');
+	           			if(amount_split){
+	           				$('#print_booking_form .color_page_amount_per_page').val(parseFloat(amount_split[0]));
+	           				$('#print_booking_form .blackwhite_page_amount_per_page').val(parseFloat(amount_split[1]));
+	           			}
+	           			else{
+	           				error_popup('Printing option not available!');
+	           				//newly changed by kalai for multi color printing on 08/06/16
+	           				if(printing_type == "multicolor_printing")
+	           					$('#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+	           				else
+	           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+						}
+	           			
+	          		}
+	       		});// end of ajax
+	 		}else{
+	 			$.ajax({
+	           		type: "POST",
+	           		url: "ajax_functions.php",
+	           		// data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
+	           		//newly changed the above line by kalai for multi color printing on 08/06/16
+	           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
+	           		cache: false,
+	           		success: function(data) {
+	           			var per_page_amount = parseFloat(data);
+	           			if(per_page_amount){
+	           				$('#print_booking_form .per_page_costing').val(per_page_amount);
+	           			}
+	           			else{
+	           				error_popup('Printing option not available!');
+	           				//newly changed by kalai for multi color printing on 08/06/16
+	           				if(printing_type == "multicolor_printing")
+	           					$('#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+	           				else
+	           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+						}
+	           			
+	          		}
+	       		});// end of ajax
+	 		}
+	 		
 	 	}//end of if condition
 	});// end of event
-	
 	
 	$(document).on('change','.uploadFile',function() {
 		var file_name_section = $(this).val();
@@ -548,26 +574,65 @@ $(document).ready(function () {
     	}
 	}); 
 
-
-	 
-
-
-
-	
-
 	// 	total cost amoutn display based on total no of pages and per page amount
-	$('.print_total_no_of_pages').on('blur',function(){
-		var perpageamount = parseFloat($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+	$(document).on('blur','.print_total_no_of_pages',function(){
 		var bindingamout = parseFloat($('#print_booking_form .print_book_binding_amount').val()?$('#print_booking_form .print_book_binding_amount').val():'0.00');
 		var total_amount = parseFloat($(this).val());
-		if(total_amount){
-			if(perpageamount){
-				$('.print_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
-			}else{
-				error_popup('Please select print type,print side,paper size,paper type!');
-				$(this).val('');
+		
+		if($('#print_booking_form #print_type').val()=='colorwithblack&white'){
+			if(total_amount){
+				var color_page_amount = parseFloat($('#print_booking_form .color_page_amount_per_page').val()?$('#print_booking_form .color_page_amount_per_page').val():'');
+				var blackandwhite_page_amount = parseFloat($('#print_booking_form .blackwhite_page_amount_per_page').val()?$('#print_booking_form .blackwhite_page_amount_per_page').val():'');
+				var total_no_of_color_pages = 0;
+				var total_black_white_file = 0;
+				var total_color_file = 0;
+				$('.display_paper_range .paper_range').each(function(){
+					if($(this).val() != '0-0'){
+						total_color_file += 1;
+						var colorpage = $(this).val();
+						var colorpage_split = colorpage.split(',');
+						$.each(colorpage_split,function(i){
+							if(colorpage_split[i].indexOf("-")>0){
+								var minus_pages = colorpage_split[i];
+								minus_pages_split =  minus_pages.split('-');
+								total_no_of_color_pages += parseInt((minus_pages_split[1]-minus_pages_split[0])+1);
+							}
+							else{
+								total_no_of_color_pages += 1;
+							}
+						});
+					}
+					else{
+						total_black_white_file += 1;
+					}
+				});
+				if(total_amount > total_color_file+total_black_white_file){
+					var entered_black_and_white_pages = total_amount-total_no_of_color_pages;
+					if(entered_black_and_white_pages >= total_black_white_file){
+						$('.print_total_amount').val(parseFloat(Math.ceil( ((color_page_amount*total_no_of_color_pages+entered_black_and_white_pages*blackandwhite_page_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+					}
+					else{
+						error_popup('Please enter correct total no of values!');
+						$(this).val('');
+					}
+				}else{
+					error_popup('Please enter correct total no of values!');
+					$(this).val('');
+				}
+			}
+		
+		}else{
+			var perpageamount = parseFloat($('#print_booking_form .per_page_costing').val()?$('#print_booking_form .per_page_costing').val():'');
+			if(total_amount){
+				if(perpageamount){
+					$('.print_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+				}else{
+					error_popup('Please select print type,print side,paper size,paper type!');
+					$(this).val('');
+				}
 			}
 		}
+		
 		
 	});
 
@@ -1802,9 +1867,11 @@ $(document).ready(function () {
            		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page_for_project':'true'},
            		cache: false,
            		success: function(data) {
-           			var per_page_amount = parseFloat(data);
-           			if(per_page_amount){
-           				$('#project_printing_form .per_page_costing').val(per_page_amount);
+           			var per_page_amount = data;
+           			var amount_split = per_page_amount.split('#');
+           			if(amount_split){
+           				$('#project_printing_form .color_page_amount_per_page').val(parseFloat(amount_split[0]));
+           				$('#project_printing_form .blackwhite_page_amount_per_page').val(parseFloat(amount_split[1]));
            			}
            			else{
            				error_popup('Printing option not available!');
@@ -1845,18 +1912,101 @@ $(document).ready(function () {
 	});
 	
 	// 	total cost amoutn display based on total no of pages and per page amount for project print
-	$('#project_printing_form .project_total_pages').on('blur',function(){
-		var perpageamount = parseFloat($('#project_printing_form .per_page_costing').val()?$('#project_printing_form .per_page_costing').val():'');
+	$(document).on('blur','#project_printing_form .project_total_pages',function(){
 		var bindingamout = parseFloat($('#project_printing_form .project_binding_amount').val()?$('#project_printing_form .project_binding_amount').val():'0.00');
 		var total_amount = parseFloat($(this).val());
 		if(total_amount){
-			if(perpageamount){
-				$('#project_printing_form .project_total_amount').val(parseFloat(Math.ceil( ((perpageamount*total_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
-			}else{
-				error_popup('Please select print type,print side,paper size,paper type!');
-				$(this).val('');
+				var color_page_amount = parseFloat($('#project_printing_form .color_page_amount_per_page').val()?$('#project_printing_form .color_page_amount_per_page').val():'');
+				var blackandwhite_page_amount = parseFloat($('#project_printing_form .blackwhite_page_amount_per_page').val()?$('#project_printing_form .blackwhite_page_amount_per_page').val():'');
+				var total_no_of_color_pages = 0;
+				var total_black_white_file = 0;
+				var total_color_file = 0;
+				if($('#cover_range').val() != '0-0'){
+					total_color_file += 1;
+					var cover_colorpage = $('#cover_range').val();
+					var cover_colorpage_split = cover_colorpage.split(',');
+					$.each(cover_colorpage_split,function(i){
+						if(cover_colorpage_split[i].indexOf("-") > 0){
+							var cover_minus_pages = cover_colorpage_split[i];
+							var cover_minus_pages_split = cover_minus_pages.split('-');
+							total_no_of_color_pages += parseInt((cover_minus_pages_split[1]-cover_minus_pages_split[0])+1);
+						}
+						else{
+							total_no_of_color_pages += 1;
+						}
+					});
+				}else{
+					total_black_white_file += 1;
+				}
+				if($('#index_range').val() != '0-0'){
+					total_color_file += 1;
+					var index_colorpage = $('#index_range').val();
+					var index_colorpage_split = index_colorpage.split(',');
+					$.each(index_colorpage_split,function(i){
+						if(index_colorpage_split[i].indexOf("-") > 0){
+							var index_minus_pages = index_colorpage_split[i];
+							var index_minus_pages_split = index_minus_pages.split('-');
+							total_no_of_color_pages += parseInt((index_minus_pages_split[1]-index_minus_pages_split[0])+1);
+						}
+						else{
+							total_no_of_color_pages += 1;
+						}
+					});
+				}else{
+					total_black_white_file += 1;
+				}
+				if($('#refer_range').val() != '0-0'){
+					total_color_file += 1;
+					var refer_colorpage = $('#refer_range').val();
+					var refer_colorpage_split = refer_colorpage.split(',');
+					$.each(refer_colorpage_split,function(i){
+						if(refer_colorpage_split[i].indexOf("-") > 0){
+							var refer_minus_pages = refer_colorpage_split[i];
+							var refer_minus_pages_split = refer_minus_pages.split('-');
+							total_no_of_color_pages += parseInt((refer_minus_pages_split[1]-refer_minus_pages_split[0])+1);
+						}
+						else{
+							total_no_of_color_pages += 1;
+						}
+					});
+				}else{
+					total_black_white_file += 1;
+				}
+				
+				$('.project_content_range_section .project_paper_range').each(function(){
+					if($(this).val() != '0-0'){
+						total_color_file += 1;
+						var colorpage = $(this).val();
+						var colorpage_split = colorpage.split(',');
+						$.each(colorpage_split,function(i){
+							if(colorpage_split[i].indexOf("-")>0){
+								var minus_pages = colorpage_split[i];
+								minus_pages_split =  minus_pages.split('-');
+								total_no_of_color_pages += parseInt((minus_pages_split[1]-minus_pages_split[0])+1);
+							}
+							else{
+								total_no_of_color_pages += 1;
+							}
+						});
+					}
+					else{
+						total_black_white_file += 1;
+					}
+				});
+				if(total_amount > total_color_file+total_black_white_file){
+					var entered_black_and_white_pages = total_amount-total_no_of_color_pages;
+					if(entered_black_and_white_pages >= total_black_white_file){
+						$('.project_total_amount').val(parseFloat(Math.ceil( ((color_page_amount*total_no_of_color_pages+entered_black_and_white_pages*blackandwhite_page_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+					}
+					else{
+						error_popup('Please enter correct total no of values!');
+						$(this).val('');
+					}
+				}else{
+					error_popup('Please enter correct total no of values!');
+					$(this).val('');
+				}
 			}
-		}
 		
 	});
 

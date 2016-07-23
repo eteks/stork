@@ -38,7 +38,7 @@
 				 <div id="div_billto">
 					   <div class="pane round-box">
 						 <h3 class="title"><span class="icon icon-one">1</span>Book Your Cabin Now</h3>
-						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" ><!--action="http://www.printstork.com/ccavRequestHandler.php"-->
+						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" action="ccavRequestHandler.php"><!--"-->
 						 	<input type="hidden" name="tid" id="txnid" readonly />
 		   					<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   					<input type="hidden" name="order_id" value="<?php echo 'cab_'.$_SESSION['session_id']; ?>"/>
@@ -47,6 +47,7 @@
 					   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 					   		<input type="hidden" name="language" value="EN"/>
 					   		<input type="hidden" name="billing_country" value="India"/>
+					   		<input type="hidden" name="delivery_address" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>" >
 						  <div class="pane-inner">
 							 <ul id="table_billto" class="adminform user-details no-border">
 				  				<li class="long">
@@ -116,11 +117,12 @@
 									<input type="text" maxlength="64" class="required cabin_booking_total_amount" value="0" size="30" name="amount" id="" readonly> 
 								   </div>
 					 			</li>
-					 			<span class="details-button">
+					 			<span class="details-button" id="cabin-button">
 					 				<input type="hidden" name="merchant_param5" class="schedule_time_id" value="">
 									<input id="cabin_book_button" class="details-button" type="submit" title="Book" value="Book">
 									<input id="cabin_clear_button" class="details-button" type="button" title="Clear" value="Clear">
 							    </span> 
+							    
 				 			   	<div> 
 				 			   		</br>
 				 			   	</div> 
@@ -145,19 +147,10 @@
                 </div>
           </div> <!---onepage--->
         </div> <!---container---->
-          <!-- <button>Booked</button>
-          <button>Selected</button>
-          <button>Available</button>  -->
-        <div class="align">
-         <span class="details-button">
-			<input id="coupon_booked_button" class="details-button" type="button" title="Booked" value="Booked">
-			<input id="coupon_selected_button" class="details-button" type="button" title="Selected" value="Selected">
-			<input id="coupon_available_button" class="details-button" type="button" title="Available" value="Available">
-		  </span> 
-		</div>
-		<br>
+        <h3 class="align"><span class="book-status st_booked">Booked</span><span class="book-status st_selected">Selected</span><span class="book-status st_available">Available</span></h3>
+		 <br>
 		<div class="align">
-			<h3>Working Hours - 05:00 to 23:00 hrs from Sunday to Saturday (All Days)</h3>
+			<h3>Working Hours - 05:00 AM to 11:00 PM from Sunday to Saturday (All Days)</h3>
 		</div>   
     </section>
 
