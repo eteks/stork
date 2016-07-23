@@ -25,7 +25,7 @@ $(document).ready(function(){
   // });
 
   $('.stork_admin_table').each(function() {
-    var thCount = $(this).find('th').length;
+    var thCount = $(this).find('th').length;        
     if(thCount == 3) {
       $(this).css('width','840px');
       $(this).find('th:first-child').css('width','350px');
@@ -140,6 +140,26 @@ $(document).ready(function(){
       $(this).find('th:last-child').css('width','130px');
     }
 
+	else if(thCount == 16) {
+		alert("test");
+      $(this).css('width','1770px');
+      $(this).find('th:first-child').css('width','270px');
+      $(this).find('th:nth-child(2)').css('width','400px');
+      $(this).find('th:nth-child(3)').css('width','240px');
+      $(this).find('th:nth-child(4)').css('width','300px');
+      $(this).find('th:nth-child(5)').css('width','410px');
+      $(this).find('th:nth-child(6)').css('width','320px');
+      $(this).find('th:nth-child(7)').css('width','200px');
+      $(this).find('th:nth-child(8)').css('width','280px');
+      $(this).find('th:nth-child(9)').css('width','480px');
+      $(this).find('th:nth-child(10)').css('width','250px');
+      $(this).find('th:nth-child(11)').css('width','250px');
+      $(this).find('th:nth-child(12)').css('width','250px');
+      $(this).find('th:nth-child(13)').css('width','326px');
+      $(this).find('th:nth-child(14)').css('width','250px');
+      $(this).find('th:nth-child(15)').css('width','250px');
+      $(this).find('th:last-child').css('width','130px');
+    }
   });
 
   // $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable();

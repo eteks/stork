@@ -94,7 +94,7 @@ if(isset($_GET["id"]))
 								?>
 								<div class="form-group">
 								    <label for="first-name">Paper Print Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="paper_print_type">
+									<select class="product-type-filter form-control" id="sel_a" name="paper_print_type">
 								        <option>
 											<span>Select Paper Print Type</span>
 										</option>
@@ -135,7 +135,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="paper_type">
+									<select class="product-type-filter form-control" id="sel_b" name="paper_type">
 								        <option>
 											<span>Select Paper Type</span>
 										</option>
@@ -151,7 +151,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Paper Size<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="paper_size">
+									<select class="product-type-filter form-control" id="sel_c" name="paper_size">
 								        <option>
 											<span>Select State</span>
 										</option>
@@ -171,7 +171,7 @@ if(isset($_GET["id"]))
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_c" name="cost_estimation_status">
+									<select class="product-type-filter form-control" id="sel_d" name="cost_estimation_status">
 								        <option>
 											<span>Select status</span>
 										</option>
