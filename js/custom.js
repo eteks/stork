@@ -564,7 +564,7 @@ $(document).ready(function () {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document','octet-stream']) == -1){
     		error_popup('Allowed pdf, doc, docx, jpg, jpeg files only!');
     		$(this).val('');
     		return false;
@@ -1278,7 +1278,7 @@ $(document).ready(function () {
 		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
 		$('.send_to_address_personal_data').hide();
 		$('.send_to_address_college_data').removeClass('dn').slideDown();
-			$('#studentname').val('');
+		$('#studentname').val('');
 		$('#idno').val('');
 		$('#yearofstudying').val('');
 		$('#department').val('');
@@ -1383,64 +1383,22 @@ $(document).ready(function () {
 	
 	}
 	});
-	 $("#phone2").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        			return false;
-        		
-    			}
-   			});
-   			 $("#phone1").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        			return false;
-        		
-    			}
-   			});
-   				 $("#postal").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        			return false;
-        		
-    			}
-   			});
-   				 $("#postalcode").keypress(function (e) {
-     			//if the letter is not digit then display error and don't type anything
-     			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        			return false;
-        		
-    			}
-   			});   			   		  
-      $('#name_a').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
-              e.preventDefault();
-          } else {
-              var key = e.keyCode;
-              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
-                  e.preventDefault();
-              }
-          }
-      });
-        $('#studentname').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
-              e.preventDefault();
-          } else {
-              var key = e.keyCode;
-              if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
-                  e.preventDefault();
-              }
-          }
-      });	
-           $('#address1').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
-              e.preventDefault();
-          }           
-      });	
-           $('#address2').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
-              e.preventDefault();
-          }           
-      });	
+	// special characters, numbers and alphabet restriction based on regular expression
+	$('#phone2,#phone1,#postal,#postalcode').bind('keyup blur', function() { 
+	    $(this).val(function(i, val) {
+	        return val.replace(/[^0-9\s]/gi,''); 
+	    });
+	}); 			   		  
+  	$('#name_a,#studentname').bind('keyup blur', function() { 
+	    $(this).val(function(i, val) {
+	        return val.replace(/[^a-z\s]/gi,''); 
+	    });
+	});
+	$('#address1,#address2').bind('keyup blur', function() { 
+	    $(this).val(function(i, val) {
+	        return val.replace(/[^a-zA-Z0-9,.-\s]/gi,''); 
+	    });
+	});
       	
 
 	jQuery(".check_out_payment").on('click',function(){ 	
@@ -1616,7 +1574,7 @@ $(document).ready(function () {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']) == -1){
+    	if($.inArray(ext[1], ['pdf','doc','docx','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document','octet-stream']) == -1){
     		error_popup('Allowed pdf, doc, docx, jpg, jpeg files only!');
     		$(this).val('');
     		return false;

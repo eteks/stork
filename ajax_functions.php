@@ -20,7 +20,6 @@
 			}
 		}
 		
-		
 		// cost estimation for per page in print booking page
 		if(isset($_POST['cost_estimation_per_page'])){
 			// old code only for plain printing
@@ -61,7 +60,6 @@
 			}		
 		}
 		
-		
 		// remove item from cart detail
 		if(isset($_POST['remove_order'])){
 			$remove_cart_data = deletefunction('stork_order_details','order_details_session_id="'.$_POST['session_id'].'" and order_details_id ="'.$_POST['order_details_id'].'"',$connection);
@@ -73,10 +71,9 @@
 			}
 		}
 		
-		
 		// show all college and area list
 		if(isset($_POST['city_data_for_college'])){
-			$college_list_with_area_query = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id where stork_area.area_city_id =".$_POST['city_id'];
+			$college_list_with_area_query = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id where stork_area.area_city_id =".$_POST['city_id']." and stork_area.area_status = '1' ORDER BY stork_college.college_name asc;" ;
 			$college_list_with_area_data = mysqli_query($connection, $college_list_with_area_query);
 			while($row = mysqli_fetch_array($college_list_with_area_data)){
 				echo "<option value ='".$row['college_id']."'>".$row['college_name'].", ".$row['area_name']."</option>";
@@ -85,7 +82,7 @@
 		
 		// show all area list
 		if(isset($_POST['city_data_for_area'])){
-			$area_list_query = "select * from stork_area where stork_area.area_city_id =".$_POST['city_id'];
+			$area_list_query = "select * from stork_area where stork_area.area_city_id =".$_POST['city_id']." and stork_area.area_status = '1' order by stork_area.area_name asc";
 			$area_list_data = mysqli_query($connection, $area_list_query);
 			while($row = mysqli_fetch_array($area_list_data)){
 				echo "<option value ='".$row['area_id']."'>".$row['area_name']."</option>";
