@@ -3,6 +3,7 @@ Designed by : http://responsivewebinc.com
 ************************/
 
 /* Basic CSS starts */
+
 .bg{
 height:100%;
 width:100%;
@@ -1592,3 +1593,14 @@ text-align: center;
     margin-right: 20px;
     max-width: 179px !important;
 }
+#my-orders-table th, #my-orders-table td{ 
+	line-height: 18px !important;
+	padding: 5px 10px !important;
+	}
+#pad_uploadfile table td{
+	/*width: 2100px;*/
+	/*padding:0px 80px;*/
+}	
+#pad_uploadfile th:first-child {
+	width: 500px;
+}	

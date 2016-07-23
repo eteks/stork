@@ -47,7 +47,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 					if ($count_rows > 0)
 					{
 				?>	
-				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table">
+				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table" style="width:2400px;">
 				  <thead>
 			        <tr class="">
 			        	<th>Order Id</th>
@@ -98,7 +98,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 			            <!-- <td><?php echo $fetch['order_details_color_print_pages'] ?></td> -->
 			            <td><?php echo $fetch['order_details_comments'] ?></td>
 			            <td><?php echo $fetch['order_details_total_amount'] ?></td>
-			            <td>
+			            <td id="pad_uploadfile">
 		            	<?php 
 		            		if (mysql_num_rows($qryupload) > 0) {
 			            		echo "<table><tr><th>File</th><th>File Type</th><th>Color Print Pages</th></tr>";

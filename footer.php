@@ -21,7 +21,7 @@
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
-									<span><a>9655707844, 8344625888</a></span>
+									<span style=" padding-left: 4px !important;"><a> 9655707844, 8344625888</a></span>
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>

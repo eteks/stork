@@ -51,10 +51,10 @@
 			<div class="slide-show">
 				<div class="vt-slideshow">
 					<ul>
-						<li class="slide1" data-transition="random" ><img src="images/slider/home/bg_slider_1.jpg" alt="" />
-							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor"></span>PROJECT BINDING</span></div> 
+						<li class="slide1" data-transition="random" ><img src="images/slider/home/Print2.jpg" alt="project_binding" width="1920px" height="598px"/>
+							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1"><span class="textcolor"></span>PROJECT BINDING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
-								<span class="style2">
+								<span class="slide_style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
 									This is because they're perfect for potential prospects<br>  
 									to carry around and are extremely cost effective. We<br> 
@@ -64,10 +64,10 @@
 							</div>
 							<div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
 						</li>
-						<li class="slide2" data-transition="random" ><img src="images/slider/home/bg_slider_2.jpg" alt="" />
-							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1"><span class="textcolor"></span>CABIN BOOKING</span></div> 
+						<li class="slide2" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
+							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1"><span class="textcolor"></span>CABIN BOOKING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
-								<span class="style2">
+								<span class="slide_style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
 									This is because they're perfect for potential prospects<br>  
 									to carry around and are extremely cost effective. We<br> 
@@ -2763,29 +2763,12 @@
 									</div> -->
 								<!-- </div> -->
 							</div>
-							<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
-								<!-- <div class="w-block-recent"> -->
-									<div class="image-recent">
-										<a href="#">
-											<!-- <img src="images/our_service/10.png" alt="service-10"/> -->
-										</a>
-									</div>
-								<!-- <div class="info-recent">
-										<h2 class="title">eSliproser Postcards</h2>
-										<div class="text-recent">
-											<p>
-												Celebrate 2016 in style with our beloved Mini Photo Wall Calendar. Printed on eggshell paper, make your own calendar in minutes with 12 special photos.
-											</p>
-										</div>
-										<a href="#" class="read-more">read more</a>
-									</div> -->
-								<!-- </div> -->
-							</div>
+							
 								<div class="col-md-4 col-sm-6 col-xs-6 block-recent">
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/11.png" alt="service-10"/>
+											<img src="images/our_service/11.png" alt="service-10"  width="360px" height="285px " />
 										</a>
 									</div>
 								<!-- <div class="info-recent">
