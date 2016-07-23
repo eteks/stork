@@ -77,7 +77,7 @@ include "includes/header.php";
 					?>
 					<div class="form-group">
 					    <label for="last-name">Paper Print Type<span class="required">*</span></label>
-					    <select class="product-type-filter form-control" name="cost_print_type">
+					    <select class="product-type-filter form-control" id="sel_a" name="cost_print_type">
 					        <option value="">
 								<span>Select Paper Print Type</span>
 							</option>
@@ -113,7 +113,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Type<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_a">
+						<select class="product-type-filter form-control" name="cost_paper_type" id="sel_b">
 					        <option value="">
 								<span>Select Paper Type</span>
 							</option>
@@ -127,7 +127,7 @@ include "includes/header.php";
 					</div>
 					<div class="form-group">
 					    <label for="first-name">Paper Size<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_b">
+						<select class="product-type-filter form-control" name="cost_paper_size" id="sel_c">
 					        <option value="">
 								<span>Select Paper Size</span>
 							</option>
@@ -145,7 +145,7 @@ include "includes/header.php";
 					</div>
 					<div class="cate-filter-content">	
 					    <label for="first-name">Project Printing Cost Estimation Status<span class="required">*</span></label>
-						<select class="product-type-filter form-control" name="cost_status" id="sel_c">
+						<select class="product-type-filter form-control" name="cost_status" id="sel_d">
 					        <option value="">
 								<span>Select Status</span>
 							</option>

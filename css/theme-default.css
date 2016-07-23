@@ -4622,7 +4622,7 @@ span.star{
     clear:both;
     font-size:13px;
     color:#444444;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 }
 #pr-login h4:after,#pr-register h4:after{
 	position:absolute;
@@ -4709,8 +4709,8 @@ span.star{
 	color:#888888;
 }
 .container .col-md-6 .socail p{
-	font-size:12px!important;
-	color:#444444!important;
+	font-size: 13px!important;
+	color: #888888 !important;
 }
 .container .col-md-6  button.connectfa{
 	float:left;
@@ -6309,7 +6309,7 @@ p.dev_partner:hover {
 .logo:hover {
   cursor: default !important;
 }
-.logo a {
+.logo a:hover {
   cursor: pointer !important;
 }
 #forgotpass-form {
