@@ -7,6 +7,7 @@
 		overflow:hidden;
 	}
 }
+
 @media (max-width: 1200px){
 	.image-recent a img{
 		width:100%;
@@ -21,10 +22,11 @@
 		width:100%;
 	}
 }
+
 @media (min-width: 1200px){
-	.main-header .w-logo{
-		width:28.23%;
-		
+	.main-header .w-logo img{
+		width: 30%;
+		height: auto;
 	}
 	.home-category .block-center .inner-top .box-left .info{
 		margin-left:-10px;
@@ -40,7 +42,13 @@
 	}
 	
 }
+
 @media (min-width: 992px) and (max-width: 1199px) {
+	.main-header .w-logo img{
+		width: 30%;
+		height: auto;
+	}
+		
 	.home-blog .blog-content-w .item .info .read-more{
 		padding:12px 45px;
 	}
@@ -132,7 +140,12 @@
 		width:50%;
 	}
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
+	.main-header .w-logo img{
+		width: 30%;
+		height: auto;
+	}
 	.block-currency .currency-name{
 		border-left:none;
 	}
@@ -262,7 +275,13 @@
 		background:url(../images/testimonials/bg_testimonal.jpg) scroll center center; 
 	}
 }
+
 @media (max-width: 767px){
+	.main-header .w-logo img {
+		width: 50%;
+		height: auto;
+	}
+	
 	/*------page grid-----*/
 	.block-currency .currency-name{
 		border-left:none;
@@ -411,7 +430,12 @@
 		width:100%;
 	}
 }
+
 @media (max-width: 480px){ 
+	.main-header .w-logo img {
+		width: 80%;
+		height: auto;
+	}
 	/* remove image category */
 	.cart-banner-top.hidden-xs{
 		display:none !important;
@@ -633,6 +657,7 @@
 		border:none;
 	}
 }
+
 @media (max-width: 360px){
 	.add-to-cart .add-cart-btn.btn{
 		width:54%;
@@ -725,6 +750,7 @@
 		padding:0 20px;
 	}
 }
+
 @media (max-width: 320px){ 
 	/* my order */
 	.add-to-cart .quantity{

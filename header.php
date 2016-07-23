@@ -87,18 +87,18 @@ progress::-moz-progress-bar {
 					<div class="top-links col-lg-7 col-md-6 col-sm-5 col-xs-6">
 						<ul>
 							<li class="hidden-xs">
-								<a href="http://www.facebook.com">
+								<a href="http://www.facebook.com/">
 									<i class="fa fa-facebook"></i>
 									<!-- Connect with facebook -->
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.twitter.com">
+								<a href="http://www.twitter.com/">
 									<i class="fa fa-twitter"></i> 
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.linkedin.com">
+								<a href="http://www.linkedin.com/">
 									<i class="fa fa-linkedin"></i>
 								</a>
 							</li>

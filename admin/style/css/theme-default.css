@@ -1,3 +1,5 @@
+
+
 body .short-description p{
   font-family:"Arimo Regular";
  }
@@ -6582,8 +6584,9 @@ button:hover {
   padding: 10px 5px 10px 0px !important;
   width : 7% !important;
 }*/
+
 .user_table td, .user_table th {
-  padding: 10px 10px !important;
+  padding: 10px !important;
 }
 .cost_table td, .cost_table th{
   padding: 10px 10px !important;
