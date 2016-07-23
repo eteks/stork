@@ -10,7 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if($_POST['submit_type'] == 'add_to_cart' || $_POST['submit_type'] == 'add_to_checkout'){
 		$printing_type = $_POST['printing_type'];
 		if($printing_type == 'plain_printing' || $printing_type == 'multicolor_printing'){
-			$print_type = $_POST['print_type'];
+			if($printing_type == 'plain_printing'){
+				if($_POST['print_type'] == 'colorwithblack&white'){
+					$printin_type_query = mysqli_query($connection, 'select * from stork_paper_print_type inner join stork_printing_type on stork_printing_type.printing_type_id = stork_paper_print_type.printing_type_id where stork_paper_print_type.paper_print_type="Color with Black & White" and stork_printing_type.printing_type="plain_printing"') ;
+					$printin_type_array = mysqli_fetch_array($printin_type_query, MYSQL_ASSOC);
+					$print_type =  $printin_type_array['paper_print_type_id'];
+				}
+				else{
+					$print_type = $_POST['print_type'];
+				}
+			}
+			else{
+				$print_type = $_POST['print_type'];
+			}
+			
 			$print_type_query = mysqli_query($connection, 'select * from stork_paper_print_type where paper_print_type_id="'.$print_type.'"') ;
 			$print_type_array = mysqli_fetch_array($print_type_query, MYSQL_ASSOC);
 			$print_type_name =  $print_type_array['paper_print_type'];
@@ -178,7 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					 if(move_uploaded_file($cover_tmp_name_array, $upload_path.$additional_path.$cover_name_array)){
 					 	$insert_cover_data_upload_files = $order_detail_id.','.$is_binding.',"cover","'.$upload_path.$additional_path.$cover_name_array.'","'.$_POST['cover_project_color_page_nos'].'",1';
 						insertfunction('upload_files_order_details_id,upload_files_is_binding,upload_files_type,upload_files,upload_files_color_print_pages,upload_files_status',$insert_cover_data_upload_files,UPLOADFILES,'',$connection);
-						echo mysqli_insert_id($connection);;
 					 }
 				}
 			}

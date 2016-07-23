@@ -158,7 +158,7 @@
 		</div>
 		<br>
 		<div class="align">
-			<h3>Working Hours - 05:00 to 23:00 hrs from Sunday to Saturday (All Days)</h3>
+			<h3>Working Hours - 05:00 AM to 11:00 PM from Sunday to Saturday (All Days)</h3>
 		</div>   
     </section>
 

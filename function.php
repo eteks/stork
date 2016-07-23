@@ -41,8 +41,7 @@ function insertfunction($insert_variable,$insert_data,$tablename,$wherecon,$con)
 	}else{
 		$query = "insert into ".$tablename."(".$insert_variable.") values (".$insert_data.")";
 	}
-	echo $query;
-	$result = mysqli_query($con,$query);
+		$result = mysqli_query($con,$query);
 	return $result;
 }
 ?>
