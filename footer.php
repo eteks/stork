@@ -155,7 +155,6 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/dateofbirth.js" type="text/javascript"></script>
-    <script src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/cookie.js"></script>
     <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
