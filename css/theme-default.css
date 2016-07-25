@@ -4136,7 +4136,10 @@ footer{
   margin-right: 6px;
 }
 
-.footer-main .info li a:hover {
+/*.footer-main .info li a:hover {
+  color: #25bce9;
+}*/
+#testfooter:hover {
   color: #25bce9;
 }
 .footer-main .info li:hover i{
@@ -4168,7 +4171,7 @@ footer{
 }
 
 /*Footer Corporate - Support----------------------------------*/
-.footer-main .corporate a:hover:before,
+/*.footer-main .corporate a:hover:before,
 .footer-main .support a:hover:before{
   content: "\f105";
   font: normal normal normal 10px/1 FontAwesome;
@@ -4179,11 +4182,11 @@ footer{
   transform: translate(0, 0);
   margin-right: 8px;
   font-size: 14px;
-}
-.footer-main .corporate a:hover,
+}*/
+/*.footer-main .corporate a:hover,
 .footer-main .support a:hover{
   color: #25bce9;
-}
+}*/
 
 /* Footer other info------------------------------------------*/
 .other-info > img{
@@ -4204,9 +4207,9 @@ footer{
   line-height: 50px;
   color: #999999;
 }
-.footer-bottom p:hover,.footer-bottom p a:hover, .footer-content p:hover{
+/*.footer-bottom p:hover,.footer-bottom p a:hover, .footer-content p:hover{
   color: #25bce9 !important;
-}
+}*/
 #back-to-top{
   position: absolute;
   right: 0;

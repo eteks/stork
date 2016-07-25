@@ -25,7 +25,7 @@
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
-									<span><a href="mailto:support@printstork.com" title="send mail to Cmsmart">support@printstork.com</a></span>
+									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to Cmsmart">support@printstork.com</a></span>
 								</li>
 							</ul>
 							<ul class="footer-social">
@@ -75,18 +75,24 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 support footer-col">
 						<h2>Feedback</h2>
 						<form action="index.php" id="footer">
+							<div class="container">
+ 									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ 									<span class="error_email3"> Please Enter Valid email address </span>
+								</div>
 						<div class="footer-content">
 							<ul>
 								<li>
-									<a  title="My Account">Name</a>
+									<a  title="My Account">Name</a><span class="required">*</span></label>
 									<input type="text" autocomplete="off" id="footer_name" name="" value="">
 								</li>
 								<li>
-									<a  title="My Account">Email</a>
-									<input type="text" id="footer_email" autocomplete="off" name="" value="">
+									<a  title="My Account">Email</a><span class="required">*</span></label>
+									<input type="text" class="forget_email" id="footer_email" autocomplete="off" name="" value="">
 								</li>
 								<li>
-									<a  title="My Account">Message</a>
+									<a  title="My Account">Message</a><span class="required">*</span></label>
 									<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none"></textarea>
 								</li>
 								<li>
@@ -149,7 +155,6 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/dateofbirth.js" type="text/javascript"></script>
-    <script src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/cookie.js"></script>
     <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>

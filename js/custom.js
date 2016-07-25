@@ -16,6 +16,10 @@ $(document).ready(function () {
 	paper_type=jQuery("#paper_type");
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
+	forget_email=jQuery("#footer_email");
+	email=jQuery("#email");
+ 	test=jQuery("#test");
+	errornotice = jQuery("#error");
 	var required_footer =["footer_name","footer_email","message"];
    	// cabin booking form - field show & Hide
     $('#time-type').on('change', function() {
@@ -42,21 +46,29 @@ $(document).ready(function () {
 				
 			 }
 		}
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input3_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input3_field_email");
+	  	}	
+ 		
+    	
 		$("#footer_name").keypress(function (e) {
 		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
         	e.preventDefault();
     	}
-    	});
+ 		 });
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
+			$('.error_email3').css('display','none');
 			return false;
 		} else {
 			errornotice.hide();
 			 $('.error_test').css('display','none');
+			 $('.error_email3').css('display','block');
 			return true;
 		}
-		
-		
+	
 	});
 
 	//  == Validation for Page range Format Start ==
@@ -1258,36 +1270,42 @@ $(document).ready(function () {
 	// check out page address data validation
 	//$('.send_to_address_personal').prop('checked', true);
 	$('.send_to_address_personal').on('change',function(){
-		$(this).prop("disabled", true);
-		$('.send_to_address_college').prop('checked', false).prop("disabled", false);
-		$('.send_to_address_college_data').hide();
-		$('.send_to_address_personal_data').removeClass('dn').slideDown();
-		$('#name_a').val('');
-		$('#address1').val('');
-		$('#address2').val('');
-		$('#area_a').val('');
-		$('#city_a').val('');
-		$('#address1').val('');
-		$('#postalcode').val('');
-		$('#state_a').val('');
-		$('#phone1').val('');
-		$('#email1').val('');
+		if(this.checked){
+			$(this).prop("disabled", true);
+			$('.send_to_address_college').prop('checked', false).prop("disabled", false);
+			$('.send_to_address_college_data').hide();
+			$('.send_to_address_personal_data').removeClass('dn').slideDown();
+			// $('#name_a').val('');
+			// $('#address1').val('');
+			// $('#address2').val('');
+			// $('#area_a').val('');
+			// $('#city_a').val('');
+			// $('#address1').val('');
+			// $('#postalcode').val('');
+			// $('#state_a').val('');
+			// $('#phone1').val('');
+			// $('#email1').val('');
+		}
+		
 	});
 	$('.send_to_address_college').on('change',function(){
-		$(this).prop("disabled", true);
-		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
-		$('.send_to_address_personal_data').hide();
-		$('.send_to_address_college_data').removeClass('dn').slideDown();
-		$('#studentname').val('');
-		$('#idno').val('');
-		$('#yearofstudying').val('');
-		$('#department').val('');
-		$('#collegename').val('');
-		$('#area_b').val('');
-		$('#postal').val('');
-		$('#state_b').val('');
-		$('#phone2').val('');
-		$('#email2').val('');		
+		if(this.checked){
+			$(this).prop("disabled", true);
+			$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
+			$('.send_to_address_personal_data').hide();
+			$('.send_to_address_college_data').removeClass('dn').slideDown();
+			// $('#studentname').val('');
+			// $('#idno').val('');
+			// $('#yearofstudying').val('');
+			// $('#department').val('');
+			// $('#collegename').val('');
+			// $('#area_b').val('');
+			// $('#postal').val('');
+			// $('#state_b').val('');
+			// $('#phone2').val('');
+			// $('#email2').val('');	
+		}
+			
 	});
 	//mobile validation
   //called when key is pressed in textbox
@@ -1305,7 +1323,7 @@ $(document).ready(function () {
 	// for empty field validation
 	jQuery(".check_out_payment").on('click',function(){ 
 		if(!$('.check_a:checked').length) {
-    		$('.send_to_address_personal_data').slideDown();
+    		$('.send_to_address_personal_data').removeClass('dn').slideDown();
     		$('#register').prop('checked',true);
     		$('#register').prop('disabled',true);
       	  		//stop the form from submitting
@@ -1354,6 +1372,7 @@ $(document).ready(function () {
 		$('.error_mobile').css('display','none');
 		forget_email.removeClass("error_input_field_email");
 			$('#mobile').removeClass("error_input_field_mobile");
+			$('html,body').animate({ scrollTop: $(".error_test").offset().top},'slow');
 			return false;
 		}
 		else {
@@ -2344,6 +2363,47 @@ $(document).ready(function () {
 			// $('.cabin_booking_total_amount').val(0);
 			location.reload();
 		});
+		
+		// make my default address condition for personnal
+		$('.makemydefaultaddress_per').on('change',function(){
+			$('.makemydefaultaddress_stu').prop('checked',false);
+			if(this.checked){
+				$('.paymentmakemydefaultaddress').val($(this).attr('data-code'));
+			}
+			else{
+				$('.paymentmakemydefaultaddress').val(0);
+			}
+		});
+		$('.makemydefaultaddress_stu').on('change',function(){
+			$('.makemydefaultaddress_per').prop('checked',false);
+			if(this.checked){
+				$('.paymentmakemydefaultaddress').val($(this).attr('data-code'));
+			}
+			else{
+				$('.paymentmakemydefaultaddress').val(0);
+			}
+		});
+		
+		//checkout shipping details values move to the payment values
+		$('#name_a').on('blur',function(){
+			$('#print_checkout_form #billing_name').val($(this).val());
+		});
+		$('#address1').on('blur',function(){
+			$('#print_checkout_form #merchant_param1').val($(this).val());
+		});
+		$('#area').on('change',function(){
+			$('#merchant_param4').val($(this).val());
+		});
+		$('#postalcode').on('blur',function(){
+			$('#print_checkout_form #billing_zip').val($(this).val());
+		});
+		$('#phone1').on('blur',function(){
+			$('#print_checkout_form #billing_tel').val($(this).val());
+		});
+		$('#email1').on('blur',function(){
+			$('#print_checkout_form #billing_email').val($(this).val());
+		});
+		
 		
 }); // Document ready end
 

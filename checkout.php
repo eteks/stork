@@ -35,7 +35,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 if(mysqli_num_rows($review_details)>0){
 ?>
 
-<main class="main" ng-app="" id="checkout">
+<main class="main" id="checkout">
 	<section class="header-page">
 		<div class="container">
 			<div class="row">
@@ -194,8 +194,15 @@ if(mysqli_num_rows($review_details)>0){
 	   
 	   <br> 
 	   <?php
+		$allareaquery = "select * from stork_area order by area_name asc";
+		$allareadata = mysqli_query($connection, $allareaquery);
 	   if(isset($_SESSION['usertype'])){
+	   	if(isset($_SESSION['user_id'])){
+	   		$user_data_query = "select * from stork_users where user_id = ".$_SESSION['user_id']."";
+	   		$user_data = mysqli_fetch_array(mysqli_query($connection, $user_data_query));
+	   	}
 	   	$usertype_name = $_SESSION['usertype'];
+		
 		if($usertype_name == 'stu'){
 			$city_query1 = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_college.college_id =".$_SESSION['college_id'];
 			$city1 = mysqli_fetch_array(mysqli_query($connection, $city_query1));
@@ -242,35 +249,52 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="name_a" ng-model="name"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>" size="30" name="address_1" id="name_a" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 1<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="address1" ng-model="address1"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_addr1']; ?>" size="30" name="address_1" id="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="" size="30" name="address_1" id="address2" > 
+						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_addr2']; ?>" size="30" name="address_1" id="address2" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Area<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $area_name; ?>" size="30" name="address_1" id="area" readonly=""> 
+						<select id="area">
+							<?php
+							while($allarea = mysqli_fetch_array($allareadata)){
+								if(isset($user_data['shipping_default_area_id'])){
+									if($user_data['shipping_default_area_id'] == $allarea['area_id'] || $user_data['shipping_default_area_id'] == $allarea['area_id']){
+										echo "<option value='".$allarea['area_name']."' selected>".$allarea['area_name']."</option>";
+									}else{
+										echo "<option value='".$allarea['area_name']."'>".$allarea['area_name']."</option>";
+									}
+								}else{
+									if($city2['area_id'] == $allarea['area_id'] || $city1['area_id'] == $allarea['area_id']){
+										echo "<option value='".$allarea['area_name']."' selected>".$allarea['area_name']."</option>";
+									}else{
+										echo "<option value='".$allarea['area_name']."'>".$allarea['area_name']."</option>";
+									}
+								}
+							} 
+							?>
+						</select>
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">City<em>*</em></label>
 						<br>
-						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $city_name; ?>" size="30" name="address_1" id="city_a" readonly=""/>
 						<input type="text" value="<?php echo $city_name; ?>" maxlength="64" autocomplete="off" size="30" name="address_1" id="city_a" readonly/> 
 					   </div>
 					 </li>
@@ -278,7 +302,6 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly>
 						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" name="address_1" id="state_a" readonly> 
 					   </div>
 					 </li>
@@ -286,21 +309,22 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30" name="zip" id="postalcode" ng-model="zipcode"> 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode'])) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1" ng-model="mobilenumber"> 
+						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile'])) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" autocomplete="off" size="30" name="address_1" id="email1" ng-model="email"> 
+						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email'])) echo $user_data['shipping_default_email']; ?>" autocomplete="off" size="30" name="address_1" id="email1">
+						 
 					   </div>
 					 </li>
 				  </ul>
@@ -309,7 +333,7 @@ if(mysqli_num_rows($review_details)>0){
 				  $user_access_type = explode('_', $_SESSION['session_id']);
 				   if($user_access_type[0]=='reg'){
 				   	?>
-				  <input type="checkbox" id="register"><label class="registers">Make this as my default shipping address</label>
+				  <input type="checkbox" class="makemydefaultaddress_per" id="register" data-code='reg_per'><label class="registers">Make this as my default shipping address</label>
 				 
 				 <?php
 				 }
@@ -339,7 +363,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Student Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="studentname" ng-model="name"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>" size="30" id="studentname" ng-model="name"> 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -512,19 +536,20 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 		   		<input type="hidden" name="language" value="EN"/>
-		   		<input type="hidden" name="billing_name" value="{{name}} "/>
+		   		<input type="hidden" id="billing_name" name="billing_name" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>"/>
 		   		<input type="hidden" name="merchant_param2" value="{{studentid}}"/>
 		   		<input type="hidden" name="merchant_param3" value="{{yearofstuding}}"/>
-		   		<input type="hidden" name="merchant_param1" value="{{address1}}"/>
+		   		<input type="hidden" id="merchant_param1" name="merchant_param1" value="<?php if(isset($user_data['shipping_default_addr1'])) echo $user_data['shipping_default_addr1']; ?>"/>
 		   		<input type="hidden" id="billing_address" name="billing_address" value="<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
-		   		<input type="hidden" name="merchant_param4" value="<?php echo $area_name; ?>"/>
+		   		<input type="hidden" id="merchant_param4" name="merchant_param4" value="<?php echo $area_name; ?>"/>
 		   		<input type="hidden" name="merchant_param5" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>"/>
 		   		<input type="hidden" name="billing_city" value="<?php echo $city_name; ?>"/>
 		   		<input type="hidden" name="billing_state" value="<?php echo $state_name; ?>"/>
-		   		<input type="hidden" name="billing_zip" value="{{zipcode}}"/>
+		   		<input type="hidden" id="billing_zip" name="billing_zip" value=""/>
 		   		<input type="hidden" name="billing_country" value="India"/>
-		   		<input type="hidden" name="billing_tel" value="{{mobilenumber}}"/>
-		   		<input type="hidden" name="billing_email" value="{{email}}"/>
+		   		<input type="hidden" id="billing_tel" name="billing_tel" value=""/>
+		   		<input type="hidden" id="billing_email" name="billing_email" value=""/>
+		   		<input type="hidden" class="paymentmakemydefaultaddress" name="makemydefaultaddress" value="0"/>
 		   		<h4 class="btn_prf check_out_payment"><a>Pay Now</a></h4>
 				<h4 class="btn_prf check_out_clear_btn"><a>Clear</a></h4>
 			</form>

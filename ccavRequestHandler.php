@@ -4,20 +4,27 @@
 </head>
 <body>
 <center>
+<?php
+require 'dbconnect.php';
+session_start();
+if($_POST['makemydefaultaddress'] == 'reg_per'){
+	$area_id_query = "select * from stork_area where area_name = '".$_POST['merchant_param4']."'";
+	$area_id = mysqli_fetch_array(mysqli_query($connection, $area_id_query));
+	$defaultaddressquery = "update stork_users set shipping_default_name ='".$_POST['billing_name']."',shipping_default_addr1 = '".$_POST['merchant_param1']."',shipping_default_addr2='".$_POST['billing_address']."',shipping_default_area_id ='".$area_id['area_id']."',shipping_default_postalcode='".$_POST['billing_zip']."',shipping_default_mobile='".$_POST['billing_tel']."',shipping_default_email='".$_POST['billing_email']."' where user_id =".$_SESSION['user_id']."";
+	mysqli_query($connection, $defaultaddressquery);
+	unset($_POST['makemydefaultaddress']);
+}
+?>
 
 <?php include('Crypto.php') ?>
 <?php 
-
 	error_reporting(0);
-	
 	$merchant_data='';
 	$working_key='1DD4304715928B37B1170BED9EDB13A6';//Shared by CCAVENUES
 	$access_code='AVLG65DF73BH49GLHB';//Shared by CCAVENUES
-	
 	foreach ($_POST as $key => $value){
 		$merchant_data.=$key.'='.$value.'&';
 	}
-
 	$encrypted_data=encrypt($merchant_data,$working_key); // Method for encrypting the data.
 
 ?>
@@ -30,7 +37,7 @@ echo "<input type=hidden name=access_code value=$access_code>";
 </center>
 <script src="js/jquery/jquery-1.11.3.min.js"></script>
 <script language='javascript'>
-	// document.redirect.submit();
+	document.redirect.submit();
 	$(document).ready(function(){
 		document.redirect.submit();
 	});
