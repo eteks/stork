@@ -83,7 +83,7 @@
 								</li>
 								<li>
 									<a  title="My Account">Email</a>
-									<input type="text" id="footer_email" autocomplete="off" name="" value="">
+									<input type="text" class="forget_email2" id="footer_email" autocomplete="off" name="" value="">
 								</li>
 								<li>
 									<a  title="My Account">Message</a>

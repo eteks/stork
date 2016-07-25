@@ -16,6 +16,10 @@ $(document).ready(function () {
 	paper_type=jQuery("#paper_type");
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
+	forget_email=jQuery("#test");
+	email=jQuery("#email");
+ 	test=jQuery("#test");
+	errornotice = jQuery("#error");
 	var required_footer =["footer_name","footer_email","message"];
    	// cabin booking form - field show & Hide
     $('#time-type').on('change', function() {
@@ -46,7 +50,9 @@ $(document).ready(function () {
 		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
         	e.preventDefault();
     	}
-    	});
+ 		 });	
+ 		
+    	
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
@@ -55,8 +61,7 @@ $(document).ready(function () {
 			 $('.error_test').css('display','none');
 			return true;
 		}
-		
-		
+	
 	});
 
 	//  == Validation for Page range Format Start ==
@@ -1305,7 +1310,7 @@ $(document).ready(function () {
 	// for empty field validation
 	jQuery(".check_out_payment").on('click',function(){ 
 		if(!$('.check_a:checked').length) {
-    		$('.send_to_address_personal_data').slideDown();
+    		$('.send_to_address_personal_data').removeClass('dn').slideDown();
     		$('#register').prop('checked',true);
     		$('#register').prop('disabled',true);
       	  		//stop the form from submitting
@@ -1354,6 +1359,7 @@ $(document).ready(function () {
 		$('.error_mobile').css('display','none');
 		forget_email.removeClass("error_input_field_email");
 			$('#mobile').removeClass("error_input_field_mobile");
+			$('html,body').animate({ scrollTop: $(".error_test").offset().top},'slow');
 			return false;
 		}
 		else {
