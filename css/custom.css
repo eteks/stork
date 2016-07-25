@@ -763,10 +763,10 @@ h4.order_or_button{
     text-transform: uppercase;
     cursor:pointer;
 	}
-.footer-content h4 span:hover { 
+/*.footer-content h4 span:hover { 
 	background-color: #25bce9;
 	color: #ffffff; 
-}
+}*/
 .fr{
 	float:right;
 }
@@ -848,6 +848,9 @@ h4.order_or_button{
 .error_input2_field_email {
    border:1px solid red !important;
 }
+.error_input3_field_email {
+   border:1px solid red !important;
+}
 .error_input1_field_mobile {
    border:1px solid red !important;
 }
@@ -871,6 +874,11 @@ h4.order_or_button{
 	display : none;
 }
 .error_email2  {
+	color :red ;
+	font-size : 12px;
+	display : none;
+}
+.error_email3  {
 	color :red ;
 	font-size : 12px;
 	display : none;
