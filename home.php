@@ -2768,7 +2768,7 @@
 								<!-- <div class="w-block-recent"> -->
 									<div class="image-recent">
 										<a href="#">
-											<img src="images/our_service/11.png" alt="service-10"  width="360px" height="285px " />
+											<img src="images/our_service/11.png" alt="service-10" />
 										</a>
 									</div>
 								<!-- <div class="info-recent">
