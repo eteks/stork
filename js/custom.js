@@ -1258,36 +1258,42 @@ $(document).ready(function () {
 	// check out page address data validation
 	//$('.send_to_address_personal').prop('checked', true);
 	$('.send_to_address_personal').on('change',function(){
-		$(this).prop("disabled", true);
-		$('.send_to_address_college').prop('checked', false).prop("disabled", false);
-		$('.send_to_address_college_data').hide();
-		$('.send_to_address_personal_data').removeClass('dn').slideDown();
-		$('#name_a').val('');
-		$('#address1').val('');
-		$('#address2').val('');
-		$('#area_a').val('');
-		$('#city_a').val('');
-		$('#address1').val('');
-		$('#postalcode').val('');
-		$('#state_a').val('');
-		$('#phone1').val('');
-		$('#email1').val('');
+		if(this.checked){
+			$(this).prop("disabled", true);
+			$('.send_to_address_college').prop('checked', false).prop("disabled", false);
+			$('.send_to_address_college_data').hide();
+			$('.send_to_address_personal_data').removeClass('dn').slideDown();
+			// $('#name_a').val('');
+			// $('#address1').val('');
+			// $('#address2').val('');
+			// $('#area_a').val('');
+			// $('#city_a').val('');
+			// $('#address1').val('');
+			// $('#postalcode').val('');
+			// $('#state_a').val('');
+			// $('#phone1').val('');
+			// $('#email1').val('');
+		}
+		
 	});
 	$('.send_to_address_college').on('change',function(){
-		$(this).prop("disabled", true);
-		$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
-		$('.send_to_address_personal_data').hide();
-		$('.send_to_address_college_data').removeClass('dn').slideDown();
-		$('#studentname').val('');
-		$('#idno').val('');
-		$('#yearofstudying').val('');
-		$('#department').val('');
-		$('#collegename').val('');
-		$('#area_b').val('');
-		$('#postal').val('');
-		$('#state_b').val('');
-		$('#phone2').val('');
-		$('#email2').val('');		
+		if(this.checked){
+			$(this).prop("disabled", true);
+			$('.send_to_address_personal').prop('checked', false).prop("disabled", false);
+			$('.send_to_address_personal_data').hide();
+			$('.send_to_address_college_data').removeClass('dn').slideDown();
+			// $('#studentname').val('');
+			// $('#idno').val('');
+			// $('#yearofstudying').val('');
+			// $('#department').val('');
+			// $('#collegename').val('');
+			// $('#area_b').val('');
+			// $('#postal').val('');
+			// $('#state_b').val('');
+			// $('#phone2').val('');
+			// $('#email2').val('');	
+		}
+			
 	});
 	//mobile validation
   //called when key is pressed in textbox
@@ -2344,6 +2350,47 @@ $(document).ready(function () {
 			// $('.cabin_booking_total_amount').val(0);
 			location.reload();
 		});
+		
+		// make my default address condition for personnal
+		$('.makemydefaultaddress_per').on('change',function(){
+			$('.makemydefaultaddress_stu').prop('checked',false);
+			if(this.checked){
+				$('.paymentmakemydefaultaddress').val($(this).attr('data-code'));
+			}
+			else{
+				$('.paymentmakemydefaultaddress').val(0);
+			}
+		});
+		$('.makemydefaultaddress_stu').on('change',function(){
+			$('.makemydefaultaddress_per').prop('checked',false);
+			if(this.checked){
+				$('.paymentmakemydefaultaddress').val($(this).attr('data-code'));
+			}
+			else{
+				$('.paymentmakemydefaultaddress').val(0);
+			}
+		});
+		
+		//checkout shipping details values move to the payment values
+		$('#name_a').on('blur',function(){
+			$('#print_checkout_form #billing_name').val($(this).val());
+		});
+		$('#address1').on('blur',function(){
+			$('#print_checkout_form #merchant_param1').val($(this).val());
+		});
+		$('#area').on('change',function(){
+			$('#merchant_param4').val($(this).val());
+		});
+		$('#postalcode').on('blur',function(){
+			$('#print_checkout_form #billing_zip').val($(this).val());
+		});
+		$('#phone1').on('blur',function(){
+			$('#print_checkout_form #billing_tel').val($(this).val());
+		});
+		$('#email1').on('blur',function(){
+			$('#print_checkout_form #billing_email').val($(this).val());
+		});
+		
 		
 }); // Document ready end
 
