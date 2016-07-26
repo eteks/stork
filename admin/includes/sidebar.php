@@ -785,7 +785,9 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 					<a href="#">
+					
 						<!-- <i class="fa fa-file"></i> --> Cabin Booking Details
+
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->

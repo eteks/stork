@@ -45,7 +45,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
 	.main-header .w-logo img{
-		width: 30%;
+		width: 80%;
 		height: auto;
 	}
 		
@@ -63,11 +63,11 @@
 		overflow:visible;
 	}
 	.headerCS{
-		width:10%;
+		width:16%;
 	}
-	.w-logo{
+	/*.w-logo{
 		width:23%;
-	}
+	}*/
 	.home-category .block .box-left, .home-category .block .box-right{
 		width:47.5%;
 	}
@@ -139,11 +139,18 @@
 	.quantity-price-w{
 		width:50%;
 	}
+	.pr-main .container {
+    	width: 1000px;
+    }
+    .location select {
+    	width: 61%;
+    }
+    
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
 	.main-header .w-logo img{
-		width: 30%;
+		width: 50%;
 		height: auto;
 	}
 	.block-currency .currency-name{
@@ -188,6 +195,7 @@
 	}
 	.footer-main ul{
 		float:left;
+		width: 100%;
 	}
 	.slide-show span{
 		display:none;
@@ -274,6 +282,23 @@
 	.home-testimonial{
 		background:url(../images/testimonials/bg_testimonal.jpg) scroll center center; 
 	}
+	.pr-main .container {
+    	width: 775px;
+    }
+    .location select {
+    	width: 85%;
+    }
+    .slide-show .tp-caption {
+    	font-size: 8px !important;
+    }
+    .footer_btn {
+    	margin-left: 140px;
+    }
+    .copy-right, .partner_footer p{
+		text-align:center !important;
+	}	
+    
+	
 }
 
 @media (max-width: 767px){
@@ -281,7 +306,6 @@
 		width: 50%;
 		height: auto;
 	}
-	
 	/*------page grid-----*/
 	.block-currency .currency-name{
 		border-left:none;
@@ -429,7 +453,95 @@
 		float:left;
 		width:100%;
 	}
+	 /* index */
+	#pr-login h4 {
+      font-size: 12px;
+      margin: 15px 0;
+    }
+    .header-page {
+    	font-size: 10px !important;
+    }
+    #student::before, input[type="radio"]:checked + label {
+      font-size: 12px !important;
+	   margin: 20px 5px 20px 0;
+    }
+    #professional::before, input[type="radio"] + label {
+       font-size: 12px !important;
+        margin: 20px 5px 20px 0;
+	}
+	.location, select { 
+		font-size: 10px; 
+	}
+	.button_holder {
+		padding: 8px 25px;
+	}
+	.partner_footer p{
+		text-align:center !important;
+	}
+	/*.footer-bottom {
+		height: 0px !important;
+	}*/
+	.footer-bottom p a {
+       line-height: 25px !important;
+     } 
+	.socail_google {
+		padding-top: 10px !important;
+	}
+	.button_holder {
+    	margin-left: 140px !important;
+	}
+	.location select {
+    	width: 100%;
+    }
+    #btn_responsive .button_holder, #btn_responsive h4.order_or_button{
+    	margin-left: 0px !important;
+    	padding: 0px !important;
+    }
+    
+    #btn_responsive .btn_prf {
+	    float: left;
+	    margin: 10px 15px;
+    }
+    /*h4.order_or_button {
+    	margin:0px;
+    	padding: 0px;
+    }*/
+    .header-page .ct-header {
+    	font-size: 18px;
+    }
+    #upload_section input{
+		width: 100% !important;
+    }
+        
 }
+
+@media (min-width:320px) and (max-width:480px) {
+	.location select {
+		width: 65% !important;
+	}
+	.browse_button {
+    	font-size: 9px !important;
+	    padding: 10px 20px !important;
+	    text-transform: uppercase;
+	    width: 75px !important;
+    }
+    .button_holder a {
+      	font-size: 10px !important;
+	    padding: 10px 15px 10px !important;
+     }	
+     .add_btn, .del_btn {
+        font-size: 18px !important;
+    	padding: 3px 8px !important; 
+     }	
+     #cabin-button input {
+     	 margin: 0 10px 10px 0 !important;
+     }
+     .book-status {
+	    font-size: 15px !important;
+	    padding: 0 18px !important;
+	}
+	
+}      
 
 @media (max-width: 480px){ 
 	.main-header .w-logo img {
@@ -656,9 +768,22 @@
 	.block-currency .currency-name{
 		border:none;
 	}
+	#student::before, input[type="radio"]:checked + label {
+      font-size: 12px !important;
+	   margin: 20px 5px 20px 0;
+    }
+    #professional::before, input[type="radio"] + label {
+       font-size: 12px !important;
+        margin: 20px 5px 20px 0;
+	}
+	
 }
 
 @media (max-width: 360px){
+	.main-header .w-logo img {
+		width: 80%;
+		height: auto;
+	}	
 	.add-to-cart .add-cart-btn.btn{
 		width:54%;
 	}
@@ -749,6 +874,15 @@
 	.tes-decs{
 		padding:0 20px;
 	}
+	#student::before, input[type="radio"]:checked + label {
+      font-size: 10px !important;
+	   margin: 20px 0px 20px 0px !important;
+    }
+    #professional::before, input[type="radio"] + label {
+       font-size: 10px !important;
+        margin: 20px 0px 20px 0px !important;
+	}
+	
 }
 
 @media (max-width: 320px){ 
@@ -841,4 +975,15 @@
 	.home-brand .item{
 		width:100%;
 	}
+	 #student::before, input[type="radio"]:checked + label {
+      font-size: 12px !important;
+	   margin: 20px 0px 20px 0;
+    }
+    #professional::before, input[type="radio"] + label {
+       font-size: 12px !important;
+        margin: 20px 0px 20px 0;
+	}
+	
 }
+
+

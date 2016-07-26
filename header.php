@@ -122,14 +122,14 @@ progress::-moz-progress-bar {
 					<div class="col-lg-4 col-md-2 col-sm-4 col-xs-5 w-logo">
 						<div class="logo hd-pd ">
 							<a href="index.php">
-								<img src="images/printstork_logo.png" width="30%"  height="auto" alt="printshop logo">
+								<img src="images/printstork_logo.png"  alt="printshop logo">
 							</a>
 						</div>	
 					</div>
 					<div class="col-lg-7 col-md-8 visible-md visible-lg">
 					</div>
 					
-					<div class="col-lg-2 col-md-4 col-sm-2 col-xs-3 headerCS">
+					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-3 headerCS">
 						<div class="fr navmenu_icons_header">
 							<?php 
 							

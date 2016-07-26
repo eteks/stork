@@ -476,6 +476,7 @@
 			        	</div>
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
+			        	  <div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
@@ -508,6 +509,7 @@
 		        				    </select>
 	        				    </div>
    							</div>
+   						   </div>	
    						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<div class="cb">  </div>
@@ -540,7 +542,7 @@
 		<?php } ?>
 		<!-- Project Binding End -->
 	</div>	<!-- Main End -->
-	<section>
+	<section id="btn_responsive">
 		<div class="container" style="padding-left:0px;">	
 	  		<div class="col-md-9 col-sm-9 col-xs-12" style="padding-left:0px;">		
 				<div class="button_holder button_holder_printbooking">

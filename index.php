@@ -50,7 +50,7 @@
 											//}
 		        						?>
 		        					</select> -->
-		        					<select id="print_book_area_professional" name="pro_area" >
+		        					<select id="print_book_area_professional" name="pro_area">
 		        						<option value="" >Select your Area</option>
 		        					</select>
 	        					</div>
@@ -71,7 +71,7 @@
 	        					</div>
 				        	</div>
 				        </div> <!---#green---->
-				        <div class="button_holder">
+				        <div class="button_holder col-md-12 col-sm-12 col-xs-6">
 				        	<h4 class="btn_prf"><a class="index_go_btn">Go</a></h4>
 				         	<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
 				        </div>
