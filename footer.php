@@ -25,7 +25,7 @@
 								</li>
 								<li>
 									<i class="fa fa-envelope-o"></i>
-									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to Cmsmart">support@printstork.com</a></span>
+									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to PrintStork">support@printstork.com</a></span>
 								</li>
 							</ul>
 							<ul class="footer-social">

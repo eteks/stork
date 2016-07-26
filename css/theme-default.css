@@ -5782,24 +5782,35 @@ h1.ct-header{
 		top:20px;
 		left:10px;		
 	}
-	.cart-summary.no-border tr.product-detail-row td.pro_name:before{
-		content:"Name";	
-		top:50px;		
+	
+	.cart-summary.no-border tr.product-detail-row td.print-type:before{
+		content:"Print Type";			
 	}
-	.cart-summary.no-border tr.product-detail-row td.base-price:before{
-		content:"Price";			
+	.cart-summary.no-border tr.product-detail-row td.print-side:before{
+		content:"Print Side";			
 	}
-	.cart-summary.no-border tr.product-detail-row td.pro_tax:before{
-		content:"Tax";		
+	.cart-summary.no-border tr.product-detail-row td.print-size:before{
+		content:"Print Size";		
 	}
-	.cart-summary.no-border tr.product-detail-row td.product-quanlity:before{
-		content:"Quantity ";			
+	.cart-summary.no-border tr.product-detail-row td.paper-type:before{
+		content:"Paper Type";		
 	}
-	.cart-summary.no-border tr.product-detail-row td.product-quanlity.action:before{
-		content:"Action";
+	.cart-summary.no-border tr.product-detail-row td.total-pages:before{
+		content:"Total No. of Pages";			
+	}
+	.cart-summary.no-border tr.product-detail-row td.quantity:before{
+		content:"Quantity";	
+		/*top:50px;*/		
+	}
+	.cart-summary.no-border tr.product-detail-row td.comments:before{
+		content:"Comments";	
+		padding: 20px 0px;		
+	}
+	.cart-summary.no-border tr.product-detail-row td.total-cost:before{
+		content:"Total Cost";
 	}
 	.cart-summary.no-border tr.product-detail-row td.sub-total:before{
-		content:"Total";		
+		content:"Sub Total";		
 	}
         #contact-form button.sendmail{
             max-width: 100%;
