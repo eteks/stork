@@ -23,9 +23,10 @@
 									<i class="fa fa-phone"></i>
 									<span style=" padding-left: 4px !important;"><a> 9655707844, 8344625888</a></span>
 								</li>
-								<li>
+								<li class="footer_icon">
 									<i class="fa fa-envelope-o"></i>
-									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to PrintStork">support@printstork.com</a></span>
+									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to Printstork">support@printstork.com</a></span>
+
 								</li>
 							</ul>
 							<ul class="footer-social">
@@ -74,11 +75,11 @@
 					</div>
 					<div class="col-md-3 col-sm-4 col-xs-12 support footer-col">
 						<h2>Feedback</h2>
-						<form action="index.php" id="footer">
-							<div class="container">
+						<form id="footer">
+								<div class="footer_container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
-								<div class="container">
+								<div class="footer_container">
  									<span class="error_email3"> Please Enter Valid email address </span>
 								</div>
 						<div class="footer-content">
@@ -89,7 +90,7 @@
 								</li>
 								<li>
 									<a  title="My Account">Email</a><span class="required">*</span></label>
-									<input type="text" class="forget_email" id="footer_email" autocomplete="off" name="" value="">
+									<input type="text" class="forget_email3" id="footer_email" autocomplete="off" name="" value="">
 								</li>
 								<li>
 									<a  title="My Account">Message</a><span class="required">*</span></label>

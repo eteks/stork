@@ -4142,7 +4142,7 @@ footer{
 #testfooter:hover {
   color: #25bce9;
 }
-.footer-main .info li:hover i{
+.footer-main .footer_icon:hover i{
   color: #25bce9;
 }
 .footer-main .footer-social{
@@ -4207,9 +4207,9 @@ footer{
   line-height: 50px;
   color: #999999;
 }
-/*.footer-bottom p:hover,.footer-bottom p a:hover, .footer-content p:hover{
+.footer-bottom p a:hover{
   color: #25bce9 !important;
-}*/
+}
 #back-to-top{
   position: absolute;
   right: 0;
