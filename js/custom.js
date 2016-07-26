@@ -16,7 +16,7 @@ $(document).ready(function () {
 	paper_type=jQuery("#paper_type");
 	paper_size=jQuery("#paper_size");
 	errornotice = jQuery("#error");
-	forget_email=jQuery("#footer_email");
+	footer_forget_email=jQuery("#footer_email");
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
@@ -45,29 +45,28 @@ $(document).ready(function () {
 			 	 $('.error_test').css('display','none');
 				
 			 }
-		}
-		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input3_field_email");
-	  	}else{
-	  		forget_email.removeClass("error_input3_field_email");
-	  	}	
- 		
-    	
-		$("#footer_name").keypress(function (e) {
-		if(e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 97 /* a */ || e.which > 122 /* z */)&& (e.which < 65 /* a */ || e.which > 90 /* z */)) {
-        	e.preventDefault();
-    	}
- 		 });
-		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			}
+			if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(footer_forget_email.val())) {
+			footer_forget_email.addClass("error_input3_field_email");
+				
+			}
+			else {
+	  		footer_forget_email.removeClass("error_input3_field_email");
+	  		}
+	  	
+			if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			$('.error_email3').css('display','none');
 			return false;
-		} else {
-			errornotice.hide();
+		} else if (jQuery(":input").hasClass("error_input3_field_email")){
 			 $('.error_test').css('display','none');
 			 $('.error_email3').css('display','block');
+			return false;
+		}
+		else {
 			return true;
 		}
+		
 	
 	});
 
@@ -1408,7 +1407,7 @@ $(document).ready(function () {
 	        return val.replace(/[^0-9\s]/gi,''); 
 	    });
 	}); 			   		  
-  	$('#name_a,#studentname').bind('keyup blur', function() { 
+  	$('#name_a,#studentname,#footer_name').bind('keyup blur', function() { 
 	    $(this).val(function(i, val) {
 	        return val.replace(/[^a-z\s]/gi,''); 
 	    });
