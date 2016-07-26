@@ -4142,9 +4142,9 @@ footer{
 #testfooter:hover {
   color: #25bce9;
 }
-.footer-main .info li:hover i{
+/*.footer-main .info li:hover i{
   color: #25bce9;
-}
+}*/
 .footer-main .footer-social{
   margin-top: 28px;
 }

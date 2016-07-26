@@ -6552,6 +6552,7 @@ button:hover {
 .heading_section {
   color: #fff;
   background-color: #25bce9;
+  top: 1px;
 }
 #my-orders-table_length {
   padding: 8px 0 0;
