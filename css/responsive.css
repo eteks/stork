@@ -582,7 +582,9 @@
 	#checkout .btn_pay {
 		margin-left: 0px !important;
 	}
-	
+	div#popup_index{
+		width: 325px !important;
+	}
 }      
 
 @media (max-width: 480px){ 

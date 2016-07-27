@@ -1085,4 +1085,6 @@ h4.order_or_button{
 	padding-left:0px !important;
 } 
 
-
+div.mcart-info , div.mcart-total {
+	font-size:12px !important;
+}
