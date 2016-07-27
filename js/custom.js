@@ -190,6 +190,9 @@ $(document).ready(function () {
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 			forget_email.addClass("error_input_field");
 		}
+		else {
+			forget_email.removeClass("error_input_field");
+		}
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") ) {
 			return false;
@@ -474,22 +477,36 @@ $(document).ready(function () {
 	
 	
 	//find out cost per page for printing order using print type on multiple combination
-	$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').on('change',function(){
+	$(document).on('change','#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type,.display_paper_range .num_of_copies',function(){
 	 	var print_type = ($('#print_booking_form .print_book_print_type').val()?$('#print_booking_form .print_book_print_type').val():'');
 	 	var print_side = ($('#print_booking_form .print_book_print_side').val()?$('#print_booking_form .print_book_print_side').val():'');
 	 	var paper_size = ($('#print_booking_form .print_book_paper_size').val()?$('#print_booking_form .print_book_paper_size').val():'');
 	 	var paper_type = ($('#print_booking_form .print_book_paper_type').val()?$('#print_booking_form .print_book_paper_type').val():'');
-	 	//alert(print_type+'|'+print_side+'|'+paper_size+'|'+paper_type);
-
+		var no_copies  = $('#print_booking_form #display_paper_range #num_of_copies').val();
 	 	//newly added by kalai for multi color printing on 08/06/16
 	 	var printing_type =$('#printing_type').val();
-
-	 	if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
+	 	//alert(print_type+'|'+print_side+'|'+paper_size+'|'+paper_type+'|'+no_copies+'|'+printing_type);
+	 	if(printing_type == "multicolor_printing"){
+	 		var datas = {'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type,'no_of_copies':no_copies};
+	 		if(print_type != '' && print_side != '' && paper_size != '' && paper_type !='' && no_copies != 'select_copies'){
+	 			var not_empty_value = true;
+	 		}else{
+	 			var not_empty_value = false;
+	 		}
+	 	}else{
+	 		var datas = {'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type};
+	 		if(print_type != '' && print_side != '' && paper_size != '' && paper_type !=''){
+	 			var not_empty_value = true;
+	 		}else{
+	 			var not_empty_value = false;
+	 		}
+	 	}
+	 	if(not_empty_value){
 	 		if(print_type=='colorwithblack&white'){
 	 			$.ajax({
 	           		type: "POST",
 	           		url: "ajax_functions.php",
-	           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
+	           		data:datas,
 	           		cache: false,
 	           		success: function(data) {
 	           			var per_page_amount = data;
@@ -515,20 +532,26 @@ $(document).ready(function () {
 	           		url: "ajax_functions.php",
 	           		// data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true'},
 	           		//newly changed the above line by kalai for multi color printing on 08/06/16
-	           		data:{'print_type_id':print_type,'print_side_id':print_side,'papar_size_id':paper_size,'paper_type_id':paper_type,'cost_estimation_per_page':'true','printing_type':printing_type},
+	           		data:datas,
 	           		cache: false,
 	           		success: function(data) {
 	           			var per_page_amount = parseFloat(data);
 	           			if(per_page_amount){
-	           				$('#print_booking_form .per_page_costing').val(per_page_amount);
+	           				$('#print_booking_form .multiprint_total_amount').val(per_page_amount);
 	           			}
 	           			else{
 	           				error_popup('Printing option not available!');
 	           				//newly changed by kalai for multi color printing on 08/06/16
-	           				if(printing_type == "multicolor_printing")
+	           				if(printing_type == "multicolor_printing"){
 	           					$('#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
-	           				else
+	           					$('.multiprint_total_amount').val('');
+	           					location.reload();
+	           				}
+	           				else{
 	           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
+	           				}
+	           				
+	           				
 						}
 	           			
 	          		}
@@ -2059,17 +2082,33 @@ $(document).ready(function () {
 	});
 	
 	//amount calculation for multicolor
-	$(document).on('change','#print_booking_form .display_paper_range .num_of_copies',function(){
-		var multi_total_copies = 0;
-		var per_page_amount = parseFloat($('#print_booking_form .per_page_costing').val());
-		$('#print_booking_form .display_paper_range').each(function(){
-			if($(this).find('.num_of_copies').val() != ''){
-				multi_total_copies += parseFloat($(this).find('.num_of_copies').val());
-			}
-		});
-		$('.multiprint_total_amount').val(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
+	//$(document).on('change','#print_booking_form .display_paper_range .num_of_copies,.print_book_print_side,.print_book_paper_type,.print_book_paper_size',function(){
+		// var no_copies =$('#print_booking_form .display_paper_range .num_of_copies');
+		// var print_type = $('.print_book_print_type').val();
+		// var print_side = $('.print_book_print_side').val();
+		// var paper_type = $('.print_book_paper_type').val();
+		// var paper_size = $('.print_book_paper_size').val();
+		// $.ajax({
+			// type: "POST",
+			// url: "ajax_functions.php",
+			// data:{'amount_per_copy_multi':'true','print_type':paper_print_type,'print_side':print_side,'paper_type':paper_type,'paper_size':paper_size,'noofcopies':no_copies},
+			// dataType: 'json',
+			// success: function(data){
+				// alert(data);
+			// }
+		// });
+		
+		
+		// var multi_total_copies = 0;
+		// var per_page_amount = parseFloat($('#print_booking_form .per_page_costing').val());
+		// $('#print_booking_form .display_paper_range').each(function(){
+			// if($(this).find('.num_of_copies').val() != ''){
+				// multi_total_copies += parseFloat($(this).find('.num_of_copies').val());
+			// }
+		// });
+		// $('.multiprint_total_amount').val(parseFloat(Math.ceil((multi_total_copies*per_page_amount)*100)/100).toFixed(2));
 		//alert(parseFloat(Math.ceil( (multi_total_copies*per_page_amount)*100)/100).toFixed(2));
-	});
+	//});
 	
 	// set city id to cookie
 	var city_id_check = Cookies.get('city_id');
@@ -2385,25 +2424,51 @@ $(document).ready(function () {
 		});
 		
 		//checkout shipping details values move to the payment values
-		$('#name_a').on('blur',function(){
+		$('#name_a,#studentname').on('blur',function(){
 			$('#print_checkout_form #billing_name').val($(this).val());
 		});
-		$('#address1').on('blur',function(){
+		$('#address1,#department').on('blur',function(){
 			$('#print_checkout_form #merchant_param1').val($(this).val());
 		});
 		$('#area').on('change',function(){
 			$('#merchant_param4').val($(this).val());
 		});
-		$('#postalcode').on('blur',function(){
+		$('#postalcode,#postal').on('blur',function(){
 			$('#print_checkout_form #billing_zip').val($(this).val());
 		});
-		$('#phone1').on('blur',function(){
+		$('#phone1,#phone2').on('blur',function(){
 			$('#print_checkout_form #billing_tel').val($(this).val());
 		});
-		$('#email1').on('blur',function(){
+		$('#email1,#email2').on('blur',function(){
 			$('#print_checkout_form #billing_email').val($(this).val());
 		});
+		$('#idno').on('blur',function(){
+			$('#print_checkout_form #merchant_param2').val($(this).val());
+		});
+		$('#yearofstudying').on('blur',function(){
+			$('#print_checkout_form #merchant_param3').val($(this).val());
+		});
 		
+		
+		//delivery cost  for in checkout page
+		$('.send_to_address_personal_data #area').on('change',function(){
+			var area = $(this).val().trim();
+			var subtotalamount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'delivery_cost_per_area':'true','area':area},
+				dataType: 'json',
+				success: function(data){
+					var delivery_amount = parseFloat(data);
+					var finalamoutn = subtotalamount+delivery_amount;
+					$('#total_amount').html('<b>&#8377;</b> '+delivery_amount);
+					$('.final_delivery_charge_amount').val(delivery_amount);
+					$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+finalamoutn);
+					$('.final_payment_amount_checkout').val(finalamoutn);
+				}
+			});
+		});
 		
 }); // Document ready end
 

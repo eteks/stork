@@ -476,7 +476,6 @@
 			        	</div>
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
-			        	  <div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
@@ -498,18 +497,17 @@
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
-									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
+									<select name="num_of_copies" class="num_of_copies" id="num_of_copies">
 				        				<option value="select_copies" >Select Number of copies</option>
 		        						<?php 
 		        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
 											while($row = mysqli_fetch_array($numofcopies)){
-												echo "<option value ='".$row['multicolor_copies']."'>".$row['multicolor_copies']."</option>";
+												echo "<option value ='".$row['multicolor_copies_id']."'>".$row['multicolor_copies']."</option>";
 											}
 		        						?>
 		        				    </select>
 	        				    </div>
    							</div>
-   						   </div>	
    						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<div class="cb">  </div>

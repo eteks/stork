@@ -30,7 +30,7 @@
 			// }
 			// newly changed the above code by kalai for both supporting plain and multi color printing on 07/06/16
 			if($_POST['printing_type'] == "multicolor_printing"){
-				$amount_per_page = selectfunction('cost_estimation_multicolor_amount',MULTICOLOR,'cost_estimation_multicolor_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_multicolor_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_multicolor_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_multicolor_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_multicolor_status ="1"',$connection);
+				$amount_per_page = selectfunction('cost_estimation_multicolor_amount',MULTICOLOR,'cost_estimation_multicolor_paper_print_type_id ="'.$_POST['print_type_id'].'" and cost_estimation_multicolor_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_multicolor_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_multicolor_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_multicolor_copies_id="'.$_POST['no_of_copies'].'"  and cost_estimation_multicolor_status ="1"',$connection);
 				$amount_data = mysqli_fetch_array($amount_per_page);
 				if(mysqli_num_rows($amount_per_page) == 1){
 					echo $amount_data['cost_estimation_multicolor_amount'];
@@ -125,6 +125,24 @@
 				array_push($holiday_date_array, $row['holiday_date']);
 			}
 			echo json_encode($holiday_date_array); 
+		}
+		
+		// return delivery cost to check out page
+		if(isset($_POST['delivery_cost_per_area'])){
+			$delivery_cost_query = mysqli_query($connection, "select * from stork_area where area_name = '".$_POST['area']."'");
+			$delivery_cost_data = mysqli_fetch_array($delivery_cost_query);
+			if(mysqli_num_rows($delivery_cost_query) == 1 ){
+				echo $delivery_cost_data['area_delivery_charge'];
+			}
+		}
+		
+		//return amount base on print type, print side, paper type, paper size for multicolor printing
+		if(isset($_POST['amount_per_copy_multi'])){
+			$amount_per_page = selectfunction('cost_estimation_multicolor_amount',MULTICOLOR,'cost_estimation_multicolor_paper_print_type_id ="'.$_POST['print_type'].'" and cost_estimation_multicolor_paper_side_id ="'.$_POST['print_side'].'" and cost_estimation_multicolor_paper_size_id ="'.$_POST['papar_size'].'" and cost_estimation_multicolor_paper_type_id ="'.$_POST['paper_type'].'" and cost_estimation_multicolor_copies_id="'.$_POST['noofcopies'].'" and cost_estimation_multicolor_status ="1"',$connection);
+				$amount_data = mysqli_fetch_array($amount_per_page);
+				if(mysqli_num_rows($amount_per_page) == 1){
+					echo $amount_data['cost_estimation_multicolor_amount'];
+				}
 		}
 	}// end of is ajax if condition
 ?>
