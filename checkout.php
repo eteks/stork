@@ -97,19 +97,19 @@ if(mysqli_num_rows($review_details)>0){
 											<th width="15%" align="left" class="th-total th-last">SubTotal</th>
 									    </tr>
             							<tr valign="top" id="product_row_0" class="product-detail-row product-detail-last-row sectiontableentry1">
-											<td align="left" class="base-price">
+											<td align="left" class="print-type">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
 													<span class="PricebasePrice"><?php echo $review_data['paper_print_type']; ?></span>
 												</div> 	 
 											</td>
-			  								<td align="left" class="base-price">
+			  								<td align="left" class="print-side">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
 													<span class="PricebasePrice"><?php echo $review_data['paper_side']; ?></span>
 												</div>			
 			  								</td>
-			  								<td align="right" class="pro_tax">
+			  								<td align="right" class="print-size">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
@@ -117,7 +117,7 @@ if(mysqli_num_rows($review_details)>0){
 			  	  									</div>
 			  	 								</span>
 			  								</td>
-			  								<td align="right" class="pro_tax">
+			  								<td align="right" class="paper-type">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
@@ -141,7 +141,7 @@ if(mysqli_num_rows($review_details)>0){
 			  	  									</div>
 			  	 								</span>
 			  								</td> -->
-			  								<td align="right" class="pro_tax">
+			  								<td align="right" class="total-pages">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
@@ -149,18 +149,18 @@ if(mysqli_num_rows($review_details)>0){
 			  	  									</div>
 			  	 								</span>
 			  								</td>
-			  								<td align="left" class="product-quanlity">
+			  								<td align="left" class="quantity">
 			    								<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
 		  									</td>
 		  									<td>
-		  										<span class="priceColor2">
+		  										<span class="comments">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
 												  		<span class="PricetaxAmount"><?php echo $review_data['order_details_comments']; ?></span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
-			  								<td align="left" class="base-price">
+			  								<td align="left" class="total-cost">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
 													<span class="PricebasePrice check_out_subtotal_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
