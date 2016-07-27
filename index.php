@@ -67,7 +67,8 @@
 		        					<select  name="stu_college" id="print_book_college">
 		        						<option value="" >Select your College/Area</option>
 		        					</select>
-		        					<span class="no_college_found_error dn">No college or area found!</span>
+		        			             						 
+		        			      <span class="no_college_found_error dn">No college or area found!</span>
 	        					</div>
 				        	</div>
 				        </div> <!---#green---->

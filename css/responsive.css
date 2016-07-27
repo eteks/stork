@@ -286,7 +286,7 @@
     	width: 775px;
     }
     .location select {
-    	width: 85%;
+    	width: 80%;
     }
     .slide-show .tp-caption {
     	font-size: 8px !important;
@@ -296,9 +296,19 @@
     }
     .copy-right, .partner_footer p{
 		text-align:center !important;
+	}
+	#checkout .button_holder {
+		margin-left: 0px !important;
+	}
+	#checkout .btn_pay {
+		margin-left: 0px !important;
+		padding-left: 240px;
+	}
+	#checkout .btn_prf {
+ 	   float: left;
+       margin: 30px 8px 30px 18px !important;
 	}	
     
-	
 }
 
 @media (max-width: 767px){
@@ -506,16 +516,26 @@
     	margin:0px;
     	padding: 0px;
     }*/
-    .header-page .ct-header {
-    	font-size: 18px;
-    }
     #upload_section input{
 		width: 100% !important;
     }
+    #checkout .button_holder a{
+    	padding: 8px 15px !important;
+    }
+    /*#checkout .button_holder {
+		margin-left: 0px !important;
+		padding: 0px 5px !important;
+	}
+	#checkout .btn_pay {
+		margin-left: 0px !important;
+	}*/
         
 }
 
 @media (min-width:320px) and (max-width:480px) {
+	.header-page .ct-header {
+    	font-size: 15px !important;
+    }
 	.location select {
 		width: 65% !important;
 	}
@@ -528,29 +548,41 @@
     .button_holder a {
       	font-size: 10px !important;
 	    padding: 10px 15px 10px !important;
-     }	
-     .add_btn, .del_btn {
+    }	
+    .add_btn, .del_btn {
         font-size: 18px !important;
     	padding: 3px 8px !important; 
-     }	
-     #cabin-button input {
+    }	
+    #cabin-button input {
      	 margin: 0 10px 10px 0 !important;
-     }
-     .book-status {
+     	 padding: 6px 10px !important;
+    }
+    .book-status {
 	    font-size: 15px !important;
 	    padding: 0 18px !important;
 	}
-	#checkout .button_holder {
+	.button_holder  .btn_prf {
+	    float: left;
+	    margin: 10px 12px;
+    }
+    .vm-display {
+    	padding-left: 40px;
+    }
+    .quantity input {
+    	text-align: center;
+    } 
+    #checkout .button_holder a {
+	    font-size: 10px !important;
+	    padding: 8px !important;
+    }
+    #checkout .button_holder {
 		margin-left: 0px !important;
 		padding: 0px 5px !important;
 	}
 	#checkout .btn_pay {
 		margin-left: 0px !important;
 	}
-	.button_holder  .btn_prf {
-	    float: left;
-	    margin: 10px 6px;
-    }
+	
 }      
 
 @media (max-width: 480px){ 

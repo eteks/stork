@@ -953,7 +953,7 @@ h4.order_or_button{
     max-width: 228px !important;
 }
 
-/* Cabin Bookin */
+/* Cabin Bookin by Akila */
 
 #table_billto li {
 	list-style-type: none;
@@ -1046,6 +1046,10 @@ h4.order_or_button{
 .tab-content .block-recent {
 	margin-bottom: 10px;
 }
+/* CSS */
+.header-page .ct-header {
+    	font-size: 18px;
+    }
 #project_printing_form textarea {
 	resize: none !important;
 	width: 100%;
@@ -1071,4 +1075,14 @@ h4.order_or_button{
 #upload_section input{
 	width: 100% !important;
 }
+.quantity input {
+    	text-align: center;
+    }
+/*#checkout .cart-summary.no-border .product:first-child {
+	display: block !important;
+}*/
+.pr-right .vm-display{
+	padding-left:0px !important;
+} 
+
 

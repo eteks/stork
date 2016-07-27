@@ -5751,8 +5751,8 @@ h1.ct-header{
 		display:block;
 		width:100%;
 	}
-	#checkout .cart-summary.no-border tr:first-child{
-		display:none!important;
+	#checkout .cart-summary.no-border .top-header:first-child{
+		display:none;
 	}
 	.cart-summary.no-border tr.product-detail-row td.pro_name{
 		padding-left:60px;
@@ -5804,7 +5804,7 @@ h1.ct-header{
 	}
 	.cart-summary.no-border tr.product-detail-row td.comments:before{
 		content:"Comments";	
-		padding: 20px 0px;		
+		/*padding: 20px 0px;	*/	
 	}
 	.cart-summary.no-border tr.product-detail-row td.total-cost:before{
 		content:"Total Cost";
