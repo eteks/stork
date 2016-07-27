@@ -298,8 +298,20 @@
 				        			<p>Binding Type<span class="star">&nbsp;*</span></p>
 				        			<select name="binding_type" class="project_binding_type" id="project_binding_type">	 
 				        				<option value="" >Select Binding Type</option>
-				        				<option value="hand_made_binding" >Handmade Binding</option>
-				        				<option value="case_binding" >Case Binding</option>
+				        				<!-- <option value="hand_made_binding" >Handmade Binding</option>
+				        				<option value="case_binding" >Case Binding</option> -->
+				        				<?php
+			        						$binding_cost_query = mysqli_query($connection, "select * from stork_cost_estimation_binding where cost_estimation_binding_type in ('case_binding','handmade_binding') and cost_estimation_binding_status='1'");
+		        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+											while($row = mysqli_fetch_array($binding_cost_query)){
+												if($row['cost_estimation_binding_type'] === 'case_binding'){
+													echo "<option value ='".$row['cost_estimation_binding_type']."'>Case Binding</option>";
+												}else if($row['cost_estimation_binding_type'] === 'handmade_binding'){
+													echo "<option value ='".$row['cost_estimation_binding_type']."'>Handmade Binding</option>";
+												}
+													
+											}
+	        							?>
 		        				    </select>
 				        		</div> <!-- input_holder -->
 				        	</div>

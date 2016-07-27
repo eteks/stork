@@ -5,7 +5,7 @@ function error_popup(message){
 	document.body.style.overflow = 'hidden';
 }
 $(document).ready(function () { 
-	
+	var total_black_white_file_project = 0;
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
 	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob"];
@@ -30,42 +30,40 @@ $(document).ready(function () {
 	        $("#flexi-show").hide();
       	}
     });
-    	jQuery("#footer").submit(function(){ 
-		
-		// for empty field validation
-		for(var i = 0 ; i<required_footer.length;i++ ){
-			var input = jQuery('#'+required_footer[i]);
+	jQuery("#footer").submit(function(){ 
+	// for empty field validation
+	for(var i = 0 ; i<required_footer.length;i++ ){
+		var input = jQuery('#'+required_footer[i]);
+		if ((input.val() == "")) {
+			input.addClass("error_input_field");
+			 $('.error_test').css('display','block');		
+		 }
+		 else{
+			 input.removeClass("error_input_field");
+		 	 $('.error_test').css('display','none');
 			
-			if ((input.val() == "")) {
-				input.addClass("error_input_field");
-				 $('.error_test').css('display','block');		
-			 }
-			 else{
-				 input.removeClass("error_input_field");
-			 	 $('.error_test').css('display','none');
-				
-			 }
-			}
-			if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(footer_forget_email.val())) {
-			footer_forget_email.addClass("error_input3_field_email");
-				
-			}
-			else {
-	  		footer_forget_email.removeClass("error_input3_field_email");
-	  		}
-	  	
-			if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
-			$('.error_email3').css('display','none');
-			return false;
-		} else if (jQuery(":input").hasClass("error_input3_field_email")){
-			 $('.error_test').css('display','none');
-			 $('.error_email3').css('display','block');
-			return false;
+		 }
+		}
+		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(footer_forget_email.val())) {
+		footer_forget_email.addClass("error_input3_field_email");
+			
 		}
 		else {
-			return true;
-		}
+  		footer_forget_email.removeClass("error_input3_field_email");
+  		}
+  	
+		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email3').css('display','none');
+		return false;
+	} else if (jQuery(":input").hasClass("error_input3_field_email")){
+		 $('.error_test').css('display','none');
+		 $('.error_email3').css('display','block');
+		return false;
+	}
+	else {
+		return true;
+	}
 		
 	
 	});
@@ -522,7 +520,6 @@ $(document).ready(function () {
 	           				else
 	           					$('#print_booking_form .print_book_print_type,#print_booking_form .print_book_print_side,#print_booking_form .print_book_paper_size,#print_booking_form .print_book_paper_type').prop('selectedIndex', 0);
 						}
-	           			
 	          		}
 	       		});// end of ajax
 	 		}else{
@@ -537,6 +534,7 @@ $(document).ready(function () {
 	           			var per_page_amount = parseFloat(data);
 	           			if(per_page_amount){
 	           				$('#print_booking_form .multiprint_total_amount').val(per_page_amount);
+	           				$('#print_booking_form .per_page_costing').val(per_page_amount);
 	           			}
 	           			else{
 	           				error_popup('Printing option not available!');
@@ -605,6 +603,7 @@ $(document).ready(function () {
     	}
     	else{
     		return true;
+    		total_black_white_file_project += 1;
     	}
 	}); 
 
@@ -1622,6 +1621,7 @@ $(document).ready(function () {
     	}
     	else{
     		return true;
+    		total_black_white_file_project += 1;
     	}
 	});
 
@@ -1918,7 +1918,6 @@ $(document).ready(function () {
 				var color_page_amount = parseFloat($('#project_printing_form .color_page_amount_per_page').val()?$('#project_printing_form .color_page_amount_per_page').val():'');
 				var blackandwhite_page_amount = parseFloat($('#project_printing_form .blackwhite_page_amount_per_page').val()?$('#project_printing_form .blackwhite_page_amount_per_page').val():'');
 				var total_no_of_color_pages = 0;
-				var total_black_white_file = 0;
 				var total_color_file = 0;
 				if($('#cover_range').val() != '0-0'){
 					total_color_file += 1;
@@ -1934,8 +1933,6 @@ $(document).ready(function () {
 							total_no_of_color_pages += 1;
 						}
 					});
-				}else{
-					total_black_white_file += 1;
 				}
 				if($('#index_range').val() != '0-0'){
 					total_color_file += 1;
@@ -1951,8 +1948,6 @@ $(document).ready(function () {
 							total_no_of_color_pages += 1;
 						}
 					});
-				}else{
-					total_black_white_file += 1;
 				}
 				if($('#refer_range').val() != '0-0'){
 					total_color_file += 1;
@@ -1968,8 +1963,6 @@ $(document).ready(function () {
 							total_no_of_color_pages += 1;
 						}
 					});
-				}else{
-					total_black_white_file += 1;
 				}
 				
 				$('.project_content_range_section .project_paper_range').each(function(){
@@ -1988,22 +1981,21 @@ $(document).ready(function () {
 							}
 						});
 					}
-					else{
-						total_black_white_file += 1;
-					}
 				});
-				if(total_amount > total_color_file+total_black_white_file){
+				if(total_amount > total_color_file+total_black_white_file_project){
 					var entered_black_and_white_pages = total_amount-total_no_of_color_pages;
-					if(entered_black_and_white_pages >= total_black_white_file){
+					if(entered_black_and_white_pages >= total_black_white_file_project){
 						$('.project_total_amount').val(parseFloat(Math.ceil( ((color_page_amount*total_no_of_color_pages+entered_black_and_white_pages*blackandwhite_page_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
 					}
 					else{
 						error_popup('Please enter correct total no of values!');
 						$(this).val('');
+						$('.project_total_amount').val('');
 					}
 				}else{
 					error_popup('Please enter correct total no of values!');
 					$(this).val('');
+					$('.project_total_amount').val('');
 				}
 			}
 		
@@ -2468,6 +2460,9 @@ $(document).ready(function () {
 				}
 			});
 		});
+		
+		
+	// feedback form data send through ajax
 		
 }); // Document ready end
 

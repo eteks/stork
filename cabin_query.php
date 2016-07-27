@@ -42,33 +42,97 @@ date_default_timezone_set('Asia/Kolkata');
 		
 		$costing_data_array = mysqli_fetch_array($costing_entered_data);
 		$row_cnt = mysqli_num_rows($costing_entered_data);
+		$current_time = date("G:i", time());
+		$current_time_calc = strtotime($current_time);
+		//show available slots for fixed with amount allocation based on if shcheduled time greater than the current time of today 
 		if($row_cnt>0 && strtolower($timingtype) == 'fixed'){
+			if($required_date == date("Y-m-d")){
+				if($current_time_calc < $start_time_calc){ 
 ?>
-	<div class="slot fl">
-    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
-    	<div style="text-align:center;">
-    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
-    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
-    	    <input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
-    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
-    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
-    	</div>		                	
-    </div> 
+					<div class="slot fl">
+				    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
+				    	<div style="text-align:center;">
+				    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+				    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
+				    	    <input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
+				    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
+				    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
+				    	</div>		                	
+				    </div> 
 <?php 
-		}
-		else if($row_cnt>0 && strtolower($timingtype) == 'flexible'){
+				}
+				else{
 ?>
-	<div class="slot fl">
-    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
-    	<div style="text-align:center;">
-    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
-    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
-    		<input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
-    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
-    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
-    	</div>		                	
-    </div>
+					<div class="slot fl">
+				    	<i class="fa fa-clock-o cabin_booked" aria-hidden="true" title="Click to select this slot"> </i> 
+				    	<div style="text-align:center;">
+				    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+				    	    <span>Closed</span>
+				    	</div>		                	
+				    </div>
 <?php
+				}	
+			}
+			else {
+?>
+				<div class="slot fl">
+			    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
+			    	<div style="text-align:center;">
+			    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+			    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
+			    	    <input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
+			    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
+			    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
+			    	</div>		                	
+			    </div> 
+<?php
+			}
+		}
+		//show available slots for flexible with amount allocation based on if shcheduled time greater than the current time of today 
+		else if($row_cnt>0 && strtolower($timingtype) == 'flexible'){
+			if($required_date == date("Y-m-d")){
+				if($current_time_calc < $start_time_calc){
+?>
+					<div class="slot fl">
+				    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
+				    	<div style="text-align:center;">
+				    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+				    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
+				    		<input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
+				    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
+				    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
+				    	</div>		                	
+				    </div>
+<?php
+				}
+				else{
+?>
+					<div class="slot fl">
+				    	<i class="fa fa-clock-o cabin_booked" aria-hidden="true" title="Click to select this slot"> </i> 
+				    	<div style="text-align:center;">
+				    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+				    	    <span>Closed</span>
+				    	</div>		                	
+				    </div>
+<?php
+					
+				}
+			}
+			else{
+				
+?>
+					<div class="slot fl">
+				    	<i class="fa fa-clock-o cabin_available" aria-hidden="true" title="Click to select this slot" data-id="<?php echo $row1['schedule_time_id']; ?>"> </i> 
+				    	<div style="text-align:center;">
+				    		<span><?php echo $row1['schedule_time_start']; ?> - <?php echo $row1['schedule_time_end'] ?> </span><br>
+				    	    <span><?php echo (isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?> / <?php echo $total_system['total_number_of_system']; ?></span>
+				    		<input type="hidden" class="system_availability" value="<?php echo $total_system['total_number_of_system']-(isset($system_availablity_array['sum_value'])?$system_availablity_array['sum_value']:'0'); ?>">
+				    		<input type="hidden" class="total_hours_per_slot" value="<?php echo $duration; ?>">
+				    		<input type="hidden" class="timeslotamount" value="<?php echo $costing_data_array['cabin_cost_estimation_amount']; ?>">
+				    	</div>		                	
+				    </div>
+<?php
+			}
 		}
 	  }
 	  else{
