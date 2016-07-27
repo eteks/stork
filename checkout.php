@@ -395,7 +395,6 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
-						<input type="hidden" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename" readonly>
 						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename1" readonly> 
 					   </div>
 					 </li>
@@ -411,7 +410,6 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">State<em>*</em></label>
 						<br>
-						<input type="hidden" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly>
 						<input type="text" maxlength="64" autocomplete="off" value="<?php echo $state_name; ?>" size="30" id="state_b" readonly> 
 					   </div>
 					 </li>
@@ -471,6 +469,7 @@ if(mysqli_num_rows($review_details)>0){
 						<tr class="first">
 							<td>SubTotal:</td>
 							<td class="pr-right"><div class="PricesalesPrice vm-display vm-price-value"><span class="vm-price-desc"></span><span class="PricesalesPrice final_visible_sub_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount ; ?></span></div></td>
+							<input type="hidden" class="final_hidden_sub_amount_checkout_page" value="<?php echo $total_amount ; ?>" />
 						</tr>
 						<tr>
 							<td>Delivery Charge:</td>
@@ -535,14 +534,14 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
-		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php //echo $checkout_total_amount; ?>0.01"/>
+		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php  echo $checkout_total_amount+$delivery_amount; ?>"/>
 		   		<input type="hidden" name="currency" value="INR"/>
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 		   		<input type="hidden" name="language" value="EN"/>
 		   		<input type="hidden" id="billing_name" name="billing_name" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>"/>
-		   		<input type="hidden" name="merchant_param2" value="{{studentid}}"/>
-		   		<input type="hidden" name="merchant_param3" value="{{yearofstuding}}"/>
+		   		<input type="hidden" id="merchant_param2" name="merchant_param2" value=""/>
+		   		<input type="hidden" id="merchant_param3" name="merchant_param3" value=""/>
 		   		<input type="hidden" id="merchant_param1" name="merchant_param1" value="<?php if(isset($user_data['shipping_default_addr1'])) echo $user_data['shipping_default_addr1']; ?>"/>
 		   		<input type="hidden" id="billing_address" name="billing_address" value="<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
 		   		<input type="hidden" id="merchant_param4" name="merchant_param4" value="<?php echo $area_name; ?>"/>

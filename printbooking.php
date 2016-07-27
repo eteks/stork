@@ -298,8 +298,20 @@
 				        			<p>Binding Type<span class="star">&nbsp;*</span></p>
 				        			<select name="binding_type" class="project_binding_type" id="project_binding_type">	 
 				        				<option value="" >Select Binding Type</option>
-				        				<option value="hand_made_binding" >Handmade Binding</option>
-				        				<option value="case_binding" >Case Binding</option>
+				        				<!-- <option value="hand_made_binding" >Handmade Binding</option>
+				        				<option value="case_binding" >Case Binding</option> -->
+				        				<?php
+			        						$binding_cost_query = mysqli_query($connection, "select * from stork_cost_estimation_binding where cost_estimation_binding_type in ('case_binding','handmade_binding') and cost_estimation_binding_status='1'");
+		        							//$papertype = selectfunction('*',PAPERTYPE,'paper_type_status=1',$connection);
+											while($row = mysqli_fetch_array($binding_cost_query)){
+												if($row['cost_estimation_binding_type'] === 'case_binding'){
+													echo "<option value ='".$row['cost_estimation_binding_type']."'>Case Binding</option>";
+												}else if($row['cost_estimation_binding_type'] === 'handmade_binding'){
+													echo "<option value ='".$row['cost_estimation_binding_type']."'>Handmade Binding</option>";
+												}
+													
+											}
+	        							?>
 		        				    </select>
 				        		</div> <!-- input_holder -->
 				        	</div>
@@ -476,7 +488,6 @@
 			        	</div>
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
-			        	  <div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
@@ -498,18 +509,17 @@
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
-									<select name="num_of_copies[]" class="num_of_copies" id="num_of_copies">
+									<select name="num_of_copies" class="num_of_copies" id="num_of_copies">
 				        				<option value="select_copies" >Select Number of copies</option>
 		        						<?php 
 		        							$numofcopies = selectfunction('*',NUMBEROFCOPIES,'multicolor_copies_status=1',$connection);
 											while($row = mysqli_fetch_array($numofcopies)){
-												echo "<option value ='".$row['multicolor_copies']."'>".$row['multicolor_copies']."</option>";
+												echo "<option value ='".$row['multicolor_copies_id']."'>".$row['multicolor_copies']."</option>";
 											}
 		        						?>
 		        				    </select>
 	        				    </div>
    							</div>
-   						   </div>	
    						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 							<div class="cb">  </div>

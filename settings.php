@@ -70,4 +70,7 @@ $printing_type = array('plain_printing' => 'Plain Printing','project_printing' =
 
 // Array for decalring timing type to be used throughout the application for cabin booking
 $timing_type = array('fixed' => 'Fixed','flexible' => 'Flexible');
+
+//feedback sended address
+$feed_back_to_mail_address = 'support@printstork.com';
 ?>
