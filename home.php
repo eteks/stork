@@ -62,7 +62,8 @@
 									for only &pound; 24!
 								</span>
 							</div>
-							<div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div> 
+							<div class="tp-caption lfb" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now </a></div> 
+							<div style="background-color:#000; opacity:0.6;padding: 20px;" class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300">Offer Title: 123A456B. <em>Vaild till 29 July 2016.</em></div>
 						</li>
 						<li class="slide2" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
 							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1"><span class="textcolor"></span>CABIN BOOKING</span></div> 
