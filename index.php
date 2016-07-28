@@ -82,9 +82,7 @@
 				  ?>
 				  <div class="boxes">
 				    <div class="popup_index" id="popup_index">
-				      <div class="container">	
-				      	<div class="row col-md-12 col-sm-12 col-xs-12">
-					    <div class="popup_content">
+				        <div class="popup_content">
 					    	<label>Select your city</label>
 							<select name="print_book_city_name" id="initial_city_name" class="initial_city_name">
 								<option value="" >Select your city</option>
@@ -107,8 +105,6 @@
 							</div>
 					    </div>
 					  </div>
-					 </div>
-					</div>
 				    <div class="background_shadow" id="background_shadow"> </div>
 				</div>
 				 <?php } else {?>
