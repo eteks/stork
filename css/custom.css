@@ -522,7 +522,7 @@ h4.order_or_button{
 }
 .textarea_print{
 	resize: none;
-	width : 74%;
+	width : 100%;
 }
 .page_range_error {
     color: red;
@@ -1089,5 +1089,31 @@ h4.order_or_button{
 div.mcart-info , div.mcart-total {
 	font-size:12px !important;
 }
-/* popup homepage */
+/* Home-Offer Zone */
+.offer-zone1{
+	background-color: #0099CC;
+}
+.offer-zone2{
+	background-color: #663300;
+}
+.offer-zone3{
+	background-color: #0FA6BC;
+}
+.offer-zone4{
+	background-color: #990033;
+}
+.offer-zone1 span,.offer-zone2 span,.offer-zone3 span,.offer-zone4 span{
+	font-family:"Book Antiqua";
+	font-size: 20px;
+	color: #fff !important;
+}
+/* Plain Print */
+#fl_width .form_left {
+	width: 800px;
+}
+#fl_width .image_right {
+	width:300px;
+}
+
+
 
