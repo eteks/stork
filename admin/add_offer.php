@@ -8,32 +8,35 @@ include "includes/header.php";;
 <body>
 <?php 	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-		$offer_type = $_POST["offer_type"];
+		$offer_type_value = $_POST["offer_type"];
 		$offer_title = $_POST["offer_title"];
 		$offer_code = $_POST["offer_code"];
-		$offer_start_validity = $_POST["offer_start_validity"];
-		$offer_end_validity = $_POST["offer_end_validity"];
-		$offer_amount_type = $_POST["offer_amount_type"];
+
+		$offer_start_validity =  explode('/',$_POST["offer_start_validity"]);
+		$offer_start_validity = $offer_start_validity[2].'-'.$offer_start_validity[1].'-'.$offer_start_validity[0];
+
+		$offer_end_validity =  explode('/',$_POST["offer_end_validity"]);
+		$offer_end_validity = $offer_end_validity[2].'-'.$offer_end_validity[1].'-'.$offer_end_validity[0];
+
+		$offer_amount_type_value = $_POST["offer_amount_type"];
 		$offer_amount = $_POST["offer_amount"];
 		$offer_eligible_amount = $_POST["offer_eligible_amount"];
 		$offer_limitation = $_POST["offer_limitation"];
 		$offer_status = $_POST["offer_status"];
 
-		// if($city_id=="" || $area_name=="" || $area_status=="") {
-		// 	// header('Location: add_area.php');
-		// 	// exit();
-		// 	$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
-		// }	
-		// else{
-		// 	$qr = mysql_query("SELECT * FROM stork_area WHERE area_name = '$area_name' AND area_city_id='$city_id'");
-		// 	$row = mysql_num_rows($qr);
-		// 	if($row > 0){
-		// 		$successMessage = "<div class='container error_message_mandatory'><span> Area Already Exists </span></div>";
-		// 	} else {
-		// 		mysqlQuery("INSERT INTO `stork_area` (area_name,area_state_id,area_city_id,area_delivery_charge,area_status) VALUES ('$area_name','$state_id','$city_id','$area_delivery_charge','$area_status')");
-		// 		$successMessage = "<div class='container error_message_mandatory'><span> Area Inserted Sucessfully! </span></div>";
-		// 	}		
-		// }
+		if($offer_type_value=="" || $offer_title=="" || $offer_code=="" || $offer_start_validity=="" || $offer_end_validity=="" || $offer_amount_type_value=="" || $offer_amount=="" || $offer_limitation=="" || $offer_limitation=="" || $offer_status=="" ) {
+			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
+		}	
+		else{
+			$qr = mysql_query("SELECT * FROM stork_offer_details WHERE offer_code = '$offer_code' OR offer_title='$offer_title'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				$successMessage = "<div class='container error_message_mandatory'><span> Offer Already Exists </span></div>";
+			} else {
+				mysqlQuery("INSERT INTO `stork_offer_details` (offer_type,offer_title,offer_code,offer_validity_start_date,offer_validity_end_date,offer_amount_type,offer_amount,offer_eligible_amount,offer_usage_limit,offer_status) VALUES ('$offer_type_value','$offer_title','$offer_code','$offer_start_validity','$offer_end_validity','$offer_amount_type_value','$offer_amount','$offer_eligible_amount','$offer_limitation','$offer_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Offer Inserted Sucessfully! </span></div>";
+			}		
+		}
 	} 
 ?>   
 <?php include 'includes/navbar_admin.php'; ?>
@@ -73,7 +76,7 @@ include "includes/header.php";;
 								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
 								    <label for="first-name">Select Offer Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control state_act" name="offer_type">
+									<select class="product-type-filter form-control" name="offer_type">
 								        <option value="">
 											<span>Select Offer Type</span>
 										</option>

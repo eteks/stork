@@ -59,7 +59,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				if ($count_rows > 0)
 				{
 			?>
-			<table class="data-table area_table stork_admin_table" id="my-orders-table">
+			<table class="data-table area_table stork_admin_table" id="my-orders-table" style="width: 1770px;">
 				<thead>
 			        <tr class="">
 			            <th>Offer Type</th>
@@ -82,12 +82,25 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 					{	
 			    ?>
 			    <tr class="">
-		            <td><?php echo $fetch['area_name'] ?></td>
-		            <td><span class="nobr"><?php echo $fetch['offer_type'] ?></span></td>
+		            <td><span class="nobr"><?php 
+		            foreach ($offer_type as $key => $value) {
+		            	if($key == $fetch['offer_type'])
+		            		echo $value;
+		            }
+		            ?></span></td>
 		            <td><span class="nobr"><?php echo $fetch['offer_title'] ?></span></td>
-		            <td><span class="nobr"><?php echo $fetch['offer_code'] ?></span></td>
-		            <td><span class="nobr"><?php echo $fetch['offer_validity_start_date'] ?></span></td>
-		            <td><span class="nobr"><?php echo $fetch['offer_validity_end_date'] ?></span></td>
+		            <td><span class="nobr"><?php echo $fetch['offer_code'] ?></span></td>	
+		            <td><span class="nobr">
+		            <?php 
+			            $offer_validity_start_date=strtotime($fetch['offer_validity_start_date']);
+						$offer_validity_start_date = date('d/m/Y', $offer_validity_start_date);
+						echo $offer_validity_start_date; 
+					?></span></td>
+		            <td><span class="nobr"><?php 
+		             	$offer_validity_end_date=strtotime($fetch['offer_validity_end_date']);
+						$offer_validity_end_date = date('d/m/Y', $offer_validity_end_date);
+						echo $offer_validity_end_date;  
+		            ?></span></td>
 		            <td><span class="nobr"><?php echo $fetch['offer_amount_type'] ?></span></td>
 		            <td><span class="nobr"><?php echo $fetch['offer_amount'] ?></span></td>
 		            <td><span class="nobr"><?php echo $fetch['offer_eligible_amount'] ?></span></td>
@@ -114,10 +127,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 						if(mysql_num_rows($check_in_college)>0 || mysql_num_rows($check_in_order)>0 || mysql_num_rows($check_in_users)>0){
 	                ?>
 		                <span class="nobr">
-			                <a title="Edit" class="btn  btn-primary btn-xs" href="edit_area.php?id=<?php echo $fetch['area_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+			                <a title="Edit" class="btn  btn-primary btn-xs" href="edit_offer.php?id=<?php echo $fetch['offer_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <span class="separator"></span> 
 			                <span class="restrict">
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>"><i class="fa fa-trash-o">
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['offer_id'] ?>"><i class="fa fa-trash-o">
 				                	<div class="restrict_tooltip">Mapping has been already done. Edit or Delete not possible.</div>
 				                </i> </a>
 			                </span>
@@ -125,9 +138,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        </span>
 			        <?php } else{ ?>
 			            <span class="nobr">
-		                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_area.php?id=<?php echo $fetch['area_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+		                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_offer.php?id=<?php echo $fetch['offer_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			                <span class="separator"></span> 
-			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['area_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['offer_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 			            </span>
 			        <?php } ?>
 			        </td>
@@ -144,7 +157,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "areas.php?delete="+myId);
+		$("#del_link").prop("href", "offer.php?delete="+myId);
 		});
 	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
