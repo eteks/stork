@@ -995,25 +995,33 @@ function countCabinTransactionDetails()
 					</ul>
 				</li>
 
-				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || 
-					basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php")
+					<?php 
+					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer.php" || basename($_SERVER['PHP_SELF'])=="add_offer.php" || basename($_SERVER['PHP_SELF'])=="edit_offer.php")
 					{ 
 						?> 
-						<li class="test">
+						<li class="has_submenu open test">
 						<?php 
 					} 
 					else 
 					{ 
 						?>
-						<li>
+						<li class="has_submenu">
 						<?php 
 					}  
-				?>
-					<a href="offer_zones.php">
-						<!-- <i class="fa fa-file"></i> --> Offer Zone
+				 ?>
+					<a href="#">
+						<!-- <i class="fa fa-file"></i> --> Offers
 						<span class="caret pull-right"></span>
 					</a>
+					<!-- Sub menu -->
+					<ul>
+						<li>
+							<a href="offer_zones.php"><i class="fa fa-list"></i><span> Offer Zone </span></a>
+						</li> 
+						<li>
+							<a href="offer.php"><i class="fa fa-list"></i><span> Offer Details </span></a>
+						</li> 
+					</ul>
 				</li>
 				<!-- <li>
 					<a href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
