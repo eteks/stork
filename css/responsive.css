@@ -307,6 +307,9 @@
 	#checkout .btn_prf {
  	   float: left;
        margin: 30px 8px 30px 18px !important;
+	}
+	.image_right {
+		display:none;
 	}	
     
 }
@@ -529,6 +532,9 @@
 	#checkout .btn_pay {
 		margin-left: 0px !important;
 	}*/
+	.image_right {
+		display:none;
+	}
         
 }
 
@@ -582,9 +588,24 @@
 	#checkout .btn_pay {
 		margin-left: 0px !important;
 	}
-	div#popup_index{
-		width: 325px !important;
+	/*homepage pop-up */
+	.popup_index {
+		width: 290px !important;
 	}
+	.popup_content {
+    	margin: 45px 20px !important;
+	}
+	.popup_content label {
+		margin-left: 20px;
+	}
+	.popup_index select {
+		width: 65%;
+	}
+	#popup_index .button_holder a {
+		font-size: 10px;
+		padding: 8px 18px !important;
+	}
+		
 }      
 
 @media (max-width: 480px){ 
@@ -820,7 +841,18 @@
        font-size: 12px !important;
         margin: 20px 5px 20px 0;
 	}
-	
+	#fl_width .image_right {
+		display:none;
+	}
+	#fl_width .input_holder select {
+		width: 38%;
+	}
+	#fl_width .input_holder textarea{
+		width: 38%;
+	}
+ 	#fl_width .input_holder input[type="text"] {
+ 		width: 38%;
+ 	}
 }
 
 @media (max-width: 360px){

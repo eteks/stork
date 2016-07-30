@@ -69,8 +69,9 @@
 			<span class="error_print_booking"> Please fill out all mandatory fields </span> <!--container-->
 	    </section>	
 	    <section class="pr-main" id="pr-register">	
-			<div class="container">	
-				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form">
+	     <div class="container" id="fl_width">
+	       <div class="fl form_left">	
+	     	<div class="col-md-12 col-sm-12 col-xs-12 padding_form">
 					<?php
 						$printingtype = selectfunction('*',PRINTINGTYPE,'printing_type="plain_printing"',$connection);
 						$printing_type_id = mysqli_fetch_array($printingtype);
@@ -99,7 +100,7 @@
 		        						?>
 		        				</select>
 			        		</div> <!-- input holder -->
-						   	<div class="input_holder row pad_15">
+			        		<div class="input_holder row pad_15">
 			        			<p>Print Side<span class="star">&nbsp;*</span></p>
 			        			<select name="print_side" class="print_book_print_side" id="print_side">
 			        				<option value="" >Select Print Side</option>
@@ -225,8 +226,17 @@
 						</div>
 				</form>
 				</div>
-			</div>
-			<div class="cb">  </div>
+			 </div>	
+			 <!--image-->			  
+			 <div class="fr image_right">
+			 	<div class="container">				
+				   <div>
+				   	<img src="images/print-img.jpg" class="img-responsive" width="300px" height="250px" alt="PlainPrint_images">
+				   </div>
+				</div>   
+			 </div>
+			 <div class="cb">  </div>	
+		  </div> <!--container--->			  
 		</section> <!-- Plain Printing End-->
 
 		<!-- Project Binding Start-->

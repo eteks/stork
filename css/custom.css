@@ -522,7 +522,7 @@ h4.order_or_button{
 }
 .textarea_print{
 	resize: none;
-	width : 74%;
+	width : 100%;
 }
 .page_range_error {
     color: red;
@@ -625,7 +625,7 @@ h4.order_or_button{
 .error_input_field_phone{
     border: 1px solid red !important;	
 }
-/* Popup css added by siva*/
+/* Popup css added by AKila-28th july*/
 .popup_index label {
     color: #000;
     float: left;
@@ -641,35 +641,36 @@ h4.order_or_button{
     padding: 8px 0 !important;
     width: 50%;
 }
-.background_shadow {
+
+#background_shadow{
+    background:#000;
+    opacity:0.6 !important;
     position:absolute;
-    left:0;
     top:0;
-    z-index:9000;
-    background-color:#000;
-    display:none;
+    left:0;
+    z-index:10;
     width: 100%;
 }
-.popup_index {
+
+#popup_index{
+    background:#d7d7d7;
     position:absolute;
-    left:0;
-    top:0;
+    z-index:20;
     width:520px;
     height:200px;
-    display:none;
-    z-index:9999;
-    padding:20px;
-    border-radius: 0;
-    text-align: center;
-    background-color: #d7d7d7;
+    text-align :center;
+    
 }
 .popup_content {
-    margin: 50px 0;
+    margin: 75px 20px;
 }
 .button_holder h3 {
     float: right;
     margin: 2px 0;
 }
+#popup_index .button_holder a {
+ padding: 8px 30px;
+} 
 .style_range {
     background: #ffffff none repeat scroll 0 0;
     border: 1px solid #d7d7d7;
@@ -1088,3 +1089,31 @@ h4.order_or_button{
 div.mcart-info , div.mcart-total {
 	font-size:12px !important;
 }
+/* Home-Offer Zone */
+.offer-zone1{
+	background-color: #0099CC;
+}
+.offer-zone2{
+	background-color: #663300;
+}
+.offer-zone3{
+	background-color: #0FA6BC;
+}
+.offer-zone4{
+	background-color: #990033;
+}
+.offer-zone1 span,.offer-zone2 span,.offer-zone3 span,.offer-zone4 span{
+	font-family:"Book Antiqua";
+	font-size: 20px;
+	color: #fff !important;
+}
+/* Plain Print */
+#fl_width .form_left {
+	width: 800px;
+}
+#fl_width .image_right {
+	width:300px;
+}
+
+
+
