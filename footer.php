@@ -21,7 +21,7 @@
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
-									<span style=" padding-left: 4px !important;"><a> 9655707844, 8344625888</a></span>
+									<span style=" padding-left: 4px !important;"><a> 9655707844, 8428380001</a></span>
 								</li>
 								<li class="footer_icon">
 									<i class="fa fa-envelope-o"></i>
@@ -31,17 +31,17 @@
 							</ul>
 							<ul class="footer-social">
 								<li>
-									<a href="#" title="Facebook">
+									<a href="http:\\www.facebook.com/" title="Facebook">
 										<i class="fa fa-facebook"></i>
 									</a>
 								</li>
 								<li>
-									<a href="#" title="Twiter">
+									<a href="http:\\www.twitter.com/" title="Twiter">
 										<i class="fa fa-twitter"></i>
 									</a>
 								</li>
 								<li>
-									<a href="#" title="Google plus">
+									<a href="http:\\www.googleplus.com/" title="Google plus">
 										<i class="fa fa-google-plus"></i>
 									</a>
 								</li>
@@ -51,59 +51,61 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 corporate footer-col">
 						<h2>Services</h2>
 						<div class="footer-content">
-							<ul>
+							<ul class="services-link">
 								<li>
-									<a title="Plain Printing">Plain Printing</a>
+									<a title="Plain Printing" href="printbooking.php">Plain Printing</a>
 								</li>
 								<li>
-									<a title="Project Printing">Project Printing</a>
+									<a title="Project Printing" href="printbooking.php">Project Printing</a>
 								</li>
 								<li>
-									<a title="Cabin Booking ">Cabin Booking</a>
+									<a title="Cabin Booking" href="cabin_booking.php">Cabin Booking</a>
 								</li>
 								<li>
-									<a  title="Multicolors">Multicolors</a>
+									<a  title="Multicolors" href="printbooking.php">Multicolors</a>
 								</li>
 								<li>
-									<a  title="Multi-color printing">Personalized Products</a>
+									<a  title="Multi-color printing" href="">Personalized Products</a>
 								</li>
 								<li>
-									<a  title="Design Template">Design Template</a>
+									<a  title="Design Template" href="">Design Template</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-4 col-xs-12 support footer-col">
 						<h2>Feedback</h2>
-						<form id="footer" method="post">
-								<div class="footer_container">
- 									<span class="error_test"> Please fill all required(*) fields </span>
-								</div>
-								<div class="footer_container">
- 									<span class="error_email3"> Please Enter Valid email address </span>
-								</div>
-						<div class="footer-content">
-							<ul>
-								<li>
-									<a  title="My Account">Name</a><span class="required">*</span></label>
-									<input type="text" autocomplete="off" id="footer_name" name="feedback_name" value="">
-								</li>
-								<li>
-									<a  title="My Account">Email</a><span class="required">*</span></label>
-									<input type="text" class="forget_email3" id="footer_email" autocomplete="off" name="feedback_email" value="">
-								</li>
-								<li>
-									<a  title="My Account">Message</a><span class="required">*</span></label>
-									<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none" name="feedback_msg"></textarea>
-									<input type="hidden" name="redirect_url" value="<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" />
-								</li>
-								<li>
-									<button type="submit"class="gbtn footer_btn">Submit</button>
-									</form>
-								</li>
-							</ul>
-						</div>
-					</div>					
+						  <div class="footer-content">
+							<form id="footer" method="post">
+									<div class="">
+	 									<span class="error_test"> Please fill all required(*) fields </span>
+									</div>
+									<div class="">
+	 									<span class="error_email3"> Please Enter Valid email address </span>
+									</div>
+									<div class="">
+										<ul>
+											<li>
+												<a  title="My Name">Name</a><span class="required">*</span></label>
+												<input type="text" autocomplete="off" id="footer_name" name="feedback_name" value="">
+											</li>
+											<li>
+												<a  title="My Email Id">Your Email Id</a><span class="required">*</span></label>
+												<input type="text" class="forget_email3" id="footer_email" autocomplete="off" name="feedback_email" value="">
+											</li>
+											<li>
+												<a  title="My Message">Message</a><span class="required">*</span></label>
+												<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none" name="feedback_msg"></textarea>
+												<input type="hidden" name="redirect_url" value="<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" />
+											</li>
+											<li>
+												<button type="submit"class="gbtn footer_btn">Submit</button>
+											</li>
+										</ul>
+									</div>
+						      </form>
+						  </div>    
+					   </div>					
 					<div class="col-md-3 col-xs-12 other-info footer-col hidden-sm">
 						<h2>Other Info</h2>
 						<div class="footer-content">

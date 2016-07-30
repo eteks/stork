@@ -532,10 +532,17 @@
 	#checkout .btn_pay {
 		margin-left: 0px !important;
 	}*/
+	/* Plain Print */
 	.image_right {
 		display:none;
 	}
-        
+	/* Home page -Slider */
+	.tp-simpleresponsive .caption{
+		visibility: visible !important;
+	}
+	.slide-show .tp-caption {
+    	font-size: 10px !important;
+	}
 }
 
 @media (min-width:320px) and (max-width:480px) {
@@ -853,6 +860,20 @@
  	#fl_width .input_holder input[type="text"] {
  		width: 38%;
  	}
+ 	/*footer*/
+ 	/*.footer-content input, .footer-content textarea {
+        width: 78%;
+    }
+    .gbtn {
+	    font-size: 10px;
+	    padding: 0 8px;
+    }
+    .footer_btn {
+   	   margin-left: 110px;
+	}*/
+	.logo-footer img {
+      width: 75%;
+    }
 }
 
 @media (max-width: 360px){

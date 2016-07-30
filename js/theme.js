@@ -166,14 +166,23 @@
 	function mobileFooterSlide() {
 	  var checkWidth = jQuery(window).width();
 	  if(checkWidth < 768) {
-		jQuery(".footer-col h2").on("click", function(){    
-		  //slide up all the link lists
-		  jQuery(".footer-col .footer-content").slideUp(200);
-		  //slide down the link list below the h3 clicked - only if its closed
-		  if(!jQuery(this).next().is(":visible"))
-		  {
-			jQuery(this).next().slideDown();
-		  }
+		jQuery(".footer-col h2").on("click", function(){  
+			Query(".footer-content").removeClass('active');
+			//slide up all the link lists
+			jQuery(".footer-content").slideUp();
+			//slide down the link list below the h3 clicked - only if its closed
+			if(!jQuery(this).next('ul').is(":visible"))
+			{
+			  jQuery(this).next().slideDown();
+			  jQuery(this).addClass('active');
+			}  
+			  //slide up all the link lists
+			  // jQuery(".footer-col .footer-content").slideUp(200);
+			  // //slide down the link list below the h3 clicked - only if its closed
+			  // if(!jQuery(this).next().is(":visible"))
+			  // {
+				// jQuery(this).next().slideDown();
+			  // }
 		});
 	  }
 	}

@@ -565,10 +565,10 @@ if(mysqli_num_rows($review_details)>0){
 </main><!--Main index : End-->
 
 <?php
-}
-else{
-	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	exit();
+ }
+ else{
+	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+	 exit();
 } 
 include('footer.php'); 
 ?>

@@ -1049,7 +1049,7 @@ h4.order_or_button{
 }
 /* CSS */
 .header-page .ct-header {
-    	font-size: 18px;
+    	font-size: 18px !important;
     }
 #project_printing_form textarea {
 	resize: none !important;
@@ -1114,6 +1114,12 @@ div.mcart-info , div.mcart-total {
 #fl_width .image_right {
 	width:300px;
 }
-
-
+/* Footer */
+.services-link a:hover {
+	color: #25bce9;
+}
+.info .fa-home:hover, .info .fa-phone:hover{
+	color: #25bce9;
+	 transform: translateZ(0px);
+} 
 
