@@ -1019,7 +1019,7 @@ function countCabinTransactionDetails()
 							<a href="offer_zones.php"><i class="fa fa-list"></i><span> Offer Zone </span></a>
 						</li> 
 						<li>
-							<a href="add_offer.php"><i class="fa fa-list"></i><span> Create Offer </span></a>
+							<a href="offer.php"><i class="fa fa-list"></i><span> Create Offer </span></a>
 						</li> 
 					</ul>
 				</li>

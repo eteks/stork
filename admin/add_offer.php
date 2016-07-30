@@ -66,7 +66,7 @@ include "includes/header.php";;
 						<h3 class="acc-title lg">Add Offer Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Offer Information</h4>
-							<form action="add_area.php" id="add_area" method="POST" name="edit-acc-info">
+							<form action="add_offer.php" id="add_offer" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
