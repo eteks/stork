@@ -84,7 +84,7 @@ if(mysqli_num_rows($review_details)>0){
 	      						<h3 class="title"><span class="icon fa fa-check"></span>REVIEW ORDER <?php echo $review_count; ?></h3>
 	  							<table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border review_order_checkout">
 									<tbody>
-									    <tr clas="top-header">
+									    <tr class="top-header">
 											<th width="10%" align="left" class="th-price">Print Type</th>
 											<th width="10%" class="th-price">Print side</th>
 											<th width="10%" class="th-tax"><span class="priceColor2">Paper Size</span></th>
@@ -150,13 +150,15 @@ if(mysqli_num_rows($review_details)>0){
 			  	 								</span>
 			  								</td>
 			  								<td align="left" class="quantity">
-			    								<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
+			  									<div class="vm-display">
+			    									<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
+			    								</div>	
 		  									</td>
-		  									<td>
-		  										<span class="comments">
+		  									<td align="left" class="comments">
+		  										<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
-												  		<span class="PricetaxAmount"><?php echo $review_data['order_details_comments']; ?></span>
+												  		<span class="PricetaxAmount"><?php echo $review_data['order_details_comments']; ?> </span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
@@ -169,7 +171,9 @@ if(mysqli_num_rows($review_details)>0){
 												</div>			
 			  								</td>
               								<td align="right" id="subtotal_with_tax_0" colspan="0" class="sub-total td-last">
-              									<span class="line-through check_out_total_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+              									<div class="vm-display">
+              										<span class="line-through check_out_total_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+              									</div>
               								</td>
 		    							</tr>
 		   							</tbody>
@@ -561,10 +565,10 @@ if(mysqli_num_rows($review_details)>0){
 </main><!--Main index : End-->
 
 <?php
-}
-else{
-	die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	exit();
+ }
+ else{
+	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+	 exit();
 } 
 include('footer.php'); 
 ?>

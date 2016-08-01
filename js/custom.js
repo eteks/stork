@@ -783,16 +783,6 @@ $(document).ready(function () {
         return false;
     });
 
-	var id = '#popup_index';
-	var maskHeight = $(document).height();
-	$('#background_shadow').css({'height':maskHeight});
-	$('#background_shadow').fadeTo("slow",0.6);	
-	var winH = $(window).height();
-	var winW = $(window).width();
-	$(id).css('top',  winH/2-$(id).height()/2);
-	$(id).css('left', winW/2-$(id).width()/2);
-	$(id).fadeIn(500); 	
-
 	//  To display binding type dropdown
 
 	$('#radio_yes').click(function() {
@@ -2464,6 +2454,24 @@ $(document).ready(function () {
 		
 		
 	// feedback form data send through ajax
+	
+	//popup-homepage
+	
+	$(function(){
+    $(window).resize(function(){
+	// get the screen height and width  
+	var maskHeight = $(window).height();  
+	var maskWidth = $(window).width();
+	
+	// calculate the values for center alignment
+	var dialogTop =  (maskHeight  - $('#popup_index').height())/2;  
+	var dialogLeft = (maskWidth - $('#popup_index').width())/2; 
+	
+	// assign values to the overlay and dialog box
+	$('#background_shadow').css({ height:$(document).height(), width:$(document).width() }).show();
+	        $('#popup_index').css({ top: dialogTop, left: dialogLeft, position:"fixed"}).show();
+	}).resize();
+	});
 		
 }); // Document ready end
 

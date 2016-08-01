@@ -40,7 +40,8 @@ jQuery(document).ready(function() {
 	var required_paperprinttype =["paperprinttype","amount"];
 	var required_cost_estimation =["amount"];
 	var required_binding_cost_estimation =["amount"];
-	var required_edit_orders =["customername","studentname","shippingaddressline1","shippingcity","totalitems","test","phone"];
+	var required_edit_orders =["customername","studentname","shippingaddressline1","shippingcity","totalitems","test","phone"];	
+	var required_edit_orders_student =["order_student","order_student_year","order_shipping_department"];
 	var required_edit_order_details =["orderid","pages","colorprintpage","comments","amount"];
 	var required_edit_track_order =["dateofdelivered"];
 	var required_project_printing_cost =["amount"];
@@ -1388,6 +1389,27 @@ jQuery("#edit_orders").submit(function(){
 				input.removeClass("error_input_field");
 				$('.error_test').css('display','none'); }
 			}
+		//newly added by kalai on 28/07/16 for student field validation
+		if($('#order_student').length){
+			for(var i = 0 ; i<required_edit_orders_student.length;i++ ){
+				var input_student = jQuery('#'+required_edit_orders_student[i]);		
+				if ((input_student.val() == "")) 
+				{
+					input_student.addClass("error_input_field");
+					$('.error_test').css('display','block');
+				} else {
+					input_student.removeClass("error_input_field");
+					$('.error_test').css('display','none'); }
+			}
+			if (document.getElementById('order_shipping_college').selectedIndex < 1)
+			{
+				$('#order_shipping_college').addClass('error_input_field');
+				$('.error_test').css('display','block');
+			}
+			else { $('#order_shipping_college').removeClass('error_input_field');
+				$('.error_test').css('display','none');  
+			}
+		}
 			
 	//  select field
 	 var mobile=$('#phone').val().length;
