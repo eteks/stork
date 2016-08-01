@@ -933,8 +933,8 @@ $(document).ready(function () {
   		  	var input_file = path_section_clone.children('#upload_section'+cloneIndex).find('.uploadbutton');
 		  	input_file.attr("id","uploadTrigger"+cloneIndex);
 	  	  	var input_file = path_section_clone.children('#upload_section'+cloneIndex).find('.file_name_box');
-		  	input_file.val("No file selected")
-	  		input_file.attr("id","file_name_box"+cloneIndex)
+		  	input_file.val("No file selected");
+	  		input_file.attr("id","file_name_box"+cloneIndex);
 	  		input_file.data("filevalue",cloneIndex);
 
 	  		//  Paper_range field clon section
@@ -949,8 +949,8 @@ $(document).ready(function () {
 			 	input_file.val("0-0");
 			   	input_file.attr("id","print_page_range"+ cloneIndex);
 			   	var input_file = path_file_section_clone.children('#display_paper_range'+cloneIndex).find('.display_normal_file');
-			  	input_file.val("No file selected")
-			  	input_file.attr("id","normal_file"+cloneIndex)
+			  	input_file.val("No file selected");
+			  	input_file.attr("id","normal_file"+cloneIndex);
 			  	input_file.data("filevalue",cloneIndex);
 	  		}
 	  	cloneIndex++;
@@ -1040,7 +1040,8 @@ $(document).ready(function () {
 
 		}
 		else{
-			var uploaded_file_name=$(this).val();
+			
+			var uploaded_file_name=this.files[0].name;
 			var file_name_box_id = $(this).prev('.file_name_box').attr('id');
 			var file_name_box = jQuery('#'+file_name_box_id);
 			var data_file_name = file_name_box.data('filevalue');
@@ -1638,7 +1639,7 @@ $(document).ready(function () {
 
 	// Cover file name
 	$('#cover_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
+		var project_file_name = this.files[0].name;
 		if(project_file_name == '') {
 			$(this).prev().val('No file selected');
 			$('#cover_range').next().val('No file selected');
@@ -1656,7 +1657,7 @@ $(document).ready(function () {
 	// Index file name
 
 	$('#index_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
+		var project_file_name = this.files[0].name;
 		if(project_file_name == '') {
 			// $(this).prev().val('No file selected');
 			// $('#index_range').next().val('No file selected');
@@ -1680,7 +1681,7 @@ $(document).ready(function () {
 	// Reference file name
 
 	$('#refer_uplopadfile').on('change',function() {
-		var project_file_name = $(this).val();
+		var project_file_name = this.files[0].name;
 		if(project_file_name == '') {
 			// $(this).prev().val('No file selected');
 			// $('#refer_range').next().val('No file selected');
@@ -1744,8 +1745,8 @@ $(document).ready(function () {
 		  	project_input_file.attr("id","cotent_browse_button" + project_cloneIndex);
 
 	  	  	var project_input_file = project_path_section_clone.children('#upload_content_section' + project_cloneIndex).find('.project_file_holder');
-		  	project_input_file.val("No file selected")
-	  		project_input_file.attr("id","project_file_holder" + project_cloneIndex)
+		  	project_input_file.val("No file selected");
+	  		project_input_file.attr("id","project_file_holder" + project_cloneIndex);
 	  		project_input_file.data("projectfilevalue",project_cloneIndex);
 
 
@@ -1763,8 +1764,8 @@ $(document).ready(function () {
 		 	project_input_file.attr("id","content_range"+ project_cloneIndex);
 
 		   	var project_input_file = project_range_section_clone.children('#project_content_range_section'+project_cloneIndex).find('.content_file_name_range');
-		  	project_input_file.val("No file selected")
-		  	project_input_file.attr("id","content_file_name_range"+project_cloneIndex)
+		  	project_input_file.val("No file selected");
+		  	project_input_file.attr("id","content_file_name_range"+project_cloneIndex);
 		  	project_input_file.data("projectfilevalue",project_cloneIndex);
 	  	project_cloneIndex++;
 	}
@@ -1805,7 +1806,7 @@ $(document).ready(function () {
 			});
 		}
 		else{
-			var uploaded_file_name=$(this).val();
+			var uploaded_file_name=this.files[0].name;
 			var file_name_box_id = $(this).prev('.project_file_holder').attr('id');
 			var file_name_box = jQuery('#'+file_name_box_id);
 			var data_file_name = file_name_box.data('projectfilevalue');
