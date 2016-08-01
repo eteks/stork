@@ -31,6 +31,7 @@ jQuery(document).ready(function() {
 	// var required_edit_users =["username","password","firstname","test","dob","address","phone"];
 	// var required_myform =["areaname","deliverycharge"];
 	var admin_login=["admin_username","admin_password"];
+	var required_add_offer_new =["offertitle","offercode","offeramount","eligibleamtforoffer","no_of_limitation","startdate","enddate"];
 	var required_state =["statename"];
 	var required_city =["cityname"];
 	var required_college =["collegename"];
@@ -446,7 +447,106 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
+	jQuery("#add_offer").submit(function(){ 
+		for(var i = 0 ; i<required_add_offer_new.length;i++ ){
+			var input = jQuery('#'+required_add_offer_new[i]);
+	
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); }
 
+			}
+	//  select field
+
+	if (document.getElementById('off_a').selectedIndex < 1)
+		{
+			$('#off_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');}
+		
+		if (document.getElementById('off_b').selectedIndex < 1)
+		{
+			$('#off_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('off_c').selectedIndex < 1)
+		{
+			$('#off_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_c').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
+jQuery("#edit_offer").submit(function(){ 
+		for(var i = 0 ; i<required_add_offer_new.length;i++ ){
+			var input = jQuery('#'+required_add_offer_new[i]);
+	
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none'); 
+			}
+
+			}
+	//  select field
+
+	if (document.getElementById('off_a').selectedIndex < 1)
+		{
+			$('#off_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_a').removeClass('error_input_field'); 
+		$('.error_test').css('display','none');
+	}
+		
+		if (document.getElementById('off_b').selectedIndex < 1)
+		{
+			$('#off_b').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_b').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		if (document.getElementById('off_c').selectedIndex < 1)
+		{
+			$('#off_c').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#off_c').removeClass('error_input_field');
+		$('.error_test').css('display','none'); }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
 	
 	jQuery(".state_act").on('change',function () {
 		// alert('success');

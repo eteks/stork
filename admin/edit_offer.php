@@ -99,7 +99,7 @@ include "includes/header.php";
 								<?php } ?>
 								<div class="form-group">
 								    <label for="first-name">Select Offer Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="offer_type">
+									<select class="product-type-filter form-control" id="off_a" name="offer_type">
 								        <option value="">
 											<span>Select Offer Type</span>
 										</option>
@@ -115,21 +115,21 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Offer Title<span class="required">*</span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Title" name="offer_title" value="<?php echo $row['offer_title']?>">
+									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Title" id="offertitle" name="offer_title" value="<?php echo $row['offer_title']?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Offer Code<span class="required">*</span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Code Ex:GEN123" name="offer_code" value="<?php echo $row['offer_code']?>">
+									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Code Ex:GEN123" id="offercode" name="offer_code" value="<?php echo $row['offer_code']?>">
 								</div>
 								<div class="form-group schedule_block">
 								    <label for="last-name">Offer Validity<span class="required">*</span></label>
-									<input type="text" class="form-control date_picker" autocomplete="off" placeholder="Start Date" name="offer_start_validity" value="<?php $startdate=strtotime($row['offer_validity_start_date']); $startdate = date('d/m/Y', $startdate); echo $startdate;?>">
-									<input type="text" class="form-control date_picker" autocomplete="off" placeholder="End Date" name="offer_end_validity" value="<?php $enddate=strtotime($row['offer_validity_end_date']); $enddate = date('d/m/Y', $enddate); echo $enddate;?>">
+									<input type="text" class="form-control date_picker" autocomplete="off" placeholder="Start Date" id="startdate" name="offer_start_validity" value="<?php $startdate=strtotime($row['offer_validity_start_date']); $startdate = date('d/m/Y', $startdate); echo $startdate;?>">
+									<input type="text" class="form-control date_picker" autocomplete="off" placeholder="End Date" id="enddate" name="offer_end_validity" value="<?php $enddate=strtotime($row['offer_validity_end_date']); $enddate = date('d/m/Y', $enddate); echo $enddate;?>">
 									<div class="clear_both"></div>		
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Select Offer Amount Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" name="offer_amount_type">
+									<select class="product-type-filter form-control" id="off_b"  name="offer_amount_type">
 								        <option value="">
 											<span>Select Offer Amount Type</span>
 										</option>
@@ -145,19 +145,19 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Offer Amount<span class="required">*</span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Amount" name="offer_amount" value="<?php echo $row['offer_amount']?>">
+									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Amount" id="offeramount" name="offer_amount" value="<?php echo $row['offer_amount']?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Eligible Amt for Offer<span class="required">*</span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="Eligible Amt for Offer" name="offer_eligible_amount" value="<?php echo $row['offer_eligible_amount']?>">
+									<input type="text" class="form-control" autocomplete="off" placeholder="Eligible Amt for Offer" id="eligibleamtforoffer" name="offer_eligible_amount" value="<?php echo $row['offer_eligible_amount']?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">No. Of Limitation used the Offer<span class="required">*</span></label>
-									<input type="text" class="form-control" autocomplete="off" placeholder="No. Of Limitation" name="offer_limitation" value="<?php echo $row['offer_usage_limit']?>">
+									<input type="text" class="form-control" autocomplete="off" placeholder="No. Of Limitation" id="no_of_limitation" name="offer_limitation" value="<?php echo $row['offer_usage_limit']?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Offer Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="" name="offer_status">
+									<select class="product-type-filter form-control" id="off_c"name="offer_status">
 								        <option value="">
 								        	<span>Select Status</span>
 										</option>
