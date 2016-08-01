@@ -91,7 +91,7 @@
 									$city = mysqli_query($connection, $city_query);
 									while($row = mysqli_fetch_array($city,MYSQLI_ASSOC)){
 										if(strtolower($row['city_name']) == 'puducherry'){
-											echo "<option value selected ='".$row['city_id']."'>".$row['city_name']."</option>";
+											echo "<option value  ='".$row['city_id']."' selected>".$row['city_name']."</option>";
 										}
 										// else{
 											// echo "<option value ='".$row['city_id']."'>".$row['city_name']."</option>";

@@ -187,16 +187,9 @@ if(mysqli_num_rows($review_details)>0){
 	    			$review_count++;
 	    			}
 	    			?>
-	    			
-	    			
-	   			</div><!---Order-box---> 
+	        	</div><!---Order-box---> 
 	   			<div class="clearfix"> </div>
-	   
-	   
-	   
-	   
-	   
-	   <br> 
+       <br> 
 	   <?php
 		$allareaquery = "select * from stork_area order by area_name asc";
 		$allareadata = mysqli_query($connection, $allareaquery);
@@ -500,6 +493,56 @@ if(mysqli_num_rows($review_details)>0){
 		    </div>
 		  </div>   
 	   </div> <!---Cost details---->
+	   <!--Order Enquiry--->
+	    <div class="cart-view-top">
+		 <div class="col-md-6 col-sm-6 col-xs-12">
+			<h1>Offer Zone</h1>
+		 </div>
+		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+             <p>Please enter your offer code below.</p>
+         </div>
+         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+          <div  class="col-md-12 col-sm-12 col-xs-12" >
+           <!-- render layout -->
+           <fieldset class="round-box" id="cart-contents">
+           	<h3 class="title"><span class="icon fa fa-check"></span>Exciting offer </h3>
+           </fieldset> 
+           <div class="input_holder row pad_15">
+           	  <p>Enter Offer Code</p>
+           	  <div class="offer_input">
+           	    <input type="text" class="" max-length="10" style="width:25%;" />
+           	  </div>  
+           	  <div class="button_holder offer_submit">
+           	  	<h4 class="btn_prf">
+           	  		<a href="#">Submit</a>
+           	  	</h4>
+           	  </div>
+           	  <div class="cb"> </div>
+           </div>
+           <hr> </hr>	  
+          </div>
+		 </div>   
+	   </div> <!---Order Enquiry--->
+	   <!--Offer Zone--->
+	    <div class="cart-view-top">
+		 <div class="col-md-6 col-sm-6 col-xs-12">
+			<h1>Any Queries ?</h1>
+		 </div>
+		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+             <p>For order enquiry please call below numbers</p>
+         </div>
+         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+          <div  class="col-md-12 col-sm-12 col-xs-12" >
+           <!-- render layout -->
+           <fieldset class="round-box" id="cart-contents">
+           	<h3 class="title"><span class="icon fa fa-phone"></span>8682070004, 7448860003</h3>
+           </fieldset> 
+         </div>
+         <hr> </hr>
+         </br></br>  
+	    </div>
+	  </div> <!--Enquiry call-->  
+	  
 	   <!---button holder------>
 	   <?php
 	   if($_SESSION['login_status']==0){
