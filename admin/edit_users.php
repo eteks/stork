@@ -25,9 +25,9 @@ include "includes/header.php";
 			// echo $_POST["user_area_id"]."<br>";
 			// echo $_POST["user_city_id"]."<br>";
 			// echo $_POST["user_state_id"]."<br>";
-			$user_area_id = $_POST["user_area_id"] != '' ? $_POST["user_area_id"] : "NULL";
-			$user_city_id = $_POST["user_city_id"] != '' ? $_POST["user_city_id"] : "NULL";
-			$user_state_id = $_POST["user_state_id"] != '' ? $_POST["user_state_id"] : "NULL";
+			$user_area_id = $_POST["user_area_id"] != '' ? $_POST["user_area_id"] : "null";
+			$user_city_id = $_POST["user_city_id"] != '' ? $_POST["user_city_id"] : "null";
+			$user_state_id = $_POST["user_state_id"] != '' ? $_POST["user_state_id"] : "null";
 			$user_mobile = $_POST["user_mobile"];
 			$user_status = $_POST["user_status"];
 			$qr = mysqlQuery("SELECT * FROM `stork_users` WHERE `username`='$username' AND `user_email`='$user_email' AND user_id NOT IN('$val')");
@@ -35,14 +35,10 @@ include "includes/header.php";
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> User Already exists! </span></div>";	
 			} else {
-				echo "UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
-					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
-					user_area_id='$user_area_id',
-					user_city_id='$user_city_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val;
 				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
 					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
-					user_area_id='$user_area_id',
-					user_city_id='$user_city_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
+					user_area_id=$user_area_id,
+					user_city_id=$user_city_id,user_state_id=$user_state_id,user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> User Updated Successfully! </span></div>";	
 			}
 					

@@ -29,7 +29,7 @@ include "includes/header.php";
 			$offer_limitation = $_POST["offer_limitation"];
 			$offer_status = $_POST["offer_status"];
 	
-			$qr = mysqlQuery("SELECT * FROM stork_offer_details WHERE offer_code='$offer_code' OR offer_title='$offer_title' AND offer_id NOT IN('$val')");
+			$qr = mysqlQuery("SELECT * FROM stork_offer_details WHERE offer_id NOT IN('$val') AND (offer_code='$offer_code' OR offer_title='$offer_title')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Offer Already exists! </span></div>";
