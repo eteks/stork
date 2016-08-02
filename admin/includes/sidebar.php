@@ -996,7 +996,7 @@ function countCabinTransactionDetails()
 				</li>
 
 					<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer.php" || basename($_SERVER['PHP_SELF'])=="add_offer.php" || basename($_SERVER['PHP_SELF'])=="edit_offer.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer.php" || basename($_SERVER['PHP_SELF'])=="add_offer.php" || basename($_SERVER['PHP_SELF'])=="edit_offer.php" || basename($_SERVER['PHP_SELF'])=="customer_offer.php")
 					{ 
 						?> 
 						<li class="has_submenu open test">
@@ -1021,6 +1021,9 @@ function countCabinTransactionDetails()
 						<li>
 							<a href="offer.php"><i class="fa fa-list"></i><span> Offer Details </span></a>
 						</li> 
+						<li>
+							<a href="customer_offer.php"><i class="fa fa-list"></i><span> Customer Offer </span></a>
+						</li>
 					</ul>
 				</li>
 				<!-- <li>

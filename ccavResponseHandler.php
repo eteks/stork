@@ -62,6 +62,16 @@ require 'dbconnect.php';
 		if($i==38)	$response_code=$information[1];
 		
 	}
+
+	if($merchant_param5!='') {
+		$user_id_order_email_query = mysqli_query($connection,"select * from stork_users where user_id='".$merchant_param5."'");
+		$user_id_order_email_array = mysqli_fetch_array($user_id_order_email_query);
+		$user_email_offer = $user_id_order_email_query['user_email'];
+	}
+	else {
+		$user_email_offer = $billing_email;
+	}
+
 	if($order_status==="Success")
 	{
 		$order_id_split = explode('_', $order_id);
@@ -78,6 +88,7 @@ require 'dbconnect.php';
 			header('location:orderconfirm.php?cabin=trur&order_id='.$order_details_orderid);
 			
 		}else{
+
 			$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$merchant_param5."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 			mysqli_query($connection,$trans_success_query);
 			$transactionid = mysqli_insert_id($connection);
@@ -108,8 +119,8 @@ require 'dbconnect.php';
 			$delivery_split_cal = explode(' ', $delivery_date_cal);	
 			$final_delivery_date = date("Y-m-d", strtotime($delivery_split_cal[0]));
 			$final_delivery_time = date("h:i A", strtotime($delivery_split_cal[1].' '.$delivery_split_cal[2]));
-			$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_delivery_time,order_status) 
-															values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','1')";
+			$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_delivery_time,order_customer_email,order_total_amount,order_status) 
+															values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','".$user_email_offer."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);
 			$order_details_orderid = mysqli_insert_id($connection);
 			mysqli_query($connection,"update stork_order_details set order_id ='".$order_details_orderid."' where order_details_session_id='".$order_id."'");

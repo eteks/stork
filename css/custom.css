@@ -1155,3 +1155,24 @@ div.mcart-info , div.mcart-total {
     display: block;
 }
 
+/* Added by siva */
+
+.pop_up_error_city {
+    color: red;
+}
+::-webkit-input-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important; 
+}
+:-moz-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}
+::-moz-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}
+:-ms-input-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}
