@@ -80,7 +80,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
-if(mysqli_num_rows($review_details)>0){
+// if(mysqli_num_rows($review_details)>0){
 ?>
 
 
@@ -506,23 +506,7 @@ if(mysqli_num_rows($review_details)>0){
            <h3 class="title"><span class="icon fa fa-check"></span>Estimated Cost</h3>
            
 
-           <form method="post">
-           <input type="text" name="offer_code">
-           <button type="submit" name="offer_submit"> Go </button>
-            <?php if($offer_status==1) {
-            ?>
-           		<span class="offfer_status"> Eligible amount is less than offer amount </span>
-            <?php } else if($offer_status==2) {
-            ?>
-           		<span class="offfer_status"> Offer code expired </span>
-           	<?php } else if($offer_status==3) {
-            ?>
-           		<span class="offfer_status"> Enter valid offer code </span>
-           	<?php }
-           	?>
-           <input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
-           <input type="hidden" value=<?php echo $delivery_amount; ?> name="delivery_amount_offer" />
-           </form>
+     
 
 
 
@@ -567,7 +551,7 @@ if(mysqli_num_rows($review_details)>0){
 		  </div>   
 	   </div> <!---Cost details-->
 	   <!---button holder-->
-	   <!--Order Enquiry--->
+	   <!--Order Enquiry-->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Offer Zone</h1>
@@ -581,18 +565,37 @@ if(mysqli_num_rows($review_details)>0){
            <fieldset class="round-box" id="cart-contents">
            	<h3 class="title"><span class="icon fa fa-check"></span>Exciting offer </h3>
            </fieldset> 
-           <div class="input_holder row pad_15">
-           	  <p>Enter Offer Code</p>
-           	  <div class="offer_input">
-           	    <input type="text" class="" max-length="10" style="width:25%;" />
-           	  </div>  
-           	  <div class="button_holder offer_submit">
-           	  	<h4 class="btn_prf">
-           	  		<a href="#">Submit</a>
-           	  	</h4>
-           	  </div>
-           	  <div class="cb"> </div>
-           </div>
+           
+
+           	<form method="post">
+	            <div class="input_holder row pad_15">
+	           		<p>Enter Offer Code</p>
+	           		<div class="offer_input">
+	           			<input type="text" class="" max-length="10" style="width:25%;" name="offer_code" />
+	           			<?php if($offer_status==1) {
+            			?>
+           					<span class="offfer_status"> Eligible amount is less than offer amount </span>
+            			<?php } else if($offer_status==2) {
+            			?>
+           					<span class="offfer_status"> Offer code expired </span>
+           				<?php } else if($offer_status==3) {
+            			?>
+           					<span class="offfer_status"> Enter valid offer code </span>
+           				<?php }
+           				?>
+	           		</div>  
+	           		<div class="button_holder offer_submit">
+	           			<h4 class="btn_prf">
+	           	  			<button type="submit" name="offer_submit">Submit</button>
+	           	  		</h4>
+	           	  	</div>
+	           	  	<input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
+           			<input type="hidden" value=<?php echo $delivery_amount; ?> name="delivery_amount_offer" />
+	           	 	<div class="cb"> </div>
+	            </div>
+	        </form>
+
+
            <hr> </hr>	  
           </div>
 		 </div>   
@@ -682,11 +685,11 @@ if(mysqli_num_rows($review_details)>0){
 </main><!--Main index : End-->
 
 <?php
-}
- else{
-	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	 exit();
-} 
+// }
+//  else{
+// 	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+// 	 exit();
+// } 
 include('footer.php'); 
 ?>
 <script>
