@@ -1124,6 +1124,19 @@ div.mcart-info , div.mcart-total {
 	 transform: translateZ(0px);
 } 
 /* checkout offer zone */
+.cart-summary .no-border .offer_field{
+	margin:20px;
+	border-bottom: none !important;
+}
+.offer_field td {
+	margin: 15px;
+}
+.pad_10 {
+	padding: 10px;
+}
+.offer_field .button_holder{
+	margin-left: 10px !important;
+}
 .offer_submit .btn_prf {
     float: left;
     margin: 10px 0;

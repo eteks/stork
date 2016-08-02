@@ -512,6 +512,15 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 
 	       <table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
 		     <tbody>
+		        <tr class="fl offer_field"> 
+		        	<td class="pad_10">Do you have offer code?</td>
+  					<td class="pad_10"><input type="text" class="" name="offercode" style="padding:5px;"> </td>
+  					<td class="button_holder offer_submit">
+           	  						<h4 class="btn_prf">
+           	  							<a href="#">Apply</a>
+           	  						</h4>
+           	        </td>
+  			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
 			       <table>                             
@@ -551,6 +560,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 		  </div>   
 	   </div> <!---Cost details-->
 	   <!---button holder-->
+
 	   <!--Order Enquiry-->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
