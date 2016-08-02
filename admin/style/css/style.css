@@ -1542,10 +1542,10 @@ text-align: center;
 .copy-right, .dev_partner, .dev_partner a {
    color: #999999 !important;
 }
-.copy-right:hover {
+/*.copy-right:hover {
    color: #25bce9 !important;
    cursor: text;
-}
+}*/
 .dev_partner a:hover {
    color: #25bce9 !important;
    cursor: pointer;
