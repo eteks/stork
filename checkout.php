@@ -25,6 +25,54 @@ if($_SESSION['login_status']==1){
 	exit();
 }
 
+if(isset($_POST['offer_submit'])) {
+  		$offer_code=$_POST['offer_code'];
+  		$total_amount_offer=$_POST['total_amount_offer'];
+  		$user_id = $_SESSION['user_id'];
+  		$delivery_amount_offer=$_POST['delivery_amount_offer'];
+  		$registered_users_query= mysqli_query($connection,"select * from stork_offer_provide_registered_users as ru inner join stork_offer_details as sd on ru.offer_id = sd.offer_id and sd.offer_code='$offer_code' where ru.user_id='$user_id' and ru.is_limit_status!=0 and ru.is_validity!=0") or die(mysql_error("offer select query error"));
+  		$registered_users_array=mysqli_fetch_array($registered_users_query);
+		if($registered_users_array > 0) {
+			$today_date=date('y-m-d');
+  			$offer_end_date=date('y-m-d',strtotime($registered_users_array['offer_validity_end_date']));
+
+			if($today_date <= $offer_end_date) {
+				$offer_amount = $registered_users_array['offer_eligible_amount'];
+  				if($total_amount_offer >= $offer_amount) {
+  					$sub_total_amount=$offer_amount-$total_amount_offer;
+  					$total_amount = $delivery_amount_offer + $sub_total_amount;
+		  			$offer_usage_limit=$registered_users_array['offer_usage_limit'];
+		  			$limit_used = $registered_users_array['limit_used'];
+		  			if($limit_used <= $offer_usage_limit) {
+
+		  				$limit_used = $limit_used+1;
+		  				mysqli_query($connection,"update stork_offer_provide_registered_users set limit_used='$limit_used' where user_id='$user_id' and is_limit_status=1") or die(mysql_error('limit used update query error'));
+		  			}
+		  			else {
+		  				mysqli_query($connection,"update stork_offer_provide_registered_users set limit_used='$limit_used' where is_limit_status=0") or die(mysql_error('limit status update query error'));
+		  			}
+ 
+	  			}
+  				else {
+  					$offer_status=1;
+  				}
+	  		}
+	  		else {
+	  			$offer_status=2;
+	  		}
+  		}
+	  	else {
+	  		$offer_status=3;
+	  	}
+
+  		// mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
+}
+
+
+
+
+
+
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
 									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
@@ -32,8 +80,10 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
-if(mysqli_num_rows($review_details)>0){
+// if(mysqli_num_rows($review_details)>0){
 ?>
+
+
 
 <main class="main" id="checkout">
 	<section class="header-page">
@@ -55,7 +105,7 @@ if(mysqli_num_rows($review_details)>0){
 				</div>
 			</div>
 		</div>
-	</section> <!---breadcrumb------><!---section3--->
+	</section> <!---breadcrumb--><!---section3-->
   	<div class="">	
 		<section id="checkout" class="pr-main">
 	 		<div class="container">
@@ -76,7 +126,7 @@ if(mysqli_num_rows($review_details)>0){
 	  				while($review_data = mysqli_fetch_array($review_details, MYSQLI_ASSOC)){
 	  					
 	  				?>
-	   				<!---order detail 1 starts--->			
+	   				<!---order detail 1 starts-->			
 	   				<div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
 	     				<div  class="col-md-12 col-sm-12 col-xs-12" >
 	      					<!-- render layout -->
@@ -180,23 +230,17 @@ if(mysqli_num_rows($review_details)>0){
 	      						</table>
         					</fieldset>
       					</div>
-	     			</div> <!---order 1--->  
+	     			</div> <!---order 1-->  
 	    			<!-- end of order details -->
 	    			<?php
 	    			$checkout_total_amount += $review_data['order_details_total_amount'];
 	    			$review_count++;
 	    			}
 	    			?>
-	    			
-	    			
-	   			</div><!---Order-box---> 
+    			
+	   			</div><!---Order-box--> 
 	   			<div class="clearfix"> </div>
-	   
-	   
-	   
-	   
-	   
-	   <br> 
+       <br> 
 	   <?php
 		$allareaquery = "select * from stork_area order by area_name asc";
 		$allareadata = mysqli_query($connection, $allareaquery);
@@ -239,8 +283,8 @@ if(mysqli_num_rows($review_details)>0){
 	   </div>
 	   </hr>	
 	
-       <div class=""> <!---Shipping details----> 
-       	 <!---shipping detail1 starts--->
+       <div class=""> <!---Shipping details--> 
+       	 <!--shipping detail1 starts-->
   		 <div  class="col-md-6 col-sm-6 col-xs-12">
 		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box no_pad">
@@ -354,7 +398,7 @@ if(mysqli_num_rows($review_details)>0){
 		?>
 		
          
-         <!---shipping detail2 starts--->
+         <!---shipping detail2 starts-->
          <div  class="col-md-6 col-sm-6 col-xs-12 fl">
 		   <div id="div_billto" class="checkout_address">
 			 <div class="pane round-box no_pad">
@@ -442,12 +486,12 @@ if(mysqli_num_rows($review_details)>0){
          <?php	
 		}
        	?>
-      </div> <!---shipping details --->
+      </div> <!---shipping details -->
       <?php
 	   }
 	   ?>
       <div class="clearfix"> </div>
-      <!--cost details---->
+      <!--cost details-->
       <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Costing Details</h1>
@@ -460,8 +504,23 @@ if(mysqli_num_rows($review_details)>0){
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
            <h3 class="title"><span class="icon fa fa-check"></span>Estimated Cost</h3>
+           
+
+     
+
+
+
 	       <table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
 		     <tbody>
+		        <tr class="fl offer_field"> 
+		        	<td class="pad_10">Do you have offer code?</td>
+  					<td class="pad_10"><input type="text" class="" name="offercode" style="padding:5px;"> </td>
+  					<td class="button_holder offer_submit">
+           	  						<h4 class="btn_prf">
+           	  							<a href="#">Apply</a>
+           	  						</h4>
+           	        </td>
+  			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
 			       <table>                             
@@ -489,7 +548,7 @@ if(mysqli_num_rows($review_details)>0){
 						<tr class="last">
 							<td>Total:</td>
 							<td class="pr-right"><strong id="bill_total" class="final_visible_amount_checkout_page"><b>&#8377;</b> <?php echo $total_amount + $delivery_amount; ?></strong></td>
-						</tr>
+							</tr>
 					  </tbody>
 			        </table>
 			       </td>
@@ -499,8 +558,80 @@ if(mysqli_num_rows($review_details)>0){
 		      </fieldset> 
 		    </div>
 		  </div>   
-	   </div> <!---Cost details---->
-	   <!---button holder------>
+	   </div> <!---Cost details-->
+	   <!---button holder-->
+
+	   <!--Order Enquiry-->
+	    <div class="cart-view-top">
+		 <div class="col-md-6 col-sm-6 col-xs-12">
+			<h1>Offer Zone</h1>
+		 </div>
+		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+             <p>Please enter your offer code below.</p>
+         </div>
+         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+          <div  class="col-md-12 col-sm-12 col-xs-12" >
+           <!-- render layout -->
+           <fieldset class="round-box" id="cart-contents">
+           	<h3 class="title"><span class="icon fa fa-check"></span>Exciting offer </h3>
+           </fieldset> 
+           
+
+           	<form method="post">
+	            <div class="input_holder row pad_15">
+	           		<p>Enter Offer Code</p>
+	           		<div class="offer_input">
+	           			<input type="text" class="" max-length="10" style="width:25%;" name="offer_code" />
+	           			<?php if($offer_status==1) {
+            			?>
+           					<span class="offfer_status"> Eligible amount is less than offer amount </span>
+            			<?php } else if($offer_status==2) {
+            			?>
+           					<span class="offfer_status"> Offer code expired </span>
+           				<?php } else if($offer_status==3) {
+            			?>
+           					<span class="offfer_status"> Enter valid offer code </span>
+           				<?php }
+           				?>
+	           		</div>  
+	           		<div class="button_holder offer_submit">
+	           			<h4 class="btn_prf">
+	           	  			<a href="#" class="offer_anger">Submit</a>
+	           	  			<button type="submit" name="offer_submit" class="offer_code_submit"></button>
+	           	  		</h4>
+	           	  	</div>
+	           	  	<input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
+           			<input type="hidden" value=<?php echo $delivery_amount; ?> name="delivery_amount_offer" />
+	           	 	<div class="cb"> </div>
+	            </div>
+	        </form>
+
+
+           <hr> </hr>	  
+          </div>
+		 </div>   
+	   </div> <!---Order Enquiry-->
+	   <!--Offer Zone-->
+	    <div class="cart-view-top">
+		 <div class="col-md-6 col-sm-6 col-xs-12">
+			<h1>Any Queries ?</h1>
+		 </div>
+		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+             <p>For order enquiry please call below numbers</p>
+         </div>
+         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+          <div  class="col-md-12 col-sm-12 col-xs-12" >
+           <!-- render layout -->
+           <fieldset class="round-box" id="cart-contents">
+           	<h3 class="title"><span class="icon fa fa-phone"></span>8682070004, 7448860003</h3>
+           </fieldset> 
+         </div>
+         <hr> </hr>
+         </br></br>  
+	    </div>
+	  </div> <!--Enquiry call-->  
+	  
+	   <!---button holder-->
 	   <?php
 	   if($_SESSION['login_status']==0){
 	   	?>
@@ -557,19 +688,19 @@ if(mysqli_num_rows($review_details)>0){
 				<h4 class="btn_prf check_out_clear_btn"><a>Clear</a></h4>
 			</form>
 	   </div>		
-  </div> <!--onepage--->
-  </div> <!--container---->
+  </div> <!--onepage-->
+  </div> <!--container-->
  </section>
 </div>
 
 </main><!--Main index : End-->
 
 <?php
- }
- else{
-	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	 exit();
-} 
+// }
+//  else{
+// 	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+// 	 exit();
+// } 
 include('footer.php'); 
 ?>
 <script>

@@ -200,7 +200,7 @@ h3, .h3{
 	color: #ffffff; 
 }
 
-..button1{ width: 10% !important;}
+.button1{ width: 10% !important;}
 
 .con_details>h3{
 	color: #ffffff;
@@ -1074,7 +1074,7 @@ h4.order_or_button{
 	text-align: right;
 }
 #upload_section input{
-	width: 100% !important;
+	width: 100%;
 }
 .quantity input {
     	text-align: center;
@@ -1114,6 +1114,7 @@ div.mcart-info , div.mcart-total {
 #fl_width .image_right {
 	width:300px;
 }
+
 /* Footer */
 .services-link a:hover {
 	color: #25bce9;
@@ -1122,4 +1123,50 @@ div.mcart-info , div.mcart-total {
 	color: #25bce9;
 	 transform: translateZ(0px);
 } 
+/* checkout offer zone */
+.cart-summary .no-border .offer_field{
+	margin:20px;
+	border-bottom: none !important;
+}
+.offer_field td {
+	margin: 15px;
+}
+.pad_10 {
+	padding: 10px;
+}
+.offer_field .button_holder{
+	margin-left: 10px !important;
+}
+.offer_submit .btn_prf {
+    float: left;
+    margin: 10px 0;
+}
 
+
+/* Offer code css added by siva */
+.offfer_status {
+    color: red;
+    display: block;
+}
+
+/* Added by siva */
+
+.pop_up_error_city {
+    color: red;
+}
+::-webkit-input-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important; 
+}
+:-moz-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}
+::-moz-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}
+:-ms-input-placeholder { 
+    color : #7E7E7E !important; 
+    opacity: 1 !important;
+}

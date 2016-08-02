@@ -29,11 +29,63 @@ if($_SESSION['login_status'] == 1){
   		}
   		else { 
   			mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
-			$success_message = 2;
+
+  			// offer details
+  			$offer_user_query = mysqli_query($connection,"select * from stork_users where username='$username' and user_status='1'") or die(mysql_error('User select query error'));
+  			$offer_user_array = mysqli_fetch_array($offer_user_query);
+  			$user_id=$offer_user_array['user_id'];
+  			$offer_query = mysqli_query($connection,"select * from stork_offer_details where offer_type='general_offer' and offer_status='1'") or die(mysql_error('offer select query error'));
+  			$offer_array=mysqli_fetch_array($offer_query);
+  			if($offer_array > 0) {
+  				$today_date=date('y-m-d');
+  				$offer_end_date=date('y-m-d',strtotime($offer_array['offer_validity_end_date']));
+				$expire_date = date('d-M-y',strtotime($offer_end_date));
+  				if($today_date <= $offer_end_date) {
+  					$offer_code = $offer_array['offer_code'];
+  					$offer_id = $offer_array['offer_id'];
+	  				$offer_start_date = date('y-m-d',strtotime($offer_array['offer_validity_start_date']));
+	  				$offer_limit = $offer_array['offer_usage_limit'];
+	  				$offer_amount = $offer_array['offer_amount'];
+	  				$offer_eligible_amount = $offer_array['offer_eligible_amount'];
+					$email_subject = "Offer Details";
+	  				$to = $email;
+	  				$from_email = "sweetkannan05@gmail.com";
+					$headers = "From: " . $from_email . "\r\n";
+	  				$headers .= "Reply-To: ". $from_email . "\r\n";
+	  				$headers .= "MIME-Version: 1.0\r\n";
+	  				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+	  				$message = "<html> <body> <div style='margin: 0px auto; width: 50%;'> <h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'> Get ".$offer_amount." cashback on Utility bill payment of+".$offer_eligible_amount."[New users] </h2> <div style='border: 1px solid #25bce9; background: #fff;'> <p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'> New users get ".$offer_amount." cashback of Rs ".$offer_eligible_amount.". </p> <p style='margin-top: 20px; text-align: center;'> <span style='color: #25bce9; padding: 5px 10px; font-size: 14px; border: 1px solid #000; border-radius: 5%; text-align: center;'> ".$offer_code." </span> </p> <p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'> Expires on ".$expire_date." </p> <p style='padding-left: 20px; font-size: 8px; color: gray; text-align: center; font-weight: bold; margin-top: 5px;'> * condition apply </p> </div> </div> </body> </html>";
+
+  					if (mail($to, $email_subject, $message, $headers))
+		  	  		{
+			      		$mail_status=1;
+			      		$success_message = 3;
+
+		  	  		}
+	  	  			else {
+	     				$mail_status=0;
+	     				$success_message = 2;
+	  	  			}
+	  	  			mysqli_query($connection,"insert into stork_offer_provide_registered_users (offer_id,user_id,is_email_sent,is_validity,is_limit_status) values ('$offer_id','$user_id','$mail_status','1','1')") or die(mysql_error('registered insert query error'));		
+				}
+				else 
+				{ 
+					$success_message = 2;
+				}
+			}
+		    else 
+		    {
+		  		$success_message = 2;
+		  	}
+		  		
   		}
-	} 
-	
+	}
 ?>
+
+
+
+
 
 	<div class="main" id="product-detail">	
    	    <section class="header-page">
@@ -55,15 +107,20 @@ if($_SESSION['login_status'] == 1){
 					</div>
 				</div>
 			</div>
-		</section> <!---breadcrumb------>
+		</section> <!---breadcrumb-->
 		<section class="pr-main" id="pr-register">	
 			<div class="container">	
 				<div class="col-md-12 col-lg-12 text-center">
 				<?php
 					if(isset($_POST['save_new_user'])){
-							if($success_message==2){
+							if($success_message==2 ){
 				?>
 					<span class="reg_error_message_s text-center"><b>Successfully registred!</b></span>
+				<?php
+							}
+							else if($success_message==3){
+				?>
+					<span class="reg_error_message_s text-center"><b>Successfully registred! Check offer in your mail</b></span>
 				<?php
 							}
 							else if($success_message==1){
@@ -120,3 +177,7 @@ if($_SESSION['login_status'] == 1){
 	</div><!--Main index : End-->
 	<br/><br/>
 <?php include('footer.php') ?>
+
+
+
+
