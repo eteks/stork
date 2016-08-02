@@ -512,6 +512,15 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 
 	       <table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
 		     <tbody>
+		        <tr class="fl offer_field"> 
+		        	<td class="pad_10">Do you have offer code?</td>
+  					<td class="pad_10"><input type="text" class="" name="offercode" style="padding:5px;"> </td>
+  					<td class="button_holder offer_submit">
+           	  						<h4 class="btn_prf">
+           	  							<a href="#">Apply</a>
+           	  						</h4>
+           	        </td>
+  			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
 			       <table>                             
@@ -551,56 +560,8 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 		  </div>   
 	   </div> <!---Cost details-->
 	   <!---button holder-->
-	   <!--Order Enquiry-->
-	    <div class="cart-view-top">
-		 <div class="col-md-6 col-sm-6 col-xs-12">
-			<h1>Offer Zone</h1>
-		 </div>
-		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
-             <p>Please enter your offer code below.</p>
-         </div>
-         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
-          <div  class="col-md-12 col-sm-12 col-xs-12" >
-           <!-- render layout -->
-           <fieldset class="round-box" id="cart-contents">
-           	<h3 class="title"><span class="icon fa fa-check"></span>Exciting offer </h3>
-           </fieldset> 
-           
-
-           	<form method="post">
-	            <div class="input_holder row pad_15">
-	           		<p>Enter Offer Code</p>
-	           		<div class="offer_input">
-	           			<input type="text" class="" max-length="10" style="width:25%;" name="offer_code" />
-	           			<?php if($offer_status==1) {
-            			?>
-           					<span class="offfer_status"> Eligible amount is less than offer amount </span>
-            			<?php } else if($offer_status==2) {
-            			?>
-           					<span class="offfer_status"> Offer code expired </span>
-           				<?php } else if($offer_status==3) {
-            			?>
-           					<span class="offfer_status"> Enter valid offer code </span>
-           				<?php }
-           				?>
-	           		</div>  
-	           		<div class="button_holder offer_submit">
-	           			<h4 class="btn_prf">
-	           	  			<button type="submit" name="offer_submit">Submit</button>
-	           	  		</h4>
-	           	  	</div>
-	           	  	<input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
-           			<input type="hidden" value=<?php echo $delivery_amount; ?> name="delivery_amount_offer" />
-	           	 	<div class="cb"> </div>
-	            </div>
-	        </form>
-
-
-           <hr> </hr>	  
-          </div>
-		 </div>   
-	   </div> <!---Order Enquiry--->
-	   <!--Offer Zone--->
+	   
+	   <!--Order Enquiry--->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Any Queries ?</h1>
