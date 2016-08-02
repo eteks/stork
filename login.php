@@ -6,7 +6,7 @@
   	if(isset($_POST['login_user'])) {
   		$username_email=$_POST['login_name'];
   		$password=$_POST['login_pass'];
-  		$login_query=mysqli_query($connection,"select * from stork_users where (user_email='$username_email' OR username='$username_email') and password='$password'") or die(mysql_error());
+  		$login_query=mysqli_query($connection,"select * from stork_users where (user_email='$username_email' OR username='$username_email') and password='$password' and user_status='1'") or die(mysql_error());
   		$login_count=mysqli_num_rows($login_query);
 		$login_user_id_data = mysqli_fetch_array($login_query);
 		

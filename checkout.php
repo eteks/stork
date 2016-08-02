@@ -586,7 +586,8 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 	           		</div>  
 	           		<div class="button_holder offer_submit">
 	           			<h4 class="btn_prf">
-	           	  			<button type="submit" name="offer_submit">Submit</button>
+	           	  			<a href="#" class="offer_anger">Submit</a>
+	           	  			<button type="submit" name="offer_submit" class="offer_code_submit"></button>
 	           	  		</h4>
 	           	  	</div>
 	           	  	<input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
@@ -599,8 +600,8 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
            <hr> </hr>	  
           </div>
 		 </div>   
-	   </div> <!---Order Enquiry--->
-	   <!--Offer Zone--->
+	   </div> <!---Order Enquiry-->
+	   <!--Offer Zone-->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Any Queries ?</h1>
@@ -620,7 +621,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 	    </div>
 	  </div> <!--Enquiry call-->  
 	  
-	   <!---button holder------>
+	   <!---button holder-->
 	   <?php
 	   if($_SESSION['login_status']==0){
 	   	?>

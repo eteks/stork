@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-		</section> <!---breadcrumb------>
+		</section> <!---breadcrumb-->
 	    <section id="pr-login" class="pr-main" >	
 			<div class="container">	
 				
@@ -25,7 +25,7 @@
 						<h4>Please select your category &amp; location</h4>
 					</div>
 				
-			</div> <!---container--->
+			</div> <!---container-->
 		</section>	
 	    <section>	  			
 		  <div class="container">
@@ -71,7 +71,7 @@
 		        			      <span class="no_college_found_error dn">No college or area found!</span>
 	        					</div>
 				        	</div>
-				        </div> <!---#green---->
+				        </div> <!---#green-->
 				        <div class="button_holder col-md-12 col-sm-12 col-xs-6">
 				        	<h4 class="btn_prf"><a class="index_go_btn">Go</a></h4>
 				         	<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
@@ -85,7 +85,7 @@
 				        <div class="popup_content">
 					    	<label>Select your city</label>
 							<select name="print_book_city_name" id="initial_city_name" class="initial_city_name">
-								<option value="Select Your City">Select your city</option>
+								<option value="">Select your city</option>
 								<?php
         							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry' and stork_state.state_status = 1 and stork_city.city_status = 1";
 									$city = mysqli_query($connection, $city_query);
@@ -112,7 +112,7 @@
 		    	 <?php } ?>
 		     </form>
 		    
-			</div> <!--id content---->
+			</div> <!--id content-->
 	       </div> <!-- container -->
 	     </section>  
     </main><!-- Main Product Detail: End -->
