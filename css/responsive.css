@@ -564,7 +564,7 @@
     	font-size: 15px !important;
     }
 	.location select {
-		width: 65% !important;
+		width: 100% !important;
 	}
 	.browse_button {
     	font-size: 9px !important;
@@ -911,14 +911,24 @@
     #upload_section input {
     	width: 40% !important;
 	}
+	/* Multicolor */
+	 #upload_section #file_name_box{
+		width: 149% !important;
+	} 
 	/* checkout Offer zone */
-	.offer_input input{
-		width:60% !important;
-	}
+	.offer_field .pad_10 {
+       padding: 10px 0px 0px;
+    }
+    .offer_field {
+    	margin-bottom:40px;
+    }
+    .offer_field td{
+    	margin:0px !important;
+    }
 	/* project print */
 	#project_printing_form .project_file_name {
    	 	margin-left: 0px !important;
-	} 
+	}
 }
 
 @media (max-width: 360px){

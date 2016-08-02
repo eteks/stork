@@ -504,12 +504,6 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
            <h3 class="title"><span class="icon fa fa-check"></span>Estimated Cost</h3>
-           
-
-     
-
-
-
 	       <table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
 		     <tbody>
 		        <tr class="fl offer_field"> 
@@ -520,6 +514,8 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
            	  							<a href="#">Apply</a>
            	  						</h4>
            	        </td>
+           	        <td class="pad_10" style="color:red;">Sorry, Offer code expired.</td>
+           	        <td class="pad_10" style="color:red;display:none;">You have entered wrong code, Please check your offer code.</td>
   			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
@@ -564,7 +560,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 	   <!--Order Enquiry--->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
-			<h1>Any Queries ?</h1>
+			<h1> <span class="icon fa fa-phone"> </span> Any Queries ?</h1>
 		 </div>
 		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
              <p>For order enquiry please call below numbers</p>
@@ -573,7 +569,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
           <div  class="col-md-12 col-sm-12 col-xs-12" >
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
-           	<h3 class="title"><span class="icon fa fa-phone"></span>8682070004, 7448860003</h3>
+           	<h3 class="title"><span class="icon fa fa-mobile"></span>8682070004, 7448860003</h3>
            </fieldset> 
          </div>
          <hr> </hr>

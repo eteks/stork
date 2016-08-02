@@ -1,7 +1,11 @@
+/*input[type="file"] {
+ height: 300px !important;
+ width: 30px !important;
+ opacity: 1 !important;
+}*/
 .dn {
 	display:none !important;
 }
-
 
 /* CSS as on 10th June- Akila */
 
@@ -1124,9 +1128,11 @@ div.mcart-info , div.mcart-total {
 	 transform: translateZ(0px);
 } 
 /* checkout offer zone */
-.cart-summary .no-border .offer_field{
+.cart-summary .no-border .offer_field {
 	margin:20px;
-	border-bottom: none !important;
+}
+.cart-summary.no-border .offer_field td {
+    border-bottom: 0px solid #e4e4e4 !important;
 }
 .offer_field td {
 	margin: 15px;

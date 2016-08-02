@@ -8,7 +8,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<title>Print stork</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no"/>
 	<meta name="description" content="Printing template">
 	<meta name="author" content="Netbase">
 	<meta name="google-signin-client_id" content="917333063130-v76t7dmqcvvbtq4cum8h9kej9dlql8jb.apps.googleusercontent.com ">
@@ -98,7 +98,7 @@ progress::-moz-progress-bar {
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.linkedin.com/" title="Google Plus">
+								<a href="http://www.Google.com/" title="Google Plus">
 									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>
@@ -261,7 +261,7 @@ progress::-moz-progress-bar {
 							?>
 							
 							<div class="search-w SC-w hd-pd ">
-								<span class="search-icon dropdowSCIcon" title="Search">
+								<span class="search-icon dropdowSCIcon" title="Track Order">
 									<i class="fa fa-search"></i>
 								</span>
 								<div class="search-safari">
