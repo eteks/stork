@@ -9,20 +9,53 @@ include "includes/header.php";
 <?php 
 
 global $query_filter;
+global $filter_amount;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
 		$filter_amount = $_POST["filter_amount"];
 		$query_filter = mysql_query("SELECT * FROM `stork_order` where order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, order_customer_email) AND order_total_amount >= '$filter_amount'");
 	}
-	// if (isset($_POST['offer_save'])){
-	// 	$post_limit = count($_POST['checkbox_status']);
-	// 	foreach ($_POST as $key => $value) {
-	// 		foreach ($value as $key1 => $value1) {
-	// 			// echo $key1;
-	// 			echo $value1."<br>";
-	// 		}
-	// 	}
-	// }	
+	if (isset($_POST['offer_save'])){
+		$checkbox_status = $_POST['checkbox_status'];
+		$offer_id = $_POST['offer_id'];
+		$user_id = $_POST['user_id'];
+		$user_type = $_POST['user_type'];
+		$user_name = $_POST['user_name'];
+		$user_email = $_POST['user_email'];
+		$order_id = $_POST['order_id'];
+		$order_amount = $_POST['order_amount'];
+		$array_data = array_map(null, $checkbox_status, $offer_id, $user_id,$user_type,$user_name,$user_email,$order_id,$order_amount);
+
+		// echo "<pre>";
+		// print_r($array_data);
+		// echo "</pre>";
+
+		foreach ($array_data as $key => $value) {
+			if($value[0] == 1){
+				$offer_id = $value[1];
+				if ($value[2] == 0)
+					$offer_provided_user_id = "NULL";
+				else
+					$offer_provided_user_id = $value[2];
+				$offer_provided_username = $value[4];
+				$offer_provided_useremail = $value[5];
+				$offer_provided_usermobile = '';
+				$offer_provided_usertype = $value[3];
+				$offer_provided_order_id = $value[6];
+				$offer_provided_maximum_amount_in_order = $value[7];	
+				$offer_filter_start_date = "NULL";
+				$offer_filter_end_date = "NULL";
+				$is_email_sent = 1;
+				$is_used = 0;
+				$limit_used = 0;
+				$is_limit_status = 1;
+				$is_validity = 1;
+				$status = 1;
+				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
+
+			}
+		}
+	}
 }
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
@@ -69,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		if ($count_rows > 0)
 		{
 	?>
-	<form action="customer_offer.php" method="POST">
+	<form action="customer_offer.php" method="POST" id="customer_offer_save">
 			<div class="form-edit-info">
 					<table class="data-table city_table stork_admin_table" id="my-orders-table">
 								<thead>
@@ -91,14 +124,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								{
 								?>
 							    <tr class="">
-							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="">	
+							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
 							    	<input type="hidden" name="offer_id[]" value="<?php echo $row['offer_id']?>">	
 							    	<input type="hidden" name="user_id[]" value="<?php echo $fetch['order_user_id']?>">
 							    	<input type="hidden" name="user_type[]" value="<?php echo $fetch['order_user_type']?>">
 							    	<input type="hidden" name="user_name[]" value="<?php echo $fetch['order_customer_name']?>">
 							    	<input type="hidden" name="user_email[]" value="<?php echo $fetch['order_customer_email']?>">
 							    	<input type="hidden" name="order_id[]" value="<?php echo $fetch['order_id']?>">
-							    	<input type="hidden" name="filter_amount[]" value="<?php echo $fetch['offer_id']?>">
+							    	<input type="hidden" name="order_amount[]" value="<?php echo $fetch['order_total_amount']?>">
 							    	<td><input type="checkbox" class="offer_checkbox"></td>			
 							    	<td><span class="nobr"><?php 
 						            if($fetch['order_user_id'] == 0)

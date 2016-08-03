@@ -4,7 +4,9 @@ input[type="file"] {
  opacity: 0 !important;
 }
 .dn {
-	display:none !important;
+	height: 0px;
+    width: 0px !important;
+    opacity: 0;
 }
 
 /* CSS as on 10th June- Akila */
@@ -1167,4 +1169,19 @@ div.mcart-info , div.mcart-total {
 :-ms-input-placeholder { 
     color : #7E7E7E !important; 
     opacity: 1 !important;
+}
+.input_holder textarea {
+    max-width: 425px;
+}
+#checkout_details_scroll {
+    cursor: text;
+}
+.cart_remove_item i {
+    cursor: pointer;
+}
+#plain_file_name_box #file_name_box {
+    max-width: 392px;
+}
+#cover_only #cover_file_name {
+	width: 50% !important;
 }

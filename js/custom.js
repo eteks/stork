@@ -277,7 +277,7 @@ $(document).ready(function () {
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
-
+			 $('html,body').animate({ scrollTop: $(".create_account").offset().top},'slow');
 			return false;
 		}else {
 			errornotice.hide();
@@ -770,7 +770,7 @@ $(document).ready(function () {
     
     //allowed numbers only at registration form
 	$("#mobile").keypress(function (e) {
-		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
 			return false;
 		}
 	});
@@ -782,6 +782,11 @@ $(document).ready(function () {
     	}
 	});
 	
+	$('#username').keypress(function(e) {
+		if(e.which == 32) {
+			return false;
+		}
+	});
 	//disable cut,copy,paste
 	$(document).bind('copy paste cut', function (e) {
         e.preventDefault(); 
@@ -801,7 +806,7 @@ $(document).ready(function () {
 		$('.cover_section_holder').slideUp();
 		$('.print_page_option').slideUp();
 		$('#page_radio_no').prop('checked',true);
-		$('.upload_section').css('width','76%');
+		$('.upload_section').css('width','100%');
 
 	});
 
@@ -817,7 +822,7 @@ $(document).ready(function () {
 		$('.upload_section').css('width','100%');
 	});
 	
-	$('.upload_section').css('width','76%');
+	$('.upload_section').css('width','100%');
 
 	//  To display upload fileds based on binding type
 
@@ -834,7 +839,7 @@ $(document).ready(function () {
 		else{ 
 			$('.display_page_type').fadeOut('fast');
 			// $('.display_normal_file').css('display','block');
-			$('.upload_section').css('width','76%');
+			$('.upload_section').css('width','100%');
 			$('.print_page_option').slideUp();
 			$('.cover_section_holder').slideUp();
 			$('#page_radio_no').prop('checked',true);	
@@ -1273,7 +1278,7 @@ $(document).ready(function () {
 			$('.display_page_type').prop('selectedIndex',0).fadeOut('fast');
 			$('.display_normal_file').css('display','block');
 			$('.display_range_page').css('display','none');
-			$('.upload_section').css('width','76%');
+			$('.upload_section').css('width','100%');
 			if($('#print_booking_form .print_total_no_of_pages').val() == ''){
 				$('#print_booking_form .print_book_binding_amount').val('0.00');
 			}
@@ -2115,6 +2120,8 @@ $(document).ready(function () {
 	$('#cabin_book_button').on('click',function(){
 		$('#cabin_booking').submit();
 	});
+
+	
 	$("#cabin_mobile,#cabin_required_system").keypress(function (e) {
 		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
    			return false;
@@ -2551,5 +2558,15 @@ $(document).ready(function () {
 			}
 		});
 		
+		
+		//set city id to cookie
+		$('#print_book_college').on('change',function(){
+			var option = $('option:selected', this).attr('city-id');
+			Cookies.set('area_id',option);
+		});
+		$('#print_book_area_professional').on('change',function(){
+			var option = $('option:selected', this).val();
+			Cookies.set('area_id',option);
+		});
 }); // Document ready end
 

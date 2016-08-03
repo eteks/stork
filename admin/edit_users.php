@@ -152,7 +152,7 @@ include "includes/header.php";
 											Select State
 										</option>
 								        <?php
-						                    $query = mysql_query("select * from stork_state where state_status='1'");
+						                    $query = mysql_query("select * from stork_state where state_status='1' order by state_name asc");
 					                        while ($staterow = mysql_fetch_array($query)) {
 					                        if($row['user_state_id'] == $staterow['state_id'])echo "<option selected value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        else

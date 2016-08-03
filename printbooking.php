@@ -169,7 +169,7 @@
 			        		<div class="input_holder row pad_15 cover_section_holder">
 			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
-								<div class="input_holder row pad_15">
+								<div id="cover_only" class="input_holder row pad_15">
 									<div>
 									   <p> Cover </p>
 									   <input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
@@ -185,20 +185,19 @@
    							<div class="input_holder row pad_15 plain_clone_section upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
-									<div class="input_holder row pad_15">
+									<div id="plain_file_name_box" class="input_holder row pad_15">
 										<p class="display_page_type"> Content </p>
-										<div class="">
-								 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
-								 		</div>	
-								 		<div class="">
-								 			<input type="file" class="user col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
-				       						<div class="uploadbutton col-md-4 fl" id="uploadTrigger">Browse</div>
+							 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
+								 			<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
+				       						<div class="uploadbutton col-md-4 fl" id="uploadTrigger">Browse
+				       						</div>
 				       						<div class="pos_rel fl" id="pos_rel">
-	   											<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-	   											<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
+	   											<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+	   											</div>
+	   											<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+	   											</div>
 		   								    </div>
-		   							    </div>
-		   								<!-- <div class="cb"> </div>  -->  
+		   								<div class="cb"> </div>   
 			       					</div>
 			       					<div>
 				       						
@@ -231,7 +230,7 @@
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
+							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
 							</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
@@ -419,7 +418,7 @@
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Comments</p>
-								 	<textarea rows="7" cols="50" class="" value="" name="project_print_comments"></textarea>
+								 	<textarea rows="7" cols="50" class="" value="" name="project_print_comments" maxlength="150"></textarea>
 								</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
@@ -565,7 +564,7 @@
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
+							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
 							</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="0.00" />

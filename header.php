@@ -98,7 +98,7 @@ progress::-moz-progress-bar {
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.Googleplus.com/" title="Google Plus">
+								<a href="https://plus.google.com/" title="Google Plus">
 									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>
@@ -149,7 +149,7 @@ progress::-moz-progress-bar {
 							?>
 							<div class="cart-w SC-w hd-pd ">
 								<span class="mcart-icon dropdowSCIcon">
-									<a href="logout.php">
+									<a href="logout.php" title="logout">
 										<i class="fa fa-sign-out"></i>
 										<!-- Sign Up -->
 									</a>
