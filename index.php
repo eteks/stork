@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-		</section> <!---breadcrumb------>
+		</section> <!---breadcrumb-->
 	    <section id="pr-login" class="pr-main" >	
 			<div class="container">	
 				
@@ -25,7 +25,7 @@
 						<h4>Please select your category &amp; location</h4>
 					</div>
 				
-			</div> <!---container--->
+			</div> <!---container-->
 		</section>	
 	    <section>	  			
 		  <div class="container">
@@ -71,7 +71,7 @@
 		        			      <span class="no_college_found_error dn">No college or area found!</span>
 	        					</div>
 				        	</div>
-				        </div> <!---#green---->
+				        </div> <!---#green-->
 				        <div class="button_holder col-md-12 col-sm-12 col-xs-6">
 				        	<h4 class="btn_prf"><a class="index_go_btn">Go</a></h4>
 				         	<!--<h4 class="btn_prf"><a href="home.html">Reset</a></h4>-->
@@ -112,7 +112,7 @@
 		    	 <?php } ?>
 		     </form>
 		    
-			</div> <!--id content---->
+			</div> <!--id content-->
 	       </div> <!-- container -->
 	     </section>  
     </main><!-- Main Product Detail: End -->

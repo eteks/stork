@@ -79,4 +79,7 @@ $offer_type = array('general_offer' => 'General Offer','customer_offer' => 'Cust
 
 // Array for declaring offer amount type
 $offer_amount_type = array('cost' => 'Cost','percentage' => 'Percentage');
+
+// Array for declaring User Type to be used in offer
+$offer_user_type = array('student' => 'Student','profession' => 'Profession','both' => 'Both');
 ?>

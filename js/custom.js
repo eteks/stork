@@ -711,7 +711,11 @@ $(document).ready(function () {
 	$(document).on('click','.check_out_payment',function(){
 		$('#print_checkout_form').submit();
 	});
-	
+	// Offer code submit
+	$(document).on('click','.offer_anger',function(){
+		$('.offer_code_submit').click();
+	});
+
 	// remove item from cart 
 	$(document).on('click','.ordered_item .cart_remove_item',function(){
 		var session_id = $(this).parents('.ordered_item').find('.ordered_item_session_id').val();
@@ -2043,12 +2047,12 @@ $(document).ready(function () {
 		}
     });
 
-	$('.select_city_btn a').on('click',function() {
+	$('#initial_city_name').on('change',function() {
 		if (document.getElementById('initial_city_name').selectedIndex < 1){
-			$('#initial_city_name').addClass('error_print_booking_field');
+			$('#initial_city_name').addClass('pop_up_error_city');
 		}
 		else {
-			$('#initial_city_name').removeClass('error_print_booking_field');
+			$('#initial_city_name').removeClass('pop_up_error_city');
 		}
 	});
 	

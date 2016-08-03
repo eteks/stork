@@ -6,6 +6,7 @@ include "includes/header.php";
 <title>Edit Users</title>
 </head>
 <body>
+
 <?php
 	if (isset($_GET['update']))
 	{

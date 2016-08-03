@@ -76,7 +76,7 @@ if($_SESSION['login_status'] == 1){
 			}
 		    else 
 		    {
-		  		$success_message = 3;
+		  		$success_message = 2;
 		  	}
 		  		
   		}

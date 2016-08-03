@@ -488,7 +488,9 @@ if(mysqli_num_rows($review_details)>0){
   							<a>Apply</a>
   						</h4>
            	        </td>
-  			    </tr>
+           	        <td class="pad_10 dn" style="color:red;">Sorry, Offer code expired.</td>
+           	        <td class="pad_10 dn" style="color:red;display:none;">You have entered wrong code, Please check your offer code.</td>
+  			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
 			       <table>                             
@@ -520,11 +522,61 @@ if(mysqli_num_rows($review_details)>0){
 		  </div>   
 	   </div> <!---Cost details-->
 	   <!---button holder-->
-	   
-	   <!--Order Enquiry--->
+
+	   <!--Order Enquiry-->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
-			<h1>Any Queries ?</h1>
+			<h1>Offer Zone</h1>
+		 </div>
+		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+             <p>Please enter your offer code below.</p>
+         </div>
+         <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+          <div  class="col-md-12 col-sm-12 col-xs-12" >
+           <!-- render layout -->
+           <fieldset class="round-box" id="cart-contents">
+           	<h3 class="title"><span class="icon fa fa-check"></span>Exciting offer </h3>
+           </fieldset> 
+           
+
+           	<form method="post">
+	            <div class="input_holder row pad_15">
+	           		<p>Enter Offer Code</p>
+	           		<div class="offer_input">
+	           			<input type="text" class="" max-length="10" style="width:25%;" name="offer_code" />
+	           			<?php if($offer_status==1) {
+            			?>
+           					<span class="offfer_status"> Eligible amount is less than offer amount </span>
+            			<?php } else if($offer_status==2) {
+            			?>
+           					<span class="offfer_status"> Offer code expired </span>
+           				<?php } else if($offer_status==3) {
+            			?>
+           					<span class="offfer_status"> Enter valid offer code </span>
+           				<?php }
+           				?>
+	           		</div>  
+	           		<div class="button_holder offer_submit">
+	           			<h4 class="btn_prf">
+	           	  			<a href="#" class="offer_anger">Submit</a>
+	           	  			<button type="submit" name="offer_submit" class="offer_code_submit"></button>
+	           	  		</h4>
+	           	  	</div>
+	           	  	<input type="hidden" value=<?php echo $total_amount; ?> name="total_amount_offer" />
+           			<input type="hidden" value=<?php echo $delivery_amount; ?> name="delivery_amount_offer" />
+	           	 	<div class="cb"> </div>
+	            </div>
+	        </form>
+
+
+           <hr> </hr>	  
+          </div>
+		 </div>   
+	   </div> <!---Order Enquiry-->
+	   <!--Offer Zone-->
+	    <div class="cart-view-top">
+		 <div class="col-md-6 col-sm-6 col-xs-12">
+			<h1> <span class="icon fa fa-phone"> </span> Any Queries ?</h1>
 		 </div>
 		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
              <p>For order enquiry please call below numbers</p>
@@ -533,7 +585,7 @@ if(mysqli_num_rows($review_details)>0){
           <div  class="col-md-12 col-sm-12 col-xs-12" >
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
-           	<h3 class="title"><span class="icon fa fa-phone"></span>8682070004, 7448860003</h3>
+           	<h3 class="title"><span class="icon fa fa-mobile"></span>8682070004, 7448860003</h3>
            </fieldset> 
          </div>
          <hr> </hr>
@@ -541,7 +593,7 @@ if(mysqli_num_rows($review_details)>0){
 	    </div>
 	  </div> <!--Enquiry call-->  
 	  
-	   <!---button holder------>
+	   <!---button holder-->
 	   <?php
 	   if($_SESSION['login_status']==0){
 	   	?>
