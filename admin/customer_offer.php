@@ -92,9 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	</div>
 	<div class="add_section">
 	<form action="customer_offer.php" id="customer_offer" method="POST">
-		<span>Filter Amount</span>
-		<input type="text" name="filter_amount">
-		<button type="submit" class="gbtn btn-edit-acc-info" name="offer_generate">Generate</button>
+		<span class="amount_text">Filter Amount</span>
+		<input type="text" name="filter_amount" class="amount_field">
+		<button type="submit" class="gbtn btn-edit-acc-info amount_gen" name="offer_generate">Generate</button>
 	</form>
 	</div>
 	<?php 
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<table class="data-table city_table stork_admin_table" id="my-orders-table">
 								<thead>
 							        <tr class="">
-							        	<th></th>
+							        	<th class="table_action sorting" id="offer_th1"></th>
 							            <th>User Id</th>	
 							            <th>Usertype</th>					            
 							            <th>Username</th>
@@ -147,7 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							   	</tr>
 							   <?php } ?>
 					</table>										
-		<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>	
+		<div class="account-bottom-action">
+			<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>
+		</div>	
 	</div>
 	</form>
 	<?php }  ?>

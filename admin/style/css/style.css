@@ -1604,3 +1604,21 @@ text-align: center;
 #pad_uploadfile th:first-child {
 	width: 500px;
 }	
+/*Customer Offer */
+.amount_text{
+	padding: 0px 3px 0px 5px;
+	margin: 0px 5px 0px 10px;
+}
+.amount_field{
+	padding: 5px;
+	margin: 0px 10px 0px 5px;
+	border: 1px solid #33CCFF;
+}
+.offer_save{
+	padding: 0px 10px 0px;
+	margin: 20px 10px;
+	text-align:center;
+}
+#offer_th1 {
+	width: 80px !important;
+}
