@@ -1170,3 +1170,12 @@ div.mcart-info , div.mcart-total {
     color : #7E7E7E !important; 
     opacity: 1 !important;
 }
+.input_holder textarea {
+    max-width: 425px;
+}
+#checkout_details_scroll {
+    cursor: text;
+}
+.cart_remove_item i {
+    cursor: pointer;
+}

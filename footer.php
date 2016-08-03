@@ -65,10 +65,10 @@
 									<a  title="Multicolors" href="printbooking.php?service=multi">Multicolors</a>
 								</li>
 								<li>
-									<a  title="Personalized Products" href="#">Personalized Products</a>
+									<a  title="Personalized Products">Personalized Products</a>
 								</li>
 								<li>
-									<a  title="Design Template" href="#">Design Template</a>
+									<a  title="Design Template">Design Template</a>
 								</li>
 							</ul>
 						</div>
@@ -95,7 +95,7 @@
 											</li>
 											<li>
 												<a  title="My Message">Message</a><span class="required">*</span></label>
-												<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none" name="feedback_msg"></textarea>
+												<textarea cols="27" id="message" autocomplete="off" rows="3" style="resize: none" name="feedback_msg" maxlength="150"></textarea>
 												<input type="hidden" name="redirect_url" value="<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" />
 											</li>
 											<li>

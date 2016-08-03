@@ -647,7 +647,8 @@
 		display:none !important;
 	}
 	#wishlist table tr td img{
-		width:160px;
+		width:160px;
+
 		height:160px;
 	}
 	/*check out*/
@@ -917,9 +918,10 @@
 	   -webkit-margin-top: 3px !important;
 	}
 	/* Multicolor */
+	
 	 #upload_section #file_name_box{
 		width: 53% !important;
-	} 
+	}
 	/* checkout Offer zone */
 	.offer_field .pad_10 {
        padding: 10px 0px 0px;
