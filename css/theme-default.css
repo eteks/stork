@@ -4117,11 +4117,12 @@ footer{
 }
 .footer-main p{
   line-height: 24px;
+  cursor: default;
 }
-
 /*About us----------------------------------------*/
 .footer-main ul.info{
   margin-top: 22px;
+  cursor: default;
 }
 .footer-main .info li{
   padding-bottom: 0;
@@ -4142,6 +4143,7 @@ footer{
 #testfooter:hover {
   color: #25bce9;
 }
+
 .footer-main .footer-social{
   margin-top: 28px;
 }
@@ -5382,7 +5384,7 @@ h1.ct-header{
 	font-weight:bold;
 	text-align:right;
 	padding-right:20px!important;
-        font-size: 14px;
+    font-size: 14px;
 }
 .cart-summary.no-border tr.pr-total  td{
 	padding:0;

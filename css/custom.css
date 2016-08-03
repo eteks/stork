@@ -1,9 +1,13 @@
+input[type="file"] {
+ height: 0px !important;
+ width: 0px !important;
+ opacity: 0 !important;
+}
 .dn {
 	height: 0px;
     width: 0px !important;
     opacity: 0;
 }
-
 
 /* CSS as on 10th June- Akila */
 
@@ -1122,9 +1126,11 @@ div.mcart-info , div.mcart-total {
 	color: #25bce9;
 }
 /* checkout offer zone */
-.cart-summary .no-border .offer_field{
+.cart-summary .no-border .offer_field {
 	margin:20px;
-	border-bottom: none !important;
+}
+.cart-summary.no-border .offer_field td {
+    border-bottom: 0px solid #e4e4e4 !important;
 }
 .offer_field td {
 	margin: 15px;
@@ -1139,16 +1145,12 @@ div.mcart-info , div.mcart-total {
     float: left;
     margin: 10px 0;
 }
-
-
 /* Offer code css added by siva */
 .offfer_status {
     color: red;
     display: block;
 }
-
 /* Added by siva */
-
 .pop_up_error_city {
     color: red;
 }

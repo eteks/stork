@@ -25,50 +25,6 @@ if($_SESSION['login_status']==1){
 	exit();
 }
 
-if(isset($_POST['offer_submit'])) {
-  		$offer_code=$_POST['offer_code'];
-  		$total_amount_offer=$_POST['total_amount_offer'];
-  		$user_id = $_SESSION['user_id'];
-  		$delivery_amount_offer=$_POST['delivery_amount_offer'];
-  		$registered_users_query= mysqli_query($connection,"select * from stork_offer_provide_registered_users as ru inner join stork_offer_details as sd on ru.offer_id = sd.offer_id and sd.offer_code='$offer_code' where ru.user_id='$user_id' and ru.is_limit_status!=0 and ru.is_validity!=0") or die(mysql_error("offer select query error"));
-  		$registered_users_array=mysqli_fetch_array($registered_users_query);
-		if($registered_users_array > 0) {
-			$today_date=date('y-m-d');
-  			$offer_end_date=date('y-m-d',strtotime($registered_users_array['offer_validity_end_date']));
-
-			if($today_date <= $offer_end_date) {
-				$offer_amount = $registered_users_array['offer_eligible_amount'];
-  				if($total_amount_offer >= $offer_amount) {
-  					$sub_total_amount=$offer_amount-$total_amount_offer;
-  					$total_amount = $delivery_amount_offer + $sub_total_amount;
-		  			$offer_usage_limit=$registered_users_array['offer_usage_limit'];
-		  			$limit_used = $registered_users_array['limit_used'];
-		  			if($limit_used <= $offer_usage_limit) {
-
-		  				$limit_used = $limit_used+1;
-		  				mysqli_query($connection,"update stork_offer_provide_registered_users set limit_used='$limit_used' where user_id='$user_id' and is_limit_status=1") or die(mysql_error('limit used update query error'));
-		  			}
-		  			else {
-		  				mysqli_query($connection,"update stork_offer_provide_registered_users set limit_used='$limit_used' where is_limit_status=0") or die(mysql_error('limit status update query error'));
-		  			}
- 
-	  			}
-  				else {
-  					$offer_status=1;
-  				}
-	  		}
-	  		else {
-	  			$offer_status=2;
-	  		}
-  		}
-	  	else {
-	  		$offer_status=3;
-	  	}
-
-  		// mysqli_query($connection,"insert into stork_users (first_name,last_name,username,user_email,password,user_mobile,user_dob,user_status) values ('$firstname','$lastname','$username','$email','$password','$mobilenumber','$dateofbirth','1')") or die(mysql_error());
-}
-
-
 
 
 
@@ -492,6 +448,12 @@ if(mysqli_num_rows($review_details)>0){
 	   ?>
       <div class="clearfix"> </div>
       <!--cost details-->
+      <?php
+      echo "<pre>";
+     print_r($_SESSION);
+	 echo "</pre>";
+      ?>
+      
       <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1>Costing Details</h1>
@@ -504,22 +466,30 @@ if(mysqli_num_rows($review_details)>0){
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
            <h3 class="title"><span class="icon fa fa-check"></span>Estimated Cost</h3>
-           
-
-     
-
-
-
 	       <table cellspacing="0" cellpadding="0" border="0" class="cart-summary no-border">
 		     <tbody>
 		        <tr class="fl offer_field"> 
+		        	<?php
+		        	$user_type_offer_split = explode('_', $_SESSION['session_id']);
+					$user_type = $user_type_offer_split[0].'_'.$user_type_offer_split[1];
+					if($_SESSION['login_status'] == '1'){
+						echo "<input type='hidden' value='".$_SESSION['user_id']."' class='offer_user_id'/>";
+					}else{
+						echo "<input type='hidden' value='0' class='offer_user_id'/>";
+					}
+					if(isset($user_type)){
+						echo "<input type='hidden' value='$user_type' class='offer_user_type'/>";
+					}
+		        	?>
 		        	<td class="pad_10">Do you have offer code?</td>
-  					<td class="pad_10"><input type="text" class="" name="offercode" style="padding:5px;"> </td>
+  					<td class="pad_10"><input type="text" class="offercode" name="offercode" style="padding:5px;"> </td>
   					<td class="button_holder offer_submit">
-           	  						<h4 class="btn_prf">
-           	  							<a href="#">Apply</a>
-           	  						</h4>
+  						<h4 class="btn_prf offer_submit_btn">
+  							<a>Apply</a>
+  						</h4>
            	        </td>
+           	        <td class="pad_10 dn" style="color:red;">Sorry, Offer code expired.</td>
+           	        <td class="pad_10 dn" style="color:red;display:none;">You have entered wrong code, Please check your offer code.</td>
   			    </tr>    	
                <tr class="pr-total">
 		          <td colspan="6">
@@ -536,14 +506,6 @@ if(mysqli_num_rows($review_details)>0){
 							  <span id="total_amount" class="priceColor2"><b>&#8377;</b>  <?php echo $delivery_amount;?></span>
 							  <input type="hidden" class="final_delivery_charge_amount" value="<?php echo $delivery_amount;?>">
 							</td>
-						</tr>
-						<tr style="display:none;">
-							<td>Tax:</td>
-							<td class="pr-right"><span id="total_tax" class="priceColor2">Rs11.17</span></td>
-						</tr>
-						<tr style="display:none;">
-							<td>Shipment:</td>
-							<td class="pr-right"><span id="shipment" class="priceColor2">0</span></td>
 						</tr>
 						<tr class="last">
 							<td>Total:</td>
@@ -614,7 +576,7 @@ if(mysqli_num_rows($review_details)>0){
 	   <!--Offer Zone-->
 	    <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
-			<h1>Any Queries ?</h1>
+			<h1> <span class="icon fa fa-phone"> </span> Any Queries ?</h1>
 		 </div>
 		 <div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
              <p>For order enquiry please call below numbers</p>
@@ -623,7 +585,7 @@ if(mysqli_num_rows($review_details)>0){
           <div  class="col-md-12 col-sm-12 col-xs-12" >
            <!-- render layout -->
            <fieldset class="round-box" id="cart-contents">
-           	<h3 class="title"><span class="icon fa fa-phone"></span>8682070004, 7448860003</h3>
+           	<h3 class="title"><span class="icon fa fa-mobile"></span>8682070004, 7448860003</h3>
            </fieldset> 
          </div>
          <hr> </hr>
@@ -684,6 +646,8 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" id="billing_tel" name="billing_tel" value=""/>
 		   		<input type="hidden" id="billing_email" name="billing_email" value=""/>
 		   		<input type="hidden" class="paymentmakemydefaultaddress" name="makemydefaultaddress" value="0"/>
+		   		<input type="hidden" class="providedofferid" name="providedofferid" value=""/>
+		   		<input type="hidden" class="providedoffertype" name="providedoffertype" value=""/>
 		   		<h4 class="btn_prf check_out_payment"><a>Pay Now</a></h4>
 				<h4 class="btn_prf check_out_clear_btn"><a>Clear</a></h4>
 			</form>

@@ -167,7 +167,7 @@
 	  var checkWidth = jQuery(window).width();
 	  if(checkWidth < 768) {
 		jQuery(".footer-col h2").on("click", function(){  
-			jQuery(".footer-content").removeClass('active');
+			Query(".footer-content").removeClass('active');
 			//slide up all the link lists
 			jQuery(".footer-content").slideUp();
 			//slide down the link list below the h3 clicked - only if its closed

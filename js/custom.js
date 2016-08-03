@@ -2463,26 +2463,75 @@ $(document).ready(function () {
 			});
 		});
 		
+		//popup-homepage
+		$(function(){
+	    	$(window).resize(function(){
+				// get the screen height and width  
+				var maskHeight = $(window).height();  
+				var maskWidth = $(window).width();
+				// calculate the values for center alignment
+				var dialogTop =  (maskHeight  - $('#popup_index').height())/2;  
+				var dialogLeft = (maskWidth - $('#popup_index').width())/2; 
+				// assign values to the overlay and dialog box
+				$('#background_shadow').css({ height:$(document).height(), width:$(document).width()}).show();
+		        $('#popup_index').css({ top: dialogTop, left: dialogLeft, position:"fixed"}).show();
+			}).resize();
+		});
 		
-	// feedback form data send through ajax
-	
-	//popup-homepage
-	
-	$(function(){
-    $(window).resize(function(){
-	// get the screen height and width  
-	var maskHeight = $(window).height();  
-	var maskWidth = $(window).width();
-	
-	// calculate the values for center alignment
-	var dialogTop =  (maskHeight  - $('#popup_index').height())/2;  
-	var dialogLeft = (maskWidth - $('#popup_index').width())/2; 
-	
-	// assign values to the overlay and dialog box
-	$('#background_shadow').css({ height:$(document).height(), width:$(document).width() }).show();
-	        $('#popup_index').css({ top: dialogTop, left: dialogLeft, position:"fixed"}).show();
-	}).resize();
-	});
+		//offed code check in check out page
+		$('.offer_submit_btn').on('click',function(){
+			var offer_code = $(this).parents('.offer_field').find('.offercode').val();
+			var offer_user_type = $(this).parents('.offer_field').find('.offer_user_type').val();
+			var offer_user_id = $(this).parents('.offer_field').find('.offer_user_id').val();
+			var user_type_split= offer_user_type.split('_');
+			var user_type = '';
+			if(user_type_split[1] == 'stu'){
+				user_type = 'Professions';
+			}else{
+				user_type = 'Students';
+			}
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'offer_code_check':'true','offer_code':offer_code,'offer_user_type':offer_user_type,'offer_user_id':offer_user_id},
+				success: function(data){
+					if(data == 'guest'){
+						error_popup('This coupon code not applicable to Guest users!');
+					}
+					else if(data == 'expired'){
+						error_popup('This coupon code Expired!');
+					}
+					else if(data == 'invalid'){
+						error_popup('Invalid Coupon code!');
+					}
+					else if(data == 'limit'){
+						error_popup('Your exceeded offer code usage limitation!');
+					}
+					else if(data == 'swapuser'){
+						error_popup('This offer only for '+user_type+'!');
+					}
+					else if(data.indexOf('#') > -1){
+						//data format like this from ajax
+						// offer amount # provided offer id # eligible amount for offer # offer type
+						var data_split = data.split('#');
+						if(parseFloat($('.final_hidden_sub_amount_checkout_page').val()) > parseFloat(data_split[2])){
+							var reduced_amt = parseFloat($('.final_hidden_sub_amount_checkout_page').val()) - parseFloat(data_split[0]);
+							var delivery_amt = parseFloat($('.final_delivery_charge_amount').val());
+							$('.final_hidden_sub_amount_checkout_page').val(reduced_amt);
+							$('.final_visible_sub_amount_checkout_page').html('<b>&#8377;</b> '+reduced_amt);
+							$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+(reduced_amt+delivery_amt));
+							$('.final_payment_amount_checkout').val(reduced_amt+delivery_amt);
+							$('.offer_field').remove();
+							$('.providedofferid').val(data_split[1]);
+							$('.providedoffertype').val(data_split[3]);
+						}
+						else{
+							error_popup('This coupon on order above '+data_split[2]+' Rs only !');
+						}
+					}
+				}
+			});
+		});
 		
 }); // Document ready end
 

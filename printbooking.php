@@ -175,7 +175,7 @@
 									   <input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
 									</div>
 									<div class="fl row col-xs-12"> 
-										<input type="file" class="user dn upload_cover_File" id="upload_cover_File" name="cover_printfiles[]"/>
+										<input type="file" class="user upload_cover_File" id="upload_cover_File" name="cover_printfiles[]"/>
 		    	   				    	<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
 		    	   				    </div>   
 								</div>	
@@ -187,7 +187,7 @@
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
 									<div class="input_holder row pad_15">
 										<p class="display_page_type"> Content </p>
-									 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
+							 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
 								 			<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 				       						<div class="uploadbutton col-md-4 fl" id="uploadTrigger">Browse
 				       						</div>
@@ -204,8 +204,7 @@
 	   								</div>
 	   								<div class="cb"> </div>
 		   						</div>
-		   						
-   							</div>
+		   					</div>
    							<p class="label_page_range"> Enter Color Page Range<span class="star">&nbsp;*</span>  (ex: 1-10, 20, 42-100 ) </p>
    							<div class="input_holder row pad_15 upload_file_holder display_paper_range plain_paper_range" data-sectionvalue="0" id="display_paper_range ">
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
@@ -349,21 +348,21 @@
 									<div class="input_holder row pad_15 upload_cover_section" id="">
 										<p class="label_text" >Cover </p>
 									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="cover_uplopadfile" name="cover_project_print_file"/>
+										<input type="file" class="user col-md-8 project_uploadfile" id="cover_uplopadfile" name="cover_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="cover_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
 		   							<div class="input_holder row pad_15 upload_index_page_section"id="">
 										<p class="label_text" >Index Pages </p>
 									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="index_uplopadfile" name="index_project_print_file"/>
+										<input type="file" class="user col-md-8 project_uploadfile" id="index_uplopadfile" name="index_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="index_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
 				   					<div class="input_holder row pad_15 upload_content_section" id="upload_content_section" data-projectsectionvalue="0">
 										<p class="label_text" > Content <span class="star">&nbsp;*</span> </p>
 									 	<input type="text" name="" id="project_file_holder" class="project_file_name_margin style_range project_file_holder" value="No file selected" data-projectfilevalue="0" disabled />
-										<input type="file" class="user dn col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name="content_print_file[]"/>
+										<input type="file" class="user col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name="content_print_file[]"/>
 				       					<div class="browse_button cotent_browse_button col-md-4" id="cotent_browse_button">Browse</div>
 				       					<div class="project_clone_remove" id="">
 			   								<div class="del_btn project_remove" id="project_remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
@@ -374,7 +373,7 @@
 			   						<div class="input_holder row pad_15 upload_references_section"id="">
 										<p class="label_text" > References </p>
 									 	<input type="text" name="" class="col-md-8 project_file_name_margin style_range" value="No file selected"/ disabled>
-										<input type="file" class="user dn col-md-8 project_uploadfile" id="refer_uplopadfile" name="reference_project_print_file"/>
+										<input type="file" class="user col-md-8 project_uploadfile" id="refer_uplopadfile" name="reference_project_print_file"/>
 				       					<div class="browse_button col-md-4" id="refer_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
@@ -521,7 +520,7 @@
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
 									<p class="label_text display_page_type"> Content </p>
 								 	<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box style_range" value="No file selected"/ disabled>
-									<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
+									<input type="file" class="user col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
 			       					<div class="uploadbutton col-md-4" id="uploadTrigger">Browse</div>
 		   						</div>
 		   						<!-- <div class="pos_rel" id="pos_rel">

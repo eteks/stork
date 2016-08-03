@@ -54,7 +54,7 @@ define("MULTICOLOR",'stork_cost_estimation_multicolor');
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
 // uploaded file extensions
-$ALLOWEDFILE = array('doc','docx','pdf','jpeg','jpg	');
+$ALLOWEDFILE = array('doc','docx','pdf','jpeg','jpg');
 
 // cc avenue details
 define("MERCHANTID",'101665'); // merchant id
@@ -79,4 +79,7 @@ $offer_type = array('general_offer' => 'General Offer','customer_offer' => 'Cust
 
 // Array for declaring offer amount type
 $offer_amount_type = array('cost' => 'Cost','percentage' => 'Percentage');
+
+// Array for declaring User Type to be used in offer
+$offer_user_type = array('student' => 'Student','profession' => 'Profession','both' => 'Both');
 ?>
