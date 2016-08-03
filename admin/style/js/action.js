@@ -62,7 +62,7 @@ jQuery(document).ready(function() {
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
-	
+
 	jQuery("#edit_admin_users").submit(function(){ 
 		
 		// for empty field validation
