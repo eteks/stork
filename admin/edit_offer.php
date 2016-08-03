@@ -99,7 +99,7 @@ include "includes/header.php";
 								<?php } ?>
 								<div class="form-group">
 								    <label for="first-name">Select Offer Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="off_a" name="offer_type">
+									<select class="product-type-filter form-control" id="sel_a" name="offer_type">
 								        <option value="">
 											<span>Select Offer Type</span>
 										</option>
@@ -121,6 +121,19 @@ include "includes/header.php";
 								    <label for="last-name">Offer Code<span class="required">*</span></label>
 									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Code Ex:GEN123" id="offercode" name="offer_code" value="<?php echo $row['offer_code']?>">
 								</div>
+								<div class="form-group">
+								    <label for="first-name">Select Offer For student/Profession/Both<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_b" name="offer_Person_type">
+								        <option value="">
+											<span>Select Offer For student/Profession/Both</span>
+										</option>
+										<?php
+											foreach ($offer_user_type as $key => $value) {
+												echo "<option value=".$key.">". $value."</option>";
+											}
+					                    ?>     
+								    </select>
+								</div>
 								<div class="form-group schedule_block">
 								    <label for="last-name">Offer Validity<span class="required">*</span></label>
 									<input type="text" class="form-control date_picker" autocomplete="off" placeholder="Start Date" id="startdate" name="offer_start_validity" value="<?php $startdate=strtotime($row['offer_validity_start_date']); $startdate = date('d/m/Y', $startdate); echo $startdate;?>">
@@ -129,7 +142,7 @@ include "includes/header.php";
 								</div>
 								<div class="form-group">
 								    <label for="first-name">Select Offer Amount Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="off_b"  name="offer_amount_type">
+									<select class="product-type-filter form-control" id="sel_c"  name="offer_amount_type">
 								        <option value="">
 											<span>Select Offer Amount Type</span>
 										</option>
@@ -157,7 +170,7 @@ include "includes/header.php";
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Offer Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="off_c"name="offer_status">
+									<select class="product-type-filter form-control" id="sel_d"name="offer_status">
 								        <option value="">
 								        	<span>Select Status</span>
 										</option>

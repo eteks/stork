@@ -72,7 +72,7 @@ include "includes/header.php";;
 											<span>Select State</span>
 										</option>
 										<?php
-					                        $query = mysql_query("select * from stork_state  where state_status='1'");
+					                        $query = mysql_query("select * from stork_state  where state_status='1' order by state_name asc");
 					                        while ($row = mysql_fetch_array($query)) {
 					                            ?>
 					                        <option value="<?php echo $row['state_id']; ?>"><span><?php echo $row['state_name']; ?></span></option>

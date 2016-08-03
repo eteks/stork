@@ -84,7 +84,7 @@ if(isset($_GET["id"]))
 											<span>Select Area</span>
 										</option>
 								        <?php
-						                    $query = mysql_query("select * from stork_area where area_status='1'");
+						                    $query = mysql_query("select * from stork_area where area_status='1' order by area_name asc");
 					                        while ($arearow = mysql_fetch_array($query)) {
 					                        if($row['college_area_id'] == $arearow['area_id'])   
 					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";

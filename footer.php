@@ -53,22 +53,22 @@
 						<div class="footer-content">
 							<ul class="services-link">
 								<li>
-									<a title="Plain Printing" href="printbooking.php">Plain Printing</a>
+									<a title="Plain Printing" href="printbooking.php?service=plain">Plain Printing</a>
 								</li>
 								<li>
-									<a title="Project Printing" href="printbooking.php">Project Printing</a>
+									<a title="Project Printing" href="printbooking.php?service=project">Project Printing</a>
 								</li>
 								<li>
 									<a title="Cabin Booking" href="cabin_booking.php">Cabin Booking</a>
 								</li>
 								<li>
-									<a  title="Multicolors" href="printbooking.php">Multicolors</a>
+									<a  title="Multicolors" href="printbooking.php?service=multi">Multicolors</a>
 								</li>
 								<li>
-									<a  title="Multi-color printing" href="">Personalized Products</a>
+									<a  title="Personalized Products" href="#">Personalized Products</a>
 								</li>
 								<li>
-									<a  title="Design Template" href="">Design Template</a>
+									<a  title="Design Template" href="#">Design Template</a>
 								</li>
 							</ul>
 						</div>

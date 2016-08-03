@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 											<span>Select Area</span>
 										</option>
 										<?php
-					                        $query = mysql_query("select * from stork_area where area_status='1'");
+					                        $query = mysql_query("select * from stork_area where area_status='1' order by area_name asc");
 					                        while ($row = mysql_fetch_array($query)) {
 					                        ?>
 					                        <option value="<?php echo $row['area_id']; ?>"><span><?php echo $row['area_name']; ?></span></option>

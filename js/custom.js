@@ -277,7 +277,7 @@ $(document).ready(function () {
       	
 		//if any inputs on the page have the class 'error_input_field' the form will not submit
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
-
+			 $('html,body').animate({ scrollTop: $(".create_account").offset().top},'slow');
 			return false;
 		}else {
 			errornotice.hide();
@@ -430,7 +430,7 @@ $(document).ready(function () {
        // });
 	// });
 	
-	// form submit when user is go button in index page
+	// form submit when user is go button in index page and set cookie value of area
 	$('.index_go_btn').on('click',function(){
 		$('#index_page_form').submit();
 	});
@@ -756,6 +756,7 @@ $(document).ready(function () {
 		$('.final_payment_amount_checkout').val(parseFloat(Math.ceil((final_amount+delivery_amount) * 100 ) / 100).toFixed(2));
 		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount+delivery_amount) * 100 ) / 100).toFixed(2));
 		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount) * 100 ) / 100).toFixed(2));
+		$('.final_hidden_sub_amount_checkout_page').val(parseFloat(Math.ceil((final_amount) * 100 ) / 100).toFixed(2));
 	});
 	
 	// post form when click check button in print booking page and submit type edited by siva
@@ -769,7 +770,7 @@ $(document).ready(function () {
     
     //allowed numbers only at registration form
 	$("#mobile").keypress(function (e) {
-		if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+		if (e.which != 8 && e.which != 44 && e.which != 0 && (e.which < 48 || e.which > 57)) {
 			return false;
 		}
 	});
@@ -781,6 +782,11 @@ $(document).ready(function () {
     	}
 	});
 	
+	$('#username').keypress(function(e) {
+		if(e.which == 32) {
+			return false;
+		}
+	});
 	//disable cut,copy,paste
 	$(document).bind('copy paste cut', function (e) {
         e.preventDefault(); 
@@ -800,7 +806,7 @@ $(document).ready(function () {
 		$('.cover_section_holder').slideUp();
 		$('.print_page_option').slideUp();
 		$('#page_radio_no').prop('checked',true);
-		$('.upload_section').css('width','76%');
+		$('.upload_section').css('width','100%');
 
 	});
 
@@ -816,7 +822,7 @@ $(document).ready(function () {
 		$('.upload_section').css('width','100%');
 	});
 	
-	$('.upload_section').css('width','76%');
+	$('.upload_section').css('width','100%');
 
 	//  To display upload fileds based on binding type
 
@@ -833,7 +839,7 @@ $(document).ready(function () {
 		else{ 
 			$('.display_page_type').fadeOut('fast');
 			// $('.display_normal_file').css('display','block');
-			$('.upload_section').css('width','76%');
+			$('.upload_section').css('width','100%');
 			$('.print_page_option').slideUp();
 			$('.cover_section_holder').slideUp();
 			$('#page_radio_no').prop('checked',true);	
@@ -1272,7 +1278,7 @@ $(document).ready(function () {
 			$('.display_page_type').prop('selectedIndex',0).fadeOut('fast');
 			$('.display_normal_file').css('display','block');
 			$('.display_range_page').css('display','none');
-			$('.upload_section').css('width','76%');
+			$('.upload_section').css('width','100%');
 			if($('#print_booking_form .print_total_no_of_pages').val() == ''){
 				$('#print_booking_form .print_book_binding_amount').val('0.00');
 			}
@@ -2114,6 +2120,8 @@ $(document).ready(function () {
 	$('#cabin_book_button').on('click',function(){
 		$('#cabin_booking').submit();
 	});
+
+	
 	$("#cabin_mobile,#cabin_required_system").keypress(function (e) {
 		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
    			return false;
@@ -2483,47 +2491,66 @@ $(document).ready(function () {
 			}else{
 				user_type = 'Students';
 			}
-			$.ajax({
-				type: "POST",
-				url: "ajax_functions.php",
-				data:{'offer_code_check':'true','offer_code':offer_code,'offer_user_type':offer_user_type,'offer_user_id':offer_user_id},
-				success: function(data){
-					if(data == 'guest'){
-						error_popup('This coupon code not applicable to Guest users!');
-					}
-					else if(data == 'expired'){
-						error_popup('This coupon code Expired!');
-					}
-					else if(data == 'invalid'){
-						error_popup('Invalid Coupon code!');
-					}
-					else if(data == 'limit'){
-						error_popup('Your exceeded offer code usage limitation!');
-					}
-					else if(data == 'swapuser'){
-						error_popup('This offer only for '+user_type+'!');
-					}
-					else if(data.indexOf('#') > -1){
-						//data format like this from ajax
-						// offer amount # provided offer id # eligible amount for offer # offer type
-						var data_split = data.split('#');
-						if(parseFloat($('.final_hidden_sub_amount_checkout_page').val()) > parseFloat(data_split[2])){
-							var reduced_amt = parseFloat($('.final_hidden_sub_amount_checkout_page').val()) - parseFloat(data_split[0]);
-							var delivery_amt = parseFloat($('.final_delivery_charge_amount').val());
-							$('.final_hidden_sub_amount_checkout_page').val(reduced_amt);
-							$('.final_visible_sub_amount_checkout_page').html('<b>&#8377;</b> '+reduced_amt);
-							$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+(reduced_amt+delivery_amt));
-							$('.final_payment_amount_checkout').val(reduced_amt+delivery_amt);
-							$('.offer_field').remove();
-							$('.providedofferid').val(data_split[1]);
-							$('.providedoffertype').val(data_split[3]);
+			if($('#email1').val() !='' || $('#email2').val() != ''){
+				var user_email = ($('#email1').val()?$('#email1').val():$('#email2').val());
+			}
+			else{
+				var user_email = '';
+				error_popup('Please fill out shipping address details!');
+			}
+			if(user_email != '' && offer_code != ''){
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'offer_code_check':'true','offer_code':offer_code,'offer_user_type':offer_user_type,'offer_user_id':offer_user_id,'offer_email_id':user_email},
+					success: function(data){
+						if(data == 'guest'){
+							error_popup('This coupon code not applicable to Guest users!');
 						}
-						else{
-							error_popup('This coupon on order above '+data_split[2]+' Rs only !');
+						else if(data == 'expired'){
+							error_popup('This coupon code Expired!');
+						}
+						else if(data == 'invalid'){
+							error_popup('Invalid Coupon code!');
+						}
+						else if(data == 'limit'){
+							error_popup('Your exceeded offer code usage limitation!');
+						}
+						else if(data == 'swapuser'){
+							error_popup('This offer only for '+user_type+'!');
+						}
+						else if(data == 'notavail'){
+							error_popup('This offer not applicable to you!');
+						}
+						else if(data.indexOf('#') > -1){
+							//data format like this from ajax
+							//       data_split[0]            #  data_split[1]    #         data_split[2]     # data_split[3] # data_split[4]  
+							// offer amount/ offer percentage # provided offer id # eligible amount for offer #  offer type   # offer amount type
+							var data_split = data.split('#');
+							if(data_split[4]=='cost'){
+								var offer_amount = parseFloat(data_split[0]);
+							}
+							else{
+								var offer_amount = parseFloat(parseFloat(data_split[0])/100)*parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+							}
+							if( parseFloat($('.final_hidden_sub_amount_checkout_page').val()) > parseFloat(data_split[2])){
+								var reduced_amt = parseFloat($('.final_hidden_sub_amount_checkout_page').val()) - offer_amount;
+								var delivery_amt = parseFloat($('.final_delivery_charge_amount').val());
+								$('.final_hidden_sub_amount_checkout_page').val(reduced_amt);
+								$('.final_visible_sub_amount_checkout_page').html('<b>&#8377;</b> '+reduced_amt);
+								$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+(reduced_amt+delivery_amt));
+								$('.final_payment_amount_checkout').val(reduced_amt+delivery_amt);
+								$('.offer_field').remove();
+								$('.providedofferid').val(data_split[1]);
+								$('.providedoffertype').val(data_split[3]);
+							}
+							else{
+								error_popup('This coupon on order above '+data_split[2]+' Rs only !');
+							}
 						}
 					}
-				}
-			});
+				});
+			}
 		});
 		
 }); // Document ready end

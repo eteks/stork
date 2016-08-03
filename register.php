@@ -135,7 +135,7 @@ if($_SESSION['login_status'] == 1){
 			<div class="container">	
 				<div class="col-md-9 col-sm-9 col-xs-12">		
 					<div class="col-md-6 col-sm-6 col-xs-12 left">
-						<h1>Create an Account</h1>
+						<h1 class="create_account">Create an Account</h1>
 						<h4>Personal Information</h4>
 						<form id="register-form" class="form-validate form-horizontal" method="post">
 							<p>First Name <span class="star">*</span></p>

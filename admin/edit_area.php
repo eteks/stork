@@ -93,7 +93,7 @@ include "includes/header.php";
 											<span>Select State</span>
 										</option>
 										<?php
-					                    $query = mysql_query("select * from stork_state where state_status='1'");
+					                    $query = mysql_query("select * from stork_state where state_status='1' order by state_name asc");
 				                        while ($staterow = mysql_fetch_array($query)) {
 								        
 								        if($row['area_state_id'] == $staterow['state_id'])   
@@ -112,7 +112,7 @@ include "includes/header.php";
 											<span>Select City</span>
 										</option>
 										<?php
-					                    $query = mysql_query("select * from stork_city where city_status='1'");
+					                    $query = mysql_query("select * from stork_city where city_status='1' order by city_name asc");
 				                        while ($cityrow = mysql_fetch_array($query)) {
 								        
 								        if($row['area_city_id'] == $cityrow['city_id'])   

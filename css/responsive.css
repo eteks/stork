@@ -911,9 +911,14 @@
     #upload_section input {
     	width: 40% !important;
 	}
+	.add_btn, .del_btn {
+		font-size: 20px !important;
+		margin-top: 0px !important;
+	   -webkit-margin-top: 3px !important;
+	}
 	/* Multicolor */
 	 #upload_section #file_name_box{
-		width: 149% !important;
+		width: 53% !important;
 	} 
 	/* checkout Offer zone */
 	.offer_field .pad_10 {
@@ -929,6 +934,7 @@
 	#project_printing_form .project_file_name {
    	 	margin-left: 0px !important;
 	}
+	
 }
 
 @media (max-width: 360px){
