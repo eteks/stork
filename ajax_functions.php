@@ -76,7 +76,7 @@
 			$college_list_with_area_query = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id where stork_area.area_city_id =".$_POST['city_id']." and stork_area.area_status = '1' and stork_college.college_status = '1' ORDER BY stork_college.college_name asc;" ;
 			$college_list_with_area_data = mysqli_query($connection, $college_list_with_area_query);
 			while($row = mysqli_fetch_array($college_list_with_area_data)){
-				echo "<option value ='".$row['college_id']."'>".$row['college_name'].", ".$row['area_name']."</option>";
+				echo "<option city-id ='".$row['college_area_id']."' value ='".$row['college_id']."'>".$row['college_name'].", ".$row['area_name']."</option>";
 			}
 		}
 		
@@ -147,41 +147,26 @@
 		
 		//retriver offer amount in checkout page
 		if(isset($_POST['offer_code_check'])){
-			
 			$user_type = explode('_', $_POST['offer_user_type']);
 			if($user_type[1] == 'stu'){
-				
 				$offer_user_type = 'student';
 			}
 			else if($user_type[1] == 'pro'){
 				$offer_user_type = 'profession';
 			}
-			
 			$offer_type_check_query = mysqli_query($connection, "select * from stork_offer_details where offer_code = '".$_POST['offer_code']."' and offer_status ='1' and DATE(offer_validity_end_date) > DATE(NOW())");
 			$offer_details = mysqli_fetch_array($offer_type_check_query);
 			if(mysqli_num_rows($offer_type_check_query) == 1){
 				$offer_type = $offer_details['offer_type'];
 				if($offer_type == 'general_offer'){
 					if($user_type[0] =='reg'){
-						if($offer_details['offer_user_type'] == 'both'){
+						if($offer_details['offer_user_type'] == 'both' || $offer_details['offer_user_type'] == $offer_user_type){
 							$offer_amt = $offer_details['offer_amount'];
 							$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_registered_users where offer_id = '".$offer_details['offer_id']."' and user_id ='".$_POST['offer_user_id']."' and is_limit_status = '1' and is_validity = '1' ");
 							$offer_id_data = mysqli_fetch_array($offer_id_query);
 							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
 								$offer_id_provided = $offer_id_data['offer_provided_id'];
-								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#general';
-							}
-							else{
-								echo "limit";	
-							}
-						}
-						else if($offer_details['offer_user_type'] == $offer_user_type ){
-							$offer_amt = $offer_details['offer_amount'];
-							$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_registered_users where offer_id = '".$offer_details['offer_id']."' and user_id ='".$_POST['offer_user_id']."' and is_limit_status = '1' and is_validity = '1' ");
-							$offer_id_data = mysqli_fetch_array($offer_id_query);
-							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
-								$offer_id_provided = $offer_id_data['offer_provided_id'];
-								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#general';
+								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#general#'.$offer_details['offer_amount_type'];
 							}
 							else{
 								echo "limit";	
@@ -196,8 +181,28 @@
 					}
 					
 				}
-				else if($offer_type === 'customer_offer'){
-					
+				else if($offer_type == 'customer_offer'){
+					if($offer_details['offer_user_type'] == 'both' || $offer_details['offer_user_type'] == $offer_user_type){
+						$offer_amt = $offer_details['offer_amount'];
+						$userid = ($_POST['offer_user_id'] != 0 ? $_POST['offer_user_id'] : NULL);
+						$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_all_users where offer_id = '".$offer_details['offer_id']."' and offer_provided_user_id ='".$userid."' and offer_provided_usertype ='".$_POST['offer_user_type']."' and is_limit_status = '1' and is_validity = '1' and status ='1'");
+						$offer_id_data = mysqli_fetch_array($offer_id_query);
+						if(mysqli_num_rows($offer_id_query) == 1){
+							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
+								$offer_id_provided = $offer_id_data['offer_provided_details_id '];
+								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#customer#'.$offer_details['offer_amount_type'];
+							}
+							else{
+								echo "limit";	
+							}
+						}
+						else{
+							echo "notavail";
+						}
+					}
+					else {
+						echo "swapuser";
+					}
 				}else{
 					echo 'expired';
 				}

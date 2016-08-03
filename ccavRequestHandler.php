@@ -17,7 +17,12 @@ if($_POST['makemydefaultaddress'] == 'reg_per'){
 if($_POST['providedofferid'] != '' && $_POST['providedoffertype'] != ''){
 	$offer_type = $_POST['providedoffertype'];
 	$offer_id = $_POST['providedofferid'];
-	$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1' where offer_provided_id=".$offer_id;
+	if($_POST['providedoffertype']=='general'){
+		$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1' where offer_provided_id=".$offer_id;
+	}
+	else {
+		$offerupdatequery = "update stork_offer_provide_all_users set limit_used=limit_used+1,is_used='1' where offer_provided_details_id=".$offer_id;
+	}
 	mysqli_query($connection, $offerupdatequery);
 	
 }
