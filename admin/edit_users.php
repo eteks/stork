@@ -104,7 +104,7 @@ include "includes/header.php";
 							?>
 								<div class="form-group">
 								    <label for="last-name">User Name<span class="required"></span></label>
-									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
+									<input type="text" class="form-control" tabindex="" id="username" autocomplete="off" placeholder="User Name" name="username" value="<?php echo($row['username']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Password<span class="required"></span></label>

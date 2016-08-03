@@ -2120,6 +2120,11 @@ $(document).ready(function () {
    			return false;
 		}
 	});
+	$("#quantity_0").keypress(function (e) {
+		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+   			return false;
+		}
+	});
 	$("#cabin_name").keypress(function (e) {
 	 	if (e.which != 8 && e.which != 0 && (e.which < 97 || e.which > 122) ) {
 		   return false;;

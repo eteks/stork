@@ -1,4 +1,31 @@
-﻿<?php 
+﻿<?php
+if(isset($_GET['order_id'])) {
+  $delivery_name ="delivery_name";
+  $delivery_email = "delivery_email";
+
+  
+  $email_subject = "ORDER PLACED";
+  $from = "info@etekchnoservices.com";
+  // $to = "info@etekchnoservices.com";
+
+  $headers = "From: " . $from . "\r\n";
+  $headers .= "Reply-To: ". $from . "\r\n";
+  $headers .= "MIME-Version: 1.0\r\n";
+  $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+
+  $message = "<html> <body> <h2 style='text-align:center;color:green;'> Order Details </h2> <table style='background: #f9f9f9;margin: 0 auto;'> <tr> <th style='padding:10px 20px;'>  Name </th> <td style='padding:10px 20px;color: #00b3fe;'> ".$delivery_name." </td> </tr> <tr> <th style='padding:10px 20px;'>  Email </th> <td style='padding:10px 20px;color: #00b3fe;'> ".$delivery_email." </td> </tr> <tr> <th style='padding:10px 20px;'> </td> </tr> </table> </body> </html>";
+       
+     if (mail($delivery_email, $email_subject, $message, $headers))
+     {
+       $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
+     }
+     else {
+      $responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
+     }
+}
+?>
+<?php 
 include('header.php');
 ?>
 	<!--Main index : End-->
@@ -33,6 +60,7 @@ include('header.php');
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">
 			   <div class="pro-name-rate clearfix">
+			   	<?php if($responsemessage) echo $responsemessage; ?>
                  <h3 class="product-name">
 	                Thank You
                  </h3><br><br>
