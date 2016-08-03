@@ -91,7 +91,7 @@ if(isset($_GET["id"]))
 											<span>Select State</span>
 										</option>
 										<?php
-					                    $query = mysql_query("select * from stork_state where state_status='1'");
+					                    $query = mysql_query("select * from stork_state where state_status='1' order by state_name asc");
 				                        while ($staterow = mysql_fetch_array($query)) {
 								        
 								        if($row['city_state_id'] == $staterow['state_id'])   

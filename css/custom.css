@@ -1,5 +1,7 @@
 .dn {
-	display:none !important;
+	height: 0px;
+    width: 0px !important;
+    opacity: 0;
 }
 
 
@@ -1119,10 +1121,6 @@ div.mcart-info , div.mcart-total {
 .services-link a:hover {
 	color: #25bce9;
 }
-.info .fa-home:hover, .info .fa-phone:hover{
-	color: #25bce9;
-	 transform: translateZ(0px);
-} 
 /* checkout offer zone */
 .cart-summary .no-border .offer_field{
 	margin:20px;

@@ -4,7 +4,7 @@
 			if(isset($_GET['loadcityfromdb'])){
 				$state_id=$_POST['states_id'];		
 				$json =array();
-				$qrycity = mysql_query("SELECT * FROM stork_city WHERE city_state_id = '$state_id'");	
+				$qrycity = mysql_query("SELECT * FROM stork_city WHERE city_state_id = '$state_id' order by city_name asc");	
 				// echo mysql_num_rows($qrycity);						
 				while ( $result = mysql_fetch_array( $qrycity )){
 			    	$tmp = array(

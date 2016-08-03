@@ -5,7 +5,7 @@
 				$city_id=$_POST['city_id'];	
 				// echo $city_id;	
 				$json =array();
-				$qryarea = mysql_query("SELECT * FROM stork_area WHERE area_city_id = '$city_id'");	
+				$qryarea = mysql_query("SELECT * FROM stork_area WHERE area_city_id = '$city_id' order by area_name asc");	
 				// echo mysql_num_rows($qrycity);						
 				while ( $result = mysql_fetch_array( $qryarea )){
 			    	$tmp = array(

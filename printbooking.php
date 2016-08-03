@@ -187,17 +187,16 @@
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
 									<div class="input_holder row pad_15">
 										<p class="display_page_type"> Content </p>
-										<div class="">
-								 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
-								 		</div>	
-								 		<div class="fl">
+									 			<input type="text" name="" id="file_name_box" data-filevalue="0" class="col-md-8 file_name_box content_file_name style_range " value="No file selected"/ disabled>
 								 			<input type="file" class="user dn col-md-8 uploadFile" id="file_upload" name="printfiles[]"/>
-				       						<div class="uploadbutton col-md-4 fl" id="uploadTrigger">Browse</div>
-				       						<div class="pos_rel fr" id="pos_rel">
-	   											<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
-	   											<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
+				       						<div class="uploadbutton col-md-4 fl" id="uploadTrigger">Browse
+				       						</div>
+				       						<div class="pos_rel fl" id="pos_rel">
+	   											<div class="del_btn remove_upload" id="remove_upload"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+	   											</div>
+	   											<div class="add_btn clone_upload" id="clone_upload"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+	   											</div>
 		   								    </div>
-		   							    </div>
 		   								<div class="cb"> </div>   
 			       					</div>
 			       					<div>

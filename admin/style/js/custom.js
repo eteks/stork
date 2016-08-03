@@ -45,7 +45,7 @@ $(document).ready(function(){
       $(this).find('th:nth-child(2)').css('width','208px');
       $(this).find('th:nth-child(3)').css('width','110px');
       $(this).find('th:nth-child(4)').css('width','110px');
-      $(this).find('th:last-child').css('width','100px');
+      $(this).find('th:last-child').css('width','110px');
     }
     else if(thCount == 6) {
       $(this).css('width','930px');
@@ -54,17 +54,17 @@ $(document).ready(function(){
       $(this).find('th:nth-child(3)').css('width','234px');
       $(this).find('th:nth-child(4)').css('width','250px');
       $(this).find('th:nth-child(5)').css('width','230px');
-      $(this).find('th:last-child').css('width','100px');
+      $(this).find('th:last-child').css('width','110px');
     }
     else if(thCount == 7) {
-      $(this).css('width','950px');
+      $(this).css('width','990px');
       $(this).find('th:first-child').css('width','230px');
       $(this).find('th:nth-child(2)').css('width','170px');
       $(this).find('th:nth-child(3)').css('width','260px');
       $(this).find('th:nth-child(4)').css('width','240px');
       $(this).find('th:nth-child(5)').css('width','150px');
       $(this).find('th:nth-child(6)').css('width','230px');
-      $(this).find('th:last-child').css('width','100px');
+      $(this).find('th:last-child').css('width','110px');
     }
     else if(thCount == 9) {
       $(this).css('width','1230px');
@@ -79,7 +79,7 @@ $(document).ready(function(){
       $(this).find('th:last-child').css('width','110px');
     }
      else if(thCount == 10) {
-      $(this).css('width','1380px');
+      $(this).css('width','1350px');
       $(this).find('th:first-child').css('width','284px');
       $(this).find('th:nth-child(2)').css('width','180px');
       $(this).find('th:nth-child(3)').css('width','319px');
@@ -89,7 +89,7 @@ $(document).ready(function(){
       $(this).find('th:nth-child(7)').css('width','320px');
       $(this).find('th:nth-child(8)').css('width','202px');
       $(this).find('th:nth-child(9)').css('width','202px');
-      $(this).find('th:last-child').css('width','100px');
+      $(this).find('th:last-child').css('width','110px');
     }
     else if(thCount == 11) {
       $(this).css('width','1500px');
@@ -119,10 +119,10 @@ $(document).ready(function(){
       $(this).find('th:nth-child(10)').css('width','194px');
       $(this).find('th:nth-child(11)').css('width','326px');
       $(this).find('th:nth-child(12)').css('width','326px');
-      $(this).find('th:last-child').css('width','100px');
+      $(this).find('th:last-child').css('width','110px');
     }
     else if(thCount == 15) {
-      $(this).css('width','1770px');
+      $(this).css('width','1850px');
       $(this).find('th:first-child').css('width','270px');
       $(this).find('th:nth-child(2)').css('width','400px');
       $(this).find('th:nth-child(3)').css('width','240px');
@@ -141,7 +141,7 @@ $(document).ready(function(){
     }
 
   else if(thCount == 16) {
-      $(this).css('width','1770px');
+      $(this).css('width','1850px');
       $(this).find('th:first-child').css('width','270px');
       $(this).find('th:nth-child(2)').css('width','400px');
       $(this).find('th:nth-child(3)').css('width','240px');

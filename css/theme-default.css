@@ -4142,9 +4142,6 @@ footer{
 #testfooter:hover {
   color: #25bce9;
 }
-.footer-main .footer_icon:hover i{
-  color: #25bce9;
-}
 .footer-main .footer-social{
   margin-top: 28px;
 }
@@ -6319,12 +6316,6 @@ section.home-slidershow{
 }
 p.dev_partner:hover {
     color: #999999 !important;
-}
-.logo:hover {
-  cursor: default !important;
-}
-.logo a:hover {
-  cursor: pointer !important;
 }
 #forgotpass-form {
   padding-top: 15px;
