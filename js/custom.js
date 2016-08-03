@@ -2553,5 +2553,15 @@ $(document).ready(function () {
 			}
 		});
 		
+		
+		//set city id to cookie
+		$('#print_book_college').on('change',function(){
+			var option = $('option:selected', this).attr('city-id');
+			Cookies.set('area_id',option);
+		});
+		$('#print_book_area_professional').on('change',function(){
+			var option = $('option:selected', this).val();
+			Cookies.set('area_id',option);
+		});
 }); // Document ready end
 
