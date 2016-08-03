@@ -1,8 +1,8 @@
-/*input[type="file"] {
- height: 300px !important;
- width: 30px !important;
- opacity: 1 !important;
-}*/
+input[type="file"] {
+ height: 0px !important;
+ width: 0px !important;
+ opacity: 0 !important;
+}
 .dn {
 	display:none !important;
 }
@@ -1123,10 +1123,6 @@ div.mcart-info , div.mcart-total {
 .services-link a:hover {
 	color: #25bce9;
 }
-.info .fa-home:hover, .info .fa-phone:hover{
-	color: #25bce9;
-	 transform: translateZ(0px);
-} 
 /* checkout offer zone */
 .cart-summary .no-border .offer_field {
 	margin:20px;
@@ -1147,16 +1143,12 @@ div.mcart-info , div.mcart-total {
     float: left;
     margin: 10px 0;
 }
-
-
 /* Offer code css added by siva */
 .offfer_status {
     color: red;
     display: block;
 }
-
 /* Added by siva */
-
 .pop_up_error_city {
     color: red;
 }
