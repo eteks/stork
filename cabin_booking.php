@@ -56,7 +56,7 @@
               <div class="onepage">
 				 <div  class="col-md-4 col-sm-6 col-xs-12">
 				 <div id="div_billto">
-					   <div class="pane round-box">
+					   <div class="round-box">
 						 <h3 class="title"><span class="icon icon-one">1</span>Book Your Cabin Now</h3>
 						 <form id="cabin_booking" class="cabin_booking" name="cabin_booking" method="post" action="ccavRequestHandler.php"><!--"-->
 						 	<input type="hidden" name="tid" id="txnid" readonly />
@@ -158,7 +158,7 @@
 				      <div id="right-pane-top" class="col-md-12 col-sm-12 col-xs-12">
 				      <div id="shipping_method" class="col-md-12 col-sm-12 col-xs-12">
 					  <div class="shipment-pane">
-					   <div class="pane round-box" id="cabin_booking_timing_slot">
+					   <div class="round-box" id="cabin_booking_timing_slot">
 	                	    
 	                	</div>
 					  </div>
