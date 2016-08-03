@@ -98,7 +98,7 @@ progress::-moz-progress-bar {
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.Google.com/" title="Google Plus">
+								<a href="http://www.Googleplus.com/" title="Google Plus">
 									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>
