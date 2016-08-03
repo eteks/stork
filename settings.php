@@ -54,7 +54,7 @@ define("MULTICOLOR",'stork_cost_estimation_multicolor');
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 
 // uploaded file extensions
-$ALLOWEDFILE = array('doc','docx','pdf','jpeg','jpg	');
+$ALLOWEDFILE = array('doc','docx','pdf','jpeg','jpg');
 
 // cc avenue details
 define("MERCHANTID",'101665'); // merchant id

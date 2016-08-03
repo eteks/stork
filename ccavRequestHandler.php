@@ -14,6 +14,15 @@ if($_POST['makemydefaultaddress'] == 'reg_per'){
 	mysqli_query($connection, $defaultaddressquery);
 	unset($_POST['makemydefaultaddress']);
 }
+if($_POST['providedofferid'] != '' && $_POST['providedoffertype'] != ''){
+	$offer_type = $_POST['providedoffertype'];
+	$offer_id = $_POST['providedofferid'];
+	$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1' where offer_provided_id=".$offer_id;
+	mysqli_query($connection, $offerupdatequery);
+	
+}
+unset($_POST['providedofferid']);
+unset($_POST['providedoffertype']);
 ?>
 
 <?php include('Crypto.php') ?>
@@ -25,7 +34,7 @@ if($_POST['makemydefaultaddress'] == 'reg_per'){
 	foreach ($_POST as $key => $value){
 		$merchant_data.=$key.'='.$value.'&';
 	}
-	$encrypted_data=encrypt($merchant_data,$working_key); // Method for encrypting the data.
+	$encrypted_data=encrypt($merchant_data,$working_key); //Method for encrypting the data.
 
 ?>
 <form method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction"> 

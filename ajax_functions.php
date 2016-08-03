@@ -139,10 +139,74 @@
 		//return amount base on print type, print side, paper type, paper size for multicolor printing
 		if(isset($_POST['amount_per_copy_multi'])){
 			$amount_per_page = selectfunction('cost_estimation_multicolor_amount',MULTICOLOR,'cost_estimation_multicolor_paper_print_type_id ="'.$_POST['print_type'].'" and cost_estimation_multicolor_paper_side_id ="'.$_POST['print_side'].'" and cost_estimation_multicolor_paper_size_id ="'.$_POST['papar_size'].'" and cost_estimation_multicolor_paper_type_id ="'.$_POST['paper_type'].'" and cost_estimation_multicolor_copies_id="'.$_POST['noofcopies'].'" and cost_estimation_multicolor_status ="1"',$connection);
-				$amount_data = mysqli_fetch_array($amount_per_page);
-				if(mysqli_num_rows($amount_per_page) == 1){
-					echo $amount_data['cost_estimation_multicolor_amount'];
+			$amount_data = mysqli_fetch_array($amount_per_page);
+			if(mysqli_num_rows($amount_per_page) == 1){
+				echo $amount_data['cost_estimation_multicolor_amount'];
+			}
+		}
+		
+		//retriver offer amount in checkout page
+		if(isset($_POST['offer_code_check'])){
+			
+			$user_type = explode('_', $_POST['offer_user_type']);
+			if($user_type[1] == 'stu'){
+				
+				$offer_user_type = 'student';
+			}
+			else if($user_type[1] == 'pro'){
+				$offer_user_type = 'profession';
+			}
+			
+			$offer_type_check_query = mysqli_query($connection, "select * from stork_offer_details where offer_code = '".$_POST['offer_code']."' and offer_status ='1' and DATE(offer_validity_end_date) > DATE(NOW())");
+			$offer_details = mysqli_fetch_array($offer_type_check_query);
+			if(mysqli_num_rows($offer_type_check_query) == 1){
+				$offer_type = $offer_details['offer_type'];
+				if($offer_type == 'general_offer'){
+					if($user_type[0] =='reg'){
+						if($offer_details['offer_user_type'] == 'both'){
+							$offer_amt = $offer_details['offer_amount'];
+							$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_registered_users where offer_id = '".$offer_details['offer_id']."' and user_id ='".$_POST['offer_user_id']."' and is_limit_status = '1' and is_validity = '1' ");
+							$offer_id_data = mysqli_fetch_array($offer_id_query);
+							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
+								$offer_id_provided = $offer_id_data['offer_provided_id'];
+								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#general';
+							}
+							else{
+								echo "limit";	
+							}
+						}
+						else if($offer_details['offer_user_type'] == $offer_user_type ){
+							$offer_amt = $offer_details['offer_amount'];
+							$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_registered_users where offer_id = '".$offer_details['offer_id']."' and user_id ='".$_POST['offer_user_id']."' and is_limit_status = '1' and is_validity = '1' ");
+							$offer_id_data = mysqli_fetch_array($offer_id_query);
+							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
+								$offer_id_provided = $offer_id_data['offer_provided_id'];
+								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#general';
+							}
+							else{
+								echo "limit";	
+							}
+						}
+						else {
+							echo "swapuser";
+						}
+					}
+					else {
+						echo "guest";						
+					}
+					
 				}
+				else if($offer_type === 'customer_offer'){
+					
+				}else{
+					echo 'expired';
+				}
+				
+			}
+			else {
+				echo 'invalid';
+			}
+			
 		}
 	}// end of is ajax if condition
 ?>

@@ -85,7 +85,7 @@
 				        <div class="popup_content">
 					    	<label>Select your city</label>
 							<select name="print_book_city_name" id="initial_city_name" class="initial_city_name">
-								<option value="Select Your City">Select your city</option>
+								<option value="">Select your city</option>
 								<?php
         							$city_query = "select * from stork_city inner join stork_state on stork_city.city_state_id = stork_state.state_id where stork_state.state_name ='puducherry' and stork_state.state_status = 1 and stork_city.city_status = 1";
 									$city = mysqli_query($connection, $city_query);
