@@ -23,8 +23,9 @@ include "includes/header.php";;
 		$offer_eligible_amount = $_POST["offer_eligible_amount"];
 		$offer_limitation = $_POST["offer_limitation"];
 		$offer_status = $_POST["offer_status"];
+		$offer_user_type = $_POST["offer_Person_type"];
 
-		if($offer_type_value=="" || $offer_title=="" || $offer_code=="" || $offer_start_validity=="" || $offer_end_validity=="" || $offer_amount_type_value=="" || $offer_amount=="" || $offer_limitation=="" || $offer_limitation=="" || $offer_status=="" ) {
+		if($offer_type_value=="" || $offer_title=="" || $offer_code=="" || $offer_start_validity=="" || $offer_end_validity=="" || $offer_amount_type_value=="" || $offer_amount=="" || $offer_limitation=="" || $offer_limitation=="" || $offer_status=="" || $offer_user_type =="") {
 			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields</span></div>";
 		}	
 		else{
@@ -33,7 +34,7 @@ include "includes/header.php";;
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Offer Already Exists </span></div>";
 			} else {
-				mysqlQuery("INSERT INTO `stork_offer_details` (offer_type,offer_title,offer_code,offer_validity_start_date,offer_validity_end_date,offer_amount_type,offer_amount,offer_eligible_amount,offer_usage_limit,offer_status) VALUES ('$offer_type_value','$offer_title','$offer_code','$offer_start_validity','$offer_end_validity','$offer_amount_type_value','$offer_amount','$offer_eligible_amount','$offer_limitation','$offer_status')");
+				mysqlQuery("INSERT INTO `stork_offer_details` (offer_type,offer_title,offer_code,offer_user_type,offer_validity_start_date,offer_validity_end_date,offer_amount_type,offer_amount,offer_eligible_amount,offer_usage_limit,offer_status) VALUES ('$offer_type_value','$offer_title','$offer_code','$offer_user_type','$offer_start_validity','$offer_end_validity','$offer_amount_type_value','$offer_amount','$offer_eligible_amount','$offer_limitation','$offer_status')");
 				$successMessage = "<div class='container error_message_mandatory'><span> Offer Inserted Sucessfully! </span></div>";
 			}		
 		}

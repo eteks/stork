@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$query_filter = mysql_query("SELECT * FROM `stork_order` where order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, order_customer_email) AND order_total_amount >= '$filter_amount'");
 	}
 	if (isset($_POST['offer_save'])){
-
 		$checkbox_status = $_POST['checkbox_status'];
 		$offer_id = $_POST['offer_id'];
 		$user_id = $_POST['user_id'];
@@ -53,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$is_validity = 1;
 				$status = 1;
 				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
+
 			}
 		}
 	}

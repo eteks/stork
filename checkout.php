@@ -198,7 +198,7 @@ if(mysqli_num_rows($review_details)>0){
 	   			<div class="clearfix"> </div>
        <br> 
 	   <?php
-		$allareaquery = "select * from stork_area order by area_name asc";
+		$allareaquery = "select * from stork_area where area_status = '1' order by area_name asc";
 		$allareadata = mysqli_query($connection, $allareaquery);
 	   if(isset($_SESSION['usertype'])){
 	   	if(isset($_SESSION['user_id'])){
@@ -208,7 +208,7 @@ if(mysqli_num_rows($review_details)>0){
 	   	$usertype_name = $_SESSION['usertype'];
 		
 		if($usertype_name == 'stu'){
-			$city_query1 = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_college.college_id =".$_SESSION['college_id'];
+			$city_query1 = "select * from stork_college inner join stork_area on stork_college.college_area_id = stork_area.area_id inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_college.college_id =".$_SESSION['college_id']." and stork_area.area_status='1' and stork_college.college_status='1' and stork_city.city_status='1'";
 			$city1 = mysqli_fetch_array(mysqli_query($connection, $city_query1));
 			$college_name = $city1['college_name'];
 			$area_name = $city1['area_name'];
@@ -218,7 +218,7 @@ if(mysqli_num_rows($review_details)>0){
 			
 		}
 		elseif ($usertype_name == 'pro') {
-			$city_query2 = "select * from stork_area inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_area.area_id =".$_SESSION['area_id'];
+			$city_query2 = "select * from stork_area inner join stork_city on stork_area.area_city_id = stork_city.city_id inner join stork_state on stork_state.state_id = stork_city.city_state_id  where stork_area.area_id =".$_COOKIE['area_id']." and stork_area.area_status='1' and stork_city.city_status='1'";
 			$city2 = mysqli_fetch_array(mysqli_query($connection, $city_query2));
 			$area_name = $city2['area_name'];
 			$city_name = $city2['city_name'];
@@ -253,21 +253,21 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>" size="30" name="address_1" id="name_a" > 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_name']; ?>" size="30" name="address_1" id="name_a" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 1<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_addr1']; ?>" size="30" name="address_1" id="address1"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_addr1']; ?>" size="30" name="address_1" id="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_addr2']; ?>" size="30" name="address_1" id="address2" > 
+						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_addr2']; ?>" size="30" name="address_1" id="address2" > 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -277,7 +277,7 @@ if(mysqli_num_rows($review_details)>0){
 						<select id="area">
 							<?php
 							while($allarea = mysqli_fetch_array($allareadata)){
-								if(isset($user_data['shipping_default_area_id'])){
+								if(isset($user_data['shipping_default_area_id']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']){
 									if($user_data['shipping_default_area_id'] == $allarea['area_id'] ){
 										echo "<option value='".$allarea['area_name']."' selected>".$allarea['area_name']."</option>";
 									}else{
@@ -313,21 +313,21 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode'])) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
+						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile'])) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
+						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email'])) echo $user_data['shipping_default_email']; ?>" autocomplete="off" size="30" name="address_1" id="email1">
+						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_email']; ?>" autocomplete="off" size="30" name="address_1" id="email1">
 						 
 					   </div>
 					 </li>

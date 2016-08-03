@@ -230,7 +230,7 @@
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
+							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
 							</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
@@ -418,7 +418,7 @@
 								</div>
 								<div class="input_holder row pad_15">
 								 	<p>Comments</p>
-								 	<textarea rows="7" cols="50" class="" value="" name="project_print_comments"></textarea>
+								 	<textarea rows="7" cols="50" class="" value="" name="project_print_comments" maxlength="150"></textarea>
 								</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
@@ -564,7 +564,7 @@
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments"></textarea>
+							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
 							</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="0.00" />

@@ -8,8 +8,8 @@
 				$_SESSION['usertype'] = 'stu';
 				$_SESSION['college_id'] =trim($_POST['stu_college']);
 				$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
-				// $_SESSION['area_id'] =trim($_POST['stu_area']);
-				unset($_SESSION['area_id']);
+				$_SESSION['area_id'] =trim($_COOKIE['area_id']);
+				//unset($_SESSION['area_id']);
 				
 			}
 			
@@ -17,7 +17,7 @@
 				$_SESSION['usertype'] = 'pro';
 				$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 				// $_SESSION['state_id'] =trim($_POST['pro_state']);
-				$_SESSION['area_id'] =trim($_POST['pro_area']);
+				$_SESSION['area_id'] =trim($_COOKIE['area_id']);
 				unset($_SESSION['college_id']);
 			}
 		}
@@ -29,20 +29,23 @@
 					$_SESSION['usertype'] = 'stu';
 					$_SESSION['college_id'] =trim($_POST['stu_college']);
 					$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
-					// $_SESSION['area_id'] =trim($_POST['stu_area']);
-					unset($_SESSION['area_id']);
+					$_SESSION['area_id'] =trim($_COOKIE['area_id']);
+					//unset($_SESSION['area_id']);
 				}
 				if(trim($_POST['user_type']) == 'pro'){
 					$_SESSION['usertype'] = 'pro';
 					$_SESSION['city'] = (isset($_POST['print_book_city_name'])?$_POST['print_book_city_name']:$_SESSION['print_book_city_name']);
 					//$_SESSION['state_id'] =trim($_POST['pro_state']);
-					$_SESSION['area_id'] =trim($_POST['pro_area']);
+					$_SESSION['area_id'] =trim($_COOKIE['area_id']);
 					unset($_SESSION['college_id']);
 				}
 			}
 		}
 	}
 	//print_r($_SESSION);
+	$offerquery = "select * from stork_offer_details where offer_type = 'customer_offer' and  offer_status = '1'";
+	$offerdata = mysqli_query($connection, $offerquery);
+	$amount_dataarrya = mysqli_fetch_array($offerdata);
 ?>
 
 	<main class="main index">
@@ -63,7 +66,8 @@
 								</span>
 							</div>
 							<!-- <div class="tp-caption lfb" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now </a></div> -->
-							<div class="tp-caption lfr offer-zone1" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Title: 123A456B. <em>Vaild till 29 July 2016.</em></span></div>
+							<div class="tp-caption lfr offer-zone1" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
+																																																																										
 						</li>
 						<li class="slide2" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
 							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">CABIN BOOKING</span></div> 
@@ -77,7 +81,7 @@
 								</span>
 							</div>
 							<!-- <div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<div class="tp-caption lfr offer-zone2" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Title: 123A456B. <em>Vaild till 29 July 2016.</em></span></div>
+							<div class="tp-caption lfr offer-zone2" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
 						</li>
 						<li class="slide3" data-transition="random" ><img src="images/slider/home/bg_slider_3.jpg" alt="" />
 							<div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
@@ -91,7 +95,7 @@
 								</span>
 							</div>
 							<!-- <div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<div class="tp-caption lfr offer-zone3" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Title: 123A456B. <em>Vaild till 29 July 2016.</em> </span></div>
+							<div class="tp-caption lfr offer-zone3" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
 						</li>
 						<li class="slide4" data-transition="random" ><img src="images/slider/home/bg_slider_4.jpg" alt="" />
 							<!-- <div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
@@ -105,7 +109,7 @@
 								</span>
 							</div>
 							<div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Title: 123A456B. <em>Vaild till 29 July 2016.</em></span></div>
+							<div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
 						</li>
 					</ul> 
 				</div>
@@ -3356,3 +3360,8 @@
 		</section>
 	</main>  
 <?php include('footer.php') ?>
+<?php
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+?>
