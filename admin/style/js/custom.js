@@ -315,7 +315,7 @@ $(document).ready(function () {
           }
       });
          $('#cityname').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
@@ -325,7 +325,7 @@ $(document).ready(function () {
           }
       });
         $('#areaname').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
@@ -335,7 +335,7 @@ $(document).ready(function () {
           }
       });
         $('#collegename').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
