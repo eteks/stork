@@ -52,6 +52,7 @@ jQuery(document).ready(function() {
 	var required_cabin_schedule_time =["schedule_time_start","schedule_time_end"];
 	var required_cabin_holiday_details =["holiday_date"];
 	var required_cabin_cost_estimation =["amount"];
+	var required_customer_offer =["filteramount"];
 	var required_cabin_order_details =["customername","email","phone","dob","schedule_time_start","schedule_time_end","noofsystem_booked","totalhours_booked","amount"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
@@ -1774,6 +1775,46 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});	
+		jQuery("#customer_offer").submit(function(){ 	
+			for(var i = 0 ; i<required_customer_offer.length;i++ ){
+			var input = jQuery('#'+required_customer_offer[i]);
+		
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test_off').css('display','block');
+				 $('.error_test_offer').css('display','none');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test_off').css('display','none'); 
+				 $('.error_test_offer').css('display','none');}
+			}			
+	//  select field
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test_off').css('display','block');
+			$('.error_test_offer').css('display','none');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test_off').css('display','none');
+			 $('.error_test_offer').css('display','none');
+			return true;
+		}
+	});	
+	jQuery(".customer_check").click(function(){ 
+		if($('.offer_checkbox:checked').length ==0) {
+		$('.error_test_offer').css('display','block');
+		$('.error_test_off').css('display','none');
+		return false;
+		}else{
+			errornotice.hide();
+			 $('.error_test_offer').css('display','none');
+			 $('.error_test_off').css('display','none');
+			return true;
+		}
+	});
+	
 	jQuery("#add_cabin_system_details").submit(function(){ 
 		       var input = jQuery('#'+required_cabin_system_details);
 		if ((input.val() == "")) 

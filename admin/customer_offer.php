@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		}
 		if($status){
 			// echo "if";
-			$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer Assigned and mail sent Successfully! </span></div>";
 			// echo $successMessage;
 		}
 	}
@@ -105,8 +105,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<?php if($successMessage) echo $successMessage; ?>
 	<div class="add_section">
 	<form action="customer_offer.php" id="customer_offer" method="POST">
+	<div class="container">
+		<span class="error_test_off"> Please fill all required(*) fields </span>
+			<span class="error_test_offer"> Please select atleast one option </span>
+	</div>
 		<span class="amount_text">Filter Amount</span>
-		<input type="text" name="filter_amount" class="amount_field">
+		<input type="text" name="filter_amount" id="filteramount" class="amount_field">
 		<button type="submit" class="gbtn btn-edit-acc-info amount_gen" name="offer_generate">Generate</button>
 	</form>
 	</div>
@@ -161,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							   <?php } ?>
 					</table>										
 		<div class="account-bottom-action">
-			<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>
+			<button type="submit" class="gbtn btn-edit-acc-info customer_check" name="offer_save">Save</button>
 		</div>	
 	</div>
 	</form>

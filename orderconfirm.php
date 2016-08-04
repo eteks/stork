@@ -1,31 +1,4 @@
-﻿<?php
-if(isset($_GET['order_id'])) {
-  $delivery_name ="delivery_name";
-  $delivery_email = "delivery_email";
-
-  
-  $email_subject = "ORDER PLACED";
-  $from = "info@etekchnoservices.com";
-  // $to = "info@etekchnoservices.com";
-
-  $headers = "From: " . $from . "\r\n";
-  $headers .= "Reply-To: ". $from . "\r\n";
-  $headers .= "MIME-Version: 1.0\r\n";
-  $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-
-  $message = "<html> <body> <h2 style='text-align:center;color:green;'> Order Details </h2> <table style='background: #f9f9f9;margin: 0 auto;'> <tr> <th style='padding:10px 20px;'>  Name </th> <td style='padding:10px 20px;color: #00b3fe;'> ".$delivery_name." </td> </tr> <tr> <th style='padding:10px 20px;'>  Email </th> <td style='padding:10px 20px;color: #00b3fe;'> ".$delivery_email." </td> </tr> <tr> <th style='padding:10px 20px;'> </td> </tr> </table> </body> </html>";
-       
-     if (mail($delivery_email, $email_subject, $message, $headers))
-     {
-       $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
-     }
-     else {
-      $responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
-     }
-}
-?>
-<?php 
+﻿<?php 
 include('header.php');
 ?>
 	<!--Main index : End-->
@@ -55,6 +28,24 @@ include('header.php');
 			$order_id = $_GET['order_id'];
 			$order_details = selectfunction('*',ORDER,'order_id='.$order_id,$connection);
 			$row = mysqli_fetch_array($order_details);
+		 	$order_customer_name =$row['order_customer_name'];
+  			$order_customer_email = $row["order_customer_email"];  
+		    $email_subject = "ORDER PLACED";
+		    $from = "info@etekchnoservices.com";
+		    // $to = "info@etekchnoservices.com";		
+		    $headers = "From: " . $from . "\r\n";
+		    $headers .= "Reply-To: ". $from . "\r\n";
+		    $headers .= "MIME-Version: 1.0\r\n";
+		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+			
+$message = "<html> <body> <div style='margin: 0px auto; width: 50%;'> <h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'>Order Details </h2> <div style='border: 1px solid #25bce9; background: #fff;'> Name <p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'> ".$order_customer_name." </p>  Email  <p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'>".$order_customer_email." </p> </div> </div> </body> </html>";  			echo "$message";
+           if (mail($order_customer_email, $email_subject, $message, $headers))
+        {
+          $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
+        }
+           else {
+          $responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
+        }
 			//print_r($_SESSION);
 		?>
 		<section id="wishlist" class="pr-main">
