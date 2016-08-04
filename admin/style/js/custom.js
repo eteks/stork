@@ -279,7 +279,7 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () { 
-    $('#dob,#holiday_date,.date_picker').datepicker({
+    $('#dob,#holiday_date').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
