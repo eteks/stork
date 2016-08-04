@@ -149,7 +149,10 @@ progress::-moz-progress-bar {
 							?>
 							<div class="cart-w SC-w hd-pd ">
 								<span class="mcart-icon dropdowSCIcon">
-									<a href="logout.php" title="logout">
+
+									<a href="logout.php" title="Logout">
+									
+										<?php echo $_SESSION['user_login_name'] ?>
 										<i class="fa fa-sign-out"></i>
 										<!-- Sign Up -->
 									</a>

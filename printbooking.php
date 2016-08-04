@@ -170,14 +170,10 @@
 			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
 								<div id="cover_only" class="input_holder row pad_15">
-									<div>
 									   <p> Cover </p>
 									   <input type="text" name="" id="cover_file_name" class="file_name_box style_range" value="No file selected"/ disabled>
-									</div>
-									<div class="fl row col-xs-12"> 
 										<input type="file" class="user upload_cover_File" id="upload_cover_File" name="cover_printfiles[]"/>
-		    	   				    	<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div>
-		    	   				    </div>   
+		    	   				    	<div class="cover_uploadbutton" id="cover_uploadTrigger">Browse</div> 
 								</div>	
 							</div>
    							<div class="clear_both"> </div>
