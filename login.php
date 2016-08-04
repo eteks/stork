@@ -14,6 +14,7 @@
   			//echo "<script> $('.login_error').css('display','none'); </script>";
 			$_SESSION['login_status']=1;
 			$_SESSION['user_id'] = $login_user_id_data['user_id'];
+			$_SESSION['user_login_name'] = $login_user_id_data['first_name'];
 			$user_type_for_login = (isset($_SESSION['usertype'])?$_SESSION['usertype']:'stu');
   			//echo "login successful";	
   			$random = uniqid();
