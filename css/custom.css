@@ -1,8 +1,8 @@
 input[type="file"] {
  height: 0px !important;
  width: 0px !important;
- opacity: 0 !important;
-}
+ opacity: 0.01 !important;
+ }
 .dn {
 	height: 0px;
     width: 0px !important;
@@ -563,6 +563,7 @@ h4.order_or_button{
 .cover_uploadbutton {
     margin-bottom: 20px;
     margin-right: 10px;
+    margin-left: 33px;
 }
 .track_order_details {
     height: auto;
@@ -1011,7 +1012,7 @@ h4.order_or_button{
 
 .slot{
 	margin: 20px 13px;
-	width: 21%;
+	width: 16%;
 	font-size: 10px;
 	text-align: center;
 }

@@ -65,6 +65,7 @@ include "includes/header.php";
 						<th>User</th>
 						<th>Customer Name</th>
 						<th>Total Items</th>
+						<th>Order Total Amount</th>
 						<th>Email</th>
 						<th>Mobile</th>
 						<th>Address</th>
@@ -117,6 +118,7 @@ include "includes/header.php";
 						</td>
 						<td><?php echo $fetch['order_customer_name'] ?></td>
 						<td><?php echo $fetch['order_total_items'] ?></td>
+						<td><?php echo $fetch['order_total_amount'] ?></td>
 						<td><?php echo $fetch['order_shipping_email'] ?></td>
 						<td><?php echo $fetch['order_shipping_mobile'] ?></td>
 						<td><?php echo $fetch['order_shipping_line1']." ".$fetch['order_shipping_line2'] ?></td>

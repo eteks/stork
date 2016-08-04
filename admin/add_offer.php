@@ -73,6 +73,7 @@ include "includes/header.php";;
 							<form action="add_offer.php" id="add_offer" method="POST" name="edit-acc-info">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_date"> End date must be greater than Start date </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
@@ -129,7 +130,7 @@ include "includes/header.php";;
 								    </select>
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Offer Amount<span class="required">*</span></label>
+								    <label for="last-name" id="showoption">Offer cost</label><span class="required">*</span>
 									<input type="text" class="form-control" autocomplete="off" placeholder="Offer Amount" id="offeramount" name="offer_amount">
 								</div>
 								<div class="form-group">

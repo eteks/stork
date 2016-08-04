@@ -6291,6 +6291,11 @@ section.home-slidershow{
   color: red;
   display: block;
 }
+.error_message_offer{
+  margin-left: 30px;
+  margin-top: 30px;
+  height: 10px;
+}
 .style_popup_header {
   background-color: #25bce9 ;
   font-size: 22px;

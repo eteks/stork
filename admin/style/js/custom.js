@@ -284,6 +284,11 @@ $(document).ready(function () {
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
+     $('.date_picker').datepicker({
+        dateFormat: 'mm/dd/yy',
+        altField: '#thealtdate'
+    });
+
       $('#firstname').keydown(function (e) {
           if (e.ctrlKey || e.altKey) {
               e.preventDefault();
@@ -419,5 +424,18 @@ $(document).ready(function () {
                return false;
     }
         });
+  $('#sel_c').change(function()
+  {
+    var option = $(this).find('option:selected').val();
+    if (option == 'cost') {
+    $('#showoption').text("Offer cost");
+   $('#offeramount').removeAttr("placeholder","Offer Amount").attr("placeholder","Offer cost")    
+ }
+     else {
+     $('#showoption').text("Offer percentage (%)");
+      $('#offeramount').removeAttr("placeholder","Offer Amount").attr("placeholder","Offer percentage (%)") 
+     }
+  });
+
 
 });
