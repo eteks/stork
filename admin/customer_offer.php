@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$query_filter = mysql_query("SELECT * FROM `stork_order` where order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, order_customer_email) AND order_total_amount >= '$filter_amount'");
 	}
 	if (isset($_POST['offer_save'])){
-
 		$checkbox_status = $_POST['checkbox_status'];
 		$offer_id = $_POST['offer_id'];
 		$user_id = $_POST['user_id'];
@@ -30,8 +29,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		// echo "<pre>";
 		// print_r($array_data);
 		// echo "</pre>";
-
+		$offer_email_query = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'"); 
+		$offer_email_row = mysql_fetch_array($offer_email_query);
+		$from_email = "support@printstork.com";
+		$headers = "From: " . $from_email . "\r\n";
+		$headers .= "Reply-To: ". $from_email . "\r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		$email_subject = "Offer Details";
+		if($offer_email_row > 0) {
+			$offer_code_value = $offer_email_row['offer_code'];
+			$today_date=date('y-m-d');
+	  		$offer_end_date=date('y-m-d',strtotime($offer_email_row['offer_validity_end_date']));
+	  		$expire_date = date('d-M-y',strtotime($offer_end_date));
+	  		$offer_amount = $offer_email_row['offer_amount'];
+			$offer_eligible_amount = $offer_email_row['offer_eligible_amount'];
+			$message = "<html> <body> <div style='margin: 0px auto; width: 50%;'> <h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'> Get ".$offer_amount." cashback on Utility bill payment of above ".$offer_eligible_amount." </h2> <div style='border: 1px solid #25bce9; background: #fff;'> <p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'> You can get ".$offer_amount." cashback of Rs ".$offer_eligible_amount.". </p> <p style='margin-top: 20px; text-align: center;'> <span style='color: #25bce9; padding: 5px 10px; font-size: 14px; border: 1px solid #000; border-radius: 5%; text-align: center;'> ".$offer_code_value." </span> </p> <p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'> Expires on ".$expire_date." </p> <p style='padding-left: 20px; font-size: 8px; color: gray; text-align: center; font-weight: bold; margin-top: 5px;'> * condition apply </p> </div> </div> </body> </html>";
+			if($today_date <= $offer_end_date) {
+					$is_validity=1;
+			}
+			else {
+		  		$offer_validity_status = 1;
+		  	}
+		}
+		else {
+			$offer_validity_status = 2;
+		}
 		foreach ($array_data as $key => $value) {
+
 			if($value[0] == 1){
 				$offer_id = $value[1];
 				if ($value[2] == 0)
@@ -46,14 +71,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$offer_provided_maximum_amount_in_order = $value[7];	
 				$offer_filter_start_date = "NULL";
 				$offer_filter_end_date = "NULL";
-				$is_email_sent = 1;
 				$is_used = 0;
 				$limit_used = 0;
 				$is_limit_status = 1;
 				$is_validity = 1;
 				$status = 1;
-				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
+				$is_validity_status=$is_validity;
+				if($is_validity_status==1) {
+					if (mail($offer_provided_useremail, $email_subject, $message, $headers))
+				  	{
+					    $is_email_sent = 1;
+					    $offer_validity_status = 3;
+					}
+					else {
+						 $is_email_sent = 0;
+						 $offer_validity_status = 4;
+					}
+				}
+	    	  
 			}
+		}
+		if($offer_validity_status ==1) {
+			echo '<script> alert("Offer date has been expired") </script>';
+		}
+		else if($offer_validity_status ==2) {
+			echo '<script> alert("Offer doesnot exists") </script>';
+		}
+		else if($offer_validity_status ==3) {
+			echo '<script> alert("Mail has been sent successfully") </script>';
+		}
+		else {
+			echo '<script> alert("Mail not sent successfully") </script>';
 		}
 	}
 }
