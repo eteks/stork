@@ -10,10 +10,16 @@ include "includes/header.php";
 
 global $query_filter;
 global $filter_amount;
+// global $status;
+global $successMessage;
+// $status = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
 		$filter_amount = $_POST["filter_amount"];
-		$query_filter = mysql_query("SELECT * FROM `stork_order` where order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, order_customer_email) AND order_total_amount >= '$filter_amount'");
+		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
+			ON sopu.offer_provided_order_id = so.order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
+			order_customer_email) AND so.order_total_amount >= '$filter_amount' 
+			ORDER BY so.order_total_amount DESC");
 	}
 	if (isset($_POST['offer_save'])){
 		$checkbox_status = $_POST['checkbox_status'];
@@ -58,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		foreach ($array_data as $key => $value) {
 
 			if($value[0] == 1){
+				// $status = True;
 				$offer_id = $value[1];
 				if ($value[2] == 0)
 					$offer_provided_user_id = "NULL";
@@ -75,13 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$limit_used = 0;
 				$is_limit_status = 1;
 				$is_validity = 1;
-				$status = 1;
+				// $status = 1;
 				$is_validity_status=$is_validity;
 				if($is_validity_status==1) {
 					if (mail($offer_provided_useremail, $email_subject, $message, $headers))
 				  	{
 					    $is_email_sent = 1;
 					    $offer_validity_status = 3;
+					    mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
 					}
 					else {
 						 $is_email_sent = 0;
@@ -92,17 +100,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			}
 		}
 		if($offer_validity_status ==1) {
-			echo '<script> alert("Offer date has been expired") </script>';
+			$successMessage = "<div class='container error_message_mandatory'><span> Offer date has been expired </span></div>";
 		}
 		else if($offer_validity_status ==2) {
-			echo '<script> alert("Offer doesnot exists") </script>';
+			$successMessage = "<div class='container error_message_mandatory'><span> Offer doesnot exists </span></div>";
 		}
 		else if($offer_validity_status ==3) {
-			echo '<script> alert("Mail has been sent successfully") </script>';
+			$successMessage = "<div class='container error_message_mandatory'><span> Mail has been sent successfully </span></div>";
 		}
 		else {
-			echo '<script> alert("Mail not sent successfully") </script>';
+			$successMessage = "<div class='container error_message_mandatory'><span> Mail not sent successfully </span></div>";
 		}
+		// if($status){
+		// 	$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
+		// }
 	}
 }
 ?>
@@ -138,11 +149,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		<h3 class="acc-title lg clone_heading"> Customer Offer</h3>
 		<div class="clear_both"> </div>
 	</div>
+	<?php if($successMessage) echo $successMessage; ?>
 	<div class="add_section">
 	<form action="customer_offer.php" id="customer_offer" method="POST">
-		<span>Filter Amount</span>
-		<input type="text" name="filter_amount">
-		<button type="submit" class="gbtn btn-edit-acc-info" name="offer_generate">Generate</button>
+		<span class="amount_text">Filter Amount</span>
+		<input type="text" name="filter_amount" class="amount_field">
+		<button type="submit" class="gbtn btn-edit-acc-info amount_gen" name="offer_generate">Generate</button>
 	</form>
 	</div>
 	<?php 
@@ -155,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					<table class="data-table city_table stork_admin_table" id="my-orders-table">
 								<thead>
 							        <tr class="">
-							        	<th></th>
+							        	<th class="table_action sorting" id="offer_th1"></th>
 							            <th>User Id</th>	
 							            <th>Usertype</th>					            
 							            <th>Username</th>
@@ -195,7 +207,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							   	</tr>
 							   <?php } ?>
 					</table>										
-		<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>	
+		<div class="account-bottom-action">
+			<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>
+		</div>	
 	</div>
 	</form>
 	<?php }  ?>

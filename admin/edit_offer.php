@@ -28,13 +28,14 @@ include "includes/header.php";
 			$offer_eligible_amount = $_POST["offer_eligible_amount"];
 			$offer_limitation = $_POST["offer_limitation"];
 			$offer_status = $_POST["offer_status"];
+			$offer_user_type = $_POST["offer_Person_type"];
 	
 			$qr = mysqlQuery("SELECT * FROM stork_offer_details WHERE offer_id NOT IN('$val') AND (offer_code='$offer_code' OR offer_title='$offer_title')");
 			$row = mysql_num_rows($qr);
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> Offer Already exists! </span></div>";
 			} else {
-				mysqlQuery("UPDATE `stork_offer_details` SET offer_type='$offer_type_value',offer_title='$offer_title',offer_code='$offer_code',offer_validity_start_date= '$offer_start_validity',offer_validity_end_date='$offer_end_validity',offer_amount_type='$offer_amount_type_value',offer_amount='$offer_amount',offer_eligible_amount='$offer_eligible_amount',offer_usage_limit='$offer_limitation',offer_status='$offer_status' WHERE `offer_id`=".$val);
+				mysqlQuery("UPDATE `stork_offer_details` SET offer_type='$offer_type_value',offer_title='$offer_title',offer_code='$offer_code',offer_user_type='$offer_user_type',offer_validity_start_date= '$offer_start_validity',offer_validity_end_date='$offer_end_validity',offer_amount_type='$offer_amount_type_value',offer_amount='$offer_amount',offer_eligible_amount='$offer_eligible_amount',offer_usage_limit='$offer_limitation',offer_status='$offer_status' WHERE `offer_id`=".$val);
 				// if(($area_status == 0 && !$_POST['change_status'])||($area_status == 1 && $_POST['change_status'])){
 				// 	mysqlQuery("UPDATE `stork_college` SET `college_status`='$area_status' WHERE `college_area_id`=".$val);
 				// }
