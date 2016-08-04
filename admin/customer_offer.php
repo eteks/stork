@@ -103,10 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer date has been expired </span></div>";
 		}
 		else if($offer_validity_status ==2) {
-			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer doesnot exists </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer does not exists </span></div>";
 		}
 		else if($offer_validity_status ==3) {
-			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail has been sent successfully </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer has been Assigned and Mail sent successfully </span></div>";
 		}
 		else {
 			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail not sent successfully </span></div>";
@@ -186,6 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								$row = mysql_fetch_array($sql);
 								while ($fetch = mysql_fetch_array($query_filter))
 								{
+									if($fetch['status'] != 1){
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -209,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
 							   	</tr>
-							   <?php } ?>
+							   <?php }}?>
 					</table>										
 		<div class="account-bottom-action">
 			<button type="submit" class="gbtn btn-edit-acc-info customer_check" name="offer_save">Save</button>
