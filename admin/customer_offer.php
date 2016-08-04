@@ -83,12 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$is_limit_status = 1;
 				$is_validity = 1;
 				// $status = 1;
-<<<<<<< HEAD
-				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
-
-			}
-		}
-=======
 				$is_validity_status=$is_validity;
 				if($is_validity_status==1) {
 					if (mail($offer_provided_useremail, $email_subject, $message, $headers))
@@ -109,15 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer date has been expired </span></div>";
 		}
 		else if($offer_validity_status ==2) {
-			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer doesnot exists </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer does not exists </span></div>";
 		}
 		else if($offer_validity_status ==3) {
-			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail has been sent successfully </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer has been Assigned and Mail sent successfully </span></div>";
 		}
 		else {
 			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail not sent successfully </span></div>";
 		}
->>>>>>> f2a1179c1c9b5aec6052575c62aa853f588bce15
 		// if($status){
 		// 	$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
 		// }
