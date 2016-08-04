@@ -10,10 +10,16 @@ include "includes/header.php";
 
 global $query_filter;
 global $filter_amount;
+global $status;
+global $successMessage;
+$status = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
 		$filter_amount = $_POST["filter_amount"];
-		$query_filter = mysql_query("SELECT * FROM `stork_order` where order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, order_customer_email) AND order_total_amount >= '$filter_amount'");
+		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
+			ON sopu.offer_provided_order_id = so.order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
+			order_customer_email) AND so.order_total_amount >= '$filter_amount' 
+			ORDER BY so.order_total_amount DESC");
 	}
 	if (isset($_POST['offer_save'])){
 		$checkbox_status = $_POST['checkbox_status'];
@@ -32,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
 		foreach ($array_data as $key => $value) {
 			if($value[0] == 1){
+				$status = True;
 				$offer_id = $value[1];
 				if ($value[2] == 0)
 					$offer_provided_user_id = "NULL";
@@ -54,6 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
 
 			}
+		}
+		if($status){
+			// echo "if";
+			$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
+			// echo $successMessage;
 		}
 	}
 }
@@ -90,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		<h3 class="acc-title lg clone_heading"> Customer Offer</h3>
 		<div class="clear_both"> </div>
 	</div>
+	<?php if($successMessage) echo $successMessage; ?>
 	<div class="add_section">
 	<form action="customer_offer.php" id="customer_offer" method="POST">
 		<span class="amount_text">Filter Amount</span>
