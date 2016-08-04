@@ -1185,3 +1185,8 @@ div.mcart-info , div.mcart-total {
 #cover_only #cover_file_name {
 	width: 50% !important;
 }
+.upload_error_print_booking {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+}
