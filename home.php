@@ -55,7 +55,7 @@
 				<div class="vt-slideshow">
 					<ul>
 						<li class="slide1" data-transition="random" ><img src="images/slider/home/Print2.jpg" alt="project_binding" width="1920px" height="598px"/>
-							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">PROJECT BINDING</span></div> 
+							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">PROJECT PRINTING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="slide_style2">
 									Our A5 flyers and leaflets are our bestselling size.<br> 
