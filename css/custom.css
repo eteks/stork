@@ -1,7 +1,8 @@
 input[type="file"] {
  height: 0px !important;
  width: 0px !important;
- opacity: 0 !important;
+ opacity: 0.01 !important;
+ 
 }
 .dn {
 	height: 0px;
