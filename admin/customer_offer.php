@@ -10,9 +10,9 @@ include "includes/header.php";
 
 global $query_filter;
 global $filter_amount;
-global $status;
+// global $status;
 global $successMessage;
-$status = 0;
+// $status = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
 		$filter_amount = $_POST["filter_amount"];
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
 		foreach ($array_data as $key => $value) {
 			if($value[0] == 1){
-				$status = True;
+				// $status = True;
 				$offer_id = $value[1];
 				if ($value[2] == 0)
 					$offer_provided_user_id = "NULL";
@@ -57,16 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$limit_used = 0;
 				$is_limit_status = 1;
 				$is_validity = 1;
-				$status = 1;
+				// $status = 1;
 				mysqlQuery("INSERT INTO `stork_offer_provide_all_users` (offer_provided_user_id,offer_provided_username,offer_provided_useremail,offer_provided_usermobile,	offer_provided_usertype,offer_provided_order_id,offer_provided_maximum_amount_in_order,offer_id,offer_filter_amount,offer_filter_start_date,offer_filter_end_date,is_email_sent,is_used,limit_used,is_limit_status,is_validity,status) VALUES ($offer_provided_user_id,'$offer_provided_username','$offer_provided_useremail','$offer_provided_usermobile','$offer_provided_usertype','$offer_provided_order_id','$offer_provided_maximum_amount_in_order','$offer_id','$filter_amount',$offer_filter_start_date,$offer_filter_end_date,'$is_email_sent','$is_used','$limit_used','$is_limit_status','$is_validity','$status')");
 
 			}
 		}
-		if($status){
-			// echo "if";
-			$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
-			// echo $successMessage;
-		}
+		// if($status){
+		// 	$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
+		// }
 	}
 }
 ?>
@@ -135,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								$row = mysql_fetch_array($sql);
 								while ($fetch = mysql_fetch_array($query_filter))
 								{
+									if($fetch['status'] != 1){
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -158,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
 							   	</tr>
-							   <?php } ?>
+							   <?php }}?>
 					</table>										
 		<div class="account-bottom-action">
 			<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>
