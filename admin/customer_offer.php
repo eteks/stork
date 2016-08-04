@@ -100,16 +100,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			}
 		}
 		if($offer_validity_status ==1) {
-			$successMessage = "<div class='container error_message_mandatory'><span> Offer date has been expired </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer date has been expired </span></div>";
 		}
 		else if($offer_validity_status ==2) {
-			$successMessage = "<div class='container error_message_mandatory'><span> Offer doesnot exists </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer does not exists </span></div>";
 		}
 		else if($offer_validity_status ==3) {
-			$successMessage = "<div class='container error_message_mandatory'><span> Mail has been sent successfully </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Offer has been Assigned and Mail sent successfully </span></div>";
 		}
 		else {
-			$successMessage = "<div class='container error_message_mandatory'><span> Mail not sent successfully </span></div>";
+			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail not sent successfully </span></div>";
 		}
 		// if($status){
 		// 	$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
@@ -152,8 +152,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<?php if($successMessage) echo $successMessage; ?>
 	<div class="add_section">
 	<form action="customer_offer.php" id="customer_offer" method="POST">
+	<div class="container">
+		<span class="error_test_off"> Please fill all required(*) fields </span>
+			<span class="error_test_offer"> Please select atleast one option </span>
+	</div>
 		<span class="amount_text">Filter Amount</span>
-		<input type="text" name="filter_amount" class="amount_field">
+		<input type="text" name="filter_amount" id="filteramount" class="amount_field">
 		<button type="submit" class="gbtn btn-edit-acc-info amount_gen" name="offer_generate">Generate</button>
 	</form>
 	</div>
@@ -182,6 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								$row = mysql_fetch_array($sql);
 								while ($fetch = mysql_fetch_array($query_filter))
 								{
+									if($fetch['status'] != 1){
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -205,10 +210,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
 							   	</tr>
-							   <?php } ?>
+							   <?php }}?>
 					</table>										
 		<div class="account-bottom-action">
-			<button type="submit" class="gbtn btn-edit-acc-info" name="offer_save">Save</button>
+			<button type="submit" class="gbtn btn-edit-acc-info customer_check" name="offer_save">Save</button>
 		</div>	
 	</div>
 	</form>
