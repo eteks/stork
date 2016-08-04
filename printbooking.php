@@ -7,7 +7,7 @@
 	}
 	$_SESSION['service']=$_GET['service'];
  	$random = uniqid();
- 
+ 	$uploaderror = FALSE;
  	if(!isset($_SESSION['session_id'])){
   		if($_SESSION['login_status'] == 1 && $_SESSION['usertype'] == 'stu'){
    			$_SESSION['session_id'] = 'reg_stu_'.$random; 
@@ -31,6 +31,11 @@
 	 		$_SESSION['session_id'] = $changed_session_id;
 	 	}
  	}
+	if(isset($_GET['uploaderror'])){
+		$orderid = $_GET['uploaderror'];
+		deletefunction('stork_order_details','order_details_id ="'.$orderid.'"',$connection);
+		$uploaderror = TRUE;
+	}
 
 ?>
 	<div class="main printbooking_main_page" id="product-detail">	
@@ -66,6 +71,13 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			if($uploaderror){
+			?>
+				<span class="upload_error_print_booking"> Unknown error. Please upload again! </span>
+			<?php
+			}
+			?>
 			<span class="error_print_booking"> Please fill out all mandatory fields </span> <!--container-->
 	    </section>	
 	    <section class="pr-main" id="pr-register">	
@@ -264,6 +276,13 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			if($uploaderror){
+			?>
+				<span class="upload_error_print_booking"> Unknown error. Please upload again! </span>
+			<?php
+			}
+			?>
 			<span class="error_print_booking"> Please fill out all mandatory fields </span> <!--container-->
 	    </section>
 
@@ -441,6 +460,13 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			if($uploaderror){
+			?>
+				<span class="upload_error_print_booking"> Unknown error. Please upload again! </span>
+			<?php
+			}
+			?>
 			<span class="error_print_booking"> Please fill out all mandatory fields </span>
 	    </section>	
 	 <section class="pr-main" id="pr-register">	

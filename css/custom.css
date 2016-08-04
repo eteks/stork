@@ -1184,5 +1184,10 @@ div.mcart-info , div.mcart-total {
     max-width: 392px;
 }
 #cover_only #cover_file_name {
-	width: 50% ;
+	width: 50% !important;
+}
+.upload_error_print_booking {
+    font-size: 12px;
+    color: red;
+    text-align: center;
 }

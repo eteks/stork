@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 				$limit_used = 0;
 				$is_limit_status = 1;
 				$is_validity = 1;
-				// $status = 1;
+				$status = 1;
 				$is_validity_status=$is_validity;
 				if($is_validity_status==1) {
 					if (mail($offer_provided_useremail, $email_subject, $message, $headers))
