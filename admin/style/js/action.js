@@ -492,17 +492,38 @@ if (document.getElementById('sel_a').selectedIndex < 1)
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
 		
+if($('#startdate').val()!="" && $('#enddate').val()!=""){
+				startdate= $('#startdate').val();
+				enddate = $('#enddate').val();
+			if(startdate > enddate||startdate == enddate){
+				$('#enddate').addClass("error_input_field_date");
+					$('.error_date').css('display','block');
+				}
+					 else {
+					input.removeClass("error_input_field_date");					
+					$('.error_date').css('display','none');
+			}
+			}
+			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
+		$('.error_test').css('display','block');
+		$('.error_date').css('display','none');
 			return false;
-		} else {
-			errornotice.hide();
-			 $('.error_test').css('display','none');
-			return true;
 		}
+		else if(jQuery('#enddate').hasClass("error_input_field_date"))  {
+			
+				$('.error_test').css('display','none');
+				$('.error_date').css('display','block');
+				return false;
+			}		
+			else {
+			errornotice.hide();
+			$('.error_date').css('display','none');
+			$('.error_test').css('display','none');
+			return true;
+			}
 	});
-
 	jQuery("#edit_offer").submit(function(){ 
 		for(var i = 0 ; i<required_offer_new.length;i++ ){
 			var input = jQuery('#'+required_offer_new[i]);
@@ -546,19 +567,38 @@ if (document.getElementById('sel_a').selectedIndex < 1)
 		}
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-		
+	if($('#startdate').val()!="" && $('#enddate').val()!=""){
+				startdate= $('#startdate').val();
+				enddate = $('#enddate').val();
+			if(startdate > enddate||startdate == enddate){
+				$('#enddate').addClass("error_input_field_date");
+					$('.error_date').css('display','block');
+				}
+					 else {
+					input.removeClass("error_input_field_date");					
+					$('.error_date').css('display','none');
+			}
+			}
+			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
+		$('.error_test').css('display','block');
+		$('.error_date').css('display','none');
 			return false;
-		} else {
-			errornotice.hide();
-			 $('.error_test').css('display','none');
-			return true;
 		}
+		else if(jQuery('#enddate').hasClass("error_input_field_date"))  {
+			
+				$('.error_test').css('display','none');
+				$('.error_date').css('display','block');
+				return false;
+			}		
+			else {
+			errornotice.hide();
+			$('.error_date').css('display','none');
+			$('.error_test').css('display','none');
+			return true;
+			}
 	});
-
-	
 	jQuery(".state_act").on('change',function () {
 		// alert('success');
         selected_state = $.trim($('option:selected',this).text());

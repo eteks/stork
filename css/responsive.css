@@ -957,6 +957,12 @@
 	#project_printing_form .project_file_name {
    	 	margin-left: 0px !important;
 	}
+	.slot {
+	    font-size: 7px !important;
+	    margin: 20px 13px !important;
+	    text-align: center !important;
+	    width: 16% !important;
+	}
 		
 }
 
