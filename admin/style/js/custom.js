@@ -284,11 +284,6 @@ $(document).ready(function () {
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
-     $('.date_picker').datepicker({
-        dateFormat: 'mm/dd/yy',
-        altField: '#thealtdate'
-    });
-
       $('#firstname').keydown(function (e) {
           if (e.ctrlKey || e.altKey) {
               e.preventDefault();

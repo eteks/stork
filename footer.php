@@ -78,7 +78,7 @@
 						  <div class="footer-content">
 							<form id="footer" method="post">
 									<div class="">
-	 									<span class="error_test"> Please fill all required(*) fields </span>
+	 									<span class="error_footer"> Please fill all required(*) fields </span>
 									</div>
 									<div class="">
 	 									<span class="error_email3"> Please Enter Valid email address </span>

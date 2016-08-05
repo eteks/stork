@@ -29,7 +29,12 @@ include('header.php');
 			$order_details = selectfunction('*',ORDER,'order_id='.$order_id,$connection);
 			$row = mysqli_fetch_array($order_details);
 		 	$order_customer_name =$row['order_customer_name'];
-  			$order_customer_email = $row["order_customer_email"];  
+  			$order_customer_email = $row["order_customer_email"]; 
+			$order_total_items =$row['order_total_items']; 
+			$order_total_amount =$row['order_total_amount']; 
+			$order_delivery_date =$row['order_delivery_date']; 
+			$order_delivery_time =$row['order_delivery_time'];
+			$order_status =$row['order_status'];  
 		    $email_subject = "ORDER PLACED";
 		    $from = "info@etekchnoservices.com";
 		    // $to = "info@etekchnoservices.com";		
@@ -37,9 +42,22 @@ include('header.php');
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			
-$message = "<html> <body> <div style='margin: 0px auto; width: 50%;'> <h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'>Order Details </h2> <div style='border: 1px solid #25bce9; background: #fff;'> Name <p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'> ".$order_customer_name." </p>  Email  <p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'>".$order_customer_email." </p> </div> </div> </body> </html>";  			echo "$message";
-           if (mail($order_customer_email, $email_subject, $message, $headers))
+			$message = '<html><body>';
+			$message = '<div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;">';
+			$message = '<h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2>';
+			$message = '<div style="border: 1px solid #25bce9; background: #fff;">';
+			$message .= '<table align="center" rules="all" style="border-color: #666;" cellpadding="10">';
+			$message .= "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>".$order_customer_name."</td></tr>";
+			$message .= "<tr><td><strong>Email:</strong> </td><td>" . $order_customer_email. "</td></tr>";
+			$message .= "<tr><td><strong>Total No: of items</strong> </td><td>" . $order_total_items . "</td></tr>";
+			$message .= "<tr><td><strong>Total Amount</strong> </td><td>" . $order_total_amount . "</td></tr>";
+			$message .= "<tr><td><strong>Date Of Delivery</strong> </td><td>" . $order_delivery_date . "</td></tr>";
+			$message .= "<tr><td><strong>Order Delivery Time</strong> </td><td>" . $order_delivery_time . "</td></tr>";
+			$message .= "<tr><td><strong>Order Status</strong> </td><td>" . $order_status . "</td></tr>";
+			$message .= "</table>";
+			$message .= "</div></div></body></html>";
+			echo "$message";			
+           if (mail($email_subject, $message, $headers))
         {
           $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
         }

@@ -1454,6 +1454,9 @@ text-align: center;
 .error_input_field_time {
    border:1px solid red !important;
 }
+.error_input_field_date {
+   border:1px solid red !important;
+}
     .form-group (:required)::after{
         content: '*';
         color: red;
@@ -1481,6 +1484,11 @@ text-align: center;
 	color :red ;
 	font-size : 12px;	
 	display : none;
+}
+.error_date{
+   color :red ;
+   font-size : 12px; 
+   display : none;
 }
 .admin_login_error{
    color :red ;

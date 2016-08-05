@@ -36,11 +36,11 @@ $(document).ready(function () {
 		var input = jQuery('#'+required_footer[i]);
 		if ((input.val() == "")) {
 			input.addClass("error_input_field");
-			 $('.error_test').css('display','block');		
+			 $('.error_footer').css('display','block');		
 		 }
 		 else{
 			 input.removeClass("error_input_field");
-		 	 $('.error_test').css('display','none');
+		 	 $('.error_footer').css('display','none');
 			
 		 }
 		}
@@ -53,11 +53,11 @@ $(document).ready(function () {
   		}
   	
 		if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-		$('.error_test').css('display','block');
+		$('.error_footer').css('display','block');
 		$('.error_email3').css('display','none');
 		return false;
 	} else if (jQuery(":input").hasClass("error_input3_field_email")){
-		 $('.error_test').css('display','none');
+		 $('.error_footer').css('display','none');
 		 $('.error_email3').css('display','block');
 		return false;
 	}

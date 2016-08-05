@@ -881,6 +881,11 @@ h4.order_or_button{
 	font-size : 12px;	
 	display : none;
 }
+.error_footer {
+	color :red ;
+	font-size : 12px;	
+	display : none;
+}
 .error_email1  {
 	color :red ;
 	font-size : 12px;

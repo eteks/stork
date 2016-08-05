@@ -43,7 +43,7 @@ jQuery(document).ready(function() {
 	var required_binding_cost_estimation =["amount"];
 	var required_edit_orders =["customername","studentname","shippingaddressline1","shippingcity","totalitems","test","phone"];	
 	var required_edit_orders_student =["order_student","order_student_year","order_shipping_department"];
-	var required_edit_order_details =["orderid","pages","colorprintpage","comments","amount"];
+	var required_edit_order_details =["orderid","pages","colorprintpage","amount"];
 	var required_edit_track_order =["dateofdelivered"];
 	var required_project_printing_cost =["amount"];
 	var required_multicolor_printing_cost=["amount"];
@@ -491,19 +491,22 @@ if (document.getElementById('sel_a').selectedIndex < 1)
 		}
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-		
-if($('#startdate').val()!="" && $('#enddate').val()!=""){
-				startdate= $('#startdate').val();
-				enddate = $('#enddate').val();
-			if(startdate > enddate||startdate == enddate){
-				$('#enddate').addClass("error_input_field_date");
-					$('.error_date').css('display','block');
-				}
-					 else {
-					input.removeClass("error_input_field_date");					
-					$('.error_date').css('display','none');
+
+		//newly changed by kalai for start date and end date validation on 05/08/16
+		if($('#startdate').val()!="" && $('#enddate').val()!=""){
+			startdate= $('#startdate').val().split('/');
+			startdate = startdate[1]+"/"+startdate[0]+"/"+startdate[2];
+			enddate= $('#enddate').val().split('/');
+			enddate = enddate[1]+"/"+enddate[0]+"/"+enddate[2];
+			if ((Date.parse(enddate) <= Date.parse(startdate))) {
+		        $('#enddate').addClass("error_input_field_date");
+			    $('.error_date').css('display','block');
+		    }
+		    else {
+				input.removeClass("error_input_field_date");					
+				$('.error_date').css('display','none');
 			}
-			}
+		}
 			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
@@ -567,18 +570,22 @@ if (document.getElementById('sel_a').selectedIndex < 1)
 		}
 		else { $('#sel_d').removeClass('error_input_field');
 		$('.error_test').css('display','none');  }
-	if($('#startdate').val()!="" && $('#enddate').val()!=""){
-				startdate= $('#startdate').val();
-				enddate = $('#enddate').val();
-			if(startdate > enddate||startdate == enddate){
-				$('#enddate').addClass("error_input_field_date");
-					$('.error_date').css('display','block');
-				}
-					 else {
-					input.removeClass("error_input_field_date");					
-					$('.error_date').css('display','none');
+		
+		//newly changed by kalai for start date and end date validation on 05/08/16
+		if($('#startdate').val()!="" && $('#enddate').val()!=""){
+			startdate= $('#startdate').val().split('/');
+			startdate = startdate[1]+"/"+startdate[0]+"/"+startdate[2];
+			enddate= $('#enddate').val().split('/');
+			enddate = enddate[1]+"/"+enddate[0]+"/"+enddate[2];
+			if ((Date.parse(enddate) <= Date.parse(startdate))) {
+		        $('#enddate').addClass("error_input_field_date");
+			    $('.error_date').css('display','block');
+		    }
+		    else {
+				input.removeClass("error_input_field_date");					
+				$('.error_date').css('display','none');
 			}
-			}
+		}
 			
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {

@@ -94,7 +94,7 @@ include "includes/header.php";
 											<span>Select Minutes</span>
 										</option>
 								        <?php
-									       for ($i=1; $i<=60; $i++){
+									       for ($i=0; $i<=59; $i++){
 									         echo "<option value='".$i."'>" . $i ."</option>";
 									       }
 									    ?>
