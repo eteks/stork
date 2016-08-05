@@ -679,6 +679,7 @@ a.product-name:hover{
   color: #fff;
   font-size: 12px;
   margin-right:20px;
+  cursor: default;
 }
 .th-hotline span{
       color: #fff;

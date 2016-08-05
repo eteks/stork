@@ -1128,6 +1128,9 @@ div.mcart-info , div.mcart-total {
 }
 
 /* Footer */
+.footer-col h2{
+	cursor: default;
+}
 .services-link a:hover {
 	color: #25bce9;
 }

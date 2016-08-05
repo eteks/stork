@@ -681,6 +681,7 @@ a.product-name:hover{
   float: right;
   color: #fff;
   font-size: 12px;
+  cursor:default;
   /*margin-right:20px;*/
 }
 .th-hotline span{
@@ -1122,6 +1123,7 @@ ul.cate_list li.parent a i{
 .mcart-links{
   padding: 15px;
   text-align: left;
+  cursor: default;
 }
 .mcart-item-w,
 .mcart-item{
@@ -4200,6 +4202,7 @@ footer{
   color: #666;
   background: #161616;
   font-size: 14px;
+  cursor: default;
 }
 .footer-bottom p, .footer-bottom p a {
   margin-bottom: 0;
