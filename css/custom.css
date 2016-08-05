@@ -1180,7 +1180,7 @@ div.mcart-info , div.mcart-total {
 .cart_remove_item i {
     cursor: pointer;
 }
-#plain_file_name_box #file_name_box {
+#plain_file_name_box .file_name_box {
     max-width: 392px;
 }
 #cover_only #cover_file_name {

@@ -34,7 +34,7 @@ if($_SESSION['login_status'] == 1){
   			$offer_user_query = mysqli_query($connection,"select * from stork_users where username='$username' and user_status='1'") or die(mysql_error('User select query error'));
   			$offer_user_array = mysqli_fetch_array($offer_user_query);
   			$user_id=$offer_user_array['user_id'];
-  			$offer_query = mysqli_query($connection,"select * from stork_offer_details where offer_type='general_offer' and offer_status='1'") or die(mysql_error('offer select query error'));
+  			$offer_query = mysqli_query($connection,"select * from stork_offer_details where offer_type='general_offer' and offer_status='1' and DATE(offer_validity_end_date) > DATE(NOW())") or die(mysql_error('offer select query error'));
   			$offer_array=mysqli_fetch_array($offer_query);
   			if($offer_array > 0) {
   				$today_date=date('y-m-d');
@@ -49,13 +49,13 @@ if($_SESSION['login_status'] == 1){
 	  				$offer_eligible_amount = $offer_array['offer_eligible_amount'];
 					$email_subject = "Offer Details";
 	  				$to = $email;
-	  				$from_email = "sweetkannan05@gmail.com";
+	  				$from_email = "support@printstork.com";
 					$headers = "From: " . $from_email . "\r\n";
 	  				$headers .= "Reply-To: ". $from_email . "\r\n";
 	  				$headers .= "MIME-Version: 1.0\r\n";
 	  				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-	  				$message = "<html> <body> <div style='margin: 0px auto; width: 50%;'> <h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'> Get ".$offer_amount." cashback on Utility bill payment of+".$offer_eligible_amount."[New users] </h2> <div style='border: 1px solid #25bce9; background: #fff;'> <p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'> New users get ".$offer_amount." cashback of Rs ".$offer_eligible_amount.". </p> <p style='margin-top: 20px; text-align: center;'> <span style='color: #25bce9; padding: 5px 10px; font-size: 14px; border: 1px solid #000; border-radius: 5%; text-align: center;'> ".$offer_code." </span> </p> <p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'> Expires on ".$expire_date." </p> <p style='padding-left: 20px; font-size: 8px; color: gray; text-align: center; font-weight: bold; margin-top: 5px;'> * condition apply </p> </div> </div> </body> </html>";
+	  				$message = "<html><body><div style='margin: 0px auto; width: 15%;'><img style='float: left;margin-right: 10px' width='48' height='29' src='http://printstork.com/printstork_logo_only.png'><h2 style='float: left; margin: 0px'><span style='olor:#333333'> Print </span><span style='color:#25bce9'>Stork</span></h2></div><div style='clear: both'></div><div style='margin: 0px auto; width: 50%;'><h2 style='background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;'> Welcome to Print stork ! </h2><div style='border: 1px solid #25bce9; background: #fff;'><p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'>Thanks for signing up - exclusive email offers and crocs product news is heading your way.</p><p style='font-size: 18px; color: grey; margin-top: 23px; text-align: center;'>Get ".$offer_amount." cashback on Utility bill payment of+".$offer_eligible_amount."</p><p style='margin-top: 20px; text-align: center;'><span style='color: #25bce9; padding: 5px 10px; font-size: 14px; border: 1px solid #000; border-radius: 5%; text-align: center;'> ".$offer_code." </span></p><p style='margin-top: 20px; padding-left: 20px; color: gray; text-align: center; font-size: 12px;'>Expires on ".$expire_date."</p><p style='padding-left: 20px; font-size: 8px; color: gray; text-align: center; font-weight: bold; margin-top: 5px;'>* condition apply</p></div></div></body></html>";
 
   					if (mail($to, $email_subject, $message, $headers))
 		  	  		{

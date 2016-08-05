@@ -93,9 +93,9 @@
 										if(strtolower($row['city_name']) == 'puducherry'){
 											echo "<option value  ='".$row['city_id']."' selected>".$row['city_name']."</option>";
 										}
-										// else{
-											// echo "<option value ='".$row['city_id']."'>".$row['city_name']."</option>";
-										// }
+										else{
+											echo "<option value =''>".$row['city_name']."</option>";
+										}
 										
 									}
         						?>

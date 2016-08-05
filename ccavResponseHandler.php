@@ -66,7 +66,7 @@ require 'dbconnect.php';
 	if($merchant_param5!='') {
 		$user_id_order_email_query = mysqli_query($connection,"select * from stork_users where user_id='".$merchant_param5."'");
 		$user_id_order_email_array = mysqli_fetch_array($user_id_order_email_query);
-		$user_email_offer = $user_id_order_email_query['user_email'];
+		$user_email_offer = $user_id_order_email_array['user_email'];
 	}
 	else {
 		$user_email_offer = $billing_email;
@@ -88,7 +88,6 @@ require 'dbconnect.php';
 			header('location:orderconfirm.php?cabin=trur&order_id='.$order_details_orderid);
 			
 		}else{
-
 			$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$merchant_param5."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 			mysqli_query($connection,$trans_success_query);
 			$transactionid = mysqli_insert_id($connection);
