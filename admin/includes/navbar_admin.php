@@ -55,7 +55,7 @@
 						<span class="dropdowSCIcon">
 							<ul class="">
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Profile/Logout">
 										<i class="fa fa-user"></i>
 									</a>
 									<ul class="dropdown-menu animated fadeInUp">

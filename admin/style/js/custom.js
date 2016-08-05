@@ -279,16 +279,11 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () { 
-    $('#dob,#holiday_date').datepicker({
+    $('#dob,#holiday_date,.date_picker').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
-     $('.date_picker').datepicker({
-        dateFormat: 'mm/dd/yy',
-        altField: '#thealtdate'
-    });
-
       $('#firstname').keydown(function (e) {
           if (e.ctrlKey || e.altKey) {
               e.preventDefault();

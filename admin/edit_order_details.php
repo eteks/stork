@@ -151,7 +151,7 @@ if(isset($_GET["id"]))
 									<input type="text" class="form-control" id="pages" placeholder="Total No.Of Pages" name="order_details_total_no_of_pages" value="<?php echo($row['order_details_total_no_of_pages']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Comments<span class="required">*</span></label>
+								    <label for="last-name">Comments</label>
 								    <textarea placeholder="Comments" id="comments"name="order_details_comments" class="form-control width_text_area"><?php echo($row['order_details_comments']); ?></textarea>	
 								</div>
 								<div class="form-group">
