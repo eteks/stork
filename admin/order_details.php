@@ -16,7 +16,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
 			<div class="col-md-3 search-w SC-w hd-pd ">
-				<span class="search-icon dropdowSCIcon">
+				<span class="search-icon dropdowSCIcon" title="Search">
 					<i class="fa fa-search"></i>
 				</span>
 				<div class="search-safari" style="display:none;">
