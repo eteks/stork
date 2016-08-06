@@ -66,6 +66,8 @@ include('header.php');
         }
 			//print_r($_SESSION);
 		?>
+
+
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">
 			   <div class="pro-name-rate clearfix">
@@ -133,7 +135,10 @@ include('header.php');
                   </div>
 		</div>
 		</section>
+
+
 		<?php }?>
+		
 	</main><!--Main index : End-->
 <?php include('footer.php') ?>
 	

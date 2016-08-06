@@ -1,6 +1,5 @@
 <?php 
 include('header.php');
-
 $session_data = $_SESSION['session_id'];
 if($_SESSION['login_status']==1){
 	$session_spilit = explode('_', $session_data);
@@ -45,7 +44,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
 }
-if(mysqli_num_rows($review_details)>0){
+// if(mysqli_num_rows($review_details)>0){
 ?>
 
 
@@ -320,9 +319,9 @@ if(mysqli_num_rows($review_details)>0){
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
-						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
+						<label for="address_1_field" class="address_1" maxlength="6">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
+						<input type="text" maxlength="6" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -426,7 +425,7 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="32" class="required" maxlength="10" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
+						<input type="text" maxlength="6" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
 					   </div>
 					 </li>
   					  <li class="long">
@@ -526,7 +525,7 @@ if(mysqli_num_rows($review_details)>0){
 	   </div> <!---Cost details-->
 	   <!---button holder-->
 
-	    <div class="cart-view-top">
+	   <!--  <div class="cart-view-top">
 		 <div class="col-md-6 col-sm-6 col-xs-12">
 			<h1> <span class="icon fa fa-phone"> </span> Any Queries ?</h1>
 		 </div>
@@ -535,15 +534,15 @@ if(mysqli_num_rows($review_details)>0){
          </div>
          <div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
           <div  class="col-md-12 col-sm-12 col-xs-12" >
-           <!-- render layout -->
-           <fieldset class="round-box" id="cart-contents">
+           <!- render layout -->
+         <!--  <fieldset class="round-box" id="cart-contents">
            	<h3 class="title"><span class="icon fa fa-mobile"></span>8682070004, 7448860003</h3>
            </fieldset> 
          </div>
          <hr> </hr>
          </br></br>  
 	    </div>
-	  </div> <!--Enquiry call-->  
+	  </div>  --><!--Enquiry call-->  
 	  
 	   <!---button holder-->
 	   <?php
@@ -612,11 +611,11 @@ if(mysqli_num_rows($review_details)>0){
 </main><!--Main index : End-->
 
 <?php
-}
- else{
-	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-	 exit();
-} 
+// }
+//  else{
+// 	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+// 	 exit();
+// } 
 include('footer.php'); 
 ?>
 <script>
