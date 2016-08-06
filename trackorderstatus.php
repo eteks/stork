@@ -214,5 +214,25 @@ else{
 	exit();
 }
 	?>	
+		<div class="onepage">	
+			<div class="cart-view-top">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<h1> <span class="icon fa fa-phone"> </span> Any Queries ?</h1>
+			 	</div>
+			 	<div id="login-pane" class="col-md-12 col-sm-12 col-xs-12">
+	            	<p>For order enquiry please call below numbers</p>
+	         	</div>
+	         	<div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
+	          		<div  class="col-md-12 col-sm-12 col-xs-12" >
+	           			<!-- render layout -->
+	           			<fieldset class="round-box" id="cart-contents">
+	           				<h3 class="title"><span class="icon fa fa-mobile"></span>8682070004, 7448860003</h3>
+	           			</fieldset> 
+	         		</div>
+	         		<hr> <hr>
+	         		<br/><br/>  
+		    	</div>
+		    </div> <!--Enquiry call-->
+		</div>
 	</div><!-- Main Product Detail: End -->	
 <?php include('footer.php') ?>

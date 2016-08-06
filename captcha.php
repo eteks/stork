@@ -1,4 +1,16 @@
 <?PHP
+//newly changed by kalai for captcha validation using ajax
+function is_ajax() {
+  if( !empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) &&
+  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+  {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+if(!is_ajax()){
   $image = @imagecreatetruecolor(120, 30) or die("Cannot Initialize new GD image stream");
 
   // set background to white and allocate drawing colours
@@ -25,9 +37,15 @@
   // record digits in session variable
   $_SESSION['digit'] = $digit;
   
-
   // display image and clean up
   header('Content-type: image/png');
   imagepng($image);
   imagedestroy($image);
+}else{
+  if(isset($_POST['captcha_validation'])){
+      session_start();
+      echo $_SESSION['digit'];  
+  }
+}
+  
 ?>
