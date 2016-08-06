@@ -143,7 +143,7 @@
 						<input class="email" name="login_name" type="text" id="username_email" placeholder="Email or Username" value="" />
 						<p>Password <span class="star">*</span></p>
 						<input class="pasword" id="login_password" placeholder="password" name="login_pass" type="password" value="" />
-						<span class="forget_email_valid" style="<?php if($login_error == 1) echo "display:block"; ?>"> Please enter valid login details </span>
+						<span class="forget_email_valid" style="<?php if($login_error == 1) echo "display:block"; ?>"> Entered invalid details. Please create a new account </span>
 						<input type="hidden" name="redirect_url" value="<?php echo $_GET['redirect_url']; ?>">
 						<button type="submit" class="login" name="login_user">Login</button>
 					</form>

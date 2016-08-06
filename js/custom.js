@@ -69,7 +69,6 @@ $(document).ready(function () {
 	});
 
 	//  == Validation for Page range Format Start ==
-
 	$(document).on('keyup','.paper_range',function() {
 		var page_range_code_array = [] ;
 		$('.paper_range').each(function() { 
@@ -79,7 +78,7 @@ $(document).ready(function () {
 		for(i=0;i<page_range_code_array.length;i++) {	
 			var range_path = jQuery('#'+page_range_code_array[i]);
 			var inputVal=range_path.val();
-		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
+		  	var num0to255Regex = new RegExp("^((\\d{2}-\\d{3}),?|\\s*\\d+\\s*,?)+$");
 		  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
 				$('.uploadbutton').css('pointer-events', 'none');
 				$('.clone').css('pointer-events', 'none');
@@ -1440,7 +1439,7 @@ $(document).ready(function () {
 	// special characters, numbers and alphabet restriction based on regular expression
 	$('#phone2,#phone1,#postal,#postalcode').bind('keyup blur', function() { 
 	    $(this).val(function(i, val) {
-	        return val.replace(/[^0-9\s]/gi,''); 
+	        return val.replace(/[^0-9]/gi,''); 
 	    });
 	}); 			   		  
   	$('#name_a,#studentname,#footer_name').bind('keyup blur', function() { 
