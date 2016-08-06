@@ -6,17 +6,48 @@ include "includes/header.php";
 </head>
 <body>
 <?php 
-if (isset($_GET['edit_update']))
+if (isset($_GET['update']))
 {
-	echo "test";
+ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+  $val = $_GET['update'];
+  $val = mres($val);
 
+  $order_delivery_status = $_POST["order_delivery_status"];
+  $order_delivery_date = explode('/',$_POST["order_delivery_date"]);
+  $order_delivery_date = $order_delivery_date[2].'-'.$order_delivery_date[1].'-'.$order_delivery_date[0];
+  $qr = mysql_fetch_array(mysqlQuery("SELECT * FROM stork_order WHERE order_id=".$val));
+ $to = $qr['order_shipping_email'];
+ $from_email = "support@printstork.com";
+ $headers = "From: " . $from_email . "\r\n";
+ $headers .= "Reply-To: ". $from_email . "\r\n";
+ $headers .= "MIME-Version: 1.0\r\n";
+ $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+ if( $order_delivery_status == "completed"){
+  $email_subject = "Offer Details";
+  $message = file_get_contents('order_completed.php'); 
+ }
+ else if( $order_delivery_status == "shipped"){
+  $email_subject = "Offer Details";
+  $message = file_get_contents('order_shipped.php'); 
+ }
+ if (mail($to, $email_subject, $message, $headers))
+ {
+ $mail_status=1;
+ mysqlQuery("UPDATE stork_order SET order_delivery_status='$order_delivery_status',order_delivery_date='$order_delivery_date' WHERE order_id=".$val);
+ $successMessage = "<div class='container error_message_mandatory'><span> Order Status Updated and mail sent Successfully! </span></div>"; 
+ }
+ else {
+ $mail_status=0;
+ $successMessage = "<div class='container error_message_mandatory'><span> Server Problem!! Mail not sent Successfully! </span></div>"; 
+ } 
+ }
 }
 $id=$val;
 if(isset($_GET["id"]))
 {
-	$id = $_GET["id"];
+ $id = $_GET["id"];
 }
-?>  
+?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">

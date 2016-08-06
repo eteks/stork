@@ -996,7 +996,7 @@ function countCabinTransactionDetails()
 				</li>
 
 					<?php 
-					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer.php" || basename($_SERVER['PHP_SELF'])=="add_offer.php" || basename($_SERVER['PHP_SELF'])=="edit_offer.php" || basename($_SERVER['PHP_SELF'])=="customer_offer.php")
+					if(basename($_SERVER['PHP_SELF'])=="add_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer_zones.php" || basename($_SERVER['PHP_SELF'])=="edit_offer_zones.php" || basename($_SERVER['PHP_SELF'])=="offer.php" || basename($_SERVER['PHP_SELF'])=="add_offer.php" || basename($_SERVER['PHP_SELF'])=="edit_offer.php" || basename($_SERVER['PHP_SELF'])=="customer_offer.php" || basename($_SERVER['PHP_SELF'])=="assign_customer_offer.php")
 					{ 
 						?> 
 						<li class="has_submenu open test">
