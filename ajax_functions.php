@@ -39,7 +39,7 @@
 				if($_POST['print_type_id']=='colorwithblack&white'){
 					$color_id_query = selectfunction('paper_print_type_id',PRINTTYPE,'paper_print_type="Color"',$connection);
 					$color_id_data = mysqli_fetch_array($color_id_query);
-					$blackandwhite_id_query = selectfunction('paper_print_type_id',PRINTTYPE,'paper_print_type="Black & White"',$connection);
+					 $blackandwhite_id_query = selectfunction('paper_print_type_id',PRINTTYPE,'(paper_print_type="Black & White" OR paper_print_type="Black and white")',$connection);
 					$blackandwhite_id_data = mysqli_fetch_array($blackandwhite_id_query);
 					$amount_per_page_color = selectfunction('cost_estimation_amount',COSTESTIMATION,'cost_estimation_paper_print_type_id ="'.$color_id_data['paper_print_type_id'].'" and cost_estimation_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_status ="1"',$connection);
 					$amount_per_page_blackandwhite = selectfunction('cost_estimation_amount',COSTESTIMATION,'cost_estimation_paper_print_type_id ="'.$blackandwhite_id_data['paper_print_type_id'].'" and cost_estimation_paper_side_id ="'.$_POST['print_side_id'].'" and cost_estimation_paper_size_id ="'.$_POST['papar_size_id'].'" and cost_estimation_paper_type_id ="'.$_POST['paper_type_id'].'" and cost_estimation_status ="1"',$connection);
