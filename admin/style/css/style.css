@@ -1643,3 +1643,6 @@ text-align: center;
 #offer_th1 {
 	width: 80px !important;
 }
+table.cust_thwidth{
+	width: 2000px;
+}
