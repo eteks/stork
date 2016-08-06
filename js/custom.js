@@ -8,7 +8,7 @@ $(document).ready(function () {
 	var total_black_white_file_project = 0;
 	required_login = ["username_email", "login_password"];
 	required_forget = ["forget_email"];
-	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob"];
+	required_signup=["firstname","lastname","username","password","repassword","email","mobile","dob","captcha"];
 	reg_email=jQuery("#email");
 	forget_email=jQuery("#forget_email");
 	print_type=jQuery("#print_type");
@@ -199,18 +199,18 @@ $(document).ready(function () {
 		}
 	});
 	
-	// captcha genaration
-	function addition_captcha() {
-	 	var n1 = Math.round(Math.random() * 100 + 1);
-	    var n2 = Math.round(Math.random() * 100 + 1);
-	    $("#captcha_original").val(n1 + " + " + n2);
-	    $('#captcha_f_n').text(n1);
-	    $('#captcha_s_n').text(n2);
-	}
-	addition_captcha();
-	$(document).on('click','.captcha_click',function() {
-		addition_captcha();
-	});
+	 // captcha genaration
+	// function addition_captcha() {
+	 	// var n1 = Math.round(Math.random() * 100 + 1);
+	    // var n2 = Math.round(Math.random() * 100 + 1);
+	    // $("#captcha_original").val(n1 + " + " + n2);
+	    // $('#captcha_f_n').text(n1);
+	    // $('#captcha_s_n').text(n2);
+	// }
+	// addition_captcha();
+	// $(document).on('click','.captcha_click',function() {
+		// addition_captcha();
+	// });
 
 	//register-validation
 	jQuery("#register-form").submit(function(){
@@ -239,17 +239,17 @@ $(document).ready(function () {
 	        }
        }  
        
-       var number1 = parseInt($('#captcha_f_n').text());
-       var number2 = parseInt($('#captcha_s_n').text());
-       var total_captcha = number1 + number2 ;
-       var captcha_text= $("#captcha").val();     
+       // var number1 = parseInt($('#captcha_f_n').text());
+       // var number2 = parseInt($('#captcha_s_n').text());
+       // var total_captcha = number1 + number2 ;
+       // var captcha_text= $("#captcha").val();     
        
-       if(total_captcha!=captcha_text) {
-       		$("#captcha").addClass("error_input_field");
-       }
-       else {
-       		$("#captcha").removeClass("error_input_field");
-       }
+       // if(total_captcha!=captcha_text) {
+       		// $("#captcha").addClass("error_input_field");
+       // }
+       // else {
+       		// $("#captcha").removeClass("error_input_field");
+       // }
 
 		// Validate the e-mail.
 		if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(reg_email.val())) {
@@ -2570,3 +2570,33 @@ $(document).ready(function () {
 		});
 }); // Document ready end
 
+ $("#reload").click(function() {
+	
+        $("img#img").remove();
+		var id = Math.random();
+        $('<img id="img" src="captcha.php?id='+id+'"/>').appendTo("#imgdiv");
+		 id ='';
+    });
+    //validation function
+    $('#button').click(function() {
+        var captcha = $("#captcha").val();
+
+        if ( captcha == '')
+        {
+      
+        }
+
+        else
+        {	//validating CAPTCHA with user input text
+            var dataString = 'captcha=' + captcha;
+            $.ajax({
+                type: "POST",
+                url: "register.php",
+                data: dataString,
+                success: function(html) {
+                    alert(html);
+                }
+            });
+        }
+    });
+    

@@ -1196,3 +1196,14 @@ div.mcart-info , div.mcart-total {
     color: red;
     text-align: center;
 }
+.captcha_holder {
+	height:136px;
+}
+.captcha_img_holder {
+	height:30px;
+	margin:0px 10px 0px 0px;
+}
+.register {
+	float:none !important;
+	margin:0px 0px 30px 0px;
+}

@@ -6,6 +6,7 @@ if($_SESSION['login_status'] == 1){
 ?>
 <?php 
   	if(isset($_POST['save_new_user'])) {
+  		echo $_SESSION['digit'];
   		//print_r($_POST);
   		$firstname=$_POST['firstname'];
   		$lastname=$_POST['lastname'];
@@ -154,6 +155,16 @@ if($_SESSION['login_status'] == 1){
 							<input class="email mobileno" placeholder="Mobile number" id="mobile" name="mobile" type="text" maxlength="10" value="">
 							<p>Date Of Birth <span class="star">*</span></p>
 							<div id="dob"></div>
+							<p>Please enter the captcha shown<span class="star">*</span></p>							
+							<div class="captcha_holder">
+								<div class="cap_status"></div>
+								<input type="text" size="6" maxlength="6" autocomplete="off" id="captcha" name="captcha" class="error">
+							 	<div class="captcha_img_holder fl">
+							 		<div id="imgdiv"><img id="img" src="captcha.php" /></div>
+							 	</div><!-- captcha_img_holder -->
+							 	<img id="reload" class="fl" src="images/reload.png" />
+							 	<div class="clear_both"> </div>
+							</div><!-- captcha_holder --> 
 							<!-- <input class="email dob" placeholder="dd/mm/yy" id="dob" name="dob" type="text" value=""> -->
 							<!-- <p> Enter the code as shown below <span class="star"> *</span></p>
 							<input id="captcha_original" type="hidden" value="">
@@ -162,20 +173,19 @@ if($_SESSION['login_status'] == 1){
 								<img id="img" src="captcha.php" /></div>
 								<img id="reload" src="images/reload.png" />
 							<div> -->
-							<p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span> <span class="captcha_click"> <i class="fa fa-refresh" aria-hidden="true"></i> </span> </p> 
+							<!-- <p>How much is : <span id="captcha_f_n"></span> + <span id="captcha_s_n"></span><span class="star"> *</span> <span class="captcha_click"> <i class="fa fa-refresh" aria-hidden="true"></i> </span> </p> 
 							<input id="captcha_original" type="hidden" value="">
-							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value="">
-							<div>
-								<br/>
-								<button type="submit" name="save_new_user" class="register">Register</button>
-							</div>
+							<input class="email captcha" placeholder="captcha" id="captcha" name="captcha" type="text" value=""> -->
+							
+							<button type="submit" name="save_new_user" class="register">Register</button>
+							
 						 </form>
 					</div>
 				 </div>
 			  </div>
 		</section>
 	</div><!--Main index : End-->
-	<br/><br/>
+	
 <?php include('footer.php') ?>
 
 
