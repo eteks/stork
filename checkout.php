@@ -26,9 +26,17 @@ if($_SESSION['login_status']==1){
 }
 
 
-
-
-
+if($_SESSION['service']=='multi'){
+	$review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
+									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
+									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
+									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
+									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
+									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
+									        INNER JOIN stork_multicolor_copies ON stork_multicolor_copies.multicolor_copies_id = stork_upload_files.upload_files_number_of_copies
+									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
+}
+else{
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
 									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
@@ -36,6 +44,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
+}
 if(mysqli_num_rows($review_details)>0){
 ?>
 
@@ -96,7 +105,7 @@ if(mysqli_num_rows($review_details)>0){
 											<th width="10%" class="th-tax"><span class="priceColor2">Paper Size</span></th>
 											<th width="15%"  class="th-quanlity">Paper Type</th>
 											<!-- <th width="15%"  class="th-quanlity">Color pages no.</th> -->
-											<th width="15%"  class="th-quanlity">Total no. of pages</th>
+											<th width="15%"  class="th-quanlity"><?php if($_SESSION['service']=='multi'){?>No of copies <?php } else { ?>Total no. of pages<?php } ?></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Quantity</span></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Comments</span></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Total Cost</span></th>
@@ -151,7 +160,7 @@ if(mysqli_num_rows($review_details)>0){
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
-			  											<span class="PricetaxAmount"><?php echo $review_data['order_details_total_no_of_pages']; ?>	</span>
+			  											<span class="PricetaxAmount"><?php if($_SESSION['service']=='multi'){ echo $review_data['multicolor_copies']; } else { echo $review_data['order_details_total_no_of_pages']; }?>	</span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>

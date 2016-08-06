@@ -1128,6 +1128,9 @@ div.mcart-info , div.mcart-total {
 }
 
 /* Footer */
+.footer-col h2{
+	cursor: default;
+}
 .services-link a:hover {
 	color: #25bce9;
 }
@@ -1185,7 +1188,7 @@ div.mcart-info , div.mcart-total {
 .cart_remove_item i {
     cursor: pointer;
 }
-#plain_file_name_box #file_name_box {
+#plain_file_name_box .file_name_box {
     max-width: 392px;
 }
 #cover_only #cover_file_name {
