@@ -15,9 +15,7 @@ if (isset($_GET['update']))
   $order_delivery_status = $_POST["order_delivery_status"];
   $order_delivery_date = explode('/',$_POST["order_delivery_date"]);
   $order_delivery_date = $order_delivery_date[2].'-'.$order_delivery_date[1].'-'.$order_delivery_date[0];
-
-  $qr = mysqlQuery("SELECT * FROM stork_order WHERE offer_id='$val')");
-  $qr = mysql_fetch_array($qr);
+  $qr = mysql_fetch_array(mysqlQuery("SELECT * FROM stork_order WHERE order_id=".$val));
  $to = $qr['order_shipping_email'];
  $from_email = "support@printstork.com";
  $headers = "From: " . $from_email . "\r\n";
