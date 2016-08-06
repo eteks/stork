@@ -55,7 +55,8 @@ include('header.php');
 			$message .= "<tr><td><strong>Order Delivery Time</strong> </td><td>" . $order_delivery_time . "</td></tr>";
 			$message .= "<tr><td><strong>Order Status</strong> </td><td>" . $order_status . "</td></tr>";
 			$message .= "</table>";
-			$message .= "</div></div></body></html>";			
+			$message .= "</div></div></body></html>";	
+			echo "$message";	
            if (mail($email_subject, $message, $headers))
         {
           $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';

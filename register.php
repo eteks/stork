@@ -6,7 +6,6 @@ if($_SESSION['login_status'] == 1){
 ?>
 <?php 
   	if(isset($_POST['save_new_user'])) {
-  		echo $_SESSION['digit'];
   		//print_r($_POST);
   		$firstname=$_POST['firstname'];
   		$lastname=$_POST['lastname'];
@@ -185,7 +184,6 @@ if($_SESSION['login_status'] == 1){
 			  </div>
 		</section>
 	</div><!--Main index : End-->
-	
 <?php include('footer.php') ?>
 
 
