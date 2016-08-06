@@ -6,19 +6,10 @@ include "includes/header.php";
 </head>
 <body>
 <?php 
-if (isset($_GET['update']))
+if (isset($_GET['edit_update']))
 {
-	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-		$val = $_GET['update'];
-		$val = mres($val);
+	echo "test";
 
-		$order_delivery_status = $_POST["order_delivery_status"];
-		$order_delivery_date = explode('/',$_POST["order_delivery_date"]);
-		$order_delivery_date = $order_delivery_date[2].'-'.$order_delivery_date[1].'-'.$order_delivery_date[0];
-
-		mysqlQuery("UPDATE stork_order SET order_delivery_status='$order_delivery_status',order_delivery_date='$order_delivery_date' WHERE order_id=".$val);
-		$successMessage = "<div class='container error_message_mandatory'><span> Order Status Updated Successfully! </span></div>";	
-	}
 }
 $id=$val;
 if(isset($_GET["id"]))
@@ -95,7 +86,7 @@ if(isset($_GET["id"]))
 									<input type="text" class="form-control" id="dateofdelivered" placeholder="Date Of Delivered" autocomplete="off" name="order_delivery_date" value="<?php $deliverydate=strtotime($row['order_delivery_date']); $delivery = date('d/m/Y', $deliverydate); echo $delivery; ?>">
 								</div>
 								<div class="account-bottom-action">
-									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
+									<button type="submit" name="edit_update" class="gbtn btn-edit-acc-info">Update</button>
 								</div>
 								<?php 
 								} 
