@@ -267,6 +267,19 @@ $(document).ready(function () {
   		else {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
+
+      	$.ajax({
+           type: "POST",
+           url: "captcha.php",
+           data:{'captcha_validation':'true'},
+           cache: false,
+           success: function(data) {
+        		if ($("#captcha").val() != data)
+        			$('#captcha').addClass("error_input_field");	
+        		else
+        			$('#captcha').removeClass("error_input_field");  		
+           }
+       });
       	
       	// if(eval($("#captcha_original").val()) == $("#captcha").val()){
       	// 	$('#captcha').removeClass("error_input_field");
