@@ -218,8 +218,8 @@
 								<!-- <p> Paper print page number<span class="star">*</span> <span class="page_number_format_hint">(If you need color print, please mention page number in below. Ex- page no. 1-10,20,30-40)</p>	 -->
 								<div class="file_range_holder upload_range_section" id="file_range_holder">
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
-		        				    <input type="text" class="select_margin display_normal_file plain_range_file_name style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
-					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
+		        				    <input type="text" class="select_margin display_normal_file plain_range_file_name style_range max_style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
+					        		<input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 print_page_range paper_range style_range max_style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/>
 								</div>
    							</div>
    						</div>

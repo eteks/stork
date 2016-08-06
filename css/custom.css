@@ -1210,3 +1210,15 @@ div.mcart-info , div.mcart-total {
 	float:none !important;
 	margin:0px 0px 30px 0px;
 }
+.max_style_range {
+    max-width: 390px !important;
+}
+
+@media(max-width: 768px) {
+    #normal_file {
+        float: none !important;
+    }
+    #print_page_range {
+        display: block;
+    }
+}
