@@ -23,12 +23,16 @@ if (isset($_GET['update']))
  $headers .= "MIME-Version: 1.0\r\n";
  $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
  if( $order_delivery_status == "completed"){
-  $email_subject = "Offer Details";
+  $email_subject = "Order Details";
   $message = file_get_contents('order_completed.php'); 
  }
  else if( $order_delivery_status == "shipped"){
-  $email_subject = "Offer Details";
+  $email_subject = "Order Details";
   $message = file_get_contents('order_shipped.php'); 
+ }
+ else if( $order_delivery_status == "delivered"){
+  $email_subject = "Order Details";
+  $message = file_get_contents('order_delivered.php'); 
  }
  if (mail($to, $email_subject, $message, $headers))
  {
