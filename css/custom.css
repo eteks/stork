@@ -1089,8 +1089,9 @@ h4.order_or_button{
 	width: 100%;
 }
 .quantity input {
-    	text-align: center;
-    }
+	padding: 5px 20px;		
+    text-align: center;
+}
 /*#checkout .cart-summary.no-border .product:first-child {
 	display: block !important;
 }*/
