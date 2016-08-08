@@ -68,8 +68,29 @@ $(document).ready(function () {
 	
 	});
 
+//  To restrict long press
+flag=0;
+$(document).on('keydown','.paper_range',function(e) { 
+	flag++;
+    if(flag>1){                                    
+       e.preventDefault();
+    }
+});
+ 
+// focus function
+
+$(document).on("focusin",".print_page_range",function() {
+  	$('#total_pages').val('');
+  	$('.print_total_amount').val('');
+});
+$(document).on("focusin",".project_paper_range",function() {
+	$('#project_total_pages').val('');
+	$('.project_total_amount').val('');
+});
+
 	//  == Validation for Page range Format Start ==
-	$(document).on('keyup','.paper_range',function() {
+	$(document).on('keyup','.paper_range',function(e) { 
+		flag=0;  
 		var page_range_code_array = [] ;
 		$('.paper_range').each(function() { 
 		   var code_id = $(this).attr('id');
@@ -78,13 +99,25 @@ $(document).ready(function () {
 		for(i=0;i<page_range_code_array.length;i++) {	
 			var range_path = jQuery('#'+page_range_code_array[i]);
 			var inputVal=range_path.val();
-		  	var num0to255Regex = new RegExp("^((\\d{2}-\\d{3}),?|\\s*\\d+\\s*,?)+$");
+		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 		  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
 				$('.uploadbutton').css('pointer-events', 'none');
 				$('.clone').css('pointer-events', 'none');
 				$(range_path).addClass("error_print_booking_code");
 			}
 		 	else {
+		 		var res = [];
+				var total_string = $(this).val();
+				var res = total_string.split(/,|-/);
+				for(i=0;i<res.length;i++) {
+					var input_range=res[i];
+					if(input_range.length>=5) {
+						var textVal = $(this).val();
+    					$(this).val(textVal.substring(0,textVal.length - 1));
+					}
+  				}
+				
+
 				$('.uploadbutton').css('pointer-events', 'auto');
 				$(range_path).removeClass("error_print_booking_code");
 				$('.uploadFile').each(function() {
@@ -105,6 +138,9 @@ $(document).ready(function () {
 	    }
 
 	});
+
+
+
 	//  == Validation for Page range Format End ==
 
 	//  == Add and Remove Button Start ==
@@ -1075,6 +1111,9 @@ $(document).ready(function () {
 	jQuery(document).on('submit','#print_booking_form',function(){
 	// jQuery('#print_booking_form').submit(function(){
 		
+
+
+
 		var input = jQuery('#'+"total_pages");
 		if ((input.val() == "")) 
 		{
@@ -1522,16 +1561,37 @@ $(document).ready(function () {
     	}
     });
 
+flag1=0;
+$(document).on('keydown','.project_paper_range',function(e) { 
+	flag1++;
+    if(flag1>1){                                    
+       e.preventDefault();
+    }
+});
+ 
+
 	//  Paper range validation End
 
 	//  Paper range format validation Start
 		$(document).on('keyup','.project_paper_range',function() {
+			flag1=0;
 			var inputVal=$(this).val();
 		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
 		  	if(!num0to255Regex.test(inputVal)) {
 				$(this).addClass("error_print_booking_code");
 			}
 		 	else {
+		 		var res = [];
+				var total_string = $(this).val();
+				var res = total_string.split(/,|-/);
+				for(i=0;i<res.length;i++) {
+					var input_range=res[i];
+					if(input_range.length>=5) {
+						var textVal = $(this).val();
+    					$(this).val(textVal.substring(0,textVal.length - 1));
+					}
+  				}
+
 				$(this).removeClass("error_print_booking_code");
 			} 	
 	});

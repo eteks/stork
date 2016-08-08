@@ -1,6 +1,4 @@
-<?php
-$message = '<html> <body> 
- <div style="margin: 0px auto; width: 50%;">
+<html> <body> 
     <div style="border: 1px solid #25bce9; background: #fff;"> 
     <h3  style="border: 0px 1px opx solid #25bce9; background: #25bce9;margin-top: 0px;margin-bottom: 0px">ORDER DETAILS</h3>
  <table>
@@ -52,9 +50,4 @@ $message = '<html> <body>
     <td></td>
   </tr>
 </table>   
- </div> </div> </body> </html>';
-echo "$message";
-
-?>
-  
-
+ </div> </body> </html>
