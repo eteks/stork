@@ -169,7 +169,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 print_page_option">
-			        			<p>Print page type Required<span class="star">&nbsp;*</span></p>
+			        			<p>Front page Required<span class="star">&nbsp;*</span></p>
 			        			<div class="radio_holder">
 			        				<input type="radio" name="page_type_option" id="page_radio_yes" value="yes"> <span> Yes </span>
   									<input type="radio" name="page_type_option" value="no" id="page_radio_no" checked> <span> No </span>

@@ -520,7 +520,7 @@ $(document).ready(function () {
 	           		success: function(data) {
 	           			var per_page_amount = data;
 	           			var amount_split = per_page_amount.split('#');
-	           			if(amount_split){
+	           			if(data){
 	           				$('#print_booking_form .color_page_amount_per_page').val(parseFloat(amount_split[0]));
 	           				$('#print_booking_form .blackwhite_page_amount_per_page').val(parseFloat(amount_split[1]));
 	           			}
