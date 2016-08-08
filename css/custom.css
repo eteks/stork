@@ -1222,3 +1222,12 @@ div.mcart-info , div.mcart-total {
         display: block;
     }
 }
+#reload {
+    cursor : pointer;
+}
+#error_pass_rest {
+    color: red;
+    font-size: 9px;
+    font-weight: bold;
+    display: none;
+}
