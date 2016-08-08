@@ -82,7 +82,7 @@ $(document).on('keydown','.paper_range',function(e) {
 $(document).on("focusin",".print_page_range",function() {
   	$('#total_pages').val('');
   	$('.print_total_amount').val('');
-});project_total_pages
+});
 $(document).on("focusin",".project_paper_range",function() {
 	$('#project_total_pages').val('');
 	$('.project_total_amount').val('');
