@@ -1222,3 +1222,6 @@ div.mcart-info , div.mcart-total {
         display: block;
     }
 }
+#reload {
+    cursor : pointer;
+}
