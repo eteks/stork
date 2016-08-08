@@ -264,15 +264,24 @@ $(document).on("focusin",".project_paper_range",function() {
 		else{
 			$('#dob').removeClass("error_input_field");
 		}
-		
-		if($('#password').val() != ''){
-			if($('#password').val() != $('#repassword').val()) {
+		var passVal  = $('#password').val();
+		if(passVal!='') {
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{3}$");
+			if(!pass_restriction.test(passVal)) {
+				$('#password').addClass("error_input_field");
+				$('#error_pass_rest').slideDown();
+			}
+			else if(passVal != $('#repassword').val()) {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
 				$('#repassword').addClass("error_input_field");
-	        }
-	        else {
+			}
+			else {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
 				$('#repassword').removeClass("error_input_field");
-	        }
-       }  
+			} 
+		}
        
        // var number1 = parseInt($('#captcha_f_n').text());
        // var number2 = parseInt($('#captcha_s_n').text());

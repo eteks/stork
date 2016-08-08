@@ -2,11 +2,12 @@
 $message = '<html> <body> 
  <div style="margin: 0px auto; width: 50%;">
     <div style="border: 1px solid #25bce9; background: #fff;"> 
- <table class="body-wrap">
+    <h3  style="border: 0px 1px opx solid #25bce9; background: #25bce9;margin-top: 0px;margin-bottom: 0px">ORDER DETAILS</h3>
+ <table>
   <tr>
     <td></td>
-    <td class="container" bgcolor="#FFFFFF">
-      <div class="content">
+    <td>
+      <div>
       <table>
         <tr>
           <td>

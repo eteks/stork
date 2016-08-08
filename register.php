@@ -145,9 +145,11 @@ if($_SESSION['login_status'] == 1){
 							<p class="reg_fields">Create a Username<span class="star">*</span></p>
 							<input class="user" placeholder="Username" id="username" name="username" type="text" maxlength="20" value=""> 
 							<p class="reg_fields">Create a Password  <span class="star">*</span></p>
-							<input class="pasword" placeholder="password" id="password" type="password" name="password" maxlength="15" value="">
+							<input class="pasword" placeholder="password" id="password" type="password" name="password" maxlength="6" value="">
+							<span id="error_pass_rest"> Password should contains atleast one alphabet, one numeric, one special character </span>
 							<p class="reg_fields">Confirm a Password  <span class="star">*</span></p>
-							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" maxlength="15" value=""> 
+							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" maxlength="6" value=""> 
+
 							<p>Email Address <span class="star">*</span></p>
 							<input class="email" placeholder="Email ID" id="email" name="email" type="text" value="">
 							<p>Mobile Number<span class="star">*</span></p>

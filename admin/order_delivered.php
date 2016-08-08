@@ -1,6 +1,6 @@
 <html> <body> 
     <div style="border: 1px solid #25bce9; background: #fff;"> 
-     <h3  style="border: 0px 1px opx solid #25bce9; background: #25bce9;margin-top: 0px;margin-bottom: 0px">ORDER DETAILS</h3>
+    <h3  style="border: 0px 1px opx solid #25bce9; background: #25bce9;margin-top: 0px;margin-bottom: 0px">ORDER DETAILS</h3>
  <table>
   <tr>
     <td></td>
@@ -27,7 +27,7 @@
                         <p class=""><a href="http:\\www.facebook.com/" class="fa fa-facebook">Facebook</a> <a href="http:\\www.twitter.com/" class="fa fa-twitter">Twitter</a> <a href="http:\\www.googleplus.com/" class="fa fa-googleplus">Google+</a></p>
                        </td>
                     </tr>
-                  </table><!-- /column 1 -->                   
+                  </table><!-- /column 1 -->                 
                   <!-- column 2 -->
                   <table align="left" class="column">
                     <tr>
@@ -51,4 +51,3 @@
   </tr>
 </table>   
  </div> </body> </html>
-
