@@ -10,16 +10,42 @@ include "includes/header.php";
 
 global $query_filter;
 global $filter_amount;
+global $filter_startdate;
+global $filter_enddate;
 // global $status;
 global $successMessage;
 // $status = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
 		$filter_amount = $_POST["filter_amount"];
-		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
-			ON sopu.offer_provided_order_id = so.order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
-			order_customer_email) AND so.order_total_amount >= '$filter_amount' 
-			ORDER BY so.order_total_amount DESC");
+		if($_POST["filter_startdate"]){
+			$filter_startdate = explode('/',$_POST["filter_startdate"]);
+			$filter_startdate = $filter_startdate[2].'-'.$filter_startdate[1].'-'.$filter_startdate[0];
+		}
+		if($_POST["filter_enddate"]){	
+			$filter_enddate = explode('/',$_POST["filter_enddate"]);
+			$filter_enddate = $filter_enddate[2].'-'.$filter_enddate[1].'-'.$filter_enddate[0];
+		}
+		// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
+		// 	ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
+		// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
+
+		if($_POST["filter_startdate"] && $_POST["filter_enddate"])
+			$date_condition = " AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate'";
+		else
+			$date_condition = '';
+		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC");
+
+		$current_date = strftime('%F');
+		$offer_period = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'");
+		$offer_period_fetch =mysql_fetch_array($offer_period);
+		$days_between = ceil(abs(strtotime($offer_period_fetch['offer_validity_end_date']) - strtotime($current_date)) / 86400);
+
+		if(mysql_num_rows($offer_period) == 1 && mysql_num_rows($query_filter) > 0){
+			if($current_date >= $offer_period_fetch['offer_validity_start_date']){
+				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Days only remaining for offer !!! </span></div>";
+			}
+		}
 	}
 	if (isset($_POST['offer_save'])){
 		$checkbox_status = $_POST['checkbox_status'];
@@ -31,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$order_id = $_POST['order_id'];
 		$order_amount = $_POST['order_amount'];
 		$array_data = array_map(null, $checkbox_status, $offer_id, $user_id,$user_type,$user_name,$user_email,$order_id,$order_amount);
-
 		// echo "<pre>";
 		// print_r($array_data);
 		// echo "</pre>";
@@ -95,8 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						 $is_email_sent = 0;
 						 $offer_validity_status = 4;
 					}
-				}
-	    	  
+				}    	  
 			}
 		}
 		if($offer_validity_status ==1) {
@@ -111,9 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		else {
 			$successMessage = "<div class='container error_message_mandatory error_message_offer'><span> Mail not sent successfully </span></div>";
 		}
-		// if($status){
-		// 	$successMessage = "<div class='container error_message_mandatory'><span> Offer Assigned and mail sent Successfully! </span></div>";
-		// }
 	}
 }
 ?>
@@ -153,16 +174,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	<div class="add_section">
 	<form action="assign_customer_offer.php" id="customer_offer" method="POST">
 	<div class="container">
-		<span class="error_test_off"> Please fill all required(*) fields </span>
+			<span class="error_test_off"> Please fill all required(*) fields </span>
 			<span class="error_test_offer"> Please select atleast one option </span>
+			<span class="error_date"> End date should be greater than Start date </span>
 	</div>
-		<span class="amount_text">Filter Amount</span>
-		<input type="text" name="filter_amount" id="filteramount" class="amount_field">
+		<span class="amount_text">Filter By</span>
+		<?php 
+			if($filter_startdate) {
+				$startdate=strtotime($filter_startdate);
+				$startdate = date('d/m/Y', $startdate);
+			}
+			else{
+				$startdate = "";
+			}
+			if($filter_enddate) {
+				$enddate=strtotime($filter_enddate);
+				$enddate = date('d/m/Y', $enddate);
+			}
+			else{
+				$enddate = "";
+			}
+		?>
+		<input type="text" name="filter_amount" id="filteramount" class="amount_field" placeholder="Amount" value="<?php if($filter_amount) echo $filter_amount; else echo ""; ?>">
+		<input type="text" name="filter_startdate" id="filterstartdate" class="amount_field" placeholder="Start Date" value="<?php echo $startdate; ?>">
+		<input type="text" name="filter_enddate" id="filterenddate" class="amount_field" placeholder="End Date" value="<?php echo $enddate; ?>">
 		<button type="submit" class="gbtn btn-edit-acc-info amount_gen" name="offer_generate">Generate</button>
 	</form>
 	</div>
 	<?php 
-		$count_rows = mysql_num_rows($query_filter);	
+		$count_rows = mysql_num_rows($query_filter);
+		$i = 0;
 		if ($count_rows > 0)
 		{
 	?>
@@ -178,15 +219,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							            <th>User Email</th>
 							            <th>Order Id</th>
 							            <th>Order Amount</th>
+							            <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th>
 							        </tr>
 							    </thead>
 						        <?php              
-								$i = 0;
 								$sql = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'"); 
 								$row = mysql_fetch_array($sql);
 								while ($fetch = mysql_fetch_array($query_filter))
 								{
-									if($fetch['status'] != 1){
+									// if($fetch['status'] != 1){
+									$order_customer_name = $fetch['order_customer_name'];
+									$order_customer_email = $fetch['order_customer_email'];
+									$sql_assigned_offer = mysql_query("SELECT * FROM 
+									stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_customer_email'"); 
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -197,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							    	<input type="hidden" name="user_email[]" value="<?php echo $fetch['order_customer_email']?>">
 							    	<input type="hidden" name="order_id[]" value="<?php echo $fetch['order_id']?>">
 							    	<input type="hidden" name="order_amount[]" value="<?php echo $fetch['order_total_amount']?>">
-							    	<td><input type="checkbox" class="offer_checkbox"></td>			
+							    	<td><input type="checkbox" class="offer_checkbox" <?php if (mysql_num_rows($sql_assigned_offer) > 0) echo "disabled" ?>></td>			
 							    	<td><span class="nobr"><?php 
 						            if($fetch['order_user_id'] == 0)
 						            	echo "NULL";
@@ -209,15 +254,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						            <td><span class="nobr"><?php echo $fetch['order_customer_email'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
+						            <td><span class="nobr"><?php 
+						            if (mysql_num_rows($sql_assigned_offer) > 0)
+						            	echo "Yes";
+						            else
+						            	echo "No";
+						            ?></span></td>
 							   	</tr>
-							   <?php }}?>
+							   <?php $i++;
+							   // }
+							   }?>
 					</table>										
 		<div class="account-bottom-action">
 			<button type="submit" class="gbtn btn-edit-acc-info customer_check" name="offer_save">Save</button>
 		</div>	
 	</div>
 	</form>
-	<?php }  ?>
+	<?php } if($i==0 && isset($_POST['offer_generate'])){
+		echo "<div class='container error_message_mandatory error_message_offer'><span> No order found for the above filter </span></div>";
+	}  ?>
 	<div class="clearfix"></div>
 	<!-- Jquery for checkbox selection -->
 	<script type="text/javascript" >

@@ -169,7 +169,7 @@
 	        				    </select>
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 print_page_option">
-			        			<p>Print page type Required<span class="star">&nbsp;*</span></p>
+			        			<p>First page print required<span class="star">&nbsp;*</span></p>
 			        			<div class="radio_holder">
 			        				<input type="radio" name="page_type_option" id="page_radio_yes" value="yes"> <span> Yes </span>
   									<input type="radio" name="page_type_option" value="no" id="page_radio_no" checked> <span> No </span>
@@ -371,6 +371,36 @@
 	        							?>
 		        				    </select>
 				        		</div> <!-- input_holder -->
+				        		<div class="input_holder row pad_15 binding_option">
+			        				<p>OHP Sheet Required<span class="star">&nbsp;* </span></p>
+			        				<div class="radio_holder ohp_required_option">
+			        					<input type="radio" class="" name="ohp_option" id="" value="yes"> <span> Yes </span>
+  										<input type="radio" class="" name="ohp_option" value="no" id="" checked> <span> No </span>
+  									</div>
+			        			</div> <!-- input_holder -->
+
+			        			<div class="input_holder row pad_15 ohp_options">
+			        				<p>OHP Sheet Options<span class="star">&nbsp;* </span></p>
+			        				<div class="chapter_ohp_holder">
+			        					<div class="chapter_based">
+			        						<input type="radio" class="ohp_radio" name="ohp_option_range" id="" value="chapter" checked> <span> Chapter Based </span>
+			        					</div>
+			        					<input type="text" name="" id="chapter_box" class="col-md-8 style_range ohp_text_box" placeholder="Enter number of chapters" maxlength="5"/ >
+			        					<div class="cb"> </div>
+			        				</div>
+			        				<div class="user_ohp_holder">
+			        					<div class="user_defined">
+			        						<input type="radio" class="ohp_radio" name="ohp_option_range" id="" value="user"> <span> User Defined </span>
+			        					</div>
+			        					<input type="text" name="" id="user_defined_box" class="col-md-8 style_range ohp_text_box user_defined_box" placeholder="Chapter 1,7,15,18,23" disabled / >
+			        					<div class="cb"> </div>
+  									</div>
+  			        			</div> <!-- input_holder -->
+
+
+
+
+
 				        	</div>
 			        		<div class="clear_both"> </div>
 				        	<div class="main_project_section_input_holder">

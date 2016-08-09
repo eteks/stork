@@ -99,7 +99,7 @@ $(document).on("focusin",".project_paper_range",function() {
 		for(i=0;i<page_range_code_array.length;i++) {	
 			var range_path = jQuery('#'+page_range_code_array[i]);
 			var inputVal=range_path.val();
-		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
+		  	var num0to255Regex = new RegExp("^([0-9]+(-[0-9]+)?)(,([0-9]+(-[0-9]+)?))*$");
 		  	if(!num0to255Regex.test(inputVal) && inputVal!=0) {
 				$('.uploadbutton').css('pointer-events', 'none');
 				$('.clone').css('pointer-events', 'none');
@@ -266,7 +266,7 @@ $(document).on("focusin",".project_paper_range",function() {
 		}
 		var passVal  = $('#password').val();
 		if(passVal!='') {
-			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{3}$");
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!)=%*#(? &])[A-Za-z\\d$@)$!%(*#= ?&]{3,}$");
 			if(!pass_restriction.test(passVal)) {
 				$('#password').addClass("error_input_field");
 				$('#error_pass_rest').slideDown();
@@ -1585,7 +1585,7 @@ $(document).on('keydown','.project_paper_range',function(e) {
 		$(document).on('keyup','.project_paper_range',function() {
 			flag1=0;
 			var inputVal=$(this).val();
-		  	var num0to255Regex = new RegExp("^(\\s*\\d+\\s*\\-\\s*\\d+\\s*,?|\\s*\\d+\\s*,?)+$");
+		  	var num0to255Regex = new RegExp("^([0-9]+(-[0-9]+)?)(,([0-9]+(-[0-9]+)?))*$");
 		  	if(!num0to255Regex.test(inputVal)) {
 				$(this).addClass("error_print_booking_code");
 			}
@@ -1647,7 +1647,30 @@ $(document).on('keydown','.project_paper_range',function(e) {
 			}
 		}); 
 
-		if (jQuery(":input").hasClass("error_print_booking_field") ||jQuery("select").hasClass("error_print_booking_field") || jQuery('.cotent_browse_button').hasClass('error_print_booking_field') || jQuery(".project_paper_range").hasClass("error_print_booking_code")) {
+		if($('.ohp_options').css('display')!='none') {
+			$('.ohp_radio').each(function() {
+				if($(this).prop('checked')!=false) {
+					if($(this).parents().siblings('.ohp_text_box').val()=='') {
+						$(this).parents().siblings('.ohp_text_box').addClass('error_print_booking_field');
+					}
+					else {
+						$(this).parents().siblings('.ohp_text_box').removeClass('error_print_booking_field');
+					}
+				}
+				else {
+					$(this).parents().siblings('.ohp_text_box').removeClass('error_print_booking_field');
+				}
+			});
+		}
+		else {
+			$('.ohp_text_box').removeClass('error_print_booking_field');
+		}
+
+
+
+
+
+		if (jQuery(":input").hasClass("error_print_booking_field") ||jQuery("select").hasClass("error_print_booking_field") || jQuery('.cotent_browse_button').hasClass('error_print_booking_field') || jQuery(".project_paper_range").hasClass("error_print_booking_code") || jQuery(".ohp_text_box").hasClass('error_print_booking_field') || jQuery(".user_defined_box").hasClass('error_project_booking_ohp_field')) {
 			$('html,body').animate({ scrollTop: $(".project_printing_holder").offset().top},'slow');
 			return false;
 		}else {
@@ -2202,8 +2225,36 @@ $(document).on('keydown','.project_paper_range',function(e) {
 		$('#cabin_booking').submit();
 	});
 
+
+flag=0;
+$(document).on('keydown','.user_defined_box',function(e) { 
+	flag++;
+    if(flag>1){                                    
+       e.preventDefault();
+    }
+});
+
+$(document).on('keyup','.user_defined_box',function() {
+	flag=0;
+	var inputVal_ohp = $(this).val();
+	var reg_user_ohp= new RegExp("^([0-9]+(,[0-9]+)?)(,([0-9]+(,[0-9]+)?))*$");
+		if(!reg_user_ohp.test(inputVal_ohp) && inputVal_ohp!=0) {
+			$(this).addClass("error_project_booking_ohp_field");
+		}
+		else {
+			var res = inputVal_ohp.split(/,/);
+			for(i=0;i<res.length;i++) {
+				var input_range=res[i];
+				if(input_range.length>=5) {
+					var textVal = $(this).val();
+    				$(this).val(textVal.substring(0,textVal.length - 1));
+				}
+  			}
+			$(this).removeClass("error_project_booking_ohp_field");
+		}
+});
 	
-	$("#cabin_mobile,#cabin_required_system").keypress(function (e) {
+	$("#cabin_mobile,#cabin_required_system,#chapter_box").keypress(function (e) {
 		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
    			return false;
 		}
@@ -2649,7 +2700,7 @@ $(document).on('keydown','.project_paper_range',function(e) {
 			var option = $('option:selected', this).val();
 			Cookies.set('area_id',option);
 		});
-		
+
   // PlainPrinting==>Logical display of images for select options in paper-type /==Starts==/ 
   
 	  $("#paper_type").bind("change", function() {
@@ -2824,14 +2875,39 @@ $(document).on('keydown','.project_paper_range',function(e) {
 	  $("#thumbs").find("#" + test).css("display", "block");
      }); 
      
- 
- 
-                  
-    
-      
-     	
-		
-		
+  
+  		$('.ohp_required_option input').on('click',function() {
+			var option_value = $(this).val();
+			if(option_value=='yes') {
+				$('.ohp_options').slideDown();
+			}
+			else {
+				$('.ohp_options').slideUp();
+				$('.ohp_text_box').val('');
+				$('.ohp_text_box').removeClass('error_print_booking_field');
+			}
+		});
+		$('.ohp_options .ohp_radio').on('click',function() {
+			var ohp_option_value = $(this).val();
+			var this_input_box1= $(this).parents('.ohp_options').find('#chapter_box');
+			var this_input_box2= $(this).parents('.ohp_options').find('#user_defined_box');
+			if(ohp_option_value=='chapter') {
+				this_input_box2.val('')
+				this_input_box1.prop('disabled',false);
+				this_input_box2.prop('disabled',true);
+			}
+			else {
+				this_input_box1.val('')
+				this_input_box1.prop('disabled',true);
+				this_input_box2.prop('disabled',false);
+			}
+		});
+
+		$('.password_restiction_details').on('click',function() {
+			$('.password_criteria').slideToggle();
+		});
+		  
+
 }); // Document ready end
 
  $("#reload").click(function() {

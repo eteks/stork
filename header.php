@@ -87,18 +87,18 @@ progress::-moz-progress-bar {
 					<div class="top-links col-lg-7 col-md-6 col-sm-5 col-xs-6">
 						<ul>
 							<li class="hidden-xs">
-								<a href="http://www.facebook.com/" title="Facebook">
+								<a href="https://www.facebook.com/Print-Stork-145625759197915/?ref=aymt_homepage_panel" title="Facebook">
 									<i class="fa fa-facebook"></i>
 									<!-- Connect with facebook -->
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.twitter.com/" title="Twitter">
+								<a href="https://twitter.com/printstork" title="Twitter">
 									<i class="fa fa-twitter"></i> 
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="https://plus.google.com/" title="Google Plus">
+								<a href="https://plus.google.com/u/0/" title="Google Plus">
 									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>
