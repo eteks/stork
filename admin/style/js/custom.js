@@ -165,6 +165,7 @@ $(document).ready(function(){
 
   $('.city_table,.state_table,.track_table,.cost_table,.offerzone_table,.paperprinttypes_table,.papertypes_table,.paperside_table,.area_table,.papersize_table,.papersize_table,.college_table,.admin_table,.user_table,.transaction_table').DataTable({
     "bAutoWidth": false, // Disable the auto width calculation
+    "aaSorting": []
   });
 
 var table = $('.stork_admin_table').DataTable();
@@ -279,7 +280,7 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () { 
-    $('#dob,#holiday_date,.date_picker').datepicker({
+    $('#dob,#holiday_date,.date_picker,#filterstartdate,#filterenddate').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'

@@ -51,7 +51,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<a href="add_city.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 			<div class="form-edit-info">
-							<?php $sql = "SELECT * FROM `stork_city`"; 
+							<?php $sql = "SELECT * FROM `stork_city` ORDER BY create_date DESC"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)
