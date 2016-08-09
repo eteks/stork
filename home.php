@@ -67,11 +67,11 @@
 							</div>
 							<!-- <div class="tp-caption lfb" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now </a></div> -->
 							<?php
-							if(mysqli_num_rows($offerdata)){
+							// if(mysqli_num_rows($offerdata)){
 							?>
-							<div class="tp-caption lfr offer-zone1" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
+							<!-- <div class="tp-caption lfr offer-zone1" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div> -->
 							<?php
-							}
+							// }
 							?>																																																																			
 						</li>
 						<li class="slide2" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
@@ -86,12 +86,12 @@
 								</span>
 							</div>
 							<?php
-							if(mysqli_num_rows($offerdata)>0){
+							// if(mysqli_num_rows($offerdata)>0){
 							?>
 							<!-- <div class="tp-caption lfr" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<div class="tp-caption lfr offer-zone2" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
+							<!-- <div class="tp-caption lfr offer-zone2" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div> -->
 							<?php
-							}
+							// }
 							?>	
 						</li>
 						<li class="slide3" data-transition="random" ><img src="images/slider/home/bg_slider_3.jpg" alt="" />
@@ -106,12 +106,12 @@
 								</span>
 							</div>
 							<?php
-							if(mysqli_num_rows($offerdata)>0){
+							// if(mysqli_num_rows($offerdata)>0){
 							?>
 							<!-- <div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<div class="tp-caption lfr offer-zone3" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
+							<!-- <div class="tp-caption lfr offer-zone3" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div> -->
 							<?php
-							}
+							// }
 							?>	
 						</li>
 						<li class="slide4" data-transition="random" ><img src="images/slider/home/bg_slider_4.jpg" alt="" />
@@ -127,11 +127,11 @@
 							</div>
 							<div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
 							<?php
-							if(mysqli_num_rows($offerdata)>0){
+							// if(mysqli_num_rows($offerdata)>0){
 							?>
-							<div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
+							<!-- <div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div> -->
 							<?php
-							}
+							// }
 							?>
 						</li>
 					</ul> 
