@@ -144,9 +144,25 @@ if($_SESSION['login_status'] == 1){
 							<input class="lastname" placeholder="Lastname" id="lastname" name="lastname" type="text" maxlength="50" value="">
 							<p class="reg_fields">Create a Username<span class="star">*</span></p>
 							<input class="user" placeholder="Username" id="username" name="username" type="text" maxlength="20" value=""> 
-							<p class="reg_fields">Create a Password  <span class="star">*</span></p>
+							<p class="reg_fields">Create a Password  <span class="star">*</span> <span class="password_restiction_details"> <i class="fa fa-info-circle" aria-hidden="true"></i> </span></p>
+
+							<div class="password_criteria" id="error_pass_rest">
+								<p> Your password should have </p>
+								<ul>
+									<li> 1. At least 3 characters and not more than 6 characters </li>
+									<li> 2. At least one alphabet (a-z) </li>
+									<li> 3. At least one number (0-9) </li>
+									<li> 4. At least one special character out of these ( !, @, #, $, &, *, ?, ), %, (, = ) or space </li>
+								</ul>
+							</div>
+							
+
+
+
+
+
 							<input class="pasword" placeholder="password" id="password" type="password" name="password" maxlength="6" value="">
-							<span id="error_pass_rest"> Password should contains atleast one alphabet, one numeric, one special character </span>
+
 							<p class="reg_fields">Confirm a Password  <span class="star">*</span></p>
 							<input class="re-pasword" placeholder="Re-password" id="repassword" type="password" name="confirm_password" maxlength="6" value=""> 
 

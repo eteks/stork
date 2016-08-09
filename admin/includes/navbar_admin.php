@@ -6,17 +6,17 @@
 				<div class="top-links col-lg-7 col-md-6 col-sm-5 col-xs-6">
 					<ul>
 						<li class="hidden-xs">
-							<a title="Facebook" href="http://www.facebook.com/">
+							<a title="Facebook" href="https://www.facebook.com/Print-Stork-145625759197915/?ref=aymt_homepage_panel">
 								<i class="fa fa-facebook"></i>
 							</a>
 						</li>
 						<li class="hidden-xs">
-							<a title="Twitter" href="http://www.twitter.com/">
+							<a title="Twitter" href="https://twitter.com/printstork">
 								<i class="fa fa-twitter"></i> 
 							</a>
 						</li> 
 						<li class="hidden-xs">
-							<a title="Google Plus" href="https://plus.google.com/">
+							<a title="Google Plus" href="https://plus.google.com/u/0/">
 								<i aria-hidden="true" class="fa fa-google-plus"></i>
 							</a>
 						</li>

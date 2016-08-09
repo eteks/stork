@@ -44,7 +44,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
 }
-// if(mysqli_num_rows($review_details)>0){
+if(mysqli_num_rows($review_details)>0){
 ?>
 
 
@@ -613,11 +613,11 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 </main><!--Main index : End-->
 
 <?php
-// }
-//  else{
-// 	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
-// 	 exit();
-// } 
+}
+ else{
+	 die('<script type="text/javascript">window.location.href="printbooking.php?service='.$_SESSION["service"].'";</script>');
+	 exit();
+} 
 include('footer.php'); 
 ?>
 <script>

@@ -54,7 +54,24 @@
 			<div class="slide-show">
 				<div class="vt-slideshow">
 					<ul>
-						<li class="slide1" data-transition="random" ><img src="images/slider/home/Print2.jpg" alt="project_binding" width="1920px" height="598px"/>
+						<li class="slide1" data-transition="random" ><img src="images/slider/home/bg_slider_4.jpeg" alt="" />
+							<div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1 plain_slider1">PLAIN PRINTING</span></div> 
+							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
+								<span class="style2 plain_slider2">
+									Print Black & white and colour pages in A3, A4 and Legal <br> size online and get delivered within 8 working hours.
+								</span>
+							</div>
+							<!-- <div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
+							<?php
+							if(mysqli_num_rows($offerdata)>0){
+							?>
+							<div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div> -->
+							<?php
+							}
+							?>
+						</li>
+
+						<li class="slide2" data-transition="random" ><img src="images/slider/home/Print2.jpg" alt="project_binding" width="1920px" height="598px"/>
 							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">PROJECT PRINTING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="slide_style2">
@@ -74,15 +91,11 @@
 							}
 							?>																																																																			
 						</li>
-						<li class="slide2" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
+						<li class="slide3" data-transition="random" ><img src="images/slider/home/print3.jpg" alt="cabin_booking" width="1920px" height="598px" />
 							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">CABIN BOOKING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="slide_style2">
-									Our A5 flyers and leaflets are our bestselling size.<br> 
-									This is because they're perfect for potential prospects<br>  
-									to carry around and are extremely cost effective. We<br> 
-									currently have an offer of 1000 flyers and leaflets<br> 
-									for only &pound; 24!
+									Book your private cabin online with 3 Mbps speed,<br/> Headset and Webcam facilities and feel the ultimate <br/>printing.
 								</span>
 							</div>
 							<?php
@@ -94,15 +107,13 @@
 							}
 							?>	
 						</li>
-						<li class="slide3" data-transition="random" ><img src="images/slider/home/bg_slider_3.jpg" alt="" />
+						<li class="slide4" data-transition="random" ><img src="images/slider/home/bg_slider_3.jpg" alt="" />
 							<div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="style2">
-									Our A5 flyers and leaflets are our bestselling size.<br> 
-									This is because they're perfect for potential prospects<br>  
-									to carry around and are extremely cost effective. We<br> 
-									currently have an offer of 1000 flyers and leaflets<br> 
-									for only &pound; 24!
+									Experience the taste of new colour on cheap price <br> <br>
+									Print flyers, Pamphlets, Brochures, Multi-colour notice <br> and lot more online.   
+								
 								</span>
 							</div>
 							<?php
@@ -114,26 +125,7 @@
 							}
 							?>	
 						</li>
-						<li class="slide4" data-transition="random" ><img src="images/slider/home/bg_slider_4.jpg" alt="" />
-							<!-- <div class="tp-caption lft" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="style1">MULTICOLORS</span></div> 
-							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
-								<span class="style2">
-									Our A5 flyers and leaflets are our bestselling size.<br> 
-									This is because they're perfect for potential prospects<br>  
-									to carry around and are extremely cost effective. We<br> 
-									currently have an offer of 1000 flyers and leaflets<br> 
-									for only &pound; 24!
-								</span>
-							</div>
-							<div class="tp-caption lfl" data-x="left" data-hoffset="" data-y="365" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now</a></div>  -->
-							<?php
-							if(mysqli_num_rows($offerdata)>0){
-							?>
-							<div class="tp-caption lfr offer-zone4" style="width:100%;padding: 20px;" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><span>Offer Code: <?php echo $amount_dataarrya['offer_code']; ?> <em>Vaild till <?php echo date("d M Y", strtotime($amount_dataarrya['offer_validity_end_date'])); ?>.</em></span></div>
-							<?php
-							}
-							?>
-						</li>
+					
 					</ul> 
 				</div>
 			</div>
