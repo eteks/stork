@@ -195,6 +195,7 @@ $('.stork_admin_table th').each(function(index, th) {
 
 
   $('.error_message_mandatory').delay(2000).fadeOut();
+  $('.error_message_mandatory_offer').delay(6000).fadeOut();
 
   $(".has_submenu > a").click(function(e){
     // alert($.trim($(this).text()));
