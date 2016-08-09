@@ -446,7 +446,8 @@ color: #000;
     color: #444444;
     float: left;
     font-size: 26px;
-    margin-left: 8px;
+    margin-bottom: 20px;
+    margin-left: 29px;
     padding: 0 10px;
     text-transform: uppercase;
 }
@@ -833,7 +834,7 @@ h4.order_or_button{
     margin-left: 0px !important;
 }
 .project_file_name {
-    margin-left: 20px !important;
+    margin-left: 150px !important;
 }
 .project_file_name_margin {
     margin-right: 20px !important;
@@ -1086,7 +1087,7 @@ h4.order_or_button{
 	text-align: right;
 }
 #upload_section input{
-	width: 100%;
+	width: 52%;
 }
 .quantity input {
 	padding: 5px 20px;		

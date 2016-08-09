@@ -2649,6 +2649,189 @@ $(document).on('keydown','.project_paper_range',function(e) {
 			var option = $('option:selected', this).val();
 			Cookies.set('area_id',option);
 		});
+		
+  // PlainPrinting==>Logical display of images for select options in paper-type /==Starts==/ 
+  
+	  $("#paper_type").bind("change", function() {
+		var image_element = $('#paper_type option:selected').text().toLowerCase();
+  		if(image_element == "executive bond paper (100gsm)")
+ 		 {
+ 		 	var test="test1";
+ 		 }
+	 	 else if(image_element=="executive bond paper (75gsm) ")
+	 	 {
+	 		var test="test2";
+	 	 }
+	 	else if(image_element=="executive bond paper (85gsm) ")
+	 	{
+	 		var test="test3";
+	 	}
+	 	else if(image_element=="normal paper (70gsm) ")
+	 	{
+	 		var test="test4";
+	 	}
+	 	else if(image_element=="normal paper (75gsm)")
+	 	{
+	 		var test="test5";
+	 	}
+	 	else if(image_element=="normal paper (80gsm) ")
+	 	{
+	 		var test="test6"; 
+	 	}
+	 	else if(image_element=="plain thick paper (100gsm) ")
+	 	{
+	 		var test="test7";
+	 	}
+	 	else{
+	 		var test="test0";
+	 	}
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     });
+    
+ // PlainPrinting==>Logical display of images for select options in Paper-Size /===Starts===/
+ 
+     $("#paper_size").bind("change", function() {
+		var image_element = $('#paper_size option:selected').text().toLowerCase();
+  		if(image_element=="a3")
+ 		 {
+ 		 	var test="test8";
+ 		 }
+	 	 else if(image_element=="a4")
+	 	 {
+	 		var test="test9";
+	 	 }
+	 	 else if(image_element=="legal")
+	 	 {
+	 		var test="test10";
+	 	 }
+	 	 else if(image_element=="a5") // Multicolor==>Logical display of images for select options in Paper-Size 
+	 	 {
+	 		var test="test17";
+	 	 }
+	 	 else{
+	 		var test="test0";
+	 	 }
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     });
+     
+ // PlainPrinting==>Logical display of images for select options in Binding-type /===Starts===/   
+ 
+   $("#binding_type").bind("change", function() {
+		var image_element = $('#binding_type option:selected').text().toLowerCase();
+  		if(image_element=="soft binding")
+ 		 {
+ 		 	var test="test11";
+ 		 }
+	 	 else if(image_element=="comb binding")
+	 	 {
+	 		var test="test12";
+	 	 }
+	 	 else if(image_element=="wireo binding")
+	 	 {
+	 		var test="test13";
+	 	 }
+	 	 else if(image_element=="spiral binding")
+	 	 {
+	 		var test="test14";
+	 	 }
+	 	 else{
+	 		var test="test0";
+	 	 }
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     });
+     
+ // ProjectPrinting==>Logical display of images for select options in Paper-Size /===Starts===/
+ 
+     $("#project_paper_size").bind("change", function() {
+		var image_element = $('#project_paper_size option:selected').text().toLowerCase();
+  		if(image_element=="a3")
+ 		 {
+ 		 	var test="test8";
+ 		 }
+	 	 else if(image_element=="a4")
+	 	 {
+	 		var test="test9";
+	 	 }
+	 	 else if(image_element=="legal")
+	 	 {
+	 		var test="test10";
+	 	 }
+	 	 else{
+	 		var test="test0";
+	 	 }
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     }); 
+     
+// ProjectPrinting==>Logical display of images for select options in paper-type /==Starts==/ 
+  
+	  $("#project_paper_type").bind("change", function() {
+		var image_element = $('#project_paper_type option:selected').text().toLowerCase();
+  		if(image_element == "executive bond paper (100gsm)")
+ 		 {
+ 		 	var test="test1";
+ 		 }
+	 	 else if(image_element=="executive bond paper (75gsm) ")
+	 	 {
+	 		var test="test2";
+	 	 }
+	 	else if(image_element=="executive bond paper (85gsm) ")
+	 	{
+	 		var test="test3";
+	 	}
+	 	else if(image_element=="normal paper (70gsm) ")
+	 	{
+	 		var test="test4";
+	 	}
+	 	else if(image_element=="normal paper (75gsm) ")
+	 	{
+	 		var test="test5";
+	 	}
+	 	else if(image_element=="normal paper (80gsm) ")
+	 	{
+	 		var test="test6"; 
+	 	}
+	 	else if(image_element=="plain thick paper (100gsm) ")
+	 	{
+	 		var test="test7";
+	 	}
+	 	else{
+	 		var test="test0";
+	 	}
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     });  
+     
+ // ProjectPrinting==>Logical display of images for select options in Binding-type /===Starts===/   
+ 
+   $("#project_binding_type").bind("change", function() {
+		var image_element = $('#project_binding_type option:selected').text().toLowerCase();
+  		if(image_element=="case binding")
+ 		 {
+ 		 	var test="test15";
+ 		 }
+	 	 else if(image_element=="handmade binding")
+	 	 {
+	 		var test="test16";
+	 	 }
+	 	 else{
+	 		var test="test0";
+	 	 }
+ 	  $("#thumbs").find("div").css("display", "none");
+	  $("#thumbs").find("#" + test).css("display", "block");
+     }); 
+     
+ 
+ 
+                  
+    
+      
+     	
+		
+		
 }); // Document ready end
 
  $("#reload").click(function() {
