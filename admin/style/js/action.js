@@ -1834,18 +1834,64 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			} else {
 				input.removeClass("error_input_field");
 				$('.error_test_off').css('display','none'); 
-				 $('.error_test_offer').css('display','none');}
-			}			
+				 $('.error_test_offer').css('display','none');
+				}
+			}		
+			if($('#filterstartdate').val() !='' && $('#filterenddate').val() == ''){
+				$('#filterenddate').addClass("error_input_field");
+				$('.error_test_off').css('display','block');
+				$('.error_test_offer').css('display','none');
+			}
+			else{
+				$('#filterenddate').removeClass("error_input_field");
+				$('.error_test_off').css('display','none'); 
+				$('.error_test_offer').css('display','none');
+			}
+			if($('#filterenddate').val() !='' && $('#filterstartdate').val() == ''){
+				$('#filterstartdate').addClass("error_input_field");
+				$('.error_test_off').css('display','block');
+				$('.error_test_offer').css('display','none');
+			}
+			else{
+				$('#filterstartdate').removeClass("error_input_field");
+				$('.error_test_off').css('display','none'); 
+				$('.error_test_offer').css('display','none');
+			}
+
+			if($('#filterstartdate').val()!="" && $('#filterenddate').val()!=""){
+				startdate= $('#filterstartdate').val().split('/');
+				startdate = startdate[1]+"/"+startdate[0]+"/"+startdate[2];
+				enddate= $('#filterenddate').val().split('/');
+				enddate = enddate[1]+"/"+enddate[0]+"/"+enddate[2];
+				if ((Date.parse(enddate) <= Date.parse(startdate))) {
+			        $('#filterenddate').addClass("error_input_field_date");
+				    $('.error_date').css('display','block');
+			    }
+			    else {
+					$('#filterenddate').removeClass("error_input_field_date");					
+					$('.error_date').css('display','none');
+				}
+			}
+
 	//  select field
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test_off').css('display','block');
 			$('.error_test_offer').css('display','none');
+			$('.error_date').css('display','none');
 			return false;
-		} else {
+		} 
+		else if(jQuery('#filterenddate').hasClass("error_input_field_date"))  {		
+				$('.error_test_off').css('display','none');
+				$('.error_test_offer').css('display','none');
+				$('.error_date').css('display','block');
+				return false;
+		}	
+		else {
 			errornotice.hide();
 			 $('.error_test_off').css('display','none');
 			 $('.error_test_offer').css('display','none');
+			 $('.error_date').css('display','none');
 			return true;
 		}
 	});	
