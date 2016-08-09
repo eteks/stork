@@ -114,20 +114,20 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 											<td align="left" class="print-type">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
-													<span class="PricebasePrice"><?php echo $review_data['paper_print_type']; ?></span>
+													<span class="pad_60 PricebasePrice"><?php echo $review_data['paper_print_type']; ?></span>
 												</div> 	 
 											</td>
 			  								<td align="left" class="print-side">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
-													<span class="PricebasePrice"><?php echo $review_data['paper_side']; ?></span>
+													<span class="pad_60 PricebasePrice"><?php echo $review_data['paper_side']; ?></span>
 												</div>			
 			  								</td>
 			  								<td align="right" class="print-size">
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
-			  											<span class="PricetaxAmount"><?php echo $review_data['paper_size']; ?></span>
+			  											<span class="pad_60 PricetaxAmount"><?php echo $review_data['paper_size']; ?></span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
@@ -135,7 +135,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
-												  		<span class="PricetaxAmount"><?php echo $review_data['paper_type']; ?></span>
+												  		<span class="pad_60 PricetaxAmount"><?php echo $review_data['paper_type']; ?></span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
@@ -159,34 +159,36 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
-			  											<span class="PricetaxAmount"><?php if($_SESSION['service']=='multi'){ echo $review_data['multicolor_copies']; } else { echo $review_data['order_details_total_no_of_pages']; }?>	</span>
+			  											<span class="pad_60 PricetaxAmount"><?php if($_SESSION['service']=='multi'){ echo $review_data['multicolor_copies']; } else { echo $review_data['order_details_total_no_of_pages']; }?>	</span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
 			  								<td align="left" class="quantity">
 			  									<div class="vm-display">
-			    									<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
+			  									  <span> 	
+			    									<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="pad_60 quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart" readonly>
+			    								  </span>	
 			    								</div>	
 		  									</td>
 		  									<td align="left" class="comments">
 		  										<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 												  		<span class="vm-price-desc"></span>
-												  		<span class="PricetaxAmount"><?php echo $review_data['order_details_comments']; ?> </span>
+												  		<span class="pad_60 PricetaxAmount"><?php echo $review_data['order_details_comments']; ?> </span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
 			  								<td align="left" class="total-cost">
 												<div class="PricebasePrice vm-display vm-price-value">
 													<span class="vm-price-desc"></span>
-													<span class="PricebasePrice check_out_subtotal_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+													<span class="pad_60 PricebasePrice check_out_subtotal_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
 													<input type="hidden" value="<?php echo $review_data['order_details_total_amount']; ?>"  class="updated_oredered_item_amount"/>
 													<input type="hidden" value="<?php echo $review_data['order_details_total_amount']; ?>"  class="oredered_item_amount"/>
 												</div>			
 			  								</td>
               								<td align="right" id="subtotal_with_tax_0" colspan="0" class="sub-total td-last">
               									<div class="vm-display">
-              										<span class="line-through check_out_total_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
+              										<span class="pad_60 line-through check_out_total_amount"><b>&#8377;</b> <?php echo $review_data['order_details_total_amount']; ?></span>
               									</div>
               								</td>
 		    							</tr>

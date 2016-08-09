@@ -5778,6 +5778,7 @@ h1.ct-header{
 	}
 	.cart-summary.no-border tr.product-detail-row td{
 		position:relative;
+		color: #25bce9;
 	}
 	.cart-summary.no-border tr.product-detail-row td:before{
 		position:absolute;
