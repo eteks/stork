@@ -20,16 +20,16 @@
               <tr>
                 <td>                  
                   <!-- column 1 -->
-                  <table align="left" class="column">
+                  <!-- <table align="left" class="column">
                     <tr>
                       <td>                        
                         <h5 class="">Connect with Us:</h5>
                         <p class=""><a href="http:\\www.facebook.com/" class="fa fa-facebook">Facebook</a> <a href="http:\\www.twitter.com/" class="fa fa-twitter">Twitter</a> <a href="http:\\www.googleplus.com/" class="fa fa-googleplus">Google+</a></p>
                        </td>
                     </tr>
-                  </table><!-- /column 1 -->                   
+                  </table><!-- /column 1 -->                 
                   <!-- column 2 -->
-                  <table align="center" class="column">
+                  <table align="left" class="column">
                     <tr>
                       <td>                                       
                         <h5 class="">Contact Info:</h5>                       

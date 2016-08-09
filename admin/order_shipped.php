@@ -1,5 +1,4 @@
 <html> <body> 
- <div style="margin: 0px auto; width: 50%;">
     <div style="border: 1px solid #25bce9; background: #fff;"> 
      <h3  style="border: 0px 1px opx solid #25bce9; background: #25bce9;margin-top: 0px;margin-bottom: 0px">ORDER DETAILS</h3>
  <table>
@@ -21,7 +20,7 @@
               <tr>
                 <td>                  
                   <!-- column 1 -->
-                  <table align="left" class="column">
+                  <!-- <table align="left" class="column">
                     <tr>
                       <td>                        
                         <h5 class="">Connect with Us:</h5>
@@ -30,7 +29,7 @@
                     </tr>
                   </table><!-- /column 1 -->                   
                   <!-- column 2 -->
-                  <table align="center" class="column">
+                  <table align="left" class="column">
                     <tr>
                       <td>                                       
                         <h5 class="">Contact Info:</h5>                       
@@ -51,5 +50,5 @@
     <td></td>
   </tr>
 </table>   
- </div> </div> </body> </html>
+ </div> </body> </html>
 
