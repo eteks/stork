@@ -30,7 +30,7 @@ include('header.php');
 			$row = mysqli_fetch_array($order_details);
 		 	$order_customer_name =$row['order_customer_name'];
 			$order_id =$row['order_id'];
-  			$order_customer_email = $row["order_customer_email"]; 
+  			$order_shipping_email = $row["order_shipping_email"]; 
 			$order_total_items =$row['order_total_items']; 
 			$order_total_amount =$row['order_total_amount']; 
 			$order_delivery_date =$row['order_delivery_date']; 
@@ -43,7 +43,7 @@ include('header.php');
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_customer_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr><td><strong>Order Status</strong> </td><td> '. $order_status . '</td></tr> </table></div></div></body></html>';			
+			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr><td><strong>Order Status</strong> </td><td> '. $order_status . '</td></tr> </table></div></div></body></html>';			
 			echo "$message";	
            if (mail($email_subject, $message, $headers))
         {
