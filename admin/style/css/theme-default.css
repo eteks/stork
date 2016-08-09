@@ -6281,14 +6281,14 @@ section.home-slidershow{
   top: 81%;
   left : auto;
 }
-.error_message_mandatory {
+.error_message_mandatory,.error_message_mandatory_offer {
   text-align: left ;
   padding: 0px;
   	color :red ;
 	font-size : 12px;	
 	/*display : none;*/
 }
-.error_message_mandatory span {
+.error_message_mandatory span,.error_message_mandatory_offer span {
   color: red;
   display: block;
 }
