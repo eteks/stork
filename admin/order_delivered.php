@@ -11,10 +11,10 @@
           <td>
             <h3>Hello Customer,</h3>
             <p class="lead">Greetings from Printstork.com!</p>
-            <p>We thought you would like to know that we shipped your items,and that this completes your order.</p>
+            <p></p>
             <!-- Callout Panel -->
             <p class="callout">
-			If you would like to view your order,manage addresses,update your email,or customize many other options,please visit Printstork.com            </p><!-- /Callout Panel -->                        
+            We are pleased to inform that the following items in your order have been delivered.This completes your order.Thank you for shopping!</p>
             <!-- social & contact -->
             <table class="social" width="100%">
               <tr>
