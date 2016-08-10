@@ -75,11 +75,11 @@ if(isset($_GET["id"]))
 								<?php } ?>
 								<div class="form-group">
 								    <label for="last-name">OHP Sheet Cost<span class="required">*</span></label>
-									<input type="text" class="form-control" id="" placeholder="OHP Sheet Cost" name="ohpsheet_amount" value="<?php echo($row['ohpsheet_amount']); ?>">
+									<input type="text" class="form-control" id="ohp_sheet_cost" placeholder="OHP Sheet Cost" name="ohpsheet_amount" value="<?php echo($row['ohpsheet_amount']); ?>">
 								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">State Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control change_status" id="" name="ohpsheet_status">
+									<select class="product-type-filter form-control change_status" id="sel_a" name="ohpsheet_status">
 								        <option>
 											<span>Select Status</span>
 										</option>
