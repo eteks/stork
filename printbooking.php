@@ -238,7 +238,7 @@
 							</div>
 							<div class="input_holder row pad_15">
 							 	<p>Comments</p>
-							 	<textarea rows="7" cols="50" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
+							 	<textarea rows="5" cols="30" class="textarea_print" value="" name="print_comments" maxlength="150"></textarea>
 							</div>
 							</div>
 							<input type="hidden" class="per_page_costing" value="" />
@@ -257,16 +257,16 @@
 					  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
 					  <!--paper-type-->	
 				      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-				 	  <div id="test2" style="display:none;"><img src="images/paper_type/.jpg" width="350px" height="auto" alt="Executive_bond_70gsm" /></div>
+				 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
 				 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
 					  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
 					  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
 					  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
 					  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
 					  <!--Paper-size--->			  
-					  <div id="test8" style="display:none;"><img  src="images/paper_type/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-					  <div id="test9" style="display:none;"><img  src="images/paper_type/paper_a4.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-					  <div id="test10" style="display:none;"><img src="images/paper_type/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
+					  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
+					  <div id="test9" style="display:none;"><img  src="images/paper_size/.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
+					  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
 					  <!--binding-type-->
 					  <div id="test11" style="display:none;margin-top:350px;"><img src="images/bind_type/soft-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
 				      <div id="test12" style="display:none;margin-top:350px;"><img src="images/bind_type/comb-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
@@ -425,7 +425,7 @@
 									 	<input type="text" name="" id="project_file_holder" class="project_file_name_margin style_range project_file_holder" value="No file selected" data-projectfilevalue="0" disabled />
 										<input type="file" class="user col-md-8 project_uploadfile content_upload_file" id="content_upload_file" name="content_print_file[]"/>
 				       					<div class="browse_button cotent_browse_button col-md-4" id="cotent_browse_button">Browse</div>
-				       					<div class="project_clone_remove" id="">
+				       					<div class="project_clone_remove" id="project_btn_small">
 			   								<div class="del_btn project_remove" id="project_remove"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
 			   								<div class="add_btn project_clone" id="project_clone"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>
 			   							</div>
@@ -498,16 +498,16 @@
 				  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
 				  <!--paper-type-->	
 			      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_100gsm" /></div>
-			 	  <div id="test2" style="display:none;"><img src="images/paper_type/70gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_70gsm" /></div>
+			 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_75gsm" /></div>
 			 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_85gsm" /></div>
 				  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
 				  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
 				  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
 				  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
 				  <!--paper-size-->
-				  <div id="test8" style="display:none;"><img  src="images/paper_type/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test9" style="display:none;"><img  src="images/paper_type/paper_a4.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test10" style="display:none;"><img src="images/paper_type/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
+				  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
+				  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
+				  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
 				  <!--bind-type-->
 				  <div id="test15" style="display:none;margin-top:100px;"><img src="images/bind_type/case-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
 			      <div id="test16" style="display:none;margin-top:100px;"><img src="images/bind_type/handmade-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
@@ -670,18 +670,15 @@
 			  <!---images holder for displaying images--->
 			  <div class="fr image_right">
 				<div class="option-image" id="thumbs">
-				  <!-- div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
-			      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_100gsm" /></div>
-			 	  <div id="test2" style="display:none;"><img src="images/paper_type/70gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_70gsm" /></div>
-			 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="500px" alt="Executive_bond_85gsm" /></div>
-				  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
-				  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
-				  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
-				  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div> -->
+				  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>
+				  <!--paper-type-->	
+			      <div id="test18" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="500px" alt="art_paper" /></div>
+			 	  <div id="test19" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="500px" alt="art_paper" /></div>
+			 	  <div id="test20" style="display:none;"><img  src="images/paper_type/maplitho_paper.jpg" width="350px" height="500px" alt="maplitho_paper" /></div>
 				  <!--paper-size-->
-				  <div id="test8" style="display:none;"><img  src="images/paper_type/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test9" style="display:none;"><img  src="images/paper_type/paper_a4.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test17" style="display:none;"><img src="images/paper_type/paper_a5.jpg" width="350px" height="auto" alt="legal_paper" /></div>
+				  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
+				  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
+				  <div id="test17" style="display:none;"><img src="images/paper_size/paper_a5.jpg" width="350px" height="auto" alt="Paper_A5" /></div>
 				</div>
               </div>  <!--right column-->
 			<div class="cb">  </div>  	

@@ -2705,7 +2705,7 @@ $(document).on('keyup','.user_defined_box',function() {
   
 	  $("#paper_type").bind("change", function() {
 		var image_element = $('#paper_type option:selected').text().toLowerCase();
-  		if(image_element == "executive bond paper (100gsm)")
+		if(image_element == "executive bond paper (100gsm)")
  		 {
  		 	var test="test1";
  		 }
@@ -2733,6 +2733,18 @@ $(document).on('keyup','.user_defined_box',function() {
 	 	{
 	 		var test="test7";
 	 	}
+	 	else if(image_element=="art paper (100 gsm) ")
+	 	{
+	 		var test="test18";
+	 	}
+	 	else if(image_element=="art paper (170 gsm)")
+	 	{
+	 		var test="test19";
+	 	}
+	 	else if(image_element=="maplitho paper(80 gsm)")
+	 	{
+	 		var test="test20";
+	 	}
 	 	else{
 	 		var test="test0";
 	 	}
@@ -2744,10 +2756,10 @@ $(document).on('keyup','.user_defined_box',function() {
  
      $("#paper_size").bind("change", function() {
 		var image_element = $('#paper_size option:selected').text().toLowerCase();
-  		if(image_element=="a3")
+		if(image_element=="a3")
  		 {
  		 	var test="test8";
- 		 }
+ 		 }	
 	 	 else if(image_element=="a4")
 	 	 {
 	 		var test="test9";
@@ -2875,6 +2887,7 @@ $(document).on('keyup','.user_defined_box',function() {
 	  $("#thumbs").find("#" + test).css("display", "block");
      }); 
      
+  // For- OHP
   
   		$('.ohp_required_option input').on('click',function() {
 			var option_value = $(this).val();
