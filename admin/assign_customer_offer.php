@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
 
 		if($_POST["filter_startdate"] && $_POST["filter_enddate"])
-			$date_condition = " AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate'";
+			$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
 		else
 			$date_condition = '';
 		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC");

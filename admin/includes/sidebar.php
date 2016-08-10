@@ -1034,9 +1034,9 @@ function countCabinTransactionDetails()
 					</a>
 					<!-- Sub menu -->
 					<ul>
-						<li>
+						<!-- <li>
 							<a href="offer_zones.php"><i class="fa fa-list"></i><span> Offer Zone </span></a>
-						</li> 
+						</li>  -->
 						<li>
 							<a href="offer.php"><i class="fa fa-list"></i><span> Offer Details </span></a>
 						</li> 
