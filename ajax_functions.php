@@ -213,5 +213,17 @@
 			}
 			
 		}
+
+		// retrive ohp sheet amt per sheet
+		if(isset($_POST['ohp_sheet_amt'])){
+			$amount_per_sheet = selectfunction('ohpsheet_amount','stork_cost_estimation_ohpsheet','ohpsheet_status ="1"',$connection);
+			$amount_data = mysqli_fetch_array($amount_per_sheet);
+			if(mysqli_num_rows($amount_per_sheet) == 1){
+				echo $amount_data['ohpsheet_amount'];
+			}
+			else{
+				echo "notavail";
+			}
+		}
 	}// end of is ajax if condition
 ?>
