@@ -58,7 +58,7 @@
 							<div class="tp-caption lfr" data-x="left"  data-hoffset="" data-y="170" data-start="800" data-speed="2000" data-endspeed="300"><span class="slide_style1">PLAIN PRINTING</span></div> 
 							<div class="tp-caption lfb" data-x="left"  data-hoffset="" data-y="225" data-start="800" data-speed="2000" data-endspeed="300">
 								<span class="slide_style2">
-									Print Black & white and colour pages in A3, A4 and Legal <br> size online and get delivered within 8 working hours.
+									Print Black & white and colour pages in A3, A4 and Legal size online <br> and get delivered within 8 working hours.
 								</span>
 							</div>
 							<!-- <div class="tp-caption lfb" data-x="left" data-y="367" data-start="1300" data-speed="2000" data-easing="easeInOutQuint" data-endspeed="300"><a class="btn-sn" href="#">buy now </a></div> -->

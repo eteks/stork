@@ -247,6 +247,22 @@ $(document).on("focusin",".project_paper_range",function() {
 		// addition_captcha();
 	// });
 
+$('#captcha').on('blur',function() {
+	$.ajax({
+           type: "POST",
+           url: "captcha.php",
+           data:{'captcha_validation':'true'},
+           cache: false,
+           success: function(data) {
+        		if ($("#captcha").val() != data)
+        			$('#captcha').addClass("error_input_field_captcha");	
+        		else
+        			$('#captcha').removeClass("error_input_field_captcha");  		
+           }
+       });
+});
+
+
 	//register-validation
 	jQuery("#register-form").submit(function(){
 		for(i=0;i<required_signup.length;i++) {
@@ -312,18 +328,7 @@ $(document).on("focusin",".project_paper_range",function() {
            	$('#mobile').removeClass("error_input_field_phone"); 
       	}
 
-      	$.ajax({
-           type: "POST",
-           url: "captcha.php",
-           data:{'captcha_validation':'true'},
-           cache: false,
-           success: function(data) {
-        		if ($("#captcha").val() != data)
-        			$('#captcha').addClass("error_input_field");	
-        		else
-        			$('#captcha').removeClass("error_input_field");  		
-           }
-       });
+      	
       	
       	// if(eval($("#captcha_original").val()) == $("#captcha").val()){
       	// 	$('#captcha').removeClass("error_input_field");
@@ -336,9 +341,11 @@ $(document).on("focusin",".project_paper_range",function() {
 		if (jQuery(":input").hasClass("error_input_field") || $('#dob').hasClass("error_input_field") || $('#mobile').hasClass("error_input_field_phone")) {
 			 $('html,body').animate({ scrollTop: $(".create_account").offset().top},'slow');
 			return false;
-		}else {
+		}else if($('#captcha').hasClass("error_input_field_captcha")){
+			return false;
+		}
+		else {
 			errornotice.hide();
-			
 			return true;
 		}
 	});
