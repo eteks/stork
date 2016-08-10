@@ -49,7 +49,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	</div>
 			<div class="form-edit-info width_order_details">
 				<?php
-					$sql = "SELECT * FROM `stork_cabin_order`";
+					$sql = "SELECT * FROM `stork_cabin_order` order by created_date DESC";
 					$query = mysqlQuery($sql);
 					$count_rows = mysql_num_rows($query);
 					if ($count_rows > 0)

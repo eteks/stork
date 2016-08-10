@@ -39,7 +39,7 @@ include "includes/header.php";
 	</div>
 			<div class="form-edit-info width_order_details">
 				<?php
-					$sql = "SELECT * FROM `stork_cabin_ccavenue_transaction`";
+					$sql = "SELECT * FROM `stork_cabin_ccavenue_transaction` order by created_date DESC";
 					$query = mysqlQuery($sql);
 					$count_rows = mysql_num_rows($query);
 					if ($count_rows > 0)

@@ -169,7 +169,7 @@ include "includes/header.php";
 										</option>
 								        <?php
 								        	$user_state_id = $row['user_state_id'];
-						                    $query = mysql_query("select * from stork_city where city_state_id='$user_state_id' and city_status='1'");
+						                    $query = mysql_query("select * from stork_city where city_state_id='$user_state_id' and city_status='1' order by city_name asc");
 					                        while ($staterow = mysql_fetch_array($query)) {
 					                        if($row['user_city_id'] == $staterow['city_id'])echo "<option selected value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";  
 					                        else
@@ -186,7 +186,7 @@ include "includes/header.php";
 										</option>
 								        <?php
 								        	$user_city_id = $row['user_city_id'];   	
-						                    $query = mysql_query("select * from stork_area where area_city_id='$user_city_id' and area_status='1'");
+						                    $query = mysql_query("select * from stork_area where area_city_id='$user_city_id' and area_status='1' order by area_name asc");
 					                        while ($arearow = mysql_fetch_array($query)) {
 					                        if($row['user_area_id'] == $arearow['area_id'])   
 					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";

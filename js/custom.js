@@ -2097,7 +2097,19 @@ $(document).on('keydown','.project_paper_range',function(e) {
 				if(total_amount > total_color_file+total_black_white_file_project){
 					var entered_black_and_white_pages = total_amount-total_no_of_color_pages;
 					if(entered_black_and_white_pages >= total_black_white_file_project){
-						$('.project_total_amount').val(parseFloat(Math.ceil( ((color_page_amount*total_no_of_color_pages+entered_black_and_white_pages*blackandwhite_page_amount)+bindingamout) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
+						var ohpamount = 0;
+						if($('.ohp_required').prop('checked') == true && $('.ohp_required').val()=='yes'){
+							var ohp_option = $('.ohp_radio:checked').val();
+							if(ohp_option == 'chapter'){
+								ohpamount = parseInt($('#chapter_box').val())*parseFloat($('.ohp_amount_per_sheet').val());
+							}
+							else if(ohp_option == 'user'){
+								var no_of_page = $('#user_defined_box').val();
+								var count_of_page = no_of_page.split(',');
+								ohpamount = count_of_page.length*parseFloat($('.ohp_amount_per_sheet').val());
+							}
+						}
+						$('.project_total_amount').val(parseFloat(Math.ceil( ((color_page_amount*total_no_of_color_pages+entered_black_and_white_pages*blackandwhite_page_amount)+bindingamout+ohpamount) * 100 ) / 100).toFixed(2)).attr('readonly','readonly');
 					}
 					else{
 						error_popup('Please enter correct total no of values!');
@@ -2712,7 +2724,7 @@ $(document).on('keyup','.user_defined_box',function() {
   
 	  $("#paper_type").bind("change", function() {
 		var image_element = $('#paper_type option:selected').text().toLowerCase();
-  		if(image_element == "executive bond paper (100gsm)")
+		if(image_element == "executive bond paper (100gsm)")
  		 {
  		 	var test="test1";
  		 }
@@ -2740,6 +2752,18 @@ $(document).on('keyup','.user_defined_box',function() {
 	 	{
 	 		var test="test7";
 	 	}
+	 	else if(image_element=="art paper (100 gsm) ")
+	 	{
+	 		var test="test18";
+	 	}
+	 	else if(image_element=="art paper (170 gsm)")
+	 	{
+	 		var test="test19";
+	 	}
+	 	else if(image_element=="maplitho paper(80 gsm)")
+	 	{
+	 		var test="test20";
+	 	}
 	 	else{
 	 		var test="test0";
 	 	}
@@ -2751,10 +2775,10 @@ $(document).on('keyup','.user_defined_box',function() {
  
      $("#paper_size").bind("change", function() {
 		var image_element = $('#paper_size option:selected').text().toLowerCase();
-  		if(image_element=="a3")
+		if(image_element=="a3")
  		 {
  		 	var test="test8";
- 		 }
+ 		 }	
 	 	 else if(image_element=="a4")
 	 	 {
 	 		var test="test9";
@@ -2882,6 +2906,7 @@ $(document).on('keyup','.user_defined_box',function() {
 	  $("#thumbs").find("#" + test).css("display", "block");
      }); 
      
+  // For- OHP
   
   		$('.ohp_required_option input').on('click',function() {
 			var option_value = $(this).val();
@@ -2899,12 +2924,12 @@ $(document).on('keyup','.user_defined_box',function() {
 			var this_input_box1= $(this).parents('.ohp_options').find('#chapter_box');
 			var this_input_box2= $(this).parents('.ohp_options').find('#user_defined_box');
 			if(ohp_option_value=='chapter') {
-				this_input_box2.val('')
+				this_input_box2.val('');
 				this_input_box1.prop('disabled',false);
 				this_input_box2.prop('disabled',true);
 			}
 			else {
-				this_input_box1.val('')
+				this_input_box1.val('');
 				this_input_box1.prop('disabled',true);
 				this_input_box2.prop('disabled',false);
 			}
@@ -2913,7 +2938,33 @@ $(document).on('keyup','.user_defined_box',function() {
 		$('.password_restiction_details').on('click',function() {
 			$('.password_criteria').slideToggle();
 		});
-		  
+		
+		$('.ohp_required').on('change',function(){
+			if(this.checked && $(this).val()=='yes'){
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'ohp_sheet_amt':'true'},
+					success: function(data){
+						if(data != 'notavail'){
+							$('.ohp_amount_per_sheet').val(data);
+						}
+						else{
+							error_popup('Sorry! OHP sheet out of stock!');
+						}
+					}
+				});
+			}
+			else{
+				$('.ohp_amount_per_sheet').val('0.00');
+			}
+		});  
+		
+		$('#ohpno,#ohpyes').on('change',function(){
+			if(this.checked){
+				$('#project_total_pages,.project_total_amount').val('');
+			}
+		});
 
 }); // Document ready end
 

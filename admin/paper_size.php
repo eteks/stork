@@ -64,7 +64,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		$printing_type_id = mysql_fetch_array($select_type);
 		$printing_type = $printing_type_id ['printing_type_id'];
 
-		$papersize_query = mysqlQuery("SELECT * FROM `stork_paper_size`  WHERE printing_type_id='$printing_type'");
+		$papersize_query = mysqlQuery("SELECT * FROM `stork_paper_size`  WHERE printing_type_id='$printing_type' order by created_date DESC");
 		$papersize_rows = mysql_num_rows($papersize_query);
 		if ($papersize_rows > 0 ) {
 		?>
