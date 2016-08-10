@@ -446,7 +446,8 @@ color: #000;
     color: #444444;
     float: left;
     font-size: 26px;
-    margin-left: 8px;
+    margin-bottom: 20px;
+    margin-left: 29px;
     padding: 0 10px;
     text-transform: uppercase;
 }
@@ -833,7 +834,7 @@ h4.order_or_button{
     margin-left: 0px !important;
 }
 .project_file_name {
-    margin-left: 20px !important;
+    margin-left: 150px !important;
 }
 .project_file_name_margin {
     margin-right: 20px !important;
@@ -1086,7 +1087,7 @@ h4.order_or_button{
 	text-align: right;
 }
 #upload_section input{
-	width: 100%;
+	width: 52%;
 }
 .quantity input {
 	padding: 5px 20px;		
@@ -1227,9 +1228,54 @@ div.mcart-info , div.mcart-total {
     cursor : pointer;
 }
 #error_pass_rest {
-    color: red;
-    font-size: 9px;
-    font-weight: bold;
     display: none;
 }
 
+/* OHP SHEET */
+.ohp_options {
+    display: none;
+}
+.ohp_options .ohp_radio {
+    margin-right: 10px !important;
+    max-width: none !important;
+    width: auto !important;
+    cursor: pointer;
+}
+.chapter_based {
+    float: left;
+    width: 150px;
+}
+.user_defined {
+    float: left;
+    width: 150px;
+}
+.cb {
+    clear : both;
+}
+.ohp_options p {
+    margin-bottom: 20px;
+}
+.password_restiction_details {
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+}
+.password_criteria ul {
+    font-size: 12px;
+    line-height: 24px;
+    text-indent: 4px;
+    margin-bottom: 20px;
+}
+.password_criteria p{
+    font-size: 12px;
+    font-weight: bold;
+}
+.error_project_booking_ohp_field {
+    border: 1px solid #cb1d1d !important;
+}
+.plain_slider1 {
+    color: #fff !important;
+}
+.plain_slider2 {
+    color: grey !important;
+}
