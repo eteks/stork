@@ -53,9 +53,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	<?php
 		$type = $_GET['type'];
 	?>
-	<div class="add_section">
+	<!-- <div class="add_section">
 		<a href="add_paper_size.php?type=<?php echo $type; ?>"> <span> Add </span> <span>[+]</span></a>
-	</div>
+	</div> -->
 		<div class="form-edit-info">
 		<?php 
 		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
@@ -113,9 +113,25 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            </span>
 			        <?php } else{ ?> 
 			            <span class="nobr">
+			            <?php if($type != 'project') { ?>
 		                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_size.php?type=<?php echo $type; ?> &id=<?php echo $papersize_array['paper_size_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
+		                <?php } else { ?>
+		                	<span class="restrict">   
+		                		<a title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o ">
+		                		<div class="restrict_tooltip">Static data.No rights to edit.</div>
+			                	</i> </a>
+							</span>
+			            <?php } ?>
 			                <span class="separator"></span> 
+			            <?php if($type != 'project') { ?>
 			                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papersize_array['paper_size_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+			            <?php } else { ?>
+			                  <span class="restrict">      
+								   	<a class="btn btn-xs btn-danger delete" title="Delete"><i class="fa fa-trash-o">
+								  	<div class="restrict_tooltip">Static data.No rights to delete.</div>
+								   	</i> </a>
+								</span>
+						<?php } ?>
 			            </span>
 			        <?php } ?>
 			        </td>
