@@ -51,7 +51,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<a href="add_multicolor_copies.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 			<div class="form-edit-info">
-							<?php $sql = "SELECT * FROM `stork_multicolor_copies`"; 
+							<?php $sql = "SELECT * FROM `stork_multicolor_copies` order by created_date DESC"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)

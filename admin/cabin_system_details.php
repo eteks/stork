@@ -52,7 +52,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 	</div>
 			<div class="form-edit-info">
 							<?php 
-								$sql = "SELECT * FROM `stork_cabin_total_number_of_system`"; 
+								$sql = "SELECT * FROM `stork_cabin_total_number_of_system` order by created_date DESC"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)
