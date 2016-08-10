@@ -761,6 +761,25 @@ function countCabinTransactionDetails()
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="ohpsheet_cost_estimation.php" || basename($_SERVER['PHP_SELF'])=="edit_ohpsheet_cost_estimation.php")
+					{ 
+						?> 
+						<li class="test">
+						<?php 
+					} 
+					else 
+					{ 
+						?>
+						<li>
+						<?php 
+					}  
+				?>	
+					<a href="ohpsheet_cost_estimation.php">
+						<!-- <i class="fa fa-file"></i> --> OHP Sheet Cost Estimation
+						<span class="caret pull-right"></span>
+					</a>
+				</li>
 				
 			<?php 
 					if(basename($_SERVER['PHP_SELF'])=="cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_system_details.php"|| basename($_SERVER['PHP_SELF'])=="edit_cabin_system_details.php" || basename($_SERVER['PHP_SELF'])=="add_cabin_schedule_time.php" || basename($_SERVER['PHP_SELF'])=="edit_cabin_schedule_time.php" ||

@@ -53,6 +53,7 @@ jQuery(document).ready(function() {
 	var required_cabin_holiday_details =["holiday_date"];
 	var required_cabin_cost_estimation =["amount"];
 	var required_customer_offer =["filteramount"];
+	var required_edit_ohpsheet =["ohp_sheet_cost"];
 	var required_cabin_order_details =["customername","email","phone","dob","schedule_time_start","schedule_time_end","noofsystem_booked","totalhours_booked","amount"];
 	sel_a = jQuery("#sel_a");
 	sel_b = jQuery("#sel_b");
@@ -2398,7 +2399,40 @@ jQuery("#edit_cabin_order_details").submit(function(){
 			}		
 		
 	});
-	
+	jQuery("#edit_ohpsheet").submit(function(){ 
+
+		var input = jQuery('#'+required_edit_ohpsheet);
+		if ((input.val() == "")) 
+			{
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');
+			} else {
+				input.removeClass("error_input_field");
+				$('.error_test').css('display','none');
+			}
+	//  select field
+
+	if (document.getElementById('sel_a').selectedIndex < 1)
+		{
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+		}
+		else { $('#sel_a').removeClass('error_input_field');
+		$('.error_test').css('display','none');
+
+		 }
+		
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+			$('.error_test').css('display','block');
+			return false;
+		} else {
+			errornotice.hide();
+			 $('.error_test').css('display','none');
+			return true;
+		}
+	});
+
 //  =======   Admin Login form Validation   =========
 
 jQuery("#login-form").submit(function(){ 
