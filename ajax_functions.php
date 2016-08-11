@@ -1,5 +1,5 @@
 <?php
-	require_once ("dbconnect.php");
+	require_once("dbconnect.php");
 	require_once("function.php");
 	
 	if(IS_AJAX){ // check if request is ajax or not
