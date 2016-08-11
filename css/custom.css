@@ -981,7 +981,6 @@ h4.order_or_button{
 	padding-bottom: 3px;
 	margin-bottom: 0px !important;
 }
-
 .onepage h3 {
     background: #25bce9 none repeat scroll 0 0;
     color: #ffffff;
@@ -1217,6 +1216,7 @@ div.mcart-info , div.mcart-total {
 }
 .max_style_range {
     max-width: 390px !important;
+    margin-top: 10px !important; 
 }
 
 @media(max-width: 768px) {
@@ -1282,3 +1282,4 @@ div.mcart-info , div.mcart-total {
 .plain_slider2 {
     color: grey !important;
 }
+

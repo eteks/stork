@@ -801,7 +801,8 @@ $('#captcha').on('blur',function() {
 	
 	// address form clear when clear button in check out page
 	$(document).on('click','.check_out_clear_btn',function(){
-		$('.checkout_address').find("input[type=text], textarea").val("");
+		//$('.checkout_address').find("input[type=text], textarea").val("");
+		location.reload();
 	});
 	
 	

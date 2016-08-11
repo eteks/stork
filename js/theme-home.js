@@ -8,7 +8,7 @@
 		/*-----------------slider-home-main----------------*/
 		jQuery('.vt-slideshow').revolution(
 			{
-				delay:500000,                                                
+				delay:5000,                                                
 				startheight:560,  
 				startwidth:1170,
 			}); 
@@ -100,11 +100,6 @@
 				}
 			}
 		};
-		jQuery(window).on('scroll', function() {
-		   addClassView('.trust-w','.trust-w');
-		   addClassView('.home-out-recent .tab-content','.home-out-recent .tab-content');
-		   parallax();
-		}); 
 		// End Doughnut
 		  //Parallax home page
 		function parallax(){
