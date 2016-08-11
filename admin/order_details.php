@@ -42,7 +42,7 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 	</div>
 			<div class="form-edit-info width_order_details">
 				<?php
-					$qryorder_details = mysqlQuery("SELECT * FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id");
+					$qryorder_details = mysqlQuery("SELECT *,od.created_date FROM stork_order_details as od INNER JOIN stork_paper_print_type as ppt ON ppt.paper_print_type_id=od.order_details_paper_print_type_id INNER JOIN stork_paper_size as psize ON psize.paper_size_id=od.order_details_paper_size_id INNER JOIN stork_paper_side as pside ON pside.paper_side_id=od.order_details_paper_side_id INNER JOIN stork_paper_type as pt ON pt.paper_type_id=od.order_details_paper_type_id order by od.created_date DESC");
 						$count_rows = mysql_num_rows($qryorder_details);
 					if ($count_rows > 0)
 					{
@@ -58,13 +58,17 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 						<th>Paper Type</th>
 						<th>Is Binding</th>
 						<th>Binding Type</th>
+						<th>Is OHP sheet</th>
+						<th>OHP sheet Type</th>
+						<th>OHP Sheet Pages</th>
+						<th>OHP Sheet Count</th>
 						<th>Total No. Of pages</th>
 						<!--<th>Color Print Pages</th> -->
 						<th>Comments</th>
 						<th>Total Amount</th>
 						<th>Uploaded Files</th>
-						<!-- <th>Created Date</th>
-						<th>Order Detail Status</th> -->
+						<th>Created Date</th>
+						<!-- <th>Order Detail Status</th> -->
 						<th class='table_action'>Action</th>
 			        </tr>
 			      </thead>
@@ -94,6 +98,18 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 				        	<td>No</td>
 				        	<td>-</td>
 				        <?php } ?>
+				        <?php if($fetch['order_details_is_ohpsheet'] == 1){ ?>
+				            <td>Yes</td>
+				        <?php } else{ ?>
+				        	<td>No</td>
+				        <?php } ?>
+				        <td><?php echo $fetch['order_details_ohpsheet_type'] ?></td>
+				        <?php if($fetch['order_details_ohpsheet_pages']){ ?>
+				            <td><?php echo $fetch['order_details_ohpsheet_pages'] ?></td>
+				        <?php } else{ ?>
+				        	<td>-</td>
+				        <?php } ?>
+				        <td><?php echo $fetch['order_details_ohpsheet_count'] ?></td>
 			            <td><?php echo $fetch['order_details_total_no_of_pages'] ?></td>
 			            <!-- <td><?php echo $fetch['order_details_color_print_pages'] ?></td> -->
 			            <td><?php echo $fetch['order_details_comments'] ?></td>
@@ -113,6 +129,13 @@ $printbooking_type = array('plain_printing' => 'Plain Printing','project_printin
 							}
 						?>
 						</td>
+						<?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>
+			           
+		            	<td><span class="price"><?php echo $date; ?></span></td>
 			            <td class="table_action th_hidden a-center last">
 			                <span class="nobr">
 			                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_order_details.php?id=<?php echo $fetch['order_details_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
