@@ -64,7 +64,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			        <tr class="">
 			            <th>User Id</th>
 			            <th>Username</th>
-			            <th>User Email Charge</th>
+			            <th>User Email</th>
 			            <th>Usertype</th>
 			            <th>Order Id</th>
 			            <th>Order Amount</th>
