@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
 		else
 			$date_condition = '';
-		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC");
+		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
 
 		$current_date = strftime('%F');
 		$offer_period = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'");
@@ -229,9 +229,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 								{
 									// if($fetch['status'] != 1){
 									$order_customer_name = $fetch['order_customer_name'];
-									$order_customer_email = $fetch['order_customer_email'];
+									$order_shipping_email = $fetch['order_shipping_email'];
 									$sql_assigned_offer = mysql_query("SELECT * FROM 
-									stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_customer_email'"); 
+									stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_shipping_email'"); 
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 							    	<input type="hidden" name="user_id[]" value="<?php echo $fetch['order_user_id']?>">
 							    	<input type="hidden" name="user_type[]" value="<?php echo $fetch['order_user_type']?>">
 							    	<input type="hidden" name="user_name[]" value="<?php echo $fetch['order_customer_name']?>">
-							    	<input type="hidden" name="user_email[]" value="<?php echo $fetch['order_customer_email']?>">
+							    	<input type="hidden" name="user_email[]" value="<?php echo $fetch['order_shipping_email']?>">
 							    	<input type="hidden" name="order_id[]" value="<?php echo $fetch['order_id']?>">
 							    	<input type="hidden" name="order_amount[]" value="<?php echo $fetch['order_total_amount']?>">
 							    	<td><input type="checkbox" class="offer_checkbox" <?php if (mysql_num_rows($sql_assigned_offer) > 0) echo "disabled" ?>></td>			
@@ -251,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						            ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_user_type'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_customer_name'] ?></span></td>
-						            <td><span class="nobr"><?php echo $fetch['order_customer_email'] ?></span></td>
+						            <td><span class="nobr"><?php echo $fetch['order_shipping_email'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
 						            <td><span class="nobr"><?php 
