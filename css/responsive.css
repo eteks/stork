@@ -327,6 +327,19 @@
 	#project_printing_form .project_file_name {
    	 	margin-left: 147px !important;
 	} 
+	.cotent_browse_button{
+		float: none !important;
+    	margin-left: 150px !important;
+    	margin-top: 55px;
+	}
+	#project_btn_small .del_btn{
+		 margin-left: 275px;
+    	margin-top: -52px !important;
+	}
+	#project_btn_small .add_btn{
+		 margin-left: 330px;
+    	margin-top: -52px !important;
+	}
 	/* Plain Print */
 	#print_booking_form #cover_file_name{
 		width: 50%;
@@ -978,15 +991,12 @@
 		float:none !important;
 		/*width: 0px !important;*/
 	}
-	#cover_browse_button,#index_browse_button,#refer_browse_button, .cotent_browse_button{
+	.cotent_browse_button{
 		float:none !important;
-		margin-top: 55px;
 	}
-	#upload_content_section .style_range {
-		width: 38%;
-	}
-	#project_file_holder {
-    	width: 40% !important;
+	/* Project printing */
+	#projectprint_images .hidden-xs {
+		display:none !important;
 	}
 		
 }
