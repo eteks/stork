@@ -1267,10 +1267,14 @@ $('#captcha').on('blur',function() {
 	// close city popup in index page
 	$('.select_city_btn').on('click',function(){
 		if($('#popup_index .initial_city_name').val() != ''){
+			$('#popup_index .initial_city_name').removeClass('error_border');
 			$('#background_shadow').hide();
 			$('.popup_index').hide();
 			document.body.style.overflow = "visible";
-		} 
+		}
+		else{
+			$('#popup_index .initial_city_name').addClass('error_border');
+		}
 	});
 	
 	

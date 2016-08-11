@@ -38,7 +38,15 @@
 		 	 	updatefunction('order_details_session_id="'.$changed_session_id.'"',ORDERDETAILS,'order_details_session_id="'.$_SESSION['session_id'].'"',$connection);
 			 	$_SESSION['session_id'] = $changed_session_id;	
 			}
-  			die('<script type="text/javascript">window.location.href="'.$_POST['redirect_url'].'";</script>');
+			$redirect_url = $_POST['redirect_url'];
+			$url_split = explode('/', $redirect_url);
+			if (strpos($redirect_url, "register.php")!==false){
+				$url = 'index.php';
+			}
+			else{
+				$url = $_POST['redirect_url'];
+			}
+  			die('<script type="text/javascript">window.location.href="'.$url.'";</script>');
 			exit();
   		}
   		else {

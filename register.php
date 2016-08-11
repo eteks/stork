@@ -61,6 +61,8 @@ if($_SESSION['login_status'] == 1){
 		  	  		{
 			      		$mail_status=1;
 			      		$success_message = 3;
+						die('<script type="text/javascript">window.location.href="login.php?redirect_url='.urlencode($_SERVER['REQUEST_URI']).'";</script>');
+						exit();
 
 		  	  		}
 	  	  			else {

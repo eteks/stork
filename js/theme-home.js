@@ -8,7 +8,7 @@
 		/*-----------------slider-home-main----------------*/
 		jQuery('.vt-slideshow').revolution(
 			{
-				delay:5000,                                                
+				delay:20000,                                                
 				startheight:560,  
 				startwidth:1170,
 			}); 
