@@ -327,18 +327,20 @@
 	#project_printing_form .project_file_name {
    	 	margin-left: 147px !important;
 	} 
+	.browse_button{
+		margin-left: 150px !important;
+	}
 	.cotent_browse_button{
 		float: none !important;
-    	margin-left: 150px !important;
     	margin-top: 55px;
 	}
 	#project_btn_small .del_btn{
 		 margin-left: 275px;
-    	margin-top: -52px !important;
+    	margin-top: -61px !important;
 	}
 	#project_btn_small .add_btn{
-		 margin-left: 330px;
-    	margin-top: -52px !important;
+		 margin-left: 330px !important;
+    	margin-top: -61px !important;
 	}
 	/* Plain Print */
 	#print_booking_form #cover_file_name{

@@ -1282,4 +1282,7 @@ div.mcart-info , div.mcart-total {
 .plain_slider2 {
     color: grey !important;
 }
-
+/*project print */
+#project_printing textarea {
+	width: 100% !important;
+}
