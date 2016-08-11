@@ -113,7 +113,7 @@
 			if(checkWidths > 1024 && current_page == 'home.php'){
 			
 				$('.home-blog').css('backgroundPosition', "50% " + Math.round(($('.home-blog').offset().top - scrollPos) * 0.5) + "px");
-				$('.home-testimonial').css('backgroundPosition', "50% " + Math.round(($('.home-testimonial').offset().top - scrollPos) * 0.5) + "px");
+				// $('.home-testimonial').css('backgroundPosition', "50% " + Math.round(($('.home-testimonial').offset().top - scrollPos) * 0.5) + "px");
 			} 
 		}; 
 		  

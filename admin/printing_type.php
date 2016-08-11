@@ -41,7 +41,7 @@ include "includes/header.php";
 			<div class="form-edit-info">
 							<?php 
 								$printbooking_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Mutlticolor Printing');
-								$sql = "SELECT * FROM `stork_printing_type`"; 
+								$sql = "SELECT * FROM `stork_printing_type` order by created_date DESC"; 
 								$query = mysqlQuery($sql);
 								$count_rows = mysql_num_rows($query);	
 								if ($count_rows > 0)

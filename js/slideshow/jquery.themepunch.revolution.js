@@ -5204,8 +5204,8 @@
 
 					// LISTENERS  //container.trigger('stoptimer');
 					container.on('stoptimer',function() {
-						bt.data('tween').pause();
-						if (opt.hideTimerBar=="on") bt.css({visibility:"hidden"});
+						// bt.data('tween').pause();
+						// if (opt.hideTimerBar=="on") bt.css({visibility:"hidden"});
 
 					});
 					container.on('starttimer',function() {
@@ -5228,7 +5228,7 @@
 							}
 							else {
 								bt.css({visibility:"visible"});
-								bt.data('tween',TweenLite.fromTo(bt,opt.delay/1000,{width:"0%"},{width:"100%",ease:Linear.easeNone,onComplete:countDownNext,delay:1}));
+								bt.data('tween',TweenLite.fromTo(bt,opt.delay/50000,{width:"0%"},{width:"100%",ease:Linear.easeNone,onComplete:countDownNext,delay:1}));
 
 							}
 							if (opt.hideTimerBar=="on") bt.css({visibility:"hidden"});

@@ -375,8 +375,8 @@
 				        		<div class="input_holder row pad_15 binding_option">
 			        				<p>OHP Sheet Required<span class="star">&nbsp;* </span></p>
 			        				<div class="radio_holder ohp_required_option">
-			        					<input type="radio" class="" name="ohp_option" id="" value="yes"> <span> Yes </span>
-  										<input type="radio" class="" name="ohp_option" value="no" id="" checked> <span> No </span>
+			        					<input type="radio" class="ohp_required" name="ohp_option" id="ohpyes" value="yes"> <span> Yes </span>
+  										<input type="radio" class="ohp_required" name="ohp_option" value="no" id="ohpno" checked> <span> No </span>
   									</div>
 			        			</div> <!-- input_holder -->
 
@@ -386,19 +386,20 @@
 			        					<div class="chapter_based">
 			        						<input type="radio" class="ohp_radio" name="ohp_option_range" id="" value="chapter" checked> <span> Chapter Based </span>
 			        					</div>
-			        					<input type="text" name="" id="chapter_box" class="col-md-8 style_range ohp_text_box" placeholder="Enter number of chapters" maxlength="5"/ >
+			        					<input type="text" name="ohp_chapter" id="chapter_box" class="col-md-8 style_range ohp_text_box" placeholder="Enter number of chapters" maxlength="5" value=""/ >
 			        					<div class="cb"> </div>
 			        				</div>
 			        				<div class="user_ohp_holder">
 			        					<div class="user_defined">
 			        						<input type="radio" class="ohp_radio" name="ohp_option_range" id="" value="user"> <span> User Defined </span>
 			        					</div>
-			        					<input type="text" name="" id="user_defined_box" class="col-md-8 style_range ohp_text_box user_defined_box" placeholder="Chapter 1,7,15,18,23" disabled / >
+			        					<input type="text" name="ohp_page_count" id="user_defined_box" class="col-md-8 style_range ohp_text_box user_defined_box" placeholder="Chapter 1,7,15,18,23" value="" disabled / >
 			        					<div class="cb"> </div>
   									</div>
   			        			</div> <!-- input_holder -->
-				        	</div><!--col-md-6-->
-			        		<div class="clear_both"> </div>
+				        	</div>
+			        	</div>
+		        		<div class="clear_both"> </div>
 				        	<div class="main_project_section_input_holder">
 				        		<div class="project_upload_section">
 									<p class="label_page_paper_range"> Upload Your Files</p>
@@ -482,6 +483,7 @@
 							<input type="hidden" class="project_binding_amount" value="0.00" name="project_binding_amount">
 							<input type="hidden" class="color_page_amount_per_page" value="0.00"/>
 							<input type="hidden" class="blackwhite_page_amount_per_page" value="0.00"/>
+							<input type="hidden" class="ohp_amount_per_sheet" value="0.00"/>
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 							<input type="submit" class="project_printing_submit dn form_submit_button" />
 						</div>

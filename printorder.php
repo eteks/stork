@@ -159,6 +159,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		} // end of plain printing
 		
 		else if($printing_type == 'project_printing'){
+			// echo "<pre>";
+			// print_r($_POST);
+			// print_r($_FILES);
+			// echo "</pre>";
 			$print_type = $_POST['project_print_type'];
 			$print_side = $_POST['project_print_side'];
 			$paper_type = $_POST['project_papar_type'];
@@ -166,6 +170,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$is_binding = 1;
 			$bindingtype = $_POST['binding_type'];
 			$isprint_page_type = 1;
+			$is_ohp_required = 0;
+			$ohp_user_pages = $ohp_page_count = $ohp_option_type = null;
+			$ohp_required = $_POST['ohp_option'];
+			if($ohp_required == 'yes'){
+				$is_ohp_required = 1;
+				$ohp_option_type = $_POST['ohp_option_range'];
+				if($ohp_option_type == 'chapter'){
+					$ohp_page_count = $_POST['ohp_chapter'];
+				}
+				else if($ohp_option_type == 'user'){
+					$ohp_user_pages = $_POST['ohp_page_count'];
+					$ohp_page_count = substr_count($_POST['ohp_page_count'],',')+1;
+				}
+			}
 			$total_no_page = $_POST['project_total_pages'];
 			$total_cost = $_POST['project_total_amount'];
 			$comments = $_POST['project_print_comments'];
@@ -178,8 +196,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			if(!is_dir($upload_path.$additional_path)){
 				@mkdir($upload_path.$additional_path, 0777, true);
 			}
-			$insert_data_project_order_details = '"'.$printing_type.'",'.$print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$is_binding.',"'.$bindingtype.'",'.$isprint_page_type.','.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
-			insertfunction('order_print_booking_type,order_details_paper_print_type_id,order_details_paper_size_id,order_details_paper_side_id,order_details_paper_type_id,order_details_is_binding,order_details_binding_type,order_details_print_page_type_required,order_details_total_no_of_pages,order_details_total_amount,order_details_comments,order_details_session_id,order_details_status',$insert_data_project_order_details,ORDERDETAILS,'',$connection);
+			if($is_ohp_required==1){
+				$insert_data_project_order_details = '"'.$printing_type.'",'.$print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$is_binding.',"'.$bindingtype.'",1,"'.$ohp_option_type.'","'.$ohp_user_pages.'","'.$ohp_page_count.'",'.$isprint_page_type.','.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
+			}else{
+				$insert_data_project_order_details = '"'.$printing_type.'",'.$print_type.','.$paper_size.','.$print_side.','.$paper_type.','.$is_binding.',"'.$bindingtype.'",0,"'.$ohp_option_type.'","'.$ohp_user_pages.'","'.$ohp_page_count.'",'.$isprint_page_type.','.$total_no_page.','.$total_cost.',"'.$comments.'","'.$session_id.'",1';
+			}
+			insertfunction('order_print_booking_type,order_details_paper_print_type_id,order_details_paper_size_id,order_details_paper_side_id,order_details_paper_type_id,order_details_is_binding,order_details_binding_type,order_details_is_ohpsheet,order_details_ohpsheet_type,order_details_ohpsheet_pages,order_details_ohpsheet_count,order_details_print_page_type_required,order_details_total_no_of_pages,order_details_total_amount,order_details_comments,order_details_session_id,order_details_status',$insert_data_project_order_details,ORDERDETAILS,'',$connection);
 			$order_detail_id = mysqli_insert_id($connection);
 			
 			if(isset($_FILES['cover_project_print_file']) && !empty($_FILES['cover_project_print_file']['name'])){
