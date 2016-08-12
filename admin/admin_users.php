@@ -46,6 +46,9 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		<h3 class="acc-title lg clone_heading"> Admin Users</h3>
 		<div class="clear_both"> </div>
 	</div>
+	<div class="add_section">
+		<a href="add_admin_users.php"> <span> Add </span><span>[+]</span> </a>
+	</div>
 		<div class="form-edit-info">
 			<?php
 				$admin_query=mysqlQuery("SELECT * FROM `stork_admin_users`");
@@ -60,6 +63,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <th>User Type</th>
 			            <th>Email</th>
 			            <th>Mobile</th>
+			            <th>Is SuperUser</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
 			            <th class="table_action">Action</th>
@@ -81,6 +85,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		            </span></td>
 		            <td> <span class="nobr"> <?php echo $admin_data['adminuser_email']; ?> </span> </td>
 		            <td><span class="nobr"> <?php echo $admin_data['adminuser_mobile']; ?> </span> </td>
+		            <td> <span class="nobr"> <?php 
+		            if( $admin_data['adminuser_is_superuser'] == 1) 
+		            	echo "Yes";
+		            else
+		            	echo "No";
+		            ?> </span> </td>
 		            <td><span class="price">
 		            	<?php if($admin_data['adminuser_status']==1)
 								echo "Active";
