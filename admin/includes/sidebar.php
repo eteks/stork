@@ -190,7 +190,7 @@ function countCabinTransactionDetails()
 					}  
 				?>
 					<a href="users.php">
-						<!--<i class="fa fa-user"></i> --> User
+						<!--<i class="fa fa-user"></i> --> <span class="module_name">User</span>
 						<span class="caret pull-right"></span>
 					</a>
 				<!-- Sub menu -->
@@ -245,7 +245,7 @@ function countCabinTransactionDetails()
 					}  
 				?>				
 					<a href="states.php">
-						<!--<i class="fa fa-map-marker"></i> --> State
+						<!--<i class="fa fa-map-marker"></i> --> <span class="module_name">State</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -267,7 +267,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="city.php">
-						<!--<i class="fa fa-map-marker"></i> --> City
+						<!--<i class="fa fa-map-marker"></i> --> <span class="module_name">City</span>
 						<span class="caret pull-right"></span>
 					</a>		
 				</li>
@@ -288,7 +288,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="areas.php">
-						<!-- <i class="fa fa-home"></i> -->Area
+						<!-- <i class="fa fa-home"></i> --><span class="module_name">Area</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -309,7 +309,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="colleges.php">
-						<!-- <i class="fa fa-location-arrow"></i> --> College
+						<!-- <i class="fa fa-location-arrow"></i> --> <span class="module_name">College</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -329,7 +329,7 @@ function countCabinTransactionDetails()
 					}  
 				?>
 					<a href="printing_type.php">
-						<!-- <i class="fa fa-location-arrow"></i> --> Printing Type
+						<!-- <i class="fa fa-location-arrow"></i> --> <span class="module_name">Printing Type</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -364,7 +364,7 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 					<a href="#">
-						Plain printing
+						<span class="module_name">Plain printing</span>
 						<span class="caret pull-right"></span>
 					</a>
 				<ul>
@@ -476,7 +476,7 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 					<a href="#">
-						Project printing
+						<span class="module_name">Project printing</span>
 						<span class="caret pull-right"></span>
 					</a>
 					<ul>
@@ -584,7 +584,7 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 				 	<a href="#">
-						Multicolor printing
+						<span class="module_name">Multicolor printing</span>
 						<span class="caret pull-right"></span>
 					</a>
 					<ul>
@@ -672,7 +672,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="multicolor_copies.php">
-						<!--<i class="fa fa-user"></i> --> Mutlicolor Copies
+						<!--<i class="fa fa-user"></i> --> <span class="module_name">Mutlicolor Copies</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -694,7 +694,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="printing_cost_estimation_combination.php">
-						<!-- <i class="fa fa-file"></i> --> Plain Printing Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Plain Printing Cost Estimation</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -715,7 +715,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="project_printing_cost_estimation_combination.php">
-						<!-- <i class="fa fa-file"></i> --> Project Printing Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Project Printing Cost Estimation</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -736,7 +736,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="multicolor_printing_cost_estimation_combination.php">
-						<!-- <i class="fa fa-file"></i> --> Multicolor Printing Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Multicolor Printing Cost Estimation</span>
 						<span class="caret pull-right"></span>
 					</a>					
 				</li>
@@ -757,7 +757,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="binding_cost_estimation_combination.php">
-						<!-- <i class="fa fa-file"></i> --> Binding Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Binding Cost Estimation</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -776,7 +776,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="ohpsheet_cost_estimation.php">
-						<!-- <i class="fa fa-file"></i> --> OHP Sheet Cost Estimation
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">OHP Sheet Cost Estimation</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
@@ -805,7 +805,7 @@ function countCabinTransactionDetails()
 				 ?>
 					<a href="#">
 					
-						<!-- <i class="fa fa-file"></i> --> Cabin Booking Details
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Cabin Booking Details</span>
 
 						<span class="caret pull-right"></span>
 					</a>
@@ -942,7 +942,7 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Order and Transaction
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Order and Transaction</span>
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
@@ -1029,7 +1029,7 @@ function countCabinTransactionDetails()
 					}  
 				 ?>
 					<a href="#">
-						<!-- <i class="fa fa-file"></i> --> Offers
+						<!-- <i class="fa fa-file"></i> --> <span class="module_name">Offers</span>
 						<span class="caret pull-right"></span>
 					</a>
 					<!-- Sub menu -->
