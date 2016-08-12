@@ -265,7 +265,7 @@
 					  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
 					  <!--Paper-size--->			  
 					  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-					  <div id="test9" style="display:none;"><img  src="images/paper_size/.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
+					  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
 					  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
 					  <!--binding-type-->
 					  <div id="test11" style="display:none;margin-top:350px;"><img src="images/bind_type/soft-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
@@ -303,9 +303,7 @@
 
 		<section class="pr-main" id="project_printing_section">	
 			<div class="container" id="projectprint_images">	
-			  <!-- <div class="fl form_left">-->
-				<!-- <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form"> -->
-				<div class="col-md-9 col-sm-12 col-xs-12 col-lg-9 padding_form">
+			  <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 padding_form">
 				<?php
 					$printingtype = selectfunction('*',PRINTINGTYPE,'printing_type="project_printing"',$connection);
 					$printing_type_id = mysqli_fetch_array($printingtype);
@@ -313,8 +311,7 @@
 
 				?>
 					<form id="project_printing_form" class="form-validate form-horizontal form1" method="post" action="printorder.php" enctype="multipart/form-data">	
-						<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
-							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
+						<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="input_holder row pad_15">
 									<input type="hidden" name="printing_type" value="project_printing" />
 									<?php
@@ -372,6 +369,7 @@
 	        							?>
 		        				    </select>
 				        		</div> <!-- input_holder -->
+				        		<!--OHP-holder-->
 				        		<div class="input_holder row pad_15 binding_option">
 			        				<p>OHP Sheet Required<span class="star">&nbsp;* </span></p>
 			        				<div class="radio_holder ohp_required_option">
@@ -379,8 +377,7 @@
   										<input type="radio" class="ohp_required" name="ohp_option" value="no" id="ohpno" checked> <span> No </span>
   									</div>
 			        			</div> <!-- input_holder -->
-
-			        			<div class="input_holder row pad_15 ohp_options">
+                                <div class="input_holder row pad_15 ohp_options">
 			        				<p>OHP Sheet Options<span class="star">&nbsp;* </span></p>
 			        				<div class="chapter_ohp_holder">
 			        					<div class="chapter_based">
@@ -396,10 +393,34 @@
 			        					<input type="text" name="ohp_page_count" id="user_defined_box" class="col-md-8 style_range ohp_text_box user_defined_box" placeholder="Chapter 1,7,15,18,23" value="" disabled / >
 			        					<div class="cb"> </div>
   									</div>
-  			        			</div> <!-- input_holder -->
-				        	</div>
-			        	</div>
-		        		<div class="clear_both"> </div>
+  									<div class="clear_both"> </div>
+  			        			 </div> <!-- ohp_holder -->
+				        	</div><!--bs-->
+			        	   
+			        	    <!---images holder for displaying images--->
+			        	    <div class="col-md-6 col-lg-6 hidden-xs hidden-sm hidden-md"
+							  <div class="padding_form">
+								 <div class="option-image" id="thumbs">
+								  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
+								  <!--paper-type-->	
+							      <div id="test1" style="display:none;"><img src="images/paper_type/100-bond.png" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
+							 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
+							 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
+								  <div id="test4" style="display:none;"><img  src="images/paper_type/1.png" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
+								  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
+								  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
+								  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
+								  <!--paper-size-->
+								  <!-- <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div> -->
+								  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
+								  <!-- <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div> -->
+								  <!--bind-type-->
+								  <div id="test15" style="display:none;margin-top:100px;"><img src="images/bind_type/case-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
+							      <div id="test16" style="display:none;margin-top:100px;"><img src="images/bind_type/handmade-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
+								 </div>
+							   </div>	
+							</div><!--bs-->
+		        		<div class="col-md-12 col-sm-12 col-xs-12 left">
 				        	<div class="main_project_section_input_holder">
 				        		<div class="project_upload_section">
 									<p class="label_page_paper_range"> Upload Your Files</p>
@@ -435,7 +456,7 @@
 				       					<div class="browse_button col-md-4" id="refer_browse_button">Browse</div>
 				       					<div class="clear_both"> </div>
 				   					</div>
-	   							</div>
+	   							</div><!--project_upload_section-->
 	   							<div class="page_number_section display_project_section">
 	   								<p class="label_page_paper_range"> Enter Color Page Range (ex: 1-10, 20, 42-100 ) </p>
 	   								<div class="input_holder row pad_15 project_range_section">
@@ -462,9 +483,10 @@
 						        		<input type="text" class="project_file_name style_range" id="" value="No file selected" disabled>
 									</div>
 									<div class="clear_both"> </div>
-	   							</div>
-	   						</div>
-							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
+	   							</div><!--Page no. section-->
+	   						 </div><!--main_project_section_input_holder-->
+	   						</div><!--bs-->
+							<div class="col-md-6 col-sm-6 col-xs-12 left">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
 								 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
@@ -474,11 +496,11 @@
 								 	<p>Total Cost </p>
 								 	<input class="email project_total_amount" type="text" value="" name="project_total_amount" readonly>
 								</div>
-								<div class="input_holder row pad_15">
+								<div class="input_holder row pad_15" id="project_printing">
 								 	<p>Comments</p>
-								 	<textarea rows="5" cols="30" class="" value="" name="project_print_comments" maxlength="150"></textarea>
+								 	<textarea rows="5" cols="50" class="" value="" name="project_print_comments" maxlength="150" style="resize:none;"></textarea>
 								</div>
-							</div>
+							</div><!--last 3 fields-->
 							<input type="hidden" class="per_page_costing" value="" />
 							<input type="hidden" class="project_binding_amount" value="0.00" name="project_binding_amount">
 							<input type="hidden" class="color_page_amount_per_page" value="0.00"/>
@@ -486,36 +508,10 @@
 							<input type="hidden" class="ohp_amount_per_sheet" value="0.00"/>
 							<input type="hidden" class="submit_type" value="" name="submit_type" />
 							<input type="submit" class="project_printing_submit dn form_submit_button" />
-						</div>
+						<!-- </div> -->
 					</form>
-				 </div> <!--boot--->	
-				<!-- </div> -->
-			  <!-- </div> --><!--left column-->	
-			<!---images holder for displaying images--->
-			  <!-- <div class="fr image_right">-->
-			  	<div class="col-lg-3 hidden-xs hidden-sm hidden-md padding_form">
-				<div class="option-image" id="thumbs">
-				  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
-				  <!--paper-type-->	
-			      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-			 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
-			 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
-				  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
-				  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
-				  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
-				  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
-				  <!--paper-size-->
-				  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
-				  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
-				  <!--bind-type-->
-				  <div id="test15" style="display:none;margin-top:100px;"><img src="images/bind_type/case-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
-			      <div id="test16" style="display:none;margin-top:100px;"><img src="images/bind_type/handmade-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-				</div>
-			 </div>	
-              <!-- </div>  <!--right column--> 
-              <div class="cb">  </div>
-	       </div>
+				</div>	
+             </div><!--container-->
 		</section>  <!-- Project Binding End --> 
 	<?php } else if($_SESSION['service']=='multi'){  ?>
 		
