@@ -17,34 +17,51 @@ global $successMessage;
 // $status = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	if (isset($_POST['offer_generate'])){
-		$filter_amount = $_POST["filter_amount"];
-		if($_POST["filter_startdate"]){
-			$filter_startdate = explode('/',$_POST["filter_startdate"]);
-			$filter_startdate = $filter_startdate[2].'-'.$filter_startdate[1].'-'.$filter_startdate[0];
-		}
-		if($_POST["filter_enddate"]){	
-			$filter_enddate = explode('/',$_POST["filter_enddate"]);
-			$filter_enddate = $filter_enddate[2].'-'.$filter_enddate[1].'-'.$filter_enddate[0];
-		}
-		// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
-		// 	ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
-		// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
-
-		if($_POST["filter_startdate"] && $_POST["filter_enddate"])
-			$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
-		else
-			$date_condition = '';
-		$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
-
-		$current_date = strftime('%F');
 		$offer_period = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'");
 		$offer_period_fetch =mysql_fetch_array($offer_period);
-		$days_between = ceil(abs(strtotime($offer_period_fetch['offer_validity_end_date']) - strtotime($current_date)) / 86400);
-
-		if(mysql_num_rows($offer_period) == 1 && mysql_num_rows($query_filter) > 0){
-			if($current_date >= $offer_period_fetch['offer_validity_start_date']){
-				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Days only remaining for offer !!! </span></div>";
+		if(mysql_num_rows($offer_period)>0){
+			$filter_amount = $_POST["filter_amount"];
+			if($_POST["filter_startdate"]){
+				$filter_startdate = explode('/',$_POST["filter_startdate"]);
+				$filter_startdate = $filter_startdate[2].'-'.$filter_startdate[1].'-'.$filter_startdate[0];
 			}
+			if($_POST["filter_enddate"]){	
+				$filter_enddate = explode('/',$_POST["filter_enddate"]);
+				$filter_enddate = $filter_enddate[2].'-'.$filter_enddate[1].'-'.$filter_enddate[0];
+			}
+			// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
+			// 	ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
+			// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
+
+			if($_POST["filter_startdate"] && $_POST["filter_enddate"])
+				$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
+			else
+				$date_condition = '';
+			$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND sopu.offer_provided_order_id IS NULL AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
+
+			$current_date = strftime('%F');
+			if( strtotime($current_date) > strtotime($offer_period_fetch['offer_validity_end_date'])){
+				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Offer Date has been Expired!!! </span></div>";
+			}
+			else if( strtotime($current_date) == strtotime($offer_period_fetch['offer_validity_end_date'])){
+				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Today one day only remaining to expire offer!!! </span></div>";
+			}
+			else{	
+				$days_between = ceil(abs(strtotime($offer_period_fetch['offer_validity_end_date']) - strtotime($current_date)) / 86400);
+
+				if(mysql_num_rows($offer_period) == 1 && mysql_num_rows($query_filter) > 0){
+					if($current_date >= $offer_period_fetch['offer_validity_start_date']){
+						if($days_between == 1)
+							$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Day only remaining for offer !!! </span></div>";
+						else
+							$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Days only remaining for offer !!! </span></div>";
+					}
+				}
+			}
+			
+		}	
+		else{
+			$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Not yet created Customer Offer to Assign!!! </span></div>";
 		}
 	}
 	if (isset($_POST['offer_save'])){
@@ -270,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		</div>	
 	</div>
 	</form>
-	<?php } if($i==0 && isset($_POST['offer_generate'])){
+	<?php } if($i==0 && isset($_POST['offer_generate']) && mysql_num_rows($offer_period)>0){
 		echo "<div class='container error_message_mandatory error_message_offer'><span> No order found for the above filter </span></div>";
 	}  ?>
 	<div class="clearfix"></div>
