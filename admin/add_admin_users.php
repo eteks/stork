@@ -7,35 +7,47 @@ include "includes/header.php";
 </head>
 <body>
 <?php
-if (isset($_GET['update']))
+if (isset($_POST['add_admin_users']))
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-		$val = $_GET['update'];
-		$val = mres($val);
 		$adminuser_username = $_POST["adminuser_username"];
 		$adminuser_password = $_POST["adminuser_password"];
 		$adminuser_email = $_POST["adminuser_email"];
 		$adminuser_mobile = $_POST["adminuser_mobile"];
-		$adminuser_type = $_POST["adminuser_type"];
-		// $adminuser_status = $_POST["adminuser_status"];
-		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
-		} else {
-			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
-				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type' WHERE adminuser_id=".$val);
-			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
+		$privileges = $_POST['Privileges'];
+		$adminuser_status = $_POST["adminuser_status"];
+	
+	$query_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username' AND adminuser_email='$adminuser_email'");
+	$row_check = mysql_num_rows($query_check);
+	if($row_check > 0){
+		$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
+	} else {
+		mysqlQuery("INSERT INTO stork_admin_users (adminuser_username,adminuser_password,adminuser_email,adminuser_mobile,	adminuser_status) VALUES ('$adminuser_username','$adminuser_password','$adminuser_email','$adminuser_mobile','$adminuser_status')");
+		$query_admin_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
+		$row_admin_check = mysql_fetch_array($query_admin_check);
+		$admin_id = $row_admin_check['adminuser_id'];
+		foreach ($privileges as $value) {
+			mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$admin_id','$value','$adminuser_status')");
 		}
+		$successMessage = "<div class='container error_message_mandatory'><span> Admin added successfully! </span></div>";
+
+	}
+	// 		$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
+	// 	}
 				
+
+
+		// foreach ($privileges as $value) {
+		// 	echo $value;
+		// 	echo "<br>";
+    	
+  //  		}
 	}
 	
 }
-$id=$val;
-if(isset($_GET["id"]))
-{
-	$id = $_GET["id"];
-}  
+
+
+
 ?>
 	
 <?php include 'includes/navbar_admin.php'; ?>
@@ -68,7 +80,7 @@ if(isset($_GET["id"]))
 						<h3 class="acc-title lg">Add Admin Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
-							<form action="edit_admin_users.php?update=<?php echo $id; ?>" method="POST" name="edit-acc-info" id="edit_admin_users">
+							<form action="add_admin_users.php" method="POST" name="edit-acc-info" id="">
 							<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
@@ -95,7 +107,7 @@ if(isset($_GET["id"]))
 								    <label for="last-name">Mobile<span class="required">*</span></label>
 									<input type="text" class="form-control" id="phone" maxlength="10" autocomplete="off" placeholder="Mobile" name="adminuser_mobile">
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
 								        <option>
@@ -103,8 +115,32 @@ if(isset($_GET["id"]))
 										</option>
 								        
 								    </select>
-								</div>
-								<!-- <div class="cate-filter-content">	
+								</div> -->
+								<div class="form-group">
+								    <label for="first-name"> Privileges 
+								    	<span class="required">*</span> 
+								    </label>
+									<div class="multiple_dropdown"> 
+  										<div class="select_multiple_option">
+    										<a>
+      											<span class="hida">Select</span>  <i class="fa fa-caret-down" aria-hidden="true"></i>  
+      											<p class="multiSel"></p>  
+    										</a>
+    									</div>
+       									<div class="mutliSelect">
+           									<ul>
+           									<?php 
+												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+						        				while($row_module=mysql_fetch_array($query_module)) {
+						        					echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+						        				}
+											?>
+							           		</ul>
+        								</div>
+   									</div>
+   								</div>
+
+								<div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
 								        <option>
@@ -113,9 +149,9 @@ if(isset($_GET["id"]))
 								        <option value="1">Active</option>
 										<option value="0">InActive</option>
 								    </select>
-								</div> -->
+								</div>
 								<div class="account-bottom-action">
-									<button type="submit" class="gbtn btn-edit-acc-info">Save</button>
+									<button type="submit" name="add_admin_users" class="gbtn btn-edit-acc-info">Save</button>
 								</div>
 							</form>
 						</div>
