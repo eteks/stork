@@ -40,11 +40,19 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 </section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
-	<?php include 'includes/sidebar.php'; ?>
+<?php 
+if($_SESSION['is_superuser'] == 1 )
+	include 'includes/sidebar_admin.php';
+else
+	include 'includes/sidebar.php';	
+?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<div class="heading_section col-md-12">
 		<h3 class="acc-title lg clone_heading"> Admin Users</h3>
 		<div class="clear_both"> </div>
+	</div>
+	<div class="add_section">
+		<a href="add_admin_users.php"> <span> Add </span><span>[+]</span> </a>
 	</div>
 		<div class="form-edit-info">
 			<?php
@@ -60,6 +68,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 			            <th>User Type</th>
 			            <th>Email</th>
 			            <th>Mobile</th>
+			            <th>Is SuperUser</th>
 			            <th>Status</th>
 			            <th>Created Date</th>
 			            <th class="table_action">Action</th>
@@ -81,6 +90,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 		            </span></td>
 		            <td> <span class="nobr"> <?php echo $admin_data['adminuser_email']; ?> </span> </td>
 		            <td><span class="nobr"> <?php echo $admin_data['adminuser_mobile']; ?> </span> </td>
+		            <td> <span class="nobr"> <?php 
+		            if( $admin_data['adminuser_is_superuser'] == 1) 
+		            	echo "Yes";
+		            else
+		            	echo "No";
+		            ?> </span> </td>
 		            <td><span class="price">
 		            	<?php if($admin_data['adminuser_status']==1)
 								echo "Active";

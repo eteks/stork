@@ -1247,10 +1247,12 @@ div.mcart-info , div.mcart-total {
 .chapter_based {
     float: left;
     width: 150px;
+    line-height: 40px;
 }
 .user_defined {
     float: left;
     width: 150px;
+    line-height: 40px;
 }
 .cb {
     clear : both;

@@ -17,7 +17,8 @@ if (isset($_GET['update']))
 		$adminuser_email = $_POST["adminuser_email"];
 		$adminuser_mobile = $_POST["adminuser_mobile"];
 		$adminuser_type = $_POST["adminuser_type"];
-		// $adminuser_status = $_POST["adminuser_status"];
+		$privileges = $_POST['Privileges'];
+		$adminuser_status = $_POST["adminuser_status"];
 		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
 		$row = mysql_num_rows($qr);
 		if($row > 0){
@@ -25,6 +26,13 @@ if (isset($_GET['update']))
 		} else {
 			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
 				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type' WHERE adminuser_id=".$val);
+
+			mysqlQuery("DELETE FROM stork_adminuser_permission WHERE adminuser_id=".$val);
+			foreach ($privileges as $value) {
+				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$val','$value','$adminuser_status')");
+			}
+
+
 			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
 		}
 				
@@ -61,7 +69,12 @@ if(isset($_GET["id"]))
 </section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
-	<?php include 'includes/sidebar.php'; ?>
+<?php 
+if($_SESSION['is_superuser'] == 1 )
+	include 'includes/sidebar_admin.php';
+else
+	include 'includes/sidebar.php';	
+?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">
@@ -104,6 +117,9 @@ if(isset($_GET["id"]))
 								    <label for="last-name">Mobile<span class="required">*</span></label>
 									<input type="text" class="form-control" id="phone" maxlength="10" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
 								</div>
+								<?php 
+								if($row['adminuser_type']==1) {
+								?>
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
@@ -113,16 +129,83 @@ if(isset($_GET["id"]))
 								        <option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
 								    </select>
 								</div>
-								<!-- <div class="cate-filter-content">	
+								<?php
+								}
+								?>
+
+								<?php 
+								if($row['adminuser_type']!=1) {
+								$permission_module = array();
+								$match_permission = "SELECT * FROM `stork_adminuser_permission` WHERE adminuser_id='$id'";
+								$qry_permission = mysqlQuery($match_permission); 
+								while($qry_permission_row = mysql_fetch_array($qry_permission)) {
+									$permission_module[] = $qry_permission_row['module_id'];
+								}
+
+								?>
+
+
+								<div class="form-group">
+								    <label for="first-name"> Privileges 
+								    	<span class="required">*</span> 
+								    </label>
+									<div class="multiple_dropdown"> 
+  										<div class="select_multiple_option">
+    										<a>
+      											<span class="hida">Select</span>  <i class="fa fa-caret-down" aria-hidden="true"></i>  
+      											<p class="multiSel"></p>  
+    										</a>
+    									</div>
+       									<div class="mutliSelect">
+           									<ul>
+           									<?php 
+												
+											$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+
+											while($row_module=mysql_fetch_array($query_module)) {
+
+												if (in_array($row_module['module_id'],$permission_module)){						
+
+													echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" checked /> <span> '.$row_module["module_name"].' </span> </li>';
+						        				}
+						        				else {
+						        					echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+						        				}
+						        			}
+											?>
+							           		</ul>
+        								</div>
+   									</div>
+   								</div>
+
+
+   									<div class="cate-filter-content">	
 								    <label for="first-name">Admin Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>
-								        <option value="1">Active</option>
-										<option value="0">InActive</option>
+										    <?php 
+											if($row['adminuser_status']==1) {
+											?>
+										    <option value="1" selected>Active</option>
+											<?php }
+											else { ?>
+											<option value="0">InActive</option>
+											<?php }
+											?>
 								    </select>
-								</div> -->
+								</div> 
+
+
+   								<?php 
+   								}
+   								?>
+
+
+
+
+								
 								<div class="account-bottom-action">
 									<button type="submit" class="gbtn btn-edit-acc-info">Update</button>
 								</div>

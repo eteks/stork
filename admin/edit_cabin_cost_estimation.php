@@ -62,7 +62,12 @@ if(isset($_GET["id"]))
 </section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
-	<?php include 'includes/sidebar.php'; ?>
+<?php 
+if($_SESSION['is_superuser'] == 1 )
+	include 'includes/sidebar_admin.php';
+else
+	include 'includes/sidebar.php';	
+?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<!--Account main content : Begin -->
 					<section class="account-main col-md-9 col-sm-8 col-xs-12">

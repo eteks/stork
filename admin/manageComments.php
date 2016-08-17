@@ -29,7 +29,12 @@ $_SESSION[$csrfVariable] = $key;
 <?php include 'includes/navbar_admin.php'; ?>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">
-	<?php include 'includes/sidebar.php'; ?>
+<?php 
+if($_SESSION['is_superuser'] == 1 )
+	include 'includes/sidebar_admin.php';
+else
+	include 'includes/sidebar.php';	
+?>
 	<div class="mainy">
 		<!-- Page title -->
 		<div class="page-title">

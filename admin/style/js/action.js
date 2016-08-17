@@ -2463,4 +2463,28 @@ jQuery("#login-form").submit(function(){
 
 });
 
+
+
+
+
+$(".select_multiple_option a").on('click', function() {
+  $(".mutliSelect ul").slideToggle('fast');
+});
+
+$('.mutliSelect input[type="checkbox"]').on('click', function() {
+	var title =  $(this).data("value") + ",";
+  if ($(this).is(':checked')) {
+    var html = '<span title="' + title + '">' + title + '</span>';
+    $('.multiSel').append(html);
+    $(".hida").hide();
+  } else {
+    $('span[title="' + title + '"]').remove();
+
+  }
+});
+
+
+
+
+
 });
