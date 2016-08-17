@@ -42,7 +42,12 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 </section>
 <div class="page-content blocky">
 <div class="container" style="margin-top:20px;">   
-	<?php include 'includes/sidebar.php'; ?>
+<?php 
+if($_SESSION['is_superuser'] == 1 )
+	include 'includes/sidebar_admin.php';
+else
+	include 'includes/sidebar.php';	
+?>
 	<div class="mainy col-md-9 col-sm-8 col-xs-12"> 
 		<div class="heading_section col-md-12">
 		<h3 class="acc-title lg clone_heading"> Areas</h3>
