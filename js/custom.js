@@ -1985,7 +1985,7 @@ $(document).on('keydown','.project_paper_range',function(e) {
            		success: function(data) {
            			var per_page_amount = data;
            			var amount_split = per_page_amount.split('#');
-           			if(amount_split){
+           			if(data){
            				$('#project_printing_form .color_page_amount_per_page').val(parseFloat(amount_split[0]));
            				$('#project_printing_form .blackwhite_page_amount_per_page').val(parseFloat(amount_split[1]));
            			}

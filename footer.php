@@ -28,6 +28,16 @@
 									<span><a id="testfooter" href="mailto:support@printstork.com" title="send mail to Printstork">support@printstork.com</a></span>
 
 								</li>
+								<li class="footer_icon">
+									<i class="fa fa-envelope-o"></i>
+									<span><a id="testfooter" href="mailto:info@printstork.com" title="send mail to Printstork">info@printstork.com</a></span>
+
+								</li>
+								<li class="footer_icon">
+									<i class="fa fa-envelope-o"></i>
+									<span><a id="testfooter" href="mailto:admin@printstork.com" title="send mail to Printstork">admin@printstork.com</a></span>
+
+								</li>
 							</ul>
 							<ul class="footer-social">
 								<li>

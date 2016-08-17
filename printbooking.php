@@ -398,7 +398,7 @@
 				        	</div><!--bs-->
 			        	   
 			        	    <!---images holder for displaying images--->
-			        	    <div class="col-md-6 col-lg-6 hidden-xs hidden-sm hidden-md"
+			        	    <div class="col-md-6 col-lg-6 hidden-xs hidden-sm hidden-md">
 							  <div class="padding_form">
 								 <div class="option-image" id="thumbs">
 								  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
