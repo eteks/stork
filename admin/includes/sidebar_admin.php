@@ -175,59 +175,38 @@ function countCabinTransactionDetails()
 		<div class="side-cont">
 			<ul class="nav admin_sidebar">
 				<?php 
-					if(basename($_SERVER['PHP_SELF'])=="admin_users.php" || 
-					basename($_SERVER['PHP_SELF'])=="users.php" || basename($_SERVER['PHP_SELF'])=="edit_admin_users.php" || basename($_SERVER['PHP_SELF'])=="edit_users.php")
+					if(basename($_SERVER['PHP_SELF'])=="admin_users.php" || basename($_SERVER['PHP_SELF'])=="edit_admin_users.php")
 					{ 
 						?> 
-						<li class="has_submenu open test">
+						<li class="test">
 						<?php 
 					} 
 					else 
 					{ 
 						?>
-						<li class="has_submenu">
+						<li>
 						<?php 
 					}  
 				?>
-					<a href="users.php">
-						<!--<i class="fa fa-user"></i> --> <span class="module_name">User</span>
-						<span class="caret pull-right"></span>
-					</a>
-				<!-- Sub menu -->
-					<ul>
-						<?php 
-					if(basename($_SERVER['PHP_SELF'])=="admin_users.php")
+					<a href="admin_users.php"><span class="module_name">Admin Users</span>
+					<span class="caret pull-right"></span></a>
+				</li> 
+				<?php 
+					if(basename($_SERVER['PHP_SELF'])=="users.php" || basename($_SERVER['PHP_SELF'])=="edit_users.php")
 					{ 
 						?> 
-						<li class="test_a">
+						<li class="test">
 						<?php 
 					} 
 					else 
 					{ 
 						?>
-						<li class="">
-						<?php 
-					}  
-				?>				
-					<a href="admin_users.php"> <i class="fa fa-list"></i><span id="allProducts"> Admin Users (<?php echo countAdminUsers() ?>)</span></a>
-						</li> 
-						<?php 
-					if(basename($_SERVER['PHP_SELF'])=="users.php")
-					{ 
-						?> 
-						<li class="test_a">
-						<?php 
-					} 
-					else 
-					{ 
-						?>
-						<li class="">
+						<li>
 						<?php 
 					}  
 				?>
-							<a href="users.php"> <i class="fa fa-list"></i><span id="allProducts"> All Users (<?php echo countUsers() ?>)</span></a>
-						</li> 
-					</ul>
+					<a href="users.php"><span class="module_name">End Users</span>
+					<span class="caret pull-right"></span></a>
 				</li>
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_state.php" || 

@@ -1674,7 +1674,7 @@ table.cust_thwidth{
   background-color: #000;
   border: 0;
   color: #fff;
-  display: none;
+  /*display: none;*/
   left: 0px;
   padding: 2px 15px 2px 5px;
   top: 2px;
