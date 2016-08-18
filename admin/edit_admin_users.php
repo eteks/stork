@@ -152,8 +152,16 @@ else
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
     										<a>
-      											<span class="hida">Select</span>  <i class="fa fa-caret-down" aria-hidden="true"></i>  
-      											<p class="multiSel"></p>  
+      											<i class="fa fa-caret-down" aria-hidden="true"></i>  
+      											<p class="multiSel">
+      												<?php 
+      												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+      												while($row_module=mysql_fetch_array($query_module)) {
+														if (in_array($row_module['module_id'],$permission_module))
+															echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>'; 
+													}
+													?>
+      											</p>  
     										</a>
     									</div>
        									<div class="mutliSelect">

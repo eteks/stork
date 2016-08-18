@@ -114,11 +114,15 @@ else
 		               <span class="nobr">
 		                	<a title="Edit " class="btn  btn-primary btn-xs" href="edit_admin_users.php?id=<?php echo $admin_data['adminuser_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 			            <span class="separator"></span> 
-			            <span class="restrict">      
-			             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['adminuser_id'] ?>"><i class="fa fa-trash-o">
-			             		<div class="restrict_tooltip">Delete not possible.</div>
-			             	</i> </a>
-			            </span>
+			            <?php if($admin_data['adminuser_is_superuser'] == 1 ) { ?>
+				            <span class="restrict">      
+				             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['adminuser_id'] ?>"><i class="fa fa-trash-o">
+				             		<div class="restrict_tooltip">Delete not possible.</div>
+				             	</i> </a>
+				            </span>
+				        <?php } else { ?>
+				        		<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['adminuser_id'] ?>"><i class="fa fa-trash-o">
+				       <?php } ?>
 			        </span>
 			        </td>
 			   	</tr>
