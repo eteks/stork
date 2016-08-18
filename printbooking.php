@@ -271,7 +271,7 @@
 					  <div id="test11" style="display:none;margin-top:350px;"><img src="images/bind_type/soft-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
 				      <div id="test12" style="display:none;margin-top:350px;"><img src="images/bind_type/comb-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
 				 	  <div id="test13" style="display:none;margin-top:350px;"><img src="images/bind_type/weiro-binding.jpg" width="350px" height="auto" alt="Executive_bond_70gsm" /></div>
-				 	  <div id="test14" style="display:none;margin-top:350px;"><img  src="images/bind_type/spiral-binding.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
+				 	  <div id="test14" style="display:none;margin-top:350px;"><img src="images/bind_type/spiral-binding.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
 				   </div>
 				</div> <!--right column--> 
 			 <div class="cb">  </div>	
@@ -403,10 +403,10 @@
 								 <div class="option-image" id="thumbs">
 								  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
 								  <!--paper-type-->	
-							      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.png" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
+							      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
 							 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
 							 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
-								  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.png" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
+								  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
 								  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
 								  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
 								  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
@@ -671,7 +671,7 @@
 				  <!--paper-type-->	
 			      <div id="test18" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="auto" alt="art_paper" /></div>
 			 	  <div id="test19" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="auto" alt="art_paper" /></div>
-			 	  <div id="test20" style="display:none;"><img  src="images/paper_type/maplitho_paper.jpg" width="350px" height="auto" alt="maplitho_paper" /></div>
+			 	  <div id="test20" style="display:none;"><img src="images/paper_type/maplitho_paper.jpg" width="350px" height="auto" alt="maplitho_paper" /></div>
 				  <!--paper-size-->
 				  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
 				  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>

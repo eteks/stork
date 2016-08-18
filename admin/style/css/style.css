@@ -1656,11 +1656,11 @@ table.cust_thwidth{
 }
 .mutliSelect span {
    padding-left: 12px;
-   color: #fff;
+   color: #555;
 }
 .select_multiple_option a {
    background-color: #fff;
-   border: 1px solid #000;
+   border: 1px solid #ccc;
    cursor: pointer;
    display: block;
    line-height: 18px;
@@ -1671,7 +1671,7 @@ table.cust_thwidth{
 }
 
 .mutliSelect ul {
-  background-color: #000;
+  background-color: #fff;
   border: 0;
   color: #fff;
   /*display: none;*/
