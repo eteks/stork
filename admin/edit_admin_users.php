@@ -86,6 +86,9 @@ else
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<div class="container">
+ 									<span class="error_test_admin_check"> Please Select alteast one option </span>
+								</div>
+								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
 								</div>
 								<div class="container">
@@ -120,7 +123,7 @@ else
 								<?php 
 								if($row['adminuser_type']==1) {
 								?>
-								<div class="form-group">
+								<!-- <div class="form-group">
 								    <label for="first-name">User Type<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
 								        <option>
@@ -128,7 +131,7 @@ else
 										</option>
 								        <option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
 								    </select>
-								</div>
+								</div> -->
 								<?php
 								}
 								?>
@@ -151,7 +154,7 @@ else
 								    </label>
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
-    										<a>
+    										<a class="error_admin_check" id="admin_check">
       											<i class="fa fa-caret-down" aria-hidden="true"></i>  
       											<p class="multiSel">
       												<?php 
@@ -174,10 +177,10 @@ else
 
 												if (in_array($row_module['module_id'],$permission_module)){						
 
-													echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" checked /> <span> '.$row_module["module_name"].' </span> </li>';
+													echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" checked /> <span> '.$row_module["module_name"].' </span> </li>';
 						        				}
 						        				else {
-						        					echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+						        					echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
 						        				}
 						        			}
 											?>
@@ -189,7 +192,7 @@ else
 
    									<div class="cate-filter-content">	
 								    <label for="first-name">Staff Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
+									<select class="product-type-filter form-control" id="sel_a" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>

@@ -1480,6 +1480,12 @@ text-align: center;
 	margin-left: 16px;
 	display : none;
 }
+.error_test_admin_check{
+	color :red ;
+	font-size : 12px;	
+	margin-left: 16px;
+	display : none;
+}
 .error_time{
 	color :red ;
 	font-size : 12px;	

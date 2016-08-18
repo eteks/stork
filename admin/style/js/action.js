@@ -24,6 +24,7 @@ function ConvertTimeformat(format, str) {
 
 jQuery(document).ready(function() {
 	var required_area =["areaname","deliverycharge"];
+	var required_add_admin_users =["username","password","phone","test"];
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
@@ -64,20 +65,19 @@ jQuery(document).ready(function() {
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
-
-	jQuery("#edit_admin_users").submit(function(){ 
+jQuery("#add_admin_users").submit(function(){ 
 		
 		// for empty field validation
-		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
-			var input = jQuery('#'+required_edit_admin_users[i]);
+		for(var i = 0 ; i<required_add_admin_users.length;i++ ){
+			var input = jQuery('#'+required_add_admin_users[i]);
 			
 			if ((input.val() == "")) {
 				input.addClass("error_input_field");
-				// $('.error_test').css('display','block');		
+				$('.error_test').css('display','block');		
 			 }
 			 else{
 				 input.removeClass("error_input_field");
-			 // $('.error_test').css('display','none');
+			  $('.error_test').css('display','none');
 				
 			 }
 		}
@@ -93,40 +93,39 @@ jQuery(document).ready(function() {
          
 	 	if (document.getElementById('sel_a').selectedIndex < 1){
 			$('#sel_a').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-			// $('.error_test').css('display','none');
+			$('.error_test').css('display','block');
+			$('.error_test').css('display','none');
 		}
 		else{ 
 			$('#sel_a').removeClass('error_input_field');
-			// $('.error_test').css('display','none');
+			 $('.error_test').css('display','none');
 		}
-		
-		// if (document.getElementById('sel_b').selectedIndex < 1){
-			// $('#sel_b').addClass('error_input_field');
-			// // $('.error_test').css('display','block');
-		// }
-		// else { 
-			// $('#sel_b').removeClass('error_input_field'); 
-			// // $('.error_test').css('display','none');
-		// }
-// 	
-// 		
 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
 	  		forget_email.removeClass("error_input_field_email");
 	  	}
-	  
+	  	
+	  	if($('.admin_users_checkbox:checked').length == 0) {
+	  		alert("0");
+	  			$('#admin_check').addClass('error_admin_check');
+		}else{
+			alert("1");
+			$('#admin_check').removeClass('error_admin_check');
+		
+	  	}
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
 		$('.error_phone').css('display','none');
+		$('.error_test_admin_check').css('display','none');
 		forget_email.removeClass("error_input_field_email");
 			$('#phone').removeClass("error_input_field_phone");
 			return false;
 		}
 		else {
+			alert("a");
 			if(jQuery(":input").hasClass("error_input_field_email"))  {
 				$('.error_test').css('display','none');
 				$('.error_phone').css('display','none');
@@ -136,20 +135,139 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			}
 			
 			else {
+				alert("b");
 				if(jQuery(":input").hasClass("error_input_field_phone"))  {
 				$('.error_test').css('display','none');
 				$('.error_email').css('display','none');
 				$('.error_phone').css('display','block');
 				return false;
-			}
-			else {
-			errornotice.hide();
-			$('.error_phone').css('display','none');
-			return true;
-			}
+				}
+				else{
+					alert("c");
+					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+					$('.error_test_admin_check').css('display','block');
+					$('.error_test').css('display','none');
+					$('.error_email').css('display','none');
+					$('.error_phone').css('display','none');
+					return false;
+					}
+					else {
+					alert("d");	
+					errornotice.hide();
+					$('.error_phone').css('display','none');
+					$('.error_test_admin_check').css('display','none');
+					return true;
+					}
+				}
 			}
 		}
-	});		
+	});	
+	jQuery("#edit_admin_users").submit(function(){ 
+		
+		// for empty field validation
+		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
+			var input = jQuery('#'+required_edit_admin_users[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');		
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			  $('.error_test').css('display','none');
+				
+			 }
+		}
+		//end of empty field validation
+	
+			 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+			$('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			 $('.error_test').css('display','none');
+		}
+			// if (document.getElementById('sel_b').selectedIndex < 1){
+			// $('#sel_b').addClass('error_input_field');
+			// $('.error_test').css('display','block');
+			// $('.error_test').css('display','none');
+		// }
+		// else{ 
+			// $('#sel_b').removeClass('error_input_field');
+			 // $('.error_test').css('display','none');
+		// }
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  	
+	  	if($('.admin_users_checkbox:checked').length == 0) {
+	  		alert("0");
+	  			$('#admin_check').addClass('error_admin_check');
+		}else{
+			alert("1");
+			$('#admin_check').removeClass('error_admin_check');
+		
+	  	}
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		$('.error_test_admin_check').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		else {
+			alert("a");
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				alert("b");
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+				}
+				else{
+					alert("c");
+					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+					$('.error_test_admin_check').css('display','block');
+					$('.error_test').css('display','none');
+					$('.error_email').css('display','none');
+					$('.error_phone').css('display','none');
+					return false;
+					}
+					else {
+					alert("d");	
+					errornotice.hide();
+					$('.error_phone').css('display','none');
+					$('.error_test_admin_check').css('display','none');
+					return true;
+					}
+				}
+			}
+		}
+	});			
 jQuery("#edit_users").submit(function(){ 
 			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
