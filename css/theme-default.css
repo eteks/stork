@@ -4425,7 +4425,6 @@ img{
 	font-weight:bold;
 }
 .content{
-	background:url(../images/image_style/bg-contact.png);
 	padding-bottom:65px;
 }
 .contact-map{
@@ -4749,7 +4748,6 @@ span.star{
 /* Wishlist */
 .main{
 	overflow:hidden;
-	background:url(../images/image_style/bg-contact.png) repeat;
 	clear:both;
 }
 #wishlist{

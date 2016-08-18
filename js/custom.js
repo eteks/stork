@@ -2706,7 +2706,7 @@ $(document).on('keyup','.user_defined_box',function() {
 								$('.providedoffertype').val(data_split[3]);
 							}
 							else{
-								error_popup('This coupon on order above '+data_split[2]+' Rs only !');
+								error_popup('This coupon is valid on order above Rs '+data_split[2]+' only !');
 							}
 						}
 					}
