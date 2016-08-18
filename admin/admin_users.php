@@ -65,7 +65,6 @@ else
 		        <thead>
 			        <tr class="">
 			            <th>User Name</th>
-			            <th>User Type</th>
 			            <th>Email</th>
 			            <th>Mobile</th>
 			            <th>Is SuperUser</th>
@@ -80,14 +79,14 @@ else
 
 			    <tr class="">
 		            <td> <span> <?php echo $admin_data['adminuser_username']; ?> </span></td>
-		            <td><span class="nobr"> 
-		            	<?php if($admin_data['adminuser_type'] == 1) {
+		            <!-- <td><span class="nobr"> -->
+		            	<?php /*if($admin_data['adminuser_type'] == 1) {
 		            		echo "Admin";
 		            		}
 		            		else if($admin_data['adminuser_type'] == 2) {
 		            			echo "Superusers";
-		            			} ?> 
-		            </span></td>
+		            			} */?> 
+		            <!--</span></td> -->
 		            <td> <span class="nobr"> <?php echo $admin_data['adminuser_email']; ?> </span> </td>
 		            <td><span class="nobr"> <?php echo $admin_data['adminuser_mobile']; ?> </span> </td>
 		            <td> <span class="nobr"> <?php 
@@ -116,12 +115,12 @@ else
 			            <span class="separator"></span> 
 			            <?php if($admin_data['adminuser_is_superuser'] == 1 ) { ?>
 				            <span class="restrict">      
-				             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['adminuser_id'] ?>"><i class="fa fa-trash-o">
+				             	<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $admin_data['adminuser_id'] ?>"><i class="fa fa-trash-o">
 				             		<div class="restrict_tooltip">Delete not possible.</div>
 				             	</i> </a>
 				            </span>
 				        <?php } else { ?>
-				        		<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $fetch['adminuser_id'] ?>"><i class="fa fa-trash-o">
+				        		<a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $admin_data['adminuser_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				       <?php } ?>
 			        </span>
 			        </td>

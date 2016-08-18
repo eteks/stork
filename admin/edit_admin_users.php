@@ -188,7 +188,7 @@ else
 
 
    									<div class="cate-filter-content">	
-								    <label for="first-name">Admin Status<span class="required">*</span></label>
+								    <label for="first-name">Staff Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
