@@ -187,9 +187,9 @@
 						$userid = ($_POST['offer_user_id'] != 0 ? $_POST['offer_user_id'] : NULL);
 						$offer_id_query = mysqli_query($connection, "select * from stork_offer_provide_all_users where offer_id = '".$offer_details['offer_id']."' and offer_provided_user_id ='".$userid."' and offer_provided_usertype ='".$_POST['offer_user_type']."' and is_limit_status = '1' and is_validity = '1' and status ='1'");
 						$offer_id_data = mysqli_fetch_array($offer_id_query);
+						$offer_id_provided = $offer_id_data['offer_provided_details_id'];
 						if(mysqli_num_rows($offer_id_query) == 1){
 							if($offer_id_data['limit_used'] < $offer_details['offer_usage_limit'] ){
-								$offer_id_provided = $offer_id_data['offer_provided_details_id '];
 								echo $offer_amt.'#'.$offer_id_provided.'#'.$offer_details['offer_eligible_amount'].'#customer#'.$offer_details['offer_amount_type'];
 							}
 							else{

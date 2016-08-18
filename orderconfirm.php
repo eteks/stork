@@ -13,7 +13,7 @@ include('header.php');
 						<span class="hidden-xs">You are here:</span>
 						<ul class="breadcrumb">
 							<li>
-								<a href="/">Home</a>
+								<a href="index.php">Home</a>
 							</li>
 							<li>
 								<span>Order Confirmation</span>

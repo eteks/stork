@@ -8,14 +8,14 @@
 		/*-----------------slider-home-main----------------*/
 		jQuery('.vt-slideshow').revolution(
 			{
-				delay:20000,                                                
+				delay:200000,                                                
 				startheight:560,  
 				startwidth:1170,
 			}); 
 		$(".search-safari").hide();
 		$(".search-w").on("click", function(){
 			$('.search-safari').slideToggle();
-		})
+		});
 		$(".search-w").on("click", function(e){
 			e.stopPropagation();
 		});
