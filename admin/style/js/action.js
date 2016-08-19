@@ -125,7 +125,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			return false;
 		}
 		else {
-			alert("a");
 			if(jQuery(":input").hasClass("error_input_field_email"))  {
 				$('.error_test').css('display','none');
 				$('.error_phone').css('display','none');
@@ -135,7 +134,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			}
 			
 			else {
-				alert("b");
 				if(jQuery(":input").hasClass("error_input_field_phone"))  {
 				$('.error_test').css('display','none');
 				$('.error_email').css('display','none');
@@ -143,7 +141,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 				return false;
 				}
 				else{
-					alert("c");
 					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
 					$('.error_test_admin_check').css('display','block');
 					$('.error_test').css('display','none');
@@ -152,18 +149,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 					return false;
 					}
 					else {
-					alert("d");	
-					errornotice.hide();
-					$('.error_phone').css('display','none');
-					$('.error_test_admin_check').css('display','none');
-					return true;
-					}
-				}
-			}
-		}
-	});	
-	jQuery("#edit_admin_users").submit(function(){ 
-		
 		// for empty field validation
 		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
 			var input = jQuery('#'+required_edit_admin_users[i]);
@@ -231,7 +216,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			return false;
 		}
 		else {
-			alert("a");
 			if(jQuery(":input").hasClass("error_input_field_email"))  {
 				$('.error_test').css('display','none');
 				$('.error_phone').css('display','none');
@@ -241,7 +225,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 			}
 			
 			else {
-				alert("b");
 				if(jQuery(":input").hasClass("error_input_field_phone"))  {
 				$('.error_test').css('display','none');
 				$('.error_email').css('display','none');
@@ -249,7 +232,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 				return false;
 				}
 				else{
-					alert("c");
 					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
 					$('.error_test_admin_check').css('display','block');
 					$('.error_test').css('display','none');
@@ -258,7 +240,6 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 					return false;
 					}
 					else {
-					alert("d");	
 					errornotice.hide();
 					$('.error_phone').css('display','none');
 					$('.error_test_admin_check').css('display','none');
