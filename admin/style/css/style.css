@@ -1672,7 +1672,7 @@ table.cust_thwidth{
 
 .mutliSelect ul {
   background-color: #fff;
-  border: 0;
+  /*border: 0;*/
   color: #fff;
   /*display: none;*/
   left: 0px;
@@ -1683,6 +1683,10 @@ table.cust_thwidth{
   height: 100px;
   overflow: auto;
   width: 100%;
+  border-top: 0; 
+  border-right: 1px solid #ccc;  
+  border-bottom: 1px solid #ccc; 
+  border-left: 1px solid #ccc;
 }
 .mutliSelect ul li{
    margin-bottom: 5px;
