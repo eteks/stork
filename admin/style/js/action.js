@@ -107,101 +107,8 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 	  	}
 	  	
 	  	if($('.admin_users_checkbox:checked').length == 0) {
-	  		alert("0");
 	  			$('#admin_check').addClass('error_admin_check');
 		}else{
-			alert("1");
-			$('#admin_check').removeClass('error_admin_check');
-		
-	  	}
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-		$('.error_test').css('display','block');
-		$('.error_email').css('display','none');
-		$('.error_phone').css('display','none');
-		$('.error_test_admin_check').css('display','none');
-		forget_email.removeClass("error_input_field_email");
-			$('#phone').removeClass("error_input_field_phone");
-			return false;
-		}
-		else {
-			if(jQuery(":input").hasClass("error_input_field_email"))  {
-				$('.error_test').css('display','none');
-				$('.error_phone').css('display','none');
-				$('.error_email').css('display','block');
-				$('#phone').removeClass("error_input_field_phone");
-				return false;
-			}
-			
-			else {
-				if(jQuery(":input").hasClass("error_input_field_phone"))  {
-				$('.error_test').css('display','none');
-				$('.error_email').css('display','none');
-				$('.error_phone').css('display','block');
-				return false;
-				}
-				else{
-					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
-					$('.error_test_admin_check').css('display','block');
-					$('.error_test').css('display','none');
-					$('.error_email').css('display','none');
-					$('.error_phone').css('display','none');
-					return false;
-					}
-					else {
-		// for empty field validation
-		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
-			var input = jQuery('#'+required_edit_admin_users[i]);
-			
-			if ((input.val() == "")) {
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');		
-			 }
-			 else{
-				 input.removeClass("error_input_field");
-			  $('.error_test').css('display','none');
-				
-			 }
-		}
-		//end of empty field validation
-	
-			 var mobile=$('#phone').val().length;
-     			if(mobile<=9){
-    			$('#phone').addClass("error_input_field_phone");
- 				}
- 				else {
- 				$('#phone').removeClass("error_input_field_phone");
- 				}
-         
-	 	if (document.getElementById('sel_a').selectedIndex < 1){
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-			$('.error_test').css('display','none');
-		}
-		else{ 
-			$('#sel_a').removeClass('error_input_field');
-			 $('.error_test').css('display','none');
-		}
-			// if (document.getElementById('sel_b').selectedIndex < 1){
-			// $('#sel_b').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-			// $('.error_test').css('display','none');
-		// }
-		// else{ 
-			// $('#sel_b').removeClass('error_input_field');
-			 // $('.error_test').css('display','none');
-		// }
-if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input_field_email");
-	  	}else{
-	  		forget_email.removeClass("error_input_field_email");
-	  	}
-	  	
-	  	if($('.admin_users_checkbox:checked').length == 0) {
-	  		alert("0");
-	  			$('#admin_check').addClass('error_admin_check');
-		}else{
-			alert("1");
 			$('#admin_check').removeClass('error_admin_check');
 		
 	  	}
@@ -248,7 +155,103 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 				}
 			}
 		}
-	});			
+	});		
+
+
+
+
+
+	jQuery("#edit_admin_users").submit(function(){ 
+		
+		// for empty field validation
+		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
+			var input = jQuery('#'+required_edit_admin_users[i]);
+			
+			if ((input.val() == "")) {
+				input.addClass("error_input_field");
+				$('.error_test').css('display','block');		
+			 }
+			 else{
+				 input.removeClass("error_input_field");
+			  $('.error_test').css('display','none');
+				
+			 }
+		}
+		//end of empty field validation
+	
+			 var mobile=$('#phone').val().length;
+     			if(mobile<=9){
+    			$('#phone').addClass("error_input_field_phone");
+ 				}
+ 				else {
+ 				$('#phone').removeClass("error_input_field_phone");
+ 				}
+         
+	 	if (document.getElementById('sel_a').selectedIndex < 1){
+			$('#sel_a').addClass('error_input_field');
+			$('.error_test').css('display','block');
+			$('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			 $('.error_test').css('display','none');
+		}
+if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+		 	forget_email.addClass("error_input_field_email");
+	  	}else{
+	  		forget_email.removeClass("error_input_field_email");
+	  	}
+	  	
+	  	if($('.admin_users_checkbox:checked').length == 0) {
+	  			$('#admin_check').addClass('error_admin_check');
+		}else{
+			$('#admin_check').removeClass('error_admin_check');
+		
+	  	}
+//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		$('.error_test_admin_check').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		else {
+			if(jQuery(":input").hasClass("error_input_field_email"))  {
+				$('.error_test').css('display','none');
+				$('.error_phone').css('display','none');
+				$('.error_email').css('display','block');
+				$('#phone').removeClass("error_input_field_phone");
+				return false;
+			}
+			
+			else {
+				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','block');
+				return false;
+				}
+				else{
+					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+					$('.error_test_admin_check').css('display','block');
+					$('.error_test').css('display','none');
+					$('.error_email').css('display','none');
+					$('.error_phone').css('display','none');
+					return false;
+					}
+					else {
+					errornotice.hide();
+					$('.error_phone').css('display','none');
+					$('.error_test_admin_check').css('display','none');
+					return true;
+					}
+				}
+			}
+		}
+	});		
 jQuery("#edit_users").submit(function(){ 
 			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
