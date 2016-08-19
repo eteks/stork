@@ -85,9 +85,12 @@ else
 						<h3 class="acc-title lg">Add Admin Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
-							<form action="add_admin_users.php" method="POST" name="edit-acc-info" id="">
+							<form action="add_admin_users.php" method="POST" name="edit-acc-info" id="add_admin_users">
 							<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ 									<span class="error_test_admin_check"> Please Select alteast one option </span>
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
@@ -127,8 +130,8 @@ else
 								    </label>
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
-    										<a>
-      											<span class="hida">Select</span>  <i class="fa fa-caret-down" aria-hidden="true"></i>  
+    										<a class="error_admin_check" id="admin_check">
+      											<span class="hida">Select</span>  <i class="fa fa-caret-down"  aria-hidden="true"></i>  
       											<p class="multiSel"></p>  
     										</a>
     									</div>
@@ -137,7 +140,7 @@ else
            									<?php 
 												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
 						        				while($row_module=mysql_fetch_array($query_module)) {
-						        					echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+						        					echo '<li> <input type="checkbox" name="Privileges[]" class="admin_users_checkbox" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
 						        				}
 											?>
 							           		</ul>
@@ -147,7 +150,7 @@ else
 
 								<div class="cate-filter-content">	
 								    <label for="first-name">Staff Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
+									<select class="product-type-filter form-control" id="sel_a" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>
