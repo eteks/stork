@@ -1480,6 +1480,13 @@ text-align: center;
 	margin-left: 16px;
 	display : none;
 }
+.error_test_admin_check{
+	color :red ;
+	font-size : 12px;	
+	margin-left: 0px;
+	
+	display : none;
+}
 .error_time{
 	color :red ;
 	font-size : 12px;	
@@ -1672,7 +1679,7 @@ table.cust_thwidth{
 
 .mutliSelect ul {
   background-color: #fff;
-  border: 0;
+  /*border: 0;*/
   color: #fff;
   /*display: none;*/
   left: 0px;
@@ -1683,6 +1690,10 @@ table.cust_thwidth{
   height: 100px;
   overflow: auto;
   width: 100%;
+  border-top: 0; 
+  border-right: 1px solid #ccc;  
+  border-bottom: 1px solid #ccc; 
+  border-left: 1px solid #ccc;
 }
 .mutliSelect ul li{
    margin-bottom: 5px;
@@ -1690,4 +1701,50 @@ table.cust_thwidth{
 .mutliSelect input {
    cursor: pointer;
 }
+.error_admin_check{
+   border: 1px solid red !important;
+   margin-right: 439px;
+}
 /* Add admin permission form end */
+.dashboard_content{
+   text-align: center;
+   margin-top: 100px;
+}
+.dashboard_message{
+   font-size: 20px;
+   padding: 10px;
+   font-size: 28px;
+}
+#font_user{
+	text-align: center;
+	margin: 30px 10px;
+}
+#font_user .fa-user{
+	font-size: 150px;
+	color: #ccc;
+}
+#error_pass_rest {
+   display: none;
+   max-width: 376px;
+   padding-left: 10px;
+}
+.password_criteria ul {
+   font-size: 12px;
+   line-height: 24px;
+   text-indent: 4px;
+   margin-bottom: 20px;
+}
+.password_criteria p{
+   font-size: 12px;
+   font-weight: bold;
+}
+.password_restiction_details {
+   float: right;
+   font-size: 18px;
+   cursor: pointer;
+}
+.password_restriction_width {
+   max-width: 378px;
+   width: 100%;
+}
+

@@ -17,37 +17,26 @@ if (isset($_POST['add_admin_users']))
 		$privileges = $_POST['Privileges'];
 		$adminuser_status = $_POST["adminuser_status"];
 	
-	$query_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username' AND adminuser_email='$adminuser_email'");
-	$row_check = mysql_num_rows($query_check);
-	if($row_check > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
-	} else {
-		mysqlQuery("INSERT INTO stork_admin_users (adminuser_username,adminuser_password,adminuser_email,adminuser_mobile,	adminuser_status) VALUES ('$adminuser_username','$adminuser_password','$adminuser_email','$adminuser_mobile','$adminuser_status')");
-		$query_admin_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
-		$row_admin_check = mysql_fetch_array($query_admin_check);
-		$admin_id = $row_admin_check['adminuser_id'];
-		foreach ($privileges as $value) {
-			mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$admin_id','$value','$adminuser_status')");
+		$query_check_username = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
+		$query_check_email = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_email='$adminuser_email'");
+		$row_check_username = mysql_num_rows($query_check_username);
+		$row_check_email = mysql_num_rows($query_check_email);
+		if($row_check_username > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Username already exists! </span></div>";
+		}else if($row_check_email > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Email already exists! </span></div>";
+		} else {
+			mysqlQuery("INSERT INTO stork_admin_users (adminuser_username,adminuser_password,adminuser_email,adminuser_mobile,	adminuser_status) VALUES ('$adminuser_username','$adminuser_password','$adminuser_email','$adminuser_mobile','$adminuser_status')");
+			$query_admin_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
+			$row_admin_check = mysql_fetch_array($query_admin_check);
+			$admin_id = $row_admin_check['adminuser_id'];
+			foreach ($privileges as $value) {
+				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$admin_id','$value','$adminuser_status')");
+			}
+			$successMessage = "<div class='container error_message_mandatory'><span> Admin added successfully! </span></div>";
 		}
-		$successMessage = "<div class='container error_message_mandatory'><span> Admin added successfully! </span></div>";
-
-	}
-	// 		$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
-	// 	}
-				
-
-
-		// foreach ($privileges as $value) {
-		// 	echo $value;
-		// 	echo "<br>";
-    	
-  //  		}
-	}
-	
+	}	
 }
-
-
-
 ?>
 	
 <?php include 'includes/navbar_admin.php'; ?>
@@ -85,9 +74,12 @@ else
 						<h3 class="acc-title lg">Add Admin Information</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Admin Information</h4>
-							<form action="add_admin_users.php" method="POST" name="edit-acc-info" id="">
+							<form action="add_admin_users.php" method="POST" name="edit-acc-info" id="add_admin_users">
 							<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+								</div>
+								<div class="container">
+ 									<span class="error_test_admin_check"> Please Select alteast one Privileges </span>
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
@@ -101,8 +93,17 @@ else
 									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="adminuser_username">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="adminuser_password">
+								    <label for="last-name" class="password_restriction_width">Password<span class="required">*</span> <span class="password_restiction_details"> <i aria-hidden="true" class="fa fa-info-circle"></i> </span> </label>
+								    <div id="error_pass_rest" class="password_criteria">
+										<p> Your password should have </p>
+										<ul>
+											<li> 1. At least 3 characters and not more than 6 characters </li>
+											<li> 2. At least one alphabet (a-z) </li>
+											<li> 3. At least one number (0-9) </li>
+											<li> 4. At least one special character out of these ( !, @, #, $, &amp;, *, ?, ), %, (, = ) or space </li>
+										</ul>
+									</div>
+									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="adminuser_password" maxlength="6">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>
@@ -127,8 +128,8 @@ else
 								    </label>
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
-    										<a>
-      											<span class="hida">Select</span>  <i class="fa fa-caret-down" aria-hidden="true"></i>  
+    										<a id="admin_check">
+      											<span class="hida">Select</span>  <i class="fa fa-caret-down"  aria-hidden="true"></i>  
       											<p class="multiSel"></p>  
     										</a>
     									</div>
@@ -137,7 +138,7 @@ else
            									<?php 
 												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
 						        				while($row_module=mysql_fetch_array($query_module)) {
-						        					echo '<li> <input type="checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+						        					echo '<li> <input type="checkbox" name="Privileges[]" class="admin_users_checkbox" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
 						        				}
 											?>
 							           		</ul>
@@ -146,8 +147,8 @@ else
    								</div>
 
 								<div class="cate-filter-content">	
-								    <label for="first-name">Admin Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_b" name="adminuser_status">
+								    <label for="first-name">Staff Status<span class="required">*</span></label>
+									<select class="product-type-filter form-control" id="sel_a" name="adminuser_status">
 								        <option>
 											<span>Select status</span>
 										</option>

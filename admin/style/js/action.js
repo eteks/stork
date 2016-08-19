@@ -24,6 +24,7 @@ function ConvertTimeformat(format, str) {
 
 jQuery(document).ready(function() {
 	var required_area =["areaname","deliverycharge"];
+	var required_add_admin_users =["username","password","phone","test"];
 	var required_edit_admin_users =["username","password","phone","test"];
 	var required_add_offer_zone =["offerzonetitle","offerzoneimage"];
 	// var required_edit_offer_zone =["offerzonetitle","offerzoneimage"];
@@ -64,20 +65,19 @@ jQuery(document).ready(function() {
 	email=jQuery("#email");
  	test=jQuery("#test");
 	errornotice = jQuery("#error");
-
-	jQuery("#edit_admin_users").submit(function(){ 
+jQuery("#add_admin_users").submit(function(){ 
 		
 		// for empty field validation
-		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
-			var input = jQuery('#'+required_edit_admin_users[i]);
+		for(var i = 0 ; i<required_add_admin_users.length;i++ ){
+			var input = jQuery('#'+required_add_admin_users[i]);
 			
 			if ((input.val() == "")) {
 				input.addClass("error_input_field");
-				// $('.error_test').css('display','block');		
+				$('.error_test').css('display','block');		
 			 }
 			 else{
 				 input.removeClass("error_input_field");
-			 // $('.error_test').css('display','none');
+			  $('.error_test').css('display','none');
 				
 			 }
 		}
@@ -93,35 +93,52 @@ jQuery(document).ready(function() {
          
 	 	if (document.getElementById('sel_a').selectedIndex < 1){
 			$('#sel_a').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-			// $('.error_test').css('display','none');
+			$('.error_test').css('display','block');
+			$('.error_test').css('display','none');
 		}
 		else{ 
 			$('#sel_a').removeClass('error_input_field');
-			// $('.error_test').css('display','none');
+			 $('.error_test').css('display','none');
 		}
-		
-		// if (document.getElementById('sel_b').selectedIndex < 1){
-			// $('#sel_b').addClass('error_input_field');
-			// // $('.error_test').css('display','block');
-		// }
-		// else { 
-			// $('#sel_b').removeClass('error_input_field'); 
-			// // $('.error_test').css('display','none');
-		// }
-// 	
-// 		
+
+		var passVal  = $('#password').val();
+		if(passVal!='') {
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!)=%*#(? &])[A-Za-z\\d$@)$!%(*#= ?&]{3,}$");
+			if(!pass_restriction.test(passVal)) {
+				$('#password').addClass("error_input_field");
+				$('#error_pass_rest').slideDown();
+			}
+			else if(passVal != $('#repassword').val()) {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').addClass("error_input_field");
+			}
+			else {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').removeClass("error_input_field");
+			} 
+		}
+
+
 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
 	  		forget_email.removeClass("error_input_field_email");
 	  	}
-	  
+	  	
+	  	if($('.admin_users_checkbox:checked').length == 0) {
+	  			$('#admin_check').addClass('error_admin_check');
+		}else{
+			$('#admin_check').removeClass('error_admin_check');
+		
+	  	}
 //if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
 		$('.error_phone').css('display','none');
+		$('.error_test_admin_check').css('display','none');
 		forget_email.removeClass("error_input_field_email");
 			$('#phone').removeClass("error_input_field_phone");
 			return false;
@@ -141,15 +158,139 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 				$('.error_email').css('display','none');
 				$('.error_phone').css('display','block');
 				return false;
-			}
-			else {
-			errornotice.hide();
-			$('.error_phone').css('display','none');
-			return true;
-			}
+				}
+				else{
+					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+					$('.error_test_admin_check').css('display','block');
+					$('.error_test').css('display','none');
+					$('.error_email').css('display','none');
+					$('.error_phone').css('display','none');
+					return false;
+					}
+					else {
+					errornotice.hide();
+					$('.error_phone').css('display','none');
+					$('.error_test_admin_check').css('display','none');
+					return true;
+					}
+				}
 			}
 		}
 	});		
+
+jQuery("#edit_admin_users").submit(function(){ 
+		
+	// for empty field validation
+	for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
+		var input = jQuery('#'+required_edit_admin_users[i]);	
+		if ((input.val() == "")) {
+			input.addClass("error_input_field");
+			$('.error_test').css('display','block');		
+		 }
+		 else{
+			 input.removeClass("error_input_field");
+		  $('.error_test').css('display','none');
+			
+		 }
+	}
+
+	//end of empty field validation
+	var mobile=$('#phone').val().length;
+	if(mobile<=9){
+		$('#phone').addClass("error_input_field_phone");
+	}
+	else {
+		$('#phone').removeClass("error_input_field_phone");
+	}
+    if($("#sel_a").length){
+    	if (document.getElementById('sel_a').selectedIndex < 1){
+		$('#sel_a').addClass('error_input_field');
+		$('.error_test').css('display','block');
+		$('.error_test').css('display','none');
+		}
+		else{ 
+			$('#sel_a').removeClass('error_input_field');
+			$('.error_test').css('display','none');
+		}
+    }
+ 	
+ 	var passVal  = $('#password').val();
+		if(passVal!='') {
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!)=%*#(? &])[A-Za-z\\d$@)$!%(*#= ?&]{3,}$");
+			if(!pass_restriction.test(passVal)) {
+				$('#password').addClass("error_input_field");
+				$('#error_pass_rest').slideDown();
+			}
+			else if(passVal != $('#repassword').val()) {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').addClass("error_input_field");
+			}
+			else {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').removeClass("error_input_field");
+			} 
+		}
+		
+		
+	if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+	 	forget_email.addClass("error_input_field_email");
+  	}else{
+  		forget_email.removeClass("error_input_field_email");
+  	}
+  	
+  	if($('.admin_users_checkbox:checked').length == 0) {
+  			$('#admin_check').addClass('error_admin_check');
+	}else{
+		$('#admin_check').removeClass('error_admin_check');
+	
+  	}
+
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		$('.error_email').css('display','none');
+		$('.error_phone').css('display','none');
+		$('.error_test_admin_check').css('display','none');
+		forget_email.removeClass("error_input_field_email");
+		$('#phone').removeClass("error_input_field_phone");
+		return false;
+	}
+	else {
+		if(jQuery(":input").hasClass("error_input_field_email"))  {
+			$('.error_test').css('display','none');
+			$('.error_phone').css('display','none');
+			$('.error_email').css('display','block');
+			$('#phone').removeClass("error_input_field_phone");
+			return false;
+		}
+		
+		else {
+			if(jQuery(":input").hasClass("error_input_field_phone"))  {
+			$('.error_test').css('display','none');
+			$('.error_email').css('display','none');
+			$('.error_phone').css('display','block');
+			return false;
+			}
+			else{
+				if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+				$('.error_test_admin_check').css('display','block');
+				$('.error_test').css('display','none');
+				$('.error_email').css('display','none');
+				$('.error_phone').css('display','none');
+				return false;
+				}
+				else {
+				errornotice.hide();
+				$('.error_phone').css('display','none');
+				$('.error_test_admin_check').css('display','none');
+				return true;
+				}
+			}
+		}
+	}
+});		
 jQuery("#edit_users").submit(function(){ 
 			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
@@ -2475,15 +2616,24 @@ $('.mutliSelect input[type="checkbox"]').on('click', function() {
 	  // var title =  $(this).data("value") + ",";
 	  var title =  $(this).next('span').text();
 	  if ($(this).is(':checked')) {
-	    var html = '<span title="' + title + '">' + title + '</span>';
+	  	if($('.select_content').length)
+	    	var html = '<span class="select_content" title="' + title + '">' + "," + title + '</span>';
+	    else
+	    	var html = '<span class="select_content" title="' + title + '">' + title + '</span>';
 	    $('.multiSel').append(html);
 	    $(".hida").hide();
 	  } else {
+	  	// alert(title);
+	  	// if($('.select_content:first'))
+	  	// 	alert("yes");
+	  	// alert($('span[title="' + title + '"]').index());
 	    $('span[title="' + title + '"]').remove();
 	  }
 });
 
-
+$('.password_restiction_details').on('click',function() {
+	$('.password_criteria').slideToggle();
+});
 
 
 

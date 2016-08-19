@@ -446,4 +446,10 @@ $(document).ready(function () {
        cache: false,
   });
 
+  //restrict spaces while typing username and password in admin users form
+  $('#username,#password,#test').keydown(function (e) {     
+    var key = e.keyCode;
+    if (key == 32)
+        e.preventDefault();    
+  });
 });
