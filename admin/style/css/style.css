@@ -1722,5 +1722,29 @@ table.cust_thwidth{
 #font_user .fa-user{
 	font-size: 150px;
 	color: #ccc;
-	
 }
+#error_pass_rest {
+   display: none;
+   max-width: 376px;
+   padding-left: 10px;
+}
+.password_criteria ul {
+   font-size: 12px;
+   line-height: 24px;
+   text-indent: 4px;
+   margin-bottom: 20px;
+}
+.password_criteria p{
+   font-size: 12px;
+   font-weight: bold;
+}
+.password_restiction_details {
+   float: right;
+   font-size: 18px;
+   cursor: pointer;
+}
+.password_restriction_width {
+   max-width: 378px;
+   width: 100%;
+}
+
