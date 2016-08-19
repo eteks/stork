@@ -1708,8 +1708,19 @@ table.cust_thwidth{
 /* Add admin permission form end */
 .dashboard_content{
    text-align: center;
-   margin-top: 20px;
+   margin-top: 100px;
 }
 .dashboard_message{
    font-size: 20px;
+   padding: 10px;
+   font-size: 28px;
+}
+#font_user{
+	text-align: center;
+	margin: 30px 10px;
+}
+#font_user .fa-user{
+	font-size: 150px;
+	color: #ccc;
+	
 }

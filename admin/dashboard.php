@@ -43,8 +43,11 @@ else
 	<div class="clear_both"> </div>
 </div>
 <div class="dashboard_content">
-	<span class="dashboard_message"> Welcome <?php echo $_SESSION['user_name']; ?>!!! You have logged in as <?php if($_SESSION['is_superuser'] == 1 ) echo "administrator"; else echo "Staff"; ?></span>
+	<span class="dashboard_message"> Welcome <?php echo $_SESSION['user_name']; ?> !  You have logged in as <?php if($_SESSION['is_superuser'] == 1 ) echo "administrator"; else echo "Staff"; ?></span>
 </div> <!-- dashboard_content -->
+<div id="font_user"> 
+	<i class="fa fa-user" aria-hidden="true"> </i> 
+</div>
 </div>
 </div>
 <?php include 'includes/footer.php'; ?>

@@ -47,9 +47,9 @@
 						</a>
 					</div>	
 				</div>
-				<div class="col-lg-7 col-md-8 col-sm-2 col-xs-2">
+				<div class="col-lg-1 col-md-8 col-sm-2 col-xs-2">
 				</div>
-				<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 headerCS">
+				<div class="col-lg-7 col-md-2 col-sm-2 col-xs-2 headerCS">
 					
 					<div class="user_logout">
 						<span class="dropdowSCIcon">
