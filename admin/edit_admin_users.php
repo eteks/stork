@@ -112,8 +112,17 @@ else
 									<input type="text" class="form-control" id="username" autocomplete="off" placeholder="User Name" name="adminuser_username" value="<?php echo($row['adminuser_username']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Password<span class="required">*</span></label>
-									<input type="password" class="form-control" id="password" autocomplete="off" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
+								    <label for="last-name" class="password_restriction_width">Password<span class="required">*</span> <span class="password_restiction_details"> <i aria-hidden="true" class="fa fa-info-circle"></i> </span> </label>
+								    <div id="error_pass_rest" class="password_criteria">
+										<p> Your password should have </p>
+										<ul>
+											<li> 1. At least 3 characters and not more than 6 characters </li>
+											<li> 2. At least one alphabet (a-z) </li>
+											<li> 3. At least one number (0-9) </li>
+											<li> 4. At least one special character out of these ( !, @, #, $, &amp;, *, ?, ), %, (, = ) or space </li>
+										</ul>
+									</div>
+									<input type="password" class="form-control" maxlength="6" id="password" autocomplete="off" placeholder="Password" name="adminuser_password" value="<?php echo($row['adminuser_password']); ?>">
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required">*</span></label>

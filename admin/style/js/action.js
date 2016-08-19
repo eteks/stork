@@ -100,6 +100,27 @@ jQuery("#add_admin_users").submit(function(){
 			$('#sel_a').removeClass('error_input_field');
 			 $('.error_test').css('display','none');
 		}
+
+		var passVal  = $('#password').val();
+		if(passVal!='') {
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!)=%*#(? &])[A-Za-z\\d$@)$!%(*#= ?&]{3,}$");
+			if(!pass_restriction.test(passVal)) {
+				$('#password').addClass("error_input_field");
+				$('#error_pass_rest').slideDown();
+			}
+			else if(passVal != $('#repassword').val()) {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').addClass("error_input_field");
+			}
+			else {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').removeClass("error_input_field");
+			} 
+		}
+
+
 if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 		 	forget_email.addClass("error_input_field_email");
 	  	}else{
@@ -193,6 +214,26 @@ jQuery("#edit_admin_users").submit(function(){
 		}
     }
  	
+ 	var passVal  = $('#password').val();
+		if(passVal!='') {
+			var pass_restriction = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!)=%*#(? &])[A-Za-z\\d$@)$!%(*#= ?&]{3,}$");
+			if(!pass_restriction.test(passVal)) {
+				$('#password').addClass("error_input_field");
+				$('#error_pass_rest').slideDown();
+			}
+			else if(passVal != $('#repassword').val()) {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').addClass("error_input_field");
+			}
+			else {
+				$('#error_pass_rest').slideUp();
+				$('#password').removeClass("error_input_field");
+				$('#repassword').removeClass("error_input_field");
+			} 
+		}
+		
+		
 	if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
 	 	forget_email.addClass("error_input_field_email");
   	}else{
@@ -2590,7 +2631,9 @@ $('.mutliSelect input[type="checkbox"]').on('click', function() {
 	  }
 });
 
-
+$('.password_restiction_details').on('click',function() {
+	$('.password_criteria').slideToggle();
+});
 
 
 
