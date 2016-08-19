@@ -10,25 +10,28 @@ if(isset($_POST['username']) && isset($_POST['password']))
 	$pass = $_POST['password'];
 		if (authenticate(trim($user) , trim($pass))) 
 		{  
-			$_SESSION['admin_eap_secure'] = 1;
+			$_SESSION['admin_eap_secure'] = 1;	
+		}
+		else if(isset($_SESSION['adminuser_status'])){
+			$error = "User Is Inactive";
 		}
 		else
 		{
 			$error = "Invalid Username or Password";
 		}
 }
-// if (isset($_SESSION['admin_eap_secure']) && !$error)
+if (isset($_SESSION['admin_eap_secure']) && !$error)
+{
+	header('Location: ./dashboard.php');
+}
+// if (isset($_SESSION['admin_eap_secure']) && !$error && $_SESSION['is_superuser'] == 1)
 // {
 // 	header('Location: ./users.php');
 // }
-if (isset($_SESSION['admin_eap_secure']) && !$error && $_SESSION['is_superuser'] == 1)
-{
-	header('Location: ./users.php');
-}
-else if (isset($_SESSION['admin_eap_secure']) && !$error && $_SESSION['is_superuser'] == 0)
-{
-	header('Location: ./states.php');
-}
+// else if (isset($_SESSION['admin_eap_secure']) && !$error && $_SESSION['is_superuser'] == 0)
+// {
+// 	header('Location: ./states.php');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1701,4 +1701,15 @@ table.cust_thwidth{
 .mutliSelect input {
    cursor: pointer;
 }
+.error_admin_check{
+   border: 1px solid red !important;
+   margin-right: 439px;
+}
 /* Add admin permission form end */
+.dashboard_content{
+   text-align: center;
+   margin-top: 20px;
+}
+.dashboard_message{
+   font-size: 20px;
+}

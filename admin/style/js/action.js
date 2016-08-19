@@ -157,101 +157,99 @@ if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forg
 		}
 	});		
 
-
-
-
-
-	jQuery("#edit_admin_users").submit(function(){ 
+jQuery("#edit_admin_users").submit(function(){ 
 		
-		// for empty field validation
-		for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
-			var input = jQuery('#'+required_edit_admin_users[i]);
+	// for empty field validation
+	for(var i = 0 ; i<required_edit_admin_users.length;i++ ){
+		var input = jQuery('#'+required_edit_admin_users[i]);	
+		if ((input.val() == "")) {
+			input.addClass("error_input_field");
+			$('.error_test').css('display','block');		
+		 }
+		 else{
+			 input.removeClass("error_input_field");
+		  $('.error_test').css('display','none');
 			
-			if ((input.val() == "")) {
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');		
-			 }
-			 else{
-				 input.removeClass("error_input_field");
-			  $('.error_test').css('display','none');
-				
-			 }
-		}
-		//end of empty field validation
-	
-			 var mobile=$('#phone').val().length;
-     			if(mobile<=9){
-    			$('#phone').addClass("error_input_field_phone");
- 				}
- 				else {
- 				$('#phone').removeClass("error_input_field_phone");
- 				}
-         
-	 	if (document.getElementById('sel_a').selectedIndex < 1){
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-			$('.error_test').css('display','none');
+		 }
+	}
+
+	//end of empty field validation
+	var mobile=$('#phone').val().length;
+	if(mobile<=9){
+		$('#phone').addClass("error_input_field_phone");
+	}
+	else {
+		$('#phone').removeClass("error_input_field_phone");
+	}
+    if($("#sel_a").length){
+    	if (document.getElementById('sel_a').selectedIndex < 1){
+		$('#sel_a').addClass('error_input_field');
+		$('.error_test').css('display','block');
+		$('.error_test').css('display','none');
 		}
 		else{ 
 			$('#sel_a').removeClass('error_input_field');
-			 $('.error_test').css('display','none');
+			$('.error_test').css('display','none');
 		}
-if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
-		 	forget_email.addClass("error_input_field_email");
-	  	}else{
-	  		forget_email.removeClass("error_input_field_email");
-	  	}
-	  	
-	  	if($('.admin_users_checkbox:checked').length == 0) {
-	  			$('#admin_check').addClass('error_admin_check');
-		}else{
-			$('#admin_check').removeClass('error_admin_check');
-		
-	  	}
-//if any inputs on the page have the class 'error_input_field' the form will not submit
+    }
+ 	
+	if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(forget_email.val())) {
+	 	forget_email.addClass("error_input_field_email");
+  	}else{
+  		forget_email.removeClass("error_input_field_email");
+  	}
+  	
+  	if($('.admin_users_checkbox:checked').length == 0) {
+  			$('#admin_check').addClass('error_admin_check');
+	}else{
+		$('#admin_check').removeClass('error_admin_check');
+	
+  	}
+
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
 	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 		$('.error_test').css('display','block');
 		$('.error_email').css('display','none');
 		$('.error_phone').css('display','none');
 		$('.error_test_admin_check').css('display','none');
 		forget_email.removeClass("error_input_field_email");
+		$('#phone').removeClass("error_input_field_phone");
+		return false;
+	}
+	else {
+		if(jQuery(":input").hasClass("error_input_field_email"))  {
+			$('.error_test').css('display','none');
+			$('.error_phone').css('display','none');
+			$('.error_email').css('display','block');
 			$('#phone').removeClass("error_input_field_phone");
 			return false;
 		}
+		
 		else {
-			if(jQuery(":input").hasClass("error_input_field_email"))  {
-				$('.error_test').css('display','none');
-				$('.error_phone').css('display','none');
-				$('.error_email').css('display','block');
-				$('#phone').removeClass("error_input_field_phone");
-				return false;
+			if(jQuery(":input").hasClass("error_input_field_phone"))  {
+			$('.error_test').css('display','none');
+			$('.error_email').css('display','none');
+			$('.error_phone').css('display','block');
+			return false;
 			}
-			
-			else {
-				if(jQuery(":input").hasClass("error_input_field_phone"))  {
+			else{
+				if(jQuery("#admin_check").hasClass("error_admin_check"))  {
+				$('.error_test_admin_check').css('display','block');
 				$('.error_test').css('display','none');
 				$('.error_email').css('display','none');
-				$('.error_phone').css('display','block');
+				$('.error_phone').css('display','none');
 				return false;
 				}
-				else{
-					if(jQuery("#admin_check").hasClass("error_admin_check"))  {
-					$('.error_test_admin_check').css('display','block');
-					$('.error_test').css('display','none');
-					$('.error_email').css('display','none');
-					$('.error_phone').css('display','none');
-					return false;
-					}
-					else {
-					errornotice.hide();
-					$('.error_phone').css('display','none');
-					$('.error_test_admin_check').css('display','none');
-					return true;
-					}
+				else {
+				errornotice.hide();
+				$('.error_phone').css('display','none');
+				$('.error_test_admin_check').css('display','none');
+				return true;
 				}
 			}
 		}
-	});		
+	}
+});		
 jQuery("#edit_users").submit(function(){ 
 			// for empty field validation
 		for(var i = 0 ; i<required_edit_users.length;i++ ){
@@ -2577,10 +2575,17 @@ $('.mutliSelect input[type="checkbox"]').on('click', function() {
 	  // var title =  $(this).data("value") + ",";
 	  var title =  $(this).next('span').text();
 	  if ($(this).is(':checked')) {
-	    var html = '<span title="' + title + '">' + title + '</span>';
+	  	if($('.select_content').length)
+	    	var html = '<span class="select_content" title="' + title + '">' + "," + title + '</span>';
+	    else
+	    	var html = '<span class="select_content" title="' + title + '">' + title + '</span>';
 	    $('.multiSel').append(html);
 	    $(".hida").hide();
 	  } else {
+	  	// alert(title);
+	  	// if($('.select_content:first'))
+	  	// 	alert("yes");
+	  	// alert($('span[title="' + title + '"]').index());
 	    $('span[title="' + title + '"]').remove();
 	  }
 });

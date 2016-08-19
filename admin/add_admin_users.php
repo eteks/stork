@@ -17,37 +17,26 @@ if (isset($_POST['add_admin_users']))
 		$privileges = $_POST['Privileges'];
 		$adminuser_status = $_POST["adminuser_status"];
 	
-	$query_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username' AND adminuser_email='$adminuser_email'");
-	$row_check = mysql_num_rows($query_check);
-	if($row_check > 0){
-		$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
-	} else {
-		mysqlQuery("INSERT INTO stork_admin_users (adminuser_username,adminuser_password,adminuser_email,adminuser_mobile,	adminuser_status) VALUES ('$adminuser_username','$adminuser_password','$adminuser_email','$adminuser_mobile','$adminuser_status')");
-		$query_admin_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
-		$row_admin_check = mysql_fetch_array($query_admin_check);
-		$admin_id = $row_admin_check['adminuser_id'];
-		foreach ($privileges as $value) {
-			mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$admin_id','$value','$adminuser_status')");
+		$query_check_username = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
+		$query_check_email = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_email='$adminuser_email'");
+		$row_check_username = mysql_num_rows($query_check_username);
+		$row_check_email = mysql_num_rows($query_check_email);
+		if($row_check_username > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Username already exists! </span></div>";
+		}else if($row_check_email > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Email already exists! </span></div>";
+		} else {
+			mysqlQuery("INSERT INTO stork_admin_users (adminuser_username,adminuser_password,adminuser_email,adminuser_mobile,	adminuser_status) VALUES ('$adminuser_username','$adminuser_password','$adminuser_email','$adminuser_mobile','$adminuser_status')");
+			$query_admin_check = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username'");
+			$row_admin_check = mysql_fetch_array($query_admin_check);
+			$admin_id = $row_admin_check['adminuser_id'];
+			foreach ($privileges as $value) {
+				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$admin_id','$value','$adminuser_status')");
+			}
+			$successMessage = "<div class='container error_message_mandatory'><span> Admin added successfully! </span></div>";
 		}
-		$successMessage = "<div class='container error_message_mandatory'><span> Admin added successfully! </span></div>";
-
-	}
-	// 		$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
-	// 	}
-				
-
-
-		// foreach ($privileges as $value) {
-		// 	echo $value;
-		// 	echo "<br>";
-    	
-  //  		}
-	}
-	
+	}	
 }
-
-
-
 ?>
 	
 <?php include 'includes/navbar_admin.php'; ?>
@@ -90,7 +79,7 @@ else
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<div class="container">
- 									<span class="error_test_admin_check"> Please Select alteast one option </span>
+ 									<span class="error_test_admin_check"> Please Select alteast one Privileges </span>
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
@@ -130,7 +119,7 @@ else
 								    </label>
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
-    										<a class="error_admin_check" id="admin_check">
+    										<a id="admin_check">
       											<span class="hida">Select</span>  <i class="fa fa-caret-down"  aria-hidden="true"></i>  
       											<p class="multiSel"></p>  
     										</a>

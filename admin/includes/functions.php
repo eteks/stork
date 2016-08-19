@@ -12,8 +12,14 @@ function authenticate($username, $password)
 		$fetch_data = mysql_fetch_array($query);
 		$_SESSION['is_superuser'] = $fetch_data['adminuser_is_superuser'];
 		$_SESSION['user_id'] = $fetch_data['adminuser_id'];
+		$_SESSION['user_name'] = $fetch_data['adminuser_username'];
+		if($fetch_data['adminuser_status'] == 0){
+			$_SESSION['adminuser_status'] = $fetch_data['adminuser_username'];
+			return false;
+		}
 		return true;
 	}
+	unset($_SESSION['adminuser_status']);
 	return false;
 }
 function mres($var) 

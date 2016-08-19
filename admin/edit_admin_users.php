@@ -16,28 +16,31 @@ if (isset($_GET['update']))
 		$adminuser_password = $_POST["adminuser_password"];
 		$adminuser_email = $_POST["adminuser_email"];
 		$adminuser_mobile = $_POST["adminuser_mobile"];
-		$adminuser_type = $_POST["adminuser_type"];
+		// $adminuser_type = $_POST["adminuser_type"];
 		$privileges = $_POST['Privileges'];
 		$adminuser_status = $_POST["adminuser_status"];
-		$qr = mysqlQuery("SELECT * FROM `area_admin_users` WHERE '$adminuser_username'='$adminuser_username' AND `adminuser_email`='$adminuser_email' where 'adminuser_id' NOT IN('$val')");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-			$successMessage = "<div class='container error_message_mandatory'><span> Admin already exists! </span></div>";
-		} else {
+
+		$query_check_username = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username' AND adminuser_id NOT IN('$val')");
+		$query_check_email = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_email='$adminuser_email' AND adminuser_id NOT IN('$val')");
+		$row_check_username = mysql_num_rows($query_check_username);
+		$row_check_email = mysql_num_rows($query_check_email);
+
+		if($row_check_username > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Username already exists! </span></div>";
+		}else if($row_check_email > 0){
+			$successMessage = "<div class='container error_message_mandatory'><span> Email already exists! </span></div>";
+		}else {
 			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
-				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_type='$adminuser_type' WHERE adminuser_id=".$val);
+				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
 
 			mysqlQuery("DELETE FROM stork_adminuser_permission WHERE adminuser_id=".$val);
 			foreach ($privileges as $value) {
-				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$val','$value','$adminuser_status')");
+				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$val','$value',1)");
 			}
-
-
 			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
 		}
 				
 	}
-	
 }
 $id=$val;
 if(isset($_GET["id"]))
@@ -86,7 +89,7 @@ else
  									<span class="error_test"> Please fill all required(*) fields </span>
 								</div>
 								<div class="container">
- 									<span class="error_test_admin_check"> Please Select alteast one option </span>
+ 									<span class="error_test_admin_check"> Please Select alteast one Privileges </span>
 								</div>
 								<div class="container">
  									<span class="error_email"> Please Enter Valid email address </span>
@@ -121,40 +124,21 @@ else
 									<input type="text" class="form-control" id="phone" maxlength="10" autocomplete="off" placeholder="Mobile" name="adminuser_mobile" value="<?php echo($row['adminuser_mobile']); ?>">
 								</div>
 								<?php 
-								if($row['adminuser_type']==1) {
+									if($row['adminuser_is_superuser']!=1) {
+										$permission_module = array();
+										$match_permission = "SELECT * FROM `stork_adminuser_permission` WHERE adminuser_id='$id'";
+										$qry_permission = mysqlQuery($match_permission); 
+										while($qry_permission_row = mysql_fetch_array($qry_permission)) {
+											$permission_module[] = $qry_permission_row['module_id'];
+										}
 								?>
-								<!-- <div class="form-group">
-								    <label for="first-name">User Type<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="adminuser_type">
-								        <option>
-											<span>Select Type</span>
-										</option>
-								        <option value="1" <?php if ($row['adminuser_type'] == 1) echo "selected"; ?>>Admin</option>
-								    </select>
-								</div> -->
-								<?php
-								}
-								?>
-
-								<?php 
-								if($row['adminuser_type']!=1) {
-								$permission_module = array();
-								$match_permission = "SELECT * FROM `stork_adminuser_permission` WHERE adminuser_id='$id'";
-								$qry_permission = mysqlQuery($match_permission); 
-								while($qry_permission_row = mysql_fetch_array($qry_permission)) {
-									$permission_module[] = $qry_permission_row['module_id'];
-								}
-
-								?>
-
-
 								<div class="form-group">
 								    <label for="first-name"> Privileges 
 								    	<span class="required">*</span> 
 								    </label>
 									<div class="multiple_dropdown"> 
   										<div class="select_multiple_option">
-    										<a class="error_admin_check" id="admin_check">
+    										<a id="admin_check">
       											<i class="fa fa-caret-down" aria-hidden="true"></i>  
       											<p class="multiSel">
       												<?php 
@@ -196,15 +180,12 @@ else
 								        <option>
 											<span>Select status</span>
 										</option>
-										    <?php 
-											if($row['adminuser_status']==1) {
-											?>
-										    <option value="1" selected>Active</option>
-											<?php }
-											else { ?>
-											<option value="0">InActive</option>
-											<?php }
-											?>
+										<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>
+											<span>Active</span>
+										</option>
+										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>
+											<span>Inactive</span>
+										</option>
 								    </select>
 								</div> 
 

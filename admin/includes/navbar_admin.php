@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-2 col-sm-8 col-xs-8 w-logo">
 					<div class="logo hd-pd ">
-						<a href="users.php">
+						<a href="dashboard.php">
 							<img src="style/img/logo.png" alt="printshop logo">
 						</a>
 					</div>	
@@ -55,12 +55,13 @@
 						<span class="dropdowSCIcon">
 							<ul class="">
 								<li class="dropdown">
+									<a class="username_display" href="dashboard.php"><?php echo $_SESSION['user_name']; ?></a>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Profile/Logout">
 										<i class="fa fa-user"></i>
 									</a>
 									<ul class="dropdown-menu animated fadeInUp">
 										<li>
-											<a href="admin_users.php"><i class="fa fa-user"></i>&nbsp;Profile</a>
+											<a href="edit_admin_users.php?id=<?php echo $_SESSION['user_id']; ?>"><i class="fa fa-user"></i>&nbsp;Profile</a>
 										</li>
 										<li>
 											<a href="logout.php"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
