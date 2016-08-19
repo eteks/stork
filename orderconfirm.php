@@ -43,8 +43,7 @@ include('header.php');
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr><td><strong>Order Status</strong> </td><td> '. $order_status . '</td></tr> </table></div></div></body></html>';			
-			echo "$message";	
+			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr></tr> </table></div></div></body></html>';			
            if (mail($email_subject, $message, $headers))
         {
           $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
@@ -59,7 +58,6 @@ include('header.php');
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">
 			   <div class="pro-name-rate clearfix">
-			   	<?php if($responsemessage) echo $responsemessage; ?>
                  <h3 class="product-name">
 	                Thank You
                  </h3><br><br>
@@ -70,7 +68,7 @@ include('header.php');
                  	if(!isset($_GET['cabin'])){
                  	?>
 	                  <p class="visible-md visible-lg">
-	                   Your Order delivered with on before <?php echo $row['order_delivery_date'].'  '.$row['order_delivery_time']; ?>
+	                   Your order will be delivered with on or before <?php echo $row['order_delivery_date'].'  '.$row['order_delivery_time']; ?>
 	                  </p><br>
 	                   </div>
 	                 <div class="price-box">
@@ -93,7 +91,7 @@ include('header.php');
                 
                  <div class="short-description">
 	                   <p class="visible-md visible-lg">
-	                     Working day:sunday to saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working hours:08:00 am to 08:00 pm
+	                     Working day : Sunday to Saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working hours : 06:00 AM to 11:00 PM
 	                   </p><br>
                   </div>
 		</div>
@@ -118,7 +116,7 @@ include('header.php');
                  </div><br>
                  <div class="short-description">
 	                   <p class="visible-md visible-lg">
-	                     Working day:sunday to saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working hours:08:00 am to 08:00 pm
+	                     Working day : Sunday to Saturday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working hours : 06:00 AM to 11:00 PM
 	                   </p><br>
                   </div>
 		</div>

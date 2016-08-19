@@ -6,13 +6,14 @@ require 'dbconnect.php';
 	
 	error_reporting(0);
 	date_default_timezone_set("Asia/Kolkata");
-	$business_hour_start = date("h:i", strtotime("08:00"));
-	$business_hour_end = date("h:i", strtotime("08:00"));
-	$business_day_start = 'Mon';
+	$business_hour_start = date("H:i", strtotime("06:00"));
+	$business_hour_start_str = strtotime($business_hour_start);
+	$business_hour_end = date("H:i", strtotime("23:00"));
+	$business_hour_end_str = strtotime($business_hour_end);
+	$business_day_start = 'Sun';
 	$business_day_end = 'Sat';
-	$delivery_hours = strtotime("+24 hour");
-	$sunday_delivery_hours = strtotime("+48 hour");
-	$delivery_hours = strtotime("+24 hour");
+	$delivery_hours = strtotime("+8 hour");
+	$delivery_hours_extented = strtotime("+15 hour");
 	$workingKey='1DD4304715928B37B1170BED9EDB13A6';		//Working Key should be provided here.
 	$encResponse=$_POST["encResp"];			//This is the response sent by the CCAvenue Server
 	$rcvdString=decrypt($encResponse,$workingKey);		//Crypto Decryption used as per the specified working key.
@@ -95,29 +96,43 @@ require 'dbconnect.php';
 			$total_item_count = mysqli_num_rows(mysqli_query($connection,$total_items_query));
 			$user_type_split = explode('_', $order_id);
 			$user_type = $user_type_split[0].'_'.$user_type_split[1];
-			$current = date("d-m-Y h:i A D");
-			$current_split = explode(' ', $current);
-			$current_date = date("d-m-Y", strtotime($current_split[0]));
-			$current_hour = date("h:i", strtotime($current_split[1]));
-			$current_meridian = date("A", strtotime($current_split[2]));
-			$current_day = date("D", strtotime($current_split[3]));
-			$current_hour_meridian = date("h:i A", strtotime($current_split[1].' '.$current_split[2]));
-			$delivery = date("Y-m-d h:i A D",$delivery_hours);
-			$delivery_split = explode(' ', $delivery);
-			$delivery_date = date("d-m-Y", strtotime($delivery_split[0]));
-			$delivery_hour = date("h:i", strtotime($delivery_split[1]));
-			$delivery_meridian = date("A", strtotime($delivery_split[2]));
-			$delivery_day = date("D", strtotime($delivery_split[3]));
-			$delivery_hour_meridian = date("h:i A", strtotime($delivery_split[1].' '.$delivery_split[2]));
-			if($delivery_day != 'Sun'){
-				$delivery_date_cal = $delivery;
-			}
-			else{
-				$delivery_date_cal = date("Y-m-d h:i A D",$sunday_delivery_hours);
-			}
-			$delivery_split_cal = explode(' ', $delivery_date_cal);	
-			$final_delivery_date = date("Y-m-d", strtotime($delivery_split_cal[0]));
-			$final_delivery_time = date("h:i A", strtotime($delivery_split_cal[1].' '.$delivery_split_cal[2]));
+			$current = date("d-m-Y H:i A D");
+			$current_split = explode(" ", $current);
+			$currentstr = strtotime($current_split[0].' '.$current_split[1]);
+			$currentday = $current_split[3];
+			$currentdaystr = strtotime($currentday); 
+			$currenttime = date("H:i", strtotime($current_split[1]));
+			$currenttimestr = strtotime($currenttime); 
+			$delivery = date("d-m-Y H:i A D",$delivery_hours);
+			$delivery_split = explode(" ", $delivery);
+			$deliverystr = strtotime($delivery_split[0].' '.$delivery_split[1]);
+			$deliveryday = $delivery_split[3];
+			$deliverydaystr = strtotime($deliveryday);
+			$deliverytime = date("H:i", strtotime($delivery_split[1]));
+			$deliverytimestr = strtotime($deliverytime); 
+			$final_delivery_date = $final_delivery_time ='';
+			if($currentstr<$deliverystr){
+				if($currentdaystr == $deliverydaystr){ 	//check current day(sunday) equal to delivery day (sunday)
+					if($business_hour_start_str < $deliverytimestr && $business_hour_end_str > $deliverytimestr && $business_hour_start_str < $currenttimestr && $business_hour_end_str > $currenttimestr){
+						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_time = date("h:i A",strtotime($delivery_split[1]));
+					}
+					else{
+						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_time = date("h:i A",$delivery_hours_extented);
+					}
+				}
+				else{									//here current day not equal to delivery day 
+					if($business_hour_start_str < $deliverytimestr && $business_hour_end_str > $deliverytimestr && $business_hour_start_str < $currenttimestr && $business_hour_end_str > $currenttimestr){
+						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_time = date("h:i A",strtotime($delivery_split[1]));
+					}
+					else{
+						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_time = date("h:i A",$delivery_hours_extented);
+					}
+				}
+			}	
 			$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_delivery_time,order_customer_email,order_total_amount,order_status) 
 															values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','".$user_email_offer."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);
