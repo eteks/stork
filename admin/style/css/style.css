@@ -1747,4 +1747,6 @@ table.cust_thwidth{
    max-width: 378px;
    width: 100%;
 }
-
+.dropdowSCIcon{
+	float:right;
+}

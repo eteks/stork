@@ -4081,7 +4081,8 @@ aside.account-sidebar.sidebar ul{
 
 /*Footer: Begin =================================================*/
 footer{
-  float:left;
+  position: relative;
+  bottom: 0px;
   width:100%;
 }
 .footer-main{
