@@ -436,7 +436,7 @@ $(document).ready(function () {
 
   // Get all the menus from admin and store it in below array to save in db to assign admin rights for each module via ajax
   var module_array = new Array();
-  $('.module_name').each(function(){
+  $('.module_name:not(:first)').each(function(){
     module_array.push($(this).text());
   });
   $.ajax({
