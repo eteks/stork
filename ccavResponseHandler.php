@@ -3,7 +3,6 @@ include('Crypto.php');
 require 'dbconnect.php';
 ?>
 <?php
-	
 	error_reporting(0);
 	date_default_timezone_set("Asia/Kolkata");
 	$business_hour_start = date("H:i", strtotime("06:00"));

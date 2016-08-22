@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Printing theme - Checkout page</title>
+	<meta name="description" content="Printing template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
+	<meta name="author" content="Netbase">
+	<!--Add css lib-->
+	<link rel="stylesheet" type="text/css" href="css/style-main.css">  
+	<link rel="stylesheet" type="text/css" href="css/custom.css"> 
+	<link rel="stylesheet" type="text/css" href="css/dcalendar.picker.css"> 
+  	<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
+  	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+  	
+  	<!--Add JS lib--> 	
+	<script type="text/javascript" src="js/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/dcalendar.picker.js"></script>
+        
+</head>
+<body>
+      <section id="checkout" class="pr-main">
+			<div class="container">	
+			  <div class="cart-view-top">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<h1>Cabin Booking</h1>
+				</div>
+			  </div>
+              <div class="onepage">
+				 <div  class="col-md-4 col-sm-6 col-xs-12">
+				 <div id="div_billto">
+					   <div class="pane round-box">
+						 <h3 class="title"><span class="icon icon-one">1</span>Book Your Cabin Now</h3>
+						  <div class="pane-inner">
+							 <ul id="table_billto" class="adminform user-details no-border">
+				  				<li class="long">
+					  			  <div class="field-wrapper">
+									<label for="name" class="address_1">Name<em>*</em></label>
+									<br>
+									<input type="text" maxlength="64" class="required" value="" size="30" name="name" id="name"> 
+					   			  </div>
+					            </li>
+					            <li class="long">
+					  			  <div class="field-wrapper">
+     					             <label for="phone_field" class="phone_2">Mobile phone<em>*</em></label>
+						             <br>
+						             <input type="text" maxlength="32" value="" size="30" name="phone" id="phone_field"> 
+					              </div>
+					            </li>
+					            <li class="long">
+									<div class="field-wrapper">
+									<label for="email_field" class="email">E-Mail<em>*</em></label>
+									<br>
+									<input type="text" maxlength="100" class="required" value="" size="30" name="email" id="email_field"> 
+									</div>
+								</li>
+					            <li class="long">
+					  				<div class="field-wrapper">
+										<label for="time-type" class="address_1">Timing Type<em>*</em></label>
+										<br>
+										<select name="time-type" id="time-type">
+											<option value="select" selected="selected">-Select-</option>
+											<option value="fixed">Fixed</option>
+											<option value="flexible">Flexible</option>
+										</select>
+					  				</div>
+					 			</li>
+					 			<li class="long">
+								  <div class="field-wrapper">
+									<label for="system" class="address_1">No. of System<em>*</em></label>
+									<br>
+									<input type="text" maxlength="32" class="required" value="" size="30" name="tot_system" id="system"> 
+								   </div>
+					 			</li>
+					 			<li class="long">
+			                      <div class="field-wrapper">
+									<label for="pickdate" class="phone_1">Required Date</label>
+									<br>
+									<input type="text" maxlength="32" value="" size="40" name="phone_1" id="pickdate"> 
+								  </div>
+					 			</li>
+					 			<li class="long" id="flexi-show" style="display:none;">
+					  				<div class="field-wrapper">
+										<label>Time Range<em>*</em></label>
+										<br>
+										<select>
+											<option>-Select-</option>
+											<option>Between 5:00 AM to 09:00 AM</option>
+											<option>Between 09:00 AM to 01:00 PM</option>
+											<option>Between 01:00 PM to 05:00 PM</option>
+											<option>Between 05:00 PM to 11:00 PM</option>
+										</select>
+					  				</div>
+					 			</li>
+					 			<li class="long">
+			                      <div class="field-wrapper">
+									<label for="tot_hours" class="phone_1">Total Hours<em>*</em></label>
+									<br>
+									<input type="text" maxlength="32" value="" size="30" name="hours" id="tot_hours"> 
+								  </div>
+					 			</li>
+   					            <li class="long">
+								  <div class="field-wrapper">
+									<label for="tot_cost" class="address_1">Total Cost</label>
+									<br>
+									<input type="text" maxlength="64" class="required" value="" size="30" name="address_1" id="tot_cost"> 
+								   </div>
+					 			</li>
+					 			<br>
+					 			<span id="cabin-button">
+									<a href="http://www.google.com" class="button">Book</a>
+									<a href="http://www.google.com" class="button">Clear</a>
+							    </span> 
+				 			   	<div> 
+				 			   		</br>
+				 			   	</div> 
+				 			 </ul>
+							
+						  </div>
+					   </div>
+				  </div>
+				  </div> 
+				     
+			      <div class="col-md-8 col-sm-6 col-xs-12">
+				      <div id="right-pane-top" class="col-md-12 col-sm-12 col-xs-12">
+				      <div id="shipping_method" class="col-md-12 col-sm-12 col-xs-12">
+					  <div class="shipment-pane">
+					   <div class="pane round-box">
+						  <h3 class="title"><span class="icon icon-three">2</span>BOOKED TIME SLOTS</h3>
+							<div class="slot fl">
+			                	<i class="fa fa-clock-o" aria-hidden="true"> </i> 
+			                	<div class="cab-book">
+			                		<span>05:00pm - 06:00pm</span>
+			                	    <span> 2/10</span>
+			                	</div>    
+			                	
+	                	    </div> 
+	                	    <div class="slot fl">
+			                	<i class="fa fa-clock-o" aria-hidden="true"> </i> 
+			                	<div class="cab-book">
+			                		<span>05:00pm - 06:00pm</span>
+			                	    <span> 2/10</span>
+			                	</div>    
+			                	
+	                	    </div> 
+	                	    <div class="slot fl">
+			                	<i class="fa fa-clock-o" aria-hidden="true"> </i> 
+			                	<div class="cab-book">
+			                		<span>05:00pm - 06:00pm</span>
+			                	    <span> 1/10</span>
+			                	</div>    
+			                	
+	                	    </div> 
+	                	    <div class="slot fl">
+			                	<i class="fa fa-clock-o" aria-hidden="true"> </i> 
+			                	<div class="cab-book">
+			                		<span>05:00pm - 06:00pm</span>
+			                	    <span> 1/10</span>
+			                	</div>    
+			                </div>
+			                <div class="slot fl">
+			                	<div class="cab-book">
+			                		<span> ------- </span>
+			                	</div> 
+			                </div>
+			                <div class="slot fl">
+			                	<i class="fa fa-clock-o" aria-hidden="true"> </i> 
+			                	<div class="cab-book">
+			                		<span>05:00pm - 06:00pm</span>
+			                	    <span> 2/10</span>
+			                	</div>    
+			                </div>
+			                <div class="clearfix"> </div> 
+	                	</div>
+					  </div>
+				     </div>
+	    		  </div>
+                </div>
+          </div> <!---onepage--->
+        </div> <!---container---->
+          <h3 class="align"><span class="book-status st_booked">Booked</span><span class="book-status st_selected">Selected</span><span class="book-status st_available">Available</span></h3>
+		<br>
+		<div class="align">
+			<h3>Working Hours - 05:00 to 23:00 hrs from Sunday to Saturday (All Days)</h3>
+		</div>   
+    </section>
+ </body>
+</html>
