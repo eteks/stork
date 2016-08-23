@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
 			
 			//changed on 23/08/16
-			$query_filter = mysql_query("SELECT t1. *, t3.*
+			$query_filter = mysql_query("SELECT t1. *, t3.*,t1.created_date
 					FROM stork_order AS t1
 					INNER JOIN (
 					SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail, MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate
@@ -52,11 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 					GROUP BY order_customer_name, order_customer_email
 					) AS t2 ON t1.order_customer_name = t2.custname
 					AND t1.order_customer_email = t2.custemail
-					AND t1.order_total_amount >=200" .$date_condition.
-					" AND t1.order_total_amount = t2.MaxAmt
-					AND t1.created_date = t2.MaxDate 
-					LEFT JOIN stork_offer_provide_all_users AS t3 ON t1.order_customer_name = t3.offer_provided_username AND t1.order_customer_email = t3.offer_provided_useremail AND (t3.offer_filter_start_date BETWEEN '2016-07-01' AND '2016-08-28' OR t3.offer_filter_end_date BETWEEN '2016-07-01' AND '2016-08-28') where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL");
-
+					AND t1.order_total_amount >='$filter_amount'" .$date_condition.
+					" AND t1.order_total_amount = t2.MaxAmt 
+					LEFT JOIN stork_offer_provide_all_users AS t3 ON t1.order_customer_name = t3.offer_provided_username AND t1.order_customer_email = t3.offer_provided_useremail AND (DATE(t3.offer_filter_start_date) BETWEEN '$filter_startdate' AND '$filter_enddate' OR t3.offer_filter_end_date BETWEEN '$filter_enddate' AND '2016-08-28') where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL group by order_customer_name,order_customer_email");	
+			// echo "SELECT t1. *, t3.*,t1.created_date
+			// 		FROM stork_order AS t1
+			// 		INNER JOIN (
+			// 		SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail, MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate
+			// 		FROM stork_order
+			// 		GROUP BY order_customer_name, order_customer_email
+			// 		) AS t2 ON t1.order_customer_name = t2.custname
+			// 		AND t1.order_customer_email = t2.custemail
+			// 		AND t1.order_total_amount >='$filter_amount'" .$date_condition.
+			// 		" AND t1.order_total_amount = t2.MaxAmt 
+			// 		LEFT JOIN stork_offer_provide_all_users AS t3 ON t1.order_customer_name = t3.offer_provided_username AND t1.order_customer_email = t3.offer_provided_useremail AND (DATE(t3.offer_filter_start_date) BETWEEN '$filter_startdate' AND '$filter_enddate' OR t3.offer_filter_end_date BETWEEN '$filter_enddate' AND '2016-08-28') where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL group by order_customer_name,order_customer_email";		
+					
 			// echo "rows count".mysql_num_rows($query_filter);
 
 			$current_date = strftime('%F');
@@ -261,6 +271,7 @@ else
 							            <th>User Email</th>
 							            <th>Order Id</th>
 							            <th>Order Amount</th>
+								    <th>Ordered Date</th>
 							            <!-- <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th> -->
 							        </tr>
 							    </thead>
@@ -296,6 +307,12 @@ else
 						            <td><span class="nobr"><?php echo $fetch['order_shipping_email'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
+						            <?php  $createddate=strtotime($fetch['created_date']);
+								   
+						            $date = date('d/m/Y', $createddate);
+						            // echo $date; 
+						            ?>		           
+		            				<td><span class="nobr"><?php echo $date; ?></span></td>
 						            <!-- <td><span class="nobr"> -->
 						            <?php 
 						            /*if (mysql_num_rows($sql_assigned_offer) > 0)
