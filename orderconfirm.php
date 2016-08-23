@@ -37,14 +37,14 @@ include('header.php');
 			$order_delivery_time =$row['order_delivery_time'];
 			$order_status =$row['order_status'];  
 		    $email_subject = "ORDER PLACED";
-		    $from = "info@etekchnoservices.com";
-		    // $to = "info@etekchnoservices.com";		
+		    $from = "support@printstork.com";
+		    //$to = "info@etekchnoservices.com";		
 		    $headers = "From: " . $from . "\r\n";
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr></tr> </table></div></div></body></html>';			
-           if (mail($email_subject, $message, $headers))
+           if (mail($order_shipping_email,$email_subject, $message, $headers))
         {
           $responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
         }

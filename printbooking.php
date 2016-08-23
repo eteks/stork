@@ -420,7 +420,7 @@
 								 </div>
 							   </div>	
 							</div><!--bs-->
-		        		<div class="col-md-12 col-sm-12 col-xs-12 left">
+		        		<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 				        	<div class="main_project_section_input_holder">
 				        		<div class="project_upload_section">
 									<p class="label_page_paper_range"> Upload Your Files</p>
@@ -486,7 +486,7 @@
 	   							</div><!--Page no. section-->
 	   						 </div><!--main_project_section_input_holder-->
 	   						</div><!--bs-->
-							<div class="col-md-6 col-sm-6 col-xs-12 left">
+							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
 								 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>

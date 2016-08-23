@@ -25,17 +25,17 @@ if($_SESSION['login_status']==1){
 }
 
 
-if($_SESSION['service']=='multi'){
-	$review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
-									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
-									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
-									        INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
-									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
-									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
-									        INNER JOIN stork_multicolor_copies ON stork_multicolor_copies.multicolor_copies_id = stork_upload_files.upload_files_number_of_copies
-									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
-}
-else{
+// if($_SESSION['service']=='multi'){
+	// $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
+									        // INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
+									        // INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
+									        // INNER JOIN stork_paper_size ON stork_paper_size.paper_size_id=stork_order_details.order_details_paper_size_id
+									        // INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
+									        // INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
+									        // INNER JOIN stork_multicolor_copies ON stork_multicolor_copies.multicolor_copies_id = stork_upload_files.upload_files_number_of_copies
+									        // where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
+// }
+// else{
 $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_print_type ON stork_paper_print_type.paper_print_type_id=stork_order_details.order_details_paper_print_type_id
 									        INNER JOIN stork_paper_side ON stork_paper_side.paper_side_id=stork_order_details.order_details_paper_side_id
@@ -43,7 +43,7 @@ $review_details = mysqli_query($connection,"SELECT * FROM stork_order_details
 									        INNER JOIN stork_paper_type ON stork_paper_type.paper_type_id=stork_order_details.order_details_paper_type_id
 									        INNER JOIN stork_upload_files ON stork_upload_files.upload_files_order_details_id=stork_order_details.order_details_id
 									        where stork_order_details.order_id IS NULL and stork_order_details.order_details_session_id='".$_SESSION['session_id']."' group by stork_order_details.order_details_id");
-}
+//}
 if(mysqli_num_rows($review_details)>0){
 ?>
 
@@ -88,7 +88,11 @@ if(mysqli_num_rows($review_details)>0){
 	  				$review_count = 1;
 	  				$checkout_total_amount = 0;
 	  				while($review_data = mysqli_fetch_array($review_details, MYSQLI_ASSOC)){
-	  					
+	  					if($review_data['order_print_booking_type'] == 'multicolor_printing'){
+	  						$no_of_copies_query = "select * from stork_multicolor_copies where multicolor_copies_id =".$review_data['upload_files_number_of_copies'];
+							$no_of_copy_data = mysqli_query($connection, $no_of_copies_query);
+							$no_of_copy_arry = mysqli_fetch_array($no_of_copy_data, MYSQLI_ASSOC);
+	  					}
 	  				?>
 	   				<!---order detail 1 starts-->			
 	   				<div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
@@ -104,7 +108,7 @@ if(mysqli_num_rows($review_details)>0){
 											<th width="10%" class="th-tax"><span class="priceColor2">Paper Size</span></th>
 											<th width="15%"  class="th-quanlity">Paper Type</th>
 											<!-- <th width="15%"  class="th-quanlity">Color pages no.</th> -->
-											<th width="15%"  class="th-quanlity"><?php if($_SESSION['service']=='multi'){?>No of copies <?php } else { ?>Total no. of pages<?php } ?></th>
+											<th width="15%"  class="th-quanlity"><?php if($review_data['order_print_booking_type'] == 'multicolor_printing'){?>No of copies <?php } else { ?>Total no. of pages<?php } ?></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Quantity</span></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Comments</span></th>
 											<th width="15%" class="th-discount"><span class="priceColor2">Total Cost</span></th>
@@ -159,7 +163,7 @@ if(mysqli_num_rows($review_details)>0){
 			  									<span class="priceColor2">
 			  	 									<div class="PricetaxAmount vm-display vm-price-value">
 			  											<span class="vm-price-desc"></span>
-			  											<span class="pad_60 PricetaxAmount"><?php if($_SESSION['service']=='multi'){ echo $review_data['multicolor_copies']; } else { echo $review_data['order_details_total_no_of_pages']; }?>	</span>
+			  											<span class="pad_60 PricetaxAmount"><?php if($review_data['order_print_booking_type'] == 'multicolor_printing'){ echo $no_of_copy_arry['multicolor_copies']; } else { echo $review_data['order_details_total_no_of_pages']; }?>	</span>
 			  	  									</div>
 			  	 								</span>
 			  								</td>
@@ -580,7 +584,7 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="tid" id="txnid" readonly />
 		   		<input type="hidden" name="merchant_id" value="<?php echo MERCHANTID; ?>"/>
 		   		<input type="hidden" name="order_id" value="<?php echo $_SESSION['session_id']; ?>"/>
-		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php  echo $checkout_total_amount+$delivery_amount; ?>"/>
+		   		<input type="hidden" class="final_payment_amount_checkout" name="amount" value="<?php  //echo $checkout_total_amount+$delivery_amount; ?>1"/>
 		   		<input type="hidden" name="currency" value="INR"/>
 		   		<input type="hidden" name="redirect_url" value="<?php echo CCAVENUEREDIRECTURL; ?>"/>
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>

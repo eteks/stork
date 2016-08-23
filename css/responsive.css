@@ -319,6 +319,9 @@
     #upload_clone_holder #file_name_box{
 		width: 52% !important;
 	} 
+	.num_of_copies {
+   	 margin-top: 10px !important;
+    }
     /* checkout offer zone */
 	#checkfull .offer_submit .btn_prf {
     	margin: 5px 0 !important;
