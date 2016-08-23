@@ -17,8 +17,14 @@ if (isset($_GET['update']))
 		$adminuser_email = $_POST["adminuser_email"];
 		$adminuser_mobile = $_POST["adminuser_mobile"];
 		// $adminuser_type = $_POST["adminuser_type"];
-		$privileges = $_POST['Privileges'];
-		$adminuser_status = $_POST["adminuser_status"];
+
+		$check_superuser = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_id IN('$val')");
+
+
+		if($_SESSION['is_superuser'] == 1 && mysql_fetch_array($check_superuser['is_superuser']!=1)){
+			$privileges = $_POST['Privileges'];
+			$adminuser_status = $_POST["adminuser_status"];
+		}
 
 		$query_check_username = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_username='$adminuser_username' AND adminuser_id NOT IN('$val')");
 		$query_check_email = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_email='$adminuser_email' AND adminuser_id NOT IN('$val')");
@@ -30,16 +36,20 @@ if (isset($_GET['update']))
 		}else if($row_check_email > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Email already exists! </span></div>";
 		}else {
-			mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
+			if($_SESSION['is_superuser'] == 1 && mysql_fetch_array($check_superuser['is_superuser']!=1)){
+				mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
 				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
-
-			mysqlQuery("DELETE FROM stork_adminuser_permission WHERE adminuser_id=".$val);
-			foreach ($privileges as $value) {
-				mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$val','$value',1)");
+				mysqlQuery("DELETE FROM stork_adminuser_permission WHERE adminuser_id=".$val);
+				foreach ($privileges as $value) {
+					mysqlQuery("INSERT INTO stork_adminuser_permission (adminuser_id,module_id,adminuser_permission_status) VALUES ('$val','$value',1)");
+				}
+			}
+			else{
+				mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
+				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile' WHERE adminuser_id=".$val);
 			}
 			$successMessage = "<div class='container error_message_mandatory'><span> Admin updated successfully! </span></div>";	
-		}
-				
+		}				
 	}
 }
 $id=$val;
@@ -141,63 +151,64 @@ else
 											$permission_module[] = $qry_permission_row['module_id'];
 										}
 								?>
-								<div class="form-group">
-								    <label for="first-name"> Privileges 
-								    	<span class="required">*</span> 
-								    </label>
-									<div class="multiple_dropdown"> 
-  										<div class="select_multiple_option">
-    										<a id="admin_check">
-      											<i class="fa fa-caret-down" aria-hidden="true"></i>  
-      											<p class="multiSel">
-      												<?php 
-      												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
-      												while($row_module=mysql_fetch_array($query_module)) {
-														if (in_array($row_module['module_id'],$permission_module))
-															echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>'; 
-													}
-													?>
-      											</p>  
-    										</a>
-    									</div>
-       									<div class="mutliSelect">
-           									<ul>
-           									<?php 
-												
-											$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+								<?php if($_SESSION['is_superuser'] == 1 ){ ?>
+									<div class="form-group">
+									    <label for="first-name"> Privileges 
+									    	<span class="required">*</span> 
+									    </label>
+										<div class="multiple_dropdown"> 
+	  										<div class="select_multiple_option">
+	    										<a id="admin_check">
+	      											<i class="fa fa-caret-down" aria-hidden="true"></i>  
+	      											<p class="multiSel">
+	      												<?php 
+	      												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+	      												while($row_module=mysql_fetch_array($query_module)) {
+															if (in_array($row_module['module_id'],$permission_module))
+																echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>'; 
+														}
+														?>
+	      											</p>  
+	    										</a>
+	    									</div>
+	       									<div class="mutliSelect">
+	           									<ul>
+	           									<?php 
+													
+												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
 
-											while($row_module=mysql_fetch_array($query_module)) {
+												while($row_module=mysql_fetch_array($query_module)) {
 
-												if (in_array($row_module['module_id'],$permission_module)){						
+													if (in_array($row_module['module_id'],$permission_module)){						
 
-													echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" checked /> <span> '.$row_module["module_name"].' </span> </li>';
-						        				}
-						        				else {
-						        					echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
-						        				}
-						        			}
-											?>
-							           		</ul>
-        								</div>
-   									</div>
-   								</div>
+														echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" checked /> <span> '.$row_module["module_name"].' </span> </li>';
+							        				}
+							        				else {
+							        					echo '<li> <input type="checkbox" class="admin_users_checkbox" name="Privileges[]" value="'.$row_module["module_id"].'" data-value="'.$row_module["module_codename"].'" /> <span> '.$row_module["module_name"].' </span> </li>';
+							        				}
+							        			}
+												?>
+								           		</ul>
+	        								</div>
+	   									</div>
+	   								</div>
 
 
-   									<div class="cate-filter-content">	
-								    <label for="first-name">Staff Status<span class="required">*</span></label>
-									<select class="product-type-filter form-control" id="sel_a" name="adminuser_status">
-								        <option>
-											<span>Select status</span>
-										</option>
-										<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>
-											<span>Active</span>
-										</option>
-										<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>
-											<span>Inactive</span>
-										</option>
-								    </select>
-								</div> 
-
+	   								<div class="cate-filter-content">	
+									    <label for="first-name">Staff Status<span class="required">*</span></label>
+										<select class="product-type-filter form-control" id="sel_a" name="adminuser_status">
+									        <option>
+												<span>Select status</span>
+											</option>
+											<option value="1" <?php if ($row['adminuser_status'] == 1) echo "selected"; ?>>
+												<span>Active</span>
+											</option>
+											<option value="0" <?php if ($row['adminuser_status'] == 0) echo "selected"; ?>>
+												<span>Inactive</span>
+											</option>
+									    </select>
+									</div> 
+								<?php } ?>
 
    								<?php 
    								}
