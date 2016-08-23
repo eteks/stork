@@ -34,10 +34,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 			// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
 
 			if($_POST["filter_startdate"] && $_POST["filter_enddate"])
-				$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
+				// $date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
+				$date_condition = " AND DATE(t1.created_date) >= '$filter_startdate' AND DATE(t1.created_date) <= '$filter_enddate'";
 			else
 				$date_condition = '';
-			$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND sopu.offer_provided_order_id IS NULL AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
+
+			//commented on 23/08/16
+			// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND sopu.offer_provided_order_id IS NULL AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
+
+			
+			//changed on 23/08/16
+			$query_filter = mysql_query("SELECT t1. *, t3.*
+					FROM stork_order AS t1
+					INNER JOIN (
+					SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail, MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate
+					FROM stork_order
+					GROUP BY order_customer_name, order_customer_email
+					) AS t2 ON t1.order_customer_name = t2.custname
+					AND t1.order_customer_email = t2.custemail
+					AND t1.order_total_amount >=200" .$date_condition.
+					" AND t1.order_total_amount = t2.MaxAmt
+					AND t1.created_date = t2.MaxDate 
+					LEFT JOIN stork_offer_provide_all_users AS t3 ON t1.order_customer_name = t3.offer_provided_username AND t1.order_customer_email = t3.offer_provided_useremail AND (t3.offer_filter_start_date BETWEEN '2016-07-01' AND '2016-08-28' OR t3.offer_filter_end_date BETWEEN '2016-07-01' AND '2016-08-28') where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL");
+
+			// echo "rows count".mysql_num_rows($query_filter);
 
 			$current_date = strftime('%F');
 			if( strtotime($current_date) > strtotime($offer_period_fetch['offer_validity_end_date'])){
@@ -137,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						 $is_email_sent = 0;
 						 $offer_validity_status = 4;
 					}
-				}    	  
+				}    
 			}
 		}
 		if($offer_validity_status ==1) {
@@ -241,7 +261,7 @@ else
 							            <th>User Email</th>
 							            <th>Order Id</th>
 							            <th>Order Amount</th>
-							            <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th>
+							            <!-- <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th> -->
 							        </tr>
 							    </thead>
 						        <?php              
@@ -252,8 +272,8 @@ else
 									// if($fetch['status'] != 1){
 									$order_customer_name = $fetch['order_customer_name'];
 									$order_shipping_email = $fetch['order_shipping_email'];
-									$sql_assigned_offer = mysql_query("SELECT * FROM 
-									stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_shipping_email'"); 
+									// $sql_assigned_offer = mysql_query("SELECT * FROM 
+									// stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_shipping_email'"); 
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -276,12 +296,14 @@ else
 						            <td><span class="nobr"><?php echo $fetch['order_shipping_email'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
-						            <td><span class="nobr"><?php 
-						            if (mysql_num_rows($sql_assigned_offer) > 0)
+						            <!-- <td><span class="nobr"> -->
+						            <?php 
+						            /*if (mysql_num_rows($sql_assigned_offer) > 0)
 						            	echo "Yes";
 						            else
-						            	echo "No";
-						            ?></span></td>
+						            	echo "No"; */
+						            ?>	
+						            <!-- </span></td> -->
 							   	</tr>
 							   <?php $i++;
 							   // }
