@@ -17,7 +17,7 @@ include "includes/header.php";
 			$password = $_POST["password"];
 			$first_name = $_POST["first_name"];
 			$last_name = $_POST["last_name"];
-			$user_type = $_POST["user_type"];
+			// $user_type = $_POST["user_type"];
 			$user_email = $_POST["user_email"];
 			$user_dob = explode('/',$_POST["user_dob"]);
 			$user_dob = $user_dob[2].'-'.$user_dob[1].'-'.$user_dob[0];
@@ -37,7 +37,7 @@ include "includes/header.php";
 				$successMessage = "<div class='container error_message_mandatory'><span> User Already exists! </span></div>";	
 			} else {
 				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
-					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
+					,user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
 					user_area_id=$user_area_id,
 					user_city_id=$user_city_id,user_state_id=$user_state_id,user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> User Updated Successfully! </span></div>";	
@@ -123,16 +123,20 @@ else
 								    <label for="first-name">Lastname<span class="required"></span></label>
 									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 								    <label for="first-name">User Type<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="user_type">
 								        <option value="">
 											Select User Type
-										</option>
-								        <option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
-										<option value="2" <?php if ($row['user_type'] == 2) echo "selected"; ?>>Profession</option>	
-								    </select>
-								</div>
+										</option> -->
+								        <!-- <option value="1" -->
+								        <?php //if ($row['user_type'] == 1) echo "selected"; ?>
+								        <!-- >Student</option> -->
+										<!-- <option value="2" -->
+										<?php //if ($row['user_type'] == 2) echo "selected"; ?>
+										<!-- >Profession</option> -->
+								   <!-- </select> 
+								</div>-->
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required"></span></label>
 									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email id" name="user_email" value="<?php echo($row['user_email']); ?>">
