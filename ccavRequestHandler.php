@@ -51,10 +51,10 @@ echo "<input type=hidden name=access_code value=$access_code>";
 </center>
 <script src="js/jquery/jquery-1.11.3.min.js"></script>
 <script language='javascript'>
-	// document.redirect.submit();
-	// $(document).ready(function(){
-	// 	document.redirect.submit();
-	// });
+	document.redirect.submit();
+	$(document).ready(function(){
+		document.redirect.submit();
+	});
 </script>
 </body>
 </html>
