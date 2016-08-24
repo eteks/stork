@@ -115,16 +115,29 @@ else
 				        	<td>-</td>
 				        <?php } ?>
 				        <td><?php echo $fetch['order_details_ohpsheet_count'] ?></td>
-			            <td><?php echo $fetch['order_details_total_no_of_pages'] ?></td>
+			            <td><?php 
+			            if($fetch['order_details_total_no_of_pages'] == 0 || $fetch['order_details_total_no_of_pages'] == "")
+			            	echo "-";
+			            else
+			            	echo $fetch['order_details_total_no_of_pages']
+			           	?></td>
 			            <!-- <td><?php echo $fetch['order_details_color_print_pages'] ?></td> -->
 			            <td><?php echo $fetch['order_details_comments'] ?></td>
 			            <td><?php echo $fetch['order_details_total_amount'] ?></td>
 			            <td id="pad_uploadfile">
 		            	<?php 
 		            		if (mysql_num_rows($qryupload) > 0) {
-			            		echo "<table><tr><th>File</th><th>File Type</th><th>Color Print Pages</th></tr>";
+			            		echo "<table><tr><th>File</th><th>File Type</th><th>Color Print Pages</th><th>No. of Copies (only if multicolor) </th></tr>";
 				            	while ($rowupload = mysql_fetch_array($qryupload)) {
-				            	echo "<tr><td><a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a></td><td>".$rowupload['upload_files_type']."</td><td>".$rowupload['upload_files_color_print_pages']."</td></tr>";
+				            	echo "<tr><td><a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a></td><td>".$rowupload['upload_files_type']."</td><td>";
+				            	if($rowupload['upload_files_color_print_pages'] == "")
+				            		echo "-</td><td>";
+				            	else
+				            		echo $rowupload['upload_files_color_print_pages']."</td><td>";
+				            	if($rowupload['upload_files_number_of_copies'] ==0 || $rowupload['upload_files_number_of_copies'] == "")
+				            		echo "-</td></tr>";
+				            	else 
+				            		echo $rowupload['upload_files_number_of_copies']."</td></tr>";
 								// echo "<a href='../".$rowupload['upload_files']."' download>".$rowupload['upload_files']."</a><br>";
 								}
 								echo "</table>";
