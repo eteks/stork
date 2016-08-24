@@ -18,10 +18,8 @@ if (isset($_GET['update']))
 		$adminuser_mobile = $_POST["adminuser_mobile"];
 		// $adminuser_type = $_POST["adminuser_type"];
 
-		$check_superuser = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_id IN('$val')");
-
-
-		if($_SESSION['is_superuser'] == 1 && mysql_fetch_array($check_superuser['is_superuser']!=1)){
+		$check_superuser = mysql_fetch_array(mysqlQuery("SELECT * FROM `stork_admin_users` WHERE adminuser_id=".$val));
+		if($_SESSION['is_superuser'] == 1 && $check_superuser['adminuser_is_superuser']!=1){
 			$privileges = $_POST['Privileges'];
 			$adminuser_status = $_POST["adminuser_status"];
 		}
@@ -36,7 +34,7 @@ if (isset($_GET['update']))
 		}else if($row_check_email > 0){
 			$successMessage = "<div class='container error_message_mandatory'><span> Email already exists! </span></div>";
 		}else {
-			if($_SESSION['is_superuser'] == 1 && mysql_fetch_array($check_superuser['is_superuser']!=1)){
+			if($_SESSION['is_superuser'] == 1 && $check_superuser['adminuser_is_superuser']!=1){
 				mysqlQuery("UPDATE stork_admin_users SET adminuser_username='$adminuser_username',adminuser_password='$adminuser_password',
 				adminuser_email='$adminuser_email',adminuser_mobile='$adminuser_mobile',adminuser_status='$adminuser_status' WHERE adminuser_id=".$val);
 				mysqlQuery("DELETE FROM stork_adminuser_permission WHERE adminuser_id=".$val);
@@ -163,9 +161,17 @@ else
 	      											<p class="multiSel">
 	      												<?php 
 	      												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
+	      												$i=0;
+	      												$count = mysql_num_rows($query_module);
 	      												while($row_module=mysql_fetch_array($query_module)) {
-															if (in_array($row_module['module_id'],$permission_module))
-																echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>'; 
+															if (in_array($row_module['module_id'],$permission_module)){
+																if( $i == $count-1)
+																	echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>';	
+																else
+																	echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' ,</span>'; 
+																	
+															}
+														$i++;
 														}
 														?>
 	      											</p>  
