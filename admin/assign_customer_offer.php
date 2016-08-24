@@ -283,7 +283,7 @@ else
 		<input type="hidden" name="filter_startdate_hidden" value="<?php if($filter_startdate) echo $filter_startdate; else echo ""; ?>">
 		<input type="hidden" name="filter_enddate_hidden" value="<?php if($filter_enddate) echo $filter_enddate; else echo ""; ?>">
 			<div class="form-edit-info">
-					<table class="data-table city_table stork_admin_table" id="my-orders-table">
+					<table class="data-table" id="my-orders-table">
 								<thead>
 							        <tr class="">
 							        	<th class="table_action sorting" id="offer_th1"></th>
