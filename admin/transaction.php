@@ -53,7 +53,7 @@ else
 				<table class="data-table transaction_table width_order_details_table stork_admin_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
-			        	<th>Order Id</th>
+			        	<th>Order No.</th>
 			        	<th>User Id</th>
 						<th>Tracking Id</th>
 						<th>Bank Reference Number</th>

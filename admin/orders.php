@@ -64,7 +64,7 @@ else
 				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table">
 				  <thead>
 			        <tr class="">
-			        	<th>Order Id</th>
+			        	<th>Order No.</th>
 						<th>User Id</th>
 						<th>UserType</th>
 						<th>User</th>

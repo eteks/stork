@@ -53,7 +53,7 @@ else
 					<table class="data-table track_table stork_admin_table" id="my-orders-table">
 						<thead>
 					        <tr class="">		            
-					            <th>Order Id</th>
+					            <th>Order No.</th>
 					            <th>UserId</th>
 					            <th>Date Of Ordered</th>
 					            <th>Order Delivery status</th>

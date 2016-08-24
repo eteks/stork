@@ -210,22 +210,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9 dashboard_header">
+			<div class="col-sm-3 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<div class="col-md-3 search-w SC-w hd-pd ">
-				<span class="search-icon dropdowSCIcon" title="Search">
-					<i class="fa fa-search"></i>
-				</span>
-				<div class="search-safari" style="display:none;">
-					<!-- <div class="search-form dropdowSCContent">
-						<form method="POST" action="#">
-							<input type="text" name="search" placeholder="Search" class="search"/>
-							<input type="submit" value="Search">
-							<i class="fa fa-search"></i>
-						</form>
-					</div> -->
-				</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Offers </span>
+					</li>
+					<li>
+						<span>Assign Customer Offer</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -55,7 +55,7 @@ else
 				<table class="data-table user_table width_order_details_table stork_admin_table" id="my-orders-table" style="width:3300px;">
 				  <thead>
 			        <tr class="">
-			        	<th>Order Id</th>
+			        	<th>Order No.</th>
 			        	<th>Order Print Booking Type</th>
 						<th>Paper Print Type</th>
 						<th>Paper Size</th>
