@@ -170,7 +170,7 @@
         <h3 class="align"><span class="book-status st_booked">Booked</span><span class="book-status st_selected">Selected</span><span class="book-status st_available">Available</span></h3>
 		 <br>
 		<div class="align">
-			<h3>Working Hours - 05:00 AM to 11:00 PM from Sunday to Saturday (All Days)</h3>
+			<h3>Working Hours - 06:00 AM to 11:00 PM from Sunday to Saturday (All Days)</h3>
 		</div>   
     </section>
 

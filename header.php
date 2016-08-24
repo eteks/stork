@@ -1,7 +1,7 @@
 <?php
-if($_SERVER['REMOTE_ADDR']!= '103.213.192.5'){
-	header('location:underconstruction.html');
-}
+// if($_SERVER['REMOTE_ADDR']!= '103.213.192.5'){
+	// header('location:underconstruction.html');
+// }
 include('dbconnect.php');
 include('function.php');
 session_start();

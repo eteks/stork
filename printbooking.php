@@ -420,7 +420,7 @@
 								 </div>
 							   </div>	
 							</div><!--bs-->
-		        		<div class="col-md-12 col-sm-12 col-xs-12 left">
+		        		<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 				        	<div class="main_project_section_input_holder">
 				        		<div class="project_upload_section">
 									<p class="label_page_paper_range"> Upload Your Files</p>
@@ -486,7 +486,7 @@
 	   							</div><!--Page no. section-->
 	   						 </div><!--main_project_section_input_holder-->
 	   						</div><!--bs-->
-							<div class="col-md-6 col-sm-6 col-xs-12 left">
+							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
 								 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
@@ -624,7 +624,7 @@
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
-									<div>
+									<div class="sub_field">
 										<select name="num_of_copies" class="num_of_copies" id="num_of_copies">
 					        				<option value="select_copies" >Select Number of copies</option>
 			        						<?php 

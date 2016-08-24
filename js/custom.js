@@ -1129,7 +1129,7 @@ $('#captcha').on('blur',function() {
 	// jQuery('#print_booking_form').submit(function(){
 		
 
-
+		
 
 		var input = jQuery('#'+"total_pages");
 		if ((input.val() == "")) 
@@ -1182,6 +1182,13 @@ $('#captcha').on('blur',function() {
 				}
 			});
 		}
+		if($('#page_radio_yes').is(':checked')){
+			if($('#upload_cover_File').val()==''){
+				$('#cover_uploadTrigger').addClass('error_print_booking_field');
+			}else{
+				$('#cover_uploadTrigger').removeClass('error_print_booking_field');
+			}
+		}
 		if($('#printing_type').val() !="multicolor_printing"){
 			if (document.getElementById('print_type').selectedIndex < 1){
 				$('#print_type').addClass('error_print_booking_field');
@@ -1227,6 +1234,7 @@ $('#captcha').on('blur',function() {
 			else {
 				$('.display_page_type').removeClass('error_print_booking_field');
 			} // Page type validation
+			
 		}
 		
 		
@@ -1243,7 +1251,7 @@ $('#captcha').on('blur',function() {
 		// File name validation - normal file, content file
 
 		
-		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery(".paper_range").hasClass("error_print_booking_code") || jQuery("select").hasClass("error_print_booking_field") || jQuery('.uploadbutton').hasClass('error_print_booking_field')) {
+		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery(".paper_range").hasClass("error_print_booking_code") || jQuery("select").hasClass("error_print_booking_field") || jQuery('.uploadbutton').hasClass('error_print_booking_field')||jQuery('#cover_uploadTrigger').hasClass('error_print_booking_field')) {
 			// $('.error_print_booking').css('display','block');
 			// $('html, body').animate({scrollTop:$('#print_booking_form').position().top}, 'slow');
 			// $('#print_booking_form').animate({scrollTop:0}, 'slow');

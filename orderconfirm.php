@@ -72,7 +72,7 @@ include('header.php');
 	                  </p><br>
 	                   </div>
 	                 <div class="price-box">
-		                   <span class="normal-price">Your Order number is <?php echo $row['order_id']; ?></span>
+		                   <span class="normal-price">Your Order number(ID) is <?php echo $row['order_id']; ?></span>
 	                 </div><br>
 	                 <?php
 					}
@@ -83,7 +83,7 @@ include('header.php');
 	                  </p><br>
 	                   </div>
 	                 <div class="price-box">
-		                   <span class="normal-price">Your Order number is <?php echo 'CAB'.$row['order_id']; ?></span>
+		                   <span class="normal-price">Your Order number(ID) is <?php echo 'CAB'.$row['order_id']; ?></span>
 	                 </div><br>
 	                 <?php
 					}
@@ -126,5 +126,7 @@ include('header.php');
 		<?php }?>
 		
 	</main><!--Main index : End-->
-<?php include('footer.php') ?>
+<?php include('footer.php');
+unset($_SESSION['session_id']);
+?>
 	

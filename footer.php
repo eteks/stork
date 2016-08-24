@@ -218,6 +218,9 @@ if(isset($_POST['feedback_name'])) {
 <?php
 		}
   	}
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
 ?>
 </body>
 </html>

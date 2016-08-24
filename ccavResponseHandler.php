@@ -117,7 +117,7 @@ require 'dbconnect.php';
 						$final_delivery_time = date("h:i A",strtotime($delivery_split[1]));
 					}
 					else{
-						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_date = date("Y-m-d",strtotime('+1 day'));
 						$final_delivery_time = date("h:i A",$delivery_hours_extented);
 					}
 				}
@@ -127,11 +127,13 @@ require 'dbconnect.php';
 						$final_delivery_time = date("h:i A",strtotime($delivery_split[1]));
 					}
 					else{
-						$final_delivery_date = date("Y-m-d",strtotime($delivery_split[0]));
+						$final_delivery_date = date("Y-m-d",strtotime('+1 day'));
 						$final_delivery_time = date("h:i A",$delivery_hours_extented);
 					}
 				}
 			}	
+			echo $final_delivery_date."<br>";
+			echo $final_delivery_time."<br>";
 			$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_delivery_time,order_customer_email,order_total_amount,order_status) 
 															values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','".$user_email_offer."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);

@@ -316,6 +316,9 @@
 		width: 100%;
     }
     /* Multicolor */
+    .sub_field{
+   		padding-top: 10px;
+    }
     #upload_clone_holder #file_name_box{
 		width: 52% !important;
 	} 
