@@ -144,7 +144,8 @@ else
 									if($row['adminuser_is_superuser']!=1) {
 										$permission_module = array();
 										$match_permission = "SELECT * FROM `stork_adminuser_permission` WHERE adminuser_id='$id'";
-										$qry_permission = mysqlQuery($match_permission); 
+										$qry_permission = mysqlQuery($match_permission);
+										$count_permission = mysql_num_rows($qry_permission);
 										while($qry_permission_row = mysql_fetch_array($qry_permission)) {
 											$permission_module[] = $qry_permission_row['module_id'];
 										}
@@ -161,17 +162,18 @@ else
 	      											<p class="multiSel">
 	      												<?php 
 	      												$query_module=mysql_query("SELECT * FROM stork_module WHERE module_status='1'");
-	      												$i=0;
 	      												$count = mysql_num_rows($query_module);
+	      												$module_initial_count=0;
 	      												while($row_module=mysql_fetch_array($query_module)) {
 															if (in_array($row_module['module_id'],$permission_module)){
-																if( $i == $count-1)
-																	echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>';	
+																if( $module_initial_count == 0 || $module_initial_count == $count_permission) {
+																	echo '<span class="select_content" title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' </span>';	
+																}
 																else
-																	echo '<span title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].' ,</span>'; 
+																	echo '<span class="module_comma"> , </span> <span class="select_content" title=" '.$row_module["module_name"].' "> '.$row_module["module_name"].'</span>'; 
 																	
+															$module_initial_count++;
 															}
-														$i++;
 														}
 														?>
 	      											</p>  
