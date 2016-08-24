@@ -20,45 +20,96 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 		$offer_period = mysql_query("SELECT * FROM `stork_offer_details` where offer_type='customer_offer'");
 		$offer_period_fetch =mysql_fetch_array($offer_period);
 		if(mysql_num_rows($offer_period)>0){
-			$filter_amount = $_POST["filter_amount"];
-			if($_POST["filter_startdate"]){
-				$filter_startdate = explode('/',$_POST["filter_startdate"]);
-				$filter_startdate = $filter_startdate[2].'-'.$filter_startdate[1].'-'.$filter_startdate[0];
-			}
-			if($_POST["filter_enddate"]){	
-				$filter_enddate = explode('/',$_POST["filter_enddate"]);
-				$filter_enddate = $filter_enddate[2].'-'.$filter_enddate[1].'-'.$filter_enddate[0];
-			}
-			// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
-			// 	ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
-			// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
+			if($offer_period_fetch['offer_status'] == 1){
+				$filter_amount = $_POST["filter_amount"];
+				if($_POST["filter_startdate"]){
+					$filter_startdate = explode('/',$_POST["filter_startdate"]);
+					$filter_startdate = $filter_startdate[2].'-'.$filter_startdate[1].'-'.$filter_startdate[0];
+				}
+				if($_POST["filter_enddate"]){	
+					$filter_enddate = explode('/',$_POST["filter_enddate"]);
+					$filter_enddate = $filter_enddate[2].'-'.$filter_enddate[1].'-'.$filter_enddate[0];
+				}
+				// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu
+				// 	ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` group by order_customer_name, 
+				// 	order_customer_email) AND so.order_total_amount >= '$filter_amount' AND so.created_date >= '$filter_startdate' AND so.created_date <= '$filter_enddate' AND sopu.offer_provided_order_id IS NULL ORDER BY so.order_total_amount DESC");
 
-			if($_POST["filter_startdate"] && $_POST["filter_enddate"])
-				$date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
-			else
-				$date_condition = '';
-			$query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND sopu.offer_provided_order_id IS NULL AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
+				if($_POST["filter_startdate"] && $_POST["filter_enddate"])
+					// $date_condition = " AND DATE(so.created_date) >= '$filter_startdate' AND DATE(so.created_date) <= '$filter_enddate'";
+					$date_condition = " AND DATE(t1.created_date) >= '$filter_startdate' AND DATE(t1.created_date) <= '$filter_enddate'";
+				else
+					$date_condition = '';
 
-			$current_date = strftime('%F');
-			if( strtotime($current_date) > strtotime($offer_period_fetch['offer_validity_end_date'])){
-				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Offer Date has been Expired!!! </span></div>";
-			}
-			else if( strtotime($current_date) == strtotime($offer_period_fetch['offer_validity_end_date'])){
-				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Today one day only remaining to expire offer!!! </span></div>";
-			}
-			else{	
-				$days_between = ceil(abs(strtotime($offer_period_fetch['offer_validity_end_date']) - strtotime($current_date)) / 86400);
+				//commented on 23/08/16
+				// $query_filter = mysql_query("SELECT * FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where so.order_total_amount IN (SELECT MAX(order_total_amount) FROM `stork_order` as so LEFT JOIN stork_offer_provide_all_users as sopu ON so.order_id = sopu.offer_provided_order_id where sopu.offer_provided_order_id IS NULL group by order_customer_name, order_customer_email) AND sopu.offer_provided_order_id IS NULL AND so.order_total_amount >= '$filter_amount'".$date_condition." order by so.order_total_amount DESC,so.order_id DESC");
 
-				if(mysql_num_rows($offer_period) == 1 && mysql_num_rows($query_filter) > 0){
-					if($current_date >= $offer_period_fetch['offer_validity_start_date']){
-						if($days_between == 1)
-							$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Day only remaining for offer !!! </span></div>";
-						else
-							$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Days only remaining for offer !!! </span></div>";
+				
+				//changed on 23/08/16
+				// $query_filter = mysql_query("SELECT t1. *, t3.*,t1.created_date
+				// 		FROM stork_order AS t1
+				// 		INNER JOIN (
+				// 		SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail, MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate
+				// 		FROM stork_order
+				// 		GROUP BY order_customer_name, order_customer_email
+				// 		) AS t2 ON t1.order_customer_name = t2.custname
+				// 		AND t1.order_customer_email = t2.custemail
+				// 		AND t1.order_total_amount >='$filter_amount'" .$date_condition.
+				// 		" AND t1.order_total_amount = t2.MaxAmt 
+				// 		LEFT JOIN stork_offer_provide_all_users AS t3 ON t1.order_customer_name = t3.offer_provided_username AND t1.order_customer_email = t3.offer_provided_useremail AND (DATE(t3.offer_filter_start_date) BETWEEN '$filter_startdate' AND '$filter_enddate' OR t3.offer_filter_end_date BETWEEN '$filter_enddate' AND '2016-08-28') where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL group by order_customer_name,order_customer_email");	
+				
+				$query_filter = mysql_query("SELECT t1. *, t3.*,t1.created_date FROM stork_order AS t1 
+					INNER JOIN ( SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail,
+					MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate FROM stork_order 
+					GROUP BY order_customer_name, order_customer_email ) AS t2 ON t1.order_customer_name = t2.custname 
+					AND t1.order_customer_email = t2.custemail AND t1.order_total_amount >='$filter_amount'" .$date_condition. 
+					" AND t1.order_total_amount = t2.MaxAmt LEFT JOIN stork_offer_provide_all_users AS t3 
+					ON (t1.order_customer_name = t3.offer_provided_username AND 
+					t1.order_shipping_email = t3.offer_provided_useremail AND 
+					t1.order_id = t3.offer_provided_order_id) OR (DATE(t3.offer_filter_start_date) BETWEEN '$filter_startdate' AND '$filter_enddate'
+					OR t3.offer_filter_end_date BETWEEN '$filter_startdate' AND '$filter_enddate') 
+					where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL 
+					AND t3.offer_provided_order_id IS NULL group by order_customer_name,order_customer_email 
+					order by order_total_amount DESC,order_id DESC");
+				
+				// echo "SELECT t1. *, t3.*,t1.created_date FROM stork_order AS t1 
+				// 	INNER JOIN ( SELECT order_id,order_customer_name AS custname, order_customer_email AS custemail,
+				// 	MAX(order_total_amount) AS MaxAmt, MAX(created_date) AS MaxDate FROM stork_order 
+				// 	GROUP BY order_customer_name, order_customer_email ) AS t2 ON t1.order_customer_name = t2.custname 
+				// 	AND t1.order_customer_email = t2.custemail AND t1.order_total_amount >='$filter_amount'" .$date_condition. 
+				// 	" AND t1.order_total_amount = t2.MaxAmt LEFT JOIN stork_offer_provide_all_users AS t3 
+				// 	ON (t1.order_customer_name = t3.offer_provided_username AND 
+				// 	t1.order_shipping_email = t3.offer_provided_useremail AND 
+				// 	t1.order_id = t3.offer_provided_order_id) OR (DATE(t3.offer_filter_start_date) BETWEEN '$filter_startdate' AND '$filter_enddate'
+				// 	OR t3.offer_filter_end_date BETWEEN '$filter_startdate' AND '$filter_enddate') 
+				// 	where t3.offer_provided_username IS NULL AND t3.offer_provided_useremail IS NULL 
+				// 	AND t3.offer_provided_order_id IS NULL group by order_customer_name,order_customer_email 
+				// 	order by order_total_amount DESC,order_id DESC";
+							
+				// echo "rows count".mysql_num_rows($query_filter);
+
+				$current_date = strftime('%F');
+				if( strtotime($current_date) > strtotime($offer_period_fetch['offer_validity_end_date'])){
+					$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Offer Date has been Expired!!! </span></div>";
+				}
+				else if( strtotime($current_date) == strtotime($offer_period_fetch['offer_validity_end_date'])){
+					$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Today one day only remaining to expire offer!!! </span></div>";
+				}
+				else{	
+					$days_between = ceil(abs(strtotime($offer_period_fetch['offer_validity_end_date']) - strtotime($current_date)) / 86400);
+
+					if(mysql_num_rows($offer_period) == 1 && mysql_num_rows($query_filter) > 0){
+						if($current_date >= $offer_period_fetch['offer_validity_start_date']){
+							if($days_between == 1)
+								$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Day only remaining for offer !!! </span></div>";
+							else
+								$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Coupon Period Already Started. ".$days_between." Days only remaining for offer !!! </span></div>";
+						}
 					}
 				}
 			}
-			
+			else{
+				$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Customer Offer Status is in Inactive!!! </span></div>";
+			}
 		}	
 		else{
 			$successMessage = "<div class='container error_message_mandatory_offer error_message_offer'><span> Not yet created Customer Offer to Assign!!! </span></div>";
@@ -137,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 						 $is_email_sent = 0;
 						 $offer_validity_status = 4;
 					}
-				}    	  
+				}    
 			}
 		}
 		if($offer_validity_status ==1) {
@@ -159,22 +210,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 <section class="header-page">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9 dashboard_header">
+			<div class="col-sm-3 hidden-xs dashboard_header">
 				<h1 class="mh-title"> My Dashboard </h1>
 			</div>
-			<div class="col-md-3 search-w SC-w hd-pd ">
-				<span class="search-icon dropdowSCIcon" title="Search">
-					<i class="fa fa-search"></i>
-				</span>
-				<div class="search-safari" style="display:none;">
-					<!-- <div class="search-form dropdowSCContent">
-						<form method="POST" action="#">
-							<input type="text" name="search" placeholder="Search" class="search"/>
-							<input type="submit" value="Search">
-							<i class="fa fa-search"></i>
-						</form>
-					</div> -->
-				</div>
+			<div class="breadcrumb-w col-sm-9">
+				<span class="">You are here:</span>
+				<ul class="breadcrumb">
+					<li>
+						<span> Offers </span>
+					</li>
+					<li>
+						<span>Assign Customer Offer</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -238,10 +286,11 @@ else
 							            <th>User Id</th>	
 							            <th>Usertype</th>					            
 							            <th>Username</th>
-							            <th>User Email</th>
+							            <th>Order Shipped Email</th>
 							            <th>Order Id</th>
 							            <th>Order Amount</th>
-							            <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th>
+								    <th>Ordered Date</th>
+							            <!-- <th>Offer Assigned Status<br>(Already offer assigned to other Order)</th> -->
 							        </tr>
 							    </thead>
 						        <?php              
@@ -252,8 +301,8 @@ else
 									// if($fetch['status'] != 1){
 									$order_customer_name = $fetch['order_customer_name'];
 									$order_shipping_email = $fetch['order_shipping_email'];
-									$sql_assigned_offer = mysql_query("SELECT * FROM 
-									stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_shipping_email'"); 
+									// $sql_assigned_offer = mysql_query("SELECT * FROM 
+									// stork_offer_provide_all_users where offer_provided_username='$order_customer_name' AND offer_provided_useremail='$order_shipping_email'"); 
 								?>
 							    <tr class="">
 							    	<input type="hidden" class="checkbox_status" name="checkbox_status[]" value="0">	
@@ -276,12 +325,15 @@ else
 						            <td><span class="nobr"><?php echo $fetch['order_shipping_email'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_id'] ?></span></td>
 						            <td><span class="nobr"><?php echo $fetch['order_total_amount'] ?></span></td>
-						            <td><span class="nobr"><?php 
-						            if (mysql_num_rows($sql_assigned_offer) > 0)
+							    <td><span class="nobr"><?php echo $fetch['created_date'] ?></span></td>
+						            <!-- <td><span class="nobr"> -->
+						            <?php 
+						            /*if (mysql_num_rows($sql_assigned_offer) > 0)
 						            	echo "Yes";
 						            else
-						            	echo "No";
-						            ?></span></td>
+						            	echo "No"; */
+						            ?>	
+						            <!-- </span></td> -->
 							   	</tr>
 							   <?php $i++;
 							   // }
@@ -292,7 +344,7 @@ else
 		</div>	
 	</div>
 	</form>
-	<?php } if($i==0 && isset($_POST['offer_generate']) && mysql_num_rows($offer_period)>0){
+	<?php } if($i==0 && isset($_POST['offer_generate']) && mysql_num_rows($offer_period)>0 && $offer_period_fetch['offer_status'] == 1){
 		echo "<div class='container error_message_mandatory error_message_offer'><span> No order found for the above filter </span></div>";
 	}  ?>
 	<div class="clearfix"></div>
