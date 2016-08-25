@@ -117,7 +117,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$extension = end($extesion_find);
 					if(in_array($extension, $ALLOWEDFILE)){
 				        if(move_uploaded_file($tmp_name_array[$i], $upload_path.$additional_path.$name_array[$i])){
-				        	$no_of_copies = (isset($_POST['num_of_copies'][$i])?$_POST['num_of_copies'][$i]:'');
+				        	if($_POST['printing_type'] == 'multicolor_printing'){
+				        		$multi_color_query = mysqli_query($connection, 'select * from stork_multicolor_copies where multicolor_copies_id="'.$_POST['num_of_copies'][$i].'"') ;
+								$multi_color_array = mysqli_fetch_array($multi_color_query, MYSQL_ASSOC);
+								$no_of_copies =  $multi_color_array['multicolor_copies'];
+				        	}else{
+				        		$no_of_copies = (isset($_POST['num_of_copies'][$i])?$_POST['num_of_copies'][$i]:'');
+				        	}
 		        			if($print_type_name == 'Color with Black & White'){
 								$insert_data_upload_files = $order_detail_id.','.$is_binding.',"content","'.$upload_path.$additional_path.$name_array[$i].'","'.$_POST['filepageno'][$i].'","'.$no_of_copies.'",1';			
 							}

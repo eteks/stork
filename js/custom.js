@@ -1129,7 +1129,7 @@ $('#captcha').on('blur',function() {
 	// jQuery('#print_booking_form').submit(function(){
 		
 
-
+		
 
 		var input = jQuery('#'+"total_pages");
 		if ((input.val() == "")) 
@@ -1182,6 +1182,13 @@ $('#captcha').on('blur',function() {
 				}
 			});
 		}
+		if($('#page_radio_yes').is(':checked')){
+			if($('#upload_cover_File').val()==''){
+				$('#cover_uploadTrigger').addClass('error_print_booking_field');
+			}else{
+				$('#cover_uploadTrigger').removeClass('error_print_booking_field');
+			}
+		}
 		if($('#printing_type').val() !="multicolor_printing"){
 			if (document.getElementById('print_type').selectedIndex < 1){
 				$('#print_type').addClass('error_print_booking_field');
@@ -1227,6 +1234,7 @@ $('#captcha').on('blur',function() {
 			else {
 				$('.display_page_type').removeClass('error_print_booking_field');
 			} // Page type validation
+			
 		}
 		
 		
@@ -1243,7 +1251,7 @@ $('#captcha').on('blur',function() {
 		// File name validation - normal file, content file
 
 		
-		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery(".paper_range").hasClass("error_print_booking_code") || jQuery("select").hasClass("error_print_booking_field") || jQuery('.uploadbutton').hasClass('error_print_booking_field')) {
+		if (jQuery(":input").hasClass("error_print_booking_field") || jQuery(".paper_range").hasClass("error_print_booking_code") || jQuery("select").hasClass("error_print_booking_field") || jQuery('.uploadbutton').hasClass('error_print_booking_field')||jQuery('#cover_uploadTrigger').hasClass('error_print_booking_field')) {
 			// $('.error_print_booking').css('display','block');
 			// $('html, body').animate({scrollTop:$('#print_booking_form').position().top}, 'slow');
 			// $('#print_booking_form').animate({scrollTop:0}, 'slow');
@@ -2725,194 +2733,7 @@ $(document).on('keyup','.user_defined_box',function() {
 			Cookies.set('area_id',option);
 		});
 
-  // PlainPrinting==>Logical display of images for select options in paper-type /==Starts==/ 
-  
-	  $("#paper_type").bind("change", function() {
-		var image_element = $('#paper_type option:selected').text().toLowerCase();
-		if(image_element == "executive bond paper (100gsm)")
- 		 {
- 		 	var test="test1";
- 		 }
-	 	 else if(image_element=="executive bond paper (75gsm) ")
-	 	 {
-	 		var test="test2";
-	 	 }
-	 	else if(image_element=="executive bond paper (85gsm) ")
-	 	{
-	 		var test="test3";
-	 	}
-	 	else if(image_element=="normal paper (70gsm) ")
-	 	{
-	 		var test="test4";
-	 	}
-	 	else if(image_element=="normal paper (75gsm)")
-	 	{
-	 		var test="test5";
-	 	}
-	 	else if(image_element=="normal paper (80gsm) ")
-	 	{
-	 		var test="test6"; 
-	 	}
-	 	else if(image_element=="plain thick paper (100gsm) ")
-	 	{
-	 		var test="test7";
-	 	}
-	 	else if(image_element=="art paper (100 gsm) ")
-	 	{
-	 		var test="test18";
-	 	}
-	 	else if(image_element=="art paper (170 gsm)")
-	 	{
-	 		var test="test19";
-	 	}
-	 	else if(image_element=="maplitho paper(80 gsm)")
-	 	{
-	 		var test="test20";
-	 	}
-	 	else{
-	 		var test="test0";
-	 	}
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     });
-    
- // PlainPrinting==>Logical display of images for select options in Paper-Size /===Starts===/
- 
-     $("#paper_size").bind("change", function() {
-		var image_element = $('#paper_size option:selected').text().toLowerCase();
-		if(image_element=="a3")
- 		 {
- 		 	var test="test8";
- 		 }	
-	 	 else if(image_element=="a4")
-	 	 {
-	 		var test="test9";
-	 	 }
-	 	 else if(image_element=="legal")
-	 	 {
-	 		var test="test10";
-	 	 }
-	 	 else if(image_element=="a5") // Multicolor==>Logical display of images for select options in Paper-Size 
-	 	 {
-	 		var test="test17";
-	 	 }
-	 	 else{
-	 		var test="test0";
-	 	 }
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     });
-     
- // PlainPrinting==>Logical display of images for select options in Binding-type /===Starts===/   
- 
-   $("#binding_type").bind("change", function() {
-		var image_element = $('#binding_type option:selected').text().toLowerCase();
-  		if(image_element=="soft binding")
- 		 {
- 		 	var test="test11";
- 		 }
-	 	 else if(image_element=="comb binding")
-	 	 {
-	 		var test="test12";
-	 	 }
-	 	 else if(image_element=="wireo binding")
-	 	 {
-	 		var test="test13";
-	 	 }
-	 	 else if(image_element=="spiral binding")
-	 	 {
-	 		var test="test14";
-	 	 }
-	 	 else{
-	 		var test="test0";
-	 	 }
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     });
-     
- // ProjectPrinting==>Logical display of images for select options in Paper-Size /===Starts===/
- 
-     $("#project_paper_size").bind("change", function() {
-		var image_element = $('#project_paper_size option:selected').text().toLowerCase();
-  		if(image_element=="a3")
- 		 {
- 		 	var test="test8";
- 		 }
-	 	 else if(image_element=="a4")
-	 	 {
-	 		var test="test9";
-	 	 }
-	 	 else if(image_element=="legal")
-	 	 {
-	 		var test="test10";
-	 	 }
-	 	 else{
-	 		var test="test0";
-	 	 }
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     }); 
-     
-// ProjectPrinting==>Logical display of images for select options in paper-type /==Starts==/ 
-  
-	  $("#project_paper_type").bind("change", function() {
-		var image_element = $('#project_paper_type option:selected').text().toLowerCase();
-  		if(image_element == "executive bond paper (100gsm)")
- 		 {
- 		 	var test="test1";
- 		 }
-	 	 else if(image_element=="executive bond paper (75gsm) ")
-	 	 {
-	 		var test="test2";
-	 	 }
-	 	else if(image_element=="executive bond paper (85gsm) ")
-	 	{
-	 		var test="test3";
-	 	}
-	 	else if(image_element=="normal paper (70gsm) ")
-	 	{
-	 		var test="test4";
-	 	}
-	 	else if(image_element=="normal paper (75gsm) ")
-	 	{
-	 		var test="test5";
-	 	}
-	 	else if(image_element=="normal paper (80gsm) ")
-	 	{
-	 		var test="test6"; 
-	 	}
-	 	else if(image_element=="plain thick paper (100gsm) ")
-	 	{
-	 		var test="test7";
-	 	}
-	 	else{
-	 		var test="test0";
-	 	}
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     });  
-     
- // ProjectPrinting==>Logical display of images for select options in Binding-type /===Starts===/   
- 
-   $("#project_binding_type").bind("change", function() {
-		var image_element = $('#project_binding_type option:selected').text().toLowerCase();
-  		if(image_element=="case binding")
- 		 {
- 		 	var test="test15";
- 		 }
-	 	 else if(image_element=="handmade binding")
-	 	 {
-	 		var test="test16";
-	 	 }
-	 	 else{
-	 		var test="test0";
-	 	 }
- 	  $("#thumbs").find("div").css("display", "none");
-	  $("#thumbs").find("#" + test).css("display", "block");
-     }); 
-     
-  // For- OHP
-  
+  		// For- OHP
   		$('.ohp_required_option input').on('click',function() {
 			var option_value = $(this).val();
 			if(option_value=='yes') {
@@ -2924,6 +2745,7 @@ $(document).on('keyup','.user_defined_box',function() {
 				$('.ohp_text_box').removeClass('error_print_booking_field');
 			}
 		});
+		
 		$('.ohp_options .ohp_radio').on('click',function() {
 			var ohp_option_value = $(this).val();
 			var this_input_box1= $(this).parents('.ohp_options').find('#chapter_box');
@@ -2969,6 +2791,48 @@ $(document).on('keyup','.user_defined_box',function() {
 			if(this.checked){
 				$('#project_total_pages,.project_total_amount').val('');
 			}
+		});
+		
+		// paper type image shows dynamically
+		$('.paper_type_image').on('change',function(){
+			var paper_id = $(this).val();
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'paper_type_image':'true','paper_type_id':paper_id},
+				success: function(data){
+					var original_path = data.replace('../','');
+					$('#thumbs').html('<div><img width="350px" height="auto" alt="Paper type" src="'+original_path+'"></div>');
+				}
+			});
+		});
+		
+		// paper type image shows dynamically
+		$('.paper_size_image').on('change',function(){
+			var paper_id = $(this).val();
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'paper_size_image':'true','paper_size_id':paper_id},
+				success: function(data){
+					var original_path = data.replace('../','');
+					$('#thumbs').html('<div><img width="350px" height="auto" alt="Paper size" src="'+original_path+'"></div>');
+				}
+			});
+		});
+		
+		// binding type image shows dynamically
+		$('.binding_type_image').on('change',function(){
+			var binding_name = $(this).val();
+			$.ajax({
+				type: "POST",
+				url: "ajax_functions.php",
+				data:{'binding_type_image':'true','binding_name':binding_name},
+				success: function(data){
+					var original_path = data.replace('../','');
+					$('#thumbs').html('<div><img width="350px" height="auto" alt="Paper size" src="'+original_path+'"></div>');
+				}
+			});
 		});
 
 }); // Document ready end

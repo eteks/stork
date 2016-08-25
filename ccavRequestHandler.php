@@ -18,10 +18,31 @@ if($_POST['providedofferid'] != '' && $_POST['providedoffertype'] != ''){
 	$offer_type = $_POST['providedoffertype'];
 	$offer_id = $_POST['providedofferid'];
 	if($_POST['providedoffertype']=='general'){
-		$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1' where offer_provided_id=".$offer_id;
+		$limitation_query = "select offer_usage_limit from stork_offer_details where offer_type ='general_offer'";
+		$limitation = mysqli_fetch_array(mysqli_query($connection, $limitation_query));
+		$limitation_number = (int)$limitation['offer_usage_limit'];
+		$usage_query = "select limit_used from stork_offer_provide_registered_users where offer_provided_id=".$offer_id;
+		$no_time_used = mysqli_fetch_array(mysqli_query($connection, $usage_query));
+		$no_of_time_used = (int)$no_time_used['limit_used'] + 1;
+		if($limitation_number == $no_of_time_used){
+			$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1',is_limit_status = '0' where offer_provided_id=".$offer_id;
+		}else{
+			$offerupdatequery = "update stork_offer_provide_registered_users set limit_used=limit_used+1,is_used='1' where offer_provided_id=".$offer_id;
+		}
+		
 	}
 	else {
-		$offerupdatequery = "update stork_offer_provide_all_users set limit_used=limit_used+1,is_used='1' where offer_provided_details_id=".$offer_id;
+		$limitation_query = "select offer_usage_limit from stork_offer_details where offer_type ='customer_offer'";
+		$limitation = mysqli_fetch_array(mysqli_query($connection, $limitation_query));
+		$limitation_number = (int)$limitation['offer_usage_limit'];
+		$usage_query = "select limit_used from stork_offer_provide_all_user where offer_provided_details_id=".$offer_id;
+		$no_time_used = mysqli_fetch_array(mysqli_query($connection, $usage_query));
+		$no_of_time_used = (int)$no_time_used['limit_used'] + 1;
+		if($limitation_number == $no_of_time_used){
+			$offerupdatequery = "update stork_offer_provide_all_users set limit_used=limit_used+1,is_used='1',is_limit_status='0' where offer_provided_details_id=".$offer_id;
+		}else{
+			$offerupdatequery = "update stork_offer_provide_all_users set limit_used=limit_used+1,is_used='1' where offer_provided_details_id=".$offer_id;
+		}
 	}
 	mysqli_query($connection, $offerupdatequery);
 	

@@ -96,7 +96,7 @@ else
 						$qryschedule_end = mysqlQuery("SELECT * FROM `stork_cabin_schedule_time` WHERE schedule_time_id IN ($schedule_id)");
 				   ?>
 				    <tr class="">
-			            <td><?php echo $fetch['cabin_order_id'] ?></td>
+			            <td><?php echo 'CAB'.$fetch['cabin_order_id'] ?></td>
 			            <td>
 			            <?php if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
 							echo "NULL";

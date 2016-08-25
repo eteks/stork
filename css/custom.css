@@ -921,6 +921,9 @@ h4.order_or_button{
 /*Added by siva*/
 
 /*css for project printing and multicolors Start*/
+#file_range_holder .style_range{
+	max-width: 388px;
+}
 
 .browse_button {
     margin-bottom: 20px;

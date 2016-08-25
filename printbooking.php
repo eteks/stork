@@ -127,7 +127,7 @@
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
 			        			<p>Paper Type<span class="star">&nbsp;*</span></p>
-			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
+			        			<select name="papar_type" class="print_book_paper_type paper_type_image" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
         								$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
@@ -140,7 +140,7 @@
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
 			        			<p>Paper Size<span class="star">&nbsp;*</span></p>
-			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
+			        			<select name="papar_size" class="print_book_paper_size paper_size_image" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
         								$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'plain_printing'");
@@ -160,7 +160,7 @@
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15 display_binding_type">
 			        			<p>Type of Binding<span class="star">&nbsp;*</span></p>
-			        			<select name="binding_type" class="print_book_binding_type" id="binding_type">
+			        			<select name="binding_type" class="print_book_binding_type binding_type_image" id="binding_type">
 			        				<option value="" >Select Binding Type</option>
 			        				<option value="soft_binding" >Soft Binding</option>
 			        				<option value="comb_binding" >Comb Binding</option>
@@ -254,24 +254,7 @@
 			 <!---images holder for displaying images--->
 			  	<div class="fr image_right">
 					<div class="option-image" id="thumbs">
-					  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
-					  <!--paper-type-->	
-				      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-				 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
-				 	  <div id="test3" style="display:none;"><img src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
-					  <div id="test4" style="display:none;"><img src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
-					  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
-					  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
-					  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
-					  <!--Paper-size--->			  
-					  <div id="test8" style="display:none;"><img src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-					  <div id="test9" style="display:none;"><img src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
-					  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
-					  <!--binding-type-->
-					  <div id="test11" style="display:none;margin-top:350px;"><img src="images/bind_type/soft-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
-				      <div id="test12" style="display:none;margin-top:350px;"><img src="images/bind_type/comb-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-				 	  <div id="test13" style="display:none;margin-top:350px;"><img src="images/bind_type/weiro-binding.jpg" width="350px" height="auto" alt="Executive_bond_70gsm" /></div>
-				 	  <div id="test14" style="display:none;margin-top:350px;"><img src="images/bind_type/spiral-binding.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
+					  
 				   </div>
 				</div> <!--right column--> 
 			 <div class="cb">  </div>	
@@ -325,7 +308,7 @@
 										 echo '<input name="project_print_side" type="hidden" class="project_print_side" value="'.$printsidedata['paper_side_id'].'" />';
 									?>
 				        			<p>Paper Size<span class="star">&nbsp;*</span></p>
-				        			<select name="project_papar_size" class="project_paper_size" id="project_paper_size">
+				        			<select name="project_papar_size" class="project_paper_size paper_size_image" id="project_paper_size">
 				        				<option value="" >Select Paper Size</option>
 				        				<?php
 			        						$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'project_printing'");
@@ -338,7 +321,7 @@
 				        		</div> <!-- input_holder -->
 				        	 	<div class="input_holder row pad_15">
 				        			<p>Paper Type<span class="star">&nbsp;*</span></p>
-				        			<select name="project_papar_type" class="project_paper_type" id="project_paper_type">
+				        			<select name="project_papar_type" class="project_paper_type paper_type_image" id="project_paper_type">
 				        				<option value="" >Select Paper Type</option>
 				        				<?php
 			        						$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'project_printing'");
@@ -351,7 +334,7 @@
 				        		</div> <!-- input_holder -->
 				        		<div class="input_holder row pad_15">
 				        			<p>Binding Type<span class="star">&nbsp;*</span></p>
-				        			<select name="binding_type" class="project_binding_type" id="project_binding_type">	 
+				        			<select name="binding_type" class="project_binding_type binding_type_image" id="project_binding_type">	 
 				        				<option value="" >Select Binding Type</option>
 				        				<!-- <option value="hand_made_binding" >Handmade Binding</option>
 				        				<option value="case_binding" >Case Binding</option> -->
@@ -401,22 +384,7 @@
 			        	    <div class="col-md-6 col-lg-6 hidden-xs hidden-sm hidden-md">
 							  <div class="padding_form">
 								 <div class="option-image" id="thumbs">
-								  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="no_image" /></div>	
-								  <!--paper-type-->	
-							      <div id="test1" style="display:none;"><img src="images/paper_type/100gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
-							 	  <div id="test2" style="display:none;"><img src="images/paper_type/75gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_75gsm" /></div>
-							 	  <div id="test3" style="display:none;"><img  src="images/paper_type/85gsm-bond.jpg" width="350px" height="auto" alt="Executive_bond_85gsm" /></div>
-								  <div id="test4" style="display:none;"><img  src="images/paper_type/70gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_70gsm" /></div>
-								  <div id="test5" style="display:none;"><img src="images/paper_type/75gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_75gsm" /></div>
-								  <div id="test6" style="display:none;"><img src="images/paper_type/80gsm-normal.jpg" width="350px" height="auto" alt="Normal_paper_80gsm" /></div>
-								  <div id="test7" style="display:none;"><img src="images/paper_type/100gsm-plain thick paper.jpg" width="350px" height="auto" alt="plain_thick_paper" /></div>
-								  <!--paper-size-->
-								  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-								  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
-								  <div id="test10" style="display:none;"><img src="images/paper_size/legal_paper.jpg" width="350px" height="auto" alt="legal_paper" /></div>
-								  <!--bind-type-->
-								  <div id="test15" style="display:none;margin-top:30px;"><img src="images/bind_type/case-binding.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>	
-							      <div id="test16" style="display:none;margin-top:30px;"><img src="images/bind_type/handmade-binding.jpg" width="350px" height="auto" alt="Executive_bond_100gsm" /></div>
+								  
 								 </div>
 							   </div>	
 							</div><!--bs-->
@@ -578,7 +546,7 @@
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
 			        			<p>Paper Type<span class="star">&nbsp;*</span></p>
-			        			<select name="papar_type" class="print_book_paper_type" id="paper_type">
+			        			<select name="papar_type" class="print_book_paper_type paper_type_image" id="paper_type">
 			        				<option value="" >Select Paper Type</option>
 	        						<?php
 		        							$paper_type_query = mysqli_query($connection, "select * from ".PAPERTYPE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERTYPE.".printing_type_id where ".PAPERTYPE.".paper_type_status ='1' and ".PRINTINGTYPE.".printing_type = 'multicolor_printing'");
@@ -590,7 +558,7 @@
 			        		</div> <!-- input_holder -->
 			        		<div class="input_holder row pad_15">
 			        			<p>Paper Size<span class="star">&nbsp;*</span></p>
-			        			<select name="papar_size" class="print_book_paper_size" id="paper_size">
+			        			<select name="papar_size" class="print_book_paper_size paper_size_image" id="paper_size">
 			        				<option value="" >Select Paper Size</option>
 	        						<?php
 		        							$paper_size_query = mysqli_query($connection, "select * from ".PAPERSIZE." inner join ".PRINTINGTYPE." on ".PRINTINGTYPE.".printing_type_id=".PAPERSIZE.".printing_type_id where ".PAPERSIZE.".paper_size_status ='1' and ".PRINTINGTYPE.".printing_type = 'multicolor_printing'");
@@ -624,7 +592,7 @@
 								 	<!-- <input name="" class="select_margin display_range_page" id="content_file" placeholder="Filename" disabled> -->
 		        				    <input type="text" class="select_margin display_normal_file style_range" id="normal_file" value="No file selected" data-filevalue="0" disabled>
 					        		<!-- <input type="text" name="filepageno[]" id="print_page_range" class="col-md-8 paper_range style_range" value="0-0" placeholder="Page no.1-13,15,18-23"/> -->
-									<div>
+									<div class="sub_field">
 										<select name="num_of_copies" class="num_of_copies" id="num_of_copies">
 					        				<option value="select_copies" >Select Number of copies</option>
 			        						<?php 
@@ -667,15 +635,7 @@
 			  <!---images holder for displaying images--->
 			  <div class="fr image_right">
 				<div class="option-image" id="thumbs">
-				  <div id="test0" style="display:none;"><img src="images/paper_type/no-img.jpg" width="350px" height="auto" alt="PlainPrint_images" /></div>
-				  <!--paper-type-->	
-			      <div id="test18" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="auto" alt="art_paper" /></div>
-			 	  <div id="test19" style="display:none;"><img src="images/paper_type/art_paper.jpg" width="350px" height="auto" alt="art_paper" /></div>
-			 	  <div id="test20" style="display:none;"><img src="images/paper_type/maplitho_paper.jpg" width="350px" height="auto" alt="maplitho_paper" /></div>
-				  <!--paper-size-->
-				  <div id="test8" style="display:none;"><img  src="images/paper_size/paper_a3.jpg" width="350px" height="auto" alt="Paper_A3" /></div>
-				  <div id="test9" style="display:none;"><img  src="images/paper_size/paper_a4.jpg" width="350px" height="auto" alt="Paper_A4" /></div>
-				  <div id="test17" style="display:none;"><img src="images/paper_size/paper_a5.jpg" width="350px" height="auto" alt="Paper_A5" /></div>
+				  
 				</div>
               </div>  <!--right column-->
 			<div class="cb">  </div>  	

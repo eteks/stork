@@ -74,7 +74,7 @@ else
 				   ?>
 				    <tr class="">
 				    	<td><?php echo $fetch['cabin_transaction_id'] ?></td>
-			            <td><?php echo $fetch['cabin_order_id'] ?></td>
+			            <td><?php echo 'CAB'.$fetch['cabin_order_id'] ?></td>
 			            <td>
 			            <?php if ($fetch['cabin_user_id'] === NULL)
 							echo "None";
