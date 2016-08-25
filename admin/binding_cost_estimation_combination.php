@@ -68,6 +68,7 @@ else
                     <thead>
                     <tr class="">
                         <th>Binding Type</th>
+                        <th>Binding Type Image</th>
                         <th>Amount</th>                     
                         <th>Amount fixed Status</th> 
                         <th>Status</th> 
@@ -86,14 +87,19 @@ else
                             $estimated_cost = mysqlQuery("SELECT * FROM stork_cost_estimation_binding");
                             $rows_count = mysql_num_rows($estimated_cost);
                             if ($rows_count == 0){
-                               echo "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
+                               echo "<td>-</td><td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>"; 
                             }
                             else{
                                 while ($cost_array = mysql_fetch_array($estimated_cost)) {   
                                     $createddate=strtotime($cost_array['create_date']);
                                     $date = date('d/m/Y', $createddate);
-                                    if(trim($cost_array['cost_estimation_binding_type']) == trim($binding_type_key)){        
-                                        $status = "<td>".$cost_array['cost_estimation_binding_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_binding_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
+                                    if(trim($cost_array['cost_estimation_binding_type']) == trim($binding_type_key)){  
+                                        $img_source=$cost_array['binding_type_image'];  
+                                        if($img_source != '')
+                                            $binding_type_image_data = "<a href='$img_source' target='_blank'> <img class='show_offer_image_binding' src='$img_source' /> </a>"; 
+                                        else
+                                            $binding_type_image_data = "-";      
+                                        $status = "<td>".$binding_type_image_data."</td><td>".$cost_array['cost_estimation_binding_amount']."</td><td class='fixed_notfixed'>Fixed</td><td>".($cost_array['cost_estimation_binding_status'] == 1?"Active":"Inactive")."</td><td>".$date."<td class='table_action th_hidden a-center last'>
                                                     <span class='nobr'>
                                                     <a title='Edit' class='btn btn-primary btn-xs' href='edit_cost_estimation_binding.php?id=".$cost_array['cost_estimation_binding_id']."'><i class='fa fa-pencil-square-o'></i></a>
                                                     <span class='separator'></span> 
@@ -103,7 +109,7 @@ else
                                         break;
                                     } 
                                     else{
-                                        $status = "<td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>";
+                                        $status = "<td>-</td><td>-</td><td class='fixed_notfixed'>Not Fixed</td><td>-</td><td>-</td><td>-</td>";
                                     }
                                 }
                                 echo $status;

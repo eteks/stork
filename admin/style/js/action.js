@@ -984,39 +984,72 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 	});
 
-	jQuery("#edit_paper_size").submit(function(){ 
+jQuery("#edit_paper_size").submit(function(){ 
 
 		var input = jQuery('#'+required_papersize);
 		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
-			}
-	//  select field
+		{
+			input.addClass("error_input_field");
+			$('.error_image,.error_extension').css('display','none');
+			$('.error_test').css('display','block');
+		} else {
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none');
+		}
+		//  select field
 
-	if (document.getElementById('sel_a').selectedIndex < 1)
+		if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
+			$('.error_image,.error_extension').css('display','none');
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-		 }
+			$('.error_test').css('display','none');
+		}
+
+		if($('#papersize').val() != '' && !$('#sel_a').hasClass('error_input_field')){
+			if($('.edit_paper_size_image').attr('src') == ""){
+				if($('#paper_size_image').val() == ""){
+					$("#paper_size_image").addClass("error_input_field");
+					$('.error_image').css('display','block');
+					$('.error_test').css('display','none');
+				}
+				else{
+					$("#paper_size_image").removeClass("error_input_field");
+					$('.error_test').css('display','none');
+					$('.error_image,.error_extension').css('display','none');
+				}
+			}
+			if($('#paper_size_image').val() != ""){
+				var ext = $("#paper_size_image").val().split('.').pop().toLowerCase();
+				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+				    $("#paper_size_image").addClass("error_input_field");
+				    $('.error_test,.error_image').css('display','none');
+					$('.error_extension').css('display','block');
+				}
+				else{
+					$("#paper_size_image").removeClass("error_input_field");
+					$('.error_test').css('display','none');
+					$('.error_image,.error_extension').css('display','none');
+				}
+			}
+		}
 		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		//if any inputs on the page have the class 'error_input_field' the form will not submit
+		if (jQuery("#papersize").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
-		} else {
+		} else if (jQuery("#paper_size_image").hasClass("error_input_field")){
+			return false;
+		}
+		else {
 			errornotice.hide();
-			 $('.error_test').css('display','none');
+			$('.error_test').css('display','none');
 			return true;
 		}
-	});
-	jQuery("#add_paper_side").submit(function(){ 
+});
+jQuery("#add_paper_side").submit(function(){ 
 
 		var input = jQuery('#'+required_paperside);
 		if ((input.val() == "")) 
@@ -1079,66 +1112,123 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
-	jQuery("#add_paper_type").submit(function(){ 
-
+jQuery("#add_paper_type").submit(function(){ 
+	
 		var input = jQuery('#'+required_papertype);
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
-			}
-	//  select field
-
-	if (document.getElementById('sel_a').selectedIndex < 1)
+		var ext = $("#paper_type_image").val().split('.').pop().toLowerCase();
+		if ((input.val() != "")) 
 		{
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-		 }
-		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
-			return false;
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none'); 
+			
+			//  select field
+			if (document.getElementById('sel_a').selectedIndex < 1)
+			{
+				$('#sel_a').addClass('error_input_field');
+				$('.error_test').css('display','block');
+			}
+			else { 
+					$('#sel_a').removeClass('error_input_field');
+					$('.error_test').css('display','none');  			
+					if($('#papertype').val()!=''){
+						if($("#paper_type_image")[0].files[0]){
+							if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+							    $("#paper_type_image").addClass("error_input_field");
+							    $('.error_test').css('display','none');
+								$('.error_extension').css('display','block');
+							}
+							else{
+								$("#paper_type_image").removeClass("error_input_field");
+								$('.error_test').css('display','none');
+								$('.error_image,.error_extension').css('display','none');
+							}	
+						}	
+						else{
+							$("#paper_type_image").addClass("error_input_field");
+							$('.error_test').css('display','none');
+							$('.error_image').css('display','block');
+						}
+					}
+					else{
+						input.addClass("error_input_field");
+						$('.error_test').css('display','none');
+					}
+			}			
 		} else {
+			input.addClass("error_input_field");
+			$('.error_test').css('display','block'); 
+		}
+			
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {	
+			return false;
+	} else {
 			errornotice.hide();
 			 $('.error_test').css('display','none');
 			return true;
-		}
-	});
+	}
+});
 jQuery("#edit_paper_type").submit(function(){ 
 
 		var input = jQuery('#'+required_papertype);
 		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none');
-			}
+		{
+			input.addClass("error_input_field");
+			$('.error_image,.error_extension').css('display','none');
+			$('.error_test').css('display','block');
+		} else {
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none');
+		}
 			
-			if (document.getElementById('sel_a').selectedIndex < 1)
+		if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
+			$('.error_image,.error_extension').css('display','none');
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');
-		 }
+			$('.error_test').css('display','none');
+		}
 
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		if($('#papertype').val() != '' && !$('#sel_a').hasClass('error_input_field')){
+			if($('.edit_paper_type_image').attr('src') == ""){
+				if($('#paper_type_image').val() == ""){
+					$("#paper_type_image").addClass("error_input_field");
+					$('.error_image').css('display','block');
+					$('.error_test').css('display','none');
+				}
+				else{
+					$("#paper_type_image").removeClass("error_input_field");
+					$('.error_test').css('display','none');
+					$('.error_image,.error_extension').css('display','none');
+				}
+			}
+			if($('#paper_type_image').val() != ""){
+				var ext = $("#paper_type_image").val().split('.').pop().toLowerCase();
+				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+				    $("#paper_type_image").addClass("error_input_field");
+				    $('.error_test,.error_image').css('display','none');
+					$('.error_extension').css('display','block');
+				}
+				else{
+					$("#paper_type_image").removeClass("error_input_field");
+					$('.error_test').css('display','none');
+					$('.error_image,.error_extension').css('display','none');
+				}
+			}
+		}
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery("#papertype").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
-		} else {
+		} 
+		else if (jQuery("#paper_type_image").hasClass("error_input_field")){
+			return false;
+		}
+		else {
 			errornotice.hide();
-			 $('.error_test').css('display','none');
+			$('.error_test').css('display','none');
 			return true;
 		}
 	});
@@ -1599,8 +1689,7 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
-	jQuery("#add_binding_cost_estimation").submit(function(){ 
-
+jQuery("#add_binding_cost_estimation").submit(function(){ 
 		var input = jQuery('#'+required_binding_cost_estimation);
 		if ((input.val() == "")) 
 			{
@@ -1610,9 +1699,8 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 				input.removeClass("error_input_field");
 				$('.error_test').css('display','none');
 			}
-	//  select field
-
-	if (document.getElementById('sel_a').selectedIndex < 1)
+		//  select field
+		if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
@@ -1627,60 +1715,117 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 		}
 		else { $('#sel_b').removeClass('error_input_field');
 		$('.error_test').css('display','none'); }
-		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
-			$('.error_test').css('display','block');
-			return false;
-		} else {
-			errornotice.hide();
-			 $('.error_test').css('display','none');
-			return true;
-		}
-	});
 
-	jQuery("#edit_cost_estimation_binding").submit(function(){ 
-
-		var input = jQuery('#'+required_binding_cost_estimation);
-		if ((input.val() == "")) 
-			{
-				input.addClass("error_input_field");
-				// $('.error_test').css('display','block');
-			} else {
-				input.removeClass("error_input_field");
-				// $('.error_test').css('display','none');
+		if($('#amount').val() != '' && !$('#sel_a').hasClass('error_input_field') && !$('#sel_b').hasClass('error_input_field')){
+			if($('#binding_type_image').val() == ""){
+				$("#binding_type_image").addClass("error_input_field");
+				$('.error_image').css('display','block');
+				$('.error_test').css('display','none');
 			}
-	//  select field
-
-		if (document.getElementById('sel_a').selectedIndex < 1)
-		{
-			$('#sel_a').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-		}
-		else { 
-			$('#sel_a').removeClass('error_input_field'); 
-			// $('.error_test').css('display','none');
-		}
-		if (document.getElementById('sel_b').selectedIndex < 1)
-		{
-			$('#sel_b').addClass('error_input_field');
-			// $('.error_test').css('display','block');
-		}
-		else { 
-			$('#sel_b').removeClass('error_input_field'); 
-			// $('.error_test').css('display','none');
+			else{
+				var ext = $("#binding_type_image").val().split('.').pop().toLowerCase();
+				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+				    $("#binding_type_image").addClass("error_input_field");
+				    $('.error_test,.error_image').css('display','none');
+					$('.error_extension').css('display','block');
+				}
+				else{
+					$("#binding_type_image").removeClass("error_input_field");
+					$('.error_test').css('display','none');
+					$('.error_image,.error_extension').css('display','none');
+				}
+			}
 		}
 		
-//if any inputs on the page have the class 'error_input_field' the form will not submit
-	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		//if any inputs on the page have the class 'error_input_field' the form will not submit
+		if (jQuery("#amount").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
 			$('.error_test').css('display','block');
 			return false;
-		} else {
+		} else if (jQuery("#binding_type_image").hasClass("error_input_field")){
+			return false;
+		}
+		else {
 			errornotice.hide();
 			 $('.error_test').css('display','none');
 			return true;
 		}
-	});
+});
+
+jQuery("#edit_cost_estimation_binding").submit(function(){ 
+	var input = jQuery('#'+required_binding_cost_estimation);
+	if ((input.val() == "")) 
+	{
+		input.addClass("error_input_field");
+		$('.error_image,.error_extension').css('display','none');
+		// $('.error_test').css('display','block');
+	} else {
+		input.removeClass("error_input_field");
+		// $('.error_test').css('display','none');
+	}
+
+	//  select field
+	if (document.getElementById('sel_a').selectedIndex < 1)
+	{
+		$('#sel_a').addClass('error_input_field');
+		$('.error_image,.error_extension').css('display','none');
+		// $('.error_test').css('display','block');
+	}
+	else { 
+		$('#sel_a').removeClass('error_input_field'); 
+		// $('.error_test').css('display','none');
+	}
+	if (document.getElementById('sel_b').selectedIndex < 1)
+	{
+		$('#sel_b').addClass('error_input_field');
+		$('.error_image,.error_extension').css('display','none');
+		// $('.error_test').css('display','block');
+	}
+	else { 
+		$('#sel_b').removeClass('error_input_field'); 
+		// $('.error_test').css('display','none');
+	}
+
+	if($('#amount').val() != '' && !$('#sel_a').hasClass('error_input_field') && !$('#sel_b').hasClass('error_input_field')){
+		if($('.edit_binding_type_image').attr('src') == ""){
+			if($('#binding_type_image').val() == ""){
+				$("#binding_type_image").addClass("error_input_field");
+				$('.error_image').css('display','block');
+				$('.error_test').css('display','none');
+			}
+			else{
+				$("#binding_type_image").removeClass("error_input_field");
+				$('.error_test').css('display','none');
+				$('.error_image,.error_extension').css('display','none');
+			}
+		}
+		if($('#binding_type_image').val() != ""){
+			var ext = $("#binding_type_image").val().split('.').pop().toLowerCase();
+			if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+			    $("#binding_type_image").addClass("error_input_field");
+			    $('.error_test,.error_image').css('display','none');
+				$('.error_extension').css('display','block');
+			}
+			else{
+				$("#binding_type_image").removeClass("error_input_field");
+				$('.error_test').css('display','none');
+				$('.error_image,.error_extension').css('display','none');
+			}
+		}
+	}
+	
+	//if any inputs on the page have the class 'error_input_field' the form will not submit
+	if (jQuery("#amount").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {
+		$('.error_test').css('display','block');
+		return false;
+	} else if (jQuery("#binding_type_image").hasClass("error_input_field")){
+			return false;
+		}
+	else {
+		errornotice.hide();
+		 $('.error_test').css('display','none');
+		return true;
+	}
+});
 jQuery("#edit_orders").submit(function(){ 
 		for(var i = 0 ; i<required_edit_orders.length;i++ ){
 			var input = jQuery('#'+required_edit_orders[i]);
@@ -1886,61 +2031,59 @@ jQuery("#add_offer_zone").submit(function(){
 		var input_selector ='#'+required_add_offer_zone[i];
 		var ext = $("#OfferzoneImage").val().split('.').pop().toLowerCase();
 		if ((input.val() != "")) 
-			{
-				input.removeClass("error_input_field");
-				$('.error_test').css('display','none'); 
-				
-				//  select field
-	if (document.getElementById('sel_a').selectedIndex < 1)
 		{
-			$('#sel_a').addClass('error_input_field');
-			$('.error_test').css('display','block');
-		}
-		else { $('#sel_a').removeClass('error_input_field');
-		$('.error_test').css('display','none');  
+			input.removeClass("error_input_field");
+			$('.error_test').css('display','none'); 
 			
-				if($('#offerzonetitle').val()!=''){
-					if($("#OfferzoneImage")[0].files[0]){
-						if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
-						    $("#OfferzoneImage").addClass("error_input_field");
-						    $('.error_test').css('display','none');
-							$('.error_extension').css('display','block');
-						}
-						else{
-							$("#OfferzoneImage").removeClass("error_input_field");
-							$('.error_test').css('display','none');
-							$('.error_image,.error_extension').css('display','none');
-						}	
-					}	
-					else{
-						$("#OfferzoneImage").addClass("error_input_field");
-						$('.error_test').css('display','none');
-						$('.error_image').css('display','block');
-					}
-				}
-				else{
-					input.addClass("error_input_field");
-					$('.error_test').css('display','none');
-				}
-				}			
-			} else {
-				input.addClass("error_input_field");
-				$('.error_test').css('display','block'); 
+			//  select field
+			if (document.getElementById('sel_a').selectedIndex < 1)
+			{
+				$('#sel_a').addClass('error_input_field');
+				$('.error_test').css('display','block');
 			}
+			else { 
+					$('#sel_a').removeClass('error_input_field');
+					$('.error_test').css('display','none');  			
+					if($('#offerzonetitle').val()!=''){
+						if($("#OfferzoneImage")[0].files[0]){
+							if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+							    $("#OfferzoneImage").addClass("error_input_field");
+							    $('.error_test').css('display','none');
+								$('.error_extension').css('display','block');
+							}
+							else{
+								$("#OfferzoneImage").removeClass("error_input_field");
+								$('.error_test').css('display','none');
+								$('.error_image,.error_extension').css('display','none');
+							}	
+						}	
+						else{
+							$("#OfferzoneImage").addClass("error_input_field");
+							$('.error_test').css('display','none');
+							$('.error_image').css('display','block');
+						}
+					}
+					else{
+						input.addClass("error_input_field");
+						$('.error_test').css('display','none');
+					}
+			}			
+		} else {
+			input.addClass("error_input_field");
+			$('.error_test').css('display','block'); 
+		}
 	}
 			
-	
-		
 	//if any inputs on the page have the class 'error_input_field' the form will not submit
-if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {	
+	if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass("error_input_field") ) {	
 			return false;
-		} else {
+	} else {
 			errornotice.hide();
 			 $('.error_test').css('display','none');
 			return true;
-		}
-	});
-	jQuery("#edit_offer_zone").submit(function(){ 
+	}
+});
+jQuery("#edit_offer_zone").submit(function(){ 
 		
 			for(var i = 0 ; i<required_edit_offer_zone.length;i++ ){
 			var input = jQuery('#'+required_add_offer_zone[i]);

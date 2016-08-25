@@ -6367,7 +6367,11 @@ select::-ms-expand {
 }
 .show_offer_image {
   height: 26px;
-  width: 7%;
+  width: 12%;
+}
+.show_offer_image_binding{
+  height: 26px;
+  width: 26%;
 }
 .dropdown-menu a:hover {
     background-color: #25bce9 !important;
@@ -6408,7 +6412,7 @@ select::-ms-expand {
 .display_block {
   display: block;
 }
-.edit_offer_image {
+.edit_offer_image,.edit_paper_type_image,.edit_paper_size_image,.edit_binding_type_image {
   height: 100%;
   width: 100%;
 }
