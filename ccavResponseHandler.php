@@ -76,15 +76,14 @@ require 'dbconnect.php';
 	{
 		$order_id_split = explode('_', $order_id);
 		if(strtolower($order_id_split[0]) =='cab'){
-			$cabin_ccave_booking_query = "INSERT INTO stork_cabin_ccavenue_transaction (cabin_order_id,cabin_user_id,tracking_id,bank_referrence_number,order_status,	payment_mode,card_name,currency,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$delivery_name."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."',".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
-			mysqli_query($connection,$cabin_ccave_booking_query);
-			$ccavenue_trans_id = mysqli_insert_id($connection);
 			$user_type = $order_id_split[1].'_'.$order_id_split[2];
 			$required_date_spilt = explode('-', $merchant_param2);
 			$required_date = $required_date_spilt[2].'-'.$required_date_spilt[1].'-'.$required_date_spilt[0];
 			$order_success_query = "insert into stork_cabin_order (cabin_order_user_id,cabin_order_user_type,cabin_order_user_name,cabin_order_email,cabin_order_mobile,cabin_order_timing_type,cabin_order_schedule_time_id,cabin_order_number_of_system,cabin_order_required_date,cabin_order_total_hours,cabin_order_total_amount,cabin_order_status) values ('".$delivery_name."','".$user_type."','".$billing_name."','admin@printstork.com','".$billing_tel."','".$merchant_param1."','".$merchant_param5."','".$merchant_param3."','".$required_date."','".$merchant_param4."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);
 			$order_details_orderid = mysqli_insert_id($connection);
+			$cabin_ccave_booking_query = "INSERT INTO stork_cabin_ccavenue_transaction (cabin_order_id,cabin_user_id,tracking_id,bank_referrence_number,order_status,	payment_mode,card_name,currency,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_details_orderid."','".$delivery_name."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."',".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
+			mysqli_query($connection,$cabin_ccave_booking_query);
 			header('location:orderconfirm.php?cabin=trur&order_id='.$order_details_orderid);
 			
 		}else{

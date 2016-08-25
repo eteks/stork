@@ -83,7 +83,7 @@ include('header.php');
 	                  </p><br>
 	                   </div>
 	                 <div class="price-box">
-		                   <span class="normal-price">Your Order number(ID) is <?php echo 'CAB'.$row['order_id']; ?></span>
+		                   <span class="normal-price">Your Order number(ID) is <?php echo 'CAB'.$_GET['order_id']; ?></span>
 	                 </div><br>
 	                 <?php
 					}
