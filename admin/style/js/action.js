@@ -2616,8 +2616,11 @@ $('.mutliSelect input[type="checkbox"]').on('click', function() {
 	  // var title =  $(this).data("value") + ",";
 	  var title =  $(this).next('span').text();
 	  if ($(this).is(':checked')) {
-	  	if($('.select_content').length)
-	    	var html = '<span class="select_content" title="' + title + '">' + "," + title + '</span>';
+	  	if($('.select_content').length) {
+	  		var html_comma = '<span class="module_comma"> , </span>';
+	    	var html_content = '<span class="select_content" title="' + title + '">' + title + '</span>';
+	   		var html = html_comma + html_content;
+	   	}
 	    else
 	    	var html = '<span class="select_content" title="' + title + '">' + title + '</span>';
 	    $('.multiSel').append(html);
@@ -2627,7 +2630,16 @@ $('.mutliSelect input[type="checkbox"]').on('click', function() {
 	  	// if($('.select_content:first'))
 	  	// 	alert("yes");
 	  	// alert($('span[title="' + title + '"]').index());
-	    $('span[title="' + title + '"]').remove();
+	  	// if( $('span[title="' + title + '"]').parent()=='')
+	  	if($('span[title="' + title + '"]').index()==0) {
+	  		$('span[title="' + title + '"]').next('.module_comma').remove();
+	    	$('span[title="' + title + '"]').remove();
+	    }
+	    else {
+	  		$('span[title="' + title + '"]').prev('.module_comma').remove();
+	    	$('span[title="' + title + '"]').remove();
+	    }
+
 	  }
 });
 

@@ -17,7 +17,7 @@ include "includes/header.php";
 			$password = $_POST["password"];
 			$first_name = $_POST["first_name"];
 			$last_name = $_POST["last_name"];
-			$user_type = $_POST["user_type"];
+			// $user_type = $_POST["user_type"];
 			$user_email = $_POST["user_email"];
 			$user_dob = explode('/',$_POST["user_dob"]);
 			$user_dob = $user_dob[2].'-'.$user_dob[1].'-'.$user_dob[0];
@@ -36,10 +36,7 @@ include "includes/header.php";
 			if($row > 0){
 				$successMessage = "<div class='container error_message_mandatory'><span> User Already exists! </span></div>";	
 			} else {
-				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
-					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
-					user_area_id=$user_area_id,
-					user_city_id=$user_city_id,user_state_id=$user_state_id,user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
+				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name',user_email='$user_email',user_dob='$user_dob',shipping_default_addr1='$line1',shipping_default_addr2='$line2',shipping_default_area_id=$user_area_id,user_city_id=$user_city_id,user_state_id=$user_state_id,user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> User Updated Successfully! </span></div>";	
 			}
 					
@@ -123,16 +120,20 @@ else
 								    <label for="first-name">Lastname<span class="required"></span></label>
 									<input type="text" class="form-control" id="lastname" autocomplete="off" placeholder="Last Name" name="last_name" value="<?php echo($row['last_name']); ?>">
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 								    <label for="first-name">User Type<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="user_type">
 								        <option value="">
 											Select User Type
-										</option>
-								        <option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
-										<option value="2" <?php if ($row['user_type'] == 2) echo "selected"; ?>>Profession</option>	
-								    </select>
-								</div>
+										</option> -->
+								        <!-- <option value="1" -->
+								        <?php //if ($row['user_type'] == 1) echo "selected"; ?>
+								        <!-- >Student</option> -->
+										<!-- <option value="2" -->
+										<?php //if ($row['user_type'] == 2) echo "selected"; ?>
+										<!-- >Profession</option> -->
+								   <!-- </select> 
+								</div>-->
 								<div class="form-group">
 								    <label for="last-name">Email<span class="required"></span></label>
 									<input type="text" class="form-control" id="test" autocomplete="off" placeholder="Email id" name="user_email" value="<?php echo($row['user_email']); ?>">
@@ -143,13 +144,58 @@ else
 									<input type="text" class="form-control" id="dob" autocomplete="off" placeholder="Date Of Birth" name="user_dob" value="<?php $dobdate=strtotime($row['user_dob']); $dob = date('d/m/Y', $dobdate); echo $dob; ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Address Line1<span class="required"></span></label>
-									<input type="text" class="form-control" id="address" autocomplete="off" placeholder="Address" name="line1" value="<?php echo($row['line1']); ?>">
+								    <label for="last-name">Shipping Address1<span class="required"></span></label>
+									<input type="text" class="form-control" id="address" autocomplete="off" placeholder="Address" name="line1" value="<?php echo($row['shipping_default_addr1']); ?>">
 								</div>
 								<div class="form-group">
-								    <label for="last-name">Address Line2<span class="required"></span></label>
-									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['line2']); ?>">
+								    <label for="last-name">Shipping Address2<span class="required"></span></label>
+									<input type="text" class="form-control" id="" autocomplete="off" placeholder="Address" name="line2" value="<?php echo($row['shipping_default_addr2']); ?>">
 								</div>
+
+								<?php  	
+
+								if($row['shipping_default_area_id']!=null) {
+									$user_area_id = $row['shipping_default_area_id'];   	
+						            $query_area = mysql_query("select * from stork_area inner join stork_city on stork_area.area_city_id=stork_city.city_id inner join  stork_state on stork_area.area_state_id=stork_state.state_id where stork_area.area_id='$user_area_id'");
+									$area_array = mysql_fetch_array($query_area);
+									$edit_area_id = $area_array['area_id'];
+									$edit_area_state_id = $area_array['state_id'];
+									$edit_area_city_id = $area_array['city_id'];
+								?>
+								<div class="form-group">
+								    <label for="first-name">State</label>
+									<select class="product-type-filter form-control state_act" name="user_state_id" disabled>
+								        <option value="<?php echo $area_array['state_id'] ?>"> <?php echo $area_array['state_name']; ?> </option>";
+					                </select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">City</span></label>
+									<select class="product-type-filter form-control city_act" name="user_city_id" disabled>
+										<option value="<?php echo $area_array['city_id']; ?>"> <?php echo $area_array['city_name']; ?> </option>
+									</select>
+								</div>
+								<div class="form-group">
+								    <label for="first-name">Area</span></label>
+									<select class="product-type-filter form-control area_act" name="user_area_id">
+								        <option value="">
+											Select Area
+										</option>
+								        <?php
+								        	$user_city_id = $row['user_city_id'];   	
+						                    $query = mysql_query("select * from stork_area where area_city_id='$edit_area_city_id' and area_state_id='$edit_area_state_id' and area_status='1' order by area_name asc");
+					                        while ($arearow = mysql_fetch_array($query)) {
+					                        if($edit_area_id == $arearow['area_id'])   
+					                        	echo "<option selected value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        else
+					                        	echo "<option value='".$arearow['area_id']."'>".$arearow['area_name']."</option>";
+					                        }
+					                    ?>
+								    </select>
+								</div>
+								<?php 
+								}
+								else {
+								?>
 								<div class="form-group">
 								    <label for="first-name">State</label>
 									<select class="product-type-filter form-control state_act" name="user_state_id">
@@ -163,7 +209,7 @@ else
 					                        else
 					                        	echo "<option value='".$staterow['state_id']."'>".$staterow['state_name']."</option>";
 					                        }
-			                        ?>
+			                        	?>
 								    </select>
 								</div>
 								<div class="form-group">
@@ -180,7 +226,7 @@ else
 					                        else
 					                        	echo "<option value='".$staterow['city_id']."'>".$staterow['city_name']."</option>";
 					                        }
-			                        ?>
+			                        	?>
 								    </select>
 								</div>
 								<div class="form-group">
@@ -201,6 +247,9 @@ else
 					                    ?>
 								    </select>
 								</div>
+								<?php 
+								}
+								?>
 								<div class="form-group">
 								    <label for="last-name">Mobile<span class="required"></span></label>
 									<input type="text" class="form-control" id="phone" maxlength="10"  autocomplete="off" placeholder="Mobile Number" name="user_mobile" value="<?php echo($row['user_mobile']); ?>">
