@@ -225,5 +225,32 @@
 				echo "notavail";
 			}
 		}
+		
+		// retriving image for paper type
+		if(isset($_POST['paper_type_image'])){
+			$paper_type_image = selectfunction('paper_type_image',PAPERTYPE,'paper_type_status ="1" and paper_type_id ="'.$_POST['paper_type_id'].'"',$connection);
+			$paper_type_image_data = mysqli_fetch_array($paper_type_image);
+			if(mysqli_num_rows($paper_type_image) == 1){
+				echo $paper_type_image_data['paper_type_image'];
+			}
+		}
+		
+		// retriving image for paper size
+		if(isset($_POST['paper_size_image'])){
+			$paper_size_image = selectfunction('paper_size_image',PAPERSIZE,'paper_size_status ="1" and paper_size_id ="'.$_POST['paper_size_id'].'"',$connection);
+			$paper_size_image_data = mysqli_fetch_array($paper_size_image);
+			if(mysqli_num_rows($paper_size_image) == 1){
+				echo $paper_size_image_data['paper_size_image'];
+			}
+		}
+		
+		// retriving image for binding type
+		if(isset($_POST['binding_type_image'])){
+			$binding_image = selectfunction('binding_type_image',BINDINGAMOUNT,'cost_estimation_binding_status ="1" and cost_estimation_binding_type ="'.$_POST['binding_name'].'"',$connection);
+			$binding_image_data = mysqli_fetch_array($binding_image);
+			if(mysqli_num_rows($binding_image) == 1){
+				echo $binding_image_data['binding_type_image'];
+			}
+		}
 	}// end of is ajax if condition
 ?>
