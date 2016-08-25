@@ -11,8 +11,10 @@ if(!isset($_GET['type'])){
 <body>
 <?php 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$message ='';
 		$paper_type = $_POST['paper_type'];
 		$paper_type_status=$_POST['paper_type_status'];
+		$paper_type_image = $_FILES["paper_type_image"]["name"];
 
 		$type = $_POST['type_name'];
 		$type_array=array("plain"=>"plain_printing","project"=>"project_printing","multi"=>"multicolor_printing");
@@ -21,18 +23,46 @@ if(!isset($_GET['type'])){
 		$printing_type_id = mysql_fetch_array($select_type);
 		$printing_type = $printing_type_id ['printing_type_id'];
 
-		if($paper_type=="" || $paper_type_status=="") {
+		if($paper_type=="" || $paper_type_status=="" || empty($_FILES['paper_type_image']['name'])) {
 			$successMessage ="<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 		}
 		else {
-			$qr=mysql_query("SELECT * FROM stork_paper_type WHERE 	paper_type='$paper_type' AND printing_type_id = '$printing_type'");
-			$row=mysql_fetch_array($qr);
-			if($row > 0) {
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
+			$target_dir = "../images/paper_type/";
+			$target_file = $target_dir . basename($_FILES["paper_type_image"]["name"]);
+			// echo $target_file;
+			$info = pathinfo($_FILES['paper_type_image']['name']);
+			$uploadOk = 1;	
+			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+			    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			    $uploadOk = 0;
 			}
+			if ($_FILES["fileToUpload"]["size"] > 500000) {
+			    $message = "Sorry, your file is too large.";
+			    $uploadOk = 0;
+			}
+			if ($uploadOk == 0) {
+			    $successMessage =  "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
+			// if everything is ok, try to upload file
+			} 
 			else {
-				mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,	paper_type_status,printing_type_id) VALUES ('$paper_type','$paper_type_status','$printing_type')");
-				$successMessage = "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
+				$qr=mysql_query("SELECT * FROM stork_paper_type WHERE paper_type='$paper_type' AND printing_type_id = '$printing_type'");
+				$row=mysql_fetch_array($qr);
+				if($row > 0) {
+					$successMessage = "<div class='container error_message_mandatory'><span> Paper type already exist </span></div>";
+				}
+				else {
+					$i = 0;
+					do {
+					    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+					    $i++;
+					    $target_file = "../images/paper_type/" . $image_name;
+					} while(file_exists($target_file));
+					move_uploaded_file($_FILES["paper_type_image"]["tmp_name"], $target_file);
+
+					mysqlQuery("INSERT INTO `stork_paper_type` (paper_type,paper_type_image,	paper_type_status,printing_type_id) VALUES ('$paper_type','$target_file','$paper_type_status','$printing_type')");
+					$successMessage = "<div class='container error_message_mandatory'><span> Paper type inserted successfully </span></div>";
+				}
 			}
 		}
 	}
@@ -74,9 +104,11 @@ else
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Paper Type Information</h4>
 							<?php 	$type_name = $_GET['type']; ?>
-							<form action="add_paper_type.php?type=<?php echo $type_name; ?>" method="POST" name="edit-acc-info" id="add_paper_type">
+							<form action="add_paper_type.php?type=<?php echo $type_name; ?>" method="POST" name="edit-acc-info" id="add_paper_type" enctype="multipart/form-data">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_image"> Please Upload Image </span>
+ 									<span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
 								</div>
 								 <?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
@@ -84,6 +116,11 @@ else
 									<input type="text" class="form-control" name="paper_type" id="papertype" autocomplete="off" placeholder="Paper Type">
 								</div>
 								<input type="hidden" name="type_name" value="<?php echo $type_name; ?>">
+								<div class="form-group offer_zone_position">
+								    <label for="last-name">Paper type Image<span class="required">*</span></label>
+									<input type="file" class="form-control browse_style" id="paper_type_image" name="paper_type_image">
+										<!-- <a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a> -->
+								</div>
 								<div class="cate-filter-content">	
 								    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 									<select class="product-type-filter form-control" name="paper_type_status" id="sel_a">

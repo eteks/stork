@@ -14,6 +14,7 @@ if(!isset($_GET['type'])){
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
+	echo "DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'";
 	mysqlQuery("DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
@@ -79,6 +80,7 @@ else
 			        <thead>
 				        <tr class="">
 				            <th>Paper Type</th>
+				            <th>Paper Type Image</th>
 				            <th>Status</th>
 				            <th>Created Date</th>
 				            <th class="table_action">Action</th>
@@ -88,6 +90,17 @@ else
 				    ?>
 				    <tr class="">
 			            <td><span> <?php echo $papertypes_array['paper_type'] ?> </span></td>
+			            <td><span class="nobr offer_image_align"><?php //echo $papertypes_array['paper_type_image'] ?></span>
+			      
+				            <?php 
+				 				$img_source=$papertypes_array['paper_type_image'];	
+				 				if($img_source != '')
+				            		echo "<a href='$img_source' target='_blank'> <img class='show_offer_image' src='$img_source' /> </a>"; 
+				            	else
+				            		echo "-";
+
+				            ?> 
+			            </td>
 			            <td> <span> <?php 
 				            if ($papertypes_array['paper_type_status'] == 1) {
 				             	echo "Active" ;

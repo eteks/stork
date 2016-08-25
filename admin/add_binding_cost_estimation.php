@@ -10,20 +10,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
 	$cost_estimation_binding_type = $_POST["cost_estimation_binding_type"];
 	$cost_estimation_binding_amount = $_POST["cost_estimation_binding_amount"];
 	$cost_estimation_binding_status = $_POST["cost_estimation_binding_status"];
-	if($cost_estimation_binding_type=="" || $cost_estimation_binding_amount=="" || $cost_estimation_binding_status=="") {	
+	$binding_type_image = $_FILES["binding_type_image"]["name"];
+
+	echo $_FILES["binding_type_image"]["name"];
+
+	if($cost_estimation_binding_type=="" || $cost_estimation_binding_amount=="" || $cost_estimation_binding_status=="" || empty($_FILES['binding_type_image']['name'])) {	
 		$successMessage = "<div class='container error_message_mandatory'><span> Please fill all required(*) fields </span></div>";
 	}
 	else{
-		$qr = mysql_query("SELECT * FROM stork_cost_estimation_binding WHERE cost_estimation_binding_type = '$cost_estimation_binding_type'");
-		$row = mysql_num_rows($qr);
-		if($row > 0){
-			$successMessage =  "<div class='container error_message_mandatory'><span> Binding Cost Estimation Already Exists </span></div>";
-		} else {
-			
-			mysqlQuery("INSERT INTO `stork_cost_estimation_binding` (cost_estimation_binding_type,cost_estimation_binding_amount,cost_estimation_binding_status) VALUES ('$cost_estimation_binding_type','$cost_estimation_binding_amount','$cost_estimation_binding_status')");
-			$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Assigned Sucessfully! </span></div>";
+		$target_dir = "../images/bind_type/";
+		$target_file = $target_dir . basename($_FILES["binding_type_image"]["name"]);
+		// echo $target_file;
+		$info = pathinfo($_FILES['binding_type_image']['name']);
+		$uploadOk = 1;	
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+		    $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		    $message = "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+		if ($uploadOk == 0) {
+		    $successMessage =  "<div class='container error_message_mandatory'><span> " .$message. " </span></div>";
+		// if everything is ok, try to upload file
+		} 
+		else {
+			$qr = mysql_query("SELECT * FROM stork_cost_estimation_binding WHERE cost_estimation_binding_type = '$cost_estimation_binding_type'");
+			$row = mysql_num_rows($qr);
+			if($row > 0){
+				$successMessage =  "<div class='container error_message_mandatory'><span> Binding Cost Estimation Already Exists </span></div>";
+			} else {		
+				$i = 0;
+				do {
+				    $image_name = $info['filename'] . ($i ? "_($i)" : "") . "." . $info['extension'];
+				    $i++;
+				    $target_file = "../images/bind_type/" . $image_name;
+				} while(file_exists($target_file));
+				move_uploaded_file($_FILES["binding_type_image"]["tmp_name"], $target_file);
+				mysqlQuery("INSERT INTO `stork_cost_estimation_binding` (cost_estimation_binding_type,cost_estimation_binding_amount,binding_type_image,cost_estimation_binding_status) VALUES ('$cost_estimation_binding_type','$cost_estimation_binding_amount','$target_file','$cost_estimation_binding_status')");
+				$successMessage = "<div class='container error_message_mandatory'><span> Binding Cost Assigned Sucessfully! </span></div>";
 			}		
 		}
+	}
 } ?> 
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
@@ -60,9 +90,11 @@ else
 						<h3 class="acc-title lg">Add Binding Cost Estimation</h3>
 						<div class="form-edit-info">
 							<h4 class="acc-sub-title">Binding Cost Estimation</h4>
-							<form action="add_binding_cost_estimation.php" id="add_binding_cost_estimation" method="POST" name="edit-acc-info">
+							<form action="add_binding_cost_estimation.php" id="add_binding_cost_estimation" method="POST" name="edit-acc-info" enctype="multipart/form-data">
 								<div class="container">
  									<span class="error_test"> Please fill all required(*) fields </span>
+ 									<span class="error_image"> Please Upload Image </span>
+ 									<span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 								<div class="form-group">
@@ -76,6 +108,11 @@ else
 											<option value="handmade_binding"><span>Handmade Binding</span></option>
 											<option value="case_binding"><span>Case Binding</span></option>
 								    </select>
+								</div>
+								<div class="form-group offer_zone_position">
+								    <label for="last-name">Binding Type Image<span class="required">*</span></label>
+									<input type="file" class="form-control browse_style" id="binding_type_image" name="binding_type_image">
+										<!-- <a class='dispaly_show_add_offer'> <img id='edit_offer_upload' class='edit_offer_image' src='' /> </a> -->
 								</div>
 								<div class="form-group">
 								    <label for="last-name">Binding Amount<span class="required">*</span></label>
