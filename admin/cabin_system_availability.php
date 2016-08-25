@@ -83,10 +83,7 @@ else
 								?>
 							    <tr class="">						            
 						            <td><span class="nobr"><?php 
-							            foreach ($timing_type as $key => $value) {
-							            	if($key == $fetch['system_availability_timing_type'])
-							            		echo $value;
-							            }
+							            		echo $fetch['system_availability_timing_type'];
 						            ?>
 									</span></td>
 						            <td><span class="nobr"><?php echo $rowschedule['schedule_time_start'] ?></span></td>

@@ -115,7 +115,7 @@ else
 						</td>
 						<td>
 						<?php
-							if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
+							if($fetch['cabin_order_user_type'] =='gue_stu' || $fetch['cabin_order_user_type'] == 'gue_pro')
 								echo "Guest User";
 							else
 								echo "Registered User";
@@ -125,10 +125,7 @@ else
 						<td><?php echo $fetch['cabin_order_email'] ?></td>
 						<td><?php echo $fetch['cabin_order_mobile'] ?></td>
 						<td><?php 
-						foreach ($timing_type as $key => $value) {
-			            	if($key == $fetch['cabin_order_timing_type'])
-			            		echo $value;
-			            }
+			            		echo $fetch['cabin_order_timing_type'];
 			            ?></td>
 						<td><?php 
 						while ($fetch_start = mysql_fetch_array($qryschedule_start)){
@@ -157,7 +154,7 @@ else
 		            	<td><span class="price"> <?php echo $date; ?> </span></td>
 			            <td>
 				            <?php 
-				            if($fetch['order_status']==1)
+				            if($fetch['cabin_order_status']==1)
 								echo "Active";
 							else
 								echo "InActive";

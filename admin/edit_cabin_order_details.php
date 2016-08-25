@@ -140,7 +140,7 @@ else
 										</option>
 								        <?php
 											foreach ($timing_type as $key => $value) {
-												if ($key == $row['cabin_order_timing_type'])
+												if ($key == strtolower($row['cabin_order_timing_type']))
 													echo "<option selected value=".$key.">". $value."</option>";
 												else
 													echo "<option value=".$key.">". $value."</option>";

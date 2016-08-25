@@ -79,13 +79,26 @@ require 'dbconnect.php';
 			$user_type = $order_id_split[1].'_'.$order_id_split[2];
 			$required_date_spilt = explode('-', $merchant_param2);
 			$required_date = $required_date_spilt[2].'-'.$required_date_spilt[1].'-'.$required_date_spilt[0];
-			$order_success_query = "insert into stork_cabin_order (cabin_order_user_id,cabin_order_user_type,cabin_order_user_name,cabin_order_email,cabin_order_mobile,cabin_order_timing_type,cabin_order_schedule_time_id,cabin_order_number_of_system,cabin_order_required_date,cabin_order_total_hours,cabin_order_total_amount,cabin_order_status) values ('".$delivery_name."','".$user_type."','".$billing_name."','admin@printstork.com','".$billing_tel."','".$merchant_param1."','".$merchant_param5."','".$merchant_param3."','".$required_date."','".$merchant_param4."','".$amount."','1')";
+			$order_success_query = "insert into stork_cabin_order (cabin_order_user_id,cabin_order_user_type,cabin_order_user_name,cabin_order_email,cabin_order_mobile,cabin_order_timing_type,cabin_order_schedule_time_id,cabin_order_number_of_system,cabin_order_required_date,cabin_order_total_hours,cabin_order_total_amount,cabin_order_status) values ('".$delivery_name."','".$user_type."','".$billing_name."','$billing_email','".$billing_tel."','".$merchant_param1."','".$merchant_param5."','".$merchant_param3."','".$required_date."','".$merchant_param4."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);
 			$order_details_orderid = mysqli_insert_id($connection);
-			$cabin_ccave_booking_query = "INSERT INTO stork_cabin_ccavenue_transaction (cabin_order_id,cabin_user_id,tracking_id,bank_referrence_number,order_status,	payment_mode,card_name,currency,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_details_orderid."','".$delivery_name."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."',".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
+			$cabin_ccave_booking_query = "INSERT INTO stork_cabin_ccavenue_transaction (cabin_order_id,cabin_user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_details_orderid."','".$delivery_name."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."',".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 			mysqli_query($connection,$cabin_ccave_booking_query);
+			$systemid = explode('#', $merchant_param5);
+			for($i=0;$i<count($systemid)-1;$i++){
+				$total_num_of_system = "select * from stork_cabin_total_number_of_system where total_number_of_system_timing_type='".$merchant_param1."' and total_number_of_system_status='1'";
+				$execute_total_num_of_system = mysqli_query($connection,$total_num_of_system);
+				$execute_total_num_of_system_data = mysqli_fetch_array($execute_total_num_of_system);
+				$system_avail_query = "select * from stork_cabin_system_availability where system_availability_timing_type='".$merchant_param1."' and system_booked_date='".$required_date."' and system_schedule_time_id =".$systemid[$i];
+				$execute_mysql_query = mysqli_query($connection,$system_avail_query);
+				if(mysqli_num_rows($execute_mysql_query)>=1){
+					mysqli_query($connection,"update stork_cabin_system_availability set number_of_system_booked = number_of_system_booked+".(int)$merchant_param3.",number_of_system_available = number_of_system_available-".(int)$merchant_param3." where system_availability_timing_type='".$merchant_param1."' and system_booked_date='".$required_date."' and system_schedule_time_id =".$systemid[$i]."");
+				}else{
+					$available_system = $execute_total_num_of_system_data['total_number_of_system']-$merchant_param3;
+					mysqli_query($connection,"INSERT INTO stork_cabin_system_availability (system_availability_timing_type,system_booked_date,system_schedule_time_id,number_of_system_booked,number_of_system_available) VALUES ('".$merchant_param1."','".$required_date."','".$systemid[$i]."','".$merchant_param3."','".$available_system."')");
+				}
+			}
 			header('location:orderconfirm.php?cabin=trur&order_id='.$order_details_orderid);
-			
 		}else{
 			$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$merchant_param5."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 			mysqli_query($connection,$trans_success_query);
