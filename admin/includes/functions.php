@@ -8,7 +8,7 @@ function authenticate($username, $password)
 	// $query    = mysqlQuery("SELECT `adminuser_email` FROM `stork_admin_users` WHERE `adminuser_username`='$username' AND `adminuser_password`='$password'");
 
 	$query    = mysqlQuery("SELECT * FROM `stork_admin_users` WHERE `adminuser_username`='$username' AND `adminuser_password`='$password'");
-	if (mysql_num_rows($query) > 0){
+	if (mysql_num_rows($query) == 1){
 		$fetch_data = mysql_fetch_array($query);
 		$_SESSION['is_superuser'] = $fetch_data['adminuser_is_superuser'];
 		$_SESSION['user_id'] = $fetch_data['adminuser_id'];

@@ -55,7 +55,7 @@ else
 			        <tr class="">
 			        	<th>Transaction Id</th>
 			        	<th>Order Id</th>
-			        	<th>User Id</th>
+			        	<!-- <th>User Id</th> -->
 						<th>Tracking Id</th>
 						<th>Bank Reference Number</th>
 						<th>Payment Mode</th>
@@ -75,13 +75,13 @@ else
 				    <tr class="">
 				    	<td><?php echo $fetch['cabin_transaction_id'] ?></td>
 			            <td><?php echo 'CAB'.$fetch['cabin_order_id'] ?></td>
-			            <td>
-			            <?php if ($fetch['cabin_user_id'] === NULL)
+			            <!--<td> -->
+			            <?php /*if ($fetch['cabin_user_id'] === NULL)
 							echo "None";
 						else
-							echo $fetch['cabin_user_id'];
+							echo $fetch['cabin_user_id']; */
 						?>
-						</td>
+						<!-- </td> -->
 						<td><?php echo $fetch['tracking_id'] ?></td>	
 						<td><?php echo $fetch['bank_referrence_number'] ?></td>
 						<td><?php echo $fetch['payment_mode'] ?></td>
