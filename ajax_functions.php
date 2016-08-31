@@ -252,5 +252,15 @@
 				echo $binding_image_data['binding_type_image'];
 			}
 		}
+		
+		//update quantity based on user input
+		if(isset($_POST['quantity_update'])){
+			$update_quantity = "update stork_order_details set order_details_quantity=".$_POST['quantity']." where order_details_id=".$_POST['order_details_id'];
+			if(mysqli_query($connection, $update_quantity)){
+				echo "updated";
+			}else{
+				echo "update_error";
+			}
+		}
 	}// end of is ajax if condition
 ?>

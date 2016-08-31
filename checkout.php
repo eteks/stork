@@ -93,6 +93,7 @@ if(mysqli_num_rows($review_details)>0){
 							$no_of_copy_data = mysqli_query($connection, $no_of_copies_query);
 							$no_of_copy_arry = mysqli_fetch_array($no_of_copy_data, MYSQLI_ASSOC);
 	  					}
+						mysqli_query($connection, "update stork_order_details set order_details_quantity=1 where order_details_id=".$review_data['order_details_id'])
 	  				?>
 	   				<!---order detail 1 starts-->			
 	   				<div id="checkfull" class="col-md-8 col-sm-12 col-xs-12">
@@ -171,6 +172,7 @@ if(mysqli_num_rows($review_details)>0){
 			  									<div class="vm-display">
 			  									  <span> 	
 			    									<input type="text" id="quantity_0" value="1" maxlength="3" size="3" name="quantity[0]" class="pad_60 quantity-input js-recalculate ordered_item_quantity" title="Update Quantity In Cart">
+			    								  	<input type="hidden" id='order_details_id' value="<?php echo $review_data['order_details_id']; ?>">
 			    								  </span>	
 			    								</div>	
 		  									</td>

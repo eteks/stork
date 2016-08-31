@@ -91,15 +91,17 @@
 										<select class="select_time" id="cabin_timing_type" name="merchant_param1">
 											<option val=""> Select Timing Type </option>
 										<?php
-											$system_query = "select * from stork_cabin_total_number_of_system where total_number_of_system_status = '1'";
-											$system_query_data = mysqli_query($connection, $system_query);
-											while($row = mysqli_fetch_array($system_query_data)){
-												if($row['total_number_of_system_timing_type']=='fixed'){
-													echo "<option value ='".$row['total_number_of_system_timing_type']."' selected>".ucfirst($row['total_number_of_system_timing_type'])."</option>";
-												}else{
-													echo "<option value ='".$row['total_number_of_system_timing_type']."'>".ucfirst($row['total_number_of_system_timing_type'])."</option>";
+											foreach($timing_type as $key => $value){
+												if($key == 'fixed') {
+										?>
+												<option val="<?php echo $key; ?>" selected="selected"><?php echo $value; ?></option>
+										<?php
 												}
-												
+												else {
+										?>
+												<option val="<?php echo $key; ?>"><?php echo $value; ?></option>
+										<?php
+												}
 											}
 										?>
 										</select>

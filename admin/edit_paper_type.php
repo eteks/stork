@@ -126,6 +126,7 @@ else
  									<span class="error_test"> Please fill all required(*) fields </span>
  									<span class="error_image"> Please Upload Image </span>
  									<span class="error_extension"> Sorry, only JPG, JPEG, PNG & GIF files are allowed! </span>
+									<span class="error_dimension"> Width and Height must not exceed 350px * 300px </span>
 								</div>
 								<?php if($successMessage) echo $successMessage; ?>
 							<?php 
@@ -146,8 +147,8 @@ else
 							</div>
 							<input type="hidden" name="printing_type" value="<?php echo $printing_type ?>" >
 							<div class="form-group offer_zone_position">
-							      <label for="last-name">Paper Type Image<span class="required">*</span></label>
-							      <input type="file" class="form-control browse_style" value="<?php echo $row['paper_type_image']; ?>" id="paper_type_image" name="paper_type_image">
+							      <label for="last-name">Paper Type Image<span class="required">*</span><span class="upload_limit">(Max Upload dimensions 350px * 300px)</span></label>
+							      <input type="file" class="form-control browse_style image_act " value="<?php echo $row['paper_type_image']; ?>" id="paper_type_image" name="paper_type_image">
 							      <?php
 							        $img_source= $row['paper_type_image']; ?>
 							        <a class='dispaly_hide_offer' href='<?php echo $img_source; ?>' target='_blank'> 
@@ -159,6 +160,8 @@ else
 							        <a class='dispaly_show_offer'> <img id='edit_offer_upload' class='edit_paper_type_image' src='' /> </a>
 							        <input type="hidden" value="<?php echo $img_source; ?>" name="old_path_name" />
 						     </div>
+						     <input type="hidden" name="image_height" id="image_height">
+							 <input type="hidden" name="image_width" id="image_width">
 							<div class="cate-filter-content">	
 							    <label for="first-name">Paper Type Status<span class="required">*</span></label>
 								<select class="product-type-filter form-control change_status" id="sel_a" name="paper_type_status">

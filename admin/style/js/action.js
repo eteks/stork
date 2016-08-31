@@ -990,7 +990,7 @@ jQuery("#edit_paper_size").submit(function(){
 		if ((input.val() == "")) 
 		{
 			input.addClass("error_input_field");
-			$('.error_image,.error_extension').css('display','none');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 			$('.error_test').css('display','block');
 		} else {
 			input.removeClass("error_input_field");
@@ -1001,7 +1001,7 @@ jQuery("#edit_paper_size").submit(function(){
 		if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
-			$('.error_image,.error_extension').css('display','none');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
@@ -1013,7 +1013,7 @@ jQuery("#edit_paper_size").submit(function(){
 				if($('#paper_size_image').val() == ""){
 					$("#paper_size_image").addClass("error_input_field");
 					$('.error_image').css('display','block');
-					$('.error_test').css('display','none');
+					$('.error_test,.error_dimension,.error_extension').css('display','none');
 				}
 				else{
 					$("#paper_size_image").removeClass("error_input_field");
@@ -1025,13 +1025,18 @@ jQuery("#edit_paper_size").submit(function(){
 				var ext = $("#paper_size_image").val().split('.').pop().toLowerCase();
 				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 				    $("#paper_size_image").addClass("error_input_field");
-				    $('.error_test,.error_image').css('display','none');
+				    $('.error_test,.error_image,.error_dimension').css('display','none');
 					$('.error_extension').css('display','block');
 				}
+				else if ($('#image_width').val() > 350 || $('#image_height').val() > 300) {
+	                $("#paper_size_image").addClass("error_input_field");
+				    $('.error_test,.error_extension,.error_image').css('display','none');
+					$('.error_dimension').css('display','block');
+	            }
 				else{
 					$("#paper_size_image").removeClass("error_input_field");
 					$('.error_test').css('display','none');
-					$('.error_image,.error_extension').css('display','none');
+					$('.error_image,.error_extension,.error_dimension').css('display','none');
 				}
 			}
 		}
@@ -1112,6 +1117,30 @@ if (jQuery(":input").hasClass("error_input_field") || jQuery("select").hasClass(
 			return true;
 		}
 	});
+
+$(".image_act").on('change',function(){
+	//Get reference of FileUpload.
+    var fileUpload = $(this)[0];
+    if (typeof (fileUpload.files) != "undefined") {
+    	//Initiate the FileReader object.
+        var reader = new FileReader();
+        //Read the contents of Image File.
+        reader.readAsDataURL(fileUpload.files[0]);
+        reader.onload = function (e) {
+        //Initiate the JavaScript Image object.
+        var image = new Image();
+        //Set the Base64 string return from FileReader as source.
+        image.src = e.target.result;
+        image.onload = function () {
+            //Determine the Height and Width.
+            var height = this.height;
+            var width = this.width;
+          	$('#image_height').val(height);
+          	$('#image_width').val(width);
+        };
+      }
+    }
+});
 jQuery("#add_paper_type").submit(function(){ 
 	
 		var input = jQuery('#'+required_papertype);
@@ -1134,13 +1163,18 @@ jQuery("#add_paper_type").submit(function(){
 						if($("#paper_type_image")[0].files[0]){
 							if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 							    $("#paper_type_image").addClass("error_input_field");
-							    $('.error_test').css('display','none');
+							    $('.error_test,.error_dimension,.error_image').css('display','none');
 								$('.error_extension').css('display','block');
 							}
+							else if ($('#image_width').val() > 350 || $('#image_height').val() > 300) {
+				                $("#paper_type_image").addClass("error_input_field");
+							    $('.error_test,.error_extension,.error_image').css('display','none');
+								$('.error_dimension').css('display','block');
+				            }
 							else{
 								$("#paper_type_image").removeClass("error_input_field");
 								$('.error_test').css('display','none');
-								$('.error_image,.error_extension').css('display','none');
+								$('.error_image,.error_extension,.error_dimension').css('display','none');
 							}	
 						}	
 						else{
@@ -1157,6 +1191,7 @@ jQuery("#add_paper_type").submit(function(){
 		} else {
 			input.addClass("error_input_field");
 			$('.error_test').css('display','block'); 
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 		}
 			
 	//if any inputs on the page have the class 'error_input_field' the form will not submit
@@ -1174,7 +1209,7 @@ jQuery("#edit_paper_type").submit(function(){
 		if ((input.val() == "")) 
 		{
 			input.addClass("error_input_field");
-			$('.error_image,.error_extension').css('display','none');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 			$('.error_test').css('display','block');
 		} else {
 			input.removeClass("error_input_field");
@@ -1184,7 +1219,7 @@ jQuery("#edit_paper_type").submit(function(){
 		if (document.getElementById('sel_a').selectedIndex < 1)
 		{
 			$('#sel_a').addClass('error_input_field');
-			$('.error_image,.error_extension').css('display','none');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 			$('.error_test').css('display','block');
 		}
 		else { $('#sel_a').removeClass('error_input_field');
@@ -1196,7 +1231,7 @@ jQuery("#edit_paper_type").submit(function(){
 				if($('#paper_type_image').val() == ""){
 					$("#paper_type_image").addClass("error_input_field");
 					$('.error_image').css('display','block');
-					$('.error_test').css('display','none');
+					$('.error_test,.error_extension,.error_dimension').css('display','none');
 				}
 				else{
 					$("#paper_type_image").removeClass("error_input_field");
@@ -1208,13 +1243,18 @@ jQuery("#edit_paper_type").submit(function(){
 				var ext = $("#paper_type_image").val().split('.').pop().toLowerCase();
 				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 				    $("#paper_type_image").addClass("error_input_field");
-				    $('.error_test,.error_image').css('display','none');
+				    $('.error_test,.error_image,.error_dimension').css('display','none');
 					$('.error_extension').css('display','block');
 				}
+				else if ($('#image_width').val() > 350 || $('#image_height').val() > 300) {
+	                $("#paper_type_image").addClass("error_input_field");
+				    $('.error_test,.error_extension,.error_image').css('display','none');
+					$('.error_dimension').css('display','block');
+	            }
 				else{
 					$("#paper_type_image").removeClass("error_input_field");
 					$('.error_test').css('display','none');
-					$('.error_image,.error_extension').css('display','none');
+					$('.error_image,.error_extension,.error_dimension').css('display','none');
 				}
 			}
 		}
@@ -1695,6 +1735,7 @@ jQuery("#add_binding_cost_estimation").submit(function(){
 			{
 				input.addClass("error_input_field");
 				$('.error_test').css('display','block');
+				$('.error_image,.error_extension,.error_dimension').css('display','none');
 			} else {
 				input.removeClass("error_input_field");
 				$('.error_test').css('display','none');
@@ -1704,6 +1745,7 @@ jQuery("#add_binding_cost_estimation").submit(function(){
 		{
 			$('#sel_a').addClass('error_input_field');
 			$('.error_test').css('display','block');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 		}
 		else { $('#sel_a').removeClass('error_input_field'); 
 		$('.error_test').css('display','none');}
@@ -1712,6 +1754,7 @@ jQuery("#add_binding_cost_estimation").submit(function(){
 		{
 			$('#sel_b').addClass('error_input_field');
 			$('.error_test').css('display','block');
+			$('.error_image,.error_extension,.error_dimension').css('display','none');
 		}
 		else { $('#sel_b').removeClass('error_input_field');
 		$('.error_test').css('display','none'); }
@@ -1720,19 +1763,24 @@ jQuery("#add_binding_cost_estimation").submit(function(){
 			if($('#binding_type_image').val() == ""){
 				$("#binding_type_image").addClass("error_input_field");
 				$('.error_image').css('display','block');
-				$('.error_test').css('display','none');
+				$('.error_test,.error_extension,.error_dimension').css('display','none');
 			}
 			else{
 				var ext = $("#binding_type_image").val().split('.').pop().toLowerCase();
 				if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 				    $("#binding_type_image").addClass("error_input_field");
-				    $('.error_test,.error_image').css('display','none');
+				    $('.error_test,.error_image,.error_dimension').css('display','none');
 					$('.error_extension').css('display','block');
 				}
+				else if ($('#image_width').val() > 350 || $('#image_height').val() > 300) {
+	                $("#binding_type_image").addClass("error_input_field");
+				    $('.error_test,.error_extension,.error_image').css('display','none');
+					$('.error_dimension').css('display','block');
+	            }
 				else{
 					$("#binding_type_image").removeClass("error_input_field");
 					$('.error_test').css('display','none');
-					$('.error_image,.error_extension').css('display','none');
+					$('.error_image,.error_extension,.error_dimension').css('display','none');
 				}
 			}
 		}
@@ -1756,7 +1804,7 @@ jQuery("#edit_cost_estimation_binding").submit(function(){
 	if ((input.val() == "")) 
 	{
 		input.addClass("error_input_field");
-		$('.error_image,.error_extension').css('display','none');
+		$('.error_image,.error_extension,.error_dimension').css('display','none');
 		// $('.error_test').css('display','block');
 	} else {
 		input.removeClass("error_input_field");
@@ -1767,7 +1815,7 @@ jQuery("#edit_cost_estimation_binding").submit(function(){
 	if (document.getElementById('sel_a').selectedIndex < 1)
 	{
 		$('#sel_a').addClass('error_input_field');
-		$('.error_image,.error_extension').css('display','none');
+		$('.error_image,.error_extension,.error_dimension').css('display','none');
 		// $('.error_test').css('display','block');
 	}
 	else { 
@@ -1777,7 +1825,7 @@ jQuery("#edit_cost_estimation_binding").submit(function(){
 	if (document.getElementById('sel_b').selectedIndex < 1)
 	{
 		$('#sel_b').addClass('error_input_field');
-		$('.error_image,.error_extension').css('display','none');
+		$('.error_image,.error_extension,.error_dimension').css('display','none');
 		// $('.error_test').css('display','block');
 	}
 	else { 
@@ -1790,25 +1838,30 @@ jQuery("#edit_cost_estimation_binding").submit(function(){
 			if($('#binding_type_image').val() == ""){
 				$("#binding_type_image").addClass("error_input_field");
 				$('.error_image').css('display','block');
-				$('.error_test').css('display','none');
+				$('.error_test,.error_extension,.error_dimension').css('display','none');
 			}
 			else{
 				$("#binding_type_image").removeClass("error_input_field");
 				$('.error_test').css('display','none');
-				$('.error_image,.error_extension').css('display','none');
+				$('.error_image,.error_extension,.error_dimension').css('display','none');
 			}
 		}
 		if($('#binding_type_image').val() != ""){
 			var ext = $("#binding_type_image").val().split('.').pop().toLowerCase();
 			if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 			    $("#binding_type_image").addClass("error_input_field");
-			    $('.error_test,.error_image').css('display','none');
+			    $('.error_test,.error_image,.error_dimension').css('display','none');
 				$('.error_extension').css('display','block');
 			}
+			else if ($('#image_width').val() > 350 || $('#image_height').val() > 300) {
+                $("#binding_type_image").addClass("error_input_field");
+			    $('.error_test,.error_extension,.error_image').css('display','none');
+				$('.error_dimension').css('display','block');
+            }
 			else{
 				$("#binding_type_image").removeClass("error_input_field");
 				$('.error_test').css('display','none');
-				$('.error_image,.error_extension').css('display','none');
+				$('.error_image,.error_extension,.error_dimension').css('display','none');
 			}
 		}
 	}

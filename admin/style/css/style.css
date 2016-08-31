@@ -1501,7 +1501,7 @@ text-align: center;
    color :red ;
    font-size : 12px; 
 }
-.error_image,.error_extension  {
+.error_image,.error_extension,.error_dimension  {
 	color :red ;
 	font-size : 12px;
 	display : none;
@@ -1749,4 +1749,9 @@ table.cust_thwidth{
 }
 .dropdowSCIcon{
 	float:right;
+}
+.upload_limit {
+    color: gray;
+    font-size: 10px;
+    margin-left: 10px;
 }

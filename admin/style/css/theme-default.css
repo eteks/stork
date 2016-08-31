@@ -6415,6 +6415,8 @@ select::-ms-expand {
 .edit_offer_image,.edit_paper_type_image,.edit_paper_size_image,.edit_binding_type_image {
   height: 100%;
   width: 100%;
+  margin: 20px 5px;
+  cursor: default;
 }
 /*.width_order_details {
   overflow: auto;
