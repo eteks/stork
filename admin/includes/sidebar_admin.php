@@ -651,7 +651,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 					<a href="multicolor_copies.php">
-						<!--<i class="fa fa-user"></i> --> <span class="module_name">Mutlicolor Copies</span>
+						<!--<i class="fa fa-user"></i> --> <span class="module_name">Multicolor Copies</span>
 						<span class="caret pull-right"></span>
 					</a>
 				</li>
