@@ -252,5 +252,24 @@
 				echo $binding_image_data['binding_type_image'];
 			}
 		}
+		
+		//update quantity based on user input
+		if(isset($_POST['quantity_update'])){
+			$update_quantity = "update stork_order_details set order_details_quantity=".$_POST['quantity']." where order_details_id=".$_POST['order_details_id'];
+			if(mysqli_query($connection, $update_quantity)){
+				echo "updated";
+			}else{
+				echo "update_error";
+			}
+		}
+		
+		//delivery cost when check box check
+		if(isset($_POST['delivery_charge_check'])){
+			$delivery_amount = selectfunction('area_delivery_charge',AREA,'area_name ="'.$_POST['area_name'].'"',$connection);
+			$delivery_amount_data = mysqli_fetch_array($delivery_amount);
+			if(mysqli_num_rows($delivery_amount) == 1){
+				echo $delivery_amount_data['area_delivery_charge'];
+			}
+		}
 	}// end of is ajax if condition
 ?>

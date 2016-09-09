@@ -68,7 +68,7 @@ else
 						<th>OHP Sheet Pages</th>
 						<th>OHP Sheet Count</th>
 						<th>Total No. Of pages</th>
-						<!--<th>Color Print Pages</th> -->
+						<th>Quantity</th>
 						<th>Comments</th>
 						<th>Total Amount</th>
 						<th>Uploaded Files</th>
@@ -121,9 +121,9 @@ else
 			            else
 			            	echo $fetch['order_details_total_no_of_pages']
 			           	?></td>
-			            <!-- <td><?php echo $fetch['order_details_color_print_pages'] ?></td> -->
+			            <td><?php echo $fetch['order_details_quantity'] ?></td>
 			            <td><?php echo $fetch['order_details_comments'] ?></td>
-			            <td><?php echo $fetch['order_details_total_amount'] ?></td>
+			            <td><?php echo  number_format(((float)$fetch['order_details_total_amount']*(float)$fetch['order_details_quantity']),2,'.','') ?></td>
 			            <td id="pad_uploadfile">
 		            	<?php 
 		            		if (mysql_num_rows($qryupload) > 0) {

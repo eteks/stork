@@ -64,8 +64,8 @@ else
 				  <thead>
 			        <tr class="">
 			        	<th>Cabin Order Id</th>
-						<th>User Id</th>
-						<th>UserType</th>
+						<!-- <th>User Id</th>
+						<th>UserType</th> -->
 						<th>User</th>
 						<th>User Name</th>
 						<th>Email</th>
@@ -97,22 +97,22 @@ else
 				   ?>
 				    <tr class="">
 			            <td><?php echo 'CAB'.$fetch['cabin_order_id'] ?></td>
-			            <td>
-			            <?php if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
-							echo "NULL";
-						else
-							echo $fetch['order_user_id'];
+			            <!-- <td>
+			            <?php //if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)
+							//echo "NULL";
+						//else
+							//echo $fetch['order_user_id'];
 						?>
-						</td>
-			            <td>
+						</td> -->
+			            <!-- <td>
 				            <?php 
-				            echo $fetch['cabin_order_user_type'];
+				            //echo $fetch['cabin_order_user_type'];
 				            /*if($fetch['order_user_type']==1)
 								echo "Student";
 							else if($fetch['order_user_type']==2)
 								echo "Profession"; */
 							?>
-						</td>
+						</td> -->
 						<td>
 						<?php
 							if($fetch['cabin_order_user_type'] =='gue_stu' || $fetch['cabin_order_user_type'] == 'gue_pro')

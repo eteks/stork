@@ -812,6 +812,7 @@ $('#captcha').on('blur',function() {
 		var quantity = $(this).val();
 		var delivery_amount = parseFloat($('.final_delivery_charge_amount').val());
 		var final_amount = 0;
+		var order_details_id = $(this).next().val();
 		$(this).parents('.review_order_checkout').find('.check_out_subtotal_amount').html('<b>&#8377; </b>'+parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
 		$(this).parents('.review_order_checkout').find('.check_out_total_amount').html('<b>&#8377; </b>'+parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
 		$(this).parents('.review_order_checkout').find('.updated_oredered_item_amount').val(parseFloat(Math.ceil((amount*quantity) * 100 ) / 100).toFixed(2));
@@ -822,6 +823,14 @@ $('#captcha').on('blur',function() {
 		$('.final_visible_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount+delivery_amount) * 100 ) / 100).toFixed(2));
 		$('.final_visible_sub_amount_checkout_page').html('<b>&#8377; </b>'+parseFloat(Math.ceil((final_amount) * 100 ) / 100).toFixed(2));
 		$('.final_hidden_sub_amount_checkout_page').val(parseFloat(Math.ceil((final_amount) * 100 ) / 100).toFixed(2));
+		$.ajax({
+       		type: "POST",
+       		url: "ajax_functions.php",
+       		data:{'quantity_update':true,'order_details_id':order_details_id,'quantity':quantity},
+       		cache: false,
+       		success: function(data) {
+      		}
+   		});// end of ajax
 	});
 	
 	// post form when click check button in print booking page and submit type edited by siva
@@ -2726,7 +2735,9 @@ $(document).on('keyup','.user_defined_box',function() {
 		//set city id to cookie
 		$('#print_book_college').on('change',function(){
 			var option = $('option:selected', this).attr('city-id');
+			var college = $('option:selected', this).val();
 			Cookies.set('area_id',option);
+			Cookies.set('college',college);
 		});
 		$('#print_book_area_professional').on('change',function(){
 			var option = $('option:selected', this).val();
@@ -2834,7 +2845,46 @@ $(document).on('keyup','.user_defined_box',function() {
 				}
 			});
 		});
-
+		
+		// delivery charge calculation when change college address and personnel address vice versa
+		$('.send_to_address_personal').on('change',function(){
+			if(this.checked == true){
+				var area_name = $(this).siblings('.send_to_address_personal_data').find('#area').val();
+				var subtotalamount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'delivery_charge_check':'true','area_name':area_name},
+					success: function(data){
+						var delivery_amount = parseFloat(data);
+						var finalamoutn = subtotalamount+delivery_amount;
+						$('#total_amount').html('<b>&#8377;</b> '+delivery_amount);
+						$('.final_delivery_charge_amount').val(delivery_amount);
+						$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+finalamoutn);
+						$('.final_payment_amount_checkout').val(finalamoutn);
+					}
+				});
+			}
+		});
+		$('.send_to_address_college').on('change',function(){
+			if(this.checked == true){
+				var area_name = $(this).siblings('.send_to_address_college_data').find('.college_area_name').val();
+				var subtotalamount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'delivery_charge_check':'true','area_name':area_name},
+					success: function(data){
+						var delivery_amount = parseFloat(data);
+						var finalamoutn = subtotalamount+delivery_amount;
+						$('#total_amount').html('<b>&#8377;</b> '+delivery_amount);
+						$('.final_delivery_charge_amount').val(delivery_amount);
+						$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+finalamoutn);
+						$('.final_payment_amount_checkout').val(finalamoutn);;
+					}
+				});
+			}
+		});
 }); // Document ready end
 
  $("#reload").click(function() {

@@ -11,8 +11,8 @@ require 'dbconnect.php';
 	$business_hour_end_str = strtotime($business_hour_end);
 	$business_day_start = 'Sun';
 	$business_day_end = 'Sat';
-	$delivery_hours = strtotime("+24 hour");
-	$delivery_hours_extented = strtotime("+31 hour");
+	$delivery_hours = strtotime("31 hour");
+	$delivery_hours_extented = strtotime("+38 hour");
 	$workingKey='1DD4304715928B37B1170BED9EDB13A6';		//Working Key should be provided here.
 	$encResponse=$_POST["encResp"];			//This is the response sent by the CCAvenue Server
 	$rcvdString=decrypt($encResponse,$workingKey);		//Crypto Decryption used as per the specified working key.
@@ -99,6 +99,7 @@ require 'dbconnect.php';
 				}
 			}
 			header('location:orderconfirm.php?cabin=trur&order_id='.$order_details_orderid);
+			
 		}else{
 			$trans_success_query = "INSERT INTO stork_ccavenue_transaction (order_id,user_id,tracking_id,bank_referrence_number,order_status,payment_mode,card_name,currency,student_id,delivery_name,delivery_address,delivery_city,delivery_state,delivery_zip,delivery_country,delivery_email,delivery_mobile,year_of_studying,delivery_area_name,offer_type,offer_code,discount_value,amount,status_code,status_message,merchant_amount,eci_value) VALUES ('".$order_id."','".$merchant_param5."','".$tracking_id."','".$bank_ref_no."','".$order_status."','".$payment_mode."','".$card_name."','".$currency."','".$merchant_param2."','".$billing_name."','".$merchant_param1.",".$billing_address."','".$billing_city."','".$billing_state."','".$billing_zip."','".$billing_country."','".$billing_email."',".$billing_tel.",'".$merchant_param3."','".$merchant_param4."','".$offer_type."','".$offer_code."',".$discount_value.",".$amount.",'".$status_code."','".$status_message."',".$mer_amount.",".$eci_value.")";
 			mysqli_query($connection,$trans_success_query);
@@ -157,7 +158,7 @@ require 'dbconnect.php';
 			mysqli_query($connection,$order_success_query);
 			$order_details_orderid = mysqli_insert_id($connection);
 			mysqli_query($connection,"update stork_order_details set order_id ='".$order_details_orderid."' where order_details_session_id='".$order_id."'");
-			header('location:orderconfirm.php?order_id='.$order_details_orderid);
+			header('location:orderconfirm.php?print=true&order_id='.$order_details_orderid);
 		}
 	}
 	else if($order_status==="Aborted")
@@ -185,7 +186,7 @@ require 'dbconnect.php';
 			header('location:orderconfirm.php?error=failure');
 		}
 		else {
-			header('location:orderconfirm.php?cabin_error=failure');
+			//header('location:orderconfirm.php?cabin_error=failure');
 		}
 	
 	}
