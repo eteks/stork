@@ -82,4 +82,9 @@ $offer_amount_type = array('cost' => 'Cost','percentage' => 'Percentage');
 
 // Array for declaring User Type to be used in offer
 $offer_user_type = array('student' => 'Student','profession' => 'Profession','both' => 'Both');
+
+// sms configuration
+define("SMSUSER",'printstork');
+define("SMSPASS",'12345678');
+define("SMSSENDID",'PTSTRK');
 ?>

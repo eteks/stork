@@ -6,7 +6,7 @@ include "includes/header.php";
 </head>
 <body>  
 <?php 
-$printbooking_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Mutlticolor Printing');
+$printbooking_type = array('plain_printing' => 'Plain Printing','project_printing' => 'Project Printing','multicolor_printing' => 'Multicolor Printing');
 ?>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
