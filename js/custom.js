@@ -2735,7 +2735,9 @@ $(document).on('keyup','.user_defined_box',function() {
 		//set city id to cookie
 		$('#print_book_college').on('change',function(){
 			var option = $('option:selected', this).attr('city-id');
+			var college = $('option:selected', this).val();
 			Cookies.set('area_id',option);
+			Cookies.set('college',college);
 		});
 		$('#print_book_area_professional').on('change',function(){
 			var option = $('option:selected', this).val();
@@ -2843,7 +2845,46 @@ $(document).on('keyup','.user_defined_box',function() {
 				}
 			});
 		});
-
+		
+		// delivery charge calculation when change college address and personnel address vice versa
+		$('.send_to_address_personal').on('change',function(){
+			if(this.checked == true){
+				var area_name = $(this).siblings('.send_to_address_personal_data').find('#area').val();
+				var subtotalamount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'delivery_charge_check':'true','area_name':area_name},
+					success: function(data){
+						var delivery_amount = parseFloat(data);
+						var finalamoutn = subtotalamount+delivery_amount;
+						$('#total_amount').html('<b>&#8377;</b> '+delivery_amount);
+						$('.final_delivery_charge_amount').val(delivery_amount);
+						$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+finalamoutn);
+						$('.final_payment_amount_checkout').val(finalamoutn);
+					}
+				});
+			}
+		});
+		$('.send_to_address_college').on('change',function(){
+			if(this.checked == true){
+				var area_name = $(this).siblings('.send_to_address_college_data').find('.college_area_name').val();
+				var subtotalamount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
+				$.ajax({
+					type: "POST",
+					url: "ajax_functions.php",
+					data:{'delivery_charge_check':'true','area_name':area_name},
+					success: function(data){
+						var delivery_amount = parseFloat(data);
+						var finalamoutn = subtotalamount+delivery_amount;
+						$('#total_amount').html('<b>&#8377;</b> '+delivery_amount);
+						$('.final_delivery_charge_amount').val(delivery_amount);
+						$('.final_visible_amount_checkout_page').html('<b>&#8377;</b> '+finalamoutn);
+						$('.final_payment_amount_checkout').val(finalamoutn);;
+					}
+				});
+			}
+		});
 }); // Document ready end
 
  $("#reload").click(function() {

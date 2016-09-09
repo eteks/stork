@@ -228,6 +228,7 @@ if(mysqli_num_rows($review_details)>0){
 			$city1 = mysqli_fetch_array(mysqli_query($connection, $city_query1));
 			$college_name = $city1['college_name'];
 			$area_name = $city1['area_name'];
+			$college_id = $city1['college_id'];
 			$city_name = $city1['city_name'];
 			$state_name = $city1['state_name'];
 			$delivery_amount = $city1['area_delivery_charge'];
@@ -269,21 +270,21 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_name']; ?>" size="30" name="address_1" id="name_a" > 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="name_a" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 1<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_addr1']; ?>" size="30" name="address_1" id="address1"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_addr2']; ?>" size="30" name="address_1" id="address2" > 
+						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="" size="30" name="address_1" id="address2" > 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -302,7 +303,11 @@ if(mysqli_num_rows($review_details)>0){
 								}else{
 									if($city2['area_id'] == $allarea['area_id'] ){
 										echo "<option value='".$allarea['area_name']."' selected>".$allarea['area_name']."</option>";
-									}else{
+									}
+									else if($city1['area_id'] == $allarea['area_id'] ){
+										echo "<option value='".$allarea['area_name']."' selected>".$allarea['area_name']."</option>";
+									}
+									else{
 										echo "<option value='".$allarea['area_name']."'>".$allarea['area_name']."</option>";
 									}
 								}
@@ -329,35 +334,25 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1" maxlength="6">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="6" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
+						<input type="text" maxlength="6" class="required" maxlength="10" autocomplete="off" value="" size="30" name="zip" id="postalcode" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
+						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id']) echo $user_data['shipping_default_email']; ?>" autocomplete="off" size="30" name="address_1" id="email1">
+						<input type="text" maxlength="64" class="required" value="" autocomplete="off" size="30" name="address_1" id="email1">
 						 
 					   </div>
 					 </li>
 				  </ul>
-				  <br>
-				  <?php
-				  $user_access_type = explode('_', $_SESSION['session_id']);
-				   if($user_access_type[0]=='reg'){
-				   	?>
-				  <input type="checkbox" class="makemydefaultaddress_per" id="register" data-code='reg_per'><label class="registers">Make this as my default shipping address</label>
-				 
-				 <?php
-				 }
-				 ?>
 				</div>
 	 		</div>
 		   </div>  <!-- billto -->
@@ -390,27 +385,29 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">ID No.<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="idno" ng-model="studentid"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_addr2']; ?>" size="30" id="idno" ng-model="studentid"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Year of Studying<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="yearofstudying" ng-model="yearofstuding"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['student_pass_year']; ?>" size="30" id="yearofstudying" ng-model="yearofstuding"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Department<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" id="department" ng-model="address1"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_addr1']; ?>" size="30" id="department" ng-model="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">College Name<em>*</em></label>
 						<br>
+							<input type="hidden" class="college_area_name" value="<?php echo $area_name; ?>">
+							<input type="hidden" class="college_id" value="<?php echo $college_id; ?>">
 						<input type="text" maxlength="64" autocomplete="off" value="<?php if($usertype_name == 'stu') echo $college_name; ?>" size="30"  id="collegename1" readonly> 
 					   </div>
 					 </li>
@@ -433,24 +430,34 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="6" class="required" autocomplete="off" value="" size="30"  id="postal" ng-model="zipcode"> 
+						<input type="text" maxlength="6" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_postalcode']; ?>" size="30"  id="postal" ng-model="zipcode"> 
 					   </div>
 					 </li>
   					  <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile number<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off"  maxlength="10" id="phone2" ng-model="mobilenumber"> 
+						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off"  maxlength="10" id="phone2" ng-model="mobilenumber"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" size="30" autocomplete="off" id="email2" ng-model="email"> 
+						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_email']; ?>" size="30" autocomplete="off" id="email2" ng-model="email"> 
 					   </div>
 					 </li>
 				  </ul>
+				  <br>
+				  <?php
+				  $user_access_type = explode('_', $_SESSION['session_id']);
+				   if($user_access_type[0]=='reg'){
+				   	?>
+				  <input type="checkbox" class="makemydefaultaddress_stu" id="register" data-code='reg_stu'><label class="registers">Make this as my default shipping address</label>
+				 
+				 <?php
+				 }
+				 ?>
 				</div>
 	 		</div>
 		   </div>  <!-- billto -->
@@ -592,18 +599,22 @@ if(mysqli_num_rows($review_details)>0){
 		   		<input type="hidden" name="cancel_url" value="<?php echo CCAVENUECANCELURL; ?>"/>
 		   		<input type="hidden" name="language" value="EN"/>
 		   		<input type="hidden" id="billing_name" name="billing_name" value="<?php if(isset($user_data['shipping_default_name'])) echo $user_data['shipping_default_name']; ?>"/>
-		   		<input type="hidden" id="merchant_param2" name="merchant_param2" value=""/>
-		   		<input type="hidden" id="merchant_param3" name="merchant_param3" value=""/>
+		   		<input type="hidden" id="merchant_param2" name="merchant_param2" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_addr2']; ?>"/>
+		   		<input type="hidden" id="merchant_param3" name="merchant_param3" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['student_pass_year']; ?>"/>
 		   		<input type="hidden" id="merchant_param1" name="merchant_param1" value="<?php if(isset($user_data['shipping_default_addr1'])) echo $user_data['shipping_default_addr1']; ?>"/>
 		   		<input type="hidden" id="billing_address" name="billing_address" value="<?php if($usertype_name == 'stu') echo $college_name; ?>"/>
 		   		<input type="hidden" id="merchant_param4" name="merchant_param4" value="<?php echo $area_name; ?>"/>
 		   		<input type="hidden" name="merchant_param5" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id']; ?>"/>
+		   		<?php if($usertype_name == 'stu'){
+		   			echo '<input type="hidden" name="merchant_param6" value="'.$college_id.'"/>';
+		   		}
+				?>
 		   		<input type="hidden" name="billing_city" value="<?php echo $city_name; ?>"/>
 		   		<input type="hidden" name="billing_state" value="<?php echo $state_name; ?>"/>
-		   		<input type="hidden" id="billing_zip" name="billing_zip" value=""/>
+		   		<input type="hidden" id="billing_zip" name="billing_zip" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_postalcode']; ?>"/>
 		   		<input type="hidden" name="billing_country" value="India"/>
-		   		<input type="hidden" id="billing_tel" name="billing_tel" value=""/>
-		   		<input type="hidden" id="billing_email" name="billing_email" value=""/>
+		   		<input type="hidden" id="billing_tel" name="billing_tel" value="<?php if(isset($user_data['shipping_default_mobile']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_mobile']; ?>"/>
+		   		<input type="hidden" id="billing_email" name="billing_email" value="<?php if(isset($user_data['shipping_default_email']) && $user_data['student_college_id'] == $_COOKIE['college']) echo $user_data['shipping_default_email']; ?>"/>
 		   		<input type="hidden" class="paymentmakemydefaultaddress" name="makemydefaultaddress" value="0"/>
 		   		<input type="hidden" class="providedofferid" name="providedofferid" value=""/>
 		   		<input type="hidden" class="providedoffertype" name="providedoffertype" value=""/>

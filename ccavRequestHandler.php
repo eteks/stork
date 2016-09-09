@@ -7,12 +7,13 @@
 <?php
 require 'dbconnect.php';
 session_start();
-if($_POST['makemydefaultaddress'] == 'reg_per'){
+if($_POST['makemydefaultaddress'] == 'reg_stu'){
 	$area_id_query = "select * from stork_area where area_name = '".$_POST['merchant_param4']."'";
-	$area_id = mysqli_fetch_array(mysqli_query($connection, $area_id_query));
-	$defaultaddressquery = "update stork_users set shipping_default_name ='".$_POST['billing_name']."',shipping_default_addr1 = '".$_POST['merchant_param1']."',shipping_default_addr2='".$_POST['billing_address']."',shipping_default_area_id ='".$area_id['area_id']."',shipping_default_postalcode='".$_POST['billing_zip']."',shipping_default_mobile='".$_POST['billing_tel']."',shipping_default_email='".$_POST['billing_email']."' where user_id =".$_SESSION['user_id']."";
+	$area_id = mysqli_fetch_array(mysqli_query($connection, $area_id_query));							//department											year os studing										
+	$defaultaddressquery = "update stork_users set student_college_id ='".$_POST['merchant_param6']."',shipping_default_name ='".$_POST['billing_name']."',shipping_default_addr1 = '".$_POST['merchant_param1']."',shipping_default_addr2='".$_POST['merchant_param2']."',student_pass_year='".$_POST['merchant_param3']."',shipping_default_area_id ='".$area_id['area_id']."',shipping_default_postalcode='".$_POST['billing_zip']."',shipping_default_mobile='".$_POST['billing_tel']."',shipping_default_email='".$_POST['billing_email']."' where user_id =".$_SESSION['user_id']."";
 	mysqli_query($connection, $defaultaddressquery);
 	unset($_POST['makemydefaultaddress']);
+	unset($_POST['merchant_param6']);
 }
 if($_POST['providedofferid'] != '' && $_POST['providedoffertype'] != ''){
 	$offer_type = $_POST['providedoffertype'];
