@@ -66,7 +66,7 @@ else
 			        <tr class="">
 			        	<th>Order No.</th>
 						<th>User Id</th>
-						<th>UserType</th>
+						<!-- <th>UserType</th> -->
 						<th>User</th>
 						<th>Customer Name</th>
 						<th>Total Items</th>
@@ -104,15 +104,15 @@ else
 							echo $fetch['order_user_id'];
 						?>
 						</td>
-			            <td>
+			            <!-- <td>
 				            <?php 
-				            echo $fetch['order_user_type'];
+				           // echo $fetch['order_user_type'];
 				            /*if($fetch['order_user_type']==1)
 								echo "Student";
 							else if($fetch['order_user_type']==2)
 								echo "Profession"; */
 							?>
-						</td>
+						</td> -->
 						<td>
 						<?php
 							if($fetch['order_user_id'] == 0 || $fetch['order_user_id'] == NULL)

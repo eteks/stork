@@ -43,7 +43,7 @@ include('header.php');
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr></tr> </table></div></div></body></html>';			
+			$message = '<html><body><div style="margin: 0px auto; width: 100%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$order_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_shipping_email.'</td></tr><tr><td><strong>Total No: of items</strong> </td><td>' . $order_total_items .' </td></tr><tr><td><strong>Date Of Delivery</strong> </td><td>'. $order_delivery_date .' </td></tr><tr><td><strong>Order Delivery Time</strong> </td><td>'. $order_delivery_time .' </td></tr> <tr></tr> </table></div></div></body></html>';			
            if (mail($order_shipping_email,$email_subject, $message, $headers)){
 				$responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
         	}
@@ -115,9 +115,25 @@ include('header.php');
            	else {
           		$responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
     		}
-    		// echo $message;
+			$smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+			$fields = array(
+			    'uname'=> SMSUSER,
+			    'pass'=> SMSPASS,
+			    'send'=> SMSSENDID,
+			    'dest'=> $row['cabin_order_mobile'],
+			    'msg'=>"Dear Customer your private cabin at Print Stork for ".$order_total_hours." hrs on ".$order_date." between ".$totaltimefixing." to has been Confirmed.Your Booking ID:CAB".$row['cabin_order_id']
+			);
 		?>
-
+		<div style="opacity: 0">
+		<?php
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $smsurl);
+			curl_setopt($ch, CURLOPT_POST, count($fields));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+			curl_exec($ch);
+			curl_close($ch);
+		?>
+		</div>
 
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">

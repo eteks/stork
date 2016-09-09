@@ -17,7 +17,7 @@
 									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karuvadikuppam Main road,</a></span>
 								</li>
 								<li>
-									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kaniya garden, Muthialpet-3.</a></span>
+									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kannaya garden, Muthialpet-3.</a></span>
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>
@@ -123,6 +123,12 @@
 								Printstork provides fast online printing for both homes and businesses. We  provide high quality business cards, postcards, flyers, brochures, stationery and  other premium online print products.
 							</p>
 							<img src="images/footer-payment.png" alt="Payment method">
+						</div>
+						<div class="dropdown">
+						  <button class="dropbtn">Useful Information</button>
+						  <div class="dropdown-content">
+						    <a href="terms.php" target="_blank">Instructions</a>
+						  </div>
 						</div>
 					</div>
 				</div>
