@@ -124,6 +124,12 @@
 							</p>
 							<img src="images/footer-payment.png" alt="Payment method">
 						</div>
+						<div class="dropdown">
+						  <button class="dropbtn">Useful Information</button>
+						  <div class="dropdown-content">
+						    <a href="terms.php" target="_blank">Instructions</a>
+						  </div>
+						</div>
 					</div>
 				</div>
 			</div>
