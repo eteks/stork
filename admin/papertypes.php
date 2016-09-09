@@ -14,7 +14,6 @@ if(!isset($_GET['type'])){
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) 
 {
 	$val = $_GET['delete'];
-	echo "DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'";
 	mysqlQuery("DELETE FROM `stork_paper_type` WHERE `paper_type_id`='$val'");
 	$isDeleted = true;
 	$deleteProduct = true;
@@ -134,7 +133,7 @@ else
 				            <span class="nobr">
 			                	<a title="Edit" class="btn  btn-primary btn-xs" href="edit_paper_type.php?type=<?php echo $type; ?>&id=<?php echo $papertypes_array['paper_type_id'] ?>"><i class="fa fa-pencil-square-o "></i> </a>
 				                <span class="separator"></span> 
-				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papertypes_array['paper_type_id'] ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
+				                <a class="btn btn-xs btn-danger delete" title="Delete" data-id="<?php echo $papertypes_array['paper_type_id'] ?>" data-type="<?php echo $type ?>" href="#myModal1" data-toggle="modal" id="delete"><i class="fa fa-trash-o"></i> </a>
 				            </span>
 				        <?php } ?>
 				        </td>
@@ -150,8 +149,9 @@ else
 	<script type="text/javascript" >
 		$(document).on("click", ".delete", function () {
 		var myId = $(this).data('id');
+		var myType = $(this).data('type');
 		$(".modal-body #vId").val( myId );
-		$("#del_link").prop("href", "papertypes.php?delete="+myId);
+		$("#del_link").prop("href", "papertypes.php?delete="+myId+"&type="+myType);
 		});
 	</script>
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
