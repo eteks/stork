@@ -179,7 +179,7 @@
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
 			        		<div class="input_holder row pad_15 cover_section_holder">
-			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span></p>
+			        			<p> Upload Your Cover File<span class="star">&nbsp;*</span><span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>
 								<!-- <input type="text" name="" id="" class="style_range" value="Cover"/ disabled> -->
 								<div id="cover_only" class="input_holder row pad_15">
 									   <p> Cover </p>
@@ -189,7 +189,7 @@
 								</div>	
 							</div>
    							<div class="clear_both"> </div>
-							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
+							<p> Upload Your Files<span class="star">&nbsp;*</span> <span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>	
    							<div class="input_holder row pad_15 plain_clone_section upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->
@@ -229,7 +229,7 @@
 						 		<span class="page_range_error"> Please Enter correct format like Page no.1-13,15,18-23</span>
 							</div> -->
 							<div class="input_holder row pad_15">
-							 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
+							 	<p>Total No of Pages<span class="star">&nbsp;*</span> <span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>
 							 	<input class="user print_total_no_of_pages" id="total_pages" type="text" value="" name="print_totalpage" autocomplete="off"> 
 							</div>
 							<div class="input_holder row pad_15">
@@ -391,7 +391,7 @@
 		        		<div class="col-md-12 col-sm-12 col-xs-12 left no_pad">
 				        	<div class="main_project_section_input_holder">
 				        		<div class="project_upload_section">
-									<p class="label_page_paper_range"> Upload Your Files</p>
+									<p class="label_page_paper_range"> Upload Your Files <span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>
 									<div class="input_holder row pad_15 upload_cover_section" id="">
 										<p class="label_text" >Cover </p>
 									 	<input type="text" name="" id="" class="project_file_name_margin style_range" value="No file selected"/ disabled>
@@ -457,7 +457,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 left no_pad">
 								<div class="cb">  </div>
 								<div class="input_holder row pad_15">
-								 	<p>Total No of Pages<span class="star">&nbsp;*</span></p>
+								 	<p>Total No of Pages<span class="star">&nbsp;*</span> <span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>
 								 	<input class="user project_total_pages" id="project_total_pages" type="text" value="" name="project_total_pages"> 
 								</div>
 								<div class="input_holder row pad_15">
@@ -571,7 +571,7 @@
 			        	</div>
 			        	<div class="clear_both"> </div>
 			        	<div class="main_section_input_holder">
-							<p> Upload Your Files<span class="star">&nbsp;*</span></p>	
+							<p> Upload Your Files<span class="star">&nbsp;*</span> <span class="field_instruct">(Read the <a href="terms.php" target="_blank"><strong>instructions</strong></a> carefully)</span></p>	
    							<div class="input_holder row pad_15 upload_section" data-sectionvalue="0" id="upload_section">
 								<div class="upload_file_holder upload_clone_holder" id="upload_clone_holder">
 									<!-- <input type="text" name="" id="page_type" class="select_margin display_page_type style_range" value="Content"/ disabled> -->

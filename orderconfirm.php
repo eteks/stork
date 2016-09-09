@@ -115,9 +115,25 @@ include('header.php');
            	else {
           		$responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
     		}
-    		// echo $message;
+			$smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+			$fields = array(
+			    'uname'=> SMSUSER,
+			    'pass'=> SMSPASS,
+			    'send'=> SMSSENDID,
+			    'dest'=> $row['cabin_order_mobile'],
+			    'msg'=>"Dear Customer your private cabin at Print Stork for ".$order_total_hours." hrs on ".$order_date." between ".$totaltimefixing." to has been Confirmed.Your Booking ID:CAB".$row['cabin_order_id']
+			);
 		?>
-
+		<div style="opacity: 0">
+		<?php
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $smsurl);
+			curl_setopt($ch, CURLOPT_POST, count($fields));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+			curl_exec($ch);
+			curl_close($ch);
+		?>
+		</div>
 
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">

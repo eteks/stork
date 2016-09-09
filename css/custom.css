@@ -1291,3 +1291,81 @@ div.mcart-info , div.mcart-total {
 #project_printing textarea {
 	width: 100% !important;
 }
+/* Usefull Information */
+.dropbtn {
+    background-color: #000;
+    color: #7e7e7e;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    top: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #25bce9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {background-color: #25bce9}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #000;
+}
+/* Instructions link */
+.terms {
+	margin: 20px 0px  30px;
+}
+.instructions{
+	padding: 20px 20px 20px 0px;
+	margin: 20px 10px 10px 0px;
+	color: #990000;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+.conditions{
+	margin-left: 30px;
+}
+.upload_choice{
+	padding: 10px 20px 20px 0px;
+	margin: 30px 10px  10px 0px;
+	text-transform: uppercase;
+}
+.pad_left{
+	padding-left: 10px;
+}
+.terms .fa-check{
+	color: #25bce9;
+}
+.terms p{
+    text-align: justify;
+}    
+/* User field Information */
+.field_instruct, .field_instruct a {
+	font-size: 12px;
+}
+.field_instruct a{
+	color: #990000;
+	text-decoration: underline;
+}
+
