@@ -453,7 +453,7 @@ if(mysqli_num_rows($review_details)>0){
 				  $user_access_type = explode('_', $_SESSION['session_id']);
 				   if($user_access_type[0]=='reg'){
 				   	?>
-				  <input type="checkbox" class="makemydefaultaddress_stu" id="register" data-code='reg_stu'><label class="registers">Make this as my default shipping address</label>
+				  <input type="checkbox" class="makemydefaultaddress_stu" id="register2" data-code='reg_stu'><label class="registers">Make this as my default shipping address</label>
 				 
 				 <?php
 				 }

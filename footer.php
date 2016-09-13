@@ -17,7 +17,7 @@
 									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karuvadikuppam Main road,</a></span>
 								</li>
 								<li>
-									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kaniya garden, Muthialpet-3.</a></span>
+									<span><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kannaya garden, Muthialpet-3.</a></span>
 								</li>
 								<li>
 									<i class="fa fa-phone"></i>

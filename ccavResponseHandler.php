@@ -154,7 +154,7 @@ require 'dbconnect.php';
 				$shipping_college = $billing_address;
 			}
 			$order_success_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_delivery_time,order_customer_email,order_total_amount,order_status) 
-															values ('".$merchant_param5."',".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$shipping_department."','".$shipping_college."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','".$user_email_offer."','".$amount."','1')";
+															values ($merchant_param5,".$total_item_count.",'".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$shipping_department."','".$shipping_college."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'processing','".$final_delivery_date."','".$final_delivery_time."','".$user_email_offer."','".$amount."','1')";
 			mysqli_query($connection,$order_success_query);
 			$order_details_orderid = mysqli_insert_id($connection);
 			mysqli_query($connection,"update stork_order_details set order_id ='".$order_details_orderid."' where order_details_session_id='".$order_id."'");
@@ -166,7 +166,7 @@ require 'dbconnect.php';
 		$order_id_split = explode('_', $order_id);
 		if(strtolower($order_id_split[0]) !='cab'){	
 			$trans_abort_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_status) 
-															values ('".$merchant_param5."','".$total_item_count."','".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'aborted','".$final_delivery_date."','1')";
+															values ($merchant_param5,'".$total_item_count."','".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'aborted','".$final_delivery_date."','1')";
 			mysqli_query($connection,$trans_abort_query);
 			$transactionid = mysqli_insert_id($connection);
 			header('location:orderconfirm.php?error=aborted');
@@ -181,7 +181,7 @@ require 'dbconnect.php';
 		$order_id_split = explode('_', $order_id);
 		if(strtolower($order_id_split[0]) !='cab'){		
 			$trans_failure_query = "insert into stork_order (order_user_id,order_total_items,order_user_type,order_customer_name,order_student_id,order_student_year,order_shipping_department,order_shipping_college,order_shipping_line1,order_shipping_line2,order_shipping_area,order_shipping_state,order_shipping_city,order_shipping_email,order_shipping_mobile,order_delivery_status,order_delivery_date,order_status) 
-														values ('".$merchant_param5."','".$total_item_count."','".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'failure','".$final_delivery_date."','1')";
+														values ($merchant_param5,'".$total_item_count."','".$user_type."','".$billing_name."','".$merchant_param2."','".$merchant_param3."','".$merchant_param1."','".$billing_address."','".$merchant_param1."','".$billing_address."','".$merchant_param4."','".$billing_state."','".$billing_city."','".$billing_email."',".$billing_tel.",'failure','".$final_delivery_date."','1')";
 			mysqli_query($connection,$trans_failure_query);
 			header('location:orderconfirm.php?error=failure');
 		}

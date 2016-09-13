@@ -664,7 +664,7 @@ function countCabinTransactionDetails()
 				</ul>
 				</li>
 			<?php } ?>
-			<?php if(in_array("Mutlicolor Copies", $module_array) == 1){ ?>
+			<?php if(in_array("Multicolor Copies", $module_array) == 1){ ?>
 				<?php 
 					if(basename($_SERVER['PHP_SELF'])=="add_multicolor_copies.php" || 
 					basename($_SERVER['PHP_SELF'])=="multicolor_copies.php" || basename($_SERVER['PHP_SELF'])=="edit_multicolor_copies.php")
@@ -681,7 +681,7 @@ function countCabinTransactionDetails()
 					}  
 				?>	
 				<a href="multicolor_copies.php">
-					<!--<i class="fa fa-user"></i> --> <span class="module_name">Mutlicolor Copies</span>
+					<!--<i class="fa fa-user"></i> --> <span class="module_name">Multicolor Copies</span>
 					<span class="caret pull-right"></span>
 				</a>
 				</li>

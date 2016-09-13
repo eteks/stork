@@ -35,7 +35,6 @@
 		    	<h3 class="upload_choice">For Total No. of Pages:</h3>
 		   		<p class="pad_left"><i class="fa fa-check" aria-hidden="true"></i> Please enter the exact total number of pages for cost calculation. </p> 
 		   		<p class="pad_left"><i class="fa fa-check" aria-hidden="true"></i> In case, the cost &amp; pages you have entered is found to be mismatched, you will receive a call for clarification. Else your print will be put in for hold.</p>
-		  
 		    </div>
 		 </div>
 	  </div> 
