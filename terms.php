@@ -23,7 +23,7 @@
 <section class="terms">
    <div class="container">
    	  <div class="row">	
-   	  	<div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+   	  	<div class="col-lg-12 col-md-10 col-sm-10 col-xs-12">
    	  	   	<span class="instructions"><strong>Instructions:</strong></span>
    	  	    <div class="conditions">  
 		    	<h3 class="upload_choice">FOR UPLOAD:</h3>
