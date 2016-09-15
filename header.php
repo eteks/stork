@@ -1,4 +1,5 @@
 <?php
+$time_start = microtime(true);
 // if($_SERVER['REMOTE_ADDR']!= '103.213.192.5'){
 	// header('location:underconstruction.html');
 // }
@@ -101,7 +102,7 @@ progress::-moz-progress-bar {
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="https://plus.google.com/u/0/" title="Google Plus">
+								<a href="https://plus.google.com/103616525686746655759" title="Google Plus">
 									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>

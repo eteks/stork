@@ -5,6 +5,7 @@ include "includes/header.php";
 <title>Edit Track Order</title>
 </head>
 <body>
+<div style="opacity: 0">
 <?php 
 if (isset($_GET['update']))
 {
@@ -25,14 +26,56 @@ if (isset($_GET['update']))
  if( $order_delivery_status == "completed"){
   $email_subject = "Order Details";
   $message = file_get_contents('order_completed.php'); 
+	$smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+	$fields = array(
+	    'uname'=> SMSUSER,
+	    'pass'=> SMSPASS,
+	    'send'=> SMSSENDID,
+	    'dest'=> $qr['order_shipping_mobile'],
+	    'msg'=>"Your order ".$qr['order_id']." is completed for shipping by http://printstork.com."
+	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $smsurl);
+	curl_setopt($ch, CURLOPT_POST, count($fields));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+	curl_exec($ch);
+	curl_close($ch);
  }
  else if( $order_delivery_status == "shipped"){
   $email_subject = "Order Details";
   $message = file_get_contents('order_shipped.php'); 
+  $smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+	$fields = array(
+	    'uname'=> SMSUSER,
+	    'pass'=> SMSPASS,
+	    'send'=> SMSSENDID,
+	    'dest'=> $qr['order_shipping_mobile'],
+	    'msg'=>"Your order ".$qr['order_id']." is packed by print stork and ready to be shipped. You will get tracking details once we ship it. http://printstork.com."
+	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $smsurl);
+	curl_setopt($ch, CURLOPT_POST, count($fields));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+	curl_exec($ch);
+	curl_close($ch);
  }
  else if( $order_delivery_status == "delivered"){
   $email_subject = "Order Details";
-  $message = file_get_contents('order_delivered.php'); 
+  $message = file_get_contents('order_delivered.php');
+  $smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+	$fields = array(
+	    'uname'=> SMSUSER,
+	    'pass'=> SMSPASS,
+	    'send'=> SMSSENDID,
+	    'dest'=> $qr['order_shipping_mobile'],
+	    'msg'=>"Your order ".$qr['order_id']." has been successfully delivered. We are extremely glad to serve you. http://printstork.com."
+	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $smsurl);
+	curl_setopt($ch, CURLOPT_POST, count($fields));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+	curl_exec($ch);
+	curl_close($ch); 
  }
  if (mail($to, $email_subject, $message, $headers))
  {
@@ -52,6 +95,7 @@ if(isset($_GET["id"]))
  $id = $_GET["id"];
 }
 ?>
+</div>
 <?php include 'includes/navbar_admin.php'; ?>
 <section class="header-page">
 	<div class="container">

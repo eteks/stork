@@ -775,13 +775,14 @@ $('#captcha').on('blur',function() {
 	$(document).on('click','.check_out_payment',function(){
 		var restric_amount = parseFloat('50.00');
 		var purchase_amount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
-		if(restric_amount <= purchase_amount ){
-			$('#print_checkout_form').submit();
-		}
-		else{
-			error_popup('Your minimum order value should be Rs. 50 or above!');
-			return false;
-		}
+		// if(restric_amount <= purchase_amount ){
+			// $('#print_checkout_form').submit();
+		// }
+		// else{
+			// error_popup('Your minimum order value should be Rs. 50 or above!');
+			// return false;
+		// }
+		$('#print_checkout_form').submit();
 	});
 	// Offer code submit
 	$(document).on('click','.offer_anger',function(){
@@ -1445,9 +1446,9 @@ $('#captcha').on('blur',function() {
     		$('.send_to_address_personal_data').removeClass('dn').slideDown();
     		$('#register').prop('checked',true);
     		$('#register').prop('disabled',true);
-  	  		//stop the form from submitting
- 			return false;
-		 }
+      	  		//stop the form from submitting
+   	 			return false;
+   			 }
 			 				 
 		if($('.send_to_address_personal_data').css('display')=='block')	 {
 			for(var i = 0 ; i<required_address_1.length;i++ ){
@@ -1540,7 +1541,7 @@ $('#captcha').on('blur',function() {
       	
 
 	jQuery(".check_out_payment").on('click',function(){ 	
-		if($('.send_to_address_college').prop("checked"))	{
+		if($('.send_to_address_college_data').css('display')=='block')	{
 			for(var i = 0 ; i<required_address_2.length;i++ ){
 				var input = jQuery('#'+required_address_2[i]);
 				if ((input.val() == "")) {

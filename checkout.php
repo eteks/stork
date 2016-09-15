@@ -270,21 +270,21 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Name<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="name_a" > 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_name']; ?>" size="30" name="address_1" id="name_a" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 1<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" autocomplete="off" value="" size="30" name="address_1" id="address1"> 
+						<input type="text" maxlength="64" class="required" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_addr1']; ?>" size="30" name="address_1" id="address1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Address 2<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="" size="30" name="address_1" id="address2" > 
+						<input type="text" maxlength="64" class="required personal_address" autocomplete="off" value="<?php if(isset($user_data['shipping_default_name']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_addr2']; ?>" size="30" name="address_1" id="address2" > 
 					   </div>
 					 </li>
 					 <li class="long">
@@ -334,25 +334,35 @@ if(mysqli_num_rows($review_details)>0){
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1" maxlength="6">Postal Code<em>*</em></label>
 						<br>
-						<input type="text" maxlength="6" class="required" maxlength="10" autocomplete="off" value="" size="30" name="zip" id="postalcode" > 
+						<input type="text" maxlength="6" class="required" maxlength="10" autocomplete="off" value="<?php if(isset($user_data['shipping_default_postalcode']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_postalcode']; ?>" size="30" name="zip" id="postalcode" > 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="address_1_field" class="address_1">Mobile<em>*</em></label>
 						<br>
-						<input type="text"  class="required" value="" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
+						<input type="text"  class="required" value="<?php if(isset($user_data['shipping_default_mobile']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_mobile']; ?>" size="30" autocomplete="off" name="address_1" maxlength="10" id="phone1"> 
 					   </div>
 					 </li>
 					 <li class="long">
 					  <div class="field-wrapper">
 						<label for="email_field" class="address_1">E-Mail<em>*</em></label>
 						<br>
-						<input type="text" maxlength="64" class="required" value="" autocomplete="off" size="30" name="address_1" id="email1">
+						<input type="text" maxlength="64" class="required" value="<?php if(isset($user_data['shipping_default_email']) && $user_data['shipping_default_area_id'] == $_COOKIE['area_id'] && $user_data['student_college_id'] == NULL) echo $user_data['shipping_default_email']; ?>" autocomplete="off" size="30" name="address_1" id="email1">
 						 
 					   </div>
 					 </li>
 				  </ul>
+				  <?php
+				  $user_access_type = explode('_', $_SESSION['session_id']);
+				  $user_type = $user_access_type[0].'_'.$user_access_type[1];
+				   if($user_access_type[0]=='reg' && $user_type == 'reg_pro'){
+				   	?>
+				  <input type="checkbox" class="makemydefaultaddress_per" id="register2" data-code='reg_per'><label class="registers">Make this as my default shipping address</label>
+				 
+				 <?php
+				 }
+				 ?>
 				</div>
 	 		</div>
 		   </div>  <!-- billto -->

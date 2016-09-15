@@ -14,7 +14,7 @@
 							</a>
 						</li> 
 						<li class="hidden-xs">
-							<a title="Google Plus" href="https://plus.google.com/u/0/">
+							<a title="Google Plus" href="https://plus.google.com/103616525686746655759">
 								<i aria-hidden="true" class="fa fa-google-plus"></i>
 							</a>
 						</li>

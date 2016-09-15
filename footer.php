@@ -51,7 +51,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="https://plus.google.com/u/0/" title="Google plus">
+									<a href="https://plus.google.com/103616525686746655759" title="Google plus">
 										<i class="fa fa-google-plus"></i>
 									</a>
 								</li>

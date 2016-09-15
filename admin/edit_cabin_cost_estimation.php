@@ -131,7 +131,7 @@ else
 										</option>
 								       <?php
 								       	   echo "minute time".explode(':',$row['cabin_cost_estimation_duration'][1]);
-									       for ($i=1; $i<=60; $i++){
+									       for ($i=0; $i<=60; $i++){
 									       	if($i == $cost_duration[1])
 									         	echo "<option value='".$i."' selected>" . $i ."</option>";
 									        else

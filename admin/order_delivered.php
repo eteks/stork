@@ -27,7 +27,7 @@
                         <p class=""><a href="http:\\www.facebook.com/" class="fa fa-facebook">Facebook</a> <a href="http:\\www.twitter.com/" class="fa fa-twitter">Twitter</a> <a href="http:\\www.googleplus.com/" class="fa fa-googleplus">Google+</a></p>
                        </td>
                     </tr>
-                  </table><!- /column 1 -->                 
+                  </table><!-- /column 1 -->                 
                   <!-- column 2 -->
                   <table align="left" class="column">
                     <tr>

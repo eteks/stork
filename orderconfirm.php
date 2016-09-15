@@ -50,10 +50,25 @@ include('header.php');
            	else {
           		$responsemessage = '<p class="email_not_sent"> Mail not sent successfully!  </p>';
     		}
-			//print_r($_SESSION);
+			$smsurl = 'http://api.unicel.in/SendSMS/sendmsg.php';
+			$fields = array(
+			    'uname'=> SMSUSER,
+			    'pass'=> SMSPASS,
+			    'send'=> SMSSENDID,
+			    'dest'=> $row['order_shipping_mobile'],
+			    'msg'=>"We have received your order ".$order_id." amounting to Rs.".$order_total_amount." and it is being processed. You can manage your order at http://printstork.com. Thank you!"
+			);
 		?>
-
-
+		<div style="opacity: 0">
+		<?php
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $smsurl);
+			curl_setopt($ch, CURLOPT_POST, count($fields));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+			curl_exec($ch);
+			curl_close($ch);
+		?>
+		</div>
 		<section id="wishlist" class="pr-main">
 			<div class="container text-center">
 			   <div class="pro-name-rate clearfix">
@@ -108,7 +123,7 @@ include('header.php');
 		    $headers .= "Reply-To: ". $from . "\r\n";
 		    $headers .= "MIME-Version: 1.0\r\n";
 		    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			$message = '<html><body><div style="margin: 0px auto; width: 50%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$ordered_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_email.'</td></tr><tr><td><strong>Timing Type:</strong> </td><td>' . $order_timing_type .' </td></tr><tr><td><strong>Booked no of system :</strong> </td><td>'. $order_no_of_system .' </td></tr><tr><td><strong>Order Date :</strong> </td><td>'. $order_date .' </td></tr> <tr></tr><tr><td><strong>Booked Total hours :</strong> </td><td>'. $order_total_hours .' </td></tr><tr><td><strong>Booked Timing slots :</strong> </td><td>'. $ordered_total_timing_slots .' </td></tr></table></div></div></body></html>';			
+			$message = '<html><body><div style="margin: 0px auto; width: 100%;border-width: 40px 1px 1px;"><h2 style="background: #25bce9; text-align: left; color: #fff; font-weight: bold; font-size: 16px; padding: 10px 4px; margin-bottom: 0px;">Order Details </h2><div style="border: 1px solid #25bce9; background: #fff;"><table align="center" rules="all" style="border-color: #666; cellpadding="10"><tr style="background: #eee;"><td><strong>Name:</strong> </td><td>'.$order_customer_name.'</td></tr><tr style="background: #eee;"><td><strong>Order ID:</strong> </td><td>'.$ordered_id.'</td></tr><tr><td><strong>Email:</strong> </td><td>' . $order_email.'</td></tr><tr><td><strong>Timing Type:</strong> </td><td>' . $order_timing_type .' </td></tr><tr><td><strong>Booked no of system :</strong> </td><td>'. $order_no_of_system .' </td></tr><tr><td><strong>Order Date :</strong> </td><td>'. $order_date .' </td></tr> <tr></tr><tr><td><strong>Booked Total hours :</strong> </td><td>'. $order_total_hours .' </td></tr><tr><td><strong>Booked Timing slots :</strong> </td><td>'. $ordered_total_timing_slots .' </td></tr></table></div></div></body></html>';			
            if (mail($order_email,$email_subject, $message, $headers)){
 				$responsemessage = '<p class="email_sent"> Mail sent successfully!  </p>';
         	}
@@ -121,7 +136,7 @@ include('header.php');
 			    'pass'=> SMSPASS,
 			    'send'=> SMSSENDID,
 			    'dest'=> $row['cabin_order_mobile'],
-			    'msg'=>"Dear Customer your private cabin at Print Stork for ".$order_total_hours." hrs on ".$order_date." between ".$totaltimefixing." to has been Confirmed.Your Booking ID:CAB".$row['cabin_order_id']
+			    'msg'=>"Dear Customer your private cabin at Print Stork for ".$order_total_hours." hrs on ".$order_date." between ".$totaltimefixing." has been Confirmed.Your Booking ID:CAB".$row['cabin_order_id']
 			);
 		?>
 		<div style="opacity: 0">

@@ -68,7 +68,7 @@
 									<li><b>Print side :</b> <?php echo $track_status_array['paper_side']; ?>  </li>
 									<li><b>Paper type :</b> <?php echo $track_status_array['paper_type']; ?>  </li>                                                                      
 								    <li><b>Paper size : </b> <?php echo $track_status_array['paper_size']; ?>  </li>
-								    <li><b><?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo "No of copies :"; else echo "Total no of pages :"; ?> </b> <?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo $track_status_array['order_details_total_no_of_pages'] ; else echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
+								    <li><b><?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo "No of copies :"; else echo "Total no of pages :"; ?> </b> <?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo $track_status_array['upload_files_number_of_copies'] ; else echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
 								    <li><b>Total amount : </b> <?php echo $track_status_array['order_details_total_amount']; ?>  </li>
 								</ul>
 							</div>
@@ -187,7 +187,7 @@
 									<li><b>Print side :</b> <?php echo $track_status_array['paper_side']; ?> </li>
 									<li><b>Paper type :</b> <?php echo $track_status_array['paper_type']; ?> </li>                                                                      
 								    <li><b> Paper size : </b> <?php echo $track_status_array['paper_size']; ?> </li>
-								   	<li><b><?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo "No of copies :"; else echo "Total no of pages :"; ?> </b> <?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo $track_status_array['order_details_total_no_of_pages'] ; else echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
+								    <li><b><?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo "No of copies :"; else echo "Total no of pages :"; ?> </b> <?php if ($track_status_array['order_print_booking_type'] == 'multicolor_printing') echo $track_status_array['upload_files_number_of_copies'] ; else echo $track_status_array['order_details_total_no_of_pages']; ?>  </li>
 								    <li><b> Total amount : </b> <?php echo $track_status_array['order_details_total_amount']; ?> </li>
 								</ul>
 							</div>

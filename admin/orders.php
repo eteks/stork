@@ -106,7 +106,7 @@ else
 						</td>
 			            <!-- <td>
 				            <?php 
-				           // echo $fetch['order_user_type'];
+				            //echo $fetch['order_user_type'];
 				            /*if($fetch['order_user_type']==1)
 								echo "Student";
 							else if($fetch['order_user_type']==2)
