@@ -775,14 +775,14 @@ $('#captcha').on('blur',function() {
 	$(document).on('click','.check_out_payment',function(){
 		var restric_amount = parseFloat('50.00');
 		var purchase_amount = parseFloat($('.final_hidden_sub_amount_checkout_page').val());
-		// if(restric_amount <= purchase_amount ){
-			// $('#print_checkout_form').submit();
-		// }
-		// else{
-			// error_popup('Your minimum order value should be Rs. 50 or above!');
-			// return false;
-		// }
-		$('#print_checkout_form').submit();
+		if(restric_amount <= purchase_amount ){
+			$('#print_checkout_form').submit();
+		}
+		else{
+			error_popup('Your minimum order value should be Rs. 50 or above!');
+			return false;
+		}
+		//$('#print_checkout_form').submit();
 	});
 	// Offer code submit
 	$(document).on('click','.offer_anger',function(){
@@ -1757,8 +1757,8 @@ $(document).on('keydown','.project_paper_range',function(e) {
     	size = file.size;
     	type = file.type;
     	var ext = type.split('/');
-    	if($.inArray(ext[1], ['pdf','doc','docx','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document','octet-stream']) == -1){
-    		error_popup('Allowed pdf, doc, docx, jpg, jpeg files only!');
+    	if($.inArray(ext[1], ['pdf','doc','docx','txt','xls','xlsx','ppt','pptx','vnd.ms-excel','rtf','richtext','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.ms-powerpoint','vnd.openxmlformats-officedocument.presentationml.presentation','jpg','jpeg','msword','vnd.openxmlformats-officedocument.wordprocessingml.document','octet-stream']) == -1){
+    		error_popup('Allowed pdf, rtf, txt, doc, docx, ppt, pptx, xls, xlsx, jpg, jpeg files only!');
     		$(this).val('');
     		return false;
     	}
