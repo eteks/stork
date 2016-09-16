@@ -22,9 +22,12 @@ include "includes/header.php";
 			$user_dob = $user_dob[2].'-'.$user_dob[1].'-'.$user_dob[0];
 			$line1 = $_POST["line1"];
 			$line2 = $_POST["line2"];
-			$user_area_id = $_POST["user_area_id"];
-			$user_city_id = $_POST["user_city_id"];
-			$user_state_id = $_POST["user_state_id"];
+			// echo $_POST["user_area_id"]."<br>";
+			// echo $_POST["user_city_id"]."<br>";
+			// echo $_POST["user_state_id"]."<br>";
+			$user_area_id = $_POST["user_area_id"] != '' ? $_POST["user_area_id"] : "null";
+			$user_city_id = $_POST["user_city_id"] != '' ? $_POST["user_city_id"] : "null";
+			$user_state_id = $_POST["user_state_id"] != '' ? $_POST["user_state_id"] : "null";
 			$user_mobile = $_POST["user_mobile"];
 			$user_status = $_POST["user_status"];
 			$qr = mysqlQuery("SELECT * FROM `stork_users` WHERE `username`='$username' AND `user_email`='$user_email' AND user_id NOT IN('$val')");
@@ -34,8 +37,8 @@ include "includes/header.php";
 			} else {
 				mysqlQuery("UPDATE stork_users SET username='$username',password='$password',first_name='$first_name',last_name='$last_name'
 					,user_type='$user_type',user_email='$user_email',user_dob='$user_dob',line1='$line1',line2='$line2',
-					user_area_id='$user_area_id',
-					user_city_id='$user_city_id',user_state_id='$user_state_id',user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
+					user_area_id=$user_area_id,
+					user_city_id=$user_city_id,user_state_id=$user_state_id,user_mobile='$user_mobile',user_status='$user_status' WHERE user_id=".$val);
 				$successMessage = "<div class='container error_message_mandatory'><span> User Updated Successfully! </span></div>";	
 			}
 					
@@ -117,8 +120,8 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="first-name">User Type<span class="required"></span></label>
 									<select class="product-type-filter form-control" id="sel_a" name="user_type">
-								        <option>
-											<span>Select User Type</span>
+								        <option value="">
+											Select User Type
 										</option>
 								        <option value="1" <?php if ($row['user_type'] == 1) echo "selected"; ?>>Student</option>
 										<option value="2" <?php if ($row['user_type'] == 2) echo "selected"; ?>>Profession</option>	
@@ -144,8 +147,8 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="first-name">State</label>
 									<select class="product-type-filter form-control state_act" name="user_state_id">
-								        <option>
-											<span>Select State</span>
+								        <option value="">
+											Select State
 										</option>
 								        <?php
 						                    $query = mysql_query("select * from stork_state where state_status='1'");
@@ -160,8 +163,8 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="first-name">City</span></label>
 									<select class="product-type-filter form-control city_act" name="user_city_id">
-								        <option>
-											<span>Select City</span>
+								        <option value="">
+											Select City
 										</option>
 								        <?php
 								        	$user_state_id = $row['user_state_id'];
@@ -177,8 +180,8 @@ include "includes/header.php";
 								<div class="form-group">
 								    <label for="first-name">Area</span></label>
 									<select class="product-type-filter form-control area_act" name="user_area_id">
-								        <option>
-											<span>Select Area</span>
+								        <option value="">
+											Select Area
 										</option>
 								        <?php
 								        	$user_city_id = $row['user_city_id'];   	

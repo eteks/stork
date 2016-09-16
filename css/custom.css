@@ -200,7 +200,7 @@ h3, .h3{
 	color: #ffffff; 
 }
 
-..button1{ width: 10% !important;}
+.button1{ width: 10% !important;}
 
 .con_details>h3{
 	color: #ffffff;
@@ -1049,7 +1049,7 @@ h4.order_or_button{
 }
 /* CSS */
 .header-page .ct-header {
-    	font-size: 18px;
+    	font-size: 18px !important;
     }
 #project_printing_form textarea {
 	resize: none !important;
@@ -1074,7 +1074,7 @@ h4.order_or_button{
 	text-align: right;
 }
 #upload_section input{
-	width: 100% !important;
+	width: 100%;
 }
 .quantity input {
     	text-align: center;
@@ -1114,6 +1114,21 @@ div.mcart-info , div.mcart-total {
 #fl_width .image_right {
 	width:300px;
 }
+
+/* Footer */
+.services-link a:hover {
+	color: #25bce9;
+}
+.info .fa-home:hover, .info .fa-phone:hover{
+	color: #25bce9;
+	 transform: translateZ(0px);
+} 
+/* checkout offer zone */
+.offer_submit .btn_prf {
+    float: left;
+    margin: 10px 0;
+}
+
 
 /* Offer code css added by siva */
 .offfer_status {

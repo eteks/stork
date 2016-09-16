@@ -73,4 +73,10 @@ $timing_type = array('fixed' => 'Fixed','flexible' => 'Flexible');
 
 //feedback sended address
 $feed_back_to_mail_address = 'support@printstork.com';
+
+// Array for declaring offer type
+$offer_type = array('general_offer' => 'General Offer','customer_offer' => 'Customer Offer');
+
+// Array for declaring offer amount type
+$offer_amount_type = array('cost' => 'Cost','percentage' => 'Percentage');
 ?>

@@ -140,8 +140,7 @@ $(document).ready(function(){
       $(this).find('th:last-child').css('width','130px');
     }
 
-	else if(thCount == 16) {
-		alert("test");
+  else if(thCount == 16) {
       $(this).css('width','1770px');
       $(this).find('th:first-child').css('width','270px');
       $(this).find('th:nth-child(2)').css('width','400px');
@@ -270,7 +269,7 @@ $(document).ready(function(){
 });
 $(document).ready(function () { 
   //called when key is pressed in textbox
-  $('#phone,#noofsystem').keypress(function (e) {
+  $('#phone,#noofsystem,#no_of_limitation').keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which != 44 && e.which != 45 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
@@ -280,13 +279,13 @@ $(document).ready(function () {
    });
 });
 $(document).ready(function () { 
-    $('#dob,#holiday_date').datepicker({
+    $('#dob,#holiday_date,.date_picker').datepicker({
         dateFormat: 'dd/mm/yy',
         altField: '#thealtdate',
         altFormat: 'yy-mm-dd'
     });
       $('#firstname').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
@@ -296,7 +295,7 @@ $(document).ready(function () {
           }
       });
         $('#lastname').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
@@ -306,7 +305,7 @@ $(document).ready(function () {
           }
       });
          $('#statename').keydown(function (e) {
-          if (e.shiftKey || e.ctrlKey || e.altKey) {
+          if (e.ctrlKey || e.altKey) {
               e.preventDefault();
           } else {
               var key = e.keyCode;
@@ -355,22 +354,22 @@ $(document).ready(function () {
               }
           }
       });
-  	  $("#deliverycharge").keypress(function (e) {
+      $("#deliverycharge").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
         $("#error_test").html("Digits Only").show().fadeOut("slow");
                return false;
     }
-   			});
-  	  $("#totalitems").keypress(function (e) {
+        });
+      $("#totalitems,#order_student_year").keypress(function (e) {
      //if the letter is not digit then display error and don't type anything
      if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
         //display error message
         $("#error_test").html("Digits Only").show().fadeOut("slow");
                return false;
     }
-   			});	
+        }); 
 });
 $(document).ready(function () {
     $('#dateofdelivered').datepicker({
@@ -402,6 +401,23 @@ $(document).ready(function () {
 // $('.plain_print_menu').on('click',function() {
 //   $('.plain_printing').addclass('open');
 // });
+/* add offer */
+ $("#offeramount").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+        });
+
+    $("#eligibleamtforoffer").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which !=46 &&  e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#error_test").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+        });
 
 });
-/* Admin sidebar navigation ends */

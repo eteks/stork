@@ -87,28 +87,28 @@ progress::-moz-progress-bar {
 					<div class="top-links col-lg-7 col-md-6 col-sm-5 col-xs-6">
 						<ul>
 							<li class="hidden-xs">
-								<a href="http://www.facebook.com/">
+								<a href="http://www.facebook.com/" title="Facebook">
 									<i class="fa fa-facebook"></i>
 									<!-- Connect with facebook -->
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.twitter.com/">
+								<a href="http://www.twitter.com/" title="Twitter">
 									<i class="fa fa-twitter"></i> 
 								</a>
 							</li>
 							<li class="hidden-xs">
-								<a href="http://www.linkedin.com/">
-									<i class="fa fa-linkedin"></i>
+								<a href="http://www.linkedin.com/" title="Google Plus">
+									<i class="fa fa-google-plus" aria-hidden="true"></i>
 								</a>
 							</li>
 						</ul>
 					</div>
 					<div class="top-header-right f-right col-lg-5 col-md-6 col-sm-7 col-xs-6">
-						<div class="w-header-right">
+						<div class="w-header-right" title="Enquiry Phone No.">
 							<div class="th-hotline">
 								<i class="fa fa-phone"></i>
-								<span>0413-2239886</span>
+								<span>+91-74488 60005</span>
 							</div> 
 						</div>
 					</div>
@@ -158,8 +158,8 @@ progress::-moz-progress-bar {
 							<?php
 							}else{
 							?>
-							<div class="cart-w SC-w hd-pd ">
-								<span class="mcart-icon dropdowSCIcon">
+							<div class="cart-w SC-w hd-pd">
+								<span class="mcart-icon dropdowSCIcon" title="User Login">
 									<a href="login.php?redirect_url=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">
 										<i class="fa fa-user"></i>
 									</a>
@@ -167,7 +167,7 @@ progress::-moz-progress-bar {
 							</div>
 							<!-- Added by siva -->
 							<div class="cart-w SC-w hd-pd ">
-								<span class="mcart-icon dropdowSCIcon">
+								<span class="mcart-icon dropdowSCIcon" title="Create New Account">
 									<a href="register.php">
 										<i class="fa fa-pencil"></i>
 										<!-- Sign Up -->
@@ -184,7 +184,7 @@ progress::-moz-progress-bar {
 								$add_to_cart_count = mysqli_num_rows($add_to_cart_quantity);
 								if(mysqli_num_rows($add_to_cart_quantity)>0){
 							?>
-							<div class="cart-w SC-w hd-pd">
+							<div class="cart-w SC-w hd-pd" title="Shopping Cart">
 								<span class="mcart-icon dropdowSCIcon">
 									<i class="fa fa-shopping-cart"></i>
 									<span class="mcart-dd-qty"><?php echo $add_to_cart_count; ?></span>
@@ -261,7 +261,7 @@ progress::-moz-progress-bar {
 							?>
 							
 							<div class="search-w SC-w hd-pd ">
-								<span class="search-icon dropdowSCIcon">
+								<span class="search-icon dropdowSCIcon" title="Search">
 									<i class="fa fa-search"></i>
 								</span>
 								<div class="search-safari">
